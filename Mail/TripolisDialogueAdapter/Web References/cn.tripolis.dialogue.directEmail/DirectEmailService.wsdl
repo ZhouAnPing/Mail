@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://directemail.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DirectEmailService" targetNamespace="http://directemail.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:29.51+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IDResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="ns2:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingOut" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PagingOut">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:PagingIn">
+            <xs:sequence>
+              <xs:element name="totalItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="UnassignAttachmentRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element name="attachmentId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="IDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="DirectEmailTypeIDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="directEmailTypeId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="tns:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingIn" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Sorting">
+        <xs:sequence>
+          <xs:element name="sortBy" type="xs:string" />
+          <xs:element name="sortOrder" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingIn">
+        <xs:sequence>
+          <xs:element name="pageNr" type="xs:int" />
+          <xs:element name="pageSize" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AssignAttachmentRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element name="attachmentId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="EmailPreviewRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element minOccurs="0" name="contactId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns4="http://services.tripolis.com/" xmlns:ns3="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://response.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://directemail.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:element name="assignAttachment" type="tns:assignAttachment" />
+      <xs:element name="assignAttachmentResponse" type="tns:assignAttachmentResponse" />
+      <xs:element name="create" type="tns:create" />
+      <xs:element name="createResponse" type="tns:createResponse" />
+      <xs:element name="delete" type="tns:delete" />
+      <xs:element name="deleteResponse" type="tns:deleteResponse" />
+      <xs:element name="errorResponse" type="ns1:ErrorResponse" />
+      <xs:element name="getByDirectEmailTypeId" type="tns:getByDirectEmailTypeId" />
+      <xs:element name="getByDirectEmailTypeIdResponse" type="tns:getByDirectEmailTypeIdResponse" />
+      <xs:element name="getById" type="tns:getById" />
+      <xs:element name="getByIdResponse" type="tns:getByIdResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:element name="preview" type="tns:preview" />
+      <xs:element name="previewResponse" type="tns:previewResponse" />
+      <xs:element name="unassignAttachment" type="tns:unassignAttachment" />
+      <xs:element name="unassignAttachmentResponse" type="tns:unassignAttachmentResponse" />
+      <xs:element name="update" type="tns:update" />
+      <xs:element name="updateResponse" type="tns:updateResponse" />
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="unassignAttachment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="unassignAttachmentRequest" type="ns2:UnassignAttachmentRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="unassignAttachmentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByIdRequest" type="ns2:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:DirectEmailResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DirectEmailResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="directEmail" type="ns3:DirectEmail" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="update">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="updateRequest" type="tns:UpdateDirectEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UpdateDirectEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element minOccurs="0" name="label" type="xs:string" />
+              <xs:element minOccurs="0" name="name" type="xs:string" />
+              <xs:element minOccurs="0" name="subject" type="xs:string" />
+              <xs:element minOccurs="0" name="description" type="xs:string" />
+              <xs:element minOccurs="0" name="htmlSource" type="xs:string" />
+              <xs:element minOccurs="0" name="textSource" type="xs:string" />
+              <xs:element minOccurs="0" name="fromName" type="xs:string" />
+              <xs:element minOccurs="0" name="fromAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="replyToAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="properties">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns4:KeyValuePair" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="updateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="create">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createRequest" type="tns:CreateDirectEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateDirectEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:createServiceRequest">
+            <xs:sequence>
+              <xs:element name="directEmailTypeId" type="xs:string" />
+              <xs:element name="label" type="xs:string" />
+              <xs:element minOccurs="0" name="name" type="xs:string" />
+              <xs:element name="subject" type="xs:string" />
+              <xs:element minOccurs="0" name="description" type="xs:string" />
+              <xs:element minOccurs="0" name="htmlSource" type="xs:string" />
+              <xs:element minOccurs="0" name="textSource" type="xs:string" />
+              <xs:element minOccurs="0" name="fromName" type="xs:string" />
+              <xs:element minOccurs="0" name="fromAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="replyToAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="properties">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns4:KeyValuePair" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createServiceRequest" abstract="true">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByDirectEmailTypeId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByDirectEmailTypeIdRequest" type="ns2:DirectEmailTypeIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByDirectEmailTypeIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:DirectEmailListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DirectEmailListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="directEmails">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="directEmail" type="ns3:DirectEmailForListing" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="assignAttachment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="assignAttachmentRequest" type="ns2:AssignAttachmentRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="assignAttachmentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="preview">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="previewRequest" type="ns2:EmailPreviewRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="previewResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:DirectEmailResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deleteRequest" type="ns2:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns1:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:complexType name="DirectEmail">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:DirectEmailForListing">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="htmlSource" type="xs:string" />
+              <xs:element minOccurs="0" name="textSource" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="DirectEmailForListing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="directEmailTypeId" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="subject" type="xs:string" />
+          <xs:element minOccurs="0" name="fromName" type="xs:string" />
+          <xs:element minOccurs="0" name="fromAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="replyToAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="author" type="xs:string" />
+          <xs:element minOccurs="0" name="modifiedAt" type="xs:dateTime" />
+          <xs:element name="isArchived" type="xs:boolean" />
+          <xs:element minOccurs="0" name="properties">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="create">
+    <wsdl:part name="parameters" element="tns:create" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="unassignAttachment">
+    <wsdl:part name="parameters" element="tns:unassignAttachment" />
+  </wsdl:message>
+  <wsdl:message name="getByDirectEmailTypeId">
+    <wsdl:part name="parameters" element="tns:getByDirectEmailTypeId" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part name="parameters" element="tns:update" />
+  </wsdl:message>
+  <wsdl:message name="unassignAttachmentResponse">
+    <wsdl:part name="parameters" element="tns:unassignAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:message name="getById">
+    <wsdl:part name="parameters" element="tns:getById" />
+  </wsdl:message>
+  <wsdl:message name="getByDirectEmailTypeIdResponse">
+    <wsdl:part name="parameters" element="tns:getByDirectEmailTypeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part name="parameters" element="tns:createResponse" />
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="getByIdResponse">
+    <wsdl:part name="parameters" element="tns:getByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="preview">
+    <wsdl:part name="parameters" element="tns:preview" />
+  </wsdl:message>
+  <wsdl:message name="previewResponse">
+    <wsdl:part name="parameters" element="tns:previewResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part name="parameters" element="tns:updateResponse" />
+  </wsdl:message>
+  <wsdl:message name="assignAttachment">
+    <wsdl:part name="parameters" element="tns:assignAttachment" />
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="assignAttachmentResponse">
+    <wsdl:part name="parameters" element="tns:assignAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DirectEmailService">
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="unassignAttachment">
+      <wsdl:input name="unassignAttachment" message="tns:unassignAttachment" />
+      <wsdl:output name="unassignAttachmentResponse" message="tns:unassignAttachmentResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <wsdl:input name="getById" message="tns:getById" />
+      <wsdl:output name="getByIdResponse" message="tns:getByIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input name="update" message="tns:update" />
+      <wsdl:output name="updateResponse" message="tns:updateResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input name="create" message="tns:create" />
+      <wsdl:output name="createResponse" message="tns:createResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByDirectEmailTypeId">
+      <wsdl:input name="getByDirectEmailTypeId" message="tns:getByDirectEmailTypeId" />
+      <wsdl:output name="getByDirectEmailTypeIdResponse" message="tns:getByDirectEmailTypeIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="assignAttachment">
+      <wsdl:input name="assignAttachment" message="tns:assignAttachment" />
+      <wsdl:output name="assignAttachmentResponse" message="tns:assignAttachmentResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="preview">
+      <wsdl:input name="preview" message="tns:preview" />
+      <wsdl:output name="previewResponse" message="tns:previewResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input name="delete" message="tns:delete" />
+      <wsdl:output name="deleteResponse" message="tns:deleteResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DirectEmailServiceSoapBinding" type="tns:DirectEmailService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unassignAttachment">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="unassignAttachment">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="unassignAttachmentResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getById">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="update">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="create">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByDirectEmailTypeId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByDirectEmailTypeId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByDirectEmailTypeIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="assignAttachment">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="assignAttachment">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="assignAttachmentResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="preview">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="preview">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="previewResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="delete">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DirectEmailService">
+    <wsdl:port name="DirectEmailServicePort" binding="tns:DirectEmailServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/DirectEmailService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

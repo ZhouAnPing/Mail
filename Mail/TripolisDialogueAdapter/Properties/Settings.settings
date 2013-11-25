@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TripolisDialogueAdapter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_contactDatabase_ContactDatabaseService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ContactDatabaseService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_contactDatabaseField_ContactDatabaseFieldService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ContactDatabaseFieldService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_contact_ContactService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ContactService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_contactGroup_ContactGroupService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ContactGroupService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_workspace_WorkspaceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/WorkspaceService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_directEmailType_DirectEmailTypeService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/DirectEmailTypeService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_directEmail_DirectEmailService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/DirectEmailService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_publish_PublishingService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/PublishingService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_subscription_SubscriptionService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/SubscriptionService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_reporting_ReportingService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ReportingService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_import_ImportService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ImportService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_export_ExportService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/mtom/ExportService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_smsType_SmsTypeService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/SmsTypeService</Value>
+    </Setting>
+    <Setting Name="TripolisDialogueAdapter_cn_tripolis_dialogue_smsMessage_SmsMessageService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/SmsMessageService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

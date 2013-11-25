@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://contactgroup.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactGroupService" targetNamespace="http://contactgroup.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:30.263+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:complexType name="IDResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SortableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="ns2:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingOut" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PagingOut">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:PagingIn">
+            <xs:sequence>
+              <xs:element name="totalItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="SortableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="tns:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingIn" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Sorting">
+        <xs:sequence>
+          <xs:element name="sortBy" type="xs:string" />
+          <xs:element name="sortOrder" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingIn">
+        <xs:sequence>
+          <xs:element name="pageNr" type="xs:int" />
+          <xs:element name="pageSize" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns5="http://contact.services.tripolis.com/" xmlns:ns4="http://services.tripolis.com/" xmlns:ns3="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://contactgroup.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://contact.services.tripolis.com/" />
+      <xs:element name="addContactsToGroup" type="tns:addContactsToGroup" />
+      <xs:element name="addContactsToGroupResponse" type="tns:addContactsToGroupResponse" />
+      <xs:element name="create" type="tns:create" />
+      <xs:element name="createResponse" type="tns:createResponse" />
+      <xs:element name="delete" type="tns:delete" />
+      <xs:element name="deleteResponse" type="tns:deleteResponse" />
+      <xs:element name="errorResponse" type="ns2:ErrorResponse" />
+      <xs:element name="getByContactDatabaseId" type="tns:getByContactDatabaseId" />
+      <xs:element name="getByContactDatabaseIdResponse" type="tns:getByContactDatabaseIdResponse" />
+      <xs:element name="getById" type="tns:getById" />
+      <xs:element name="getByIdResponse" type="tns:getByIdResponse" />
+      <xs:element name="getByParentGroupId" type="tns:getByParentGroupId" />
+      <xs:element name="getByParentGroupIdResponse" type="tns:getByParentGroupIdResponse" />
+      <xs:element name="getContacts" type="tns:getContacts" />
+      <xs:element name="getContactsResponse" type="tns:getContactsResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:element name="removeAllContactsFromGroup" type="tns:removeAllContactsFromGroup" />
+      <xs:element name="removeAllContactsFromGroupResponse" type="tns:removeAllContactsFromGroupResponse" />
+      <xs:element name="removeContactsFromGroup" type="tns:removeContactsFromGroup" />
+      <xs:element name="removeContactsFromGroupResponse" type="tns:removeContactsFromGroupResponse" />
+      <xs:element name="update" type="tns:update" />
+      <xs:element name="updateResponse" type="tns:updateResponse" />
+      <xs:complexType name="addContactsToGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addContactsToGroupRequest" type="tns:ContactsToContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactsToContactGroupRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactGroupId" type="xs:string" />
+              <xs:element name="contactIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="reference" type="xs:string" />
+              <xs:element minOccurs="0" name="ip" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="addContactsToGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByContactDatabaseId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByContactDatabaseIdRequest" type="tns:ContactGroupsByContactDatabaseIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupsByContactDatabaseIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element minOccurs="0" name="groupType" type="ns3:groupType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getByContactDatabaseIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactGroupListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroups">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactGroup" type="ns3:ContactGroup" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="removeAllContactsFromGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="removeAllContactsFromGroupRequest" type="tns:RemoveAllContactsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RemoveAllContactsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:IDRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="reference" type="xs:string" />
+              <xs:element minOccurs="0" name="ip" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="removeAllContactsFromGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="updateRequest" type="tns:UpdateContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UpdateContactGroupRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element minOccurs="0" name="label" type="xs:string" />
+              <xs:element minOccurs="0" name="name" type="xs:string" />
+              <xs:element minOccurs="0" name="groupType" type="ns3:groupType" />
+              <xs:element minOccurs="0" name="parentGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="archived" type="xs:boolean" />
+              <xs:element minOccurs="0" name="properties">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns4:KeyValuePair" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="updateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="create">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createRequest" type="tns:CreateContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateContactGroupRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:createServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element name="label" type="xs:string" />
+              <xs:element minOccurs="0" name="name" type="xs:string" />
+              <xs:element name="groupType" type="ns3:groupType" />
+              <xs:element minOccurs="0" name="parentGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="properties">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns4:KeyValuePair" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createServiceRequest" abstract="true">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:ServiceRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeContactsFromGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="removeContactsFromGroupRequest" type="tns:ContactsToContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeContactsFromGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByIdRequest" type="ns1:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactGroupResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroup" type="ns3:ContactGroup" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getContacts">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getContactsRequest" type="ns5:GetByContactGroupIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getContactsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns5:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deleteRequest" type="ns1:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByParentGroupId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByParentGroupIdRequest" type="tns:ContactGroupsByParentGroupIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupsByParentGroupIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="parentGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="groupType" type="ns3:groupType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getByParentGroupIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactGroupListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns3="http://response.services.tripolis.com/" xmlns:tns="http://contact.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://common.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:complexType name="GetByContactGroupIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ReturnContactFields">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactDatabaseFieldIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="returnAllContactFields" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contact" type="ns2:Contact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:complexType name="ContactGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="parentGroupId" type="xs:string" />
+          <xs:element minOccurs="0" name="modifiedAt" type="xs:dateTime" />
+          <xs:element name="isArchived" type="xs:boolean" />
+          <xs:element minOccurs="0" name="properties">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Contact">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactFields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="contactField" type="tns:ContactField" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactField">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element name="key" type="xs:boolean" />
+          <xs:element name="required" type="xs:boolean" />
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupId" type="xs:string" />
+          <xs:element name="position" type="xs:int" />
+          <xs:element minOccurs="0" name="kindOfField" type="tns:kindOfField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="groupType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="STATIC" />
+          <xs:enumeration value="SUBSCRIPTION" />
+          <xs:enumeration value="TEST" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="kindOfField">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GENERAL" />
+          <xs:enumeration value="SUMMARY" />
+          <xs:enumeration value="INTEREST" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getContacts">
+    <wsdl:part name="parameters" element="tns:getContacts" />
+  </wsdl:message>
+  <wsdl:message name="removeContactsFromGroup">
+    <wsdl:part name="parameters" element="tns:removeContactsFromGroup" />
+  </wsdl:message>
+  <wsdl:message name="removeAllContactsFromGroup">
+    <wsdl:part name="parameters" element="tns:removeAllContactsFromGroup" />
+  </wsdl:message>
+  <wsdl:message name="addContactsToGroupResponse">
+    <wsdl:part name="parameters" element="tns:addContactsToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part name="parameters" element="tns:create" />
+  </wsdl:message>
+  <wsdl:message name="removeAllContactsFromGroupResponse">
+    <wsdl:part name="parameters" element="tns:removeAllContactsFromGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeContactsFromGroupResponse">
+    <wsdl:part name="parameters" element="tns:removeContactsFromGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByIdResponse">
+    <wsdl:part name="parameters" element="tns:getByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getContactsResponse">
+    <wsdl:part name="parameters" element="tns:getContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part name="parameters" element="tns:update" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="addContactsToGroup">
+    <wsdl:part name="parameters" element="tns:addContactsToGroup" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByContactDatabaseId">
+    <wsdl:part name="parameters" element="tns:getByContactDatabaseId" />
+  </wsdl:message>
+  <wsdl:message name="getByParentGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:getByParentGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByParentGroupId">
+    <wsdl:part name="parameters" element="tns:getByParentGroupId" />
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part name="parameters" element="tns:updateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getById">
+    <wsdl:part name="parameters" element="tns:getById" />
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part name="parameters" element="tns:createResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByContactDatabaseIdResponse">
+    <wsdl:part name="parameters" element="tns:getByContactDatabaseIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:portType name="ContactGroupService">
+    <wsdl:operation name="addContactsToGroup">
+      <wsdl:input name="addContactsToGroup" message="tns:addContactsToGroup" />
+      <wsdl:output name="addContactsToGroupResponse" message="tns:addContactsToGroupResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByContactDatabaseId">
+      <wsdl:input name="getByContactDatabaseId" message="tns:getByContactDatabaseId" />
+      <wsdl:output name="getByContactDatabaseIdResponse" message="tns:getByContactDatabaseIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="removeAllContactsFromGroup">
+      <wsdl:input name="removeAllContactsFromGroup" message="tns:removeAllContactsFromGroup" />
+      <wsdl:output name="removeAllContactsFromGroupResponse" message="tns:removeAllContactsFromGroupResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input name="update" message="tns:update" />
+      <wsdl:output name="updateResponse" message="tns:updateResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input name="create" message="tns:create" />
+      <wsdl:output name="createResponse" message="tns:createResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="removeContactsFromGroup">
+      <wsdl:input name="removeContactsFromGroup" message="tns:removeContactsFromGroup" />
+      <wsdl:output name="removeContactsFromGroupResponse" message="tns:removeContactsFromGroupResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <wsdl:input name="getById" message="tns:getById" />
+      <wsdl:output name="getByIdResponse" message="tns:getByIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getContacts">
+      <wsdl:input name="getContacts" message="tns:getContacts" />
+      <wsdl:output name="getContactsResponse" message="tns:getContactsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input name="delete" message="tns:delete" />
+      <wsdl:output name="deleteResponse" message="tns:deleteResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByParentGroupId">
+      <wsdl:input name="getByParentGroupId" message="tns:getByParentGroupId" />
+      <wsdl:output name="getByParentGroupIdResponse" message="tns:getByParentGroupIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContactGroupServiceSoapBinding" type="tns:ContactGroupService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="addContactsToGroup">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="addContactsToGroup">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addContactsToGroupResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByContactDatabaseId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByContactDatabaseId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByContactDatabaseIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllContactsFromGroup">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="removeAllContactsFromGroup">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeAllContactsFromGroupResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="update">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="create">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeContactsFromGroup">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="removeContactsFromGroup">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeContactsFromGroupResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getById">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="delete">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getContacts">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getContacts">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getContactsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByParentGroupId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByParentGroupId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByParentGroupIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContactGroupService">
+    <wsdl:port name="ContactGroupServicePort" binding="tns:ContactGroupServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/ContactGroupService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
