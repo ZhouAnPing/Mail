@@ -327,6 +327,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="lib\log4net.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -610,6 +611,7 @@
     <None Include="Web References\cn.tripolis.dialogue.workspace\WorkspaceService.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\log4net.dll" />
     <Content Include="Readme.html" />
     <Content Include="WinSCPnet.dll" />
   </ItemGroup>
