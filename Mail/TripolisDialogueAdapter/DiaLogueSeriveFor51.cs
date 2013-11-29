@@ -144,8 +144,8 @@ namespace TripolisDialogueAdapter
                     // Download files
                     TransferOptions transferOptions = new TransferOptions();
                     transferOptions.TransferMode = TransferMode.Binary;
-                    transferOptions.ResumeSupport.State = TransferResumeSupportState.Smart;
-                    transferOptions.ResumeSupport.Threshold = 1000;
+                  //  transferOptions.ResumeSupport.State = TransferResumeSupportState.Smart;
+                    //transferOptions.ResumeSupport.Threshold = 1000;
                     
 
                     TransferOperationResult transferResult = null;
