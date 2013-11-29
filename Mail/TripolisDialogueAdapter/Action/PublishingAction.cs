@@ -57,7 +57,7 @@ namespace TripolisDialogueAdapter.Action
                 request.scheduleAtSpecified = true;
                 request.scheduleAt = scheduleAt;
                 
-                // request.
+                // request.              
                 cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishEmail(request);
 
                 result = response.id;
@@ -92,11 +92,10 @@ namespace TripolisDialogueAdapter.Action
             try
             {
                 request.contactId = contactId;
-                request.directEmailId = emailId;              
-
+                request.directEmailId = emailId;           
 
                 // request.
-                cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishTransactionalEmail(request);
+                cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishTransactionalEmail(request);               
 
                 result = response.id;
 

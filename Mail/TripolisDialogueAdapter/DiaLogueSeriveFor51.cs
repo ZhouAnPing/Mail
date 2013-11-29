@@ -303,7 +303,64 @@ namespace TripolisDialogueAdapter
             }
             return result;
         }
+        public String FTPFile(String HostName, String UserName, String Password, String remoteFilePath, String localPath)
+        {
+            String ftpFileName = "";
+            int result = 0;
+            //get file list from ftp server
+            ArrayList FileNameList = ListFiles(HostName, UserName, Password, remoteFilePath);
+            foreach (String fileName in FileNameList)
+            {
+                if (!Path.GetExtension(fileName).Equals(".CSV", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                Console.WriteLine("Get Remote File:{0}", fileName);
+
+                if (FileNameList.Contains(Path.GetFileNameWithoutExtension(fileName) + ".html") || FileNameList.Contains(Path.GetFileNameWithoutExtension(fileName) + ".HTML"))
+                {
+                    String htmlFileName = Path.GetFileNameWithoutExtension(fileName) + ".html";
+                    //Download HTML file from ftp server
+                    result = this.Download(HostName, UserName, Password, remoteFilePath + htmlFileName, localPath);
+                    if (result != 0)
+                    {
+                        continue;
+                    }
+                    //Download CSV file from ftp server
+                    result = this.Download(HostName, UserName, Password, remoteFilePath + fileName, localPath);
+                    if (result != 0)
+                    {
+                        continue;
+                    }
+
+                    String localCSVFileName = localPath + fileName;
+                    String localHtmlFileName = localPath + htmlFileName;
+                    string fileContent = File.ReadAllText(localCSVFileName, Encoding.UTF8);
+                    string revisedContent = fileContent.Replace("||", ";");
+                    File.WriteAllText(localCSVFileName, revisedContent, Encoding.UTF8);
+                    result = this.Upload(HostName, UserName, Password, remoteFilePath, localCSVFileName);
+                    if (result == 0)//success
+                    {
+                        File.Delete(localPath + "backup/" + fileName);
+                        File.Delete(localPath + "backup/" + htmlFileName);
+                        File.Move(localCSVFileName, localPath + "backup/" + fileName);
+                        File.Move(localHtmlFileName, localPath + "backup/" + htmlFileName);
+                        ftpFileName = fileName;
+                        //    this.sendMail(
+                        break;
+                    }
+
+
+                }
+
+
+            }
+            return ftpFileName;
+
+        }
         #endregion
+       
         public bool IsFileInUse(string fileName)
         {
             bool inUse = true;
@@ -372,62 +429,7 @@ namespace TripolisDialogueAdapter
             logger.InfoFormat("Finish Backup file to " + descDir);
         }
 
-        public String FTPFile(String HostName, String UserName, String Password, String remoteFilePath, String localPath)
-        {
-            String ftpFileName = "";
-            int result = 0;
-            //get file list from ftp server
-            ArrayList FileNameList = ListFiles(HostName, UserName, Password, remoteFilePath);
-            foreach (String fileName in FileNameList)
-            {
-                if (!Path.GetExtension(fileName).Equals(".CSV", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                Console.WriteLine("Get Remote File:{0}", fileName);
-
-                if (FileNameList.Contains(Path.GetFileNameWithoutExtension(fileName) + ".html") || FileNameList.Contains(Path.GetFileNameWithoutExtension(fileName) + ".HTML"))
-                {
-                    String htmlFileName = Path.GetFileNameWithoutExtension(fileName) + ".html";
-                    //Download HTML file from ftp server
-                    result = this.Download(HostName, UserName, Password, remoteFilePath + htmlFileName, localPath);
-                    if (result != 0)
-                    {
-                        continue;
-                    }
-                    //Download CSV file from ftp server
-                    result = this.Download(HostName, UserName, Password, remoteFilePath + fileName, localPath);
-                    if (result != 0)
-                    {
-                        continue;
-                    }
-
-                    String localCSVFileName = localPath + fileName;
-                    String localHtmlFileName = localPath + htmlFileName;
-                    string fileContent = File.ReadAllText(localCSVFileName, Encoding.UTF8);
-                    string revisedContent = fileContent.Replace("||", ";");
-                    File.WriteAllText(localCSVFileName, revisedContent, Encoding.UTF8);
-                    result = this.Upload(HostName, UserName, Password, remoteFilePath, localCSVFileName);
-                    if (result == 0)//success
-                    {
-                        File.Delete(localPath + "backup/" + fileName);
-                        File.Delete(localPath + "backup/" + htmlFileName);
-                        File.Move(localCSVFileName, localPath + "backup/" + fileName);
-                        File.Move(localHtmlFileName, localPath + "backup/" + htmlFileName);
-                        ftpFileName = fileName;
-                        //    this.sendMail(
-                        break;
-                    }
-
-
-                }
-
-
-            }
-            return ftpFileName;
-
-        }
+        
 
         public String sendNotification(String contactDatabaseId, String workspaceId, String emailTypeId, String emailAddress, String subject, String emailContent)
         {
@@ -438,34 +440,20 @@ namespace TripolisDialogueAdapter
             return contactId;
         }
 
-        public void sendMail(String fileName, String contactDatabaseId, String workspaceId, String emailTypeId, String fromName,
-            String fromAddress, String reportReceiverAddress, String ftpAccountId, String subject, String htmlSource)
-        {
-           
-            logger.InfoFormat("Begin sending mail for File Name "+ fileName);
-            String TransId = Path.GetFileNameWithoutExtension(fileName);
-            if (TransId == null)
-            {
-                logger.InfoFormat("Transaction Id is blank");
-                return;
-            }
-            String[] arr = TransId.Split('_');
-            if (arr == null || arr.Length <= 1)
-            {
-                logger.InfoFormat("FileName format is wrong");
-                return;
-            }
 
-            TransId = arr[arr.Length - 1];
+        public String  importContact(String transId, String fileName, String contactDatabaseId,String reportReceiverAddress, String ftpAccountId)
+        {
+            logger.InfoFormat("***********Begin importing contact File " + fileName + " for transid " + transId+"***********");
+           
             String strDate = DateTime.Now.ToString("yyyyMMdd");
-            String groupName = strDate + "_" + TransId;
-            String EmailName = groupName;
+            String groupName = strDate + "_" + transId;
+           
             //Create Group             
             ContactGroupAction contactGroupAction = new ContactGroupAction(client, userName, password, oWebProxy);
             String groupId = contactGroupAction.createContactGroup(contactDatabaseId, groupName, groupName);
-            logger.InfoFormat("Create Group " + groupName+" successfully");           
-         
-            logger.InfoFormat("Begin import contact File "+fileName+" for transid "+TransId);
+            logger.InfoFormat("Create Group " + groupName + " successfully");
+
+          
             DateTime scheduleAt = DateTime.Now;
             ImportContactAction importContactAction = new ImportContactAction(client, userName, password, oWebProxy);
             String importId = importContactAction.importContactFromFTP(contactDatabaseId, groupId, fileName, reportReceiverAddress, ftpAccountId, scheduleAt);
@@ -474,36 +462,45 @@ namespace TripolisDialogueAdapter
             {
                 importContactAction = new ImportContactAction(client, userName, password, oWebProxy);
                 importStatus status = importContactAction.getImportStatus(importId);
-               
+
                 if (status.Equals(importStatus.ENDED))
                 {
-                    logger.InfoFormat("import contact File "+ fileName+" for transid"+ TransId +" successfully");
+                    logger.InfoFormat("import contact File " + fileName + " for transid" + transId + " successfully");
                     break;
                 }
                 if (status.Equals(importStatus.STOPPED) || status.Equals(importStatus.ABORTED))
                 {
-                    logger.InfoFormat("fail to import contact File " + fileName + " for transid " + TransId + " as import status is " + status.ToString());
-                    return;
+                    logger.InfoFormat("fail to import contact File " + fileName + " for transid " + transId + " as import status is " + status.ToString());
+                    return "";
                     //break;
                 }
-                logger.InfoFormat("Checking the import status, and current import status is "+status.ToString()+" for transid "+ TransId);
+                logger.InfoFormat("Checking the import status, and current import status is " + status.ToString() + " for transid " + transId);
                 Thread.Sleep(60 * 1000);
             }
+            return groupId;
+
+        }
+
+        public void sendMail(String EmailName, String groupId, String contactDatabaseId, String workspaceId, String emailTypeId, String fromName,
+            String fromAddress, String reportReceiverAddress,  String subject, String htmlSource)
+        {
+
+            logger.InfoFormat("Begin sending mail for email " + EmailName);           
 
             //send test mail           
             this.sendNotification(contactDatabaseId, workspaceId, emailTypeId, reportReceiverAddress, subject+"[测试,请确认]", htmlSource);
-            logger.InfoFormat("send test mail for transid "+ TransId+" successfully");
+            logger.InfoFormat("send test mail for email " + EmailName + " successfully");
            
             //Create Email
             DirectEmailAction directEmailAction = new DirectEmailAction(client, userName, password, oWebProxy);
             String emailId = directEmailAction.createDirectEmail(emailTypeId, EmailName, EmailName, subject, "", fromName, fromAddress, htmlSource);
-            logger.InfoFormat("Create email "+EmailName+" in Platform for transid "+TransId+" successfully");
+            logger.InfoFormat("Create email " + EmailName +  " successfully");
 
-            return;
+          //  return;
             //Publish Email
-            logger.InfoFormat("Begin sending email  " + EmailName + " in Platform for transid "+TransId);            
+            logger.InfoFormat("Begin sending email  " + EmailName );            
             PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
-            scheduleAt = DateTime.Now.AddMinutes(15);
+            DateTime scheduleAt = DateTime.Now.AddMinutes(15);
             String publishId = publishingAction.publishingEmail(groupId, emailId, scheduleAt);
             Thread.Sleep(5 * 1000);
             while (true)
@@ -525,15 +522,15 @@ namespace TripolisDialogueAdapter
                     
 
                    // Console.WriteLine(sb.ToString());
-                    logger.InfoFormat("finish sending mail for transid "+TransId+", the sending status  is "+job.status+", sending report is "+sb.ToString());
-                    this.sendNotification(contactDatabaseId, workspaceId, emailTypeId, reportReceiverAddress,  TransId+"_邮件发送报告" , sb.ToString());
+                    logger.InfoFormat("finish sending mail  " + EmailName + ", the sending status  is " + job.status + ", sending report is " + sb.ToString());
+                    this.sendNotification(contactDatabaseId, workspaceId, emailTypeId, reportReceiverAddress, EmailName + "_邮件发送报告", sb.ToString());
                   
                     break;
                 }
-                logger.InfoFormat("Checking the sending status, and current sending status is " + job.status.ToString() + " for transid " + TransId);
+                logger.InfoFormat("Checking the sending status, and current sending status is " + job.status.ToString() + " for email: " + EmailName);
                 Thread.Sleep(60 * 1000);
             }
-            logger.InfoFormat("finish sending mail for File Name "+ fileName);
+            logger.InfoFormat("finish sending mail for email:" + EmailName);
         }
     }
 }

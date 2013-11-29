@@ -61,36 +61,42 @@ namespace TripolisDialogueAdapter
 
             ArrayList list = new ArrayList();
             String contactJson =
-               "email#an-ping.zhou@hp.com;username#anping;comment#hp";
+               "email#an-ping.zhou@hp.com;username#anping;var1#hp";
             list.Add(contactJson);
 
             contactJson =
-               "email#zapjx@hotmail.com;username#anping;comment#hotmail"; 
+               "email#zapjx@hotmail.com;username#anping;var1#hotmail"; 
             list.Add(contactJson);
 
             contactJson =
-                 "email#zhouyouchen@gmail.com;username#anping;comment#gmail"; 
+                 "email#zhouyouchen@gmail.com;username#anping;var1#gmail"; 
             list.Add(contactJson);
 
             contactJson =
-                 "email#1197922021@qq.com;username#anping;comment#qq";
+                 "email#1197922021@qq.com;username#anping;var1#qq";
             list.Add(contactJson);
-          
+
+            TripolisConfig tripolisConfig =new TripolisConfig();
+            tripolisConfig.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";
+            tripolisConfig.workspaceId = "MjAwNzIwMDdKRmT4g3bWOg";
+            tripolisConfig.EmailFileName = "email";
+            tripolisConfig.emailTypeId = "MTc2MDE3NjBcUp_pC*h71w";
+            tripolisConfig.directEmailId = "MzI4MDg3MzI99gkUiCfOmQ";
             
             DialogueService dialogueService = new DialogueService(client, userName, password,null);
 
-            DateTime startTime = DateTime.Now.AddHours(-8);
+            //DateTime startTime = DateTime.Now.AddHours(-8);
 
-            DateTime endTime = DateTime.Now;
+            //DateTime endTime = DateTime.Now;
 
-            String result = dialogueService.SyncFeedbackInfo("MjU0OTI1NDnmTzMfCdUq6w", startTime, endTime);
-            System.Console.WriteLine(result);
+            //String result = dialogueService.SyncFeedbackInfo("MjU0OTI1NDnmTzMfCdUq6w", startTime, endTime);
+            //System.Console.WriteLine(result);
 
-            //foreach (String tempContact in list)
-            //{
-            //    dialogueService.sendSingleEmail("B00001",tempContact, "", "");
-            //    Thread.Sleep(5000);
-            //}
+            foreach (String tempContact in list)
+            {
+                dialogueService.sendSingleEmail(tripolisConfig,tempContact,"B00001","AnPing", "Test Mail", "Test Mail");
+                Thread.Sleep(5000);
+            }
           
             System.Console.WriteLine("Finish Action");
             System.Console.ReadLine();

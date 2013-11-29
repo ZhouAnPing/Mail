@@ -123,6 +123,7 @@ namespace TripolisDialogueAdapter
         public String publishingEmail(String contactGroupId, String emailId)
         {
             PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
+           
             return publishingAction.publishingEmail(contactGroupId, emailId,DateTime.Now);
 
         }
@@ -147,6 +148,8 @@ namespace TripolisDialogueAdapter
                 String directEmailId = tripolisConfig.directEmailId;
                 String emailId = "";
                 String EmailFileName = tripolisConfig.EmailFileName;
+
+                
 
                 //const string pattern = "\\{.+?\\}";
                 //List<string> tempList = Regex.Matches(emailBody, pattern).Cast<Match>().Select(a => a.Value).ToList();
@@ -188,6 +191,7 @@ namespace TripolisDialogueAdapter
                 //request.directEmail.id = directEmailId;
 
                 request.ip = "127.0.0.1";
+             
 
                 //request.contactGroupSubscriptions = new cn.tripolis.dialogue.subscription.ContactGroupSubscription[1];
                 //cn.tripolis.dialogue.subscription.ContactGroupSubscription contactGroupSubscription = new cn.tripolis.dialogue.subscription.ContactGroupSubscription();
@@ -200,12 +204,14 @@ namespace TripolisDialogueAdapter
                // subscriptionService.Proxy 
                 String contactId = response.id;
 
+                this.updateDirectEmail(directEmailId, emailSubject, sender, emailBody);
+
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
                 String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId);
+                
 
-
-                SendLogDao dbAccess = new SendLogDao();
-                dbAccess.SengLog_InsertInfo(new String[] { emailId, publishId, batchNo });
+              //  SendLogDao dbAccess = new SendLogDao();
+              //  dbAccess.SengLog_InsertInfo(new String[] { emailId, publishId, batchNo });
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -224,6 +230,8 @@ namespace TripolisDialogueAdapter
             return result;
         }
 
+
+
         public DataTable Report_GetInfo(String batchNo, int type)//从数据库中读取数据到da 再在内存中建立ds 用fill 来把da的数据填充到ds再返回ds 中的首行 
         {
            return new ReportDao().Report_GetInfo(batchNo, type);
@@ -239,8 +247,6 @@ namespace TripolisDialogueAdapter
         public String SyncFeedbackInfo(String contactDatabaseId, DateTime startTime, DateTime endTime)
         {
             String result =  getFeedbackInfo(contactDatabaseId, startTime, endTime, null);
-
-
             return result;
         }
 
@@ -458,24 +464,6 @@ namespace TripolisDialogueAdapter
             return doc;
         }
 
-        public importStatus getImportStatus(String importId)
-        {
-            ImportContactAction importContactAction = new ImportContactAction(client, userName, password, oWebProxy);
-            return importContactAction.getImportStatus(importId);
-
-        }
-        public Job getPublishStatus(String publishId)
-        {
-            PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
-            return publishingAction.getPublishStatus(publishId);
-
-        }
-
-        public String importContactFromFTP(String contactDatabaseId, String groupId, String fileName, String reportReceiverAddress, String ftpAccountId, DateTime scheduleAt)
-        {
-            ImportContactAction importContactAction = new ImportContactAction(client, userName, password, oWebProxy);
-            return importContactAction.importContactFromFTP(contactDatabaseId, groupId, fileName, reportReceiverAddress, ftpAccountId, scheduleAt);
-        }
 
         /// <summary>
         /// Create contact group
@@ -518,7 +506,7 @@ namespace TripolisDialogueAdapter
                 request.extension = cn.tripolis.dialogue.import.fileExtension.CSV;
                 request.fileName = fileName;
                 request.importFile = contacts;//System.IO.File.ReadAllBytes("../../Contacts_new.csv");
-                
+                //importService..importContactsAsync()
                 cn.tripolis.dialogue.import.ImportIDResponse response = importService.importContacts(request);
                 
                 result = response.importId;
