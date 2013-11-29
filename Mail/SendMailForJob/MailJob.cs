@@ -104,6 +104,7 @@ namespace SendMailForJob
                     if (String.IsNullOrEmpty(ftpFileName))
                     {
                         logger.InfoFormat("No Contact is found" + ",wating for next Loop...");
+                        Thread.Sleep(60 * 1000);
                         continue;
                     }
 
@@ -113,6 +114,7 @@ namespace SendMailForJob
                     if (String.IsNullOrEmpty(subject) || String.IsNullOrWhiteSpace(subject))
                     {
                         diaLogueSeriveFor51.sendNotification(contactDatabaseId, workspaceId, emailTypeId, reportReceiverAddress, "邮件没有主题，请添加html的title属性，重新上传", htmlSource);
+                        Thread.Sleep(60 * 1000);
                         continue;
                     }
 
@@ -120,12 +122,14 @@ namespace SendMailForJob
                     if (TransId == null)
                     {
                         logger.InfoFormat("Transaction Id is blank");
+                        Thread.Sleep(60 * 1000);
                         continue;
                     }
                     String[] arr = TransId.Split('_');
                     if (arr == null || arr.Length <= 1)
                     {
                         logger.InfoFormat("FileName format is wrong");
+                        Thread.Sleep(60 * 1000);
                         continue;
                     }
 
@@ -135,6 +139,7 @@ namespace SendMailForJob
                     if (String.IsNullOrEmpty(contactGroupId))
                     {
                         logger.InfoFormat("Fail to import Contact");
+                        Thread.Sleep(60 * 1000);
                         continue;
                     }
                     String strDate = DateTime.Now.ToString("yyyyMMdd");
