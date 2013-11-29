@@ -99,7 +99,7 @@ namespace SendMailForJob
                     DiaLogueSeriveFor51 diaLogueSeriveFor51 = new DiaLogueSeriveFor51(client, userName, password, null);
 
                     String ftpFileName = diaLogueSeriveFor51.FormatFile(FTPLocalPath);
-
+                     
                     logger.InfoFormat("begin process " + ftpFileName);
                     if (String.IsNullOrEmpty(ftpFileName))
                     {
