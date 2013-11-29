@@ -33,10 +33,10 @@
       <Value Profile="(Default)">zapjx@hotmail.com</Value>
     </Setting>
     <Setting Name="FTPLocalPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\zhouzhou\Desktop\FTP DEMO\Test\</Value>
+      <Value Profile="(Default)">D:\FTP\LocalUser\51job\</Value>
     </Setting>
     <Setting Name="BackupPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\zhouzhou\Desktop\FTP DEMO\Test\backup\</Value>
+      <Value Profile="(Default)">D:\FTP_BCK\51Job\</Value>
     </Setting>
   </Settings>
 </SettingsFile>
