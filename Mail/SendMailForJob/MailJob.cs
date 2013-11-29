@@ -132,7 +132,11 @@ namespace SendMailForJob
                     TransId = arr[arr.Length - 1];
 
                     String contactGroupId = diaLogueSeriveFor51.importContact(TransId, ftpFileName, contactDatabaseId, reportReceiverAddress, ftpAccountId);
-
+                    if (String.IsNullOrEmpty(contactGroupId))
+                    {
+                        logger.InfoFormat("Fail to import Contact");
+                        continue;
+                    }
                     String strDate = DateTime.Now.ToString("yyyyMMdd");
                     String EmailName = strDate + "_" + TransId;
                     diaLogueSeriveFor51.sendMail(EmailName, contactGroupId, contactDatabaseId, workspaceId, emailTypeId, fromName, fromAddress, reportReceiverAddress, subject, htmlSource);

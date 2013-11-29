@@ -471,6 +471,7 @@ namespace TripolisDialogueAdapter
                 if (status.Equals(importStatus.STOPPED) || status.Equals(importStatus.ABORTED))
                 {
                     logger.InfoFormat("fail to import contact File " + fileName + " for transid " + transId + " as import status is " + status.ToString());
+                   // throw new Exception("fail to import contact File " + fileName + " for transid " + transId + " as import status is " + status.ToString());
                     return "";
                     //break;
                 }
