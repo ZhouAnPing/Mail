@@ -612,6 +612,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\log4net.dll" />
+    <Content Include="lib\Microsoft.Web.Services3.dll" />
+    <Content Include="lib\WinSCP.dll" />
     <Content Include="Readme.html" />
     <Content Include="WinSCPnet.dll" />
   </ItemGroup>
