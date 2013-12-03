@@ -25,7 +25,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("training")]
+        [global::System.Configuration.DefaultSettingValueAttribute("51job")]
         public string client {
             get {
                 return ((string)(this["client"]));
@@ -37,7 +37,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("api@51job.com")]
         public string userName {
             get {
                 return ((string)(this["userName"]));
@@ -61,7 +61,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MjU1OTI1NTm6UFiCZQIokg")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MjU1ODI1NTgL21MIxlZDCQ")]
         public string contactDatabaseId {
             get {
                 return ((string)(this["contactDatabaseId"]));
@@ -73,7 +73,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MjAxNjIwMTYrcyIPWpHd*w")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MjAxNTIwMTW*cnAz7Zn0sQ")]
         public string workspaceId {
             get {
                 return ((string)(this["workspaceId"]));
@@ -85,7 +85,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MTc3NDE3NzR93tsKXN3m4A")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MTc2ODE3Nji6JEFYrHDuFA")]
         public string emailTypeId {
             get {
                 return ((string)(this["emailTypeId"]));
@@ -97,7 +97,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NTM1NTM1NTNuZ_nHNzDQWA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("NTM3NTM3NTMZ4aAtyuHGmA")]
         public string ftpAccountId {
             get {
                 return ((string)(this["ftpAccountId"]));
@@ -121,7 +121,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("51Club@51job.com")]
         public string fromAddress {
             get {
                 return ((string)(this["fromAddress"]));
@@ -133,7 +133,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("51Club@51job.com")]
         public string reportReceiverAddress {
             get {
                 return ((string)(this["reportReceiverAddress"]));
@@ -145,7 +145,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\FTP\\LocalUser\\51job\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\FTP\\LocalUser\\51Upload\\")]
         public string FTPLocalPath {
             get {
                 return ((string)(this["FTPLocalPath"]));
