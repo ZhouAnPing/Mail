@@ -115,6 +115,7 @@ namespace TripolisDialogueAdapter.Action
                 request.fromAddress = fromAddress;
                 request.htmlSource = htmlSource;
                 request.textSource = htmlSource;
+              
                 
                 //request.
                 IDResponse response = directEmailService.create(request);

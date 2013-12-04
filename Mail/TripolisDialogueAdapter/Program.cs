@@ -76,6 +76,12 @@ namespace TripolisDialogueAdapter
                  "email#1197922021@qq.com;username#anping;var1#qq";
             list.Add(contactJson);
 
+            TripolisDialogueAdapter.Action.ReportingAction reportingAction = new Action.ReportingAction(client, userName, password, null);
+
+            reportingAction.getReport("MTA1Mjc1NDCMdCDprzC_oRpaAAO2LvZr");
+            return;
+
+
             TripolisConfig tripolisConfig =new TripolisConfig();
             tripolisConfig.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";
             tripolisConfig.workspaceId = "MjAwNzIwMDdKRmT4g3bWOg";

@@ -331,6 +331,7 @@ namespace TripolisDialogueAdapter
                 var xroot = new XElement("FeedbackReport");
 
                 logger.Debug("******exportSent*****");
+  
                 request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields
                     {
                         contactDatabaseFieldIds = new String[ht.Keys.Count]

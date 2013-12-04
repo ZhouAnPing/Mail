@@ -56,6 +56,7 @@ namespace TripolisDialogueAdapter.Action
                 request.mailsPerHour = 50000;
                 request.scheduleAtSpecified = true;
                 request.scheduleAt = scheduleAt;
+             
                 
                 // request.              
                 cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishEmail(request);
