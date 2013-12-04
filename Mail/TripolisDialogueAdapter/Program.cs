@@ -71,7 +71,7 @@ namespace TripolisDialogueAdapter
             contactJson =
                  "email#zhouyouchen@gmail.com;username#anping;var1#gmail"; 
             list.Add(contactJson);
-
+                
             contactJson =
                  "email#1197922021@qq.com;username#anping;var1#qq";
             list.Add(contactJson);
