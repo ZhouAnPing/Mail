@@ -3,37 +3,37 @@
   <Profiles />
   <Settings>
     <Setting Name="client" Type="System.String" Scope="User">
-      <Value Profile="(Default)">training</Value>
+      <Value Profile="(Default)">51job</Value>
     </Setting>
     <Setting Name="userName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+      <Value Profile="(Default)">api@51job.com</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)">Test123</Value>
     </Setting>
     <Setting Name="contactDatabaseId" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MjU1OTI1NTm6UFiCZQIokg</Value>
+      <Value Profile="(Default)">MjU1ODI1NTgL21MIxlZDCQ</Value>
     </Setting>
     <Setting Name="workspaceId" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MjAxNjIwMTYrcyIPWpHd*w</Value>
+      <Value Profile="(Default)">MjAxNTIwMTW*cnAz7Zn0sQ</Value>
     </Setting>
     <Setting Name="emailTypeId" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MTc3NDE3NzR93tsKXN3m4A</Value>
+      <Value Profile="(Default)">MTc2ODE3Nji6JEFYrHDuFA</Value>
     </Setting>
     <Setting Name="ftpAccountId" Type="System.String" Scope="User">
-      <Value Profile="(Default)">NTM1NTM1NTNuZ_nHNzDQWA</Value>
+      <Value Profile="(Default)">NTM3NTM3NTMZ4aAtyuHGmA</Value>
     </Setting>
     <Setting Name="fromName" Type="System.String" Scope="User">
       <Value Profile="(Default)">51Job</Value>
     </Setting>
     <Setting Name="fromAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+      <Value Profile="(Default)">51Club@51job.com</Value>
     </Setting>
     <Setting Name="reportReceiverAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+      <Value Profile="(Default)">51Club@51job.com</Value>
     </Setting>
     <Setting Name="FTPLocalPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\FTP\LocalUser\51job\</Value>
+      <Value Profile="(Default)">D:\FTP\LocalUser\51Upload\</Value>
     </Setting>
     <Setting Name="BackupPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\FTP_BCK\51Job\</Value>
