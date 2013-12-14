@@ -357,8 +357,21 @@ namespace TripolisDialogueAdapter
         }
 
 
+        public void getReport(String mailJobId, DateTime startTime, DateTime endTime)
+        {
+            ReportingAction ReportingAction = new ReportingAction(this.client, this.userName, this.password,this.oWebProxy);
+            TripolisDialogueAdapter.cn.tripolis.dialogue.reporting.TimeRange timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+            timeRange.startTime = startTime;
+            timeRange.endTime = endTime;
+            ReportingAction.getReport(mailJobId, timeRange);
+        }
 
+        public void exportReport(String contactDatabaseId, DateTime startTime, DateTime endTime, ReportType reportType)
+        {
+            ExportAction exportAction = new ExportAction(this.client, this.userName, this.password, this.oWebProxy);
 
+            exportAction.ExportReport(contactDatabaseId, startTime, endTime, reportType);
+        }
 
 
         #region construct mail

@@ -36,44 +36,49 @@ namespace TripolisDialogueAdapter.Action
 
 
         /// <summary>
-        /// publishing email
+        /// Get Mail reports
         /// </summary>
-        /// <param name="contactGroupId">contact group id</param>
-        /// <param name="emailId">email id</param>
-        /// <returns>publish status</returns>
-        public Open[] getReport(String mailJobId)
+        /// <param name="mailJobId"></param>
+        /// <param name="timeRange"></param>
+        /// <returns></returns>
+        public void getReport(String mailJobId, TripolisDialogueAdapter.cn.tripolis.dialogue.reporting.TimeRange timeRange)
         {
-            mailJobId = "MTA1Mjc5MTSMdCDprzC_oRpaAAO2LvZr";
+           
             if (logger.IsDebugEnabled)
             {
                 logger.Debug("getReport:mailJobId=" + mailJobId );
             }
-            Open[] result;
+            Open[] Opens;
+            Contact[] Contacts;
 
             cn.tripolis.dialogue.reporting.ReportingWithinTimeRangeByMailJobIdRequest request = new cn.tripolis.dialogue.reporting.ReportingWithinTimeRangeByMailJobIdRequest();
             try
             {
                 request.mailJobId = mailJobId;
 
-
-
                 request.returnContactFields = new ReturnContactFields();
-                //request.returnContactFields.returnAllContactFields = true;
-
-                request.returnContactFields.contactDatabaseFieldNames = new String[1];
-                request.returnContactFields.contactDatabaseFieldNames.SetValue("email", 0);
-               
+               // request.returnContactFields.returnAllContactFields = true;
+                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
+                //request.returnContactFields.contactDatabaseFieldNames = new String[1];
+               // request.returnContactFields.contactDatabaseFieldNames.SetValue("email", 0);               
 
                 request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
-                DateTime startTime = DateTime.Now.AddDays(-3);
-                DateTime endTime = DateTime.Now ;
-                request.timeRange.startTime = startTime;
-                request.timeRange.endTime = endTime;
-              //  request.paging.
-                // request.              
-                cn.tripolis.dialogue.reporting.OpensListResponse response = reportingService.getOpenedByMailJobId(request);
+                request.timeRange = timeRange;
 
-                result = response.opens;
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = 1000;
+                request.paging.pageNr = 1;
+
+                
+
+                cn.tripolis.dialogue.reporting.ContactListResponse response1 = reportingService.getDeliveredByMailJobId(request);
+
+                Contacts = response1.contacts; ;
+                         
+               
+                cn.tripolis.dialogue.reporting.OpensListResponse response2 = reportingService.getOpenedByMailJobId(request);
+
+                Opens = response2.opens;
 
 
             }
@@ -83,7 +88,7 @@ namespace TripolisDialogueAdapter.Action
                     throw new Exception(ex.Detail.InnerXml);
                 
             }
-            return result;
+          //  return result;
         }
 
        

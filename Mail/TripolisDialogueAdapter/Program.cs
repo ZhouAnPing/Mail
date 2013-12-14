@@ -55,10 +55,27 @@ namespace TripolisDialogueAdapter
             //String userName = "survey@ipsos.com";//zapjx@hotmail.com";
             //String password = "Test123";
 
-            String client = "Training";
-            String userName = "zapjx@hotmail.com";
+            //String client = "Training";
+            //String userName = "zapjx@hotmail.com";
+            //String password = "Test123";
+
+            String client = "51job";
+            String userName = "api@51job.com";
             String password = "Test123";
             DialogueService_new dialogueService = new DialogueService_new(client, userName, password, null);
+
+            //String mailJobId = "MTA0ODQyOTKMdCDprzC_oRpaAAO2LvZr";
+            String databaseID = "MjU1ODI1NTgL21MIxlZDCQ";
+
+            DateTime startTime = DateTime.Parse("2013/11/17 01:00:00");
+            DateTime endTime = DateTime.Now;
+            startTime = endTime.AddHours(-8);
+
+            dialogueService.exportReport(databaseID, startTime, endTime,ReportType.OPENED);
+
+
+            return;
+
 
             DialogueSetting dialogueSetting = new DialogueSetting();
             dialogueSetting.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";

@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45AD6E86-0A45-4E9E-B21A-9876137A6A91}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TripolisDialogueAdapter</RootNamespace>
     <AssemblyName>TripolisDialogueAdapter</AssemblyName>
@@ -67,6 +67,7 @@
     <Compile Include="Action\ContactDatabaseFieldAction.cs" />
     <Compile Include="Action\ContactGroupAction.cs" />
     <Compile Include="Action\ImportContactAction.cs" />
+    <Compile Include="Action\ExportAction.cs" />
     <Compile Include="Action\ReportingAction.cs" />
     <Compile Include="Action\SmsMessagelAction.cs" />
     <Compile Include="Action\SmsTypeAction.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="BO\DialogueSetting.cs" />
     <Compile Include="BO\ContactGroup.cs" />
     <Compile Include="BO\DirectEmail.cs" />
+    <Compile Include="BO\ReportTypeEnum.cs" />
     <Compile Include="BO\ImportFiles.cs" />
     <Compile Include="BO\KeyValuePair.cs" />
     <Compile Include="DAO\FeedbackBO.cs" />
