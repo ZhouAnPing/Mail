@@ -55,7 +55,7 @@ namespace TripolisDialogueAdapter
         #region FTP file
         private ArrayList ListFiles(String HostName, String UserName, String Password, String remotePath)
         {
-            int result = 0;
+            //int result = 0;
             Session session = null;
             ArrayList fileNameList = new ArrayList();
             try

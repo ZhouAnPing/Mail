@@ -79,7 +79,8 @@
     <Compile Include="BO\DialogueSetting.cs" />
     <Compile Include="BO\ContactGroup.cs" />
     <Compile Include="BO\DirectEmail.cs" />
-    <Compile Include="BO\EmailType.cs" />
+    <Compile Include="BO\ImportFiles.cs" />
+    <Compile Include="BO\KeyValuePair.cs" />
     <Compile Include="DAO\FeedbackBO.cs" />
     <Compile Include="DAO\FeedbackDao.cs" />
     <Compile Include="DAO\ReportDao.cs" />
@@ -333,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Example\Contacts.xls" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

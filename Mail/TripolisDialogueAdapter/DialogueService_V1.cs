@@ -14,6 +14,7 @@ using TripolisDialogueAdapter.cn.tripolis.dialogue.import;
 using TripolisDialogueAdapter.cn.tripolis.dialogue.publish;
 using TripolisDialogueAdapter.BO;
 using System.Threading;
+using System.IO;
 
 namespace TripolisDialogueAdapter
 {
@@ -103,14 +104,14 @@ namespace TripolisDialogueAdapter
         public String publishingBulkEmail(DialogueSetting dialogueSetting, ContactGroup contactGroup, String fileName, DirectEmail directEmail)
         {
 
-            logger.Debug("Begin sending Small Scale Email.");
+            logger.Debug(System.Environment.NewLine+"Begin sending Bulk Scale Email.");
             String result = "OK";
             try
             {
                 String contactDatabaseId = dialogueSetting.contactDatabaseId;
                 String workspaceId = dialogueSetting.workspaceId;
                 String emailTypeId = dialogueSetting.emailTypeId;
-                String directEmailId = dialogueSetting.directEmailId;
+              //  String directEmailId = "";
 
                 ContactGroupAction contactGroupAction = new ContactGroupAction(client, userName, password, oWebProxy);
                 String contactGroupId = contactGroupAction.createContactGroup(contactDatabaseId, contactGroup.groupLabel, contactGroup.groupName);
@@ -140,7 +141,7 @@ namespace TripolisDialogueAdapter
                     Thread.Sleep(60 * 1000);
                 }
                 DirectEmailAction directEmailAction = new DirectEmailAction(client, userName, password, oWebProxy);
-                directEmailId = directEmailAction.createDirectEmail(emailTypeId, directEmail.emailLabel, directEmail.emailName, directEmail.subject, directEmail.description, directEmail.fromName, directEmail.fromAddress, directEmail.htmlContent);
+                String directEmailId = directEmailAction.createDirectEmail(emailTypeId, directEmail.emailLabel, directEmail.emailName, directEmail.subject, directEmail.description, directEmail.fromName, directEmail.fromAddress, directEmail.htmlContent);
 
 
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
@@ -172,25 +173,25 @@ namespace TripolisDialogueAdapter
         /// <param name="contacts">Contact Information</param>
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <returns></returns>
-        public String publishingSmallScaleEmail(DialogueSetting dialogueSetting, ContactGroup contactGroup, byte[] contacts, DirectEmail directEmail)
+        public String publishingSmallScaleEmail(DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail)
         {
 
-            logger.Debug("Begin sending Small Scale Email.");
+            logger.Debug(System.Environment.NewLine+"Begin sending Small Scale Email.");
             String result = "OK";
             try
             {
                 String contactDatabaseId = dialogueSetting.contactDatabaseId;
                 String workspaceId = dialogueSetting.workspaceId;
                 String emailTypeId = dialogueSetting.emailTypeId;
-                String directEmailId = dialogueSetting.directEmailId;
+                //String directEmailId = dialogueSetting.directEmailId;
 
                 ContactGroupAction contactGroupAction = new ContactGroupAction(client, userName, password, oWebProxy);
                 String contactGroupId = contactGroupAction.createContactGroup(contactDatabaseId, contactGroup.groupLabel, contactGroup.groupName);
 
-                String importId =this.importContact(contactDatabaseId, contactGroupId, directEmail.reportReceiveAddress, "ContactInfo.csv", contacts);              
+                String importId = this.importContact(contactDatabaseId, contactGroupId, directEmail.reportReceiveAddress, importFiles);              
 
                 DirectEmailAction directEmailAction = new DirectEmailAction(client, userName, password, oWebProxy);
-                directEmailId = directEmailAction.createDirectEmail(emailTypeId, directEmail.emailLabel, directEmail.emailName, directEmail.subject, directEmail.description, directEmail.fromName, directEmail.fromAddress, directEmail.htmlContent);
+                String directEmailId = directEmailAction.createDirectEmail(emailTypeId, directEmail.emailLabel, directEmail.emailName, directEmail.subject, directEmail.description, directEmail.fromName, directEmail.fromAddress, directEmail.htmlContent);
 
 
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
@@ -220,10 +221,10 @@ namespace TripolisDialogueAdapter
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <param name="ContactInfos">parameters related with contact information, such as email Id.</param>
         /// <returns></returns>
-        public String sendSingleEmail(DialogueSetting dialogueSetting, DirectEmail directEmail, KeyValuePair<String, String>[] ContactInfos)
+        public String sendSingleEmail(DialogueSetting dialogueSetting, DirectEmail directEmail, TripolisDialogueAdapter.BO.KeyValuePair[] ContactInfos)
         {
-           
-            logger.Debug("Begin sending Single Email.");
+
+            logger.Debug(System.Environment.NewLine + "Begin sending Single Email.");
             String result = "OK";
             try
             {
@@ -246,11 +247,11 @@ namespace TripolisDialogueAdapter
                 request.contactFields = new cn.tripolis.dialogue.subscription.ContactFieldValue[ContactInfos.Length];
                 cn.tripolis.dialogue.subscription.ContactFieldValue contactFieldValue;
                 int i = 0;
-                foreach (KeyValuePair<String, String> keyValuePair in ContactInfos)
+                foreach (TripolisDialogueAdapter.BO.KeyValuePair keyValuePair in ContactInfos)
                 {
                     contactFieldValue = new cn.tripolis.dialogue.subscription.ContactFieldValue();
-                    contactFieldValue.name = keyValuePair.Key;
-                    contactFieldValue.value = keyValuePair.Value;
+                    contactFieldValue.name = keyValuePair.key;
+                    contactFieldValue.value = keyValuePair.value;
                     request.contactFields.SetValue(contactFieldValue, i++);
                 }
 
@@ -294,10 +295,10 @@ namespace TripolisDialogueAdapter
         /// <param name="dialogueSetting">Dialogue setting, such as database Id, workspaceId</param>        
         /// <param name="ContactInfos">parameters related with contact information, such as email Id.</param>
         /// <returns></returns>
-        public String registerContact(DialogueSetting dialogueSetting, KeyValuePair<String, String>[] ContactInfos)
+        public String registerContact(DialogueSetting dialogueSetting, TripolisDialogueAdapter.BO.KeyValuePair[] ContactInfos)
         {
 
-            logger.Debug("Begin Register Contact.");
+            logger.Debug(System.Environment.NewLine + "Begin Register Contact.");
             String result = "OK";
             try
             {
@@ -318,11 +319,11 @@ namespace TripolisDialogueAdapter
                 request.contactFields = new cn.tripolis.dialogue.subscription.ContactFieldValue[ContactInfos.Length];
                 cn.tripolis.dialogue.subscription.ContactFieldValue contactFieldValue;
                 int i = 0;
-                foreach (KeyValuePair<String, String> keyValuePair in ContactInfos)
+                foreach (TripolisDialogueAdapter.BO.KeyValuePair keyValuePair in ContactInfos)
                 {
                     contactFieldValue = new cn.tripolis.dialogue.subscription.ContactFieldValue();
-                    contactFieldValue.name = keyValuePair.Key;
-                    contactFieldValue.value = keyValuePair.Value;
+                    contactFieldValue.name = keyValuePair.key;
+                    contactFieldValue.value = keyValuePair.value;
                     request.contactFields.SetValue(contactFieldValue, i++);
                 }
                 if (!string.IsNullOrEmpty(directEmailId))
@@ -381,7 +382,7 @@ namespace TripolisDialogueAdapter
         /// <param name="contactDatabaseId">contact database id</param>
         /// <param name="contactGroupId">contact group id</param>
         /// <param name="mailData">mail data</param>
-        public String importContact(String contactDatabaseId, String contactGroupId, String reportReceiverAddress, String fileName, byte[] contacts)
+        public String importContact(String contactDatabaseId, String contactGroupId, String reportReceiverAddress, ImportFiles importFiles)
         {
             if (logger.IsDebugEnabled)
             {
@@ -400,9 +401,15 @@ namespace TripolisDialogueAdapter
                 request.reportReceiverAddress = reportReceiverAddress;
                 request.importMode = cn.tripolis.dialogue.import.importMode.SYNCHRONIZE_GROUP;
                 request.contactGroupIds = new[] { contactGroupId };
-                request.extension = cn.tripolis.dialogue.import.fileExtension.CSV;
-                request.fileName = fileName;
-                request.importFile = contacts;//System.IO.File.ReadAllBytes("../../Contacts_new.csv");
+                request.extension = importFiles.fileType;// cn.tripolis.dialogue.import.fileExtension.CSV;
+                if (importFiles.fileType.Equals(fileExtension.CSV) && !importFiles.csvDilimiter.Equals(ImportFiles.DEFAULT_CSV_DELIMIT))
+                {
+                    string fileContent = Encoding.UTF8.GetString(importFiles.fileContent);
+                    string revisedContent = fileContent.Replace(importFiles.csvDilimiter, ImportFiles.DEFAULT_CSV_DELIMIT);
+                    importFiles.fileContent = Encoding.UTF8.GetBytes(revisedContent);
+                }
+                request.fileName = importFiles.filename;
+                request.importFile = importFiles.fileContent;//System.IO.File.ReadAllBytes("../../Contacts_new.csv");
                 //importService..importContactsAsync()
                 cn.tripolis.dialogue.import.ImportIDResponse response = importService.importContacts(request);
 

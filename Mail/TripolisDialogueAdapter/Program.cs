@@ -55,7 +55,6 @@ namespace TripolisDialogueAdapter
             //String userName = "survey@ipsos.com";//zapjx@hotmail.com";
             //String password = "Test123";
 
-
             String client = "Training";
             String userName = "zapjx@hotmail.com";
             String password = "Test123";
@@ -71,23 +70,50 @@ namespace TripolisDialogueAdapter
             directEmail.emailLabel = sequence;
             directEmail.emailName = sequence;
             directEmail.subject = "单个邮件测试";
-            directEmail.description = "单个邮件测试";
+            directEmail.description = "API邮件测试";
             directEmail.fromName = "周安平";
             directEmail.fromAddress = "zapjx@hotmail.com";
+            directEmail.reportReceiveAddress = "zapjx@hotmail.com";
             directEmail.htmlContent = "Hello World";
 
-            KeyValuePair<String, String>[] ContactInfos = new KeyValuePair<string, string>[3];
+            KeyValuePair[] ContactInfos = new KeyValuePair[3];
 
-            KeyValuePair<String, String> ContactInfo = new KeyValuePair<string, string>("email", "zapjx@hotmail.com");
+            KeyValuePair ContactInfo = new KeyValuePair();
+            ContactInfo.key = "email";
+            ContactInfo.value = "zapjx@hotmail.com";
             ContactInfos[0] = ContactInfo;
-            ContactInfo = new KeyValuePair<string, string>("username", "周安平");
+            ContactInfo = new KeyValuePair();
+            ContactInfo.key = "username";
+            ContactInfo.value = "周安平";
             ContactInfos[1] = ContactInfo;
-            ContactInfo = new KeyValuePair<string, string>("password", "12234234");
+            ContactInfo = new KeyValuePair();
+            ContactInfo.key = "password";
+            ContactInfo.value = "12234234";
             ContactInfos[2] = ContactInfo;
+            directEmail.subject = "单个邮件测试";
             dialogueService.sendSingleEmail(dialogueSetting, directEmail, ContactInfos);
 
             dialogueSetting.directEmailId = "MzczMDk1Mzc98HDFHcJFcg";
+            directEmail.subject = "注册邮件测试";
             dialogueService.registerContact(dialogueSetting, ContactInfos);
+
+
+            ContactGroup contactGroup = new ContactGroup();
+            contactGroup.groupLabel = "Demo Group";
+            contactGroup.groupName = "demogroup1";
+
+            ImportFiles importFiles = new ImportFiles();
+            importFiles.fileType = cn.tripolis.dialogue.import.fileExtension.CSV;
+            importFiles.filename = "Contacts.csv";
+            importFiles.csvDilimiter = ImportFiles.DEFAULT_CSV_DELIMIT;
+            importFiles.fileContent = System.IO.File.ReadAllBytes("../../Example/Contacts.csv");
+            directEmail.subject = "小批量邮件测试";
+            dialogueService.publishingSmallScaleEmail(dialogueSetting, contactGroup, importFiles, directEmail);
+
+
+            dialogueSetting.ftpAccountId = "NTM5NTM5NTNW_uqPXJDMzQ";
+            directEmail.subject = "大批量邮件测试";
+            dialogueService.publishingBulkEmail(dialogueSetting, contactGroup, "Contacts.xls", directEmail);
 
             System.Console.WriteLine("Finish Action");
             System.Console.ReadLine();
