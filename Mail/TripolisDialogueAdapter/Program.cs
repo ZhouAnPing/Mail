@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Threading;
+using TripolisDialogueAdapter.BO;
 
 namespace TripolisDialogueAdapter
 {
@@ -53,57 +54,41 @@ namespace TripolisDialogueAdapter
             //String client = "IPSOS API";//Training";
             //String userName = "survey@ipsos.com";//zapjx@hotmail.com";
             //String password = "Test123";
-                      
+
 
             String client = "Training";
             String userName = "zapjx@hotmail.com";
             String password = "Test123";
+            DialogueService_new dialogueService = new DialogueService_new(client, userName, password, null);
 
-            ArrayList list = new ArrayList();
-            String contactJson =
-               "email#an-ping.zhou@hp.com;username#anping;var1#hp";
-            list.Add(contactJson);
-
-            contactJson =
-               "email#zapjx@hotmail.com;username#anping;var1#hotmail"; 
-            list.Add(contactJson);
-
-            contactJson =
-                 "email#zhouyouchen@gmail.com;username#anping;var1#gmail"; 
-            list.Add(contactJson);
-                
-            contactJson =
-                 "email#1197922021@qq.com;username#anping;var1#qq";
-            list.Add(contactJson);
-
-            TripolisDialogueAdapter.Action.ReportingAction reportingAction = new Action.ReportingAction(client, userName, password, null);
-
-            reportingAction.getReport("MTA1Mjc1NDCMdCDprzC_oRpaAAO2LvZr");
-            return;
-
-
-            TripolisConfig tripolisConfig =new TripolisConfig();
-            tripolisConfig.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";
-            tripolisConfig.workspaceId = "MjAwNzIwMDdKRmT4g3bWOg";
-            tripolisConfig.EmailFileName = "email";
-            tripolisConfig.emailTypeId = "MTc2MDE3NjBcUp_pC*h71w";
-            tripolisConfig.directEmailId = "MzI4MDg3MzI99gkUiCfOmQ";
+            DialogueSetting dialogueSetting = new DialogueSetting();
+            dialogueSetting.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";
+            dialogueSetting.workspaceId = "MjAwNzIwMDdKRmT4g3bWOg";
+            dialogueSetting.emailTypeId = "MTc2MDE3NjBcUp_pC*h71w";
             
-            DialogueService dialogueService = new DialogueService(client, userName, password,null);
+            DirectEmail directEmail = new DirectEmail();
+            String sequence = DateTime.Now.ToString("yyyyMMddHHmmssfffffff");
+            directEmail.emailLabel = sequence;
+            directEmail.emailName = sequence;
+            directEmail.subject = "单个邮件测试";
+            directEmail.description = "单个邮件测试";
+            directEmail.fromName = "周安平";
+            directEmail.fromAddress = "zapjx@hotmail.com";
+            directEmail.htmlContent = "Hello World";
 
-            //DateTime startTime = DateTime.Now.AddHours(-8);
+            KeyValuePair<String, String>[] ContactInfos = new KeyValuePair<string, string>[3];
 
-            //DateTime endTime = DateTime.Now;
+            KeyValuePair<String, String> ContactInfo = new KeyValuePair<string, string>("email", "zapjx@hotmail.com");
+            ContactInfos[0] = ContactInfo;
+            ContactInfo = new KeyValuePair<string, string>("username", "周安平");
+            ContactInfos[1] = ContactInfo;
+            ContactInfo = new KeyValuePair<string, string>("password", "12234234");
+            ContactInfos[2] = ContactInfo;
+            dialogueService.sendSingleEmail(dialogueSetting, directEmail, ContactInfos);
 
-            //String result = dialogueService.SyncFeedbackInfo("MjU0OTI1NDnmTzMfCdUq6w", startTime, endTime);
-            //System.Console.WriteLine(result);
+            dialogueSetting.directEmailId = "MzczMDk1Mzc98HDFHcJFcg";
+            dialogueService.registerContact(dialogueSetting, ContactInfos);
 
-            foreach (String tempContact in list)
-            {
-                dialogueService.sendSingleEmail(tripolisConfig,tempContact,"B00001","AnPing", "Test Mail", "Test Mail");
-                Thread.Sleep(5000);
-            }
-          
             System.Console.WriteLine("Finish Action");
             System.Console.ReadLine();
         }

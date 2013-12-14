@@ -147,7 +147,7 @@ namespace TripolisDialogueAdapter
                 String workspaceId = tripolisConfig.workspaceId;
                 String directEmailId = tripolisConfig.directEmailId;
                 String emailId = "";
-                String EmailFileName = tripolisConfig.EmailFileName;
+                String EmailFileName = tripolisConfig.emailColName;
 
                 
 

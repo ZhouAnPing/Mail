@@ -11,6 +11,6 @@ namespace TripolisDialogueAdapter
         public String workspaceId ;
         public String emailTypeId ;
         public String directEmailId ;       
-        public String EmailFileName ;
+        public String emailColName ;
     }
 }
