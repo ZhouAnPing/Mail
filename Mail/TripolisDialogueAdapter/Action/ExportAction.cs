@@ -1,7 +1,5 @@
 ﻿using System;
 using TripolistMailAdapter;
-using TripolisDialogueAdapter.cn.tripolis.dialogue.publish;
-using TripolisDialogueAdapter.cn.tripolis.dialogue.reporting;
 using TripolisDialogueAdapter.cn.tripolis.dialogue.export;
 using TripolisDialogueAdapter.BO;
 
@@ -45,7 +43,7 @@ namespace TripolisDialogueAdapter.Action
         /// <returns></returns>
         public String ExportReport(String contactDatabaseId, DateTime startTime, DateTime endTime, ReportType reportType)
         {
-               String result ="";
+            String result = "";
             if (logger.IsDebugEnabled)
             {
                 logger.Debug("getReport:contactDatabaseId=" + contactDatabaseId);
@@ -59,7 +57,7 @@ namespace TripolisDialogueAdapter.Action
                 request.timeRange.startTime = startTime;
                 request.timeRange.endTime = endTime;
                 request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
-                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email","username"};
+                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
                 RawDataResponse response = null;
                 switch (reportType)
                 {
@@ -90,9 +88,11 @@ namespace TripolisDialogueAdapter.Action
                     default:
                         break;
                 }
-                if (response != null)  {
+                if (response != null)
+                {
                     result = System.Text.Encoding.UTF8.GetString(response.data);
-            }
+                    Console.WriteLine(result);
+                }
 
 
             }
@@ -102,9 +102,75 @@ namespace TripolisDialogueAdapter.Action
                 throw new Exception(ex.Detail.InnerXml);
 
             }
-             return result;
+            return result;
         }
 
+        public String exportReportToFtp(String contactDatabaseId, String ftpAccountId, DateTime startTime, DateTime endTime, ReportType reportType)
+        {
+            String result = "";
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getReport:contactDatabaseId=" + contactDatabaseId);
+            }
+            try
+            {
+                cn.tripolis.dialogue.export.FtpContactExportRequest request = new cn.tripolis.dialogue.export.FtpContactExportRequest();
+
+                request.contactDatabaseId = contactDatabaseId;
+                request.timeRange = new cn.tripolis.dialogue.export.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+                request.fileName = "MailReport.csv";
+                request.ftpAccountId = ftpAccountId;// "NTM5NTM5NTNW_uqPXJDMzQ";
+                request.sendNotificationMail = false;
+
+                request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
+                IDResponse response = null;
+                switch (reportType)
+                {
+                    case ReportType.OPENED:
+                        response = exportService.exportBouncedToFtp(request);
+                        break;
+                    case ReportType.CLICKED:
+                        response = exportService.exportClickedToFtp(request);
+                        break;
+                    case ReportType.BOUNCED:
+                        response = exportService.exportBouncedToFtp(request);
+                        break;
+                    case ReportType.SENT:
+                        response = exportService.exportSentToFtp(request);
+                        break;
+                    case ReportType.SKIPPED:
+                        response = exportService.exportSkippedToFtp(request);
+                        break;
+                    //case ReportType.CONVERTED:
+                    //    response = exportService.exportConverted(request);
+                    //    break;
+                    //case ReportType.LINKED:
+                    //    response = exportService.exportLinksToFtp(request);
+                    //    break;
+                    //case ReportType.JOBS:
+                    //    response = exportService.exportJobsToFtp(request);
+                    //    break;
+                    default:
+                        break;
+                }
+                if (response != null)
+                {
+                    result = response.id;
+                }
+
+
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+
+                throw new Exception(ex.Detail.InnerXml);
+
+            }
+            return result;
+        }
        
     }
 }

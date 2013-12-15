@@ -373,6 +373,12 @@ namespace TripolisDialogueAdapter
             exportAction.ExportReport(contactDatabaseId, startTime, endTime, reportType);
         }
 
+        public void exportReportToFtp(String contactDatabaseId, String ftpAccountId, DateTime startTime, DateTime endTime, ReportType reportType)
+        {
+            ExportAction exportAction = new ExportAction(this.client, this.userName, this.password, this.oWebProxy);
+
+            exportAction.exportReportToFtp(contactDatabaseId,ftpAccountId, startTime, endTime,  reportType);
+        }
 
         #region construct mail
 
