@@ -41,23 +41,24 @@ namespace TripolisDialogueAdapter.Action
         /// <param name="mailJobId"></param>
         /// <param name="timeRange"></param>
         /// <returns></returns>
-        public String ExportReport(String contactDatabaseId, DateTime startTime, DateTime endTime, ReportType reportType)
+        public byte[] ExportReport(String contactDatabaseId, DateTime startTime, DateTime endTime, ReportType reportType)
         {
-            String result = "";
+            byte[] result = null;
             if (logger.IsDebugEnabled)
             {
-                logger.Debug("getReport:contactDatabaseId=" + contactDatabaseId);
+                logger.Debug("ExportReport:contactDatabaseId=" + contactDatabaseId + ",ReportType=" + reportType);
             }
             try
             {
                 cn.tripolis.dialogue.export.ContactExportRequest request = new cn.tripolis.dialogue.export.ContactExportRequest();
-
                 request.contactDatabaseId = contactDatabaseId;
                 request.timeRange = new cn.tripolis.dialogue.export.TimeRange();
                 request.timeRange.startTime = startTime;
                 request.timeRange.endTime = endTime;
                 request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
-                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
+            
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+             
                 RawDataResponse response = null;
                 switch (reportType)
                 {
@@ -73,15 +74,9 @@ namespace TripolisDialogueAdapter.Action
                     case ReportType.SENT:
                         response = exportService.exportSent(request);
                         break;
-                    case ReportType.SKIPPED:
-                        response = exportService.exportSkipped(request);
-                        break;
-                    case ReportType.CONVERTED:
-                        response = exportService.exportConverted(request);
-                        break;
-                    case ReportType.LINKED:
-                        response = exportService.exportLinks(request);
-                        break;
+                    case ReportType.COMPLAINT:
+                        response = exportService.exportComplained(request);
+                        break;                  
                     case ReportType.JOBS:
                         response = exportService.exportJobs(request);
                         break;
@@ -90,10 +85,8 @@ namespace TripolisDialogueAdapter.Action
                 }
                 if (response != null)
                 {
-                    result = System.Text.Encoding.UTF8.GetString(response.data);
-                    Console.WriteLine(result);
+                    result = response.data;                  
                 }
-
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -105,12 +98,12 @@ namespace TripolisDialogueAdapter.Action
             return result;
         }
 
-        public String exportReportToFtp(String contactDatabaseId, String ftpAccountId, DateTime startTime, DateTime endTime, ReportType reportType)
+        public String exportReportToFtp(String contactDatabaseId, String ftpAccountId,String fileName, DateTime startTime, DateTime endTime, ReportType reportType)
         {
             String result = "";
             if (logger.IsDebugEnabled)
             {
-                logger.Debug("getReport:contactDatabaseId=" + contactDatabaseId);
+                logger.Debug("exportReportToFtp:contactDatabaseId=" + contactDatabaseId + ",ReportType=" + reportType);
             }
             try
             {
@@ -120,17 +113,17 @@ namespace TripolisDialogueAdapter.Action
                 request.timeRange = new cn.tripolis.dialogue.export.TimeRange();
                 request.timeRange.startTime = startTime;
                 request.timeRange.endTime = endTime;
-                request.fileName = "MailReport.csv";
+                request.fileName = fileName;
                 request.ftpAccountId = ftpAccountId;// "NTM5NTM5NTNW_uqPXJDMzQ";
                 request.sendNotificationMail = false;
 
                 request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
-                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
                 IDResponse response = null;
                 switch (reportType)
                 {
                     case ReportType.OPENED:
-                        response = exportService.exportBouncedToFtp(request);
+                        response = exportService.exportOpenedToFtp(request);
                         break;
                     case ReportType.CLICKED:
                         response = exportService.exportClickedToFtp(request);
@@ -141,18 +134,9 @@ namespace TripolisDialogueAdapter.Action
                     case ReportType.SENT:
                         response = exportService.exportSentToFtp(request);
                         break;
-                    case ReportType.SKIPPED:
-                        response = exportService.exportSkippedToFtp(request);
-                        break;
-                    //case ReportType.CONVERTED:
-                    //    response = exportService.exportConverted(request);
-                    //    break;
-                    //case ReportType.LINKED:
-                    //    response = exportService.exportLinksToFtp(request);
-                    //    break;
-                    //case ReportType.JOBS:
-                    //    response = exportService.exportJobsToFtp(request);
-                    //    break;
+                    case ReportType.COMPLAINT:
+                        response = exportService.exportComplainedToFtp(request);
+                        break;                  
                     default:
                         break;
                 }

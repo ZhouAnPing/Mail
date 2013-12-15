@@ -19,7 +19,7 @@ namespace TripolisDialogueAdapterWs
     public class MailAdapter : System.Web.Services.WebService
     {
 
-        [WebMethod]
+        
         /// <summary>
         /// publish Small Scale email, mail quantity >=50,000
         /// </summary>
@@ -28,13 +28,14 @@ namespace TripolisDialogueAdapterWs
         /// <param name="contacts">Contact Information</param>
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <returns></returns>
+      [WebMethod]
         public String publishingBulkEmail(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, String fileName, DirectEmail directEmail)
         {
             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
             return dialogueService_new.publishingBulkEmail(dialogueSetting, contactGroup, fileName, directEmail);
         }
 
-        [WebMethod]
+       
         /// <summary>
         /// publish Small Scale email,, mail quantity <50,000
         /// </summary>
@@ -43,12 +44,13 @@ namespace TripolisDialogueAdapterWs
         /// <param name="contacts">Contact Information</param>
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <returns></returns>
+         [WebMethod]
         public String publishingSmallScaleEmail(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail)
         {
             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
             return dialogueService_new.publishingSmallScaleEmail(dialogueSetting, contactGroup, importFiles, directEmail);
         }
-        [WebMethod]
+       
         /// <summary>
         /// send single email 
         /// </summary>
@@ -56,22 +58,62 @@ namespace TripolisDialogueAdapterWs
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <param name="ContactInfos">parameters related with contact information, such as email Id.</param>
         /// <returns></returns>
+        [WebMethod]
         public String sendSingleEmail(Authorization authorization, DialogueSetting dialogueSetting, DirectEmail directEmail, KeyValuePair[] ContactInfos)
         {
             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
             return dialogueService_new.sendSingleEmail(dialogueSetting, directEmail, ContactInfos);
         }
-        [WebMethod]
+       
         /// <summary>
         /// send Register email 
         /// </summary>
         /// <param name="dialogueSetting">Dialogue setting, such as database Id, workspaceId</param>        
         /// <param name="ContactInfos">parameters related with contact information, such as email Id.</param>
         /// <returns></returns>
+         [WebMethod]
         public String registerContact(Authorization authorization, DialogueSetting dialogueSetting, KeyValuePair[] ContactInfos)
         {
             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
-            return dialogueService_new.registerContact(dialogueSetting,  ContactInfos);
+            return dialogueService_new.registerContact(dialogueSetting, ContactInfos);
+        }
+        /// <summary>
+        /// export report for certain database and duration.
+        /// </summary>
+         /// <param name="authorization">Authorization for login Dialoue plateform</param>
+        /// <param name="exportReportParam"> </param>
+        /// <returns></returns>
+        [WebMethod]        
+        public ExportReportData exportReport(Authorization authorization, ExportReportParam exportReportParam)
+        {
+            DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
+
+            return dialogueService_new.exportReport(exportReportParam.contactDatabaseId, exportReportParam.startTime, exportReportParam.endTime);
+
+        }
+
+        /// <summary>
+        /// export report to FTP server
+        /// </summary>
+        /// <param name="authorization"></param>
+        /// <param name="exportReportParamToFtp"></param>
+        [WebMethod]
+        public void exportReportToFtp(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp)
+        {
+            DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
+            dialogueService_new.exportReportToFtp(exportReportParamToFtp.contactDatabaseId, exportReportParamToFtp.ftpAccountId, exportReportParamToFtp.fileNamePrefix, exportReportParamToFtp.startTime, exportReportParamToFtp.endTime);
+
+        }
+        /// <summary>
+        /// get report by mail job Id
+        /// </summary>
+        /// <param name="authorization"></param>
+        /// <param name="exportReportParamToFtp"></param>
+        [WebMethod]
+        public ReportData getRerportByJobId(Authorization authorization, String mailJobId, DateTime startTime, DateTime endTime)
+        {
+           DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
+           return dialogueService_new.getRerportByJobId(mailJobId, startTime,endTime);
         }
     }
 }

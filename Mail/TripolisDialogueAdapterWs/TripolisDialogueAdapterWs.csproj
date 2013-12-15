@@ -72,11 +72,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="ExportReportToFtpParam.cs" />
     <Compile Include="MailAdapter.asmx.cs">
       <DependentUpon>MailAdapter.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExportReportParam.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TripolisDialogueAdapter\TripolisDialogueAdapter.csproj">

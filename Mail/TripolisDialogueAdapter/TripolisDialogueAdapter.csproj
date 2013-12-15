@@ -80,6 +80,8 @@
     <Compile Include="BO\DialogueSetting.cs" />
     <Compile Include="BO\ContactGroup.cs" />
     <Compile Include="BO\DirectEmail.cs" />
+    <Compile Include="BO\ReportData.cs" />
+    <Compile Include="BO\ExportReportData.cs" />
     <Compile Include="BO\ReportTypeEnum.cs" />
     <Compile Include="BO\ImportFiles.cs" />
     <Compile Include="BO\KeyValuePair.cs" />

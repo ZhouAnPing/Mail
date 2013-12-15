@@ -51,16 +51,16 @@ namespace TripolisDialogueAdapter
         }
         static void Main(string[] args)
         {
-            //String client = "IPSOS API";//Training";
-            //String userName = "survey@ipsos.com";//zapjx@hotmail.com";
-            //String password = "Test123";
-            //String databaseID = "MjUyMTI1MjHJ69MSWqS6mQ";
+            String client = "IPSOS API";//Training";
+            String userName = "survey@ipsos.com";//zapjx@hotmail.com";
+            String password = "Test123";
+            String databaseID = "MjUyMTI1MjHJ69MSWqS6mQ";
             //String ftpAccountId = "NTQwNTQwNTQQosYwP6thgg";
 
-            String client = "Training";
-            String userName = "zapjx@hotmail.com";
-            String password = "Test123";
-            String databaseID = "MjU1MTI1NTFFUVus6S83qA";
+            //String client = "Training";
+            //String userName = "zapjx@hotmail.com";
+            //String password = "Test123";
+            //String databaseID = "MjU1MTI1NTFFUVus6S83qA";
 
 
             //String client = "51job";
@@ -80,8 +80,21 @@ namespace TripolisDialogueAdapter
           
            //dialogueService.exportReportToFtp(databaseID,ftpAccountId, startTime, endTime,ReportType.SENT);
 
-           dialogueService.exportReport(databaseID, startTime, endTime, ReportType.LINKED);
-            Console.WriteLine("Finished**********************");
+           ExportReportData mailReport =  dialogueService.exportReport(databaseID, startTime, endTime);
+            
+
+            Console.WriteLine("Sent**********************");
+            Console.WriteLine(Encoding.UTF8.GetString(mailReport.sent));
+
+            Console.WriteLine("opened**********************");
+            Console.WriteLine(Encoding.UTF8.GetString(mailReport.opened));
+
+            Console.WriteLine("clicked**********************");
+            Console.WriteLine(Encoding.UTF8.GetString(mailReport.clicked));
+
+            Console.WriteLine("bounced**********************");
+            Console.WriteLine(Encoding.UTF8.GetString(mailReport.bounced));
+
             Console.ReadLine();
             return;
 

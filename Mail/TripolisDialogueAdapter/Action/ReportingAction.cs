@@ -35,52 +35,44 @@ namespace TripolisDialogueAdapter.Action
 
 
 
-        /// <summary>
-        /// Get Mail reports
-        /// </summary>
-        /// <param name="mailJobId"></param>
-        /// <param name="timeRange"></param>
-        /// <returns></returns>
-        public void getReport(String mailJobId, TripolisDialogueAdapter.cn.tripolis.dialogue.reporting.TimeRange timeRange)
+      /// <summary>
+      /// get mail Report for sending
+      /// </summary>
+      /// <param name="mailJobId"></param>
+      /// <param name="startTime"></param>
+      /// <param name="endTime"></param>
+      /// <param name="pageSize"></param>
+      /// <param name="pageNumber"></param>
+      /// <returns></returns>
+        public Contact[] getDeliveredByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
         {
-           
+            Contact[] contacts = null; ;
             if (logger.IsDebugEnabled)
             {
-                logger.Debug("getReport:mailJobId=" + mailJobId );
-            }
-            Open[] Opens;
-            Contact[] Contacts;
+                logger.Debug("getDeliveredByMailJobId:mailJobId=" + mailJobId);
+            }          
+          
 
-            cn.tripolis.dialogue.reporting.ReportingWithinTimeRangeByMailJobIdRequest request = new cn.tripolis.dialogue.reporting.ReportingWithinTimeRangeByMailJobIdRequest();
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
             try
             {
-                request.mailJobId = mailJobId;
-
-                request.returnContactFields = new ReturnContactFields();
-               // request.returnContactFields.returnAllContactFields = true;
-                request.returnContactFields.contactDatabaseFieldNames = new string[] { "email", "username" };
-                //request.returnContactFields.contactDatabaseFieldNames = new String[1];
-               // request.returnContactFields.contactDatabaseFieldNames.SetValue("email", 0);               
-
+                request.mailJobId = mailJobId;     
+           
+                request.returnContactFields = new ReturnContactFields();             
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };              
                 request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
-                request.timeRange = timeRange;
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
 
                 request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
-                request.paging.pageSize = 1000;
-                request.paging.pageNr = 1;
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;               
 
-                
-
-                cn.tripolis.dialogue.reporting.ContactListResponse response1 = reportingService.getDeliveredByMailJobId(request);
-
-                Contacts = response1.contacts; ;
-                         
-               
-                cn.tripolis.dialogue.reporting.OpensListResponse response2 = reportingService.getOpenedByMailJobId(request);
-
-                Opens = response2.opens;
-
-
+                ContactListResponse response = reportingService.getDeliveredByMailJobId(request);
+                if (response != null)
+                {
+                    contacts = response.contacts;
+                }
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -88,9 +80,176 @@ namespace TripolisDialogueAdapter.Action
                     throw new Exception(ex.Detail.InnerXml);
                 
             }
-          //  return result;
+             return contacts;
         }
 
-       
+        /// <summary>
+        /// get mail Report for opening
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public Open[] getOpenedByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
+        {
+            Open[] opens = null; ;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getOpenedByMailJobId:mailJobId=" + mailJobId);
+            }
+
+
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+
+                request.returnContactFields = new ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;
+
+                OpensListResponse response = reportingService.getOpenedByMailJobId(request);
+                if (response != null)
+                {
+                    opens = response.opens;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return opens;
+        }
+
+        /// <summary>
+        /// get mail Report for Clicking
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public Click[] getClickedByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
+        {
+            Click[] clicks = null; ;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getClickedByMailJobId:mailJobId=" + mailJobId);
+            }
+
+
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+
+                request.returnContactFields = new ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;
+
+                ClicksListResponse response = reportingService.getClickedByMailJobId(request);
+                if (response != null)
+                {
+                    clicks = response.clicks;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return clicks;
+        }
+
+
+        /// <summary>
+        /// get mail Report for Bounced
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public BouncedContact[] getBouncedByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
+        {
+            BouncedContact[] bouncedContacts = null; ;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getBouncedByMailJobId:mailJobId=" + mailJobId);
+            }
+
+
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+
+                request.returnContactFields = new ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;
+
+                BouncedContactListResponse response = reportingService.getBouncedByMailJobId(request);
+                if (response != null)
+                {
+                    bouncedContacts = response.bouncedContacts;
+                }               
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return bouncedContacts;
+        }
+
+       /// <summary>
+       /// get email summary.
+       /// </summary>
+       /// <param name="mailJobId"></param>
+       /// <returns></returns>
+        public EmailSummary getEmailSummary(String mailJobId)
+        {
+            cn.tripolis.dialogue.reporting.EmailSummary result = null;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getEmailSummary:mailJobId=" + mailJobId);
+            }
+            MailJobIDRequest request = new MailJobIDRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+                EmailSummaryResponse response = reportingService.getEmailSummary(request);
+                if (response != null)
+                {
+                    result = response.emailSummary;
+                }
+
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return result;
+        }
     }
 }

@@ -15,6 +15,7 @@ using TripolisDialogueAdapter.cn.tripolis.dialogue.publish;
 using TripolisDialogueAdapter.BO;
 using System.Threading;
 using System.IO;
+using TripolisDialogueAdapter.cn.tripolis.dialogue.reporting;
 
 namespace TripolisDialogueAdapter
 {
@@ -357,27 +358,104 @@ namespace TripolisDialogueAdapter
         }
 
 
-        public void getReport(String mailJobId, DateTime startTime, DateTime endTime)
+        /// <summary>       
+        /// getRerportByJobId
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        public ReportData getRerportByJobId(String mailJobId, DateTime startTime, DateTime endTime)
         {
-            ReportingAction ReportingAction = new ReportingAction(this.client, this.userName, this.password,this.oWebProxy);
-            TripolisDialogueAdapter.cn.tripolis.dialogue.reporting.TimeRange timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
-            timeRange.startTime = startTime;
-            timeRange.endTime = endTime;
-            ReportingAction.getReport(mailJobId, timeRange);
+            ReportData reportData = new BO.ReportData();
+            int sentCnt =0;
+            int openCnt =0;
+            int clickCnt =0;
+            int bouncedCnt = 0;
+            
+            int pageSize = 1000;
+
+            ArrayList contacts = new ArrayList();
+            ArrayList opens = new ArrayList();
+            ArrayList clicks = new ArrayList();
+            ArrayList bouncedContacts = new ArrayList();
+
+            ReportingAction ReportingAction = new ReportingAction(this.client, this.userName, this.password, this.oWebProxy);
+
+            EmailSummary emailSummary = ReportingAction.getEmailSummary(mailJobId);
+            if (emailSummary != null)
+            {
+                sentCnt = emailSummary.job.numberOfSend;
+                openCnt = emailSummary.totalOpens;
+                clickCnt = emailSummary.totalClicks;
+                bouncedCnt = emailSummary.hardBounces+emailSummary.softBounces;
+                int sentPageNb =(int) Math.Ceiling((float)sentCnt / pageSize);
+                int openPageNb = (int)Math.Ceiling((float)openCnt / pageSize);
+                int clickPageNb = (int)Math.Ceiling((float)clickCnt / pageSize);
+                int bouncedPageNb = (int)Math.Ceiling((float)bouncedCnt / pageSize);
+               
+
+                for (int i = 1; i <= sentPageNb; i++)
+                {
+                    Contact[] tempContacts = ReportingAction.getDeliveredByMailJobId(mailJobId, startTime, endTime, pageSize, i);
+                    contacts.Add(tempContacts);
+                }
+                for (int i = 1; i <= openPageNb; i++)
+                {
+                    Open[] tempOpens = ReportingAction.getOpenedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
+                    opens.Add(tempOpens);
+                }
+                for (int i = 1; i <= clickPageNb; i++)
+                {
+                    Click[] tempClicks = ReportingAction.getClickedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
+                    clicks.Add(tempClicks);
+                }
+                for (int i = 1; i <= bouncedPageNb; i++)
+                {
+                    BouncedContact[] tempBouncedContacts = ReportingAction.getBouncedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
+                    bouncedContacts.Add(tempBouncedContacts);
+                }
+            }
+
+            reportData.sent = (Contact[])contacts.ToArray();
+            reportData.opened = (Open[])opens.ToArray();
+            reportData.clicked = (Click[])clicks.ToArray();
+            reportData.bounced = (BouncedContact[])bouncedContacts.ToArray();
+
+            return reportData;
+
         }
 
-        public void exportReport(String contactDatabaseId, DateTime startTime, DateTime endTime, ReportType reportType)
+        /// <summary>
+        /// Export Report
+        /// </summary>
+        /// <param name="contactDatabaseId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        public ExportReportData exportReport(String contactDatabaseId, DateTime startTime, DateTime endTime)
         {
+            ExportReportData mailReport = new ExportReportData();
             ExportAction exportAction = new ExportAction(this.client, this.userName, this.password, this.oWebProxy);
 
-            exportAction.ExportReport(contactDatabaseId, startTime, endTime, reportType);
+            mailReport.sent =  exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.SENT);
+
+            mailReport.opened = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.OPENED);
+
+            mailReport.clicked = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.CLICKED);
+
+            mailReport.bounced  = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.BOUNCED);
+
+            return mailReport;
         }
 
-        public void exportReportToFtp(String contactDatabaseId, String ftpAccountId, DateTime startTime, DateTime endTime, ReportType reportType)
+        public void exportReportToFtp(String contactDatabaseId, String ftpAccountId, String fileName, DateTime startTime, DateTime endTime)
         {
             ExportAction exportAction = new ExportAction(this.client, this.userName, this.password, this.oWebProxy);
-
-            exportAction.exportReportToFtp(contactDatabaseId,ftpAccountId, startTime, endTime,  reportType);
+            exportAction.exportReportToFtp(contactDatabaseId, ftpAccountId, fileName + "_SENT" + ".csv", startTime, endTime, ReportType.SENT);
+            exportAction.exportReportToFtp(contactDatabaseId, ftpAccountId, fileName + "_OPENED" + ".csv", startTime, endTime, ReportType.OPENED);
+            exportAction.exportReportToFtp(contactDatabaseId, ftpAccountId, fileName + "_CLICKED" + ".csv", startTime, endTime, ReportType.CLICKED);
+            exportAction.exportReportToFtp(contactDatabaseId, ftpAccountId, fileName + "_BOUNCED" + ".csv", startTime, endTime, ReportType.BOUNCED);
         }
 
         #region construct mail
