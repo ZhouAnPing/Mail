@@ -357,6 +357,14 @@ namespace TripolisDialogueAdapter
             return result;
         }
 
+        public SendSmsResult sendSMS(string account, string password, string mobile, string pid, string time, string content)
+        {
+            SmsAPI smsAPI = new SmsAPI();
+
+            SendSmsResult SendSmsResult1 = smsAPI.SendSms(account, password, content, mobile, time, pid);
+
+            return SendSmsResult1;
+        }
 
         /// <summary>       
         /// getRerportByJobId

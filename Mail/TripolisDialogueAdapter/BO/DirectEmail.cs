@@ -16,6 +16,6 @@ namespace TripolisDialogueAdapter.BO
         public String htmlContent;
         public String reportReceiveAddress;
         // public String textContentl;
-        public bool isContentSame = false;
+       // public bool isContentSame = false;
     }
 }

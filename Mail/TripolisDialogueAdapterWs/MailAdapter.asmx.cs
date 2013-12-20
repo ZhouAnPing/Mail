@@ -115,5 +115,24 @@ namespace TripolisDialogueAdapterWs
            DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
            return dialogueService_new.getRerportByJobId(mailJobId, startTime,endTime);
         }
+
+        /// <summary>
+        /// Send SMS
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <param name="mobile"></param>
+        /// <param name="pid"></param>
+        /// <param name="time"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+          [WebMethod]
+        public SendSmsResult sendSMS(Authorization authorization, string account, string password, string mobile, string pid, string time, string content)
+        {
+            DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
+            return dialogueService_new.sendSMS(account, password, mobile, pid, time, content);
+
+
+        }
     }
 }

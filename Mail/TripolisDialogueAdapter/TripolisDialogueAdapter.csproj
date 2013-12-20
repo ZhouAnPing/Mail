@@ -101,6 +101,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SmsAPI.cs" />
     <Compile Include="TripolisConfig.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Web References\cn.tripolis.dialogue.contactDatabaseField\Reference.cs">
