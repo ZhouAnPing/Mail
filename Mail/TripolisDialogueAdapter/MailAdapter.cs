@@ -139,7 +139,7 @@ namespace TripolisDialogueAdapter
                 String directEmailId = directEmailAction.createDirectEmail(directEmailTypeId, "Mail" + sequence, "mail" + sequence, emailSubject, "Send mail", fromName, emailFrom, emailBody);
 
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
-                String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId);
+                String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId,DateTime.Now);
 
                 logger.Debug("publishId=" + publishId);
 

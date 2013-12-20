@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.tripolis.com.cn/" xmlns:s1="http://common.services.tripolis.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.tripolis.com.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.tripolis.com.cn/" xmlns:s1="http://common.services.tripolis.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://10658.cc/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.tripolis.com.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://ws.tripolis.com.cn/">
       <s:import namespace="http://common.services.tripolis.com/" />
+      <s:import namespace="http://10658.cc/" />
       <s:element name="publishingBulkEmail">
         <s:complexType>
           <s:sequence>
@@ -46,7 +47,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="htmlContent" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="reportReceiveAddress" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="isContentSame" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="sheduleTime" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
       <s:element name="publishingBulkEmailResponse">
@@ -126,6 +127,121 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="exportReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="exportReportParam" type="tns:ExportReportParam" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExportReportParam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="contactDatabaseId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="exportReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exportReportResult" type="tns:CSVReportData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CSVReportData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="opened" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clicked" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bounced" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="exportReportToFtp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="exportReportParamToFtp" type="tns:ExportReportToFtpParam" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExportReportToFtpParam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="contactDatabaseId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ftpAccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileNamePrefix" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="exportReportToFtpResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="getRerportByJobId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailJobId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRerportByJobIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getRerportByJobIdResult" type="tns:ReportData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReportData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sent" type="tns:ArrayOfContact" />
+          <s:element minOccurs="0" maxOccurs="1" name="opened" type="tns:ArrayOfOpen" />
+          <s:element minOccurs="0" maxOccurs="1" name="clicked" type="tns:ArrayOfClick" />
+          <s:element minOccurs="0" maxOccurs="1" name="bounced" type="tns:ArrayOfBouncedContact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Contact" nillable="true" type="s1:Contact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOpen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Open" nillable="true" type="s1:Open" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClick">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Click" nillable="true" type="s1:Click" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBouncedContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BouncedContact" nillable="true" type="s1:BouncedContact" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sendSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="time" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="content" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendSMSResult" type="s2:SendSmsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://common.services.tripolis.com/">
       <s:simpleType name="fileExtension">
@@ -135,6 +251,123 @@
           <s:enumeration value="XLSX" />
         </s:restriction>
       </s:simpleType>
+      <s:complexType name="Contact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contactId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contactFields" type="s1:ArrayOfContactField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContactField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="contactField" type="s1:ContactField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContactField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="label" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="key" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="required" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contactDatabaseFieldGroupId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="position" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kindOfField" type="s1:kindOfField" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="kindOfField">
+        <s:restriction base="s:string">
+          <s:enumeration value="GENERAL" />
+          <s:enumeration value="SUMMARY" />
+          <s:enumeration value="INTEREST" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SkippedContactModel">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Contact">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="jobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="skippedAt" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="receiverAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="type" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="description" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SmsBouncedContact">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Contact">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="jobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bouncedAt" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="receiverAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="providerStatusCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="categoryId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="categoryDescription" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BouncedContact">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:Contact">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="jobId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bouncedAt" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="receiverAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bounceCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="bounceCategoryId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bounceCategoryDescription" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bounceReason" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="hardbounce" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Open">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="jobId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="openedAt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="os" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="client" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contact" type="s1:Contact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Click">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="jobId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="clickedAt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="os" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="client" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="urlId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="urlTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="urlType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="originalUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="socialMediaTypes" type="s1:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="contact" type="s1:Contact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="socialMediaType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://10658.cc/">
+      <s:complexType name="SendSmsResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="smsid" type="s:int" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="publishingBulkEmailSoapIn">
@@ -161,6 +394,30 @@
   <wsdl:message name="registerContactSoapOut">
     <wsdl:part name="parameters" element="tns:registerContactResponse" />
   </wsdl:message>
+  <wsdl:message name="exportReportSoapIn">
+    <wsdl:part name="parameters" element="tns:exportReport" />
+  </wsdl:message>
+  <wsdl:message name="exportReportSoapOut">
+    <wsdl:part name="parameters" element="tns:exportReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportReportToFtpSoapIn">
+    <wsdl:part name="parameters" element="tns:exportReportToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportReportToFtpSoapOut">
+    <wsdl:part name="parameters" element="tns:exportReportToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRerportByJobIdSoapIn">
+    <wsdl:part name="parameters" element="tns:getRerportByJobId" />
+  </wsdl:message>
+  <wsdl:message name="getRerportByJobIdSoapOut">
+    <wsdl:part name="parameters" element="tns:getRerportByJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:sendSMS" />
+  </wsdl:message>
+  <wsdl:message name="sendSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:sendSMSResponse" />
+  </wsdl:message>
   <wsdl:portType name="MailAdapterSoap">
     <wsdl:operation name="publishingBulkEmail">
       <wsdl:input message="tns:publishingBulkEmailSoapIn" />
@@ -177,6 +434,22 @@
     <wsdl:operation name="registerContact">
       <wsdl:input message="tns:registerContactSoapIn" />
       <wsdl:output message="tns:registerContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <wsdl:input message="tns:exportReportSoapIn" />
+      <wsdl:output message="tns:exportReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="exportReportToFtp">
+      <wsdl:input message="tns:exportReportToFtpSoapIn" />
+      <wsdl:output message="tns:exportReportToFtpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getRerportByJobId">
+      <wsdl:input message="tns:getRerportByJobIdSoapIn" />
+      <wsdl:output message="tns:getRerportByJobIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSMS">
+      <wsdl:input message="tns:sendSMSSoapIn" />
+      <wsdl:output message="tns:sendSMSSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="MailAdapterSoap" type="tns:MailAdapterSoap">
@@ -217,6 +490,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <soap:operation soapAction="http://ws.tripolis.com.cn/exportReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportReportToFtp">
+      <soap:operation soapAction="http://ws.tripolis.com.cn/exportReportToFtp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRerportByJobId">
+      <soap:operation soapAction="http://ws.tripolis.com.cn/getRerportByJobId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSMS">
+      <soap:operation soapAction="http://ws.tripolis.com.cn/sendSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="MailAdapterSoap12" type="tns:MailAdapterSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -249,6 +558,42 @@
     </wsdl:operation>
     <wsdl:operation name="registerContact">
       <soap12:operation soapAction="http://ws.tripolis.com.cn/registerContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <soap12:operation soapAction="http://ws.tripolis.com.cn/exportReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportReportToFtp">
+      <soap12:operation soapAction="http://ws.tripolis.com.cn/exportReportToFtp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRerportByJobId">
+      <soap12:operation soapAction="http://ws.tripolis.com.cn/getRerportByJobId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSMS">
+      <soap12:operation soapAction="http://ws.tripolis.com.cn/sendSMS" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 using TripolisDialogueAdapter;
@@ -83,14 +84,21 @@ namespace TripolisDialogueAdapterWs
          /// <param name="authorization">Authorization for login Dialoue plateform</param>
         /// <param name="exportReportParam"> </param>
         /// <returns></returns>
-        [WebMethod]        
-        public ExportReportData exportReport(Authorization authorization, ExportReportParam exportReportParam)
-        {
-            DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
+         [WebMethod]
+         public CSVReportData exportReport(Authorization authorization, ExportReportParam exportReportParam)
+         {
+             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
 
-            return dialogueService_new.exportReport(exportReportParam.contactDatabaseId, exportReportParam.startTime, exportReportParam.endTime);
+             ExportReportData report = dialogueService_new.exportReport(exportReportParam.contactDatabaseId, exportReportParam.startTime, exportReportParam.endTime);
+             CSVReportData csvReportData = new CSVReportData();
 
-        }
+             csvReportData.sent = Encoding.UTF8.GetString(report.sent);
+             csvReportData.opened = Encoding.UTF8.GetString(report.opened);
+             csvReportData.clicked = Encoding.UTF8.GetString(report.clicked);
+             csvReportData.bounced = Encoding.UTF8.GetString(report.bounced);
+
+             return csvReportData;
+         }
 
         /// <summary>
         /// export report to FTP server

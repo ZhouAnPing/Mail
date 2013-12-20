@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ctrip.tripolis.com.cn/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ctrip.tripolis.com.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ctrip.tripolis.com.cn/">
+      <s:element name="sendMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailContent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toEmail" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="scheduleTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sendMailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="exportReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="exportReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="exportReportResult" type="tns:CSVReportData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CSVReportData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="opened" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="clicked" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bounced" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="sendMailSoapIn">
+    <wsdl:part name="parameters" element="tns:sendMail" />
+  </wsdl:message>
+  <wsdl:message name="sendMailSoapOut">
+    <wsdl:part name="parameters" element="tns:sendMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportReportSoapIn">
+    <wsdl:part name="parameters" element="tns:exportReport" />
+  </wsdl:message>
+  <wsdl:message name="exportReportSoapOut">
+    <wsdl:part name="parameters" element="tns:exportReportResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CtripMailAdapter1Soap">
+    <wsdl:operation name="sendMail">
+      <wsdl:input message="tns:sendMailSoapIn" />
+      <wsdl:output message="tns:sendMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <wsdl:input message="tns:exportReportSoapIn" />
+      <wsdl:output message="tns:exportReportSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CtripMailAdapter1Soap" type="tns:CtripMailAdapter1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sendMail">
+      <soap:operation soapAction="http://ctrip.tripolis.com.cn/sendMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <soap:operation soapAction="http://ctrip.tripolis.com.cn/exportReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CtripMailAdapter1Soap12" type="tns:CtripMailAdapter1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sendMail">
+      <soap12:operation soapAction="http://ctrip.tripolis.com.cn/sendMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportReport">
+      <soap12:operation soapAction="http://ctrip.tripolis.com.cn/exportReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CtripMailAdapter1">
+    <wsdl:port name="CtripMailAdapter1Soap" binding="tns:CtripMailAdapter1Soap">
+      <soap:address location="http://115.29.229.134:8081/CtripMailAdapter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CtripMailAdapter1Soap12" binding="tns:CtripMailAdapter1Soap12">
+      <soap12:address location="http://115.29.229.134:8081/CtripMailAdapter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

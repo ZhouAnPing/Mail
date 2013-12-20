@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +41,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TripolisDialogueAdapter\lib\Microsoft.Web.Services3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,11 +73,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CtripMailAdapter.asmx" />
     <Content Include="MailAdapter.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="CtripMailAdapter.asmx.cs">
+      <DependentUpon>CtripMailAdapter.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ExportReportToFtpParam.cs" />
     <Compile Include="MailAdapter.asmx.cs">
       <DependentUpon>MailAdapter.asmx</DependentUpon>

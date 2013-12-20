@@ -57,6 +57,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Web References\CtripMailAdapterWs\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\MailAdapterWs\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,10 +75,27 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\CtripMailAdapterWs\CSVReportData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\CtripMailAdapterWs\CtripMailAdapter.wsdl" />
+    <None Include="Web References\CtripMailAdapterWs\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MailAdapterWs\CSVReportData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\MailAdapterWs\MailAdapter.wsdl" />
     <None Include="Web References\MailAdapterWs\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MailAdapterWs\ReportData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MailAdapterWs\SendSmsResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +105,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://115.29.229.134:8081/CtripMailAdapter.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CtripMailAdapterWs\</RelPath>
+      <UpdateFromURL>http://115.29.229.134:8081/CtripMailAdapter.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://115.29.229.134:8081/MailAdapter.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MailAdapterWs\</RelPath>

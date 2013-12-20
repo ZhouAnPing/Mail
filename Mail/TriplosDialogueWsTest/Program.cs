@@ -13,26 +13,68 @@ namespace TriplosDialogueWsTest
 
         static void Main(string[] args)
         {
-            Authorization authorization = new MailAdapterWs.Authorization();
-            authorization.client = "Training";
-            authorization.username = "zapjx@hotmail.com";
-            authorization.password = "Test123";
+            
+           
+            //Authorization authorization = new MailAdapterWs.Authorization();
+            //authorization.client = "Training";
+            //authorization.username = "zapjx@hotmail.com";
+            //authorization.password = "Test123";
 
             Program TestProgram = new TriplosDialogueWsTest.Program();
-            String publishId =  TestProgram.registerContact(authorization);
-            Console.WriteLine("registerContact Id=" + publishId);
 
-            publishId = TestProgram.sendSingleMail(authorization);
-            Console.WriteLine("sendSingleMai Id=" + publishId);
+            TestProgram.sendmailForCtrip();
+            TestProgram.exportReport();
 
-            publishId = TestProgram.publishingSmallScaleEmail(authorization);
-            Console.WriteLine("publishingSmallScaleEmail Id=" + publishId);
+            Console.ReadLine();
+            //String publishId =  TestProgram.registerContact(authorization);
+            //Console.WriteLine("registerContact Id=" + publishId);
 
-            publishId = TestProgram.publishingBulkEmail(authorization);
-            Console.WriteLine("publishingBulkEmail Id=" + publishId);
+            //publishId = TestProgram.sendSingleMail(authorization);
+            //Console.WriteLine("sendSingleMai Id=" + publishId);
+
+            //publishId = TestProgram.publishingSmallScaleEmail(authorization);
+            //Console.WriteLine("publishingSmallScaleEmail Id=" + publishId);
+
+            //publishId = TestProgram.publishingBulkEmail(authorization);
+            //Console.WriteLine("publishingBulkEmail Id=" + publishId);
 
 
         }
+
+        private void sendmailForCtrip()
+        {
+            CtripMailAdapterWs.CtripMailAdapter1 dialogueService = new CtripMailAdapterWs.CtripMailAdapter1();
+            String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
+            String fromName = "Ctrip API Demo";
+            String fromEmail = "API@Ctrip.com";
+            String subject = "Ctrip API Demo";
+            string mailContent = "Ctrip API Demo";
+            String toEmail = "1197922021@qq.com";
+            DateTime scheduleTime = DateTime.Now;
+           String publishId =  dialogueService.sendMail(apiKey, fromName, fromEmail, subject, mailContent, toEmail, scheduleTime);
+           Console.WriteLine("PublishId="+publishId);
+        }
+        private void exportReport()
+        {
+            CtripMailAdapterWs.CtripMailAdapter1 dialogueService = new CtripMailAdapterWs.CtripMailAdapter1();
+            String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
+            DateTime endTime = DateTime.Now;
+            DateTime startTime = endTime.AddHours(-8);
+            CtripMailAdapterWs.CSVReportData reportData= dialogueService.exportReport(apiKey, startTime, endTime);
+
+            Console.WriteLine("++++++++++++sent++++++++++++++");
+            Console.WriteLine(reportData.sent);
+
+            Console.WriteLine("++++++++++++Opened++++++++++++++");
+            Console.WriteLine(reportData.opened);
+
+            Console.WriteLine("++++++++++++clicked++++++++++++++");
+            Console.WriteLine(reportData.clicked);
+
+            Console.WriteLine("++++++++++++bounced++++++++++++++");
+            Console.WriteLine(reportData.bounced);
+        }
+
         private String publishingBulkEmail(Authorization authorization)
         {
             MailAdapterWs.MailAdapter dialogueService = new MailAdapterWs.MailAdapter();

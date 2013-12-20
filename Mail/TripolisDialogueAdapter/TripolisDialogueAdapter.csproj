@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45AD6E86-0A45-4E9E-B21A-9876137A6A91}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TripolisDialogueAdapter</RootNamespace>
     <AssemblyName>TripolisDialogueAdapter</AssemblyName>
@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WinSCP">
       <HintPath>lib\WinSCP.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,7 @@
     <Compile Include="BO\DialogueSetting.cs" />
     <Compile Include="BO\ContactGroup.cs" />
     <Compile Include="BO\DirectEmail.cs" />
+    <Compile Include="BO\CSVReportData.cs" />
     <Compile Include="BO\ReportData.cs" />
     <Compile Include="BO\ExportReportData.cs" />
     <Compile Include="BO\ReportTypeEnum.cs" />

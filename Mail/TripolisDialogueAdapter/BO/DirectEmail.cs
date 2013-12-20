@@ -15,6 +15,7 @@ namespace TripolisDialogueAdapter.BO
         public String fromAddress;
         public String htmlContent;
         public String reportReceiveAddress;
+        public DateTime sheduleTime = DateTime.Now;
         // public String textContentl;
        // public bool isContentSame = false;
     }

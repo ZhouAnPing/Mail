@@ -6,11 +6,11 @@ using System.Text;
 namespace TripolisDialogueAdapter.BO
 {
     [Serializable()]
-    public class ExportReportData
+    public class CSVReportData
     {
-        public byte[] sent;
-        public byte[] opened;
-        public byte[] clicked;
-        public byte[] bounced;        
+        public String sent;
+        public String opened;
+        public String clicked;
+        public String bounced;        
     }
 }

@@ -6,6 +6,7 @@ using TripolisDialogueAdapter.cn.tripolis.dialogue.reporting;
 
 namespace TripolisDialogueAdapter.BO
 {
+    [Serializable()]
     public class ReportData
     {
         public Contact[] sent;

@@ -6,6 +6,7 @@ using System.Web;
 
 namespace TripolisDialogueAdapterWs
 {
+    [Serializable()]
     public class ExportReportToFtpParam
     {
         public String contactDatabaseId;

@@ -37,6 +37,14 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         private System.Threading.SendOrPostCallback registerContactOperationCompleted;
         
+        private System.Threading.SendOrPostCallback exportReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback exportReportToFtpOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getRerportByJobIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback sendSMSOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -86,6 +94,18 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         public event registerContactCompletedEventHandler registerContactCompleted;
+        
+        /// <remarks/>
+        public event exportReportCompletedEventHandler exportReportCompleted;
+        
+        /// <remarks/>
+        public event exportReportToFtpCompletedEventHandler exportReportToFtpCompleted;
+        
+        /// <remarks/>
+        public event getRerportByJobIdCompletedEventHandler getRerportByJobIdCompleted;
+        
+        /// <remarks/>
+        public event sendSMSCompletedEventHandler sendSMSCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/publishingBulkEmail", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -230,6 +250,143 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/exportReport", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CSVReportData exportReport(Authorization authorization, ExportReportParam exportReportParam) {
+            object[] results = this.Invoke("exportReport", new object[] {
+                        authorization,
+                        exportReportParam});
+            return ((CSVReportData)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void exportReportAsync(Authorization authorization, ExportReportParam exportReportParam) {
+            this.exportReportAsync(authorization, exportReportParam, null);
+        }
+        
+        /// <remarks/>
+        public void exportReportAsync(Authorization authorization, ExportReportParam exportReportParam, object userState) {
+            if ((this.exportReportOperationCompleted == null)) {
+                this.exportReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnexportReportOperationCompleted);
+            }
+            this.InvokeAsync("exportReport", new object[] {
+                        authorization,
+                        exportReportParam}, this.exportReportOperationCompleted, userState);
+        }
+        
+        private void OnexportReportOperationCompleted(object arg) {
+            if ((this.exportReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.exportReportCompleted(this, new exportReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/exportReportToFtp", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void exportReportToFtp(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp) {
+            this.Invoke("exportReportToFtp", new object[] {
+                        authorization,
+                        exportReportParamToFtp});
+        }
+        
+        /// <remarks/>
+        public void exportReportToFtpAsync(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp) {
+            this.exportReportToFtpAsync(authorization, exportReportParamToFtp, null);
+        }
+        
+        /// <remarks/>
+        public void exportReportToFtpAsync(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp, object userState) {
+            if ((this.exportReportToFtpOperationCompleted == null)) {
+                this.exportReportToFtpOperationCompleted = new System.Threading.SendOrPostCallback(this.OnexportReportToFtpOperationCompleted);
+            }
+            this.InvokeAsync("exportReportToFtp", new object[] {
+                        authorization,
+                        exportReportParamToFtp}, this.exportReportToFtpOperationCompleted, userState);
+        }
+        
+        private void OnexportReportToFtpOperationCompleted(object arg) {
+            if ((this.exportReportToFtpCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.exportReportToFtpCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/getRerportByJobId", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ReportData getRerportByJobId(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime) {
+            object[] results = this.Invoke("getRerportByJobId", new object[] {
+                        authorization,
+                        mailJobId,
+                        startTime,
+                        endTime});
+            return ((ReportData)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getRerportByJobIdAsync(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime) {
+            this.getRerportByJobIdAsync(authorization, mailJobId, startTime, endTime, null);
+        }
+        
+        /// <remarks/>
+        public void getRerportByJobIdAsync(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime, object userState) {
+            if ((this.getRerportByJobIdOperationCompleted == null)) {
+                this.getRerportByJobIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetRerportByJobIdOperationCompleted);
+            }
+            this.InvokeAsync("getRerportByJobId", new object[] {
+                        authorization,
+                        mailJobId,
+                        startTime,
+                        endTime}, this.getRerportByJobIdOperationCompleted, userState);
+        }
+        
+        private void OngetRerportByJobIdOperationCompleted(object arg) {
+            if ((this.getRerportByJobIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getRerportByJobIdCompleted(this, new getRerportByJobIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/sendSMS", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public SendSmsResult sendSMS(Authorization authorization, string account, string password, string mobile, string pid, string time, string content) {
+            object[] results = this.Invoke("sendSMS", new object[] {
+                        authorization,
+                        account,
+                        password,
+                        mobile,
+                        pid,
+                        time,
+                        content});
+            return ((SendSmsResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void sendSMSAsync(Authorization authorization, string account, string password, string mobile, string pid, string time, string content) {
+            this.sendSMSAsync(authorization, account, password, mobile, pid, time, content, null);
+        }
+        
+        /// <remarks/>
+        public void sendSMSAsync(Authorization authorization, string account, string password, string mobile, string pid, string time, string content, object userState) {
+            if ((this.sendSMSOperationCompleted == null)) {
+                this.sendSMSOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsendSMSOperationCompleted);
+            }
+            this.InvokeAsync("sendSMS", new object[] {
+                        authorization,
+                        account,
+                        password,
+                        mobile,
+                        pid,
+                        time,
+                        content}, this.sendSMSOperationCompleted, userState);
+        }
+        
+        private void OnsendSMSOperationCompleted(object arg) {
+            if ((this.sendSMSCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.sendSMSCompleted(this, new sendSMSCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -289,6 +446,1104 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
             }
             set {
                 this.passwordField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://10658.cc/")]
+    public partial class SendSmsResult {
+        
+        private int codeField;
+        
+        private string msgField;
+        
+        private int smsidField;
+        
+        /// <remarks/>
+        public int code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string msg {
+            get {
+                return this.msgField;
+            }
+            set {
+                this.msgField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int smsid {
+            get {
+                return this.smsidField;
+            }
+            set {
+                this.smsidField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class Click {
+        
+        private string jobIdField;
+        
+        private System.DateTime clickedAtField;
+        
+        private bool clickedAtFieldSpecified;
+        
+        private string ipField;
+        
+        private string osField;
+        
+        private string clientField;
+        
+        private string urlIdField;
+        
+        private string urlTitleField;
+        
+        private string urlTypeField;
+        
+        private string originalUrlField;
+        
+        private string contentTypeField;
+        
+        private string[] socialMediaTypesField;
+        
+        private Contact contactField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string jobId {
+            get {
+                return this.jobIdField;
+            }
+            set {
+                this.jobIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime clickedAt {
+            get {
+                return this.clickedAtField;
+            }
+            set {
+                this.clickedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool clickedAtSpecified {
+            get {
+                return this.clickedAtFieldSpecified;
+            }
+            set {
+                this.clickedAtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string ip {
+            get {
+                return this.ipField;
+            }
+            set {
+                this.ipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string os {
+            get {
+                return this.osField;
+            }
+            set {
+                this.osField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string client {
+            get {
+                return this.clientField;
+            }
+            set {
+                this.clientField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string urlId {
+            get {
+                return this.urlIdField;
+            }
+            set {
+                this.urlIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string urlTitle {
+            get {
+                return this.urlTitleField;
+            }
+            set {
+                this.urlTitleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string urlType {
+            get {
+                return this.urlTypeField;
+            }
+            set {
+                this.urlTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string originalUrl {
+            get {
+                return this.originalUrlField;
+            }
+            set {
+                this.originalUrlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string contentType {
+            get {
+                return this.contentTypeField;
+            }
+            set {
+                this.contentTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("socialMediaType", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        public string[] socialMediaTypes {
+            get {
+                return this.socialMediaTypesField;
+            }
+            set {
+                this.socialMediaTypesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public Contact contact {
+            get {
+                return this.contactField;
+            }
+            set {
+                this.contactField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BouncedContact))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SmsBouncedContact))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SkippedContactModel))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class Contact {
+        
+        private string contactIdField;
+        
+        private ContactField[] contactFieldsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string contactId {
+            get {
+                return this.contactIdField;
+            }
+            set {
+                this.contactIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("contactField", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        public ContactField[] contactFields {
+            get {
+                return this.contactFieldsField;
+            }
+            set {
+                this.contactFieldsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class ContactField {
+        
+        private string idField;
+        
+        private string valueField;
+        
+        private string labelField;
+        
+        private string nameField;
+        
+        private string typeField;
+        
+        private bool keyField;
+        
+        private bool requiredField;
+        
+        private string contactDatabaseFieldGroupIdField;
+        
+        private int positionField;
+        
+        private kindOfField kindOfFieldField;
+        
+        private bool kindOfFieldFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool required {
+            get {
+                return this.requiredField;
+            }
+            set {
+                this.requiredField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string contactDatabaseFieldGroupId {
+            get {
+                return this.contactDatabaseFieldGroupIdField;
+            }
+            set {
+                this.contactDatabaseFieldGroupIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int position {
+            get {
+                return this.positionField;
+            }
+            set {
+                this.positionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public kindOfField kindOfField {
+            get {
+                return this.kindOfFieldField;
+            }
+            set {
+                this.kindOfFieldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool kindOfFieldSpecified {
+            get {
+                return this.kindOfFieldFieldSpecified;
+            }
+            set {
+                this.kindOfFieldFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public enum kindOfField {
+        
+        /// <remarks/>
+        GENERAL,
+        
+        /// <remarks/>
+        SUMMARY,
+        
+        /// <remarks/>
+        INTEREST,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class BouncedContact : Contact {
+        
+        private string jobIdField;
+        
+        private System.DateTime bouncedAtField;
+        
+        private bool bouncedAtFieldSpecified;
+        
+        private string receiverAddressField;
+        
+        private string bounceCodeField;
+        
+        private int bounceCategoryIdField;
+        
+        private string bounceCategoryDescriptionField;
+        
+        private string bounceReasonField;
+        
+        private bool hardbounceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string jobId {
+            get {
+                return this.jobIdField;
+            }
+            set {
+                this.jobIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime bouncedAt {
+            get {
+                return this.bouncedAtField;
+            }
+            set {
+                this.bouncedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool bouncedAtSpecified {
+            get {
+                return this.bouncedAtFieldSpecified;
+            }
+            set {
+                this.bouncedAtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string receiverAddress {
+            get {
+                return this.receiverAddressField;
+            }
+            set {
+                this.receiverAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string bounceCode {
+            get {
+                return this.bounceCodeField;
+            }
+            set {
+                this.bounceCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int bounceCategoryId {
+            get {
+                return this.bounceCategoryIdField;
+            }
+            set {
+                this.bounceCategoryIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string bounceCategoryDescription {
+            get {
+                return this.bounceCategoryDescriptionField;
+            }
+            set {
+                this.bounceCategoryDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string bounceReason {
+            get {
+                return this.bounceReasonField;
+            }
+            set {
+                this.bounceReasonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool hardbounce {
+            get {
+                return this.hardbounceField;
+            }
+            set {
+                this.hardbounceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class SmsBouncedContact : Contact {
+        
+        private string jobIdField;
+        
+        private System.DateTime bouncedAtField;
+        
+        private bool bouncedAtFieldSpecified;
+        
+        private string receiverAddressField;
+        
+        private string codeField;
+        
+        private string providerStatusCodeField;
+        
+        private string descriptionField;
+        
+        private int categoryIdField;
+        
+        private string categoryDescriptionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string jobId {
+            get {
+                return this.jobIdField;
+            }
+            set {
+                this.jobIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime bouncedAt {
+            get {
+                return this.bouncedAtField;
+            }
+            set {
+                this.bouncedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool bouncedAtSpecified {
+            get {
+                return this.bouncedAtFieldSpecified;
+            }
+            set {
+                this.bouncedAtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string receiverAddress {
+            get {
+                return this.receiverAddressField;
+            }
+            set {
+                this.receiverAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string providerStatusCode {
+            get {
+                return this.providerStatusCodeField;
+            }
+            set {
+                this.providerStatusCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int categoryId {
+            get {
+                return this.categoryIdField;
+            }
+            set {
+                this.categoryIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string categoryDescription {
+            get {
+                return this.categoryDescriptionField;
+            }
+            set {
+                this.categoryDescriptionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class SkippedContactModel : Contact {
+        
+        private string jobIdField;
+        
+        private System.DateTime skippedAtField;
+        
+        private bool skippedAtFieldSpecified;
+        
+        private string receiverAddressField;
+        
+        private string typeField;
+        
+        private string descriptionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string jobId {
+            get {
+                return this.jobIdField;
+            }
+            set {
+                this.jobIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime skippedAt {
+            get {
+                return this.skippedAtField;
+            }
+            set {
+                this.skippedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool skippedAtSpecified {
+            get {
+                return this.skippedAtFieldSpecified;
+            }
+            set {
+                this.skippedAtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string receiverAddress {
+            get {
+                return this.receiverAddressField;
+            }
+            set {
+                this.receiverAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public partial class Open {
+        
+        private string jobIdField;
+        
+        private System.DateTime openedAtField;
+        
+        private bool openedAtFieldSpecified;
+        
+        private string ipField;
+        
+        private string osField;
+        
+        private string clientField;
+        
+        private Contact contactField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string jobId {
+            get {
+                return this.jobIdField;
+            }
+            set {
+                this.jobIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime openedAt {
+            get {
+                return this.openedAtField;
+            }
+            set {
+                this.openedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool openedAtSpecified {
+            get {
+                return this.openedAtFieldSpecified;
+            }
+            set {
+                this.openedAtFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string ip {
+            get {
+                return this.ipField;
+            }
+            set {
+                this.ipField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string os {
+            get {
+                return this.osField;
+            }
+            set {
+                this.osField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string client {
+            get {
+                return this.clientField;
+            }
+            set {
+                this.clientField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public Contact contact {
+            get {
+                return this.contactField;
+            }
+            set {
+                this.contactField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
+    public partial class ReportData {
+        
+        private Contact[] sentField;
+        
+        private Open[] openedField;
+        
+        private Click[] clickedField;
+        
+        private BouncedContact[] bouncedField;
+        
+        /// <remarks/>
+        public Contact[] sent {
+            get {
+                return this.sentField;
+            }
+            set {
+                this.sentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Open[] opened {
+            get {
+                return this.openedField;
+            }
+            set {
+                this.openedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Click[] clicked {
+            get {
+                return this.clickedField;
+            }
+            set {
+                this.clickedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BouncedContact[] bounced {
+            get {
+                return this.bouncedField;
+            }
+            set {
+                this.bouncedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
+    public partial class ExportReportToFtpParam {
+        
+        private string contactDatabaseIdField;
+        
+        private System.DateTime startTimeField;
+        
+        private System.DateTime endTimeField;
+        
+        private string ftpAccountIdField;
+        
+        private string fileNamePrefixField;
+        
+        /// <remarks/>
+        public string contactDatabaseId {
+            get {
+                return this.contactDatabaseIdField;
+            }
+            set {
+                this.contactDatabaseIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime startTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime endTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ftpAccountId {
+            get {
+                return this.ftpAccountIdField;
+            }
+            set {
+                this.ftpAccountIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string fileNamePrefix {
+            get {
+                return this.fileNamePrefixField;
+            }
+            set {
+                this.fileNamePrefixField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
+    public partial class CSVReportData {
+        
+        private string sentField;
+        
+        private string openedField;
+        
+        private string clickedField;
+        
+        private string bouncedField;
+        
+        /// <remarks/>
+        public string sent {
+            get {
+                return this.sentField;
+            }
+            set {
+                this.sentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string opened {
+            get {
+                return this.openedField;
+            }
+            set {
+                this.openedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string clicked {
+            get {
+                return this.clickedField;
+            }
+            set {
+                this.clickedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string bounced {
+            get {
+                return this.bouncedField;
+            }
+            set {
+                this.bouncedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
+    public partial class ExportReportParam {
+        
+        private string contactDatabaseIdField;
+        
+        private System.DateTime startTimeField;
+        
+        private System.DateTime endTimeField;
+        
+        /// <remarks/>
+        public string contactDatabaseId {
+            get {
+                return this.contactDatabaseIdField;
+            }
+            set {
+                this.contactDatabaseIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime startTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime endTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
             }
         }
     }
@@ -426,7 +1681,7 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         private string reportReceiveAddressField;
         
-        private bool isContentSameField;
+        private System.DateTime sheduleTimeField;
         
         /// <remarks/>
         public string emailLabel {
@@ -509,12 +1764,12 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         }
         
         /// <remarks/>
-        public bool isContentSame {
+        public System.DateTime sheduleTime {
             get {
-                return this.isContentSameField;
+                return this.sheduleTimeField;
             }
             set {
-                this.isContentSameField = value;
+                this.sheduleTimeField = value;
             }
         }
     }
@@ -721,6 +1976,88 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    public delegate void exportReportCompletedEventHandler(object sender, exportReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class exportReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal exportReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CSVReportData Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CSVReportData)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    public delegate void exportReportToFtpCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    public delegate void getRerportByJobIdCompletedEventHandler(object sender, getRerportByJobIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getRerportByJobIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getRerportByJobIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ReportData Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ReportData)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    public delegate void sendSMSCompletedEventHandler(object sender, sendSMSCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class sendSMSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal sendSMSCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public SendSmsResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((SendSmsResult)(this.results[0]));
             }
         }
     }

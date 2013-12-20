@@ -207,7 +207,7 @@ namespace TripolisDialogueAdapter
                 this.updateDirectEmail(directEmailId, emailSubject, sender, emailBody);
 
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
-                String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId);
+                String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId,DateTime.Now);
                 
 
               //  SendLogDao dbAccess = new SendLogDao();

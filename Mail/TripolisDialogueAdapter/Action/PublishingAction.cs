@@ -81,7 +81,7 @@ namespace TripolisDialogueAdapter.Action
             return result;
         }
 
-        public String publishTransactionalEmail(String contactId, String emailId)
+        public String publishTransactionalEmail(String contactId, String emailId, DateTime scheduleTime)
         {
             if (logger.IsDebugEnabled)
             {
@@ -93,8 +93,8 @@ namespace TripolisDialogueAdapter.Action
             try
             {
                 request.contactId = contactId;
-                request.directEmailId = emailId;           
-
+                request.directEmailId = emailId;
+                request.scheduleAt = scheduleTime;
                 // request.
                 cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishTransactionalEmail(request);               
 
