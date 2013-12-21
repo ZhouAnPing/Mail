@@ -55,10 +55,13 @@ namespace TripolisDialogueAdapter.Action
                 request.timeRange = new cn.tripolis.dialogue.export.TimeRange();
                 request.timeRange.startTime = startTime;
                 request.timeRange.endTime = endTime;
-                request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
-            
-                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
-             
+
+                if (!reportType.Equals(ReportType.BOUNCED))
+                {
+                    request.returnContactFields = new cn.tripolis.dialogue.export.ReturnContactFields();
+
+                    request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                }
                 RawDataResponse response = null;
                 switch (reportType)
                 {
@@ -66,7 +69,7 @@ namespace TripolisDialogueAdapter.Action
                         response = exportService.exportOpened(request);
                         break;
                     case ReportType.CLICKED:
-                        response = exportService.exportClicked(request);
+                        response = exportService.exportClicked(request);                        
                         break;
                     case ReportType.BOUNCED:
                         response = exportService.exportBounced(request);
@@ -76,10 +79,14 @@ namespace TripolisDialogueAdapter.Action
                         break;
                     case ReportType.COMPLAINT:
                         response = exportService.exportComplained(request);
-                        break;                  
+                        break;
+                    case ReportType.LINKS:
+                        response = exportService.exportLinks(request);
+                        break;
                     case ReportType.JOBS:
                         response = exportService.exportJobs(request);
                         break;
+                        
                     default:
                         break;
                 }

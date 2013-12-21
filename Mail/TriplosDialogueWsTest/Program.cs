@@ -32,7 +32,7 @@ namespace TriplosDialogueWsTest
                 Console.WriteLine("时间差:" + ts.Seconds);
             }
 
-            TestProgram.exportReport();
+            TestProgram.exportReportForCtrip();
 
             Console.ReadLine();
             //String publishId =  TestProgram.registerContact(authorization);
@@ -64,7 +64,7 @@ namespace TriplosDialogueWsTest
              String publishId =  dialogueService.sendMail(apiKey, fromName, fromEmail, subject, mailContent, toEmail, scheduleTime);
            Console.WriteLine("PublishId="+publishId);
         }
-        private void exportReport()
+        private void exportReportForCtrip()
         {
             CtripMailAdapterWs.CtripMailAdapter dialogueService = new CtripMailAdapterWs.CtripMailAdapter();
             String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
@@ -84,6 +84,32 @@ namespace TriplosDialogueWsTest
             Console.WriteLine("++++++++++++bounced++++++++++++++");
             Console.WriteLine(reportData.bounced);
         }
+
+
+        private void exportReport(Authorization authorization)
+        {
+            MailAdapterWs.MailAdapter dialogueService = new MailAdapter();
+            ExportReportParam exportReportParam = new MailAdapterWs.ExportReportParam();
+            DateTime endTime = DateTime.Now;
+            DateTime startTime = endTime.AddHours(-8);
+            exportReportParam.startTime = startTime;
+            exportReportParam.endTime = endTime;
+            exportReportParam.contactDatabaseId = "MjU1MTI1NTFFUVus6S83qA";
+            CSVReportData reportData = dialogueService.exportReport(authorization, exportReportParam);
+
+            Console.WriteLine("++++++++++++sent++++++++++++++");
+            Console.WriteLine(reportData.sent);
+
+            Console.WriteLine("++++++++++++Opened++++++++++++++");
+            Console.WriteLine(reportData.opened);
+
+            Console.WriteLine("++++++++++++clicked++++++++++++++");
+            Console.WriteLine(reportData.clicked);
+
+            Console.WriteLine("++++++++++++bounced++++++++++++++");
+            Console.WriteLine(reportData.bounced);
+        }
+
 
         private String publishingBulkEmail(Authorization authorization)
         {

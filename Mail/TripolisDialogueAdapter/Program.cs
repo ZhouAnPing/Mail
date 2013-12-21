@@ -57,17 +57,17 @@ namespace TripolisDialogueAdapter
             //String databaseID = "MjUyMTI1MjHJ69MSWqS6mQ";
             //String ftpAccountId = "NTQwNTQwNTQQosYwP6thgg";
 
-            //String client = "Training";
-            //String userName = "zapjx@hotmail.com";
-            //String password = "Test123";
-            //String databaseID = "MjU1MTI1NTFFUVus6S83qA";
-
-
-            String client = "51job";
-            String userName = "api@51job.com";
+            String client = "Training";
+            String userName = "zapjx@hotmail.com";
             String password = "Test123";
-            String databaseID = "MjU1ODI1NTgL21MIxlZDCQ";
-            String ftpAccountId = "NTM4NTM4NTMEfaWC25Hk0Q";
+            String databaseID = "MjU4MDI1ODCzAn45YUUpJw";//"MjU1MTI1NTFFUVus6S83qA";
+
+
+            //String client = "51job";
+            //String userName = "api@51job.com";
+            //String password = "Test123";
+            //String databaseID = "MjU1ODI1NTgL21MIxlZDCQ";
+            //String ftpAccountId = "NTM4NTM4NTMEfaWC25Hk0Q";
             DialogueService_new dialogueService = new DialogueService_new(client, userName, password, null);
 
             //String mailJobId = "MTA0ODQyOTKMdCDprzC_oRpaAAO2LvZr";

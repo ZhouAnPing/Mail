@@ -12,6 +12,7 @@ namespace TripolisDialogueAdapter.BO
         BOUNCED,
         SENT,
         COMPLAINT,//Number of receivers who categorized the mail as SPAM.
-        JOBS
+        JOBS,
+        LINKS
     };
 }

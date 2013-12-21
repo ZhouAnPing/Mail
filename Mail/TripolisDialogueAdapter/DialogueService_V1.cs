@@ -453,6 +453,8 @@ namespace TripolisDialogueAdapter
             mailReport.clicked = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.CLICKED);
 
             mailReport.bounced  = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.BOUNCED);
+           
+            //mailReport.links = exportAction.ExportReport(contactDatabaseId, startTime, endTime, ReportType.LINKS);
 
             return mailReport;
         }

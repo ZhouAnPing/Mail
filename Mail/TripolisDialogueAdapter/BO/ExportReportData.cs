@@ -11,6 +11,7 @@ namespace TripolisDialogueAdapter.BO
         public byte[] sent;
         public byte[] opened;
         public byte[] clicked;
-        public byte[] bounced;        
+        public byte[] bounced;
+        public byte[] links;
     }
 }
