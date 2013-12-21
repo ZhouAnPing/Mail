@@ -21,8 +21,17 @@ namespace TriplosDialogueWsTest
             //authorization.password = "Test123";
 
             Program TestProgram = new TriplosDialogueWsTest.Program();
+            for (int i = 0; i < 1; i++)
+            {
+                DateTime startTime = DateTime.Now;
+               // TestProgram.sendmailForCtrip();
+                DateTime endTime = DateTime.Now;
 
-            TestProgram.sendmailForCtrip();
+                System.TimeSpan ts = endTime - startTime;
+
+                Console.WriteLine("时间差:" + ts.Seconds);
+            }
+
             TestProgram.exportReport();
 
             Console.ReadLine();
@@ -44,14 +53,15 @@ namespace TriplosDialogueWsTest
         private void sendmailForCtrip()
         {
             CtripMailAdapterWs.CtripMailAdapter1 dialogueService = new CtripMailAdapterWs.CtripMailAdapter1();
+     
             String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
             String fromName = "Ctrip API Demo";
             String fromEmail = "API@Ctrip.com";
             String subject = "Ctrip API Demo";
-            string mailContent = "Ctrip API Demo";
+            string mailContent = System.IO.File.ReadAllText("../../Example/template.html");
             String toEmail = "1197922021@qq.com";
             DateTime scheduleTime = DateTime.Now;
-           String publishId =  dialogueService.sendMail(apiKey, fromName, fromEmail, subject, mailContent, toEmail, scheduleTime);
+             String publishId =  dialogueService.sendMail(apiKey, fromName, fromEmail, subject, mailContent, toEmail, scheduleTime);
            Console.WriteLine("PublishId="+publishId);
         }
         private void exportReport()
