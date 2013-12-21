@@ -26,8 +26,8 @@ namespace TriplosDialogueWsTest.CtripMailAdapterWs {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.18408")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="CtripMailAdapter1Soap", Namespace="http://ctrip.tripolis.com.cn/")]
-    public partial class CtripMailAdapter1 : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="CtripMailAdapterSoap", Namespace="http://ctrip.tripolis.com.cn/")]
+    public partial class CtripMailAdapter : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback sendMailOperationCompleted;
         
@@ -36,7 +36,7 @@ namespace TriplosDialogueWsTest.CtripMailAdapterWs {
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public CtripMailAdapter1() {
+        public CtripMailAdapter() {
             this.Url = global::TriplosDialogueWsTest.Properties.Settings.Default.TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;

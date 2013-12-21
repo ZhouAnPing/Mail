@@ -24,7 +24,7 @@ namespace TriplosDialogueWsTest
             for (int i = 0; i < 1; i++)
             {
                 DateTime startTime = DateTime.Now;
-               // TestProgram.sendmailForCtrip();
+                TestProgram.sendmailForCtrip();
                 DateTime endTime = DateTime.Now;
 
                 System.TimeSpan ts = endTime - startTime;
@@ -52,7 +52,7 @@ namespace TriplosDialogueWsTest
 
         private void sendmailForCtrip()
         {
-            CtripMailAdapterWs.CtripMailAdapter1 dialogueService = new CtripMailAdapterWs.CtripMailAdapter1();
+            CtripMailAdapterWs.CtripMailAdapter dialogueService = new CtripMailAdapterWs.CtripMailAdapter();
      
             String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
             String fromName = "Ctrip API Demo";
@@ -66,7 +66,7 @@ namespace TriplosDialogueWsTest
         }
         private void exportReport()
         {
-            CtripMailAdapterWs.CtripMailAdapter1 dialogueService = new CtripMailAdapterWs.CtripMailAdapter1();
+            CtripMailAdapterWs.CtripMailAdapter dialogueService = new CtripMailAdapterWs.CtripMailAdapter();
             String apiKey = "MjU4MDI1ODCzAn45YUUpJw";
             DateTime endTime = DateTime.Now;
             DateTime startTime = endTime.AddHours(-8);

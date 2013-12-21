@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="CtripMailAdapter.asmx.cs" Class="TripolisDialogueAdapterWs.CtripMailAdapter1" %>
+﻿<%@ WebService Language="C#" CodeBehind="CtripMailAdapter.asmx.cs" Class="TripolisDialogueAdapterWs.CtripMailAdapter" %>

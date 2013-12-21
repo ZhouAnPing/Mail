@@ -10,14 +10,14 @@ using TripolisDialogueAdapter.BO;
 namespace TripolisDialogueAdapterWs
 {
     /// <summary>
-    /// Summary description for CtripMailAdapter
+    /// Mail and Report Interface for Ctrip
     /// </summary>
     [WebService(Namespace = "http://ctrip.tripolis.com.cn/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class CtripMailAdapter1 : System.Web.Services.WebService
+    public class CtripMailAdapter : System.Web.Services.WebService
     {
         /// <summary>
         /// Send Mail
