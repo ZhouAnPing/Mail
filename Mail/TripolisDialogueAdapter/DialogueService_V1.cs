@@ -174,7 +174,7 @@ namespace TripolisDialogueAdapter
         /// <param name="contacts">Contact Information</param>
         /// <param name="directEmail">parameters related with direct email, such as subject, fromaddress</param>
         /// <returns></returns>
-        public String publishingSmallScaleEmail(DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail)
+        public String publishingSmallScaleEmail(DialogueSetting dialogueSetting, ContactGroup contactGroup, ContactFileInfo importFiles, DirectEmail directEmail)
         {
 
             logger.Debug(System.Environment.NewLine+"Begin sending Small Scale Email.");
@@ -406,30 +406,62 @@ namespace TripolisDialogueAdapter
                 for (int i = 1; i <= sentPageNb; i++)
                 {
                     Contact[] tempContacts = ReportingAction.getDeliveredByMailJobId(mailJobId, startTime, endTime, pageSize, i);
-                    contacts.Add(tempContacts);
+                    contacts.AddRange(tempContacts);
                 }
                 for (int i = 1; i <= openPageNb; i++)
                 {
                     Open[] tempOpens = ReportingAction.getOpenedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
-                    opens.Add(tempOpens);
+                    opens.AddRange(tempOpens);
                 }
                 for (int i = 1; i <= clickPageNb; i++)
                 {
                     Click[] tempClicks = ReportingAction.getClickedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
-                    clicks.Add(tempClicks);
+                    clicks.AddRange(tempClicks);
                 }
                 for (int i = 1; i <= bouncedPageNb; i++)
                 {
                     BouncedContact[] tempBouncedContacts = ReportingAction.getBouncedByMailJobId(mailJobId, startTime, endTime, pageSize, i);
-                    bouncedContacts.Add(tempBouncedContacts);
+                    bouncedContacts.AddRange(tempBouncedContacts);
                 }
             }
 
-            reportData.sent = (Contact[])contacts.ToArray();
-            reportData.opened = (Open[])opens.ToArray();
-            reportData.clicked = (Click[])clicks.ToArray();
-            reportData.bounced = (BouncedContact[])bouncedContacts.ToArray();
+            if (contacts != null && contacts.Count > 0)
+            {
+                reportData.sent = new Contact[contacts.Count];
+                for  (int i =0; i < contacts.Count; i ++)
+                {
+                    reportData.sent[i] =(Contact) contacts[i];
+                }
 
+            }
+            
+            if (opens != null && opens.Count > 0)
+            {
+                reportData.opened = new Open[opens.Count];
+                for (int i = 0; i < opens.Count; i++)
+                {
+                    reportData.opened[i] = (Open)opens[i];
+                }
+
+            }
+            if (clicks != null && clicks.Count > 0)
+            {
+                reportData.clicked = new Click[clicks.Count];
+                for (int i = 0; i < clicks.Count; i++)
+                {
+                    reportData.clicked[i] = (Click)clicks[i];
+                }
+
+            }
+            if (bouncedContacts != null && bouncedContacts.Count > 0)
+            {
+                reportData.bounced = new BouncedContact[bouncedContacts.Count];
+                for (int i = 0; i < bouncedContacts.Count; i++)
+                {
+                    reportData.bounced[i] = (BouncedContact)bouncedContacts[i];
+                }
+
+            }
             return reportData;
 
         }
@@ -489,7 +521,7 @@ namespace TripolisDialogueAdapter
         /// <param name="contactDatabaseId">contact database id</param>
         /// <param name="contactGroupId">contact group id</param>
         /// <param name="mailData">mail data</param>
-        public String importContact(String contactDatabaseId, String contactGroupId, String reportReceiverAddress, ImportFiles importFiles)
+        public String importContact(String contactDatabaseId, String contactGroupId, String reportReceiverAddress, ContactFileInfo importFiles)
         {
             if (logger.IsDebugEnabled)
             {
@@ -509,10 +541,10 @@ namespace TripolisDialogueAdapter
                 request.importMode = cn.tripolis.dialogue.import.importMode.SYNCHRONIZE_GROUP;
                 request.contactGroupIds = new[] { contactGroupId };
                 request.extension = importFiles.fileType;// cn.tripolis.dialogue.import.fileExtension.CSV;
-                if (importFiles.fileType.Equals(fileExtension.CSV) && !importFiles.csvDilimiter.Equals(ImportFiles.DEFAULT_CSV_DELIMIT))
+                if (importFiles.fileType.Equals(fileExtension.CSV) && !importFiles.csvDilimiter.Equals(ContactFileInfo.DEFAULT_CSV_DELIMIT))
                 {
                     string fileContent = Encoding.UTF8.GetString(importFiles.fileContent);
-                    string revisedContent = fileContent.Replace(importFiles.csvDilimiter, ImportFiles.DEFAULT_CSV_DELIMIT);
+                    string revisedContent = fileContent.Replace(importFiles.csvDilimiter, ContactFileInfo.DEFAULT_CSV_DELIMIT);
                     importFiles.fileContent = Encoding.UTF8.GetBytes(revisedContent);
                 }
                 request.fileName = importFiles.filename;

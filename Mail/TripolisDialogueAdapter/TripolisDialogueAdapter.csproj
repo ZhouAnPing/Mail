@@ -85,7 +85,7 @@
     <Compile Include="BO\ReportData.cs" />
     <Compile Include="BO\ExportReportData.cs" />
     <Compile Include="BO\ReportTypeEnum.cs" />
-    <Compile Include="BO\ImportFiles.cs" />
+    <Compile Include="BO\ContactFileInfo.cs" />
     <Compile Include="BO\KeyValuePair.cs" />
     <Compile Include="DAO\FeedbackBO.cs" />
     <Compile Include="DAO\FeedbackDao.cs" />

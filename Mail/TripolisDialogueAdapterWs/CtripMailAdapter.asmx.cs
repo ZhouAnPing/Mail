@@ -99,9 +99,9 @@ namespace TripolisDialogueAdapterWs
             }
 
             DialogueService_new dialogueService_new = new DialogueService_new(authorization.client, authorization.username, authorization.password, null);
-            ExportReportParam exportReportParam = new ExportReportParam();
-            exportReportParam.contactDatabaseId = "MjU4MDI1ODCzAn45YUUpJw";
-            ExportReportData  report = dialogueService_new.exportReport(exportReportParam.contactDatabaseId, startTime, endTime);
+           
+            String contactDatabaseId = "MjU4MDI1ODCzAn45YUUpJw";
+            ExportReportData  report = dialogueService_new.exportReport(contactDatabaseId, startTime, endTime);
 
             CSVReportData csvReportData = new CSVReportData();
 

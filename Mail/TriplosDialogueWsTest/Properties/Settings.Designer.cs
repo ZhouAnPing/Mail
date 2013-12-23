@@ -26,20 +26,20 @@ namespace TriplosDialogueWsTest.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://115.29.229.134:8081/MailAdapter.asmx")]
-        public string TriplosDialogueWsTest_MailAdapterWs_MailAdapter {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://115.29.229.134:8081/CtripMailAdapter.asmx")]
+        public string TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1 {
             get {
-                return ((string)(this["TriplosDialogueWsTest_MailAdapterWs_MailAdapter"]));
+                return ((string)(this["TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://115.29.229.134:8081/CtripMailAdapter.asmx")]
-        public string TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://115.29.229.134:8081/MailAdapter.asmx")]
+        public string TriplosDialogueWsTest_MailAdapterWs_MailAdapter {
             get {
-                return ((string)(this["TriplosDialogueWsTest_CtripMailAdapterWs_CtripMailAdapter1"]));
+                return ((string)(this["TriplosDialogueWsTest_MailAdapterWs_MailAdapter"]));
             }
         }
     }

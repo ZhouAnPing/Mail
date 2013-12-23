@@ -7,49 +7,16 @@
       <s:element name="publishingBulkEmail">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="dialogueSetting" type="tns:DialogueSetting" />
-            <s:element minOccurs="0" maxOccurs="1" name="contactGroup" type="tns:ContactGroup" />
-            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="directEmail" type="tns:DirectEmail" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contactfileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reportReceiveAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailBody" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Authorization">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="client" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="DialogueSetting">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="contactDatabaseId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="workspaceId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="emailTypeId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="directEmailId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ftpAccountId" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ContactGroup">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="groupLabel" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="groupName" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="DirectEmail">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="emailLabel" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="emailName" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="fromName" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="htmlContent" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="reportReceiveAddress" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="sheduleTime" type="s:dateTime" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="publishingBulkEmailResponse">
         <s:complexType>
           <s:sequence>
@@ -60,15 +27,17 @@
       <s:element name="publishingSmallScaleEmail">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="dialogueSetting" type="tns:DialogueSetting" />
-            <s:element minOccurs="0" maxOccurs="1" name="contactGroup" type="tns:ContactGroup" />
-            <s:element minOccurs="0" maxOccurs="1" name="importFiles" type="tns:ImportFiles" />
-            <s:element minOccurs="0" maxOccurs="1" name="directEmail" type="tns:DirectEmail" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contactFileInfo" type="tns:ContactFileInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reportReceiveAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailBody" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ImportFiles">
+      <s:complexType name="ContactFileInfo">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="fileType" type="s1:fileExtension" />
           <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
@@ -86,9 +55,12 @@
       <s:element name="sendSingleEmail">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="dialogueSetting" type="tns:DialogueSetting" />
-            <s:element minOccurs="0" maxOccurs="1" name="directEmail" type="tns:DirectEmail" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reportReceiveAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mailBody" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ContactInfos" type="tns:ArrayOfKeyValuePair" />
           </s:sequence>
         </s:complexType>
@@ -114,8 +86,7 @@
       <s:element name="registerContact">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="dialogueSetting" type="tns:DialogueSetting" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ContactInfos" type="tns:ArrayOfKeyValuePair" />
           </s:sequence>
         </s:complexType>
@@ -130,18 +101,12 @@
       <s:element name="exportReport">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="exportReportParam" type="tns:ExportReportParam" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ExportReportParam">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="contactDatabaseId" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="exportReportResponse">
         <s:complexType>
           <s:sequence>
@@ -160,28 +125,21 @@
       <s:element name="exportReportToFtp">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="exportReportParamToFtp" type="tns:ExportReportToFtpParam" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileNamePrefix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ExportReportToFtpParam">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="contactDatabaseId" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="ftpAccountId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="fileNamePrefix" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="exportReportToFtpResponse">
         <s:complexType />
       </s:element>
       <s:element name="getRerportByJobId">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="mailJobId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="publishId" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="startTime" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="endTime" type="s:dateTime" />
           </s:sequence>
@@ -225,11 +183,8 @@
       <s:element name="sendSMS">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="authorization" type="tns:Authorization" />
-            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apiKey" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="mobile" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="pid" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="time" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="content" type="s:string" />
           </s:sequence>

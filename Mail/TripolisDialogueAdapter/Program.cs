@@ -80,20 +80,20 @@ namespace TripolisDialogueAdapter
           
            //dialogueService.exportReportToFtp(databaseID,ftpAccountId, startTime, endTime,ReportType.SENT);
 
-           ExportReportData mailReport =  dialogueService.exportReport(databaseID, startTime, endTime);
+           ReportData mailReport =  dialogueService.getRerportByJobId("MTA1MzU3NDKMdCDprzC_oRpaAAO2LvZr", startTime, endTime);
             
 
             Console.WriteLine("Sent**********************");
-            Console.WriteLine(Encoding.UTF8.GetString(mailReport.sent));
+            Console.WriteLine(mailReport.sent);
 
             Console.WriteLine("opened**********************");
-            Console.WriteLine(Encoding.UTF8.GetString(mailReport.opened));
+            Console.WriteLine(mailReport.opened);
 
             Console.WriteLine("clicked**********************");
-            Console.WriteLine(Encoding.UTF8.GetString(mailReport.clicked));
+            Console.WriteLine(mailReport.clicked);
 
             Console.WriteLine("bounced**********************");
-            Console.WriteLine(Encoding.UTF8.GetString(mailReport.bounced));
+            Console.WriteLine(mailReport.bounced);
 
             Console.ReadLine();
             return;
@@ -141,10 +141,10 @@ namespace TripolisDialogueAdapter
             contactGroup.groupLabel = "Demo Group";
             contactGroup.groupName = "demogroup1";
 
-            ImportFiles importFiles = new ImportFiles();
+            ContactFileInfo importFiles = new ContactFileInfo();
             importFiles.fileType = cn.tripolis.dialogue.import.fileExtension.CSV;
             importFiles.filename = "Contacts.csv";
-            importFiles.csvDilimiter = ImportFiles.DEFAULT_CSV_DELIMIT;
+            importFiles.csvDilimiter = ContactFileInfo.DEFAULT_CSV_DELIMIT;
             importFiles.fileContent = System.IO.File.ReadAllBytes("../../Example/Contacts.csv");
             directEmail.subject = "小批量邮件测试";
             dialogueService.publishingSmallScaleEmail(dialogueSetting, contactGroup, importFiles, directEmail);

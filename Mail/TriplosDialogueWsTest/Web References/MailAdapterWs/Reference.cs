@@ -109,32 +109,36 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/publishingBulkEmail", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string publishingBulkEmail(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, string fileName, DirectEmail directEmail) {
+        public string publishingBulkEmail(string apiKey, string contactfileName, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody) {
             object[] results = this.Invoke("publishingBulkEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        contactGroup,
-                        fileName,
-                        directEmail});
+                        apiKey,
+                        contactfileName,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void publishingBulkEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, string fileName, DirectEmail directEmail) {
-            this.publishingBulkEmailAsync(authorization, dialogueSetting, contactGroup, fileName, directEmail, null);
+        public void publishingBulkEmailAsync(string apiKey, string contactfileName, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody) {
+            this.publishingBulkEmailAsync(apiKey, contactfileName, fromName, fromAddress, subject, reportReceiveAddress, mailBody, null);
         }
         
         /// <remarks/>
-        public void publishingBulkEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, string fileName, DirectEmail directEmail, object userState) {
+        public void publishingBulkEmailAsync(string apiKey, string contactfileName, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody, object userState) {
             if ((this.publishingBulkEmailOperationCompleted == null)) {
                 this.publishingBulkEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpublishingBulkEmailOperationCompleted);
             }
             this.InvokeAsync("publishingBulkEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        contactGroup,
-                        fileName,
-                        directEmail}, this.publishingBulkEmailOperationCompleted, userState);
+                        apiKey,
+                        contactfileName,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody}, this.publishingBulkEmailOperationCompleted, userState);
         }
         
         private void OnpublishingBulkEmailOperationCompleted(object arg) {
@@ -146,32 +150,36 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/publishingSmallScaleEmail", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string publishingSmallScaleEmail(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail) {
+        public string publishingSmallScaleEmail(string apiKey, ContactFileInfo contactFileInfo, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody) {
             object[] results = this.Invoke("publishingSmallScaleEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        contactGroup,
-                        importFiles,
-                        directEmail});
+                        apiKey,
+                        contactFileInfo,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void publishingSmallScaleEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail) {
-            this.publishingSmallScaleEmailAsync(authorization, dialogueSetting, contactGroup, importFiles, directEmail, null);
+        public void publishingSmallScaleEmailAsync(string apiKey, ContactFileInfo contactFileInfo, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody) {
+            this.publishingSmallScaleEmailAsync(apiKey, contactFileInfo, fromName, fromAddress, subject, reportReceiveAddress, mailBody, null);
         }
         
         /// <remarks/>
-        public void publishingSmallScaleEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, ContactGroup contactGroup, ImportFiles importFiles, DirectEmail directEmail, object userState) {
+        public void publishingSmallScaleEmailAsync(string apiKey, ContactFileInfo contactFileInfo, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody, object userState) {
             if ((this.publishingSmallScaleEmailOperationCompleted == null)) {
                 this.publishingSmallScaleEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpublishingSmallScaleEmailOperationCompleted);
             }
             this.InvokeAsync("publishingSmallScaleEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        contactGroup,
-                        importFiles,
-                        directEmail}, this.publishingSmallScaleEmailOperationCompleted, userState);
+                        apiKey,
+                        contactFileInfo,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody}, this.publishingSmallScaleEmailOperationCompleted, userState);
         }
         
         private void OnpublishingSmallScaleEmailOperationCompleted(object arg) {
@@ -183,29 +191,35 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/sendSingleEmail", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string sendSingleEmail(Authorization authorization, DialogueSetting dialogueSetting, DirectEmail directEmail, KeyValuePair[] ContactInfos) {
+        public string sendSingleEmail(string apiKey, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody, KeyValuePair[] ContactInfos) {
             object[] results = this.Invoke("sendSingleEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        directEmail,
+                        apiKey,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody,
                         ContactInfos});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void sendSingleEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, DirectEmail directEmail, KeyValuePair[] ContactInfos) {
-            this.sendSingleEmailAsync(authorization, dialogueSetting, directEmail, ContactInfos, null);
+        public void sendSingleEmailAsync(string apiKey, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody, KeyValuePair[] ContactInfos) {
+            this.sendSingleEmailAsync(apiKey, fromName, fromAddress, subject, reportReceiveAddress, mailBody, ContactInfos, null);
         }
         
         /// <remarks/>
-        public void sendSingleEmailAsync(Authorization authorization, DialogueSetting dialogueSetting, DirectEmail directEmail, KeyValuePair[] ContactInfos, object userState) {
+        public void sendSingleEmailAsync(string apiKey, string fromName, string fromAddress, string subject, string reportReceiveAddress, string mailBody, KeyValuePair[] ContactInfos, object userState) {
             if ((this.sendSingleEmailOperationCompleted == null)) {
                 this.sendSingleEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsendSingleEmailOperationCompleted);
             }
             this.InvokeAsync("sendSingleEmail", new object[] {
-                        authorization,
-                        dialogueSetting,
-                        directEmail,
+                        apiKey,
+                        fromName,
+                        fromAddress,
+                        subject,
+                        reportReceiveAddress,
+                        mailBody,
                         ContactInfos}, this.sendSingleEmailOperationCompleted, userState);
         }
         
@@ -218,27 +232,25 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/registerContact", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string registerContact(Authorization authorization, DialogueSetting dialogueSetting, KeyValuePair[] ContactInfos) {
+        public string registerContact(string apiKey, KeyValuePair[] ContactInfos) {
             object[] results = this.Invoke("registerContact", new object[] {
-                        authorization,
-                        dialogueSetting,
+                        apiKey,
                         ContactInfos});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void registerContactAsync(Authorization authorization, DialogueSetting dialogueSetting, KeyValuePair[] ContactInfos) {
-            this.registerContactAsync(authorization, dialogueSetting, ContactInfos, null);
+        public void registerContactAsync(string apiKey, KeyValuePair[] ContactInfos) {
+            this.registerContactAsync(apiKey, ContactInfos, null);
         }
         
         /// <remarks/>
-        public void registerContactAsync(Authorization authorization, DialogueSetting dialogueSetting, KeyValuePair[] ContactInfos, object userState) {
+        public void registerContactAsync(string apiKey, KeyValuePair[] ContactInfos, object userState) {
             if ((this.registerContactOperationCompleted == null)) {
                 this.registerContactOperationCompleted = new System.Threading.SendOrPostCallback(this.OnregisterContactOperationCompleted);
             }
             this.InvokeAsync("registerContact", new object[] {
-                        authorization,
-                        dialogueSetting,
+                        apiKey,
                         ContactInfos}, this.registerContactOperationCompleted, userState);
         }
         
@@ -251,26 +263,28 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/exportReport", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CSVReportData exportReport(Authorization authorization, ExportReportParam exportReportParam) {
+        public CSVReportData exportReport(string apiKey, System.DateTime startTime, System.DateTime endTime) {
             object[] results = this.Invoke("exportReport", new object[] {
-                        authorization,
-                        exportReportParam});
+                        apiKey,
+                        startTime,
+                        endTime});
             return ((CSVReportData)(results[0]));
         }
         
         /// <remarks/>
-        public void exportReportAsync(Authorization authorization, ExportReportParam exportReportParam) {
-            this.exportReportAsync(authorization, exportReportParam, null);
+        public void exportReportAsync(string apiKey, System.DateTime startTime, System.DateTime endTime) {
+            this.exportReportAsync(apiKey, startTime, endTime, null);
         }
         
         /// <remarks/>
-        public void exportReportAsync(Authorization authorization, ExportReportParam exportReportParam, object userState) {
+        public void exportReportAsync(string apiKey, System.DateTime startTime, System.DateTime endTime, object userState) {
             if ((this.exportReportOperationCompleted == null)) {
                 this.exportReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnexportReportOperationCompleted);
             }
             this.InvokeAsync("exportReport", new object[] {
-                        authorization,
-                        exportReportParam}, this.exportReportOperationCompleted, userState);
+                        apiKey,
+                        startTime,
+                        endTime}, this.exportReportOperationCompleted, userState);
         }
         
         private void OnexportReportOperationCompleted(object arg) {
@@ -282,25 +296,29 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/exportReportToFtp", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void exportReportToFtp(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp) {
+        public void exportReportToFtp(string apiKey, string fileNamePrefix, System.DateTime startTime, System.DateTime endTime) {
             this.Invoke("exportReportToFtp", new object[] {
-                        authorization,
-                        exportReportParamToFtp});
+                        apiKey,
+                        fileNamePrefix,
+                        startTime,
+                        endTime});
         }
         
         /// <remarks/>
-        public void exportReportToFtpAsync(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp) {
-            this.exportReportToFtpAsync(authorization, exportReportParamToFtp, null);
+        public void exportReportToFtpAsync(string apiKey, string fileNamePrefix, System.DateTime startTime, System.DateTime endTime) {
+            this.exportReportToFtpAsync(apiKey, fileNamePrefix, startTime, endTime, null);
         }
         
         /// <remarks/>
-        public void exportReportToFtpAsync(Authorization authorization, ExportReportToFtpParam exportReportParamToFtp, object userState) {
+        public void exportReportToFtpAsync(string apiKey, string fileNamePrefix, System.DateTime startTime, System.DateTime endTime, object userState) {
             if ((this.exportReportToFtpOperationCompleted == null)) {
                 this.exportReportToFtpOperationCompleted = new System.Threading.SendOrPostCallback(this.OnexportReportToFtpOperationCompleted);
             }
             this.InvokeAsync("exportReportToFtp", new object[] {
-                        authorization,
-                        exportReportParamToFtp}, this.exportReportToFtpOperationCompleted, userState);
+                        apiKey,
+                        fileNamePrefix,
+                        startTime,
+                        endTime}, this.exportReportToFtpOperationCompleted, userState);
         }
         
         private void OnexportReportToFtpOperationCompleted(object arg) {
@@ -312,28 +330,28 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/getRerportByJobId", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ReportData getRerportByJobId(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime) {
+        public ReportData getRerportByJobId(string apiKey, string publishId, System.DateTime startTime, System.DateTime endTime) {
             object[] results = this.Invoke("getRerportByJobId", new object[] {
-                        authorization,
-                        mailJobId,
+                        apiKey,
+                        publishId,
                         startTime,
                         endTime});
             return ((ReportData)(results[0]));
         }
         
         /// <remarks/>
-        public void getRerportByJobIdAsync(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime) {
-            this.getRerportByJobIdAsync(authorization, mailJobId, startTime, endTime, null);
+        public void getRerportByJobIdAsync(string apiKey, string publishId, System.DateTime startTime, System.DateTime endTime) {
+            this.getRerportByJobIdAsync(apiKey, publishId, startTime, endTime, null);
         }
         
         /// <remarks/>
-        public void getRerportByJobIdAsync(Authorization authorization, string mailJobId, System.DateTime startTime, System.DateTime endTime, object userState) {
+        public void getRerportByJobIdAsync(string apiKey, string publishId, System.DateTime startTime, System.DateTime endTime, object userState) {
             if ((this.getRerportByJobIdOperationCompleted == null)) {
                 this.getRerportByJobIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetRerportByJobIdOperationCompleted);
             }
             this.InvokeAsync("getRerportByJobId", new object[] {
-                        authorization,
-                        mailJobId,
+                        apiKey,
+                        publishId,
                         startTime,
                         endTime}, this.getRerportByJobIdOperationCompleted, userState);
         }
@@ -347,34 +365,28 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ws.tripolis.com.cn/sendSMS", RequestNamespace="http://ws.tripolis.com.cn/", ResponseNamespace="http://ws.tripolis.com.cn/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public SendSmsResult sendSMS(Authorization authorization, string account, string password, string mobile, string pid, string time, string content) {
+        public SendSmsResult sendSMS(string apiKey, string mobile, string time, string content) {
             object[] results = this.Invoke("sendSMS", new object[] {
-                        authorization,
-                        account,
-                        password,
+                        apiKey,
                         mobile,
-                        pid,
                         time,
                         content});
             return ((SendSmsResult)(results[0]));
         }
         
         /// <remarks/>
-        public void sendSMSAsync(Authorization authorization, string account, string password, string mobile, string pid, string time, string content) {
-            this.sendSMSAsync(authorization, account, password, mobile, pid, time, content, null);
+        public void sendSMSAsync(string apiKey, string mobile, string time, string content) {
+            this.sendSMSAsync(apiKey, mobile, time, content, null);
         }
         
         /// <remarks/>
-        public void sendSMSAsync(Authorization authorization, string account, string password, string mobile, string pid, string time, string content, object userState) {
+        public void sendSMSAsync(string apiKey, string mobile, string time, string content, object userState) {
             if ((this.sendSMSOperationCompleted == null)) {
                 this.sendSMSOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsendSMSOperationCompleted);
             }
             this.InvokeAsync("sendSMS", new object[] {
-                        authorization,
-                        account,
-                        password,
+                        apiKey,
                         mobile,
-                        pid,
                         time,
                         content}, this.sendSMSOperationCompleted, userState);
         }
@@ -411,43 +423,72 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class Authorization {
+    public partial class ContactFileInfo {
         
-        private string clientField;
+        private fileExtension fileTypeField;
         
-        private string usernameField;
+        private string filenameField;
         
-        private string passwordField;
+        private byte[] fileContentField;
+        
+        private string csvDilimiterField;
         
         /// <remarks/>
-        public string client {
+        public fileExtension fileType {
             get {
-                return this.clientField;
+                return this.fileTypeField;
             }
             set {
-                this.clientField = value;
+                this.fileTypeField = value;
             }
         }
         
         /// <remarks/>
-        public string username {
+        public string filename {
             get {
-                return this.usernameField;
+                return this.filenameField;
             }
             set {
-                this.usernameField = value;
+                this.filenameField = value;
             }
         }
         
         /// <remarks/>
-        public string password {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] fileContent {
             get {
-                return this.passwordField;
+                return this.fileContentField;
             }
             set {
-                this.passwordField = value;
+                this.fileContentField = value;
             }
         }
+        
+        /// <remarks/>
+        public string csvDilimiter {
+            get {
+                return this.csvDilimiterField;
+            }
+            set {
+                this.csvDilimiterField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
+    public enum fileExtension {
+        
+        /// <remarks/>
+        CSV,
+        
+        /// <remarks/>
+        XLS,
+        
+        /// <remarks/>
+        XLSX,
     }
     
     /// <remarks/>
@@ -1383,75 +1424,6 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class ExportReportToFtpParam {
-        
-        private string contactDatabaseIdField;
-        
-        private System.DateTime startTimeField;
-        
-        private System.DateTime endTimeField;
-        
-        private string ftpAccountIdField;
-        
-        private string fileNamePrefixField;
-        
-        /// <remarks/>
-        public string contactDatabaseId {
-            get {
-                return this.contactDatabaseIdField;
-            }
-            set {
-                this.contactDatabaseIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime startTime {
-            get {
-                return this.startTimeField;
-            }
-            set {
-                this.startTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime endTime {
-            get {
-                return this.endTimeField;
-            }
-            set {
-                this.endTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ftpAccountId {
-            get {
-                return this.ftpAccountIdField;
-            }
-            set {
-                this.ftpAccountIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string fileNamePrefix {
-            get {
-                return this.fileNamePrefixField;
-            }
-            set {
-                this.fileNamePrefixField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
     public partial class CSVReportData {
         
         private string sentField;
@@ -1509,51 +1481,6 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class ExportReportParam {
-        
-        private string contactDatabaseIdField;
-        
-        private System.DateTime startTimeField;
-        
-        private System.DateTime endTimeField;
-        
-        /// <remarks/>
-        public string contactDatabaseId {
-            get {
-                return this.contactDatabaseIdField;
-            }
-            set {
-                this.contactDatabaseIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime startTime {
-            get {
-                return this.startTimeField;
-            }
-            set {
-                this.startTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime endTime {
-            get {
-                return this.endTimeField;
-            }
-            set {
-                this.endTimeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
     public partial class KeyValuePair {
         
         private string keyField;
@@ -1579,299 +1506,6 @@ namespace TriplosDialogueWsTest.MailAdapterWs {
             }
             set {
                 this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class ImportFiles {
-        
-        private fileExtension fileTypeField;
-        
-        private string filenameField;
-        
-        private byte[] fileContentField;
-        
-        private string csvDilimiterField;
-        
-        /// <remarks/>
-        public fileExtension fileType {
-            get {
-                return this.fileTypeField;
-            }
-            set {
-                this.fileTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string filename {
-            get {
-                return this.filenameField;
-            }
-            set {
-                this.filenameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] fileContent {
-            get {
-                return this.fileContentField;
-            }
-            set {
-                this.fileContentField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string csvDilimiter {
-            get {
-                return this.csvDilimiterField;
-            }
-            set {
-                this.csvDilimiterField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://common.services.tripolis.com/")]
-    public enum fileExtension {
-        
-        /// <remarks/>
-        CSV,
-        
-        /// <remarks/>
-        XLS,
-        
-        /// <remarks/>
-        XLSX,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class DirectEmail {
-        
-        private string emailLabelField;
-        
-        private string emailNameField;
-        
-        private string subjectField;
-        
-        private string descriptionField;
-        
-        private string fromNameField;
-        
-        private string fromAddressField;
-        
-        private string htmlContentField;
-        
-        private string reportReceiveAddressField;
-        
-        private System.DateTime sheduleTimeField;
-        
-        /// <remarks/>
-        public string emailLabel {
-            get {
-                return this.emailLabelField;
-            }
-            set {
-                this.emailLabelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string emailName {
-            get {
-                return this.emailNameField;
-            }
-            set {
-                this.emailNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string subject {
-            get {
-                return this.subjectField;
-            }
-            set {
-                this.subjectField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string fromName {
-            get {
-                return this.fromNameField;
-            }
-            set {
-                this.fromNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string fromAddress {
-            get {
-                return this.fromAddressField;
-            }
-            set {
-                this.fromAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string htmlContent {
-            get {
-                return this.htmlContentField;
-            }
-            set {
-                this.htmlContentField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string reportReceiveAddress {
-            get {
-                return this.reportReceiveAddressField;
-            }
-            set {
-                this.reportReceiveAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime sheduleTime {
-            get {
-                return this.sheduleTimeField;
-            }
-            set {
-                this.sheduleTimeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class ContactGroup {
-        
-        private string groupLabelField;
-        
-        private string groupNameField;
-        
-        /// <remarks/>
-        public string groupLabel {
-            get {
-                return this.groupLabelField;
-            }
-            set {
-                this.groupLabelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string groupName {
-            get {
-                return this.groupNameField;
-            }
-            set {
-                this.groupNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.18408")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://ws.tripolis.com.cn/")]
-    public partial class DialogueSetting {
-        
-        private string contactDatabaseIdField;
-        
-        private string workspaceIdField;
-        
-        private string emailTypeIdField;
-        
-        private string directEmailIdField;
-        
-        private string ftpAccountIdField;
-        
-        /// <remarks/>
-        public string contactDatabaseId {
-            get {
-                return this.contactDatabaseIdField;
-            }
-            set {
-                this.contactDatabaseIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string workspaceId {
-            get {
-                return this.workspaceIdField;
-            }
-            set {
-                this.workspaceIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string emailTypeId {
-            get {
-                return this.emailTypeIdField;
-            }
-            set {
-                this.emailTypeIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string directEmailId {
-            get {
-                return this.directEmailIdField;
-            }
-            set {
-                this.directEmailIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ftpAccountId {
-            get {
-                return this.ftpAccountIdField;
-            }
-            set {
-                this.ftpAccountIdField = value;
             }
         }
     }
