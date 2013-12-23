@@ -37,11 +37,11 @@ namespace TriplosDialogueWsTest
 
             String apiKey = "MjU1MTI1NTFFUVus6S83qA";
 
-            //String publishId = TestProgram.registerContact(apiKey);
-            //Console.WriteLine("register Contact Id=" + publishId);
+            String publishId = TestProgram.registerContact(apiKey);
+            Console.WriteLine("register Contact Id=" + publishId);
 
-            //publishId = TestProgram.sendSingleMail(apiKey);
-            //Console.WriteLine("sendSingleMai Id=" + publishId);
+            publishId = TestProgram.sendSingleMail(apiKey);
+            Console.WriteLine("sendSingleMai Id=" + publishId);
 
             //publishId = TestProgram.publishingSmallScaleEmail(apiKey);
             //Console.WriteLine("publishingSmallScaleEmail Id=" + publishId);
@@ -55,8 +55,8 @@ namespace TriplosDialogueWsTest
             //TestProgram.exportReportToFtp(apiKey);
             //Console.WriteLine("exportReportToFtp Complete");
 
-            TestProgram.getRerportByJobId(apiKey);
-            Console.WriteLine("getRerportByJobId Complete");          
+            //TestProgram.getRerportByJobId(apiKey);
+           // Console.WriteLine("getRerportByJobId Complete");          
 
             Console.WriteLine("Mission Complete");
             Console.ReadLine();
@@ -199,7 +199,7 @@ namespace TriplosDialogueWsTest
             KeyValuePair[] ContactInfos = new KeyValuePair[3];
             KeyValuePair ContactInfo = new KeyValuePair();
             ContactInfo.key = "email";
-            ContactInfo.value = "1197922021@qq.com";
+            ContactInfo.value = "dynamicemail@163.com";
             ContactInfos[0] = ContactInfo;
             ContactInfo = new KeyValuePair();
             ContactInfo.key = "username";
@@ -219,7 +219,7 @@ namespace TriplosDialogueWsTest
             KeyValuePair[] ContactInfos = new KeyValuePair[3];
             KeyValuePair ContactInfo = new KeyValuePair();
             ContactInfo.key = "email";
-            ContactInfo.value = "1197922021@qq.com";
+            ContactInfo.value = "dynamicemail@163.com";
             ContactInfos[0] = ContactInfo;
             ContactInfo = new KeyValuePair();
             ContactInfo.key = "username";
