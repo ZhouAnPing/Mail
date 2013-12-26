@@ -497,7 +497,7 @@ namespace TripolisDialogueAdapter
             String emailId = directEmailAction.createDirectEmail(emailTypeId, EmailName, EmailName, subject, "", fromName, fromAddress, htmlSource);
             logger.InfoFormat("Create email " + EmailName +  " successfully");
 
-          //  return;
+             return;
             //Publish Email
             logger.InfoFormat("Begin sending email  " + EmailName );            
             PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
