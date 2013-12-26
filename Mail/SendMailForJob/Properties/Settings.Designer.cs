@@ -121,7 +121,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("51Club@51job.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("career@jobmail.51job.com")]
         public string fromAddress {
             get {
                 return ((string)(this["fromAddress"]));
@@ -133,7 +133,7 @@ namespace SendMailForJob.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("51Club@51job.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("eros.peng@51job.com")]
         public string reportReceiverAddress {
             get {
                 return ((string)(this["reportReceiverAddress"]));

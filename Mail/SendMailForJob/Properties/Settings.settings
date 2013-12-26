@@ -27,10 +27,10 @@
       <Value Profile="(Default)">51Job</Value>
     </Setting>
     <Setting Name="fromAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">51Club@51job.com</Value>
+      <Value Profile="(Default)">career@jobmail.51job.com</Value>
     </Setting>
     <Setting Name="reportReceiverAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">51Club@51job.com</Value>
+      <Value Profile="(Default)">eros.peng@51job.com</Value>
     </Setting>
     <Setting Name="FTPLocalPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\FTP\LocalUser\51Upload\</Value>
