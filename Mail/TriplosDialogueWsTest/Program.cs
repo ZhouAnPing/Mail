@@ -35,16 +35,18 @@ namespace TriplosDialogueWsTest
 
 
 
+            //String apiKey = "MjU1MTI1NTFFUVus6S83qA";
+
             String apiKey = "MjU1MTI1NTFFUVus6S83qA";
 
-            String publishId = TestProgram.registerContact(apiKey);
-            Console.WriteLine("register Contact Id=" + publishId);
+           // String publishId = TestProgram.registerContact(apiKey);
+           // Console.WriteLine("register Contact Id=" + publishId);
 
-            publishId = TestProgram.sendSingleMail(apiKey);
-            Console.WriteLine("sendSingleMai Id=" + publishId);
+           // String publishId = TestProgram.sendSingleMail(apiKey);
+            //Console.WriteLine("sendSingleMai Id=" + publishId);
 
-            //publishId = TestProgram.publishingSmallScaleEmail(apiKey);
-            //Console.WriteLine("publishingSmallScaleEmail Id=" + publishId);
+            String publishId = TestProgram.publishingSmallScaleEmail(apiKey);
+            Console.WriteLine("publishingSmallScaleEmail Id=" + publishId);
 
             //publishId = TestProgram.publishingBulkEmail(apiKey);
             //Console.WriteLine("publishingBulkEmail Id=" + publishId);
@@ -172,11 +174,11 @@ namespace TriplosDialogueWsTest
             MailAdapterWs.MailAdapter dialogueService = new MailAdapterWs.MailAdapter();
 
 
-            String fromName = "周安平";
+            String fromName = "51Job";
             String fromAddress = "zapjx@hotmail.com";
-            String subject = "publishingSmallScaleEmail邮件测试";
-            String reportReceiveAddress = "zapjx@hotmail.com";
-            String mailBody = "Hello World";
+            String subject = "${contact.username},51Job祝您生日快乐！ ";
+            String reportReceiveAddress = "career@jobmail.51job.com";
+            String mailBody = System.IO.File.ReadAllText("../../Example/template.html");
 
             ContactFileInfo contactFileInfo = new ContactFileInfo();
             contactFileInfo.fileType = fileExtension.CSV;
@@ -192,14 +194,14 @@ namespace TriplosDialogueWsTest
             MailAdapterWs.MailAdapter dialogueService = new MailAdapterWs.MailAdapter();
             String fromName = "周安平";
             String fromAddress = "zapjx@hotmail.com";
-            String subject = "sendSingleMail邮件测试";
+            String subject = "51Job祝您生日快乐！ ";
             String reportReceiveAddress = "zapjx@hotmail.com";
-            String mailBody = "Hello World";
+            String mailBody = System.IO.File.ReadAllText("../../Example/template.html");
 
             KeyValuePair[] ContactInfos = new KeyValuePair[3];
             KeyValuePair ContactInfo = new KeyValuePair();
             ContactInfo.key = "email";
-            ContactInfo.value = "dynamicemail@163.com";
+            ContactInfo.value = "zhouyouchen@gmail.com";
             ContactInfos[0] = ContactInfo;
             ContactInfo = new KeyValuePair();
             ContactInfo.key = "username";
@@ -219,7 +221,7 @@ namespace TriplosDialogueWsTest
             KeyValuePair[] ContactInfos = new KeyValuePair[3];
             KeyValuePair ContactInfo = new KeyValuePair();
             ContactInfo.key = "email";
-            ContactInfo.value = "dynamicemail@163.com";
+            ContactInfo.value = "zhouyouchen@gmail.com";
             ContactInfos[0] = ContactInfo;
             ContactInfo = new KeyValuePair();
             ContactInfo.key = "username";
