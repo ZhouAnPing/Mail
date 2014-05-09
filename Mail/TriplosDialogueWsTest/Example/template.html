@@ -1,34 +1,219 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<link rel="stylesheet" href="css/style.css" /> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
-</head> 
-<body> 
-<a title="TestLink" href="http://www.tripolis.com.cn"> TestLink </a>
-<div id=wrapper> 
-<div id=lbl></div> 
-<form  action="http://115.29.229.134/tripolis/subscribe/template.php" method="post"
- enctype="multipart/form-data"> 
-<fieldset id=account> 
-<legend>个人信息</legend> 
-<label for=email>邮箱地址:</label> 
-<input id=email class=textbox type=email name=email required placeholder="请填写邮箱地址" />
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>${contact.username!}，51Job祝您生日快乐！</title>
+    <style type="text/css">
+        .cm {
+            margin-right: 15px;
+        }
 
-<label for=username>姓名:</label> 
-<input id=username class=textbox type=text name=username required placeholder="请填写姓名" /> 
+        .cmm {
+            margin-right: 10px;
+        }
 
-<label for=mobile>手机:</label> 
-<input id=mobile class=textbox pattern="(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})" type=text name=mobile  placeholder="请填写手机号码" /> 
+        @media only screen and (max-width: 480px) {
+            body {
+                width: auto !important;
+            }
 
-</fieldset> 
+            .all {
+                width: 100%;
+                height: auto;
+            }
 
-<fieldset id=confirm> 
-<input type=submit value="提交" /> 
-<div class="clearfix"></div> 
-</fieldset> 
-</form> 
-</div> 
-</body> 
-</html> 
+            .container {
+                width: 90%;
+                height: auto;
+            }
+
+            .space {
+                display: none;
+            }
+
+            .bg1 {
+                background: url(http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/bg4.jpg);
+                height: 40px;
+            }
+
+            .bg2 {
+                background: url(http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/bg6.jpg);
+                height: 90px;
+            }
+
+            .line {
+                border-top: #1d4983 1px solid;
+                border-bottom: #1d4983 1px solid;
+            }
+
+            .line2 {
+                border-top: #d7d7d7 1px solid;
+            }
+
+            .line3 {
+                border-top: #80776a 1px solid;
+            }
+    </style>
+</head>
+
+<body style="margin:0px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="all">
+        <tr>
+            <td>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" class="all">
+                    <tr>
+                        <td align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #666666; font-size: 12px;line-height: 18px;padding-top:5px;padding-bottom:5px;">如果您无法正常浏览此邮件，请<a style="font-family: '微软雅黑',Arial, Helvetica, sans-serif; color: #000000; font-size: 12px;line-height: 18px; text-decoration: underline;" href="http://my.51job.com/careerpost/marketing/mktedm/birthday_edm/zishiying.html" title="在线页面" target="email">点击这里</a>&nbsp;| <a href="http://my.51job.com/my/mailtrace/mailtrace.php?t=5&amp;n=${contact.transid}&amp;u=${contact.unsuburl}" title="退订" target="_blank" style="color:#9d9d9d;font-family:Arial;font-size:12px;text-decoration:none;">退订此类邮件</a></td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" class="all" background="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/bg2.jpg" bgcolor="#F7F7F7">
+                    <tr>
+                        <td height="50" class="bg2">
+
+                            <table border="0" align="left" cellpadding="0" cellspacing="0" class="all">
+                                <tr>
+                                    <td width="15" align="left">&nbsp;</td>
+                                    <td height="60" align="left" valign="middle"><a href="http://www.51job.com" target="_blank"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/logo.gif" title="51Job官网" alt="51job" width="214" height="41" border="0" style="display: block;" /></a></td>
+                                </tr>
+                            </table>
+                            <table border="0" align="right" cellpadding="0" cellspacing="0" class="all">
+                                <tr>
+                                    <td height="25" class="space"></td>
+                                </tr>
+                                <tr>
+                                    <td height="30" class="line2">
+                                        <table border="0" align="left" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td width="80" align="center" valign="middle" style="font-family: Arial, Helvetica, sans-serif; color: #333333; font-size: 12px; line-height: 18px;"><a href="http://www.51job.com/default_res.php" title="职场资讯" target="_blank" style="font-family:'Microsoft YaHei UI', '微软雅黑';color: #333333; font-size: 12px; line-height: 16px; text-decoration: none;">职场资讯</a></td>
+                                                <td width="1" valign="middle" bgcolor="#777777"></td>
+                                                <td width="80" align="center" valign="middle" style="font-family: Arial, Helvetica, sans-serif; color: #333333; font-size: 12px; line-height: 18px;"><a href="http://www.51job.com/careerpost/jianlishuoming/index.php" title="简历模板" target="_blank" style="font-family:'Microsoft YaHei UI', '微软雅黑';color: #333333; font-size: 12px; line-height: 16px; text-decoration: none;">简历模板</a></td>
+                                                <td width="1" valign="middle" bgcolor="#777777"></td>
+                                                <td width="90" align="center" valign="middle" style="font-family: Arial, Helvetica, sans-serif; color: #333333; font-size: 12px; line-height: 18px;"><a href="http://app.51job.com" title="手机找工作" target="_blank" style="font-family:'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 16px; text-decoration: none;">手机找工作</a></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" class="space">
+                    <tr>
+                        <td><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/bg1.jpg" alt="" width="666" height="5" border="0" style="display: block; width:100%; height:auto;" /></td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" background="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/bg3.jpg" bgcolor="#f1e4d1" class="all">
+                    <tr>
+                        <td class="bg1">
+                            <table border="0" align="left" cellpadding="0" cellspacing="0" class="all">
+                                <tr>
+                                    <td width="70" height="27" align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 18px; font-weight: bold;"><a href="http://my.51job.com/my/My_Pmc.php?1" title="刷新链接" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 12px; line-height: 18px; text-decoration:none;">刷新简历</a></td>
+                                    <td width="1" bgcolor="#f2e9dc"></td>
+                                    <td width="70" height="27" align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 18px; font-weight: bold;"><a href="http://my.51job.com/my/My_Pmc.php?2" title="修改简历" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 12px; line-height: 18px; text-decoration:none;">修改简历</a></td>
+                                    <td width="1" align="center" bgcolor="#f2e9dc"></td>
+                                    <td width="70" height="27" align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 18px; font-weight: bold;"><a href="http://www.51job.com/careerpost/tiaocao/mianshi.php?1" title="面试指导" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 12px; line-height: 18px; text-decoration:none;">面试指导</a></td>
+                                    <td width="1" align="center" bgcolor="#f2e9dc"></td>
+                                    <td width="70" height="27" align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 18px; font-weight: bold;"><a href="http://www.51job.com/careerpost/tiaocao/tiaocao.php" title="跳槽攻略" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 12px; line-height: 18px; text-decoration:none;">跳槽攻略</a></td>
+                                    <td width="1" align="center" bgcolor="#f2e9dc"></td>
+                                    <td width="70" height="27" align="center" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #333333; font-size: 12px; line-height: 18px; font-weight: bold;"><a href="http://my.51job.com/my/Salary_report.php?1" title="薪酬查询" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 12px; line-height: 18px; text-decoration:none;">薪酬查询</a></td>
+                                    <td width="1" bgcolor="#f2e9dc"></td>
+                                </tr>
+                            </table>
+                            <table width="100" border="0" align="right" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td><a href="http://search.51job.com/jobsearch/advance_search.php?1" target="_blank"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/search.gif" title="搜职位" alt="搜职位" width="164" height="27" border="0" style="display: block;" /></a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#fff6e9" class="all">
+                    <tr>
+                        <td align="left" valign="top">
+                            <table width="365" border="0" align="left" cellpadding="0" cellspacing="0" class="all">
+                                <tr>
+                                    <td>
+                                        <table width="365" border="0" align="center" cellpadding="0" cellspacing="0" class="container">
+                                            <tr>
+                                                <td width="30" rowspan="4" class="space">&nbsp;</td>
+                                                <td height="40">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="335"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/title.gif" alt="祝您生日快乐" width="335" height="60" border="0" style="width: 100%; max-width:335px; height: auto; display: block;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="15"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-family:'Microsoft YaHei UI', '微软雅黑'; color: #67243b; font-size: 14px; line-height: 28px;text-decoration:none;">
+                                                    <strong>亲爱的${contact.username!}：</strong><br />
+                                                    ${contact.month!}月${contact.day!}日是您的生日，51Job衷心祝您生日快乐！<br />
+                                                    送上“<span style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #f52e73; font-size: 14px; line-height: 28px; font-weight:bold;">谁看过我的简历</span>”，希望可以帮到您！
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="space">&nbsp;</td>
+                                                <td height="80"><a href="http://my.51job.com/my/My_Pmc.php" title="点击查看" target="_blank"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/btn.gif" alt="点击查看" width="192" height="40" border="0" style="display: block;" /></a></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="280" border="0" align="right" cellpadding="0" cellspacing="0" class="all">
+                                <tr>
+                                    <td align="right" class="line3"><a href="http://my.51job.com/careerpost/marketing/2013_birthday_help/2013_birthday_help.html"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/gift3.gif" title="领取帮助" alt="领取帮助" width="280" height="320" border="0" style="width: 100%; max-width:280px; height: auto; display: block;" /></a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#fff6e9" class="all">
+                    <tr>
+                        <td>
+                            <table width="423" border="0" cellspacing="0" cellpadding="0" class="all">
+                                <tr>
+                                    <td width="30" class="space">&nbsp;</td>
+                                    <td width="393">
+                                        <table width="393" border="0" align="center" cellpadding="0" cellspacing="0" class="container">
+                                            <tr>
+                                                <td bgcolor="#1d4983" class="space"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/line1.jpg" alt="" width="393" height="9" border="0" style="display: block;" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="middle" bgcolor="#FCFFFF" class="line" style="border-left: #1d4983 1px solid;border-right: #1d4983 1px solid;">
+                                                    <table width="380" border="0" align="center" cellpadding="0" cellspacing="0" class="container" style="margin-top:5px; margin-bottom:5px;">
+                                                        <tr>
+                                                            <td width="29" align="left"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/li.jpg" alt="" width="22" height="21" border="0" style="display: block;" /></td>
+                                                            <td width="351" align="left" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #1d4983; font-size: 12px; line-height: 18px;text-decoration:none;">生日不对？<a href="http://my.51job.com/cv/CResume/CV_CModDefault.php?" title="点击修改" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #f52e73; font-size: 12px; line-height: 18px;">点击修改</a>基本信息。手机找工作更方便。<a href="http://www.51job.com/pm/app/android.php" title="立即体验" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #f52e73; font-size: 12px; line-height: 18px;">立即体验</a></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#1d4983" class="space"><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/line2.jpg" alt="" width="393" height="9" border="0" style="display: block;" /></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" class="all">
+                    <tr>
+                        <td><img src="http://img01.51jobcdn.com/im/images/2013/careerpost/edm_birthday/images/line3.jpg" alt="" width="666" height="30" border="0" style="display: block; width:100%; height:auto;" /></td>
+                    </tr>
+                </table>
+                <table width="666" border="0" align="center" cellpadding="0" cellspacing="0" class="all">
+                    <tr>
+                        <td align="center" valign="middle" style="font-family:'Microsoft YaHei UI', '微软雅黑';color: #000000; font-size: 12px; line-height: 22px; text-decoration: none; padding-top:5px;padding-bottom:5px;">
+                            加入前程无忧Club，请垂询：800-820-5100或Email：<a href="mailto:Club@51Job.com" target="_blank" style="font-family: 'Microsoft YaHei UI', '微软雅黑'; color: #ec7608; font-size: 12px; line-height: 22px;text-decoration:none;">Club@51Job.com</a><br />
+                            无忧工作网版权所有&copy;1999-2013
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
