@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//WebContent/smssend.jsp=UTF-8
+encoding//src/com/youzan/utils/SendSMS.java=GBK
+encoding//src/com/youzan/utils/TestFeedback.java=UTF-8
+encoding//src/com/youzan/utils/TestSendSMS.java=UTF-8
+encoding//src/org/gsm/oneapi/server/sms/SMSDeliveryReportSubscriptionServlet.java=UTF-8
+encoding//src/org/gsm/oneapi/server/sms/SendSMSServlet.java=GBK
+encoding//src/org/gsm/oneapi/sms/SMSSend.java=UTF-8

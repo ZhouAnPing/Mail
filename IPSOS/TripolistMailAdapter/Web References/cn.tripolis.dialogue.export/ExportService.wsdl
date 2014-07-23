@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://export.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ExportService" targetNamespace="http://export.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:28.853+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://process.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://process.services.tripolis.com/" />
+      <xs:complexType name="IDResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RawDataResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element xmlns:ns3="http://www.w3.org/2005/05/xmlmime" ns3:expectedContentTypes="application/octet-stream" name="data" type="xs:base64Binary" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcessStatusResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="process" type="ns2:ProcessStatus" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="IDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://process.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:complexType name="ProcessStatus">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="contactDatabaseId" type="xs:string" />
+          <xs:element minOccurs="0" name="userId" type="xs:string" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="endTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="status" type="ns1:ProcessStatus" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns4="http://response.services.tripolis.com/" xmlns:ns3="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://common.services.tripolis.com/" xmlns:ns1="http://contact.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://export.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://contact.services.tripolis.com/" />
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:element name="errorResponse" type="ns4:ErrorResponse" />
+      <xs:element name="exportBounced" type="tns:exportBounced" />
+      <xs:element name="exportBouncedResponse" type="tns:exportBouncedResponse" />
+      <xs:element name="exportBouncedToFtp" type="tns:exportBouncedToFtp" />
+      <xs:element name="exportBouncedToFtpResponse" type="tns:exportBouncedToFtpResponse" />
+      <xs:element name="exportClicked" type="tns:exportClicked" />
+      <xs:element name="exportClickedResponse" type="tns:exportClickedResponse" />
+      <xs:element name="exportClickedToFtp" type="tns:exportClickedToFtp" />
+      <xs:element name="exportClickedToFtpResponse" type="tns:exportClickedToFtpResponse" />
+      <xs:element name="exportComplained" type="tns:exportComplained" />
+      <xs:element name="exportComplainedResponse" type="tns:exportComplainedResponse" />
+      <xs:element name="exportComplainedToFtp" type="tns:exportComplainedToFtp" />
+      <xs:element name="exportComplainedToFtpResponse" type="tns:exportComplainedToFtpResponse" />
+      <xs:element name="exportConverted" type="tns:exportConverted" />
+      <xs:element name="exportConvertedResponse" type="tns:exportConvertedResponse" />
+      <xs:element name="exportConvertedToFtp" type="tns:exportConvertedToFtp" />
+      <xs:element name="exportConvertedToFtpResponse" type="tns:exportConvertedToFtpResponse" />
+      <xs:element name="exportJobs" type="tns:exportJobs" />
+      <xs:element name="exportJobsResponse" type="tns:exportJobsResponse" />
+      <xs:element name="exportJobsToFtp" type="tns:exportJobsToFtp" />
+      <xs:element name="exportJobsToFtpResponse" type="tns:exportJobsToFtpResponse" />
+      <xs:element name="exportLinks" type="tns:exportLinks" />
+      <xs:element name="exportLinksResponse" type="tns:exportLinksResponse" />
+      <xs:element name="exportLinksToFtp" type="tns:exportLinksToFtp" />
+      <xs:element name="exportLinksToFtpResponse" type="tns:exportLinksToFtpResponse" />
+      <xs:element name="exportOpened" type="tns:exportOpened" />
+      <xs:element name="exportOpenedResponse" type="tns:exportOpenedResponse" />
+      <xs:element name="exportOpenedToFtp" type="tns:exportOpenedToFtp" />
+      <xs:element name="exportOpenedToFtpResponse" type="tns:exportOpenedToFtpResponse" />
+      <xs:element name="exportSent" type="tns:exportSent" />
+      <xs:element name="exportSentResponse" type="tns:exportSentResponse" />
+      <xs:element name="exportSentToFtp" type="tns:exportSentToFtp" />
+      <xs:element name="exportSentToFtpResponse" type="tns:exportSentToFtpResponse" />
+      <xs:element name="exportSkipped" type="tns:exportSkipped" />
+      <xs:element name="exportSkippedResponse" type="tns:exportSkippedResponse" />
+      <xs:element name="exportSkippedToFtp" type="tns:exportSkippedToFtp" />
+      <xs:element name="exportSkippedToFtpResponse" type="tns:exportSkippedToFtpResponse" />
+      <xs:element name="getExportStatus" type="tns:getExportStatus" />
+      <xs:element name="getExportStatusResponse" type="tns:getExportStatusResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:complexType name="exportOpenedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportOpenedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FtpContactExportRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ContactExportRequest">
+            <xs:sequence>
+              <xs:element name="ftpAccountId" type="xs:string" />
+              <xs:element name="fileName" type="xs:string" />
+              <xs:element minOccurs="0" name="sendNotificationMail" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactExportRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ExportRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="returnContactFields" type="ns1:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ExportRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element name="timeRange" type="ns2:TimeRange" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="exportOpenedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportConvertedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportConvertedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportConvertedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportConverted">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportConvertedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportConvertedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportComplained">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportComplainedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportComplainedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportBounced">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportBouncedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportBouncedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getExportStatus">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getExportStatusRequest" type="ns3:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getExportStatusResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:ProcessStatusResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportComplainedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportComplainedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportComplainedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportSentRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportClickedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportClickedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportClickedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSentToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportSentToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSentToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportOpened">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportOpenedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportOpenedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSkippedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportSkippedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSkippedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportLinks">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportLinksRequest" type="tns:ExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportLinksResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportLinksToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportLinksToFtpRequest" type="tns:FtpExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FtpExportRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ExportRequest">
+            <xs:sequence>
+              <xs:element name="ftpAccountId" type="xs:string" />
+              <xs:element name="fileName" type="xs:string" />
+              <xs:element minOccurs="0" name="sendNotificationMail" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="exportLinksToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportClicked">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportClickedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportClickedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportJobsToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportJobsToFtpRequest" type="tns:FtpExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportJobsToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportJobs">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportJobsRequest" type="tns:ExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportJobsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSkipped">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportSkippedRequest" type="tns:ContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportSkippedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:RawDataResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportBouncedToFtp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="exportBouncedToFtpRequest" type="tns:FtpContactExportRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exportBouncedToFtpResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ReturnContactFields">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactDatabaseFieldIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="returnAllContactFields" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="TimeRange">
+        <xs:sequence>
+          <xs:element name="startTime" type="xs:dateTime" />
+          <xs:element name="endTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ProcessStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SCHEDULED" />
+          <xs:enumeration value="RUNNING" />
+          <xs:enumeration value="FINISHED" />
+          <xs:enumeration value="ABORTED" />
+          <xs:enumeration value="ERROR" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="exportLinks">
+    <wsdl:part name="parameters" element="tns:exportLinks" />
+  </wsdl:message>
+  <wsdl:message name="exportConverted">
+    <wsdl:part name="parameters" element="tns:exportConverted" />
+  </wsdl:message>
+  <wsdl:message name="exportOpenedResponse">
+    <wsdl:part name="parameters" element="tns:exportOpenedResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportClickedResponse">
+    <wsdl:part name="parameters" element="tns:exportClickedResponse" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSkippedToFtp">
+    <wsdl:part name="parameters" element="tns:exportSkippedToFtp" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSkipped">
+    <wsdl:part name="parameters" element="tns:exportSkipped" />
+  </wsdl:message>
+  <wsdl:message name="exportOpenedToFtp">
+    <wsdl:part name="parameters" element="tns:exportOpenedToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportConvertedToFtp">
+    <wsdl:part name="parameters" element="tns:exportConvertedToFtp" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="exportSent">
+    <wsdl:part name="parameters" element="tns:exportSent" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="exportBounced">
+    <wsdl:part name="parameters" element="tns:exportBounced" />
+  </wsdl:message>
+  <wsdl:message name="exportComplained">
+    <wsdl:part name="parameters" element="tns:exportComplained" />
+  </wsdl:message>
+  <wsdl:message name="getExportStatusResponse">
+    <wsdl:part name="parameters" element="tns:getExportStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportJobs">
+    <wsdl:part name="parameters" element="tns:exportJobs" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:message name="exportBouncedResponse">
+    <wsdl:part name="parameters" element="tns:exportBouncedResponse" />
+  </wsdl:message>
+  <wsdl:message name="getExportStatus">
+    <wsdl:part name="parameters" element="tns:getExportStatus" />
+  </wsdl:message>
+  <wsdl:message name="exportComplainedToFtp">
+    <wsdl:part name="parameters" element="tns:exportComplainedToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportJobsToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportJobsToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportLinksToFtp">
+    <wsdl:part name="parameters" element="tns:exportLinksToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportSentResponse">
+    <wsdl:part name="parameters" element="tns:exportSentResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportClickedToFtp">
+    <wsdl:part name="parameters" element="tns:exportClickedToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportJobsToFtp">
+    <wsdl:part name="parameters" element="tns:exportJobsToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportBouncedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportBouncedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSkippedResponse">
+    <wsdl:part name="parameters" element="tns:exportSkippedResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportConvertedResponse">
+    <wsdl:part name="parameters" element="tns:exportConvertedResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportLinksResponse">
+    <wsdl:part name="parameters" element="tns:exportLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportJobsResponse">
+    <wsdl:part name="parameters" element="tns:exportJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportComplainedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportComplainedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSkippedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportSkippedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportOpened">
+    <wsdl:part name="parameters" element="tns:exportOpened" />
+  </wsdl:message>
+  <wsdl:message name="exportConvertedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportConvertedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSentToFtp">
+    <wsdl:part name="parameters" element="tns:exportSentToFtp" />
+  </wsdl:message>
+  <wsdl:message name="exportOpenedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportOpenedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportComplainedResponse">
+    <wsdl:part name="parameters" element="tns:exportComplainedResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportSentToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportSentToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportClickedToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportClickedToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportLinksToFtpResponse">
+    <wsdl:part name="parameters" element="tns:exportLinksToFtpResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportClicked">
+    <wsdl:part name="parameters" element="tns:exportClicked" />
+  </wsdl:message>
+  <wsdl:message name="exportBouncedToFtp">
+    <wsdl:part name="parameters" element="tns:exportBouncedToFtp" />
+  </wsdl:message>
+  <wsdl:portType name="ExportService">
+    <wsdl:operation name="exportOpenedToFtp">
+      <wsdl:input name="exportOpenedToFtp" message="tns:exportOpenedToFtp" />
+      <wsdl:output name="exportOpenedToFtpResponse" message="tns:exportOpenedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportConvertedToFtp">
+      <wsdl:input name="exportConvertedToFtp" message="tns:exportConvertedToFtp" />
+      <wsdl:output name="exportConvertedToFtpResponse" message="tns:exportConvertedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportConverted">
+      <wsdl:input name="exportConverted" message="tns:exportConverted" />
+      <wsdl:output name="exportConvertedResponse" message="tns:exportConvertedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportComplained">
+      <wsdl:input name="exportComplained" message="tns:exportComplained" />
+      <wsdl:output name="exportComplainedResponse" message="tns:exportComplainedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportBounced">
+      <wsdl:input name="exportBounced" message="tns:exportBounced" />
+      <wsdl:output name="exportBouncedResponse" message="tns:exportBouncedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getExportStatus">
+      <wsdl:input name="getExportStatus" message="tns:getExportStatus" />
+      <wsdl:output name="getExportStatusResponse" message="tns:getExportStatusResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportComplainedToFtp">
+      <wsdl:input name="exportComplainedToFtp" message="tns:exportComplainedToFtp" />
+      <wsdl:output name="exportComplainedToFtpResponse" message="tns:exportComplainedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportSent">
+      <wsdl:input name="exportSent" message="tns:exportSent" />
+      <wsdl:output name="exportSentResponse" message="tns:exportSentResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportClickedToFtp">
+      <wsdl:input name="exportClickedToFtp" message="tns:exportClickedToFtp" />
+      <wsdl:output name="exportClickedToFtpResponse" message="tns:exportClickedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportSentToFtp">
+      <wsdl:input name="exportSentToFtp" message="tns:exportSentToFtp" />
+      <wsdl:output name="exportSentToFtpResponse" message="tns:exportSentToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportOpened">
+      <wsdl:input name="exportOpened" message="tns:exportOpened" />
+      <wsdl:output name="exportOpenedResponse" message="tns:exportOpenedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportSkippedToFtp">
+      <wsdl:input name="exportSkippedToFtp" message="tns:exportSkippedToFtp" />
+      <wsdl:output name="exportSkippedToFtpResponse" message="tns:exportSkippedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportLinks">
+      <wsdl:input name="exportLinks" message="tns:exportLinks" />
+      <wsdl:output name="exportLinksResponse" message="tns:exportLinksResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportLinksToFtp">
+      <wsdl:input name="exportLinksToFtp" message="tns:exportLinksToFtp" />
+      <wsdl:output name="exportLinksToFtpResponse" message="tns:exportLinksToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="exportClicked">
+      <wsdl:input name="exportClicked" message="tns:exportClicked" />
+      <wsdl:output name="exportClickedResponse" message="tns:exportClickedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportJobsToFtp">
+      <wsdl:input name="exportJobsToFtp" message="tns:exportJobsToFtp" />
+      <wsdl:output name="exportJobsToFtpResponse" message="tns:exportJobsToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportJobs">
+      <wsdl:input name="exportJobs" message="tns:exportJobs" />
+      <wsdl:output name="exportJobsResponse" message="tns:exportJobsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportSkipped">
+      <wsdl:input name="exportSkipped" message="tns:exportSkipped" />
+      <wsdl:output name="exportSkippedResponse" message="tns:exportSkippedResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="exportBouncedToFtp">
+      <wsdl:input name="exportBouncedToFtp" message="tns:exportBouncedToFtp" />
+      <wsdl:output name="exportBouncedToFtpResponse" message="tns:exportBouncedToFtpResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExportServiceSoapBinding" type="tns:ExportService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="exportConvertedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportConvertedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportConvertedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportOpenedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportOpenedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportOpenedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportComplained">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportComplained">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportComplainedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportConverted">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportConverted">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportConvertedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBounced">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportBounced">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportBouncedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExportStatus">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getExportStatus">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getExportStatusResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportComplainedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportComplainedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportComplainedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportSent">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportSent">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportSentResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportClickedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportClickedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportClickedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportSentToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportSentToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportSentToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportOpened">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportOpened">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportOpenedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportSkippedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportSkippedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportSkippedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportLinks">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportLinks">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportLinksResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportLinksToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportLinksToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportLinksToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportClicked">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportClicked">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportClickedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportJobsToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportJobsToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportJobsToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportJobs">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportJobs">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportJobsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBouncedToFtp">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportBouncedToFtp">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportBouncedToFtpResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportSkipped">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="exportSkipped">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="exportSkippedResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExportService">
+    <wsdl:port name="ExportServicePort" binding="tns:ExportServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/mtom/ExportService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

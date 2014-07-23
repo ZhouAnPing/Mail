@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://reporting.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReportingService" targetNamespace="http://reporting.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:30.669+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:complexType name="SortableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="ns1:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingOut" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns2:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingOut">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns1:PagingIn">
+            <xs:sequence>
+              <xs:element name="totalItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="SortableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="tns:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingIn" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="Sorting">
+        <xs:sequence>
+          <xs:element name="sortBy" type="xs:string" />
+          <xs:element name="sortOrder" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingIn">
+        <xs:sequence>
+          <xs:element name="pageNr" type="xs:int" />
+          <xs:element name="pageSize" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MailJobIDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="mailJobId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns4="http://response.services.tripolis.com/" xmlns:ns3="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://contact.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://reporting.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://contact.services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:element name="errorResponse" type="ns4:ErrorResponse" />
+      <xs:element name="getBouncedByMailJobId" type="tns:getBouncedByMailJobId" />
+      <xs:element name="getBouncedByMailJobIdResponse" type="tns:getBouncedByMailJobIdResponse" />
+      <xs:element name="getBouncedBySmsJobId" type="tns:getBouncedBySmsJobId" />
+      <xs:element name="getBouncedBySmsJobIdResponse" type="tns:getBouncedBySmsJobIdResponse" />
+      <xs:element name="getClickedByMailJobId" type="tns:getClickedByMailJobId" />
+      <xs:element name="getClickedByMailJobIdResponse" type="tns:getClickedByMailJobIdResponse" />
+      <xs:element name="getClicksPerLinkInHtmlByMailJobId" type="tns:getClicksPerLinkInHtmlByMailJobId" />
+      <xs:element name="getClicksPerLinkInHtmlByMailJobIdResponse" type="tns:getClicksPerLinkInHtmlByMailJobIdResponse" />
+      <xs:element name="getDeliveredByMailJobId" type="tns:getDeliveredByMailJobId" />
+      <xs:element name="getDeliveredByMailJobIdResponse" type="tns:getDeliveredByMailJobIdResponse" />
+      <xs:element name="getDeliveredBySmsJobId" type="tns:getDeliveredBySmsJobId" />
+      <xs:element name="getDeliveredBySmsJobIdResponse" type="tns:getDeliveredBySmsJobIdResponse" />
+      <xs:element name="getEmailSummary" type="tns:getEmailSummary" />
+      <xs:element name="getEmailSummaryResponse" type="tns:getEmailSummaryResponse" />
+      <xs:element name="getOpenedByMailJobId" type="tns:getOpenedByMailJobId" />
+      <xs:element name="getOpenedByMailJobIdResponse" type="tns:getOpenedByMailJobIdResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:element name="getSkippedByMailJobId" type="tns:getSkippedByMailJobId" />
+      <xs:element name="getSkippedByMailJobIdResponse" type="tns:getSkippedByMailJobIdResponse" />
+      <xs:element name="getSkippedBySmsJobId" type="tns:getSkippedBySmsJobId" />
+      <xs:element name="getSkippedBySmsJobIdResponse" type="tns:getSkippedBySmsJobIdResponse" />
+      <xs:element name="getSmsSummary" type="tns:getSmsSummary" />
+      <xs:element name="getSmsSummaryResponse" type="tns:getSmsSummaryResponse" />
+      <xs:complexType name="getBouncedBySmsJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getBouncedBySmsJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ReportingWithinTimeRangeByMailJobIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ReportingByMailJobIdRequest">
+            <xs:sequence>
+              <xs:element name="timeRange" type="ns1:TimeRange" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ReportingByMailJobIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="mailJobId" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="ns2:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getBouncedBySmsJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:SmsBouncedContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SmsBouncedContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="bouncedContacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="bouncedContact" type="ns1:SmsBouncedContact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getDeliveredByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getDeliveredByMailJobIdRequest" type="tns:ReportingByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDeliveredByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSkippedByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getSkippedByMailJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSkippedByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:SkippedContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SkippedContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="skippedContacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="skippedContact" type="ns1:SkippedContactModel" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getSmsSummary">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getSmsSummaryRequest" type="ns3:MailJobIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSmsSummaryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:SmsSummaryResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SmsSummaryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="smsSummary" type="tns:SmsSummary" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SmsSummary">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="job" type="ns1:Job" />
+          <xs:element name="numberOfSendPct" type="xs:double" />
+          <xs:element name="numberOfSkippedPct" type="xs:double" />
+          <xs:element name="queued" type="xs:int" />
+          <xs:element name="queuedPct" type="xs:double" />
+          <xs:element name="hardBounces" type="xs:int" />
+          <xs:element name="hardBouncesPct" type="xs:double" />
+          <xs:element name="softBounces" type="xs:int" />
+          <xs:element name="softBouncesPct" type="xs:double" />
+          <xs:element name="totalComplaints" type="xs:int" />
+          <xs:element name="totalComplaintsPct" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="complaintProviders" nillable="true" type="tns:ComplaintsProvider" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ComplaintsProvider">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element name="numberOfComplaints" type="xs:int" />
+          <xs:element name="percentage" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDeliveredBySmsJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getDeliveredBySmsJobIdRequest" type="tns:ReportingByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDeliveredBySmsJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getBouncedByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getBouncedByMailJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getBouncedByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:BouncedContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BouncedContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="bouncedContacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="bouncedContact" type="ns1:BouncedContact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getClicksPerLinkInHtmlByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getClicksPerLinkInHtmlByMailJobIdRequest" type="ns3:MailJobIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getClicksPerLinkInHtmlByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ClicksPerLinkInHtmlResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClicksPerLinkInHtmlResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="htmlUnpersonalized" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getSkippedBySmsJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getSkippedBySmsJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSkippedBySmsJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:SkippedContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getClickedByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getClickedByMailJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getClickedByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ClicksListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClicksListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="clicks">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="click" type="ns1:Click" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getEmailSummary">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getEmailSummaryRequest" type="ns3:MailJobIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEmailSummaryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:EmailSummaryResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="EmailSummaryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="emailSummary" type="tns:EmailSummary" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="EmailSummary">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="job" type="ns1:Job" />
+          <xs:element name="numberOfSendPct" type="xs:double" />
+          <xs:element name="numberOfSkippedPct" type="xs:double" />
+          <xs:element name="queued" type="xs:int" />
+          <xs:element name="queuedPct" type="xs:double" />
+          <xs:element name="hardBounces" type="xs:int" />
+          <xs:element name="hardBouncesPct" type="xs:double" />
+          <xs:element name="softBounces" type="xs:int" />
+          <xs:element name="softBouncesPct" type="xs:double" />
+          <xs:element name="totalOpens" type="xs:int" />
+          <xs:element name="uniqueOpens" type="xs:int" />
+          <xs:element name="totalClicks" type="xs:int" />
+          <xs:element name="uniqueClicks" type="xs:int" />
+          <xs:element name="ctrDelivered" type="xs:double" />
+          <xs:element name="ctrOpened" type="xs:double" />
+          <xs:element name="totalComplaints" type="xs:int" />
+          <xs:element name="totalComplaintsPct" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="complaintProviders" nillable="true" type="tns:ComplaintsProvider" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getOpenedByMailJobId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getOpenedByMailJobIdRequest" type="tns:ReportingWithinTimeRangeByMailJobIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getOpenedByMailJobIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:OpensListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OpensListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns4:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="opens">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="open" type="ns1:Open" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:complexType name="ReturnContactFields">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactDatabaseFieldIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="returnAllContactFields" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contact" type="ns1:Contact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="TimeRange">
+        <xs:sequence>
+          <xs:element name="startTime" type="xs:dateTime" />
+          <xs:element name="endTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SmsBouncedContact">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Contact">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="jobId" type="xs:string" />
+              <xs:element minOccurs="0" name="bouncedAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="receiverAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="code" type="xs:string" />
+              <xs:element minOccurs="0" name="providerStatusCode" type="xs:string" />
+              <xs:element minOccurs="0" name="description" type="xs:string" />
+              <xs:element name="categoryId" type="xs:int" />
+              <xs:element minOccurs="0" name="categoryDescription" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Contact">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactFields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="contactField" type="tns:ContactField" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactField">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element name="key" type="xs:boolean" />
+          <xs:element name="required" type="xs:boolean" />
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupId" type="xs:string" />
+          <xs:element name="position" type="xs:int" />
+          <xs:element minOccurs="0" name="kindOfField" type="tns:kindOfField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SkippedContactModel">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Contact">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="jobId" type="xs:string" />
+              <xs:element minOccurs="0" name="skippedAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="receiverAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="type" type="xs:string" />
+              <xs:element minOccurs="0" name="description" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Job">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="jobName" type="xs:string" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="endTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="channel" type="tns:channel" />
+          <xs:element minOccurs="0" name="campaignDefinitionId" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignDefinitionLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignId" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="contactDatabaseId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactDatabaseLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactGroupLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+          <xs:element minOccurs="0" name="smartGroupLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="error" type="xs:string" />
+          <xs:element name="isArchived" type="xs:boolean" />
+          <xs:element minOccurs="0" name="createdBy" type="xs:string" />
+          <xs:element minOccurs="0" name="jobTags">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="jobTag" type="tns:Tag" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="requestedNumberOfSend" type="xs:int" />
+          <xs:element name="numberOfSend" type="xs:int" />
+          <xs:element name="numberOfSkipped" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BouncedContact">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Contact">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="jobId" type="xs:string" />
+              <xs:element minOccurs="0" name="bouncedAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="receiverAddress" type="xs:string" />
+              <xs:element minOccurs="0" name="bounceCode" type="xs:string" />
+              <xs:element name="bounceCategoryId" type="xs:int" />
+              <xs:element minOccurs="0" name="bounceCategoryDescription" type="xs:string" />
+              <xs:element minOccurs="0" name="bounceReason" type="xs:string" />
+              <xs:element name="hardbounce" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Click">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="clickedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ip" type="xs:string" />
+          <xs:element minOccurs="0" name="os" type="xs:string" />
+          <xs:element minOccurs="0" name="client" type="xs:string" />
+          <xs:element minOccurs="0" name="urlId" type="xs:string" />
+          <xs:element minOccurs="0" name="urlTitle" type="xs:string" />
+          <xs:element minOccurs="0" name="urlType" type="xs:string" />
+          <xs:element minOccurs="0" name="originalUrl" type="xs:string" />
+          <xs:element minOccurs="0" name="contentType" type="xs:string" />
+          <xs:element minOccurs="0" name="socialMediaTypes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="socialMediaType" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contact" type="tns:Contact" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Open">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="openedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ip" type="xs:string" />
+          <xs:element minOccurs="0" name="os" type="xs:string" />
+          <xs:element minOccurs="0" name="client" type="xs:string" />
+          <xs:element minOccurs="0" name="contact" type="tns:Contact" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="kindOfField">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GENERAL" />
+          <xs:enumeration value="SUMMARY" />
+          <xs:enumeration value="INTEREST" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="channel">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NEWSLETTER" />
+          <xs:enumeration value="DIRECTEMAIL" />
+          <xs:enumeration value="SMS" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getEmailSummary">
+    <wsdl:part name="parameters" element="tns:getEmailSummary" />
+  </wsdl:message>
+  <wsdl:message name="getEmailSummaryResponse">
+    <wsdl:part name="parameters" element="tns:getEmailSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSkippedByMailJobId">
+    <wsdl:part name="parameters" element="tns:getSkippedByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="getDeliveredBySmsJobId">
+    <wsdl:part name="parameters" element="tns:getDeliveredBySmsJobId" />
+  </wsdl:message>
+  <wsdl:message name="getOpenedByMailJobId">
+    <wsdl:part name="parameters" element="tns:getOpenedByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="getBouncedBySmsJobId">
+    <wsdl:part name="parameters" element="tns:getBouncedBySmsJobId" />
+  </wsdl:message>
+  <wsdl:message name="getDeliveredBySmsJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getDeliveredBySmsJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getClickedByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getClickedByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSkippedByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getSkippedByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getClickedByMailJobId">
+    <wsdl:part name="parameters" element="tns:getClickedByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="getSmsSummaryResponse">
+    <wsdl:part name="parameters" element="tns:getSmsSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSkippedBySmsJobId">
+    <wsdl:part name="parameters" element="tns:getSkippedBySmsJobId" />
+  </wsdl:message>
+  <wsdl:message name="getDeliveredByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getDeliveredByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBouncedByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getBouncedByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="getSkippedBySmsJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getSkippedBySmsJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOpenedByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getOpenedByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDeliveredByMailJobId">
+    <wsdl:part name="parameters" element="tns:getDeliveredByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSmsSummary">
+    <wsdl:part name="parameters" element="tns:getSmsSummary" />
+  </wsdl:message>
+  <wsdl:message name="getClicksPerLinkInHtmlByMailJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getClicksPerLinkInHtmlByMailJobIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBouncedByMailJobId">
+    <wsdl:part name="parameters" element="tns:getBouncedByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="getClicksPerLinkInHtmlByMailJobId">
+    <wsdl:part name="parameters" element="tns:getClicksPerLinkInHtmlByMailJobId" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:message name="getBouncedBySmsJobIdResponse">
+    <wsdl:part name="parameters" element="tns:getBouncedBySmsJobIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ReportingService">
+    <wsdl:operation name="getBouncedBySmsJobId">
+      <wsdl:input name="getBouncedBySmsJobId" message="tns:getBouncedBySmsJobId" />
+      <wsdl:output name="getBouncedBySmsJobIdResponse" message="tns:getBouncedBySmsJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getDeliveredByMailJobId">
+      <wsdl:input name="getDeliveredByMailJobId" message="tns:getDeliveredByMailJobId" />
+      <wsdl:output name="getDeliveredByMailJobIdResponse" message="tns:getDeliveredByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getSkippedByMailJobId">
+      <wsdl:input name="getSkippedByMailJobId" message="tns:getSkippedByMailJobId" />
+      <wsdl:output name="getSkippedByMailJobIdResponse" message="tns:getSkippedByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getSmsSummary">
+      <wsdl:input name="getSmsSummary" message="tns:getSmsSummary" />
+      <wsdl:output name="getSmsSummaryResponse" message="tns:getSmsSummaryResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getDeliveredBySmsJobId">
+      <wsdl:input name="getDeliveredBySmsJobId" message="tns:getDeliveredBySmsJobId" />
+      <wsdl:output name="getDeliveredBySmsJobIdResponse" message="tns:getDeliveredBySmsJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getBouncedByMailJobId">
+      <wsdl:input name="getBouncedByMailJobId" message="tns:getBouncedByMailJobId" />
+      <wsdl:output name="getBouncedByMailJobIdResponse" message="tns:getBouncedByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getClicksPerLinkInHtmlByMailJobId">
+      <wsdl:input name="getClicksPerLinkInHtmlByMailJobId" message="tns:getClicksPerLinkInHtmlByMailJobId" />
+      <wsdl:output name="getClicksPerLinkInHtmlByMailJobIdResponse" message="tns:getClicksPerLinkInHtmlByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getSkippedBySmsJobId">
+      <wsdl:input name="getSkippedBySmsJobId" message="tns:getSkippedBySmsJobId" />
+      <wsdl:output name="getSkippedBySmsJobIdResponse" message="tns:getSkippedBySmsJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getClickedByMailJobId">
+      <wsdl:input name="getClickedByMailJobId" message="tns:getClickedByMailJobId" />
+      <wsdl:output name="getClickedByMailJobIdResponse" message="tns:getClickedByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmailSummary">
+      <wsdl:input name="getEmailSummary" message="tns:getEmailSummary" />
+      <wsdl:output name="getEmailSummaryResponse" message="tns:getEmailSummaryResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getOpenedByMailJobId">
+      <wsdl:input name="getOpenedByMailJobId" message="tns:getOpenedByMailJobId" />
+      <wsdl:output name="getOpenedByMailJobIdResponse" message="tns:getOpenedByMailJobIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReportingServiceSoapBinding" type="tns:ReportingService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getBouncedBySmsJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getBouncedBySmsJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBouncedBySmsJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeliveredByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getDeliveredByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDeliveredByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSkippedByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getSkippedByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSkippedByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeliveredBySmsJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getDeliveredBySmsJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDeliveredBySmsJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSmsSummary">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getSmsSummary">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSmsSummaryResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBouncedByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getBouncedByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBouncedByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getClicksPerLinkInHtmlByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getClicksPerLinkInHtmlByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getClicksPerLinkInHtmlByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSkippedBySmsJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getSkippedBySmsJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSkippedBySmsJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getClickedByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getClickedByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getClickedByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEmailSummary">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getEmailSummary">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEmailSummaryResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOpenedByMailJobId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getOpenedByMailJobId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getOpenedByMailJobIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReportingService">
+    <wsdl:port name="ReportingServicePort" binding="tns:ReportingServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/ReportingService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

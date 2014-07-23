@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://publishing.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PublishingService" targetNamespace="http://publishing.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:28.483+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" xmlns:ns3="http://common.services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IDResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="ns2:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingOut" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PagingOut">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:PagingIn">
+            <xs:sequence>
+              <xs:element name="totalItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TagListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="tags">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="tag" type="ns3:Tag" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:complexType name="IDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="UpdateTagRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="tag" type="xs:string" />
+              <xs:element name="tagId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CreateTagRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="tag" type="xs:string" />
+              <xs:element name="workspaceId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LastMailingSnapshotRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="newsletterTypeId" type="xs:string" />
+              <xs:element minOccurs="0" name="directEmailTypeId" type="xs:string" />
+              <xs:element minOccurs="0" name="sampleContactId" type="xs:string" />
+              <xs:element name="mailingType" type="ns1:mailingType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableMailjobTagIDsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableTagIDsRequest">
+            <xs:sequence>
+              <xs:element name="timeRange" type="ns1:TimeRange" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableTagIDsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="tagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="tagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="matchAnyTag" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="tns:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingIn" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Sorting">
+        <xs:sequence>
+          <xs:element name="sortBy" type="xs:string" />
+          <xs:element name="sortOrder" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingIn">
+        <xs:sequence>
+          <xs:element name="pageNr" type="xs:int" />
+          <xs:element name="pageSize" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SortableWorkspaceIDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="workspaceId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="LastSmsSnapshotRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smsTypeId" type="xs:string" />
+              <xs:element minOccurs="0" name="sampleContactId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TagIDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="tagId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns4="http://contactgroup.services.tripolis.com/" xmlns:ns3="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://publish.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://publishing.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://publish.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:import namespace="http://contactgroup.services.tripolis.com/" />
+      <xs:element name="createTag" type="tns:createTag" />
+      <xs:element name="createTagResponse" type="tns:createTagResponse" />
+      <xs:element name="deleteTag" type="tns:deleteTag" />
+      <xs:element name="deleteTagResponse" type="tns:deleteTagResponse" />
+      <xs:element name="errorResponse" type="ns3:ErrorResponse" />
+      <xs:element name="getById" type="tns:getById" />
+      <xs:element name="getByIdResponse" type="tns:getByIdResponse" />
+      <xs:element name="getByTagIds" type="tns:getByTagIds" />
+      <xs:element name="getByTagIdsResponse" type="tns:getByTagIdsResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:element name="getTagsByWorkspaceId" type="tns:getTagsByWorkspaceId" />
+      <xs:element name="getTagsByWorkspaceIdResponse" type="tns:getTagsByWorkspaceIdResponse" />
+      <xs:element name="publishEmail" type="tns:publishEmail" />
+      <xs:element name="publishEmailResponse" type="tns:publishEmailResponse" />
+      <xs:element name="publishSampleTestEmail" type="tns:publishSampleTestEmail" />
+      <xs:element name="publishSampleTestEmailResponse" type="tns:publishSampleTestEmailResponse" />
+      <xs:element name="publishSms" type="tns:publishSms" />
+      <xs:element name="publishSmsResponse" type="tns:publishSmsResponse" />
+      <xs:element name="publishTestEmail" type="tns:publishTestEmail" />
+      <xs:element name="publishTestEmailResponse" type="tns:publishTestEmailResponse" />
+      <xs:element name="publishTransactionalEmail" type="tns:publishTransactionalEmail" />
+      <xs:element name="publishTransactionalEmailResponse" type="tns:publishTransactionalEmailResponse" />
+      <xs:element name="updateTag" type="tns:updateTag" />
+      <xs:element name="updateTagResponse" type="tns:updateTagResponse" />
+      <xs:element name="viewLastMailing" type="tns:viewLastMailing" />
+      <xs:element name="viewLastMailingResponse" type="tns:viewLastMailingResponse" />
+      <xs:element name="viewLastSms" type="tns:viewLastSms" />
+      <xs:element name="viewLastSmsResponse" type="tns:viewLastSmsResponse" />
+      <xs:complexType name="getById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByIdRequest" type="ns1:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:JobResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishTestEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="publishTestEmailRequest" type="ns2:PublishTestEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishTestEmailResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateTag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="updateTagRequest" type="ns1:UpdateTagRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateTagResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createTag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createTagRequest" type="ns1:CreateTagRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createTagResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="publishEmailRequest" type="ns2:PublishEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishEmailResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishSms">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="publishSmsRequest" type="ns2:PublishSmsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishSmsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="viewLastMailing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="viewLastMailingRequest" type="ns1:LastMailingSnapshotRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="viewLastMailingResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:MailSnapshotResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByTagIds">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByTagIdsRequest" type="ns1:SortableMailjobTagIDsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByTagIdsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns2:JobListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTagsByWorkspaceId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getTagsByWorkspaceIdRequest" type="ns1:SortableWorkspaceIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTagsByWorkspaceIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:TagListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishTransactionalEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="publishTransactionalEmailRequest" type="ns2:PublishTransactionalEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishTransactionalEmailResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="viewLastSms">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="viewLastSmsRequest" type="ns1:LastSmsSnapshotRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="viewLastSmsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns4:SmsSnapshotResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishSampleTestEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="publishSampleTestEmailRequest" type="ns2:PublishSampleTestEmailRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="publishSampleTestEmailResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteTag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deleteTagRequest" type="ns1:TagIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteTagResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns3="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://publish.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:complexType name="JobResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="job" type="ns1:Job" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublishTestEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="testContactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="directEmailId" type="xs:string" />
+              <xs:element minOccurs="0" name="newsletterId" type="xs:string" />
+              <xs:element minOccurs="0" name="scheduleAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="mailJobTagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="mailJobTagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublishEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="directEmailId" type="xs:string" />
+              <xs:element minOccurs="0" name="newsletterId" type="xs:string" />
+              <xs:element name="mailsPerHour" type="xs:int" />
+              <xs:element minOccurs="0" name="scheduleAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="mailJobTagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="mailJobTagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublishSmsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="smsMessageId" type="xs:string" />
+              <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="scheduleAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="smsJobTagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="smsJobTagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="JobListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="jobs">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="job" type="ns1:Job" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublishTransactionalEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactId" type="xs:string" />
+              <xs:element minOccurs="0" name="directEmailId" type="xs:string" />
+              <xs:element minOccurs="0" name="newsletterId" type="xs:string" />
+              <xs:element minOccurs="0" name="scheduleAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="mailJobTagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="mailJobTagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PublishSampleTestEmailRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="testContactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="directEmailId" type="xs:string" />
+              <xs:element minOccurs="0" name="newsletterId" type="xs:string" />
+              <xs:element name="sampleRate" type="xs:int" />
+              <xs:element minOccurs="0" name="scheduleAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="mailJobTagIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="mailJobTagId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://contactgroup.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:complexType name="MailSnapshotResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="snapshot" type="ns1:MailSnapshotModel" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SmsSnapshotResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="snapshot" type="ns1:SmsSnapshotModel" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Job">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="jobName" type="xs:string" />
+          <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="endTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="channel" type="tns:channel" />
+          <xs:element minOccurs="0" name="campaignDefinitionId" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignDefinitionLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignId" type="xs:string" />
+          <xs:element minOccurs="0" name="campaignLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="contactDatabaseId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactDatabaseLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="contactGroupId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactGroupLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="smartGroupId" type="xs:string" />
+          <xs:element minOccurs="0" name="smartGroupLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceLabel" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="error" type="xs:string" />
+          <xs:element name="isArchived" type="xs:boolean" />
+          <xs:element minOccurs="0" name="createdBy" type="xs:string" />
+          <xs:element minOccurs="0" name="jobTags">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="jobTag" type="tns:Tag" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="requestedNumberOfSend" type="xs:int" />
+          <xs:element name="numberOfSend" type="xs:int" />
+          <xs:element name="numberOfSkipped" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MailSnapshotModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="job" type="tns:Job" />
+          <xs:element minOccurs="0" name="htmlPersonalized" type="xs:string" />
+          <xs:element minOccurs="0" name="embeddedHtmlPersonalized" type="xs:string" />
+          <xs:element minOccurs="0" name="textPersonalized" type="xs:string" />
+          <xs:element minOccurs="0" name="fromName" type="xs:string" />
+          <xs:element minOccurs="0" name="fromAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="replyToAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="subject" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TimeRange">
+        <xs:sequence>
+          <xs:element name="startTime" type="xs:dateTime" />
+          <xs:element name="endTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SmsSnapshotModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="job" type="tns:Job" />
+          <xs:element minOccurs="0" name="textPersonalized" type="xs:string" />
+          <xs:element minOccurs="0" name="originator" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="channel">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NEWSLETTER" />
+          <xs:enumeration value="DIRECTEMAIL" />
+          <xs:enumeration value="SMS" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="mailingType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DIRECTEMAIL" />
+          <xs:enumeration value="NEWSLETTER" />
+          <xs:enumeration value="ALL" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="publishTestEmail">
+    <wsdl:part name="parameters" element="tns:publishTestEmail" />
+  </wsdl:message>
+  <wsdl:message name="updateTagResponse">
+    <wsdl:part name="parameters" element="tns:updateTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishSampleTestEmailResponse">
+    <wsdl:part name="parameters" element="tns:publishSampleTestEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateTag">
+    <wsdl:part name="parameters" element="tns:updateTag" />
+  </wsdl:message>
+  <wsdl:message name="publishSampleTestEmail">
+    <wsdl:part name="parameters" element="tns:publishSampleTestEmail" />
+  </wsdl:message>
+  <wsdl:message name="publishTestEmailResponse">
+    <wsdl:part name="parameters" element="tns:publishTestEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteTagResponse">
+    <wsdl:part name="parameters" element="tns:deleteTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByTagIdsResponse">
+    <wsdl:part name="parameters" element="tns:getByTagIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="viewLastMailing">
+    <wsdl:part name="parameters" element="tns:viewLastMailing" />
+  </wsdl:message>
+  <wsdl:message name="viewLastSms">
+    <wsdl:part name="parameters" element="tns:viewLastSms" />
+  </wsdl:message>
+  <wsdl:message name="deleteTag">
+    <wsdl:part name="parameters" element="tns:deleteTag" />
+  </wsdl:message>
+  <wsdl:message name="getTagsByWorkspaceIdResponse">
+    <wsdl:part name="parameters" element="tns:getTagsByWorkspaceIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishSms">
+    <wsdl:part name="parameters" element="tns:publishSms" />
+  </wsdl:message>
+  <wsdl:message name="createTag">
+    <wsdl:part name="parameters" element="tns:createTag" />
+  </wsdl:message>
+  <wsdl:message name="getByIdResponse">
+    <wsdl:part name="parameters" element="tns:getByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="viewLastMailingResponse">
+    <wsdl:part name="parameters" element="tns:viewLastMailingResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByTagIds">
+    <wsdl:part name="parameters" element="tns:getByTagIds" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="publishTransactionalEmail">
+    <wsdl:part name="parameters" element="tns:publishTransactionalEmail" />
+  </wsdl:message>
+  <wsdl:message name="publishTransactionalEmailResponse">
+    <wsdl:part name="parameters" element="tns:publishTransactionalEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="viewLastSmsResponse">
+    <wsdl:part name="parameters" element="tns:viewLastSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishEmail">
+    <wsdl:part name="parameters" element="tns:publishEmail" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishSmsResponse">
+    <wsdl:part name="parameters" element="tns:publishSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishEmailResponse">
+    <wsdl:part name="parameters" element="tns:publishEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:message name="getById">
+    <wsdl:part name="parameters" element="tns:getById" />
+  </wsdl:message>
+  <wsdl:message name="getTagsByWorkspaceId">
+    <wsdl:part name="parameters" element="tns:getTagsByWorkspaceId" />
+  </wsdl:message>
+  <wsdl:message name="createTagResponse">
+    <wsdl:part name="parameters" element="tns:createTagResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PublishingService">
+    <wsdl:operation name="getById">
+      <wsdl:input name="getById" message="tns:getById" />
+      <wsdl:output name="getByIdResponse" message="tns:getByIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="publishTestEmail">
+      <wsdl:input name="publishTestEmail" message="tns:publishTestEmail" />
+      <wsdl:output name="publishTestEmailResponse" message="tns:publishTestEmailResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="updateTag">
+      <wsdl:input name="updateTag" message="tns:updateTag" />
+      <wsdl:output name="updateTagResponse" message="tns:updateTagResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="createTag">
+      <wsdl:input name="createTag" message="tns:createTag" />
+      <wsdl:output name="createTagResponse" message="tns:createTagResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="publishEmail">
+      <wsdl:input name="publishEmail" message="tns:publishEmail" />
+      <wsdl:output name="publishEmailResponse" message="tns:publishEmailResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="publishSms">
+      <wsdl:input name="publishSms" message="tns:publishSms" />
+      <wsdl:output name="publishSmsResponse" message="tns:publishSmsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="viewLastMailing">
+      <wsdl:input name="viewLastMailing" message="tns:viewLastMailing" />
+      <wsdl:output name="viewLastMailingResponse" message="tns:viewLastMailingResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByTagIds">
+      <wsdl:input name="getByTagIds" message="tns:getByTagIds" />
+      <wsdl:output name="getByTagIdsResponse" message="tns:getByTagIdsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getTagsByWorkspaceId">
+      <wsdl:input name="getTagsByWorkspaceId" message="tns:getTagsByWorkspaceId" />
+      <wsdl:output name="getTagsByWorkspaceIdResponse" message="tns:getTagsByWorkspaceIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="publishTransactionalEmail">
+      <wsdl:input name="publishTransactionalEmail" message="tns:publishTransactionalEmail" />
+      <wsdl:output name="publishTransactionalEmailResponse" message="tns:publishTransactionalEmailResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="viewLastSms">
+      <wsdl:input name="viewLastSms" message="tns:viewLastSms" />
+      <wsdl:output name="viewLastSmsResponse" message="tns:viewLastSmsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="publishSampleTestEmail">
+      <wsdl:input name="publishSampleTestEmail" message="tns:publishSampleTestEmail" />
+      <wsdl:output name="publishSampleTestEmailResponse" message="tns:publishSampleTestEmailResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteTag">
+      <wsdl:input name="deleteTag" message="tns:deleteTag" />
+      <wsdl:output name="deleteTagResponse" message="tns:deleteTagResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PublishingServiceSoapBinding" type="tns:PublishingService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getById">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getById">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishTestEmail">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="publishTestEmail">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishTestEmailResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateTag">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="updateTag">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateTagResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createTag">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="createTag">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createTagResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishEmail">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="publishEmail">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishEmailResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishSms">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="publishSms">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishSmsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="viewLastMailing">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="viewLastMailing">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="viewLastMailingResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByTagIds">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByTagIds">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByTagIdsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTagsByWorkspaceId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getTagsByWorkspaceId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTagsByWorkspaceIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishTransactionalEmail">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="publishTransactionalEmail">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishTransactionalEmailResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="viewLastSms">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="viewLastSms">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="viewLastSmsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteTag">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="deleteTag">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteTagResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishSampleTestEmail">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="publishSampleTestEmail">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishSampleTestEmailResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PublishingService">
+    <wsdl:port name="PublishingServicePort" binding="tns:PublishingServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/PublishingService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

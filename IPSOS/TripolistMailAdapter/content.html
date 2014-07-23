@@ -1,0 +1,152 @@
+﻿<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<script type="text/javascript">
+    var opts = [];
+    function changeUserType() {
+        opts = document.getElementById('userType').options;
+        for (var i = 0; i < opts.length; i++) {
+            var opt = opts[i];
+            if (opt.selected && opt.value == 'dealer') {
+                document.getElementById('internalDiv').style.display = 'none';
+                document.getElementById('dealerDiv').style.display = 'block';
+            } else if (opt.selected && opt.value == 'internal') {
+                document.getElementById('dealerDiv').style.display = 'none';
+                document.getElementById('internalDiv').style.display = 'block';
+            }
+        }
+    }
+
+    function createCookie() {
+        var userId = document.getElementById('userId').value;
+        var vehicleValue = document.getElementById('vehicleMadeCode').value;
+        var languageCode = document.getElementById('languageCode').value;
+        var divObj = document.getElementById('dealerDiv');
+        var hostName = window.location.hostname;
+        var newHostName = hostName.substr(hostName.indexOf("."));
+        if (divObj.style.display == 'block') {
+            var dealerCodeValue = document.getElementById('dealerCode').value;
+            jQuery.cookie('domainCookie', 'DEALER', { expires: 1, path: '/', domain: newHostName });
+            jQuery.cookie('dealerCodeCookie', dealerCodeValue, { expires: 1, path: '/', domain: newHostName });
+            jQuery.cookie('ChannelCode/Division', vehicleValue, { expires: 1, path: '/', domain: newHostName });
+            var regionValue = document.getElementById('dlrRegionCode').value;
+            jQuery.cookie('SalesRegionCookie', regionValue, { expires: 1, path: '/', domain: newHostName });
+        } else {
+            jQuery.cookie('domainCookie', 'CORPORATE', { expires: 1, path: '/', domain: newHostName });
+            var regionValue = document.getElementById('intRegionCode').value;
+            jQuery.cookie('regionCodeCookie', regionValue, { expires: 1, path: '/', domain: newHostName });
+        }
+        jQuery.cookie('userCookie', userId, { expires: 1, path: '/', domain: newHostName });
+        jQuery.cookie('localeCookie', languageCode, { expires: 1, path: '/', domain: newHostName });
+    }
+</script>
+</head>
+<body>
+	<form id="loginForm" method="post" action="/dbs/home">
+		<table>
+			<tr>
+				<td colspan="2">login page</td>
+			</tr>
+			<tr>
+				<td><h>Hello,${contact.name!}</h></td>
+				<td><select id="userType" onchange="changeUserType();">
+						<option value="internal" selected="selected">Internal
+							User</option>
+						<option value="dealer">Dealer User</option>
+				</select></td>
+			</tr>
+ 
+			<tr>
+				<td><h>User Id:</h></td>
+				<td><input type="text" id="userId" /></td>
+			</tr>
+ 
+			<tr>
+				<td><h>Language Code:</h></td>
+				<td><select id="languageCode">
+						<option value="en_US" selected="selected">English</option>
+						<option value="es_SP">Spanish</option>
+						<option value="fr_FR">French</option>
+				</select></td>
+			</tr>
+		</table>
+		<div id="internalDiv" style='display: block'>
+			<table>
+				<tr>
+					<td><h>Region Code:</h></td>
+					<td><select id="intRegionCode">
+							<option value="NISSAN" selected="selected">NISSAN</option>
+							<option value="INFINITI">INFINITI</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="6">6</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="24">24</option>
+							<option value="26">26</option>
+							<option value="32">32</option>
+							<option value="34">34</option>
+							<option value="44">44</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="72">72</option>
+							<option value="92">92</option>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+		<div id="dealerDiv" style='display: none'>
+			<table>
+				<tr>
+					<td><h>Region Code:</h></td>
+					<td><select id="dlrRegionCode">
+							<option value="3 - West">3</option>
+							<option value="4 - West">4</option>
+							<option value="6 - West">6</option>
+							<option value="11 - West">11</option>
+							<option value="24 - West">24</option>
+							<option value="26 - West">26</option>
+							<option value="32 - West">32</option>
+							<option value="34 - West">34</option>
+							<option value="44 - West">44</option>
+							<option value="72 - West">72</option>
+							<option value="92 - West">92</option>
+							<option value="46 - West" selected="selected">46</option>
+							<option value="56 - West">56</option>
+							<option value="58 - West">58</option>
+							<option value="61 - West">61</option>
+							<option value="90 - West">90</option>
+							<option value="99 - West">99</option>
+					</select></td>
+				</tr>
+ 
+				<tr>
+					<td><h>Division Code:</h></td>
+					<td><select id="vehicleMadeCode">
+							<option value="1" selected="selected">NISSAN</option>
+							<option value="2">INFINITI</option>
+					</select></td>
+				</tr>
+ 
+				<tr>
+					<td><h>Dealer Code:</h></td>
+					<td><input type="text" id="dealerCode" /></td>
+				</tr>
+			</table>
+		</div>
+		<table align="left">
+			<tr align="left">
+				<td width="32%"></td>
+				<td width="25%"><input align="right" type="submit" id="loginBtn" value="Submit" onclick="createCookie();" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

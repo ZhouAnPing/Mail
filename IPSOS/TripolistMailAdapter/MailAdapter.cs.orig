@@ -1,0 +1,197 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace TripolistMailAdapter {
+public class MailAdapter {
+    private cn.tripolis.dialogue.contactGroup.ContactGroupService contactGroupService = null;
+    private cn.tripolis.dialogue.contact.ContactService contactService = null;
+    private cn.tripolis.dialogue.directEmailType.DirectEmailTypeService directEmailTypeService = null;
+    private cn.tripolis.dialogue.directEmail.DirectEmailService directEmailService = null;
+    private cn.tripolis.dialogue.publishing.PublishingService publishingService = null;
+
+    private cn.tripolis.dialogue.contactGroup.AuthInfo contactGroupAuthInfo = null;
+    private cn.tripolis.dialogue.contact.AuthInfo contactAuthInfo = null;
+    private cn.tripolis.dialogue.directEmailType.AuthInfo directEmailTypeAuthInfo = null;
+    private cn.tripolis.dialogue.directEmail.AuthInfo directEmailAuthInfo = null;
+    private cn.tripolis.dialogue.publishing.AuthInfo publishingAuthInfo = null;
+
+    private const String client = "Training";
+    private const String userName = "Training";
+    private const String password = "Training";
+
+    public MailAdapter() {
+        contactGroupService = new cn.tripolis.dialogue.contactGroup.ContactGroupService();
+        contactGroupAuthInfo = new cn.tripolis.dialogue.contactGroup.AuthInfo();
+        contactGroupAuthInfo.client = client;
+        contactGroupAuthInfo.username = userName;
+        contactGroupAuthInfo.password = password;
+        contactGroupService.authInfo = contactGroupAuthInfo;
+
+        contactService = new cn.tripolis.dialogue.contact.ContactService();
+        contactAuthInfo = new cn.tripolis.dialogue.contact.AuthInfo();
+        contactAuthInfo.client = client;
+        contactAuthInfo.username = userName;
+        contactAuthInfo.password = password;
+        contactService.authInfo = contactAuthInfo;
+
+        directEmailService = new cn.tripolis.dialogue.directEmail.DirectEmailService();
+        directEmailAuthInfo = new cn.tripolis.dialogue.directEmail.AuthInfo();
+        directEmailAuthInfo.client = client;
+        directEmailAuthInfo.username = userName;
+        directEmailAuthInfo.password = password;
+        directEmailService.authInfo = directEmailAuthInfo;
+
+        directEmailTypeService = new cn.tripolis.dialogue.directEmailType.DirectEmailTypeService();
+        directEmailTypeAuthInfo = new cn.tripolis.dialogue.directEmailType.AuthInfo();
+        directEmailTypeAuthInfo.client = client;
+        directEmailTypeAuthInfo.username = userName;
+        directEmailTypeAuthInfo.password = password;
+        directEmailTypeService.authInfo = directEmailTypeAuthInfo;
+
+        publishingService = new cn.tripolis.dialogue.publishing.PublishingService();
+        publishingAuthInfo = new cn.tripolis.dialogue.publishing.AuthInfo();
+        publishingAuthInfo.client = client;
+        publishingAuthInfo.username = userName;
+        publishingAuthInfo.password = password;
+        publishingService.authInfo = publishingAuthInfo;
+
+    }
+
+    public String createContactGroup(String contactDatabaseId, String groupLable, String groupName) {
+        String result = "OK";
+        // String contactGroupId = "";
+        cn.tripolis.dialogue.contactGroup.CreateContactGroupRequest request = new cn.tripolis.dialogue.contactGroup.CreateContactGroupRequest();
+        request.contactDatabaseId = contactDatabaseId;// "MjQ5MjI0OTKRjfSkhOehKQ";
+        request.label = groupLable;// "Net";
+        request.name = groupName;// "net";
+        request.groupType = cn.tripolis.dialogue.contactGroup.groupType.STATIC;
+        //request.parentGroupId = "";
+
+        try {
+            cn.tripolis.dialogue.contactGroup.IDResponse response = contactGroupService.create(request);
+            result = response.id;
+        } catch (System.Web.Services.Protocols.SoapException ex) {
+            result = ex.Detail.InnerXml;
+        }
+        return result;
+    }
+
+    public String createContact(String contactDatabaseId, ContactInformation contactInfo) {
+        String result = "OK";
+
+        cn.tripolis.dialogue.contact.CreateContactRequest request = new cn.tripolis.dialogue.contact.CreateContactRequest();
+        request.contactDatabaseId = contactDatabaseId;// "MjQ5MjI0OTKRjfSkhOehKQ";
+        request.contactFields = new cn.tripolis.dialogue.contact.ContactFieldValue[5];
+
+        cn.tripolis.dialogue.contact.ContactFieldValue field = null;
+
+        //email
+        field = new cn.tripolis.dialogue.contact.ContactFieldValue();
+        field.name = "email";
+        field.value = contactInfo.Email;// "zapjx@hotmail.com";
+        request.contactFields.SetValue(field, 0);
+
+        //firstName
+        field = new cn.tripolis.dialogue.contact.ContactFieldValue();
+        field.name = "firstname";
+        field.value = contactInfo.Firstname;// "Zhou";
+        request.contactFields.SetValue(field, 1);
+
+        //lastname
+        field = new cn.tripolis.dialogue.contact.ContactFieldValue();
+        field.name = "lastname";
+        field.value = contactInfo.Lastname;// "An-Ping";
+        request.contactFields.SetValue(field, 2);
+
+
+        //mobile
+        field = new cn.tripolis.dialogue.contact.ContactFieldValue();
+        field.name = "mobile";
+        field.value = contactInfo.Mobile;// "13671935968";
+        request.contactFields.SetValue(field, 3);
+
+
+        //Interest
+        field = new cn.tripolis.dialogue.contact.ContactFieldValue();
+        field.name = "interest";
+        field.value = contactInfo.Interest;// "Sports";
+        request.contactFields.SetValue(field, 4);
+
+
+        cn.tripolis.dialogue.contact.AddToContactGroupRequest groupRequest = new cn.tripolis.dialogue.contact.AddToContactGroupRequest();
+
+
+        try {
+            cn.tripolis.dialogue.contact.IDResponse response = contactService.create(request);
+
+            result = response.id;
+
+
+        } catch (System.Web.Services.Protocols.SoapException ex) {
+            result = ex.Detail.InnerXml;
+        }
+        return result;
+    }
+
+    public String addContactToGroup(String contactId, String contactGroupId) {
+        String result = "OK";
+        cn.tripolis.dialogue.contact.AddToContactGroupRequest groupRequest = new cn.tripolis.dialogue.contact.AddToContactGroupRequest();
+
+        try {
+            cn.tripolis.dialogue.contact.ContactGroupSubscriptionRequestObject subOBject = new cn.tripolis.dialogue.contact.ContactGroupSubscriptionRequestObject();
+            groupRequest.contactId = contactId;
+            subOBject.contactGroupId = contactGroupId;//"MjYwMTMyNjAot_oDDCr0mA";
+            subOBject.confirmed = true;
+            groupRequest.contactGroupSubscriptions = new cn.tripolis.dialogue.contact.ContactGroupSubscriptionRequestObject[1];
+            groupRequest.contactGroupSubscriptions.SetValue(subOBject, 0);
+
+            cn.tripolis.dialogue.contact.IDResponse response = contactService.addToContactGroup(groupRequest);
+
+            result = response.id;
+
+
+        } catch (System.Web.Services.Protocols.SoapException ex) {
+            result = ex.Detail.InnerXml;
+        }
+        return result;
+    }
+
+
+    public String createDirectEmailType(String workspaceId, String emailTypeLabel, String emailTypeName, String fromAddress, String senderName,String toEmailFieldId) {
+        String result = "OK";
+
+        cn.tripolis.dialogue.directEmailType.CreateDirectEmailTypeRequest request = new cn.tripolis.dialogue.directEmailType.CreateDirectEmailTypeRequest();
+        try {
+            request.workspaceId = workspaceId;
+            request.label = emailTypeLabel;
+            request.name = emailTypeName;
+            request.fromName = senderName;
+            request.fromAddress = fromAddress;
+            request.toEmailFieldId = toEmailFieldId;//"MTExMzYxMTEfCGWCBaFKyA"
+            request.enableWysiwygEditor = true;
+            request.encoding = cn.tripolis.dialogue.directEmailType.characterEncoding.UTF8;
+            cn.tripolis.dialogue.directEmailType.IDResponse response = directEmailTypeService.create(request);
+
+            result = response.id;
+
+
+        } catch (System.Web.Services.Protocols.SoapException ex) {
+            result = ex.Detail.InnerXml;
+        }
+        return result;
+    }
+
+
+
+
+    public String sendMail(MailData mailData) {
+
+
+        return null;
+    }
+
+
+}
+}

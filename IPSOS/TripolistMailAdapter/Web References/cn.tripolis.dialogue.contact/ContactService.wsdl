@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://contact.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactService" targetNamespace="http://contact.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:30.142+02:00</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="authInfo" type="tns:AuthInfo" />
+      <xs:element name="authToken" type="tns:AuthToken" />
+      <xs:element name="responseLanguage" type="tns:ResponseLanguage" />
+      <xs:element name="version" type="tns:Version" />
+      <xs:complexType name="AuthInfo">
+        <xs:sequence>
+          <xs:element name="client" type="xs:string" />
+          <xs:element name="username" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthToken">
+        <xs:sequence>
+          <xs:element name="applicationKey" type="xs:string" />
+          <xs:element name="token" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ResponseLanguage">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:simpleType name="Version">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+      <xs:complexType name="KeyValuePair">
+        <xs:sequence>
+          <xs:element name="key" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:complexType name="ServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceInfoItems">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceInfoItem" type="ns1:KeyValuePair" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatus" />
+          <xs:element minOccurs="0" name="errors">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:ServiceError" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:int" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="category" type="xs:string" />
+          <xs:element minOccurs="0" name="messageLanguage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="identifierName" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierValue" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IDResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="ns2:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingOut" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PagingOut">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:PagingIn">
+            <xs:sequence>
+              <xs:element name="totalItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="MultipleCountResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element name="counts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="count" type="ns1:KeyValuePair" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CountResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceResponse">
+            <xs:sequence>
+              <xs:element name="numberOfItems" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://contact.services.tripolis.com/" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://contact.services.tripolis.com/" />
+      <xs:complexType name="IDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ServiceRequest">
+        <xs:all />
+      </xs:complexType>
+      <xs:complexType name="SortableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:PageableListRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="sorting" type="tns:Sorting" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PageableListRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="paging" type="tns:PagingIn" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Sorting">
+        <xs:sequence>
+          <xs:element name="sortBy" type="xs:string" />
+          <xs:element name="sortOrder" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PagingIn">
+        <xs:sequence>
+          <xs:element name="pageNr" type="xs:int" />
+          <xs:element name="pageSize" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetBySmartGroupIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableSmartGroupIdRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="returnContactFields" type="ns1:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SortableSmartGroupIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="smartGroupId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SmartGroupIDsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="smartGroupIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="smartGroupId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactDatabaseIDRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupIDsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactGroupIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactGroupId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns3="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://common.services.tripolis.com/" />
+      <xs:import namespace="http://request.services.tripolis.com/" />
+      <xs:import namespace="http://response.services.tripolis.com/" />
+      <xs:element name="addToContactGroup" type="tns:addToContactGroup" />
+      <xs:element name="addToContactGroupResponse" type="tns:addToContactGroupResponse" />
+      <xs:element name="countByContactDatabaseId" type="tns:countByContactDatabaseId" />
+      <xs:element name="countByContactDatabaseIdResponse" type="tns:countByContactDatabaseIdResponse" />
+      <xs:element name="countByContactGroupIds" type="tns:countByContactGroupIds" />
+      <xs:element name="countByContactGroupIdsResponse" type="tns:countByContactGroupIdsResponse" />
+      <xs:element name="countBySearch" type="tns:countBySearch" />
+      <xs:element name="countBySearchResponse" type="tns:countBySearchResponse" />
+      <xs:element name="countBySmartGroupIds" type="tns:countBySmartGroupIds" />
+      <xs:element name="countBySmartGroupIdsResponse" type="tns:countBySmartGroupIdsResponse" />
+      <xs:element name="create" type="tns:create" />
+      <xs:element name="createResponse" type="tns:createResponse" />
+      <xs:element name="delete" type="tns:delete" />
+      <xs:element name="deleteResponse" type="tns:deleteResponse" />
+      <xs:element name="errorResponse" type="ns3:ErrorResponse" />
+      <xs:element name="getBlacklistedByContactDatabaseId" type="tns:getBlacklistedByContactDatabaseId" />
+      <xs:element name="getBlacklistedByContactDatabaseIdResponse" type="tns:getBlacklistedByContactDatabaseIdResponse" />
+      <xs:element name="getByContactDatabaseId" type="tns:getByContactDatabaseId" />
+      <xs:element name="getByContactDatabaseIdResponse" type="tns:getByContactDatabaseIdResponse" />
+      <xs:element name="getByContactGroupId" type="tns:getByContactGroupId" />
+      <xs:element name="getByContactGroupIdResponse" type="tns:getByContactGroupIdResponse" />
+      <xs:element name="getById" type="tns:getById" />
+      <xs:element name="getByIdResponse" type="tns:getByIdResponse" />
+      <xs:element name="getBySmartGroupId" type="tns:getBySmartGroupId" />
+      <xs:element name="getBySmartGroupIdResponse" type="tns:getBySmartGroupIdResponse" />
+      <xs:element name="getCommunicationHistory" type="tns:getCommunicationHistory" />
+      <xs:element name="getCommunicationHistoryResponse" type="tns:getCommunicationHistoryResponse" />
+      <xs:element name="getContactGroupSubscriptions" type="tns:getContactGroupSubscriptions" />
+      <xs:element name="getContactGroupSubscriptionsResponse" type="tns:getContactGroupSubscriptionsResponse" />
+      <xs:element name="getServiceInfo" type="tns:getServiceInfo" />
+      <xs:element name="getServiceInfoResponse" type="tns:getServiceInfoResponse" />
+      <xs:element name="removeFromContactGroup" type="tns:removeFromContactGroup" />
+      <xs:element name="removeFromContactGroupResponse" type="tns:removeFromContactGroupResponse" />
+      <xs:element name="search" type="tns:search" />
+      <xs:element name="searchResponse" type="tns:searchResponse" />
+      <xs:element name="update" type="tns:update" />
+      <xs:element name="updateResponse" type="tns:updateResponse" />
+      <xs:complexType name="getContactGroupSubscriptions">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getContactGroupSubscriptionsRequest" type="tns:GetContactGroupSubscriptionsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetContactGroupSubscriptionsRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:IDRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="groupTypes">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="groupType" type="ns1:groupType" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getContactGroupSubscriptionsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactGroupSubscriptionListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupSubscriptionListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactGroupSubscriptions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactGroupSubscription" type="tns:ContactGroupSubscriptionResponseObject" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupSubscriptionResponseObject">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ContactGroupSubscriptionRequestObject">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="label" type="xs:string" />
+              <xs:element minOccurs="0" name="name" type="xs:string" />
+              <xs:element minOccurs="0" name="creationAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="source" type="xs:string" />
+              <xs:element minOccurs="0" name="type" type="xs:string" />
+              <xs:element name="archived" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupSubscriptionRequestObject">
+        <xs:sequence>
+          <xs:element name="contactGroupId" type="xs:string" />
+          <xs:element name="confirmed" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="updateRequest" type="tns:UpdateContactRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UpdateContactRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element name="contactFields">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactField" type="tns:ContactFieldValue" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ContactFieldValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByContactGroupId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByContactGroupIdRequest" type="tns:GetByContactGroupIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetByContactGroupIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="contactGroupId" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ReturnContactFields">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactDatabaseFieldIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupIds">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupId" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupNames">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="contactDatabaseFieldGroupName" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="returnAllContactFields" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByContactGroupIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contact" type="ns1:Contact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getBySmartGroupId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getBySmartGroupIdRequest" type="ns2:GetBySmartGroupIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getBySmartGroupIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getById">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByIdRequest" type="tns:GetContactsByIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetContactsByIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="id" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getByIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contact" type="ns1:Contact" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getCommunicationHistory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getCommunicationHistory" type="tns:GetCommunicationHistoryRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCommunicationHistoryRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactId" type="xs:string" />
+              <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+              <xs:element minOccurs="0" name="jobId" type="xs:string" />
+              <xs:element minOccurs="0" name="timeRange" type="ns1:TimeRange" />
+              <xs:element minOccurs="0" name="includeFullDetails" type="xs:boolean" />
+              <xs:element minOccurs="0" name="includeTransactionalJobs" type="xs:boolean" />
+              <xs:element minOccurs="0" name="includeTestJobs" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getCommunicationHistoryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:CommunicationHistoryResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommunicationHistoryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="databaseName" type="xs:string" />
+              <xs:element minOccurs="0" name="historyObjects">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="historyObject" type="tns:CommunicationHistory" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CommunicationHistory">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ServiceResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contactId" type="xs:string" />
+              <xs:element minOccurs="0" name="workspaceId" type="xs:string" />
+              <xs:element minOccurs="0" name="channel" type="ns1:channel" />
+              <xs:element minOccurs="0" name="jobId" type="xs:string" />
+              <xs:element minOccurs="0" name="editionId" type="xs:string" />
+              <xs:element minOccurs="0" name="jobLabel" type="xs:string" />
+              <xs:element minOccurs="0" name="jobName" type="xs:string" />
+              <xs:element minOccurs="0" name="jobSubject" type="xs:string" />
+              <xs:element minOccurs="0" name="analyticsIntegrationPartners">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="analyticsIntegrationPartner" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="timeSent" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="status" type="xs:string" />
+              <xs:element name="isTransactional" type="xs:boolean" />
+              <xs:element name="isTest" type="xs:boolean" />
+              <xs:element minOccurs="0" name="bounced" type="ns1:BounceInfo" />
+              <xs:element minOccurs="0" name="skipped" type="ns1:SkipInfo" />
+              <xs:element minOccurs="0" name="firstOpenedAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="firstClickedAt" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="opens">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="open" type="ns1:Open" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="clicks">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="click" type="ns1:Click" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="create">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createRequest" type="tns:CreateContactRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateContactRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:createServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element name="contactFields">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactField" type="tns:ContactFieldValue" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createServiceRequest" abstract="true">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="createResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getBlacklistedByContactDatabaseId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getBlacklistedByContactDatabaseIdRequest" type="tns:GetByContactDatabaseIdAndTimeRangeRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetByContactDatabaseIdAndTimeRangeRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+              <xs:element minOccurs="0" name="timeRange" type="ns1:TimeRange" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getBlacklistedByContactDatabaseIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:BlacklistedContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BlacklistedContactListResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:SortableListResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="blacklistedContacts">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="blacklistedContact" type="ns1:BlacklistedContact" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getServiceInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getServiceInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:ServiceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeFromContactGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="removeFromContactGroupRequest" type="tns:RemoveFromContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RemoveFromContactGroupRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactId" type="xs:string" />
+              <xs:element name="contactGroupIds">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactGroupId" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="reference" type="xs:string" />
+              <xs:element minOccurs="0" name="ip" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="removeFromContactGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addToContactGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addToContactGroupRequest" type="tns:AddToContactGroupRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AddToContactGroupRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactId" type="xs:string" />
+              <xs:element name="contactGroupSubscriptions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="contactGroupSubscription" type="tns:ContactGroupSubscriptionRequestObject" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="reference" type="xs:string" />
+              <xs:element minOccurs="0" name="ip" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="addToContactGroupResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countBySmartGroupIds">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="countBySmartGroupIdsRequest" type="ns2:SmartGroupIDsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countBySmartGroupIdsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:MultipleCountResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deleteRequest" type="ns2:IDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:IDResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getByContactDatabaseId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="getByContactDatabaseIdRequest" type="tns:GetByContactDatabaseIdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetByContactDatabaseIdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getByContactDatabaseIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="search">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="searchRequest" type="tns:SortableContactSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SortableContactSearchRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:SortableListRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element minOccurs="0" name="contactGroupSearchParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactGroupSearchParameter" type="ns1:ContactGroupSearchParameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="contactFieldSearchParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactFieldSearchParameter" type="ns1:ContactFieldSearchParameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="fieldConditionType" type="ns1:conditionType" />
+              <xs:element minOccurs="0" name="returnContactFields" type="tns:ReturnContactFields" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="searchResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="tns:ContactListResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countBySearch">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="countBySearchRequest" type="tns:ContactSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactSearchRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:ServiceRequest">
+            <xs:sequence>
+              <xs:element name="contactDatabaseId" type="xs:string" />
+              <xs:element minOccurs="0" name="contactGroupSearchParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactGroupSearchParameter" type="ns1:ContactGroupSearchParameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="contactFieldSearchParameters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contactFieldSearchParameter" type="ns1:ContactFieldSearchParameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="fieldConditionType" type="ns1:conditionType" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="countBySearchResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:CountResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countByContactDatabaseId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="countByContactDatabaseIdRequest" type="ns2:ContactDatabaseIDRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countByContactDatabaseIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:CountResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countByContactGroupIds">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="countByContactGroupIdsRequest" type="ns2:ContactGroupIDsRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="countByContactGroupIdsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:MultipleCountResponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://common.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://common.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Contact">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactId" type="xs:string" />
+          <xs:element minOccurs="0" name="contactFields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="contactField" type="tns:ContactField" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactField">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+          <xs:element minOccurs="0" name="label" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element name="key" type="xs:boolean" />
+          <xs:element name="required" type="xs:boolean" />
+          <xs:element minOccurs="0" name="contactDatabaseFieldGroupId" type="xs:string" />
+          <xs:element name="position" type="xs:int" />
+          <xs:element minOccurs="0" name="kindOfField" type="tns:kindOfField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TimeRange">
+        <xs:sequence>
+          <xs:element name="startTime" type="xs:dateTime" />
+          <xs:element name="endTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BounceInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="bouncedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="receiverAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="bounceCode" type="xs:string" />
+          <xs:element name="bounceCategoryId" type="xs:int" />
+          <xs:element minOccurs="0" name="bounceCategoryDescription" type="xs:string" />
+          <xs:element minOccurs="0" name="bounceReason" type="xs:string" />
+          <xs:element name="hardbounce" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SkipInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="receiverAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Open">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="openedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ip" type="xs:string" />
+          <xs:element minOccurs="0" name="os" type="xs:string" />
+          <xs:element minOccurs="0" name="client" type="xs:string" />
+          <xs:element minOccurs="0" name="contact" type="tns:Contact" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Click">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobId" type="xs:string" />
+          <xs:element minOccurs="0" name="clickedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ip" type="xs:string" />
+          <xs:element minOccurs="0" name="os" type="xs:string" />
+          <xs:element minOccurs="0" name="client" type="xs:string" />
+          <xs:element minOccurs="0" name="urlId" type="xs:string" />
+          <xs:element minOccurs="0" name="urlTitle" type="xs:string" />
+          <xs:element minOccurs="0" name="urlType" type="xs:string" />
+          <xs:element minOccurs="0" name="originalUrl" type="xs:string" />
+          <xs:element minOccurs="0" name="contentType" type="xs:string" />
+          <xs:element minOccurs="0" name="socialMediaTypes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="socialMediaType" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="contact" type="tns:Contact" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BlacklistedContact">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="blacklistedEmail" type="xs:string" />
+          <xs:element minOccurs="0" name="blacklistedAt" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="reason" type="xs:string" />
+          <xs:element minOccurs="0" name="reasonNote" type="xs:string" />
+          <xs:element minOccurs="0" name="contact" type="tns:Contact" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactGroupSearchParameter">
+        <xs:sequence>
+          <xs:element name="operator" type="tns:contactGroupSearchOperator" />
+          <xs:element name="contactGroupId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ContactFieldSearchParameter">
+        <xs:sequence>
+          <xs:element name="contactDatabaseFieldId" type="xs:string" />
+          <xs:element name="operator" type="tns:contactFieldSearchOperator" />
+          <xs:element name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="groupType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="STATIC" />
+          <xs:enumeration value="SUBSCRIPTION" />
+          <xs:enumeration value="TEST" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="kindOfField">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GENERAL" />
+          <xs:enumeration value="SUMMARY" />
+          <xs:enumeration value="INTEREST" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="channel">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NEWSLETTER" />
+          <xs:enumeration value="DIRECTEMAIL" />
+          <xs:enumeration value="SMS" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="contactGroupSearchOperator">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="IN" />
+          <xs:enumeration value="NOT_IN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="contactFieldSearchOperator">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="EQUALS" />
+          <xs:enumeration value="STARTS_WITH" />
+          <xs:enumeration value="ENDS_WITH" />
+          <xs:enumeration value="CONTAINS" />
+          <xs:enumeration value="LESS_THAN" />
+          <xs:enumeration value="LESS_THAN_OR_EQUAL" />
+          <xs:enumeration value="GREATER_THAN" />
+          <xs:enumeration value="GREATER_THAN_OR_EQUAL" />
+          <xs:enumeration value="NOT_EQUALS" />
+          <xs:enumeration value="DOES_NOT_CONTAIN" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="conditionType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="AND" />
+          <xs:enumeration value="OR" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="updateResponse">
+    <wsdl:part name="parameters" element="tns:updateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBlacklistedByContactDatabaseId">
+    <wsdl:part name="parameters" element="tns:getBlacklistedByContactDatabaseId" />
+  </wsdl:message>
+  <wsdl:message name="search">
+    <wsdl:part name="parameters" element="tns:search" />
+  </wsdl:message>
+  <wsdl:message name="getByContactGroupId">
+    <wsdl:part name="parameters" element="tns:getByContactGroupId" />
+  </wsdl:message>
+  <wsdl:message name="getBySmartGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:getBySmartGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByContactDatabaseId">
+    <wsdl:part name="parameters" element="tns:getByContactDatabaseId" />
+  </wsdl:message>
+  <wsdl:message name="getByContactDatabaseIdResponse">
+    <wsdl:part name="parameters" element="tns:getByContactDatabaseIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="responseLanguageHeader">
+    <wsdl:part name="responseLanguage" element="ts:responseLanguage" />
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part name="parameters" element="tns:createResponse" />
+  </wsdl:message>
+  <wsdl:message name="getById">
+    <wsdl:part name="parameters" element="tns:getById" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfo">
+    <wsdl:part name="parameters" element="tns:getServiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="countBySmartGroupIdsResponse">
+    <wsdl:part name="parameters" element="tns:countBySmartGroupIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="countBySearchResponse">
+    <wsdl:part name="parameters" element="tns:countBySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeFromContactGroup">
+    <wsdl:part name="parameters" element="tns:removeFromContactGroup" />
+  </wsdl:message>
+  <wsdl:message name="getServiceInfoResponse">
+    <wsdl:part name="parameters" element="tns:getServiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="countByContactDatabaseIdResponse">
+    <wsdl:part name="parameters" element="tns:countByContactDatabaseIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="addToContactGroupResponse">
+    <wsdl:part name="parameters" element="tns:addToContactGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getContactGroupSubscriptions">
+    <wsdl:part name="parameters" element="tns:getContactGroupSubscriptions" />
+  </wsdl:message>
+  <wsdl:message name="removeFromContactGroupResponse">
+    <wsdl:part name="parameters" element="tns:removeFromContactGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="authInfoHeader">
+    <wsdl:part name="authInfo" element="ts:authInfo" />
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part name="parameters" element="tns:update" />
+  </wsdl:message>
+  <wsdl:message name="getBySmartGroupId">
+    <wsdl:part name="parameters" element="tns:getBySmartGroupId" />
+  </wsdl:message>
+  <wsdl:message name="getContactGroupSubscriptionsResponse">
+    <wsdl:part name="parameters" element="tns:getContactGroupSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getByContactGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:getByContactGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="errorResponseFault">
+    <wsdl:part name="errorResponse" element="tns:errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCommunicationHistory">
+    <wsdl:part name="parameters" element="tns:getCommunicationHistory" />
+  </wsdl:message>
+  <wsdl:message name="countBySmartGroupIds">
+    <wsdl:part name="parameters" element="tns:countBySmartGroupIds" />
+  </wsdl:message>
+  <wsdl:message name="getByIdResponse">
+    <wsdl:part name="parameters" element="tns:getByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="countByContactGroupIds">
+    <wsdl:part name="parameters" element="tns:countByContactGroupIds" />
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part name="parameters" element="tns:searchResponse" />
+  </wsdl:message>
+  <wsdl:message name="countByContactGroupIdsResponse">
+    <wsdl:part name="parameters" element="tns:countByContactGroupIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCommunicationHistoryResponse">
+    <wsdl:part name="parameters" element="tns:getCommunicationHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBlacklistedByContactDatabaseIdResponse">
+    <wsdl:part name="parameters" element="tns:getBlacklistedByContactDatabaseIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="addToContactGroup">
+    <wsdl:part name="parameters" element="tns:addToContactGroup" />
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part name="parameters" element="tns:create" />
+  </wsdl:message>
+  <wsdl:message name="countBySearch">
+    <wsdl:part name="parameters" element="tns:countBySearch" />
+  </wsdl:message>
+  <wsdl:message name="countByContactDatabaseId">
+    <wsdl:part name="parameters" element="tns:countByContactDatabaseId" />
+  </wsdl:message>
+  <wsdl:portType name="ContactService">
+    <wsdl:operation name="getContactGroupSubscriptions">
+      <wsdl:input name="getContactGroupSubscriptions" message="tns:getContactGroupSubscriptions" />
+      <wsdl:output name="getContactGroupSubscriptionsResponse" message="tns:getContactGroupSubscriptionsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input name="update" message="tns:update" />
+      <wsdl:output name="updateResponse" message="tns:updateResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByContactGroupId">
+      <wsdl:input name="getByContactGroupId" message="tns:getByContactGroupId" />
+      <wsdl:output name="getByContactGroupIdResponse" message="tns:getByContactGroupIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getBySmartGroupId">
+      <wsdl:input name="getBySmartGroupId" message="tns:getBySmartGroupId" />
+      <wsdl:output name="getBySmartGroupIdResponse" message="tns:getBySmartGroupIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <wsdl:input name="getById" message="tns:getById" />
+      <wsdl:output name="getByIdResponse" message="tns:getByIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getCommunicationHistory">
+      <wsdl:input name="getCommunicationHistory" message="tns:getCommunicationHistory" />
+      <wsdl:output name="getCommunicationHistoryResponse" message="tns:getCommunicationHistoryResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input name="create" message="tns:create" />
+      <wsdl:output name="createResponse" message="tns:createResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getBlacklistedByContactDatabaseId">
+      <wsdl:input name="getBlacklistedByContactDatabaseId" message="tns:getBlacklistedByContactDatabaseId" />
+      <wsdl:output name="getBlacklistedByContactDatabaseIdResponse" message="tns:getBlacklistedByContactDatabaseIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <wsdl:input name="getServiceInfo" message="tns:getServiceInfo" />
+      <wsdl:output name="getServiceInfoResponse" message="tns:getServiceInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="removeFromContactGroup">
+      <wsdl:input name="removeFromContactGroup" message="tns:removeFromContactGroup" />
+      <wsdl:output name="removeFromContactGroupResponse" message="tns:removeFromContactGroupResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="addToContactGroup">
+      <wsdl:input name="addToContactGroup" message="tns:addToContactGroup" />
+      <wsdl:output name="addToContactGroupResponse" message="tns:addToContactGroupResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="countBySmartGroupIds">
+      <wsdl:input name="countBySmartGroupIds" message="tns:countBySmartGroupIds" />
+      <wsdl:output name="countBySmartGroupIdsResponse" message="tns:countBySmartGroupIdsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input name="delete" message="tns:delete" />
+      <wsdl:output name="deleteResponse" message="tns:deleteResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getByContactDatabaseId">
+      <wsdl:input name="getByContactDatabaseId" message="tns:getByContactDatabaseId" />
+      <wsdl:output name="getByContactDatabaseIdResponse" message="tns:getByContactDatabaseIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input name="search" message="tns:search" />
+      <wsdl:output name="searchResponse" message="tns:searchResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="countBySearch">
+      <wsdl:input name="countBySearch" message="tns:countBySearch" />
+      <wsdl:output name="countBySearchResponse" message="tns:countBySearchResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="countByContactDatabaseId">
+      <wsdl:input name="countByContactDatabaseId" message="tns:countByContactDatabaseId" />
+      <wsdl:output name="countByContactDatabaseIdResponse" message="tns:countByContactDatabaseIdResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="countByContactGroupIds">
+      <wsdl:input name="countByContactGroupIds" message="tns:countByContactGroupIds" />
+      <wsdl:output name="countByContactGroupIdsResponse" message="tns:countByContactGroupIdsResponse" />
+      <wsdl:fault name="errorResponse" message="tns:errorResponseFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ContactServiceSoapBinding" type="tns:ContactService">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getContactGroupSubscriptions">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getContactGroupSubscriptions">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getContactGroupSubscriptionsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="update">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByContactGroupId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByContactGroupId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByContactGroupIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBySmartGroupId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getBySmartGroupId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBySmartGroupIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getById">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getById">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCommunicationHistory">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getCommunicationHistory">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getCommunicationHistoryResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="create">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBlacklistedByContactDatabaseId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getBlacklistedByContactDatabaseId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBlacklistedByContactDatabaseIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceInfo">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getServiceInfo">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getServiceInfoResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeFromContactGroup">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="removeFromContactGroup">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeFromContactGroupResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addToContactGroup">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="addToContactGroup">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addToContactGroupResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countBySmartGroupIds">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="countBySmartGroupIds">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="countBySmartGroupIdsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="delete">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByContactDatabaseId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="getByContactDatabaseId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getByContactDatabaseIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countBySearch">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="countBySearch">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="countBySearchResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="search">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countByContactDatabaseId">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="countByContactDatabaseId">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="countByContactDatabaseIdResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="countByContactGroupIds">
+      <soap12:operation soapAction="" style="document" />
+      <wsdl:input name="countByContactGroupIds">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:header message="tns:authInfoHeader" part="authInfo" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="countByContactGroupIdsResponse">
+        <soap12:header message="tns:responseLanguageHeader" part="responseLanguage" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="errorResponse">
+        <soap12:fault use="literal" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContactService">
+    <wsdl:port name="ContactServicePort" binding="tns:ContactServiceSoapBinding">
+      <soap12:address location="https://dialogue.tripolis.cn/api2/soap/ContactService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
