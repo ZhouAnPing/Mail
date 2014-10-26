@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1F645E0-4E5E-4D5C-B109-8DFED0F82BE9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChinaUnion_Agent</RootNamespace>
+    <AssemblyName>ChinaUnion_Agent</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ChinaUnion-img2ico.net.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LinqToExcel">
+      <HintPath>Dll\LinqToExcel_1.7.1\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>Dll\LinqToExcel_1.7.1\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Dll\Json60r6\Bin\Net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>Dll\LinqToExcel_1.7.1\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WHC.OrderWater.Commons, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\WHC.OrderWater.Commons.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BO\Agent.cs" />
+    <Compile Include="BO\AgentFee.cs" />
+    <Compile Include="BO\AgentType.cs" />
+    <Compile Include="BO\AgentTypeComment.cs" />
+    <Compile Include="BO\MailJob.cs" />
+    <Compile Include="Dao\AgentDao.cs" />
+    <Compile Include="Dao\AgentFeeDao.cs" />
+    <Compile Include="Dao\AgentTypeCommentDao.cs" />
+    <Compile Include="Dao\AgentTypeDao.cs" />
+    <Compile Include="Dao\MailJobDao.cs" />
+    <Compile Include="frmAgentImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAgentImport.Designer.cs">
+      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgentQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAgentQuery.Designer.cs">
+      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMailAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMailAddress.Designer.cs">
+      <DependentUpon>frmMailAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMailReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMailReport.Designer.cs">
+      <DependentUpon>frmMailReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMailSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMailSend.Designer.cs">
+      <DependentUpon>frmMailSend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMailReSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMailReSend.Designer.cs">
+      <DependentUpon>frmMailReSend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgress.Designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Util\HttpHelper.cs" />
+    <Compile Include="Form\frmWechatManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmWechatManagement.Designer.cs">
+      <DependentUpon>frmWechatManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wechat\WechatUtil.cs" />
+    <EmbeddedResource Include="frmAgentImport.resx">
+      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAgentQuery.resx">
+      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMailAddress.resx">
+      <DependentUpon>frmMailAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMailReport.resx">
+      <DependentUpon>frmMailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMailSend.resx">
+      <DependentUpon>frmMailSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMailReSend.resx">
+      <DependentUpon>frmMailReSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Form\frmWechatManagement.resx">
+      <DependentUpon>frmWechatManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Dll\Json60r6.zip" />
+    <None Include="Dll\LinqToExcel_1.7.1.zip" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BSE.Windows.Forms\BSE.Windows.Forms.csproj">
+      <Project>{9CA367B8-0B98-49D1-84FB-735E612E3BA9}</Project>
+      <Name>BSE.Windows.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TripolisDialogueAdapter\TripolisDialogueAdapter.csproj">
+      <Project>{45ad6e86-0a45-4e9e-b21a-9876137a6a91}</Project>
+      <Name>TripolisDialogueAdapter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ChinaUnion-img2ico.net.ico" />
+    <Content Include="Dll\Microsoft.Web.Services3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dll\WHC.OrderWater.Commons.dll" />
+    <Content Include="Dll\WHC.OrderWater.Commons.XML" />
+    <Content Include="html\footer.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="html\head.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -9,9 +9,15 @@ namespace TripolisDialogueAdapter.BO
     [Serializable()]
     public class ReportData
     {
+        public EmailSummary emailSummary;
+        
+        public SkippedContactModel[] skipped;       
+        public BouncedContact[] bounced;
         public Contact[] sent;
         public Open[] opened;
+
         public Click[] clicked;
-        public BouncedContact[] bounced;        
+       
+        
     }
 }

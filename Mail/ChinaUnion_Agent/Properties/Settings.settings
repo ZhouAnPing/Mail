@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChinaUnion_Agent.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBConnectString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">User Id=root;Host=115.29.229.134;Database=chinaunion;password=c513324665;charset=utf8</Value>
+    </Setting>
+    <Setting Name="TripoisUserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+    </Setting>
+    <Setting Name="TripolisPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test123</Value>
+    </Setting>
+    <Setting Name="TripolisClient" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Training</Value>
+    </Setting>
+    <Setting Name="MailFromAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+    </Setting>
+    <Setting Name="MailReplyAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+    </Setting>
+    <Setting Name="MailSender" Type="System.String" Scope="User">
+      <Value Profile="(Default)">上海联通</Value>
+    </Setting>
+    <Setting Name="MailSubject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">佣金告知单</Value>
+    </Setting>
+    <Setting Name="TripolisDBId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MjYxMTI2MTFnUydR54n7AA</Value>
+    </Setting>
+    <Setting Name="TripolisWorkspaceId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MjA3MDIwNzB7FCIp4OwTNA</Value>
+    </Setting>
+    <Setting Name="TripolisDirectEmailId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NTk2NjAzNTkBUvjETM2B7g</Value>
+    </Setting>
+    <Setting Name="TripolisEmailTypeId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MTgyOTE4MjnRoLwFOdhKZw</Value>
+    </Setting>
+    <Setting Name="Wechat_Corpid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wx4fe8b74e01fffcbb</Value>
+    </Setting>
+    <Setting Name="Wechat_Secret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8p7q04VR4gYFAaZNg16nuABflvhW-nJDxKCW34zGNoqGoh5BL6ahzOF--ddPhFKU</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

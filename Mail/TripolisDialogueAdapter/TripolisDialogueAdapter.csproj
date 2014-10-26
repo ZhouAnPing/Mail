@@ -45,7 +45,7 @@
     <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>lib\Microsoft.Web.Services3.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -87,6 +87,7 @@
     <Compile Include="BO\ReportTypeEnum.cs" />
     <Compile Include="BO\ContactFileInfo.cs" />
     <Compile Include="BO\KeyValuePair.cs" />
+    <Compile Include="ChinaUnionAdapter.cs" />
     <Compile Include="DAO\FeedbackBO.cs" />
     <Compile Include="DAO\FeedbackDao.cs" />
     <Compile Include="DAO\ReportDao.cs" />

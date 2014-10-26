@@ -38,6 +38,62 @@ namespace TripolisDialogueAdapter.Action
             importService.Proxy = oWebProxy;
         }
 
+
+       /// <summary>
+       /// import contact
+       /// </summary>
+        /// <param name="contactDatabaseId">contactDatabaseId</param>
+        /// <param name="groupId">groupId</param>
+        /// <param name="fileName">fileName</param>
+        /// <param name="reportReceiverAddress">reportReceiverAddress</param>
+        /// <param name="importFile">importFile</param>
+       /// <returns></returns>
+        public String importContacts(String contactDatabaseId, String groupId, String fileName, String reportReceiverAddress, byte[] importFile)
+        {
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("importContactFromFTP:contactDatabaseId=" + contactDatabaseId);
+            }
+            String result;
+            cn.tripolis.dialogue.import.ImportContactsRequest request = new cn.tripolis.dialogue.import.ImportContactsRequest();
+            try
+            {
+
+                request.contactDatabaseId = contactDatabaseId;
+                string[] contactGroupIds = new string[1];
+                contactGroupIds[0] = groupId;
+                request.contactGroupIds = contactGroupIds;
+                request.extension = cn.tripolis.dialogue.import.fileExtension.CSV;
+                request.fileName = fileName;
+                request.importFile = importFile;
+               
+                request.importMode = cn.tripolis.dialogue.import.importMode.ADD_TO_GROUP;
+                request.reportReceiverAddress = reportReceiverAddress;
+                
+
+                cn.tripolis.dialogue.import.ImportIDResponse response = importService.importContacts(request);
+
+                result = response.importId;
+
+
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (!Util.isCodeExist(ex.Detail) || Util.getExistId(ex.Detail).Equals(""))
+                {
+                    result = ex.Detail.InnerXml;
+                    if (logger.IsDebugEnabled)
+                    {
+                        logger.Debug("error happens in import contact, error is" + result);
+                    }
+                    throw new Exception(ex.Detail.InnerXml);
+                }
+                result = Util.getExistId(ex.Detail);
+
+            }
+            return result;
+        }
+
        
         /// <summary>
         /// FTP contact file

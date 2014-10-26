@@ -89,7 +89,7 @@ namespace SendMailForJob
                     String emailTypeId = Settings.Default.emailTypeId;// "MTc3NDE3NzR93tsKXN3m4A";
                     String ftpAccountId = Settings.Default.ftpAccountId;// "NTMzNTMzNTMdFDFVppf2iQ";
 
-                    String fromName = "前程无忧(51Job）";// Settings.Default.fromName;// "51Job";
+                    String fromName = "前程无忧(51Job)";// Settings.Default.fromName;// "51Job";
                     String fromAddress = Settings.Default.fromAddress;// "zapjx@hotmail.com";
                     String reportReceiverAddress = Settings.Default.reportReceiverAddress;// "zapjx@hotmail.com";
 

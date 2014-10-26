@@ -60,7 +60,7 @@ namespace TripolisDialogueAdapter
             String client = "Training";
             String userName = "zapjx@hotmail.com";
             String password = "Test123";
-            String databaseID = "MjU4MDI1ODCzAn45YUUpJw";//"MjU1MTI1NTFFUVus6S83qA";
+           // String databaseID = "MjU4MDI1ODCzAn45YUUpJw";//"MjU1MTI1NTFFUVus6S83qA";
 
 
             //String client = "51job";
@@ -96,7 +96,7 @@ namespace TripolisDialogueAdapter
             Console.WriteLine(mailReport.bounced);
 
             Console.ReadLine();
-            return;
+           
 
 
             DialogueSetting dialogueSetting = new DialogueSetting();

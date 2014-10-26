@@ -118,6 +118,51 @@ namespace TripolisDialogueAdapter.Action
             return result;
         }
 
+        /// <summary>
+        /// publishing email
+        /// </summary>
+        /// <param name="contactGroupId">contact group id</param>
+        /// <param name="emailId">email id</param>
+        /// <returns>publish status</returns>
+        public String publishingTestEmail(String contactGroupId, String emailId, DateTime scheduleAt)
+        {
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("publishingEmail:contactGroupId=" + contactGroupId + ",emailId=" + emailId);
+            }
+            String result;
+
+            cn.tripolis.dialogue.publish.PublishTestEmailRequest request = new cn.tripolis.dialogue.publish.PublishTestEmailRequest();
+            try
+            {
+                request.testContactGroupId = contactGroupId;
+                request.directEmailId = emailId;                
+               // request.scheduleAtSpecified = true;
+               // request.scheduleAt = scheduleAt;
+
+                // request.              
+                cn.tripolis.dialogue.publish.IDResponse response = publishingService.publishTestEmail(request);
+
+                result = response.id;
+
+
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (!Util.isCodeExist(ex.Detail) || Util.getExistId(ex.Detail).Equals(""))
+                {
+                    result = ex.Detail.InnerXml;
+                    if (logger.IsDebugEnabled)
+                    {
+                        logger.Debug("error happens in publishing direct email, error is" + result);
+                    }
+                    throw new Exception(ex.Detail.InnerXml);
+                }
+                result = Util.getExistId(ex.Detail);
+            }
+            return result;
+        }
+
         public Job getPublishStatus(String publishId)
         {
             if (logger.IsDebugEnabled)

@@ -101,6 +101,10 @@ namespace TripolisDialogueAdapter.Action
             try
             {
                 request.contactDatabaseId = databaseId;
+                request.paging = new cn.tripolis.dialogue.contactDatabaseField.PagingIn();
+                request.paging.pageSize = 300;
+                request.paging.pageNr = 1;
+                
                 cn.tripolis.dialogue.contactDatabaseField.ContactDatabaseFieldListResponse response = contactDatabaseFieldService.getByContactDatabaseId(request);
 
                 foreach (cn.tripolis.dialogue.contactDatabaseField.ContactDatabaseField item in response.contactDatabaseFields)

@@ -163,6 +163,8 @@ namespace TripolisDialogueAdapter.Action
                 request.paging.pageNr = pageNumber;
 
                 ClicksListResponse response = reportingService.getClickedByMailJobId(request);
+
+              
                 if (response != null)
                 {
                     clicks = response.clicks;
@@ -208,7 +210,7 @@ namespace TripolisDialogueAdapter.Action
                 request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
                 request.paging.pageSize = pageSize;
                 request.paging.pageNr = pageNumber;
-
+                
                 BouncedContactListResponse response = reportingService.getBouncedByMailJobId(request);
                 if (response != null)
                 {
@@ -220,6 +222,98 @@ namespace TripolisDialogueAdapter.Action
                 throw new Exception(ex.Detail.InnerXml);
             }
             return bouncedContacts;
+        }
+
+        /// <summary>
+        /// get mail Report for Skipped
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public SkippedContactModel[] getSkippedByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
+        {
+            SkippedContactModel[] skippedContacts = null; ;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getSkippedByMailJobId:mailJobId=" + mailJobId);
+            }
+
+
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+
+                request.returnContactFields = new ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;
+
+                SkippedContactListResponse response = reportingService.getSkippedByMailJobId(request);
+                if (response != null)
+                {
+                    skippedContacts = response.skippedContacts;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return skippedContacts;
+        }
+
+        /// <summary>
+        /// get mail Report for Delivery
+        /// </summary>
+        /// <param name="mailJobId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        public Contact[] getDeliveriedByMailJobId(String mailJobId, DateTime startTime, DateTime endTime, int pageSize, int pageNumber)
+        {
+            Contact[] contacts = null; ;
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("getDeliveriedByMailJobId:mailJobId=" + mailJobId);
+            }
+
+
+            ReportingWithinTimeRangeByMailJobIdRequest request = new ReportingWithinTimeRangeByMailJobIdRequest();
+            try
+            {
+                request.mailJobId = mailJobId;
+
+                request.returnContactFields = new ReturnContactFields();
+                request.returnContactFields.contactDatabaseFieldGroupNames = new string[] { "reportgroup" };
+                request.timeRange = new cn.tripolis.dialogue.reporting.TimeRange();
+                request.timeRange.startTime = startTime;
+                request.timeRange.endTime = endTime;
+
+                request.paging = new cn.tripolis.dialogue.reporting.PagingIn();
+                request.paging.pageSize = pageSize;
+                request.paging.pageNr = pageNumber;
+
+                ContactListResponse response = reportingService.getDeliveredByMailJobId(request);
+                if (response != null)
+                {
+                    contacts = response.contacts;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                throw new Exception(ex.Detail.InnerXml);
+            }
+            return contacts;
         }
 
        /// <summary>

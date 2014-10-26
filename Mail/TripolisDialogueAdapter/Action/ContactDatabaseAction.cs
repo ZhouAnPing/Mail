@@ -116,33 +116,33 @@ namespace TripolisDialogueAdapter.Action
                 
                 CreateDatabaseFieldGroupInContactDatabase createDatabaseFieldGroupInContactDatabase = new CreateDatabaseFieldGroupInContactDatabase
                     {
-                        contactDatabaseFields = new CreateDatabaseFieldInContactDatabase[2]
+                        contactDatabaseFields = new CreateDatabaseFieldInContactDatabase[1]
                     };
+
+                //CreateDatabaseFieldInContactDatabase createDatabaseFieldInContactDatabase = new CreateDatabaseFieldInContactDatabase
+                //    {
+                //        label = "pid",
+                //        name = MailAdapter.PID,
+                //        type = contactDatabaseFieldType.STRING,
+                //        key = true,
+                //        required = true,
+                //        inOverview = true,
+                //        kindOfField = kindOfField.SUMMARY
+                //    };
+                //createDatabaseFieldInContactDatabase.defaultValue = DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
+               // createDatabaseFieldGroupInContactDatabase.contactDatabaseFields.SetValue(createDatabaseFieldInContactDatabase, 0);
 
                 CreateDatabaseFieldInContactDatabase createDatabaseFieldInContactDatabase = new CreateDatabaseFieldInContactDatabase
                     {
-                        label = "pid",
-                        name = MailAdapter.PID,
-                        type = contactDatabaseFieldType.STRING,
+                        label = "email",
+                        name = MailAdapter.EMAIL,
+                        type = contactDatabaseFieldType.EMAIL,
                         key = true,
                         required = true,
                         inOverview = true,
                         kindOfField = kindOfField.SUMMARY
                     };
-                //createDatabaseFieldInContactDatabase.defaultValue = DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
                 createDatabaseFieldGroupInContactDatabase.contactDatabaseFields.SetValue(createDatabaseFieldInContactDatabase, 0);
-
-                createDatabaseFieldInContactDatabase = new CreateDatabaseFieldInContactDatabase
-                    {
-                        label = "email",
-                        name = MailAdapter.EMAIL,
-                        type = contactDatabaseFieldType.EMAIL,
-                        key = false,
-                        required = true,
-                        inOverview = true,
-                        kindOfField = kindOfField.SUMMARY
-                    };
-                createDatabaseFieldGroupInContactDatabase.contactDatabaseFields.SetValue(createDatabaseFieldInContactDatabase, 1);
 
                 request.contactDatabaseFieldGroups.SetValue(createDatabaseFieldGroupInContactDatabase, 0);
 
