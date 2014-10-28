@@ -165,7 +165,163 @@ namespace ChinaUnion_Agent.Dao
                 return command.ExecuteNonQuery();
             }
         }
-        
+         /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public AgentFee Get(String agentFeeMonth, string agentNo)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT t1.agentNo, t1.agentFeeSeq,");
+            for (int i = 1; i <= 50; i++)
+            {
+                sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
+            }
+
+            sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo) agentType,");
+            sb.Append("(select group_concat(t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType) agentTypeComment,");
+            sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
+
+            sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");
+
+            sb.Append("  and t1.agentNo= t2.agentNo ");
+            sb.Append("  and t1.agentNo= @agentNo ");
+            string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentFeeMonth", agentFeeMonth);
+                command.Parameters.AddWithValue("@agentNo", agentNo);
+                MySqlDataReader reader = command.ExecuteReader();
+               
+                AgentFee agentFee = null;
+                if (reader.Read())
+                {
+                    agentFee = new AgentFee();
+
+                    agentFee.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentFee.agentFeeSeq = reader["agentFeeSeq"] == DBNull.Value ? null : reader["agentFeeSeq"].ToString();
+
+                    agentFee.feeName1 = reader["feeName1"] == DBNull.Value ? null : reader["feeName1"].ToString();
+                    agentFee.fee1 = reader["fee1"] == DBNull.Value ? null : reader["fee1"].ToString();
+                    agentFee.feeName2 = reader["feeName2"] == DBNull.Value ? null : reader["feeName2"].ToString();
+                    agentFee.fee2 = reader["fee2"] == DBNull.Value ? null : reader["fee2"].ToString();
+                    agentFee.feeName3 = reader["feeName3"] == DBNull.Value ? null : reader["feeName3"].ToString();
+                    agentFee.fee3 = reader["fee3"] == DBNull.Value ? null : reader["fee3"].ToString();
+                    agentFee.feeName4 = reader["feeName4"] == DBNull.Value ? null : reader["feeName4"].ToString();
+                    agentFee.fee4 = reader["fee4"] == DBNull.Value ? null : reader["fee4"].ToString();
+                    agentFee.feeName5 = reader["feeName5"] == DBNull.Value ? null : reader["feeName5"].ToString();
+                    agentFee.fee5 = reader["fee5"] == DBNull.Value ? null : reader["fee5"].ToString();
+                    agentFee.feeName6 = reader["feeName6"] == DBNull.Value ? null : reader["feeName6"].ToString();
+                    agentFee.fee6 = reader["fee6"] == DBNull.Value ? null : reader["fee6"].ToString();
+                    agentFee.feeName7 = reader["feeName7"] == DBNull.Value ? null : reader["feeName7"].ToString();
+                    agentFee.fee7 = reader["fee7"] == DBNull.Value ? null : reader["fee7"].ToString();
+                    agentFee.feeName8 = reader["feeName8"] == DBNull.Value ? null : reader["feeName8"].ToString();
+                    agentFee.fee8 = reader["fee8"] == DBNull.Value ? null : reader["fee8"].ToString();
+                    agentFee.feeName9 = reader["feeName9"] == DBNull.Value ? null : reader["feeName9"].ToString();
+                    agentFee.fee9 = reader["fee9"] == DBNull.Value ? null : reader["fee9"].ToString();
+                    agentFee.feeName10 = reader["feeName10"] == DBNull.Value ? null : reader["feeName10"].ToString();
+                    agentFee.fee10 = reader["fee10"] == DBNull.Value ? null : reader["fee10"].ToString();
+                    agentFee.feeName11 = reader["feeName11"] == DBNull.Value ? null : reader["feeName11"].ToString();
+                    agentFee.fee11 = reader["fee11"] == DBNull.Value ? null : reader["fee11"].ToString();
+                    agentFee.feeName12 = reader["feeName12"] == DBNull.Value ? null : reader["feeName12"].ToString();
+                    agentFee.fee12 = reader["fee12"] == DBNull.Value ? null : reader["fee12"].ToString();
+                    agentFee.feeName13 = reader["feeName13"] == DBNull.Value ? null : reader["feeName13"].ToString();
+                    agentFee.fee13 = reader["fee13"] == DBNull.Value ? null : reader["fee13"].ToString();
+                    agentFee.feeName14 = reader["feeName14"] == DBNull.Value ? null : reader["feeName14"].ToString();
+                    agentFee.fee14 = reader["fee14"] == DBNull.Value ? null : reader["fee14"].ToString();
+                    agentFee.feeName15 = reader["feeName15"] == DBNull.Value ? null : reader["feeName15"].ToString();
+                    agentFee.fee15 = reader["fee15"] == DBNull.Value ? null : reader["fee15"].ToString();
+                    agentFee.feeName16 = reader["feeName16"] == DBNull.Value ? null : reader["feeName16"].ToString();
+                    agentFee.fee16 = reader["fee16"] == DBNull.Value ? null : reader["fee16"].ToString();
+                    agentFee.feeName17 = reader["feeName17"] == DBNull.Value ? null : reader["feeName17"].ToString();
+                    agentFee.fee17 = reader["fee17"] == DBNull.Value ? null : reader["fee17"].ToString();
+                    agentFee.feeName18 = reader["feeName18"] == DBNull.Value ? null : reader["feeName18"].ToString();
+                    agentFee.fee18 = reader["fee18"] == DBNull.Value ? null : reader["fee18"].ToString();
+                    agentFee.feeName19 = reader["feeName19"] == DBNull.Value ? null : reader["feeName19"].ToString();
+                    agentFee.fee19 = reader["fee19"] == DBNull.Value ? null : reader["fee19"].ToString();
+                    agentFee.feeName20 = reader["feeName20"] == DBNull.Value ? null : reader["feeName20"].ToString();
+                    agentFee.fee20 = reader["fee20"] == DBNull.Value ? null : reader["fee20"].ToString();
+                    agentFee.feeName21 = reader["feeName21"] == DBNull.Value ? null : reader["feeName21"].ToString();
+                    agentFee.fee21 = reader["fee21"] == DBNull.Value ? null : reader["fee21"].ToString();
+                    agentFee.feeName22 = reader["feeName22"] == DBNull.Value ? null : reader["feeName22"].ToString();
+                    agentFee.fee22 = reader["fee22"] == DBNull.Value ? null : reader["fee22"].ToString();
+                    agentFee.feeName23 = reader["feeName23"] == DBNull.Value ? null : reader["feeName23"].ToString();
+                    agentFee.fee23 = reader["fee23"] == DBNull.Value ? null : reader["fee23"].ToString();
+                    agentFee.feeName24 = reader["feeName24"] == DBNull.Value ? null : reader["feeName24"].ToString();
+                    agentFee.fee24 = reader["fee24"] == DBNull.Value ? null : reader["fee24"].ToString();
+                    agentFee.feeName25 = reader["feeName25"] == DBNull.Value ? null : reader["feeName25"].ToString();
+                    agentFee.fee25 = reader["fee25"] == DBNull.Value ? null : reader["fee25"].ToString();
+                    agentFee.feeName26 = reader["feeName26"] == DBNull.Value ? null : reader["feeName26"].ToString();
+                    agentFee.fee26 = reader["fee26"] == DBNull.Value ? null : reader["fee26"].ToString();
+                    agentFee.feeName27 = reader["feeName27"] == DBNull.Value ? null : reader["feeName27"].ToString();
+                    agentFee.fee27 = reader["fee27"] == DBNull.Value ? null : reader["fee27"].ToString();
+                    agentFee.feeName28 = reader["feeName28"] == DBNull.Value ? null : reader["feeName28"].ToString();
+                    agentFee.fee28 = reader["fee28"] == DBNull.Value ? null : reader["fee28"].ToString();
+                    agentFee.feeName29 = reader["feeName29"] == DBNull.Value ? null : reader["feeName29"].ToString();
+                    agentFee.fee29 = reader["fee29"] == DBNull.Value ? null : reader["fee29"].ToString();
+                    agentFee.feeName30 = reader["feeName30"] == DBNull.Value ? null : reader["feeName30"].ToString();
+                    agentFee.fee30 = reader["fee30"] == DBNull.Value ? null : reader["fee30"].ToString();
+                    agentFee.feeName31 = reader["feeName31"] == DBNull.Value ? null : reader["feeName31"].ToString();
+                    agentFee.fee31 = reader["fee31"] == DBNull.Value ? null : reader["fee31"].ToString();
+                    agentFee.feeName32 = reader["feeName32"] == DBNull.Value ? null : reader["feeName32"].ToString();
+                    agentFee.fee32 = reader["fee32"] == DBNull.Value ? null : reader["fee32"].ToString();
+                    agentFee.feeName33 = reader["feeName33"] == DBNull.Value ? null : reader["feeName33"].ToString();
+                    agentFee.fee33 = reader["fee33"] == DBNull.Value ? null : reader["fee33"].ToString();
+                    agentFee.feeName34 = reader["feeName34"] == DBNull.Value ? null : reader["feeName34"].ToString();
+                    agentFee.fee34 = reader["fee34"] == DBNull.Value ? null : reader["fee34"].ToString();
+                    agentFee.feeName35 = reader["feeName35"] == DBNull.Value ? null : reader["feeName35"].ToString();
+                    agentFee.fee35 = reader["fee35"] == DBNull.Value ? null : reader["fee35"].ToString();
+                    agentFee.feeName36 = reader["feeName36"] == DBNull.Value ? null : reader["feeName36"].ToString();
+                    agentFee.fee36 = reader["fee36"] == DBNull.Value ? null : reader["fee36"].ToString();
+                    agentFee.feeName37 = reader["feeName37"] == DBNull.Value ? null : reader["feeName37"].ToString();
+                    agentFee.fee37 = reader["fee37"] == DBNull.Value ? null : reader["fee37"].ToString();
+                    agentFee.feeName38 = reader["feeName38"] == DBNull.Value ? null : reader["feeName38"].ToString();
+                    agentFee.fee38 = reader["fee38"] == DBNull.Value ? null : reader["fee38"].ToString();
+                    agentFee.feeName39 = reader["feeName39"] == DBNull.Value ? null : reader["feeName39"].ToString();
+                    agentFee.fee39 = reader["fee39"] == DBNull.Value ? null : reader["fee39"].ToString();
+                    agentFee.feeName40 = reader["feeName40"] == DBNull.Value ? null : reader["feeName40"].ToString();
+                    agentFee.fee40 = reader["fee40"] == DBNull.Value ? null : reader["fee40"].ToString();
+                    agentFee.feeName41 = reader["feeName41"] == DBNull.Value ? null : reader["feeName41"].ToString();
+                    agentFee.fee41 = reader["fee41"] == DBNull.Value ? null : reader["fee41"].ToString();
+                    agentFee.feeName42 = reader["feeName42"] == DBNull.Value ? null : reader["feeName42"].ToString();
+                    agentFee.fee42 = reader["fee42"] == DBNull.Value ? null : reader["fee42"].ToString();
+                    agentFee.feeName43 = reader["feeName43"] == DBNull.Value ? null : reader["feeName43"].ToString();
+                    agentFee.fee43 = reader["fee43"] == DBNull.Value ? null : reader["fee43"].ToString();
+                    agentFee.feeName44 = reader["feeName44"] == DBNull.Value ? null : reader["feeName44"].ToString();
+                    agentFee.fee44 = reader["fee44"] == DBNull.Value ? null : reader["fee44"].ToString();
+                    agentFee.feeName45 = reader["feeName45"] == DBNull.Value ? null : reader["feeName45"].ToString();
+                    agentFee.fee45 = reader["fee45"] == DBNull.Value ? null : reader["fee45"].ToString();
+                    agentFee.feeName46 = reader["feeName46"] == DBNull.Value ? null : reader["feeName46"].ToString();
+                    agentFee.fee46 = reader["fee46"] == DBNull.Value ? null : reader["fee46"].ToString();
+                    agentFee.feeName47 = reader["feeName47"] == DBNull.Value ? null : reader["feeName47"].ToString();
+                    agentFee.fee47 = reader["fee47"] == DBNull.Value ? null : reader["fee47"].ToString();
+                    agentFee.feeName48 = reader["feeName48"] == DBNull.Value ? null : reader["feeName48"].ToString();
+                    agentFee.fee48 = reader["fee48"] == DBNull.Value ? null : reader["fee48"].ToString();
+                    agentFee.feeName49 = reader["feeName49"] == DBNull.Value ? null : reader["feeName49"].ToString();
+                    agentFee.fee49 = reader["fee49"] == DBNull.Value ? null : reader["fee49"].ToString();
+                    agentFee.feeName50 = reader["feeName50"] == DBNull.Value ? null : reader["feeName50"].ToString();
+                    agentFee.fee50 = reader["fee50"] == DBNull.Value ? null : reader["fee50"].ToString();
+
+
+                    agentFee.feeTotal = reader["feeTotal"] == DBNull.Value ? null : reader["feeTotal"].ToString();
+
+                    Agent agent = new Agent();
+                    agent.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    agent.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+                    agent.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    agent.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
+                    agent.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
+                    agent.agentTypeComment = reader["agentTypeComment"] == DBNull.Value ? null : reader["agentTypeComment"].ToString();
+
+                    agentFee.agent = agent;
+
+                    
+                }
+                return agentFee;
+            }
+        }
         /// <summary> 
         /// 查询集合 
         /// </summary> 
