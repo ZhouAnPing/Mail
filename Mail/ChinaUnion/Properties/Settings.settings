@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JobMailTools.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ContactDatabaseId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MjU1MTI1NTFFUVus6S83qA</Value>
+    </Setting>
+    <Setting Name="WorkspaceId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MjAwNzIwMDdKRmT4g3bWOg</Value>
+    </Setting>
+    <Setting Name="EmailTypeId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MTc2MDE3NjBcUp_pC*h71w</Value>
+    </Setting>
+    <Setting Name="DirectEmailId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MzIwODYyMzI99gkUiCfOmQ</Value>
+    </Setting>
+    <Setting Name="EmailFiledName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">email</Value>
+    </Setting>
+    <Setting Name="PerBatchSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="PerBatchWaitInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="PerMailWaitInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="client" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Training</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zapjx@hotmail.com</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test123</Value>
+    </Setting>
+    <Setting Name="proxyUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyDomain" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReportRefreshInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ftpServerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp.free3v.net</Value>
+    </Setting>
+    <Setting Name="ftpUserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zhouanping</Value>
+    </Setting>
+    <Setting Name="ftpPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test123</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Wechat.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">L3TqpgplkguXp1Dtpz68NkBOCHE9fT</Value>
+    </Setting>
+    <Setting Name="CorpID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wx4fe8b74e01fffcbb</Value>
+    </Setting>
+    <Setting Name="EncodingAESKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
