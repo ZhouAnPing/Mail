@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -182,10 +184,10 @@ namespace ChinaUnion_Agent
             worker.ReportProgress(1, "开始导入代理商佣金...\r\n");
 
             //导入代理商佣金
-            Dao.AgentFeeDao agentFeeDao = new Dao.AgentFeeDao();
+            AgentFeeDao agentFeeDao = new AgentFeeDao();
             for (int i = 0; i < dgAgentFee.RowCount; i++)
             {
-                BO.AgentFee agentFee = new BO.AgentFee();
+                AgentFee agentFee = new AgentFee();
                 agentFee.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
                 agentFee.agentNo = dgAgentFee[0, i].Value.ToString();
                 agentFee.agentFeeSeq = dgAgentFee[1, i].Value.ToString();
@@ -450,10 +452,10 @@ namespace ChinaUnion_Agent
             worker.ReportProgress(2, "导入代理商佣金完成...\r\n");
             worker.ReportProgress(3, "开始导入代理商...\r\n");
             //导入代理商
-            Dao.AgentDao agentDao = new Dao.AgentDao();
+            AgentDao agentDao = new AgentDao();
             for (int i = 0; i < dgAgent.RowCount; i++)
             {
-                BO.Agent agent = new BO.Agent();
+                Agent agent = new Agent();
                 agent.agentNo = dgAgent[0, i].Value.ToString();
                 agent.agentName = dgAgent[1, i].Value.ToString();
                 agent.contactEmail = dgAgent[2, i].Value.ToString();
@@ -468,10 +470,10 @@ namespace ChinaUnion_Agent
             worker.ReportProgress(5, "开始导入代理商类型...\r\n");
 
             //导入代理商类型
-            Dao.AgentTypeDao agentTypeDao = new Dao.AgentTypeDao();
+            AgentTypeDao agentTypeDao = new AgentTypeDao();
             for (int i = 0; i < dgAgentType.RowCount; i++)
             {
-                BO.AgentType agentType = new BO.AgentType();
+                AgentType agentType = new AgentType();
                 agentType.agentNo = dgAgentType[0, i].Value.ToString();
                 agentType.agentType = dgAgentType[1, i].Value.ToString();
 
@@ -485,10 +487,10 @@ namespace ChinaUnion_Agent
 
 
             //导入代理商类型说明
-            Dao.AgentTypeCommentDao agentTypeCommentDao = new Dao.AgentTypeCommentDao();
+            AgentTypeCommentDao agentTypeCommentDao = new AgentTypeCommentDao();
             for (int i = 0; i < dgAgentTypeComment.RowCount; i++)
             {
-                BO.AgentTypeComment agentTypeComment = new BO.AgentTypeComment();
+                AgentTypeComment agentTypeComment = new AgentTypeComment();
 
                 agentTypeComment.agentType = dgAgentTypeComment[0, i].Value.ToString();
                 agentTypeComment.agentTypeComment = dgAgentTypeComment[1, i].Value.ToString();

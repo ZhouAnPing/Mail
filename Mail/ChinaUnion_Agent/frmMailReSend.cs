@@ -1,5 +1,5 @@
-﻿using ChinaUnion_Agent.BO;
-using ChinaUnion_Agent.Dao;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
 using ChinaUnion_Agent.Properties;
 using System;
 using System.Collections;
@@ -44,8 +44,8 @@ namespace ChinaUnion_Agent
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
 
 
-            Dao.AgentFeeDao agentFeeDao = new Dao.AgentFeeDao();
-            IList<BO.AgentFee> agentFeeList = agentFeeDao.GetList(this.feeMonth);
+            AgentFeeDao agentFeeDao = new AgentFeeDao();
+            IList<AgentFee> agentFeeList = agentFeeDao.GetList(this.feeMonth);
 
             if (agentFeeList != null && agentFeeList.Count > 0)
             {

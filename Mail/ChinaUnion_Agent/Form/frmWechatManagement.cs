@@ -1,4 +1,6 @@
-﻿using ChinaUnion_Agent.Properties;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
+using ChinaUnion_Agent.Properties;
 using ChinaUnion_Agent.Util;
 using Newtonsoft.Json;
 using System;
@@ -24,8 +26,8 @@ namespace ChinaUnion_Agent.Wechat
             this.Cursor = Cursors.WaitCursor;
             //代理商信息            
             //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
-            Dao.AgentDao agentDao = new Dao.AgentDao();
-            IList<BO.Agent> agentList = agentDao.GetList();
+            AgentDao agentDao = new AgentDao();
+            IList<Agent> agentList = agentDao.GetList();
 
             if (agentList != null && agentList.Count > 0)
             {
@@ -61,9 +63,7 @@ namespace ChinaUnion_Agent.Wechat
         private void btnSync_Click(object sender, EventArgs e)
         {
             sentMsgToWechat();
-            getMenuInWechaht();
-            deleteMenuInWechaht();
-            this.addMenuToWechat();
+          
 
            
         }

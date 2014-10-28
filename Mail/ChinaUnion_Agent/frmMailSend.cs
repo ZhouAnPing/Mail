@@ -1,5 +1,5 @@
-﻿using ChinaUnion_Agent.BO;
-using ChinaUnion_Agent.Dao;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
 using ChinaUnion_Agent.Properties;
 using System;
 using System.Collections.Generic;

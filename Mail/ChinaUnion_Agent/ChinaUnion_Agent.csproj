@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChinaUnion_Agent</RootNamespace>
     <AssemblyName>ChinaUnion_Agent</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>ChinaUnion-img2ico.net.ico</ApplicationIcon>
@@ -56,11 +58,6 @@
     </Reference>
     <Reference Include="log4net">
       <HintPath>Dll\LinqToExcel_1.7.1\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Dll\Json60r6\Bin\Net40\Newtonsoft.Json.dll</HintPath>
@@ -86,16 +83,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BO\Agent.cs" />
-    <Compile Include="BO\AgentFee.cs" />
-    <Compile Include="BO\AgentType.cs" />
-    <Compile Include="BO\AgentTypeComment.cs" />
-    <Compile Include="BO\MailJob.cs" />
-    <Compile Include="Dao\AgentDao.cs" />
-    <Compile Include="Dao\AgentFeeDao.cs" />
-    <Compile Include="Dao\AgentTypeCommentDao.cs" />
-    <Compile Include="Dao\AgentTypeDao.cs" />
-    <Compile Include="Dao\MailJobDao.cs" />
     <Compile Include="frmAgentImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +198,14 @@
     <ProjectReference Include="..\BSE.Windows.Forms\BSE.Windows.Forms.csproj">
       <Project>{9CA367B8-0B98-49D1-84FB-735E612E3BA9}</Project>
       <Name>BSE.Windows.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinaUnion_BO\ChinaUnion_BO.csproj">
+      <Project>{cb255730-944c-4693-b4ba-7b03fea5cc96}</Project>
+      <Name>ChinaUnion_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChinaUnion_DataAccess\ChinaUnion_DataAccess.csproj">
+      <Project>{8dfac5b1-b8cc-41a2-9190-65c6d73d5e6a}</Project>
+      <Name>ChinaUnion_DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\TripolisDialogueAdapter\TripolisDialogueAdapter.csproj">
       <Project>{45ad6e86-0a45-4e9e-b21a-9876137a6a91}</Project>

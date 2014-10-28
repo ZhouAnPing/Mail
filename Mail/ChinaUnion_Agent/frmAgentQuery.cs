@@ -1,5 +1,5 @@
-﻿using ChinaUnion_Agent.BO;
-using ChinaUnion_Agent.Dao;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +24,8 @@ namespace ChinaUnion_Agent
             this.Cursor = Cursors.WaitCursor;
             //代理商信息            
          //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
-            Dao.AgentDao agentDao = new Dao.AgentDao();
-            IList<BO.Agent> agentList = agentDao.GetList();
+            AgentDao agentDao = new AgentDao();
+            IList<Agent> agentList = agentDao.GetList();
 
             if (agentList != null && agentList.Count > 0)
             {
@@ -57,8 +57,8 @@ namespace ChinaUnion_Agent
             }
            // Queryworker.ReportProgress(2, "代理商渠道类型...\r\n");
             //代理商渠道类型
-            Dao.AgentTypeDao agentTypeDao = new Dao.AgentTypeDao();
-            IList<BO.AgentType> agentTypeList = agentTypeDao.GetList();
+            AgentTypeDao agentTypeDao = new AgentTypeDao();
+            IList<AgentType> agentTypeList = agentTypeDao.GetList();
 
             if (agentTypeList != null && agentTypeList.Count > 0)
             {
@@ -79,8 +79,8 @@ namespace ChinaUnion_Agent
             }
           //  Queryworker.ReportProgress(3, "代理商渠道类型说明...\r\n");
             //代理商渠道类型说明
-            Dao.AgentTypeCommentDao agentTypeCommentDao = new Dao.AgentTypeCommentDao();
-            IList<BO.AgentTypeComment> agentTypeCommentList = agentTypeCommentDao.GetList();
+            AgentTypeCommentDao agentTypeCommentDao = new AgentTypeCommentDao();
+            IList<AgentTypeComment> agentTypeCommentList = agentTypeCommentDao.GetList();
 
             if (agentTypeCommentList != null && agentTypeCommentList.Count > 0)
             {
@@ -105,8 +105,8 @@ namespace ChinaUnion_Agent
 
            // Queryworker.ReportProgress(4, "代理商佣金...\r\n");
             //代理商佣金
-            Dao.AgentFeeDao agentFeeDao = new Dao.AgentFeeDao();
-            IList<BO.AgentFee> agentFeeList = agentFeeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
+            AgentFeeDao agentFeeDao = new AgentFeeDao();
+            IList<AgentFee> agentFeeList = agentFeeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
 
 
             if (agentFeeList != null && agentFeeList.Count > 0)
