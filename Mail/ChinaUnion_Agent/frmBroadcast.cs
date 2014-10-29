@@ -30,45 +30,9 @@ namespace ChinaUnion_Agent
                 return;
             }
             this.Cursor = Cursors.WaitCursor;
-            WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Settings.Default.Wechat_Secret);
+            WechatAction wechatAction = new WechatAction();
+           HttpResult result= wechatAction.sendMessageToWechat(this.txtContent.Text.Trim());
 
-            var msgUrl = string.Format("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}", accessToken);
-         
-
-            var msgData = new
-            {
-
-                touser = "@all",
-                msgtype = "text",
-                agentid = 1,
-                safe = 0,
-                text = new
-                    {                       
-                        
-                        content = this.txtContent.Text.Trim()
-                    }
-            };
-           
-            string msgJson = JsonConvert.SerializeObject(msgData, Formatting.Indented);
-
-
-
-            HttpHelper httpHelper = new HttpHelper();
-            HttpItem item = new HttpItem()
-            {
-                Encoding = Encoding.GetEncoding("UTF-8"),
-                URL = msgUrl,
-                Method = "post",//URL     可选项 默认为Get
-                Postdata = msgJson,
-                PostEncoding = Encoding.GetEncoding("UTF-8")//可以发送中文消息了，开心
-               
-            };
-
-            HttpResult result = httpHelper.GetHtml(item);
-
-            //返回的Html内容
-            string html = result.Html;
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 //表示访问成功，具体的大家就参考HttpStatusCode类
@@ -78,8 +42,6 @@ namespace ChinaUnion_Agent
             {
                 MessageBox.Show(result.StatusDescription);
             }
-            //表示StatusCode的文字说明与描述
-            string statusCodeDescription = result.StatusDescription;
             this.Cursor = Cursors.Default; ;
         }
 

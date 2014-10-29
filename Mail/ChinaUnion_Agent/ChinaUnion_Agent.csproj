@@ -154,6 +154,7 @@
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Wechat\User.cs" />
+    <Compile Include="Wechat\WechatAction.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
     <EmbeddedResource Include="frmMailSubject.resx">

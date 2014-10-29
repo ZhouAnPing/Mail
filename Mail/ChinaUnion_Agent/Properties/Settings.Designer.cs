@@ -179,5 +179,17 @@ namespace ChinaUnion_Agent.Properties {
                 this["Wechat_Secret"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况.")]
+        public string Wechat_Message {
+            get {
+                return ((string)(this["Wechat_Message"]));
+            }
+            set {
+                this["Wechat_Message"] = value;
+            }
+        }
     }
 }

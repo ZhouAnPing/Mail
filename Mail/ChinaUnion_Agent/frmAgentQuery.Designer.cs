@@ -43,6 +43,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgAgent = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).BeginInit();
@@ -60,6 +61,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnMail);
             this.panel1.Controls.Add(this.dtFeeMonth);
             this.panel1.Controls.Add(this.label1);
@@ -93,10 +95,10 @@
             // 
             // btnMail
             // 
-            this.btnMail.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnMail.Location = new System.Drawing.Point(374, 10);
+            this.btnMail.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnMail.Location = new System.Drawing.Point(387, 10);
             this.btnMail.Name = "btnMail";
-            this.btnMail.Size = new System.Drawing.Size(104, 35);
+            this.btnMail.Size = new System.Drawing.Size(70, 35);
             this.btnMail.TabIndex = 10;
             this.btnMail.Text = "邮件发送";
             this.btnMail.UseVisualStyleBackColor = true;
@@ -123,10 +125,10 @@
             // 
             // btnQuery
             // 
-            this.btnQuery.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnQuery.Location = new System.Drawing.Point(244, 10);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(104, 35);
+            this.btnQuery.Size = new System.Drawing.Size(70, 35);
             this.btnQuery.TabIndex = 9;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
@@ -257,10 +259,22 @@
             this.tabControl1.Size = new System.Drawing.Size(1016, 284);
             this.tabControl1.TabIndex = 9;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(530, 10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(70, 35);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmAgentQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.splitter1);
@@ -302,5 +316,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dgAgent;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

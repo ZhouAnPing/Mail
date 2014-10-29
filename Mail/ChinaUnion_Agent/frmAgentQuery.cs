@@ -470,12 +470,12 @@ namespace ChinaUnion_Agent
       
         private void frmAgentQuery_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-           
+            this.WindowState = FormWindowState.Maximized;    
+        }
 
-            
-           
- 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
      
 

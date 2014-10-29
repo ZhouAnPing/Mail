@@ -44,5 +44,8 @@
     <Setting Name="Wechat_Secret" Type="System.String" Scope="User">
       <Value Profile="(Default)">8p7q04VR4gYFAaZNg16nuABflvhW-nJDxKCW34zGNoqGoh5BL6ahzOF--ddPhFKU</Value>
     </Setting>
+    <Setting Name="Wechat_Message" Type="System.String" Scope="User">
+      <Value Profile="(Default)">佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

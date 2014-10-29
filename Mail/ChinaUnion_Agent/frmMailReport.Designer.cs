@@ -59,6 +59,7 @@
             this.dgvSkipped = new System.Windows.Forms.DataGridView();
             this.tabBounced = new System.Windows.Forms.TabPage();
             this.dgvBounced = new System.Windows.Forms.DataGridView();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnCancel);
             this.panel5.Controls.Add(this.btnReSend);
             this.panel5.Controls.Add(this.btnExportExcel);
             this.panel5.Controls.Add(this.cboFeeBatch);
@@ -102,7 +104,7 @@
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.Location = new System.Drawing.Point(757, 3);
+            this.btnExportExcel.Location = new System.Drawing.Point(861, 3);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(74, 31);
             this.btnExportExcel.TabIndex = 10;
@@ -456,10 +458,22 @@
             this.dgvBounced.Size = new System.Drawing.Size(1008, 575);
             this.dgvBounced.TabIndex = 5;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(755, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmMailReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel3);
@@ -526,5 +540,6 @@
         private System.Windows.Forms.DataGridView dgvSkipped;
         private System.Windows.Forms.TabPage tabBounced;
         private System.Windows.Forms.DataGridView dgvBounced;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

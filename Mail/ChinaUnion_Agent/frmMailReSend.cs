@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TripolisDialogueAdapter;
+using ChinaUnion_Agent.Wechat;
 
 namespace ChinaUnion_Agent
 {
@@ -428,6 +429,8 @@ namespace ChinaUnion_Agent
                 mailJobDao.Delete(mailJob);
                 mailJobDao.Add(mailJob);
 
+                WechatAction wechatAction = new WechatAction();
+                wechatAction.sendMessageToWechat(this.dtFeeMonth.Value.ToString("yyyy-MM") + Settings.Default.Wechat_Message);
                 MessageBox.Show("邮件重新发送成功");
 
             }

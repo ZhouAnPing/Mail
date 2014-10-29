@@ -277,5 +277,10 @@ namespace ChinaUnion_Agent
             frmMailReSend.ShowDialog();
 
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

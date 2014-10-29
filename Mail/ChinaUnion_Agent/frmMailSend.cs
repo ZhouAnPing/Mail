@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TripolisDialogueAdapter;
+using ChinaUnion_Agent.Wechat;
 
 namespace ChinaUnion_Agent
 {
@@ -133,6 +134,9 @@ namespace ChinaUnion_Agent
                     MailJobDao mailJobDao = new MailJobDao();
                     mailJobDao.Delete(mailJob);
                     mailJobDao.Add(mailJob);
+
+                    WechatAction wechatAction = new WechatAction();
+                    wechatAction.sendMessageToWechat(this.dateTimePicker1.Value.ToString("yyyy-MM") + Settings.Default.Wechat_Message);
 
                     MessageBox.Show("邮件发送成功");
 
@@ -309,7 +313,9 @@ namespace ChinaUnion_Agent
                         if (message.Contains("OK:"))
                         {
 
+                           
                             MessageBox.Show("邮件发送完成");
+
 
                         }
                         else
