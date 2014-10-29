@@ -51,6 +51,8 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarBroadcast = new System.Windows.Forms.ToolStripButton();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -141,6 +143,8 @@
             this.toolbarReport,
             this.toolStripSeparator2,
             this.toolbarWechat,
+            this.toolStripSeparator7,
+            this.toolbarBroadcast,
             this.toolStripSeparator6,
             this.toolStripButton1,
             this.toolStripSeparator1});
@@ -207,7 +211,7 @@
             this.toolbarWechat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarWechat.Name = "toolbarWechat";
             this.toolbarWechat.Size = new System.Drawing.Size(91, 64);
-            this.toolbarWechat.Text = "微信";
+            this.toolbarWechat.Text = "微信账号同步";
             this.toolbarWechat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarWechat.Click += new System.EventHandler(this.toolbarWechat_Click);
             // 
@@ -238,6 +242,21 @@
             this.statusStrip1.Size = new System.Drawing.Size(922, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(91, 6);
+            // 
+            // toolbarBroadcast
+            // 
+            this.toolbarBroadcast.Image = ((System.Drawing.Image)(resources.GetObject("toolbarBroadcast.Image")));
+            this.toolbarBroadcast.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarBroadcast.Name = "toolbarBroadcast";
+            this.toolbarBroadcast.Size = new System.Drawing.Size(91, 64);
+            this.toolbarBroadcast.Text = "微信公告";
+            this.toolbarBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarBroadcast.Click += new System.EventHandler(this.toolbarBroadcast_Click);
             // 
             // frmMain
             // 
@@ -290,6 +309,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolbarWechat;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton toolbarBroadcast;
     }
 }
 

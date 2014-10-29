@@ -95,6 +95,12 @@
     <Compile Include="frmAgentQuery.Designer.cs">
       <DependentUpon>frmAgentQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBroadcast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBroadcast.Designer.cs">
+      <DependentUpon>frmBroadcast.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMailAddress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,12 +147,17 @@
     <Compile Include="Form\frmWechatManagement.Designer.cs">
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wechat\User.cs" />
+    <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
     <EmbeddedResource Include="frmAgentImport.resx">
       <DependentUpon>frmAgentImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAgentQuery.resx">
       <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBroadcast.resx">
+      <DependentUpon>frmBroadcast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMailAddress.resx">
       <DependentUpon>frmMailAddress.cs</DependentUpon>

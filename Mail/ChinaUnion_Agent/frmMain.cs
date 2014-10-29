@@ -92,6 +92,17 @@ namespace ChinaUnion_Agent
             frmWechatManagement.WindowState = FormWindowState.Maximized;
         }
 
+        private void toolbarBroadcast_Click(object sender, EventArgs e)
+        {
+           
+             frmBroadcast frmBroadcast = new frmBroadcast();
+             frmBroadcast.ShowInTaskbar = false;
+
+             frmBroadcast.ShowDialog();
+            // frmBroadcast.WindowState = FormWindowState.Maximized;
+
+        }
+
       
        
 

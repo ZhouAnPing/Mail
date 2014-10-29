@@ -57,12 +57,37 @@ namespace ChinaUnion_Agent.Wechat
 
                 }
             }
+
+            WechatUser wechatUser = this.getUserFromWechat();
+
+            if (wechatUser != null && wechatUser.userlist.Count > 0)
+            {
+                this.dgWechat.Rows.Clear();
+                dgWechat.Columns.Clear();
+
+                dgWechat.Columns.Add("代理商编号", "代理商编号");
+                dgWechat.Columns.Add("代理商名称", "代理商名称");
+
+
+
+                for (int i = 0; i < wechatUser.userlist.Count; i++)
+                {
+                    dgWechat.Rows.Add();
+                    DataGridViewRow row = dgWechat.Rows[i];
+
+                    row.Cells[0].Value = wechatUser.userlist[i].userid;
+                    row.Cells[1].Value = wechatUser.userlist[i].name;
+                   
+
+
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            sentMsgToWechat();
+            this.getUserFromWechat();
           
 
            
@@ -286,6 +311,44 @@ namespace ChinaUnion_Agent.Wechat
             }
             //表示StatusCode的文字说明与描述
             string statusCodeDescription = result.StatusDescription;
+        }
+
+
+        private WechatUser getUserFromWechat()
+        {
+            WechatUser wechatUser = null;
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Settings.Default.Wechat_Secret);
+
+            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token={0}&department_id={1}&fetch_child=1&status=0";
+          
+            var addUserUrl = string.Format(getUserUrlFormat, accessToken,1);
+            
+
+
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = addUserUrl,
+                Method = "get"//URL     可选项 默认为Get
+               
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+
+           
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+                 wechatUser = JsonConvert.DeserializeObject<WechatUser>(html);
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+            return wechatUser;
         }
     }
 }
