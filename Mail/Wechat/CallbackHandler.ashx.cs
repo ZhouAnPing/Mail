@@ -21,9 +21,9 @@ namespace Wechat
         public void ProcessRequest(HttpContext context)
         {
             //公众平台上开发者设置的token, corpID, EncodingAESKey
-            string sToken = Settings.Default.Token;//"L3TqpgplkguXp1Dtpz68NkBOCHE9fT";
-            string sCorpID = Settings.Default.CorpID;// "wx4fe8b74e01fffcbb";
-            string sEncodingAESKey = Settings.Default.EncodingAESKey;// "7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L";
+            string sToken = "AnPing";
+            string sCorpID = "wx4fe8b74e01fffcbb";
+            string sEncodingAESKey = "KsTUiKS3INKdvPL2vupBgslE1EUEK7KzHOKIBtIqQnU";
 
             logger.Info(context.Request.Url.AbsoluteUri);
             /*

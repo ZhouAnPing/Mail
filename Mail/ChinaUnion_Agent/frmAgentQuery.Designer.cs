@@ -147,6 +147,7 @@
             // 
             this.dgAgentFee.AllowUserToAddRows = false;
             this.dgAgentFee.AllowUserToDeleteRows = false;
+            this.dgAgentFee.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgentFee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgentFee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgentFee.Location = new System.Drawing.Point(3, 17);
@@ -184,6 +185,7 @@
             // 
             this.dgAgentTypeComment.AllowUserToAddRows = false;
             this.dgAgentTypeComment.AllowUserToDeleteRows = false;
+            this.dgAgentTypeComment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgentTypeComment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgentTypeComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgentTypeComment.Location = new System.Drawing.Point(532, 3);
@@ -198,6 +200,7 @@
             // 
             this.dgAgentType.AllowUserToAddRows = false;
             this.dgAgentType.AllowUserToDeleteRows = false;
+            this.dgAgentType.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgentType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgentType.Dock = System.Windows.Forms.DockStyle.Left;
             this.dgAgentType.Location = new System.Drawing.Point(6, 3);
@@ -232,6 +235,7 @@
             // 
             this.dgAgent.AllowUserToAddRows = false;
             this.dgAgent.AllowUserToDeleteRows = false;
+            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgent.Location = new System.Drawing.Point(3, 3);

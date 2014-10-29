@@ -107,7 +107,7 @@ namespace ChinaUnion_Agent
                     }
 
                 }
-                this.pnlSent.Text = "已发送(Sent)【" + dgvSent.RowCount + "】";
+                this.tabSent.Text = "已发送(Sent)【" + dgvSent.RowCount + "】";
 
                 //已退回
                 if (reportData != null && reportData.bounced != null && reportData.bounced.Length > 0)
@@ -145,7 +145,7 @@ namespace ChinaUnion_Agent
                     }
 
                 }
-                this.pnlBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount + "】";
+                this.tabBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount + "】";
 
                 //已跳过
                 if (reportData != null && reportData.skipped != null && reportData.skipped.Length > 0)
@@ -173,7 +173,7 @@ namespace ChinaUnion_Agent
                     }
 
                 }
-                this.pnlSkip.Text = "已跳过(Skipped)【" + dgvSkipped.RowCount + "】";
+                this.tabSkipped.Text = "已跳过(Skipped)【" + dgvSkipped.RowCount + "】";
 
                 //已退回
                 if (reportData != null && reportData.opened != null && reportData.opened.Length > 0)
@@ -212,7 +212,7 @@ namespace ChinaUnion_Agent
                     }
 
                 }
-                this.pnlOpen.Text = "已打开(Opened)【" + dgvOpened.RowCount + "】";
+                this.tabOpened.Text = "已打开(Opened)【" + dgvOpened.RowCount + "】";
 
 
                 int RecipientsCnt = reportData.emailSummary.job.requestedNumberOfSend;

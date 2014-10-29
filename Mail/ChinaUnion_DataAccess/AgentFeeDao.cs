@@ -155,13 +155,13 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Delete(AgentFee entity)
         {
-            string sql = "DELETE FROM agent_Fee WHERE agentNo=@agentNo and agentFeeSeq =@agentFeeSeq";
+            string sql = "DELETE FROM agent_Fee WHERE agentNo=@agentNo and agentFeeMonth =@agentFeeMonth";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
-                command.Parameters.AddWithValue("@agentFeeSeq", entity.agentFeeSeq);
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }

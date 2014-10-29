@@ -50,30 +50,30 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblRecipients = new System.Windows.Forms.Label();
             this.linkRecipients = new System.Windows.Forms.LinkLabel();
-            this.xPanderPanelList1 = new BSE.Windows.Forms.XPanderPanelList();
-            this.pnlSent = new BSE.Windows.Forms.XPanderPanel();
-            this.dgvSent = new System.Windows.Forms.DataGridView();
-            this.pnlOpen = new BSE.Windows.Forms.XPanderPanel();
-            this.dgvOpened = new System.Windows.Forms.DataGridView();
-            this.pnlSkip = new BSE.Windows.Forms.XPanderPanel();
-            this.dgvSkipped = new System.Windows.Forms.DataGridView();
-            this.pnlBounced = new BSE.Windows.Forms.XPanderPanel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabSent = new System.Windows.Forms.TabPage();
+            this.tabOpened = new System.Windows.Forms.TabPage();
+            this.tabSkipped = new System.Windows.Forms.TabPage();
+            this.tabBounced = new System.Windows.Forms.TabPage();
             this.dgvBounced = new System.Windows.Forms.DataGridView();
+            this.dgvSkipped = new System.Windows.Forms.DataGridView();
+            this.dgvOpened = new System.Windows.Forms.DataGridView();
+            this.dgvSent = new System.Windows.Forms.DataGridView();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.xPanderPanelList1.SuspendLayout();
-            this.pnlSent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).BeginInit();
-            this.pnlOpen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).BeginInit();
-            this.pnlSkip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).BeginInit();
-            this.pnlBounced.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabSent.SuspendLayout();
+            this.tabOpened.SuspendLayout();
+            this.tabSkipped.SuspendLayout();
+            this.tabBounced.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBounced)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).BeginInit();
             this.SuspendLayout();
             // 
             // panel5
@@ -340,235 +340,127 @@
             this.linkRecipients.TabStop = true;
             this.linkRecipients.Text = "需要发送的数量";
             // 
-            // xPanderPanelList1
+            // tabControl1
             // 
-            this.xPanderPanelList1.CaptionHeight = 20;
-            this.xPanderPanelList1.CaptionStyle = BSE.Windows.Forms.CaptionStyle.Normal;
-            this.xPanderPanelList1.Controls.Add(this.pnlSent);
-            this.xPanderPanelList1.Controls.Add(this.pnlOpen);
-            this.xPanderPanelList1.Controls.Add(this.pnlSkip);
-            this.xPanderPanelList1.Controls.Add(this.pnlBounced);
-            this.xPanderPanelList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xPanderPanelList1.GradientBackground = System.Drawing.Color.Empty;
-            this.xPanderPanelList1.Location = new System.Drawing.Point(0, 137);
-            this.xPanderPanelList1.Name = "xPanderPanelList1";
-            this.xPanderPanelList1.PanelColors = null;
-            this.xPanderPanelList1.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.xPanderPanelList1.Size = new System.Drawing.Size(1016, 604);
-            this.xPanderPanelList1.TabIndex = 5;
-            this.xPanderPanelList1.Text = "xPanderPanelList1";
+            this.tabControl1.Controls.Add(this.tabSent);
+            this.tabControl1.Controls.Add(this.tabOpened);
+            this.tabControl1.Controls.Add(this.tabSkipped);
+            this.tabControl1.Controls.Add(this.tabBounced);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 137);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1016, 604);
+            this.tabControl1.TabIndex = 6;
             // 
-            // pnlSent
+            // tabSent
             // 
-            this.pnlSent.CaptionFont = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold);
-            this.pnlSent.CaptionHeight = 20;
-            this.pnlSent.Controls.Add(this.dgvSent);
-            this.pnlSent.CustomColors.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlSent.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
-            this.pnlSent.CustomColors.CaptionCheckedGradientBegin = System.Drawing.Color.Empty;
-            this.pnlSent.CustomColors.CaptionCheckedGradientEnd = System.Drawing.Color.Empty;
-            this.pnlSent.CustomColors.CaptionCheckedGradientMiddle = System.Drawing.Color.Empty;
-            this.pnlSent.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlSent.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlSent.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlSent.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
-            this.pnlSent.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlSent.CustomColors.CaptionPressedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionPressedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionPressedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionSelectedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSent.CustomColors.CaptionSelectedText = System.Drawing.SystemColors.ControlText;
-            this.pnlSent.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
-            this.pnlSent.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlSent.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlSent.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.pnlSent.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlSent.Image = null;
-            this.pnlSent.Name = "pnlSent";
-            this.pnlSent.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.pnlSent.Size = new System.Drawing.Size(1016, 20);
-            this.pnlSent.TabIndex = 0;
-            this.pnlSent.Text = "已发送(Sent)";
-            this.pnlSent.ToolTipTextCloseIcon = null;
-            this.pnlSent.ToolTipTextExpandIconPanelCollapsed = null;
-            this.pnlSent.ToolTipTextExpandIconPanelExpanded = null;
+            this.tabSent.Controls.Add(this.dgvSent);
+            this.tabSent.Location = new System.Drawing.Point(4, 22);
+            this.tabSent.Name = "tabSent";
+            this.tabSent.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSent.Size = new System.Drawing.Size(1008, 578);
+            this.tabSent.TabIndex = 0;
+            this.tabSent.Text = "已发送(Sent)";
+            this.tabSent.UseVisualStyleBackColor = true;
             // 
-            // dgvSent
+            // tabOpened
             // 
-            this.dgvSent.AllowUserToAddRows = false;
-            this.dgvSent.AllowUserToDeleteRows = false;
-            this.dgvSent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSent.Location = new System.Drawing.Point(1, 20);
-            this.dgvSent.Name = "dgvSent";
-            this.dgvSent.ReadOnly = true;
-            this.dgvSent.RowHeadersWidth = 10;
-            this.dgvSent.RowTemplate.Height = 23;
-            this.dgvSent.Size = new System.Drawing.Size(1014, 0);
-            this.dgvSent.TabIndex = 4;
+            this.tabOpened.Controls.Add(this.dgvOpened);
+            this.tabOpened.Location = new System.Drawing.Point(4, 22);
+            this.tabOpened.Name = "tabOpened";
+            this.tabOpened.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOpened.Size = new System.Drawing.Size(1008, 578);
+            this.tabOpened.TabIndex = 1;
+            this.tabOpened.Text = "已打开(Opened)";
+            this.tabOpened.UseVisualStyleBackColor = true;
             // 
-            // pnlOpen
+            // tabSkipped
             // 
-            this.pnlOpen.CaptionFont = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold);
-            this.pnlOpen.CaptionHeight = 20;
-            this.pnlOpen.Controls.Add(this.dgvOpened);
-            this.pnlOpen.CustomColors.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlOpen.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
-            this.pnlOpen.CustomColors.CaptionCheckedGradientBegin = System.Drawing.Color.Empty;
-            this.pnlOpen.CustomColors.CaptionCheckedGradientEnd = System.Drawing.Color.Empty;
-            this.pnlOpen.CustomColors.CaptionCheckedGradientMiddle = System.Drawing.Color.Empty;
-            this.pnlOpen.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlOpen.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlOpen.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlOpen.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
-            this.pnlOpen.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlOpen.CustomColors.CaptionPressedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionPressedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionPressedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionSelectedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlOpen.CustomColors.CaptionSelectedText = System.Drawing.SystemColors.ControlText;
-            this.pnlOpen.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
-            this.pnlOpen.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlOpen.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlOpen.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.pnlOpen.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlOpen.Image = null;
-            this.pnlOpen.Name = "pnlOpen";
-            this.pnlOpen.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.pnlOpen.Size = new System.Drawing.Size(1016, 20);
-            this.pnlOpen.TabIndex = 1;
-            this.pnlOpen.Text = "已打开(Opened)";
-            this.pnlOpen.ToolTipTextCloseIcon = null;
-            this.pnlOpen.ToolTipTextExpandIconPanelCollapsed = null;
-            this.pnlOpen.ToolTipTextExpandIconPanelExpanded = null;
+            this.tabSkipped.Controls.Add(this.dgvSkipped);
+            this.tabSkipped.Location = new System.Drawing.Point(4, 22);
+            this.tabSkipped.Name = "tabSkipped";
+            this.tabSkipped.Size = new System.Drawing.Size(1008, 578);
+            this.tabSkipped.TabIndex = 2;
+            this.tabSkipped.Text = "已跳过(Skipped)";
+            this.tabSkipped.UseVisualStyleBackColor = true;
             // 
-            // dgvOpened
+            // tabBounced
             // 
-            this.dgvOpened.AllowUserToAddRows = false;
-            this.dgvOpened.AllowUserToDeleteRows = false;
-            this.dgvOpened.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOpened.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOpened.Location = new System.Drawing.Point(1, 20);
-            this.dgvOpened.Name = "dgvOpened";
-            this.dgvOpened.ReadOnly = true;
-            this.dgvOpened.RowHeadersWidth = 10;
-            this.dgvOpened.RowTemplate.Height = 23;
-            this.dgvOpened.Size = new System.Drawing.Size(1014, 0);
-            this.dgvOpened.TabIndex = 4;
-            // 
-            // pnlSkip
-            // 
-            this.pnlSkip.CaptionFont = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold);
-            this.pnlSkip.CaptionHeight = 20;
-            this.pnlSkip.Controls.Add(this.dgvSkipped);
-            this.pnlSkip.CustomColors.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlSkip.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
-            this.pnlSkip.CustomColors.CaptionCheckedGradientBegin = System.Drawing.Color.Empty;
-            this.pnlSkip.CustomColors.CaptionCheckedGradientEnd = System.Drawing.Color.Empty;
-            this.pnlSkip.CustomColors.CaptionCheckedGradientMiddle = System.Drawing.Color.Empty;
-            this.pnlSkip.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlSkip.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlSkip.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlSkip.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
-            this.pnlSkip.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlSkip.CustomColors.CaptionPressedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionPressedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionPressedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionSelectedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlSkip.CustomColors.CaptionSelectedText = System.Drawing.SystemColors.ControlText;
-            this.pnlSkip.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
-            this.pnlSkip.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlSkip.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlSkip.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.pnlSkip.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlSkip.Image = null;
-            this.pnlSkip.Name = "pnlSkip";
-            this.pnlSkip.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.pnlSkip.Size = new System.Drawing.Size(1016, 20);
-            this.pnlSkip.TabIndex = 2;
-            this.pnlSkip.Text = "已跳过(Skipped)";
-            this.pnlSkip.ToolTipTextCloseIcon = null;
-            this.pnlSkip.ToolTipTextExpandIconPanelCollapsed = null;
-            this.pnlSkip.ToolTipTextExpandIconPanelExpanded = null;
-            // 
-            // dgvSkipped
-            // 
-            this.dgvSkipped.AllowUserToAddRows = false;
-            this.dgvSkipped.AllowUserToDeleteRows = false;
-            this.dgvSkipped.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSkipped.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSkipped.Location = new System.Drawing.Point(1, 20);
-            this.dgvSkipped.Name = "dgvSkipped";
-            this.dgvSkipped.ReadOnly = true;
-            this.dgvSkipped.RowHeadersWidth = 10;
-            this.dgvSkipped.RowTemplate.Height = 23;
-            this.dgvSkipped.Size = new System.Drawing.Size(1014, 0);
-            this.dgvSkipped.TabIndex = 4;
-            // 
-            // pnlBounced
-            // 
-            this.pnlBounced.CaptionFont = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold);
-            this.pnlBounced.CaptionHeight = 20;
-            this.pnlBounced.Controls.Add(this.dgvBounced);
-            this.pnlBounced.CustomColors.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlBounced.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
-            this.pnlBounced.CustomColors.CaptionCheckedGradientBegin = System.Drawing.Color.Empty;
-            this.pnlBounced.CustomColors.CaptionCheckedGradientEnd = System.Drawing.Color.Empty;
-            this.pnlBounced.CustomColors.CaptionCheckedGradientMiddle = System.Drawing.Color.Empty;
-            this.pnlBounced.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlBounced.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
-            this.pnlBounced.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlBounced.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
-            this.pnlBounced.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlBounced.CustomColors.CaptionPressedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionPressedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionPressedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionSelectedGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            this.pnlBounced.CustomColors.CaptionSelectedText = System.Drawing.SystemColors.ControlText;
-            this.pnlBounced.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
-            this.pnlBounced.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.pnlBounced.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.pnlBounced.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.pnlBounced.Expand = true;
-            this.pnlBounced.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlBounced.Image = null;
-            this.pnlBounced.Name = "pnlBounced";
-            this.pnlBounced.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.pnlBounced.Size = new System.Drawing.Size(1016, 544);
-            this.pnlBounced.TabIndex = 3;
-            this.pnlBounced.Text = "退回(Bounced)";
-            this.pnlBounced.ToolTipTextCloseIcon = null;
-            this.pnlBounced.ToolTipTextExpandIconPanelCollapsed = null;
-            this.pnlBounced.ToolTipTextExpandIconPanelExpanded = null;
+            this.tabBounced.Controls.Add(this.dgvBounced);
+            this.tabBounced.Location = new System.Drawing.Point(4, 22);
+            this.tabBounced.Name = "tabBounced";
+            this.tabBounced.Size = new System.Drawing.Size(1008, 578);
+            this.tabBounced.TabIndex = 3;
+            this.tabBounced.Text = "退回(Bounced)";
+            this.tabBounced.UseVisualStyleBackColor = true;
             // 
             // dgvBounced
             // 
             this.dgvBounced.AllowUserToAddRows = false;
             this.dgvBounced.AllowUserToDeleteRows = false;
+            this.dgvBounced.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgvBounced.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBounced.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBounced.Location = new System.Drawing.Point(1, 20);
+            this.dgvBounced.Location = new System.Drawing.Point(0, 0);
             this.dgvBounced.Name = "dgvBounced";
             this.dgvBounced.ReadOnly = true;
             this.dgvBounced.RowHeadersWidth = 10;
             this.dgvBounced.RowTemplate.Height = 23;
-            this.dgvBounced.Size = new System.Drawing.Size(1014, 524);
-            this.dgvBounced.TabIndex = 4;
+            this.dgvBounced.Size = new System.Drawing.Size(1008, 578);
+            this.dgvBounced.TabIndex = 5;
+            // 
+            // dgvSkipped
+            // 
+            this.dgvSkipped.AllowUserToAddRows = false;
+            this.dgvSkipped.AllowUserToDeleteRows = false;
+            this.dgvSkipped.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvSkipped.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSkipped.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSkipped.Location = new System.Drawing.Point(0, 0);
+            this.dgvSkipped.Name = "dgvSkipped";
+            this.dgvSkipped.ReadOnly = true;
+            this.dgvSkipped.RowHeadersWidth = 10;
+            this.dgvSkipped.RowTemplate.Height = 23;
+            this.dgvSkipped.Size = new System.Drawing.Size(1008, 578);
+            this.dgvSkipped.TabIndex = 5;
+            // 
+            // dgvOpened
+            // 
+            this.dgvOpened.AllowUserToAddRows = false;
+            this.dgvOpened.AllowUserToDeleteRows = false;
+            this.dgvOpened.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvOpened.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOpened.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOpened.Location = new System.Drawing.Point(3, 3);
+            this.dgvOpened.Name = "dgvOpened";
+            this.dgvOpened.ReadOnly = true;
+            this.dgvOpened.RowHeadersWidth = 10;
+            this.dgvOpened.RowTemplate.Height = 23;
+            this.dgvOpened.Size = new System.Drawing.Size(1002, 572);
+            this.dgvOpened.TabIndex = 5;
+            // 
+            // dgvSent
+            // 
+            this.dgvSent.AllowUserToAddRows = false;
+            this.dgvSent.AllowUserToDeleteRows = false;
+            this.dgvSent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvSent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSent.Location = new System.Drawing.Point(3, 3);
+            this.dgvSent.Name = "dgvSent";
+            this.dgvSent.ReadOnly = true;
+            this.dgvSent.RowHeadersWidth = 10;
+            this.dgvSent.RowTemplate.Height = 23;
+            this.dgvSent.Size = new System.Drawing.Size(1002, 572);
+            this.dgvSent.TabIndex = 5;
             // 
             // frmMailReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 741);
-            this.Controls.Add(this.xPanderPanelList1);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel5);
             this.Name = "frmMailReport";
@@ -587,15 +479,15 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.xPanderPanelList1.ResumeLayout(false);
-            this.pnlSent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).EndInit();
-            this.pnlOpen.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).EndInit();
-            this.pnlSkip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).EndInit();
-            this.pnlBounced.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabSent.ResumeLayout(false);
+            this.tabOpened.ResumeLayout(false);
+            this.tabSkipped.ResumeLayout(false);
+            this.tabBounced.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBounced)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -623,15 +515,15 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblRecipients;
         private System.Windows.Forms.LinkLabel linkRecipients;
-        private BSE.Windows.Forms.XPanderPanelList xPanderPanelList1;
-        private BSE.Windows.Forms.XPanderPanel pnlSent;
-        private System.Windows.Forms.DataGridView dgvSent;
-        private BSE.Windows.Forms.XPanderPanel pnlOpen;
-        private System.Windows.Forms.DataGridView dgvOpened;
-        private BSE.Windows.Forms.XPanderPanel pnlSkip;
-        private System.Windows.Forms.DataGridView dgvSkipped;
-        private BSE.Windows.Forms.XPanderPanel pnlBounced;
-        private System.Windows.Forms.DataGridView dgvBounced;
         private System.Windows.Forms.Button btnReSend;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabSent;
+        private System.Windows.Forms.DataGridView dgvSent;
+        private System.Windows.Forms.TabPage tabOpened;
+        private System.Windows.Forms.DataGridView dgvOpened;
+        private System.Windows.Forms.TabPage tabSkipped;
+        private System.Windows.Forms.DataGridView dgvSkipped;
+        private System.Windows.Forms.TabPage tabBounced;
+        private System.Windows.Forms.DataGridView dgvBounced;
     }
 }

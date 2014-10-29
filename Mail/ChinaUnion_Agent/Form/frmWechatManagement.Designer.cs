@@ -72,6 +72,7 @@
             // 
             this.dgAgent.AllowUserToAddRows = false;
             this.dgAgent.AllowUserToDeleteRows = false;
+            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgent.Location = new System.Drawing.Point(3, 17);

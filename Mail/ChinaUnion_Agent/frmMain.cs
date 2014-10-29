@@ -91,6 +91,8 @@ namespace ChinaUnion_Agent
             frmWechatManagement.Show();
             frmWechatManagement.WindowState = FormWindowState.Maximized;
         }
+
+      
        
 
         

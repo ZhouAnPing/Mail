@@ -53,9 +53,12 @@ namespace Wechat
 
 
             // Post请求的密文数据            
-            string sToken = Settings.Default.Token;//"L3TqpgplkguXp1Dtpz68NkBOCHE9fT";
-            string sCorpID = Settings.Default.CorpID;// "wx4fe8b74e01fffcbb";
-            string sEncodingAESKey = Settings.Default.EncodingAESKey;// "7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L";
+            // string sToken = Settings.Default.Token;//"L3TqpgplkguXp1Dtpz68NkBOCHE9fT";
+            //string sCorpID = Settings.Default.CorpID;// "wx4fe8b74e01fffcbb";
+            //string sEncodingAESKey = Settings.Default.EncodingAESKey;// "7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L";
+            string sToken = "unicom";
+            string sCorpID = "wx4fe8b74e01fffcbb";
+            string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
 
             System.Collections.Specialized.NameValueCollection queryStrings = context.Request.QueryString;
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
@@ -70,7 +73,6 @@ namespace Wechat
             string sReqData = reader.ReadToEnd();
             reader.Close();
 
-
             string sMsg = "";  // 解析之后的明文
             int ret = wxcpt.DecryptMsg(sReqMsgSig, sReqTimeStamp, sReqNonce, sReqData, ref sMsg);
             logger.Info("sVerifyMsgSig=" + sReqMsgSig);
@@ -79,17 +81,17 @@ namespace Wechat
             logger.Info("sReqData=" + sReqData);
             logger.Info("ret=" + ret);
             logger.Info("sMsg=" + sMsg);
-          
+
             if (ret != 0)
             {
                 logger.Info("ERR: Decrypt Fail, ret: " + ret);
                 System.Console.WriteLine("ERR: Decrypt Fail, ret: " + ret);
                 return;
-            }           
+            }
             // ret==0表示解密成功，sMsg表示解密之后的明文xml串           
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(sMsg);
-            WechatMessage wechatMessage = new WechatMessage(doc.DocumentElement);          
+            WechatMessage wechatMessage = new WechatMessage(doc.DocumentElement);
 
 
             logger.Info("FromUserName: " + wechatMessage.FromUserName);
@@ -125,14 +127,14 @@ namespace Wechat
             */
             // 需要发送的明文
             String actionType = wechatMessage.EventKey;
-           
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<xml>");
             sb.AppendFormat("<ToUserName><![CDATA[{0}]]></ToUserName>", wechatMessage.FromUserName);
             sb.AppendFormat("<FromUserName><![CDATA[{0}]]></FromUserName>", wechatMessage.ToUserName);
-            sb.AppendFormat("<CreateTime>{0}</CreateTime>", wechatMessage.CreateTime);       
+            sb.AppendFormat("<CreateTime>{0}</CreateTime>", wechatMessage.CreateTime);
 
-           // string sRespData = "<MsgId>1234567890123456</MsgId>";
+            // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
 
             switch (actionType)
@@ -276,7 +278,7 @@ namespace Wechat
                         }
                         sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
-                         url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", wechatMessage.FromUserName, feeMonth);
+                        url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", wechatMessage.FromUserName, feeMonth);
 
                         sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
 
@@ -284,7 +286,7 @@ namespace Wechat
                     else if (wechatMessage.Content.ToLower().Contains("error"))
                     {
                         sb.Append("<Title>").AppendFormat("错误代码查询结果").Append("</Title>");
-                       // String errorCondition = wechatMessage.Content.Substring("error:".Length);
+                        // String errorCondition = wechatMessage.Content.Substring("error:".Length);
 
                         sbDesc = new StringBuilder();
                         //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
@@ -295,7 +297,7 @@ namespace Wechat
                         sbDesc.AppendFormat("备注：\n{0}\n", "现有代理商，需提供渠道编码和名称.");
                         sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
                         sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}]]>", "http://115.29.229.134/Wechat/TestError.png").Append("</PicUrl>");
-                        sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", "http://115.29.229.134/Wechat/TestError.png").Append("</Url>"); 
+                        sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", "http://115.29.229.134/Wechat/TestError.png").Append("</Url>");
                     }
                     else
                     {
@@ -314,11 +316,11 @@ namespace Wechat
                     sb.AppendFormat("</Articles>");
                     break;
             }
-          
-          //  sb.AppendFormat("<AgentID>{0}</AgentID>", textMessage.AgentID);
+
+            //  sb.AppendFormat("<AgentID>{0}</AgentID>", textMessage.AgentID);
 
             sb.AppendFormat("</xml>");
-            string sRespData = sb .ToString();
+            string sRespData = sb.ToString();
             string sEncryptMsg = ""; //xml格式的密文
             ret = wxcpt.EncryptMsg(sRespData, sReqTimeStamp, sReqNonce, ref sEncryptMsg);
             logger.Info("ret=" + ret);
@@ -327,7 +329,7 @@ namespace Wechat
                 System.Console.WriteLine("ERR: EncryptMsg Fail, ret: " + ret);
                 return;
             }
-            
+
             context.Response.Write(sEncryptMsg);
             // TODO:
             // 加密成功，企业需要将加密之后的sEncryptMsg返回

@@ -122,6 +122,7 @@
             // 
             this.dgAgentFee.AllowUserToAddRows = false;
             this.dgAgentFee.AllowUserToDeleteRows = false;
+            this.dgAgentFee.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgentFee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAgentFee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgentFee.Location = new System.Drawing.Point(3, 17);
