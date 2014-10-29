@@ -38,6 +38,9 @@
             this.menuItemAgentManagement = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAgentType = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemReportQuery = new System.Windows.Forms.ToolStripMenuItem();
+            this.微信管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolWechatSync = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolBroadcast = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarFeeImport = new System.Windows.Forms.ToolStripButton();
@@ -49,6 +52,8 @@
             this.toolbarWechat = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarBroadcast = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarErrorCode = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -61,7 +66,8 @@
             // 
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemSystem,
-            this.menuItemAgent});
+            this.menuItemAgent,
+            this.微信管理ToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
             this.menuMain.Size = new System.Drawing.Size(1016, 24);
@@ -130,8 +136,32 @@
             this.menuItemReportQuery.Text = "佣金推送报告查询";
             this.menuItemReportQuery.Click += new System.EventHandler(this.menuItemReportQuery_Click);
             // 
+            // 微信管理ToolStripMenuItem
+            // 
+            this.微信管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolWechatSync,
+            this.toolBroadcast});
+            this.微信管理ToolStripMenuItem.Name = "微信管理ToolStripMenuItem";
+            this.微信管理ToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.微信管理ToolStripMenuItem.Text = "微信管理";
+            // 
+            // toolWechatSync
+            // 
+            this.toolWechatSync.Name = "toolWechatSync";
+            this.toolWechatSync.Size = new System.Drawing.Size(142, 22);
+            this.toolWechatSync.Text = "微信账号同步";
+            this.toolWechatSync.Click += new System.EventHandler(this.toolbarWechat_Click);
+            // 
+            // toolBroadcast
+            // 
+            this.toolBroadcast.Name = "toolBroadcast";
+            this.toolBroadcast.Size = new System.Drawing.Size(142, 22);
+            this.toolBroadcast.Text = "微信公告发布";
+            this.toolBroadcast.Click += new System.EventHandler(this.toolbarBroadcast_Click);
+            // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -145,27 +175,29 @@
             this.toolbarWechat,
             this.toolStripSeparator7,
             this.toolbarBroadcast,
+            this.toolStripSeparator8,
+            this.toolbarErrorCode,
             this.toolStripSeparator6,
             this.toolStripButton1,
             this.toolStripSeparator1});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(58, 717);
+            this.toolStrip1.Size = new System.Drawing.Size(70, 717);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(55, 6);
             // 
             // toolbarFeeImport
             // 
             this.toolbarFeeImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarFeeImport.Image")));
             this.toolbarFeeImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarFeeImport.Name = "toolbarFeeImport";
-            this.toolbarFeeImport.Size = new System.Drawing.Size(55, 64);
+            this.toolbarFeeImport.Size = new System.Drawing.Size(68, 64);
             this.toolbarFeeImport.Text = "佣金导入";
             this.toolbarFeeImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarFeeImport.Click += new System.EventHandler(this.menuItemAgentImport_Click);
@@ -173,14 +205,14 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(55, 6);
             // 
             // toolbarFeeQuery
             // 
             this.toolbarFeeQuery.Image = ((System.Drawing.Image)(resources.GetObject("toolbarFeeQuery.Image")));
             this.toolbarFeeQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarFeeQuery.Name = "toolbarFeeQuery";
-            this.toolbarFeeQuery.Size = new System.Drawing.Size(79, 64);
+            this.toolbarFeeQuery.Size = new System.Drawing.Size(55, 64);
             this.toolbarFeeQuery.Text = "佣金发布";
             this.toolbarFeeQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarFeeQuery.Click += new System.EventHandler(this.menuItemAgentFeeQuery_Click);
@@ -188,14 +220,14 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(55, 6);
             // 
             // toolbarReport
             // 
             this.toolbarReport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarReport.Image")));
             this.toolbarReport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarReport.Name = "toolbarReport";
-            this.toolbarReport.Size = new System.Drawing.Size(79, 64);
+            this.toolbarReport.Size = new System.Drawing.Size(55, 64);
             this.toolbarReport.Text = "报告查询";
             this.toolbarReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarReport.Click += new System.EventHandler(this.menuItemReportQuery_Click);
@@ -203,7 +235,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(55, 6);
             // 
             // toolbarWechat
             // 
@@ -218,29 +250,44 @@
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(55, 6);
             // 
             // toolbarBroadcast
             // 
             this.toolbarBroadcast.Image = ((System.Drawing.Image)(resources.GetObject("toolbarBroadcast.Image")));
             this.toolbarBroadcast.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarBroadcast.Name = "toolbarBroadcast";
-            this.toolbarBroadcast.Size = new System.Drawing.Size(79, 64);
+            this.toolbarBroadcast.Size = new System.Drawing.Size(55, 64);
             this.toolbarBroadcast.Text = "微信公告";
             this.toolbarBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarBroadcast.Click += new System.EventHandler(this.toolbarBroadcast_Click);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(55, 6);
+            // 
+            // toolbarErrorCode
+            // 
+            this.toolbarErrorCode.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCode.Image")));
+            this.toolbarErrorCode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarErrorCode.Name = "toolbarErrorCode";
+            this.toolbarErrorCode.Size = new System.Drawing.Size(55, 64);
+            this.toolbarErrorCode.Text = "代码导入";
+            this.toolbarErrorCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarErrorCode.Click += new System.EventHandler(this.toolbarErrorCode_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(55, 6);
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(79, 64);
+            this.toolStripButton1.Size = new System.Drawing.Size(55, 64);
             this.toolStripButton1.Text = "退出";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton1.Click += new System.EventHandler(this.menuItemExit_Click);
@@ -248,13 +295,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(79, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(55, 6);
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(58, 719);
+            this.statusStrip1.Location = new System.Drawing.Point(70, 719);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(958, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(946, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -311,6 +358,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton toolbarBroadcast;
+        private System.Windows.Forms.ToolStripMenuItem 微信管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolWechatSync;
+        private System.Windows.Forms.ToolStripMenuItem toolBroadcast;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton toolbarErrorCode;
     }
 }
 

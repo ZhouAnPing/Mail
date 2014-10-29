@@ -103,6 +103,12 @@ namespace ChinaUnion_Agent
             ChildForm.ShowIcon = false;
             ChildForm.Show();
             ChildForm.WindowState = FormWindowState.Maximized;
+        }
+
+        private void toolbarErrorCode_Click(object sender, EventArgs e)
+        {
+            frmErrorCode frmErrorCode = new frmErrorCode();
+            CheckChildOpenState(this, frmErrorCode);
         }  
        
 
