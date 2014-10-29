@@ -467,7 +467,7 @@ namespace ChinaUnion_Agent
         }
 
      
-        BackgroundWorker Mailworker; 
+      
         private void frmAgentQuery_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;

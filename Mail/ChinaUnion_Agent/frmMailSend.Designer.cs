@@ -113,7 +113,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox3.Location = new System.Drawing.Point(0, 67);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(263, 674);
+            this.groupBox3.Size = new System.Drawing.Size(263, 506);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "月度佣金明细信息";
@@ -130,7 +130,7 @@
             this.dgAgentFee.ReadOnly = true;
             this.dgAgentFee.RowHeadersWidth = 10;
             this.dgAgentFee.RowTemplate.Height = 23;
-            this.dgAgentFee.Size = new System.Drawing.Size(257, 654);
+            this.dgAgentFee.Size = new System.Drawing.Size(257, 486);
             this.dgAgentFee.TabIndex = 5;
             this.dgAgentFee.SelectionChanged += new System.EventHandler(this.dgAgentFee_SelectionChanged);
             // 
@@ -140,7 +140,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(263, 67);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(629, 674);
+            this.groupBox2.Size = new System.Drawing.Size(629, 506);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "邮件预览";
@@ -151,14 +151,14 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 17);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(623, 654);
+            this.webBrowser1.Size = new System.Drawing.Size(623, 486);
             this.webBrowser1.TabIndex = 0;
             // 
             // frmMailSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 741);
+            this.ClientSize = new System.Drawing.Size(892, 573);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);

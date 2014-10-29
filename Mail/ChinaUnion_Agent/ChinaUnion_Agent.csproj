@@ -83,6 +83,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmMailSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMailSubject.Designer.cs">
+      <DependentUpon>frmMailSubject.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAgentImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     <Compile Include="Wechat\User.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
+    <EmbeddedResource Include="frmMailSubject.resx">
+      <DependentUpon>frmMailSubject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAgentImport.resx">
       <DependentUpon>frmAgentImport.cs</DependentUpon>
     </EmbeddedResource>

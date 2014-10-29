@@ -24,7 +24,7 @@
       <Value Profile="(Default)">上海联通</Value>
     </Setting>
     <Setting Name="MailSubject" Type="System.String" Scope="User">
-      <Value Profile="(Default)">佣金告知单</Value>
+      <Value Profile="(Default)">上海联通合作伙伴佣金告知单</Value>
     </Setting>
     <Setting Name="TripolisDBId" Type="System.String" Scope="User">
       <Value Profile="(Default)">MjYxMTI2MTFnUydR54n7AA</Value>

@@ -16,6 +16,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmMailReSend : Form
     {
+        private String subject;
         public String feeMonth;
         public ArrayList htReSendMail = new ArrayList();
         public frmMailReSend()
@@ -25,13 +26,20 @@ namespace ChinaUnion_Agent
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            //异步执行开始
-            worker.RunWorkerAsync();
-            frmProgress frm = new frmProgress(this.worker);
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ShowDialog(this);
-            frm.Close();   
-          
+            frmMailSubject frmMailSubject = new ChinaUnion_Agent.frmMailSubject();
+            frmMailSubject.subject = "重新发送:" + Settings.Default.MailSubject + "(" + this.dtFeeMonth.Value.ToString("yyyy-MM") + ")";
+            DialogResult dialogResult = frmMailSubject.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                this.subject = frmMailSubject.subject;
+                //异步执行开始
+                worker.RunWorkerAsync();
+                frmProgress frm = new frmProgress(this.worker);
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.ShowDialog(this);
+                frm.Close();
+            }
+
         }
 
         BackgroundWorker worker;
@@ -397,7 +405,7 @@ namespace ChinaUnion_Agent
             mailData.fromAddress = Settings.Default.MailFromAddress;
             mailData.replyAddress = Settings.Default.MailReplyAddress;
             mailData.sender = Settings.Default.MailSender;
-            mailData.subject = "重新发送:" + Settings.Default.MailSubject + "(" + this.dtFeeMonth.Value.ToString("yyyy-MM") + ")";
+            mailData.subject = this.subject;
             ChinaUnionAdapter mailAdapter = new ChinaUnionAdapter(client, userName, password, null);
             String databaseId = Settings.Default.TripolisDBId;
             String workspaceId = Settings.Default.TripolisWorkspaceId;

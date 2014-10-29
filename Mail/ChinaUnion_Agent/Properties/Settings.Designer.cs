@@ -98,7 +98,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("佣金告知单")]
+        [global::System.Configuration.DefaultSettingValueAttribute("上海联通合作伙伴佣金告知单")]
         public string MailSubject {
             get {
                 return ((string)(this["MailSubject"]));

@@ -15,7 +15,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmMailSend : Form
     {
-
+        private String subject;
         public DateTime schduleAt = DateTime.Now;
         public DataGridView dgvTemp;
         public frmMailSend()
@@ -79,7 +79,7 @@ namespace ChinaUnion_Agent
                 mailData.fromAddress = Settings.Default.MailFromAddress;
                 mailData.replyAddress = Settings.Default.MailReplyAddress;
                 mailData.sender = Settings.Default.MailSender;
-                mailData.subject = Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
+                mailData.subject = this.subject;
 
                 String databaseId = Settings.Default.TripolisDBId;
                 String workspaceId = Settings.Default.TripolisWorkspaceId;
@@ -115,7 +115,7 @@ namespace ChinaUnion_Agent
                     Cursor.Current = Cursors.Default;
                 }
 
-                worker.ReportProgress(1, "发送邮件...\r\n");
+                worker.ReportProgress(2, "发送邮件...\r\n");
                 String message = mailAdapter.sendBatchMail(databaseId, workspaceId, emailId, mailData, dateTimePicker1.Value);
                 if (message.Contains("OK:"))
                 {
@@ -160,12 +160,19 @@ namespace ChinaUnion_Agent
         }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            //异步执行开始
-            worker.RunWorkerAsync();
-            frmProgress frm = new frmProgress(this.worker);
-            frm.StartPosition = FormStartPosition.CenterScreen;
-            frm.ShowDialog(this);
-            frm.Close();
+            frmMailSubject frmMailSubject = new ChinaUnion_Agent.frmMailSubject();
+            frmMailSubject.subject = Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
+            DialogResult dialogResult =  frmMailSubject.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                this.subject = frmMailSubject.subject;
+                //异步执行开始
+                worker.RunWorkerAsync();
+                frmProgress frm = new frmProgress(this.worker);
+                frm.StartPosition = FormStartPosition.CenterScreen;
+                frm.ShowDialog(this);
+                frm.Close();
+            }
 
         }
 
@@ -271,42 +278,48 @@ namespace ChinaUnion_Agent
             try
             {
                 frmMailAddress frmMailAddress = new frmMailAddress();
-                frmMailAddress.ShowDialog();
-                String email = frmMailAddress.email;
-                if (!String.IsNullOrEmpty(email) && !String.IsNullOrWhiteSpace(email))
+                frmMailAddress.subject = "测试:" + Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
+                DialogResult dialogResult = frmMailAddress.ShowDialog();
+                if (dialogResult == DialogResult.OK)
                 {
-
-                    Cursor.Current = Cursors.WaitCursor;
-
-                    String client = Settings.Default.TripolisClient;
-                    String userName = Settings.Default.TripoisUserName;
-                    String password = Settings.Default.TripolisPassword;
-
-                    ChinaUnionAdapter mailAdapter = new ChinaUnionAdapter(client, userName, password, null);
-                    MailData mailData = new MailData();
-                    mailData.fromAddress = Settings.Default.MailFromAddress;
-                    mailData.replyAddress = Settings.Default.MailReplyAddress;
-                    mailData.sender = Settings.Default.MailSender;
-                    mailData.subject = "测试:" + Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
-
-                    String databaseId = Settings.Default.TripolisDBId;
-                    String workspaceId = Settings.Default.TripolisWorkspaceId;
-                    String emailTypeId = Settings.Default.TripolisEmailTypeId;
-
-                    String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, email, mailData.subject, this.webBrowser1.DocumentText);
-
-                    if (message.Contains("OK:"))
+                    String email = frmMailAddress.email;
+                    String subject = frmMailAddress.subject;
+                    if (!String.IsNullOrEmpty(email) && !String.IsNullOrWhiteSpace(email))
                     {
 
-                        MessageBox.Show("邮件发送完成");
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        String client = Settings.Default.TripolisClient;
+                        String userName = Settings.Default.TripoisUserName;
+                        String password = Settings.Default.TripolisPassword;
+
+                        ChinaUnionAdapter mailAdapter = new ChinaUnionAdapter(client, userName, password, null);
+                        MailData mailData = new MailData();
+                        mailData.fromAddress = Settings.Default.MailFromAddress;
+                        mailData.replyAddress = Settings.Default.MailReplyAddress;
+                        mailData.sender = Settings.Default.MailSender;
+                        mailData.subject = subject;
+
+                        String databaseId = Settings.Default.TripolisDBId;
+                        String workspaceId = Settings.Default.TripolisWorkspaceId;
+                        String emailTypeId = Settings.Default.TripolisEmailTypeId;
+
+                        String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, email, mailData.subject, this.webBrowser1.DocumentText);
+
+                        if (message.Contains("OK:"))
+                        {
+
+                            MessageBox.Show("邮件发送完成");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(message);
+                        }
+
+                        Cursor.Current = Cursors.Default;
 
                     }
-                    else
-                    {
-                        MessageBox.Show(message);
-                    }
-                    Cursor.Current = Cursors.Default;
-
                 }
             }
             catch (Exception ex)

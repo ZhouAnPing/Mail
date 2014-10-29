@@ -34,15 +34,9 @@ namespace ChinaUnion_Agent
 
         private void menuItemAgentImport_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Close();
-            }
+            
             frmAgentImport frmAgentImport = new frmAgentImport();
-            frmAgentImport.MdiParent = this;
-          
-            frmAgentImport.Show();
-            frmAgentImport.WindowState = FormWindowState.Maximized;
+            CheckChildOpenState(this, frmAgentImport);
 
 
         }
@@ -51,45 +45,25 @@ namespace ChinaUnion_Agent
 
         private void menuItemAgentFeeQuery_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Close();
-            }
-
             frmAgentQuery frmAgentQuery = new frmAgentQuery();
-            frmAgentQuery.MdiParent = this;
-           
-            frmAgentQuery.Show();
-            frmAgentQuery.WindowState = FormWindowState.Maximized;
+            CheckChildOpenState(this, frmAgentQuery);
 
         }
 
         private void menuItemReportQuery_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Close();
-            }
+            
             frmMailReport frmMailReport = new frmMailReport();
-            frmMailReport.MdiParent = this;
-
-            frmMailReport.Show();
-            frmMailReport.WindowState = FormWindowState.Maximized;
+            CheckChildOpenState(this, frmMailReport);
 
         }
 
 
         private void toolbarWechat_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Close();
-            }
+           
             frmWechatManagement frmWechatManagement = new frmWechatManagement();
-            frmWechatManagement.MdiParent = this;
-
-            frmWechatManagement.Show();
-            frmWechatManagement.WindowState = FormWindowState.Maximized;
+            CheckChildOpenState(this, frmWechatManagement);
         }
 
         private void toolbarBroadcast_Click(object sender, EventArgs e)
@@ -103,7 +77,33 @@ namespace ChinaUnion_Agent
 
         }
 
-      
+        /// <summary>  
+        /// 名称：CheckChildOpenState  
+        /// 功能：用子窗体的Name进行判断是否已实例化，如果存在则将他激活  
+        /// </summary>  
+        /// <param name="MdiForm">容器窗体</param>  
+        /// <param name="ChildForm">子窗体</param>  
+        public static void CheckChildOpenState(Form MdiForm, Form ChildForm)
+        {
+            foreach (Form tempChildForm in MdiForm.MdiChildren)
+            {
+                if (tempChildForm.Name == ChildForm.Name.ToString())
+                {                  
+                    tempChildForm.WindowState = FormWindowState.Maximized;                   
+                    tempChildForm.Activate();
+                    return;
+                }
+                else
+                {
+                  //  tempChildForm.Close();
+                }
+            }
+            ChildForm.MdiParent = MdiForm;
+            ChildForm.ShowInTaskbar = false;
+            ChildForm.ShowIcon = false;
+            ChildForm.Show();
+            ChildForm.WindowState = FormWindowState.Maximized;
+        }  
        
 
         
