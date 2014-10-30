@@ -1,8 +1,11 @@
-﻿using System;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +13,9 @@ using System.Windows.Forms;
 
 namespace ChinaUnion_Agent
 {
-    public partial class frmErrorCode : Form
+    public partial class frmErrorCodeQuery : Form
     {
-        public frmErrorCode()
+        public frmErrorCodeQuery()
         {
             InitializeComponent();
         }
@@ -44,28 +47,26 @@ namespace ChinaUnion_Agent
         } 
         private void frmErrorCode_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-
+            this.WindowState = FormWindowState.Maximized;     
             
            
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
-            // openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Excel(*.xlsx)|*.xlsx|Excel 2000-2003(*.xls)|*.xls|CSV(*.csv)|*.csv|所有文件(*.*)|*.*";
-            
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                string FileName = openFileDialog.FileName;
 
-                this.dgErrorCode.Rows.Clear();
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+       
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+
+            Cursor.Current = Cursors.WaitCursor;
+            this.dgErrorCode.Rows.Clear();
                 dgErrorCode.Columns.Clear();
 
-                dgErrorCode.Columns.Add("问题类型", "问题类型");
+                dgErrorCode.Columns.Add("序号", "序号");
+                dgErrorCode.Columns.Add("关键字", "关键字");
                 dgErrorCode.Columns.Add("问题描述", "问题描述");
                 DataGridViewImageColumn column = new DataGridViewImageColumn();
                 column.HeaderText = "出错截图信息";
@@ -77,16 +78,25 @@ namespace ChinaUnion_Agent
                 dgErrorCode.Columns.Add("联系人员", "联系人员");
                 dgErrorCode.Columns.Add("备注", "备注");
 
-                for (int i = 0; i < 100; i++)
+            AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
+            IList<AgentErrorCode> ErrorCodeList = agentErrorCodeDao.GetList(this.txtErrorCode.Text.Trim());
+
+
+            if (ErrorCodeList != null && ErrorCodeList.Count > 0)
+            {
+                
+
+                for (int i = 0; i < ErrorCodeList.Count; i++)
                 {
                     dgErrorCode.Rows.Add();
                     DataGridViewRow row = dgErrorCode.Rows[i];
                     row.Cells[0].Value = (i + 1).ToString();
-                    row.Cells[1].Value = "业务受理";
-                    row.Cells[2].Value = "./TestError.png";
-                    row.Cells[3].Value = "对不起，你所在的渠道没有活动权限";
-                    row.Cells[4].Value = "联通客服";
-                    row.Cells[5].Value = "建议通过微信企业号联系";
+                    row.Cells[1].Value = ErrorCodeList[i].keyword;
+                    row.Cells[2].Value = ErrorCodeList[i].errorDesc;
+                    row.Cells[3].Value = ErrorCodeList[i].errorImg;
+                    row.Cells[4].Value = ErrorCodeList[i].solution;
+                    row.Cells[5].Value = ErrorCodeList[i].contactName;
+                    row.Cells[6].Value = ErrorCodeList[i].comment;
 
 
                 }
@@ -94,6 +104,8 @@ namespace ChinaUnion_Agent
                 this.dgErrorCode.AutoResizeColumns();
                 this.dgErrorCode.AutoResizeRows();
             }
+            this.Cursor = Cursors.Default;
+            
         }
     }
 }

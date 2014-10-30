@@ -1,6 +1,6 @@
 ﻿namespace ChinaUnion_Agent
 {
-    partial class frmErrorCode
+    partial class frmErrorCodeImport
     {
         /// <summary>
         /// Required designer variable.
@@ -88,6 +88,7 @@
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnImport
             // 
@@ -99,6 +100,7 @@
             this.btnImport.TabIndex = 9;
             this.btnImport.Text = "上传";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnSelect
             // 
@@ -159,6 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);

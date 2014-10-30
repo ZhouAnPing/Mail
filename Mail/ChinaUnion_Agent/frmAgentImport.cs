@@ -143,6 +143,174 @@ namespace ChinaUnion_Agent
                 }
 
 
+                //检查重复记录
+                StringBuilder sbDuplicated = new StringBuilder();
+                HashSet<String> agentFeeSet = new HashSet<string>();
+
+                StringBuilder sb = new StringBuilder();               
+                foreach (DataGridViewRow v in this.dgAgentFee.Rows)
+                {
+                   
+                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()))
+                    {
+                        
+                        foreach (DataGridViewRow v2 in dgAgentFee.Rows)
+                        {
+                            if (v.Index == v2.Index)
+                            {
+                                continue;
+                            }
+
+                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) )
+                            {
+                                
+                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()))
+                                {
+                                    if (!agentFeeSet.Contains<String>(v.Cells[0].Value.ToString()))
+                                    {
+                                        agentFeeSet.Add(v.Cells[0].Value.ToString());
+                                        sb.AppendFormat("代理商:{0}", v.Cells[0].Value.ToString()).AppendLine();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(sb.ToString()))
+                {
+                    sbDuplicated.AppendLine("代理商佣金存在以下重复记录:");
+                    sbDuplicated.AppendLine(sb.ToString());
+                }
+
+                //
+                sb = new StringBuilder();
+                HashSet<String> agentSet = new HashSet<string>();
+                foreach (DataGridViewRow v in this.dgAgent.Rows)
+                {
+                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v.Cells[1].Value.ToString()))
+                    {
+                        
+
+                        foreach (DataGridViewRow v2 in dgAgent.Rows)
+                        {
+                            if (v.Index == v2.Index)
+                            {
+                                continue;
+                            }
+                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v2.Cells[1].Value.ToString()))
+                            {
+
+                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()) && v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
+                                {
+                                    if (!agentSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString()))
+                                    {
+                                        agentSet.Add(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString());
+                                        sb.AppendFormat("代理商:{0}-{1}", v.Cells[0].Value.ToString(), v.Cells[1].Value.ToString()).AppendLine();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(sb.ToString()))
+                {
+                    sbDuplicated.AppendLine("\n代理商存在以下重复记录:");
+                    sbDuplicated.AppendLine(sb.ToString());
+                }
+
+                //
+                sb = new StringBuilder();
+                HashSet<String> agentFeeTypeSet = new HashSet<string>();
+                foreach (DataGridViewRow v in this.dgAgentType.Rows)
+                {
+                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v.Cells[1].Value.ToString()))
+                    {
+
+                       
+                        foreach (DataGridViewRow v2 in this.dgAgentType.Rows)
+                        {
+                            if (v.Index == v2.Index)
+                            {
+                                continue;
+                            }
+                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v2.Cells[1].Value.ToString()))
+                            {
+
+                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()) && v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
+                                {
+                                    if (!agentFeeTypeSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString()))
+                                    {
+                                        agentFeeTypeSet.Add(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString());
+                                        sb.AppendFormat("渠道类型:{0}-{1}", v.Cells[0].Value.ToString(), v.Cells[1].Value.ToString()).AppendLine();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(sb.ToString()))
+                {
+                    sbDuplicated.AppendLine("\n代理商渠道类型存在以下重复记录:");
+                    sbDuplicated.AppendLine(sb.ToString());
+                }
+
+
+                //
+                sb = new StringBuilder();
+                HashSet<String> agentFeeTypeCommentSet = new HashSet<string>();
+                foreach (DataGridViewRow v in this.dgAgentTypeComment.Rows)
+                {
+                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v.Cells[1].Value.ToString()))
+                    {
+                        
+                        foreach (DataGridViewRow v2 in dgAgentTypeComment.Rows)
+                        {
+                            if (v.Index == v2.Index)
+                            {
+                                continue;
+                            }
+                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v2.Cells[1].Value.ToString()))
+                            {
+                                if (agentFeeTypeCommentSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[1].Value.ToString()))
+                                {
+                                    continue;
+                                }
+                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()) && v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
+                                {
+                                    if (!agentFeeTypeCommentSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString()))
+                                    {
+                                        agentFeeTypeCommentSet.Add(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString());
+
+                                        sb.AppendFormat("渠道类型说明:{0}-{1}", v.Cells[0].Value.ToString(), v.Cells[1].Value.ToString()).AppendLine();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(sb.ToString()))
+                {
+                    sbDuplicated.AppendLine("\n代理商渠道类型说明存在以下重复记录:");
+                    sbDuplicated.AppendLine(sb.ToString());
+                }
+
+
+                if (!String.IsNullOrEmpty(sbDuplicated.ToString()))
+                {
+                    this.btnImport.Enabled = false;
+                    MessageBox.Show(sbDuplicated.ToString());
+                }
+                else
+                {
+                    this.btnImport.Enabled = true;
+                }
+
+
+
                 Cursor.Current = Cursors.Default;
             }
         }

@@ -105,10 +105,17 @@ namespace ChinaUnion_Agent
             ChildForm.WindowState = FormWindowState.Maximized;
         }
 
-        private void toolbarErrorCode_Click(object sender, EventArgs e)
+        private void toolbarErrorCodeImport_Click(object sender, EventArgs e)
         {
-            frmErrorCode frmErrorCode = new frmErrorCode();
-            CheckChildOpenState(this, frmErrorCode);
+            frmErrorCodeImport frmErrorCodeImport = new frmErrorCodeImport();
+            CheckChildOpenState(this, frmErrorCodeImport);
+        }
+
+        private void toolbarErrorCodeQuery_Click(object sender, EventArgs e)
+        {
+            frmErrorCodeQuery frmErrorCodeQuery = new frmErrorCodeQuery();
+            CheckChildOpenState(this, frmErrorCodeQuery);
+
         }  
        
 

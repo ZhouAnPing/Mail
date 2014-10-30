@@ -83,11 +83,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmErrorCode.cs">
+    <Compile Include="frmErrorCodeQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmErrorCode.Designer.cs">
-      <DependentUpon>frmErrorCode.cs</DependentUpon>
+    <Compile Include="frmErrorCodeQuery.Designer.cs">
+      <DependentUpon>frmErrorCodeQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmErrorCodeImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmErrorCodeImport.Designer.cs">
+      <DependentUpon>frmErrorCodeImport.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMailSubject.cs">
       <SubType>Form</SubType>
@@ -163,8 +169,11 @@
     <Compile Include="Wechat\WechatAction.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
-    <EmbeddedResource Include="frmErrorCode.resx">
-      <DependentUpon>frmErrorCode.cs</DependentUpon>
+    <EmbeddedResource Include="frmErrorCodeQuery.resx">
+      <DependentUpon>frmErrorCodeQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmErrorCodeImport.resx">
+      <DependentUpon>frmErrorCodeImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMailSubject.resx">
       <DependentUpon>frmMailSubject.cs</DependentUpon>
