@@ -243,12 +243,13 @@ namespace Wechat
                     break;
 
                 default:
-                    sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-                    sb.AppendFormat("<ArticleCount>1</ArticleCount>");
-                    sb.AppendFormat("<Articles>");
-                    sb.AppendFormat("<item>");
+                    
                     if (wechatMessage.Content.ToLower().Contains("commission:"))
                     {
+                        sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+                        sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+                        sb.AppendFormat("<Articles>");
+                        sb.AppendFormat("<item>");
                         sb.Append("<Title>").AppendFormat("佣金查询结果").Append("</Title>");
                         feeMonth = wechatMessage.Content.Substring("commission:".Length);
                         feeMonth = DateTime.Now.ToString("yyyy-MM");
@@ -281,39 +282,97 @@ namespace Wechat
                         url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", wechatMessage.FromUserName, feeMonth);
 
                         sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                        //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                        sb.AppendFormat("</item>");
 
+                        sb.AppendFormat("</Articles>");
                     }
-                    else if (wechatMessage.Content.ToLower().Contains("error"))
+                    else if (wechatMessage.Content.ToLower().Contains("error:"))
                     {
-                        sb.Append("<Title>").AppendFormat("错误代码查询结果").Append("</Title>");
-                        // String errorCondition = wechatMessage.Content.Substring("error:".Length);
+                        sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+                       
+                        AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
+                        logger.Info(wechatMessage.Content.Substring(6));
+                        IList<AgentErrorCode> agentErrorCodeList = agentErrorCodeDao.GetList(wechatMessage.Content.Substring(6));
 
-                        sbDesc = new StringBuilder();
-                        //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-                        sbDesc.AppendFormat("问题类型：{0}\n\n", "业务受理");
-                        sbDesc.AppendFormat("问题描述：\n{0}\n\n", "对不起，您所在渠道没有任何活动类型权限，无法参加活动");
-                        sbDesc.AppendFormat("处理方法：\n{0}\n\n", "1、在ESS系统进行渠道信息挂靠;\n 2、需开通渠道终端权限");
-                        sbDesc.AppendFormat("联系人员：{0}\n\n", "周安平(信息部)");
-                        sbDesc.AppendFormat("备注：\n{0}\n", "现有代理商，需提供渠道编码和名称.");
-                        sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-                        sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}]]>", "http://115.29.229.134/Wechat/TestError.png").Append("</PicUrl>");
-                        sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", "http://115.29.229.134/Wechat/TestError.png").Append("</Url>");
+                        if (agentErrorCodeList.Count > 5)
+                        {
+                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 5);
+                        }
+                        else if (agentErrorCodeList.Count <= 5 && agentErrorCodeList.Count > 0)
+                        {
+                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", agentErrorCodeList.Count);
+                        }
+                        else
+                        {
+                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 1);
+                        }
+                        sb.AppendFormat("<Articles>");
+
+                        int count = 0;
+                        foreach (AgentErrorCode agentErrorCode in agentErrorCodeList)
+                        {
+                            count++;
+
+                            if (count > 5)
+                            {
+                                break;
+                            }
+                            logger.Info("Path=" + context.Server.MapPath("~/") + @"\ErrorImages\" + agentErrorCode.seq + ".jpg");
+                            String path = context.Server.MapPath("~/") + @"\ErrorImages\" + agentErrorCode.seq + ".jpg";
+                            try
+                            {
+                                System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                                sb.AppendFormat("<item>");
+                                sb.Append("<Title>").AppendFormat("{0}错误查询结果",agentErrorCode.keyword).Append("</Title>");
+                                // String errorCondition = wechatMessage.Content.Substring("error:".Length);
+
+                                sbDesc = new StringBuilder();
+                                //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
+
+                                sbDesc.AppendFormat("问题描述：\n{0}\n\n", agentErrorCode.errorDesc);
+                                sbDesc.AppendFormat("处理方法：\n{0}\n\n", agentErrorCode.solution);
+                                sbDesc.AppendFormat("联系人员：{0}\n\n", agentErrorCode.contactName);
+                                sbDesc.AppendFormat("备注：\n{0}\n", agentErrorCode.comment);
+                                sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq,".jpg").Append("</PicUrl>");
+                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</Url>");
+                                //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                                sb.AppendFormat("</item>");
+                              //  logger.Info(sb.ToString());
+                            }
+                            catch(Exception ex)
+                            {
+                                logger.Info(ex.Message);
+                            }
+                        }
+
+                       
+
+                     
+
+                        sb.AppendFormat("</Articles>");
                     }
                     else
                     {
-
+                        sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+                        sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+                        sb.AppendFormat("<Articles>");
+                        sb.AppendFormat("<item>");
                         sb.Append("<Title>").AppendFormat("联通渠道移动办公平台").Append("</Title>");
                         StringBuilder sbDefaultContent = new StringBuilder();
                         sbDefaultContent.AppendFormat("欢迎来到联通渠道移动办公平台，按以下关键字查询\n\n");
                         sbDefaultContent.AppendFormat("1.佣金查询请输入\"commission:yyyymm\",例如:\"commission:201410\"查询2014年10月份佣金\n\n");
                         sbDefaultContent.AppendFormat("2.错误代码查询请输入\"error:关键字或者代码\",例如:\"error:10001\"查询错误代码是10001的错误信息\n");
                         sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDefaultContent.ToString()).Append("</Description>");
+
+                        //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                        sb.AppendFormat("</item>");
+
+                        sb.AppendFormat("</Articles>");
                     }
 
-                    //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-                    sb.AppendFormat("</item>");
-
-                    sb.AppendFormat("</Articles>");
+                
                     break;
             }
 
@@ -327,6 +386,8 @@ namespace Wechat
             if (ret != 0)
             {
                 System.Console.WriteLine("ERR: EncryptMsg Fail, ret: " + ret);
+
+              
                 return;
             }
 

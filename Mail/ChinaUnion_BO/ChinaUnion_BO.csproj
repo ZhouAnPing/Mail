@@ -46,6 +46,7 @@
     <Compile Include="AgentFee.cs" />
     <Compile Include="AgentType.cs" />
     <Compile Include="AgentTypeComment.cs" />
+    <Compile Include="AgentErrorCode.cs" />
     <Compile Include="MailJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
