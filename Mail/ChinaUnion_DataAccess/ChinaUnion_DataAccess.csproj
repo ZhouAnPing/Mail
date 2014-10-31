@@ -51,6 +51,7 @@
     <Compile Include="AgentTypeCommentDao.cs" />
     <Compile Include="AgentTypeDao.cs" />
     <Compile Include="AgentErrorCodeDao.cs" />
+    <Compile Include="ImportLogDao.cs" />
     <Compile Include="MailJobDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

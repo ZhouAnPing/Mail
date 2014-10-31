@@ -318,6 +318,17 @@ namespace ChinaUnion_Agent
         private void btnImport_Click(object sender, EventArgs e)
         {
 
+            ImportLog importLog = new ChinaUnion_BO.ImportLog();
+            importLog.type = "Agent";
+            importLog.import_month = this.dtFeeMonth.Value.ToString("yyyy-MM");
+            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
+            if (importLogDao.Get(importLog) != null)
+            {
+                if (MessageBox.Show("本月佣金已经导入，是否需要再次导入？", "数据导入", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
             //异步执行开始
             worker.RunWorkerAsync();
             frmProgress frm = new frmProgress(this.worker);
@@ -667,6 +678,11 @@ namespace ChinaUnion_Agent
                 agentTypeCommentDao.Add(agentTypeComment);
             }
 
+            ImportLog importLog = new ChinaUnion_BO.ImportLog();
+            importLog.type="Agent";
+            importLog.import_month = this.dtFeeMonth.Value.ToString("yyyy-MM");
+            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
+            importLogDao.Add(importLog);
             worker.ReportProgress(8, "导入代理商类型完成...\r\n");
            
 
