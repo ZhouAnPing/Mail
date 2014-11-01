@@ -66,13 +66,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
-    <Content Include="Helloworld.asmx" />
+    <Content Include="ErrorCodeQuery.aspx" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentFeeHandler.ashx.cs">
+      <DependentUpon>AgentFeeHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="AgentFeeQuery.aspx.cs">
       <DependentUpon>AgentFeeQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -84,9 +89,15 @@
     <Compile Include="CallbackHandler.ashx.cs">
       <DependentUpon>CallbackHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Helloworld.asmx.cs">
-      <DependentUpon>Helloworld.asmx</DependentUpon>
-      <SubType>Component</SubType>
+    <Compile Include="ErrorCodeHandler.ashx.cs">
+      <DependentUpon>ErrorCodeHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorCodeQuery.aspx.cs">
+      <DependentUpon>ErrorCodeQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorCodeQuery.aspx.designer.cs">
+      <DependentUpon>ErrorCodeQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -106,6 +117,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CallbackHandler.ashx" />
+    <Content Include="ErrorCodeHandler.ashx" />
+    <Content Include="AgentFeeHandler.ashx" />
     <None Include="Properties\PublishProfiles\ChinaUnion.pubxml" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

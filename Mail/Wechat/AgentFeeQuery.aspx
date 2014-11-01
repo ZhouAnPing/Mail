@@ -131,11 +131,11 @@
 							  
 			                </tr> 
 			                <tr>
-			                    <td  style="font-size: 30px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#FFFF00">
-			                        		<p>
+			                    <td  style="font-size: 30px; color: black; font-weight:bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: middle; padding:0px" bgcolor="white">
+			                        		
 										
 										 <asp:Label ID="lblAgentComment" runat="server"></asp:Label>
-                                                </p>
+                                               
 			                    </td>				
 							  
 			                </tr>  

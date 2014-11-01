@@ -58,7 +58,7 @@ namespace ChinaUnion_Agent.Wechat
 
                 touser = "@all",
                 msgtype = "text",
-                agentid = 1,
+                agentid = 2,
                 safe = 0,
                 text = new
                 {

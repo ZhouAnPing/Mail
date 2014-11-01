@@ -179,7 +179,7 @@ namespace ChinaUnion_DataAccess
             }
 
             sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo) agentType,");
-            sb.Append("(select group_concat(t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType) agentTypeComment,");
+            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType) agentTypeComment,");
             sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
             sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");

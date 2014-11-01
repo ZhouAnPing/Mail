@@ -243,7 +243,7 @@ namespace Wechat
                     break;
 
                 default:
-                    
+
                     if (wechatMessage.Content.ToLower().Contains("commission:"))
                     {
                         sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -290,7 +290,7 @@ namespace Wechat
                     else if (wechatMessage.Content.ToLower().Contains("error:"))
                     {
                         sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-                       
+
                         AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
                         logger.Info(wechatMessage.Content.Substring(6));
                         IList<AgentErrorCode> agentErrorCodeList = agentErrorCodeDao.GetList(wechatMessage.Content.Substring(6));
@@ -324,7 +324,7 @@ namespace Wechat
                             {
                                 System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
                                 sb.AppendFormat("<item>");
-                                sb.Append("<Title>").AppendFormat("{0}错误查询结果",agentErrorCode.keyword).Append("</Title>");
+                                sb.Append("<Title>").AppendFormat("{0}错误查询结果", agentErrorCode.keyword).Append("</Title>");
                                 // String errorCondition = wechatMessage.Content.Substring("error:".Length);
 
                                 sbDesc = new StringBuilder();
@@ -335,21 +335,21 @@ namespace Wechat
                                 sbDesc.AppendFormat("联系人员：{0}\n\n", agentErrorCode.contactName);
                                 sbDesc.AppendFormat("备注：\n{0}\n", agentErrorCode.comment);
                                 sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq,".jpg").Append("</PicUrl>");
+                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
                                 sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</Url>");
                                 //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                                 sb.AppendFormat("</item>");
-                              //  logger.Info(sb.ToString());
+                                //  logger.Info(sb.ToString());
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 logger.Info(ex.Message);
                             }
                         }
 
-                       
 
-                     
+
+
 
                         sb.AppendFormat("</Articles>");
                     }
@@ -372,7 +372,7 @@ namespace Wechat
                         sb.AppendFormat("</Articles>");
                     }
 
-                
+
                     break;
             }
 
@@ -387,7 +387,7 @@ namespace Wechat
             {
                 System.Console.WriteLine("ERR: EncryptMsg Fail, ret: " + ret);
 
-              
+
                 return;
             }
 

@@ -30,7 +30,22 @@ namespace Wechat
 
             AgentFee agentFee = AgentFeeDao.GetByKey(feeMonth, agentNo);
            // this.Label1.Text = agentFee.agent.agentName;
-            this.lblAgentComment.Text = agentFee.agent.agentTypeComment;
+
+            char[] separator = "<br>".ToCharArray();
+            StringBuilder sbDesc = new StringBuilder();
+
+            if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
+            {
+               
+                string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+
+                for (int count = 0; count < agentTypeCommentList.Length; count++)
+                {
+                    sbDesc.Append(count + 1).AppendFormat(".{0}<br><br>", agentTypeCommentList[count]);
+                }
+            }
+
+            this.lblAgentComment.Text = sbDesc.ToString(); ;
             this.lblAgentName.Text = agentFee.agent.agentName;
             this.lblAgentNo.Text = agentFee.agentNo;
             this.lblAgentType.Text = agentFee.agent.agentType;
@@ -59,6 +74,7 @@ namespace Wechat
                          row = dt.NewRow();
                          row["seq"] = i++;
                          row["feeName"] = feeNameFieldValue;
+                         logger.Info("asdasdasd");
                          row["fee"] = feeFieldValue;
                          dt.Rows.Add(row);
                      }

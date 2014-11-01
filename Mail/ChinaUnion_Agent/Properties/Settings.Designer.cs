@@ -170,7 +170,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8p7q04VR4gYFAaZNg16nuABflvhW-nJDxKCW34zGNoqGoh5BL6ahzOF--ddPhFKU")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ITnmki1ObPK9wNtPOaaCDkKb0VcEVMOf_IoLRaiGDQr6V_SZc9ZSOC1LdNSAuyyo")]
         public string Wechat_Secret {
             get {
                 return ((string)(this["Wechat_Secret"]));
