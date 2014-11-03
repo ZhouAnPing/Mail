@@ -61,29 +61,6 @@ namespace Wechat
             WechatMessage wechatMessage = new WechatMessage(doc.DocumentElement);
 
 
-            /*
-            ------------使用示例三：企业回复用户消息的加密---------------
-            企业被动回复用户的消息也需要进行加密，并且拼接成密文格式的xml串。
-            假设企业需要回复用户的明文如下：
-            <xml>
-            <ToUserName><![CDATA[mycreate]]></ToUserName>
-            <FromUserName><![CDATA[wx5823bf96d3bd56c7]]></FromUserName>
-            <CreateTime>1348831860</CreateTime>
-            <MsgType><![CDATA[text]]></MsgType>
-            <Content><![CDATA[this is a test]]></Content>
-            <MsgId>1234567890123456</MsgId>
-            <AgentID>128</AgentID>
-            </xml>
-
-            为了将此段明文回复给用户，企业应：			
-             * 1.自己生成时间时间戳(timestamp),随机数字串(nonce)以便生成消息体签名
-             * ，也可以直接用从公众平台的post url上解析出的对应值。
-            2.将明文加密得到密文。	
-             *3.用密文，步骤1生成的timestamp,nonce和企业在公众平台设定的token生成消息体签名。			
-             *4.将密文，消息体签名，时间戳，随机数字串拼接成xml格式的字符串，发送给企业。
-            以上2，3，4步可以用公众平台提供的库函数EncryptMsg来实现。
-            */
-
 
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<xml>");
@@ -94,82 +71,97 @@ namespace Wechat
             try
             {
 
+
+                if (String.IsNullOrEmpty(wechatMessage.Content))
+                {
+                    wechatMessage.Content = "help";
+                }
+
                 switch (wechatMessage.Content.ToLower())
                 {
                     case "help":
                     case "？":
                     case "?":
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入错误代码关键字查询错误详细说明,例如:输入\"系统异常\"查询包含\"系统异常\"的错误信息");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入错误关键字查询错误详细说明,例如:输入\"系统异常\"查询包含\"系统异常\"的错误信息");
 
                         break;
 
                     default:
-                        sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+                       
                         AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
                        
                         IList<AgentErrorCode> agentErrorCodeList = agentErrorCodeDao.GetList(wechatMessage.Content);
+                        if (agentErrorCodeList != null && agentErrorCodeList.Count > 0)
+                        {
+                            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+                            if (agentErrorCodeList.Count > 5)
+                            {
+                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 5);
+                            }
+                            else if (agentErrorCodeList.Count <= 5 && agentErrorCodeList.Count > 0)
+                            {
+                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", agentErrorCodeList.Count);
+                            }
+                            else
+                            {
+                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 1);
+                            }
+                            sb.AppendFormat("<Articles>");
 
-                        if (agentErrorCodeList.Count > 5)
-                        {
-                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 5);
-                        }
-                        else if (agentErrorCodeList.Count <= 5 && agentErrorCodeList.Count > 0)
-                        {
-                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", agentErrorCodeList.Count);
+                            int count = 0;
+                            foreach (AgentErrorCode agentErrorCode in agentErrorCodeList)
+                            {
+                                count++;
+
+                                if (count > 5)
+                                {
+                                    break;
+                                }
+                                String dir = context.Server.MapPath("~/") + @"\ErrorImages\";
+                                logger.Info("Path=" + dir + agentErrorCode.seq + ".jpg");
+                                if (!Directory.Exists(dir))
+                                {
+                                    Directory.CreateDirectory(dir);
+                                }
+
+                                String path = dir + agentErrorCode.seq + ".jpg";
+
+
+                                if (!File.Exists(path) || !File.GetCreationTime(path).ToString("yyyy-MM-dd").Equals(DateTime.Now.ToString("yyyy-MM-dd")))
+                                {
+                                    logger.Info("path=" + path);
+                                    System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                                }
+                                sb.AppendFormat("<item>");
+                                sb.Append("<Title>").AppendFormat("{0}错误查询结果", agentErrorCode.keyword).Append("</Title>");
+                                // String errorCondition = wechatMessage.Content.Substring("error:".Length);
+
+                                StringBuilder sbDesc = new StringBuilder();
+                                //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
+
+                                sbDesc.AppendFormat("问题描述：\n{0}\n\n", agentErrorCode.errorDesc);
+                                sbDesc.AppendFormat("处理方法：\n{0}\n\n", agentErrorCode.solution);
+                                sbDesc.AppendFormat("联系人员：{0}\n\n", agentErrorCode.contactName);
+                                sbDesc.AppendFormat("备注：\n{0}\n", agentErrorCode.comment);
+                                sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
+                                logger.Info("path=" + "http://115.29.229.134/Wechat/ErrorCodeQuery.aspx?keyword=" + context.Server.UrlEncode(agentErrorCode.keyword));
+                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}]]>", "http://115.29.229.134/Wechat/ErrorCodeQuery.aspx?keyword=", context.Server.UrlEncode(agentErrorCode.keyword)).Append("</Url>");
+                                //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                                sb.AppendFormat("</item>");
+                                //  logger.Info(sb.ToString());
+
+
+                            }
+                            sb.AppendFormat("</Articles>");
                         }
                         else
                         {
-                            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 1);
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有找到与" + wechatMessage.Content+"相关的错误详细信息。");
+           
                         }
-                        sb.AppendFormat("<Articles>");
-
-                        int count = 0;
-                        foreach (AgentErrorCode agentErrorCode in agentErrorCodeList)
-                        {
-                            count++;
-
-                            if (count > 5)
-                            {
-                                break;
-                            }
-                            String dir = context.Server.MapPath("~/") + @"\ErrorImages\";
-                            logger.Info("Path=" + dir + agentErrorCode.seq + ".jpg");
-                            if (!Directory.Exists(dir))
-                            {
-                                Directory.CreateDirectory(dir);
-                            }
-                          
-                            String path = dir + agentErrorCode.seq + ".jpg";
-                          
-
-                             if (!File.Exists(path) || !File.GetCreationTime(path).ToString("yyyy-MM-dd").Equals(DateTime.Now.ToString("yyyy-MM-dd")))
-                            {
-                                logger.Info("path="+path);
-                                System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
-                            }
-                            sb.AppendFormat("<item>");
-                            sb.Append("<Title>").AppendFormat("{0}错误查询结果", agentErrorCode.keyword).Append("</Title>");
-                            // String errorCondition = wechatMessage.Content.Substring("error:".Length);
-
-                            StringBuilder sbDesc = new StringBuilder();
-                            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-
-                            sbDesc.AppendFormat("问题描述：\n{0}\n\n", agentErrorCode.errorDesc);
-                            sbDesc.AppendFormat("处理方法：\n{0}\n\n", agentErrorCode.solution);
-                            sbDesc.AppendFormat("联系人员：{0}\n\n", agentErrorCode.contactName);
-                            sbDesc.AppendFormat("备注：\n{0}\n", agentErrorCode.comment);
-                            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-                            sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
-                            sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</Url>");
-                            //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-                            sb.AppendFormat("</item>");
-                            //  logger.Info(sb.ToString());
-
-                           
-                        }
-                        sb.AppendFormat("</Articles>");
-
                         break;
                 }
             }

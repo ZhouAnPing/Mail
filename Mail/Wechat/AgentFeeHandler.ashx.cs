@@ -77,6 +77,12 @@ namespace Wechat
 
             switch (actionType)
             {
+                case "OtherFeeMonth":
+                    sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                    sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"2014-10\"查询2014年10月份佣金\n\n");
+
+                    break;
+
                 case "PreMonthFeeQuery":
                 case "CurMonthFeeQuery":
                     String feeMonth = DateTime.Now.ToString("yyyy-MM");
@@ -88,57 +94,15 @@ namespace Wechat
                     AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
                     if (agentFee != null&&!String.IsNullOrEmpty( agentFee.agentFeeSeq))
                     {
-                        sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-                        sb.AppendFormat("<ArticleCount>1</ArticleCount>");
-                        sb.AppendFormat("<Articles>");
-
-                        sb.AppendFormat("<item>");
-                        sb.Append("<Title>").AppendFormat("{0}佣金告知单", feeMonth).Append("</Title>");
-
-                        StringBuilder sbDesc = new StringBuilder();
-                        //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-                        sbDesc.AppendFormat("告知单编号：{0}\n\n", agentFee.agentFeeSeq);
-                        sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
-                        sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agent.contactName);
-                        sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
-
-                        // sb1.AppendFormat("佣金\n\n");
-                        sbDesc.Append("佣金总计:").Append(agentFee.feeTotal).Append("\n");
-
-
-                        char[] separator = "<br>".ToCharArray();
-
-                        if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
-                        {
-                            sbDesc.AppendFormat("\n渠道说明：\n");
-                            string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                            for (int count = 0; count < agentTypeCommentList.Length; count++)
-                            {
-                                sbDesc.Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
-                            }
-                        }
-                        sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-
-                        String url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", wechatMessage.FromUserName, feeMonth);
-
-                        sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-                        sb.AppendFormat("</item>");
-
-                        sb.AppendFormat("</Articles>");
+                        sb.Append(this.createNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
                     }
                     else
                     {
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                         sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",feeMonth+ "佣金还未发布，请稍后。。。\n\n");
-
                     }
-
                     break;
-                case "OtherFeeMonth":
-                    sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                    sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"2014-10\"查询2014年10月份佣金\n\n");
-
-                    break;
+              
 
                 default:
 
@@ -154,43 +118,8 @@ namespace Wechat
                         agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
                         if (agentFee != null && !String.IsNullOrEmpty( agentFee.agentFeeSeq))
                         {
-                            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-                            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
-                            sb.AppendFormat("<Articles>");
-                            sb.AppendFormat("<item>");
-                            sb.Append("<Title>").AppendFormat("{0}佣金告知单{1}", feeMonth, actionType).Append("</Title>");
-                            StringBuilder sbDesc = new StringBuilder();
-                            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-                            sbDesc.AppendFormat("告知单编号：{0}\n\n", agentFee.agentFeeSeq);
-                            sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
-                            sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agent.contactName);
-                            sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
-
-                            // sb1.AppendFormat("佣金\n\n");
-                            sbDesc.Append("佣金总计:").Append(agentFee.feeTotal).Append("\n");
-
-
-                            char[] separator = "<br>".ToCharArray();
-
-                            if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
-                            {
-                                sbDesc.AppendFormat("\n渠道说明：\n");
-                                string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-                                for (int count = 0; count < agentTypeCommentList.Length; count++)
-                                {
-                                    sbDesc.Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
-                                }
-                            }
-                            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-
-                            String url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", wechatMessage.FromUserName, feeMonth);
-
-                            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-                            //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-                            sb.AppendFormat("</item>");
-
-                            sb.AppendFormat("</Articles>");
+                            sb.Append(this.createNewsMessages(feeMonth,agentFee,wechatMessage.FromUserName));
+                           
                         }
                         else
                         {
@@ -219,9 +148,7 @@ namespace Wechat
             }
 
             context.Response.Write(sEncryptMsg);
-            // TODO:
-            // 加密成功，企业需要将加密之后的sEncryptMsg返回
-            // HttpUtils.SetResponse(sEncryptMsg);
+          
 
         }
         public bool IsReusable
@@ -230,6 +157,49 @@ namespace Wechat
             {
                 return false;
             }
+        }
+
+        private StringBuilder createNewsMessages(String feeMonth, AgentFee agentFee, String toUser)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+            sb.AppendFormat("<Articles>");
+
+            sb.AppendFormat("<item>");
+            sb.Append("<Title>").AppendFormat("{0}佣金告知单", feeMonth).Append("</Title>");
+
+            StringBuilder sbDesc = new StringBuilder();
+            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
+            sbDesc.AppendFormat("告知单编号：{0}\n\n", agentFee.agentFeeSeq);
+            sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
+            sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agent.contactName);
+            sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
+
+            // sb1.AppendFormat("佣金\n\n");
+            sbDesc.Append("佣金总计:").Append(agentFee.feeTotal).Append("\n");
+
+
+            char[] separator = "<br>".ToCharArray();
+
+            if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
+            {
+                sbDesc.AppendFormat("\n渠道说明：\n");
+                string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                for (int count = 0; count < agentTypeCommentList.Length; count++)
+                {
+                    sbDesc.Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
+                }
+            }
+            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+
+            String url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", toUser, feeMonth);
+
+            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+            sb.AppendFormat("</item>");
+
+            sb.AppendFormat("</Articles>");
+            return sb;
         }
     }
 }
