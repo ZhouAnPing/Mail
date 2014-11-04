@@ -1,5 +1,6 @@
 ﻿using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
+using LinqToExcel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,46 +69,93 @@ namespace ChinaUnion_Agent
                 Cursor.Current = Cursors.WaitCursor;
                 string FileName = openFileDialog.FileName;
 
-                this.dgErrorCode.Rows.Clear();
+              // String path= Path.GetDirectoryName(FileName);
+
+                var execelfile = new ExcelQueryFactory(FileName);
+                this.txtErrorCode.Text = FileName;
+                this.txtErrorCode.Enabled = false;
+                
+                dgErrorCode.Rows.Clear();
                 dgErrorCode.Columns.Clear();
 
-                dgErrorCode.Columns.Add("序号", "序号");
-                dgErrorCode.Columns.Add("关键字", "关键字");
-                dgErrorCode.Columns.Add("问题描述", "问题描述");
+                this.dgErrorCode.Columns.Add("序号", "序号");
+                this.dgErrorCode.Columns.Add("子系统", "子系统");
+                this.dgErrorCode.Columns.Add("报错关键字", "报错关键字");
                 DataGridViewImageColumn column = new DataGridViewImageColumn();
-                column.HeaderText = "出错截图信息";
+                column.HeaderText = "错误图片";
                 column.Name = "Image";
-                //column.Image =System.Drawing.Image.FromFile( "./TestError.png");
-                dgErrorCode.Columns.Add(column);
-                //dgErrorCode.Columns.Add("出错截图信息", "出错截图信息");
-                dgErrorCode.Columns.Add("处理方法", "处理方法");
-                dgErrorCode.Columns.Add("联系人员", "联系人员");
-                dgErrorCode.Columns.Add("备注", "备注");
+               
+                this.dgErrorCode.Columns.Add(column);
+                this.dgErrorCode.Columns.Add("报错描述", "报错描述");
+                this.dgErrorCode.Columns.Add("原因及处理方法", "原因及处理方法");
+                this.dgErrorCode.Columns.Add("联系方式", "联系方式");
+               
+               
 
-                for (int i = 0; i < 100; i++)
+                List<Row> ESSList = execelfile.Worksheet("ESS").ToList();
+                //int count = 0;
+                if (ESSList != null && ESSList.Count > 0)
                 {
-                    dgErrorCode.Rows.Add();
-                    DataGridViewRow row = dgErrorCode.Rows[i];
-                    row.Cells[0].Value = (i + 1).ToString();
-                    row.Cells[1].Value = "关键字";
-                    row.Cells[2].Value = "系统出错";
-                    row.Cells[3].Value = "./TestError.png";
-                    row.Cells[4].Value = "对不起，你所在的渠道没有活动权限";
-                    row.Cells[5].Value = "联通客服";
-                    row.Cells[6].Value = "建议通过微信企业号联系";
+                     //count = ESSList.Count;
+                    this.btnImport.Enabled = true;   
 
+                    for (int i = 0; i < ESSList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(ESSList[i][0]) || String.IsNullOrWhiteSpace(ESSList[i][0]))
+                        {
+                            break;
+                        }
+                        dgErrorCode.Rows.Add();
+                        DataGridViewRow row = dgErrorCode.Rows[dgErrorCode.RowCount-1];
 
+                        row.Cells["序号"].Value = dgErrorCode.RowCount ;
+                        row.Cells["子系统"].Value = "ESS";
+                        row.Cells["报错关键字"].Value = ESSList[i][1].ToString().Trim(); ;
+                        row.Cells["Image"].Value = Path.GetDirectoryName(FileName)+"\\ESS\\" + ESSList[i][0].ToString().Trim() + ".jpg";
+                        row.Cells["报错描述"].Value = ESSList[i][2].ToString().Trim();
+                        row.Cells["原因及处理方法"].Value = ESSList[i][3].ToString().Trim();
+                        row.Cells["联系方式"].Value = ESSList[i][4].ToString().Trim();                        
+
+                    }
+                }
+
+               
+                List<Row>  CBSSList = execelfile.Worksheet("CBSS").ToList();
+
+                if (CBSSList != null && CBSSList.Count > 0)
+                {                  
+                  
+
+                    for (int i = 0; i < CBSSList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(CBSSList[i][0]) || String.IsNullOrWhiteSpace(CBSSList[i][0]))
+                        {
+                            break;
+                        }
+                        dgErrorCode.Rows.Add();
+                        DataGridViewRow row = dgErrorCode.Rows[dgErrorCode.RowCount - 1];
+
+                        row.Cells["序号"].Value = dgErrorCode.RowCount;
+                        row.Cells["子系统"].Value = "CBSS";
+                        row.Cells["报错关键字"].Value = CBSSList[i][1].ToString().Trim();
+                        row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\CBSS\\" + CBSSList[i][0].ToString().Trim() + ".jpg";
+                        row.Cells["报错描述"].Value = CBSSList[i][2].ToString().Trim();
+                        row.Cells["原因及处理方法"].Value = CBSSList[i][3].ToString().Trim();
+                        row.Cells["联系方式"].Value = CBSSList[i][4].ToString().Trim();
+
+                    }
                 }
 
 
-                this.dgErrorCode.AutoResizeColumns();
+
+              this.dgErrorCode.AutoResizeColumns();
                 this.dgErrorCode.AutoResizeRows();
 
                 StringBuilder sb = new StringBuilder();
                 HashSet<String> ErrorCodeSet = new HashSet<string>();
                 foreach (DataGridViewRow v in this.dgErrorCode.Rows)
                 {
-                    if (v.Cells[1].Value != null)
+                    if (v.Cells[2].Value != null)
                     {
 
                         foreach (DataGridViewRow v2 in dgErrorCode.Rows)
@@ -116,14 +164,14 @@ namespace ChinaUnion_Agent
                             {
                                 continue;
                             }
-                            if (v2.Cells[1].Value != null)
+                            if (v2.Cells[2].Value != null)
                             {
-                                if (v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
+                                if (v.Cells[2].Value.ToString().Equals(v2.Cells[2].Value.ToString()))
                                 {
-                                    if (!ErrorCodeSet.Contains<String>(v2.Cells[1].Value.ToString()))
+                                    if (!ErrorCodeSet.Contains<String>(v2.Cells[2].Value.ToString()))
                                     {
-                                        ErrorCodeSet.Add(v2.Cells[1].Value.ToString() );
-                                        sb.AppendFormat("{0}", v.Cells[1].Value.ToString()).AppendLine();
+                                        ErrorCodeSet.Add(v2.Cells[2].Value.ToString() );
+                                        sb.AppendFormat("{0}", v.Cells[2].Value.ToString()).AppendLine();
                                     }
                                     break;
                                 }
@@ -169,8 +217,8 @@ namespace ChinaUnion_Agent
             {
                 AgentErrorCode agentErrorCode = new AgentErrorCode();
 
-                agentErrorCode.keyword = dgErrorCode[1, i].Value.ToString();
-                agentErrorCode.errorDesc = dgErrorCode[2, i].Value.ToString();
+                agentErrorCode.keyword = dgErrorCode[2, i].Value.ToString();
+                agentErrorCode.errorDesc = dgErrorCode[4, i].Value.ToString();
                
 
                 byte[] b = new byte[0];
@@ -189,10 +237,10 @@ namespace ChinaUnion_Agent
                 }
                
                
-                agentErrorCode.solution = dgErrorCode[4, i].Value.ToString();
-                agentErrorCode.contactName = dgErrorCode[5, i].Value.ToString();
-                agentErrorCode.comment = dgErrorCode[5, i].Value.ToString();
-
+                agentErrorCode.solution = dgErrorCode[5, i].Value.ToString();
+                agentErrorCode.contactName = dgErrorCode[6, i].Value.ToString();
+               // agentErrorCode.comment = dgErrorCode[5, i].Value.ToString();
+                agentErrorCode.module = dgErrorCode[1, i].Value.ToString();
                 agentErrorCodeDao.Delete(agentErrorCode.keyword);
                 agentErrorCodeDao.Add(agentErrorCode);
             }

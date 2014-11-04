@@ -19,12 +19,13 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO agent_error_code (keyword,errorDesc,errorImg,solution,contactName,comment) VALUE (@keyword,@errorDesc,@errorImg,@solution,@contactName,@comment)";
+            string sql = "INSERT INTO agent_error_code (keyword,module,errorDesc,errorImg,solution,contactName,comment) VALUE (@keyword,@module,@errorDesc,@errorImg,@solution,@contactName,@comment)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@keyword", entity.keyword);
+                command.Parameters.AddWithValue("@module", entity.module);
                 command.Parameters.AddWithValue("@errorDesc", entity.errorDesc);
                 command.Parameters.AddWithValue("@errorImg", entity.errorImg);
                 command.Parameters.AddWithValue("@solution", entity.solution);
@@ -40,7 +41,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(AgentErrorCode entity)
         {
-            string sql = "UPDATE  agent_error_code SET keyword=@keyword,errorDesc=@errorDesc,errorImg=@errorImg,solution=@solution,contactName=@contactName,comment=@comment where  keyword=@keyword";
+            string sql = "UPDATE  agent_error_code SET keyword=@keyword,module=@module,errorDesc=@errorDesc,errorImg=@errorImg,solution=@solution,contactName=@contactName,comment=@comment where  keyword=@keyword";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -48,6 +49,7 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@keyword", entity.keyword);
+                command.Parameters.AddWithValue("@module", entity.module);
                 command.Parameters.AddWithValue("@errorDesc", entity.errorDesc);
                 command.Parameters.AddWithValue("@errorImg", entity.errorImg);
                 command.Parameters.AddWithValue("@solution", entity.solution);
@@ -77,9 +79,9 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="primaryKey"></param> 
         /// <returns></returns> 
-        public AgentErrorCode Get(int keyword)
+        public AgentErrorCode GetByKey(String keyword)
         {
-            string sql = "SELECT seq,keyword,errorDesc,errorImg,solution,contactName,comment FROM agent_error_code where keyword=@keyword";
+            string sql = "SELECT seq,module,keyword,errorDesc,errorImg,solution,contactName,comment FROM agent_error_code where keyword=@keyword";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -92,6 +94,7 @@ namespace ChinaUnion_DataAccess
                     agentErrorCode = new AgentErrorCode();
                     agentErrorCode.seq = reader["seq"] == DBNull.Value ? 0 : int.Parse(reader["seq"].ToString());
                     agentErrorCode.keyword = reader["keyword"] == DBNull.Value ? null : reader["keyword"].ToString();
+                    agentErrorCode.module = reader["module"] == DBNull.Value ? null : reader["module"].ToString();
                     agentErrorCode.errorDesc = reader["errorDesc"] == DBNull.Value ? null : reader["errorDesc"].ToString();
                     agentErrorCode.errorImg = reader["errorImg"] == DBNull.Value ? null : (byte[])reader["errorImg"];
                     agentErrorCode.solution = reader["solution"] == DBNull.Value ? null : reader["solution"].ToString();
@@ -107,7 +110,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentErrorCode> GetList(String qeuryString)
         {
-            string sql = "SELECT seq,keyword,errorDesc,errorImg,solution,contactName,comment FROM agent_error_code ";
+            string sql = "SELECT seq,module,keyword,errorDesc,errorImg,solution,contactName,comment FROM agent_error_code ";
 
             if(!String.IsNullOrEmpty(qeuryString)){
                 sql = sql + " where (keyword like \"%" + qeuryString + "%\" or errorDesc  like \"%" + qeuryString + "%\")";
@@ -120,18 +123,19 @@ namespace ChinaUnion_DataAccess
                 
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentErrorCode> list = new List<AgentErrorCode>();
-                AgentErrorCode AgentErrorCode = null;
+                AgentErrorCode agentErrorCode = null;
                 while (reader.Read())
                 {
-                    AgentErrorCode = new AgentErrorCode();
-                    AgentErrorCode.seq = reader["seq"] == DBNull.Value ? 0 :int.Parse(reader["seq"].ToString());
-                    AgentErrorCode.keyword = reader["keyword"] == DBNull.Value ? null : reader["keyword"].ToString();
-                    AgentErrorCode.errorDesc = reader["errorDesc"] == DBNull.Value ? null : reader["errorDesc"].ToString();
-                    AgentErrorCode.errorImg = reader["errorImg"] == DBNull.Value ? null : (byte[])reader["errorImg"];
-                    AgentErrorCode.solution = reader["solution"] == DBNull.Value ? null : reader["solution"].ToString();
-                    AgentErrorCode.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
-                    AgentErrorCode.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
-                    list.Add(AgentErrorCode);
+                    agentErrorCode = new AgentErrorCode();
+                    agentErrorCode.seq = reader["seq"] == DBNull.Value ? 0 : int.Parse(reader["seq"].ToString());
+                    agentErrorCode.keyword = reader["keyword"] == DBNull.Value ? null : reader["keyword"].ToString();
+                    agentErrorCode.module = reader["module"] == DBNull.Value ? null : reader["module"].ToString();
+                    agentErrorCode.errorDesc = reader["errorDesc"] == DBNull.Value ? null : reader["errorDesc"].ToString();
+                    agentErrorCode.errorImg = reader["errorImg"] == DBNull.Value ? null : (byte[])reader["errorImg"];
+                    agentErrorCode.solution = reader["solution"] == DBNull.Value ? null : reader["solution"].ToString();
+                    agentErrorCode.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    agentErrorCode.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
+                    list.Add(agentErrorCode);
                 }
                 return list;
             }

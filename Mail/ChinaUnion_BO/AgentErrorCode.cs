@@ -9,6 +9,7 @@ namespace ChinaUnion_BO
     public class AgentErrorCode
     {
         public int seq;
+        public string module;
         public String keyword;
         public String errorDesc;
         public byte[] errorImg;

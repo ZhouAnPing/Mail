@@ -66,17 +66,18 @@ namespace ChinaUnion_Agent
                 dgErrorCode.Columns.Clear();
 
                 dgErrorCode.Columns.Add("序号", "序号");
-                dgErrorCode.Columns.Add("关键字", "关键字");
-                dgErrorCode.Columns.Add("问题描述", "问题描述");
+                dgErrorCode.Columns.Add("子系统", "子系统");
+                dgErrorCode.Columns.Add("报错关键字", "报错关键字");
+                dgErrorCode.Columns.Add("报错描述", "报错描述");
                 DataGridViewImageColumn column = new DataGridViewImageColumn();
                 column.HeaderText = "出错截图信息";
                 column.Name = "Image";
                 //column.Image =System.Drawing.Image.FromFile( "./TestError.png");
                 dgErrorCode.Columns.Add(column);
                 //dgErrorCode.Columns.Add("出错截图信息", "出错截图信息");
-                dgErrorCode.Columns.Add("处理方法", "处理方法");
-                dgErrorCode.Columns.Add("联系人员", "联系人员");
-                dgErrorCode.Columns.Add("备注", "备注");
+                dgErrorCode.Columns.Add("原因及处理方法", "原因及处理方法");
+                dgErrorCode.Columns.Add("联系方式", "联系方式");
+               // dgErrorCode.Columns.Add("备注", "备注");
 
             AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
             IList<AgentErrorCode> ErrorCodeList = agentErrorCodeDao.GetList(this.txtErrorCode.Text.Trim());
@@ -91,18 +92,20 @@ namespace ChinaUnion_Agent
                     dgErrorCode.Rows.Add();
                     DataGridViewRow row = dgErrorCode.Rows[i];
                     row.Cells[0].Value = (i + 1).ToString();
-                    row.Cells[1].Value = ErrorCodeList[i].keyword;
-                    row.Cells[2].Value = ErrorCodeList[i].errorDesc;
-                    row.Cells[3].Value = ErrorCodeList[i].errorImg;
-                    row.Cells[4].Value = ErrorCodeList[i].solution;
-                    row.Cells[5].Value = ErrorCodeList[i].contactName;
-                    row.Cells[6].Value = ErrorCodeList[i].comment;
+                    row.Cells[1].Value = ErrorCodeList[i].module;
+                    row.Cells[2].Value = ErrorCodeList[i].keyword;
+                    row.Cells[3].Value = ErrorCodeList[i].errorDesc;
+                    row.Cells[4].Value = ErrorCodeList[i].errorImg;
+                    row.Cells[5].Value = ErrorCodeList[i].solution;
+                    row.Cells[6].Value = ErrorCodeList[i].contactName;
+                   // row.Cells[6].Value = ErrorCodeList[i].comment;
 
 
                 }
 
                 this.dgErrorCode.AutoResizeColumns();
                 this.dgErrorCode.AutoResizeRows();
+                //dgErrorCode.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
             this.Cursor = Cursors.Default;
             

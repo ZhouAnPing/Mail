@@ -32,7 +32,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
-            this.txtAgent = new System.Windows.Forms.TextBox();
+            this.txtErrorCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgErrorCode = new System.Windows.Forms.DataGridView();
@@ -50,7 +50,7 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.btnSelect);
-            this.panel1.Controls.Add(this.txtAgent);
+            this.panel1.Controls.Add(this.txtErrorCode);
             this.panel1.Controls.Add(this.label2);
             this.panel1.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.panel1.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
@@ -114,12 +114,12 @@
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
-            // txtAgent
+            // txtErrorCode
             // 
-            this.txtAgent.Location = new System.Drawing.Point(115, 19);
-            this.txtAgent.Name = "txtAgent";
-            this.txtAgent.Size = new System.Drawing.Size(360, 21);
-            this.txtAgent.TabIndex = 6;
+            this.txtErrorCode.Location = new System.Drawing.Point(115, 19);
+            this.txtErrorCode.Name = "txtErrorCode";
+            this.txtErrorCode.Size = new System.Drawing.Size(360, 21);
+            this.txtErrorCode.TabIndex = 6;
             // 
             // label2
             // 
@@ -157,7 +157,7 @@
             this.dgErrorCode.TabIndex = 5;
             this.dgErrorCode.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgErrorCode_CellFormatting);
             // 
-            // frmErrorCode
+            // frmErrorCodeImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,7 +165,7 @@
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
-            this.Name = "frmErrorCode";
+            this.Name = "frmErrorCodeImport";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -186,7 +186,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnSelect;
-        private System.Windows.Forms.TextBox txtAgent;
+        private System.Windows.Forms.TextBox txtErrorCode;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgErrorCode;

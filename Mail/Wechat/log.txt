@@ -124,4 +124,6 @@
 2014-11-01 12:38:44,788 [8] INFO  Wechat.AgentFeeQuery - asdasdasd
 2014-11-01 12:38:44,789 [8] INFO  Wechat.AgentFeeQuery - asdasdasd
 2014-11-01 12:38:44,789 [8] INFO  Wechat.AgentFeeQuery - asdasdasd
+[Footer]\r\n[Header]\r\n2014-11-03 21:15:05,779 [598] INFO  Wechat.ErrorCodeQuery - keyword=
+[Footer]\r\n[Header]\r\n2014-11-03 21:15:38,559 [614] INFO  Wechat.ErrorCodeQuery - keyword=
 [Footer]\r\n
