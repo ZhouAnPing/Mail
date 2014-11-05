@@ -68,7 +68,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox3.Location = new System.Drawing.Point(0, 72);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(281, 669);
+            this.groupBox3.Size = new System.Drawing.Size(578, 669);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "企业微信用户列表";
@@ -85,13 +85,13 @@
             this.dgWechat.ReadOnly = true;
             this.dgWechat.RowHeadersWidth = 10;
             this.dgWechat.RowTemplate.Height = 23;
-            this.dgWechat.Size = new System.Drawing.Size(275, 649);
+            this.dgWechat.Size = new System.Drawing.Size(572, 649);
             this.dgWechat.TabIndex = 7;
             // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.Color.Transparent;
-            this.splitter1.Location = new System.Drawing.Point(281, 72);
+            this.splitter1.Location = new System.Drawing.Point(578, 72);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 669);
             this.splitter1.TabIndex = 4;
@@ -101,9 +101,9 @@
             // 
             this.groupBox2.Controls.Add(this.dgAgent);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(284, 72);
+            this.groupBox2.Location = new System.Drawing.Point(581, 72);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(732, 669);
+            this.groupBox2.Size = new System.Drawing.Size(435, 669);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "代理商列表";
@@ -120,7 +120,7 @@
             this.dgAgent.ReadOnly = true;
             this.dgAgent.RowHeadersWidth = 10;
             this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(726, 649);
+            this.dgAgent.Size = new System.Drawing.Size(429, 649);
             this.dgAgent.TabIndex = 7;
             // 
             // frmWechatManagement

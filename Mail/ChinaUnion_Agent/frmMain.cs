@@ -1,5 +1,6 @@
 ﻿
 using ChinaUnion_Agent.Wechat;
+using ChinaUnion_Agent.WechatForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,9 +62,10 @@ namespace ChinaUnion_Agent
 
         private void toolbarWechat_Click(object sender, EventArgs e)
         {
-           
+            this.Cursor = Cursors.WaitCursor;
             frmWechatManagement frmWechatManagement = new frmWechatManagement();
             CheckChildOpenState(this, frmWechatManagement);
+            this.Cursor = Cursors.Default;
         }
 
         private void toolbarBroadcast_Click(object sender, EventArgs e)
@@ -116,6 +118,12 @@ namespace ChinaUnion_Agent
             frmErrorCodeQuery frmErrorCodeQuery = new frmErrorCodeQuery();
             CheckChildOpenState(this, frmErrorCodeQuery);
 
+        }
+
+        private void toolbarErrorCodeWechatImport_Click(object sender, EventArgs e)
+        {
+            frmErrorCodeWechat frmErrorCodeWechat = new frmErrorCodeWechat();
+            CheckChildOpenState(this, frmErrorCodeWechat);
         }  
        
 

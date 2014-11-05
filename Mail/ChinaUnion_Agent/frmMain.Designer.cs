@@ -52,17 +52,19 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarReport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolbarWechat = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolbarBroadcast = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarErrorCodeImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarErrorCodeQuery = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarWechat = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarBroadcast = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarErrorCodeWechatImport = new System.Windows.Forms.ToolStripButton();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -206,6 +208,8 @@
             this.toolbarErrorCodeQuery,
             this.toolStripSeparator6,
             this.toolbarWechat,
+            this.toolStripSeparator10,
+            this.toolbarErrorCodeWechatImport,
             this.toolStripSeparator7,
             this.toolbarBroadcast,
             this.toolStripSeparator8,
@@ -268,6 +272,36 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(98, 6);
             // 
+            // toolbarErrorCodeImport
+            // 
+            this.toolbarErrorCodeImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeImport.Image")));
+            this.toolbarErrorCodeImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarErrorCodeImport.Name = "toolbarErrorCodeImport";
+            this.toolbarErrorCodeImport.Size = new System.Drawing.Size(98, 64);
+            this.toolbarErrorCodeImport.Text = "错误代码导入";
+            this.toolbarErrorCodeImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarErrorCodeImport.Click += new System.EventHandler(this.toolbarErrorCodeImport_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(98, 6);
+            // 
+            // toolbarErrorCodeQuery
+            // 
+            this.toolbarErrorCodeQuery.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeQuery.Image")));
+            this.toolbarErrorCodeQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarErrorCodeQuery.Name = "toolbarErrorCodeQuery";
+            this.toolbarErrorCodeQuery.Size = new System.Drawing.Size(98, 64);
+            this.toolbarErrorCodeQuery.Text = "错误代码查询";
+            this.toolbarErrorCodeQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarErrorCodeQuery.Click += new System.EventHandler(this.toolbarErrorCodeQuery_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(98, 6);
+            // 
             // toolbarWechat
             // 
             this.toolbarWechat.Image = ((System.Drawing.Image)(resources.GetObject("toolbarWechat.Image")));
@@ -299,36 +333,6 @@
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(98, 6);
             // 
-            // toolbarErrorCodeImport
-            // 
-            this.toolbarErrorCodeImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeImport.Image")));
-            this.toolbarErrorCodeImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolbarErrorCodeImport.Name = "toolbarErrorCodeImport";
-            this.toolbarErrorCodeImport.Size = new System.Drawing.Size(98, 64);
-            this.toolbarErrorCodeImport.Text = "错误代码导入";
-            this.toolbarErrorCodeImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolbarErrorCodeImport.Click += new System.EventHandler(this.toolbarErrorCodeImport_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(98, 6);
-            // 
-            // toolbarErrorCodeQuery
-            // 
-            this.toolbarErrorCodeQuery.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeQuery.Image")));
-            this.toolbarErrorCodeQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolbarErrorCodeQuery.Name = "toolbarErrorCodeQuery";
-            this.toolbarErrorCodeQuery.Size = new System.Drawing.Size(98, 64);
-            this.toolbarErrorCodeQuery.Text = "错误代码查询";
-            this.toolbarErrorCodeQuery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolbarErrorCodeQuery.Click += new System.EventHandler(this.toolbarErrorCodeQuery_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(98, 6);
-            // 
             // toolStripButton1
             // 
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
@@ -351,6 +355,21 @@
             this.statusStrip1.Size = new System.Drawing.Size(916, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(98, 6);
+            // 
+            // toolbarErrorCodeWechatImport
+            // 
+            this.toolbarErrorCodeWechatImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeWechatImport.Image")));
+            this.toolbarErrorCodeWechatImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarErrorCodeWechatImport.Name = "toolbarErrorCodeWechatImport";
+            this.toolbarErrorCodeWechatImport.Size = new System.Drawing.Size(98, 64);
+            this.toolbarErrorCodeWechatImport.Text = "代码微信导入";
+            this.toolbarErrorCodeWechatImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarErrorCodeWechatImport.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
             // 
             // frmMain
             // 
@@ -415,6 +434,8 @@
         private System.Windows.Forms.ToolStripMenuItem 错误代码管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 错误代码导入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 错误代码查询ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripButton toolbarErrorCodeWechatImport;
     }
 }
 

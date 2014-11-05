@@ -12,7 +12,7 @@ namespace ChinaUnion_Agent.Wechat
 {
     class WechatAction
     {
-        public HttpResult addUserToWechat(String department, String secret, string userJson)
+        public HttpResult addUserToWechat(String secret, string userJson)
         {
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
@@ -37,8 +37,11 @@ namespace ChinaUnion_Agent.Wechat
             //string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
 
             HttpHelper httpHelper = new HttpHelper();
+            
             HttpItem item = new HttpItem()
             {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),               
                 URL = addUserUrl,
                 Method = "post",//URL     可选项 默认为Get
                 Postdata = userJson
@@ -56,7 +59,7 @@ namespace ChinaUnion_Agent.Wechat
             string statusCodeDescription = result.StatusDescription;
             return result;
         }
-        public HttpResult updateUserToWechat(String department, String secret, string userJson)
+        public HttpResult updateUserToWechat( String secret, string userJson)
         {
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
@@ -83,6 +86,8 @@ namespace ChinaUnion_Agent.Wechat
             HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
             {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
                 URL = updateUserUrl,
                 Method = "post",//URL     可选项 默认为Get
                 Postdata = userJson
@@ -153,7 +158,7 @@ namespace ChinaUnion_Agent.Wechat
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
 
-            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token={0}&userid={1}";
+            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={0}&userid={1}";
             var getUserUrl = string.Format(getUserUrlFormat, accessToken, userId);
 
             //var userData = new
@@ -175,6 +180,8 @@ namespace ChinaUnion_Agent.Wechat
             HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
             {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),     
                 URL = getUserUrl,
                 Method = "get"//URL     可选项 默认为Get
 
@@ -207,6 +214,8 @@ namespace ChinaUnion_Agent.Wechat
             HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
             {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),     
                 URL = addUserUrl,
                 Method = "get"//URL     可选项 默认为Get
 

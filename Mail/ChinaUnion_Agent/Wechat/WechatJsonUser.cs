@@ -8,11 +8,21 @@ namespace ChinaUnion_Agent.Wechat
 {
     class WechatJsonUser
     {
+        public String errcode;
+        public String errmsg;
         public String userid;
         public String name;
-        public int department;       
+        public IList<int> department;
+        public String position;
         public String mobile;
-        public String email;       
+        public int gender;
+        public String tel;
+        public String email;
         public String weixinid;
+        public String avatar;
+        public String status;
+       // public String extattr; 
+
+              
     }
 }

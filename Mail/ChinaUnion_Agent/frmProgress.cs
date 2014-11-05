@@ -28,8 +28,10 @@ namespace ChinaUnion_Agent
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //lblStatus.Text = "";
-           
-            this.lblText.Text =this.lblText.Text+ e.UserState.ToString();//主窗体传过来的值，通过e.UserState.ToString()来接受
+            this.lblMessage.Text = e.UserState.ToString();
+
+            this.txtMessage.Text = this.txtMessage.Text + e.UserState.ToString();//主窗体传过来的值，通过e.UserState.ToString()来接受
+            txtMessage.ScrollToCaret();
         }
  
         //工作完成后执行的事件  

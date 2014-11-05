@@ -30,7 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProgress));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblText = new System.Windows.Forms.Label();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,22 +44,30 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // lblText
+            // txtMessage
             // 
-            this.lblText.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblText.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblText.Font = new System.Drawing.Font("SimSun", 9F);
-            this.lblText.Location = new System.Drawing.Point(0, 81);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(300, 117);
-            this.lblText.TabIndex = 9;
+            this.txtMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtMessage.Location = new System.Drawing.Point(0, 90);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMessage.Size = new System.Drawing.Size(300, 108);
+            this.txtMessage.TabIndex = 5;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Location = new System.Drawing.Point(1, 67);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(299, 23);
+            this.lblMessage.TabIndex = 6;
             // 
             // frmProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 198);
-            this.Controls.Add(this.lblText);
+            this.Controls.Add(this.lblMessage);
+            this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmProgress";
@@ -68,13 +77,15 @@
             this.Text = "frmProgress";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblText;
+        private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.Label lblMessage;
 
     }
 }
