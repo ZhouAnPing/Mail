@@ -31,8 +31,8 @@ namespace ChinaUnion_Agent
             }
             this.Cursor = Cursors.WaitCursor;
             WechatAction wechatAction = new WechatAction();
-           HttpResult result= wechatAction.sendMessageToWechat(this.txtContent.Text.Trim());
-
+            HttpResult result= wechatAction.sendMessageToWechat(this.txtContent.Text.Trim());
+           this.Cursor = Cursors.Default; 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 //表示访问成功，具体的大家就参考HttpStatusCode类
@@ -42,11 +42,12 @@ namespace ChinaUnion_Agent
             {
                 MessageBox.Show(result.StatusDescription);
             }
-            this.Cursor = Cursors.Default; ;
+           
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.Default; 
             this.Close();
         }
     }

@@ -171,12 +171,12 @@ namespace ChinaUnion_Agent.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ITnmki1ObPK9wNtPOaaCDkKb0VcEVMOf_IoLRaiGDQr6V_SZc9ZSOC1LdNSAuyyo")]
-        public string Wechat_Secret {
+        public string Wechat_AgentSecret {
             get {
-                return ((string)(this["Wechat_Secret"]));
+                return ((string)(this["Wechat_AgentSecret"]));
             }
             set {
-                this["Wechat_Secret"] = value;
+                this["Wechat_AgentSecret"] = value;
             }
         }
         
@@ -189,6 +189,18 @@ namespace ChinaUnion_Agent.Properties {
             }
             set {
                 this["Wechat_Message"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string Wecaht_Agent_Department {
+            get {
+                return ((string)(this["Wecaht_Agent_Department"]));
+            }
+            set {
+                this["Wecaht_Agent_Department"] = value;
             }
         }
     }

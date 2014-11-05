@@ -41,11 +41,14 @@
     <Setting Name="Wechat_Corpid" Type="System.String" Scope="User">
       <Value Profile="(Default)">wx4fe8b74e01fffcbb</Value>
     </Setting>
-    <Setting Name="Wechat_Secret" Type="System.String" Scope="User">
+    <Setting Name="Wechat_AgentSecret" Type="System.String" Scope="User">
       <Value Profile="(Default)">ITnmki1ObPK9wNtPOaaCDkKb0VcEVMOf_IoLRaiGDQr6V_SZc9ZSOC1LdNSAuyyo</Value>
     </Setting>
     <Setting Name="Wechat_Message" Type="System.String" Scope="User">
       <Value Profile="(Default)">佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况.</Value>
+    </Setting>
+    <Setting Name="Wecaht_Agent_Department" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
