@@ -57,14 +57,14 @@
             this.toolbarErrorCodeQuery = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarWechat = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolbarErrorCodeWechatImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolbarBroadcast = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolbarErrorCodeWechatImport = new System.Windows.Forms.ToolStripButton();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -313,6 +313,21 @@
             this.toolbarWechat.ToolTipText = "代理商微信同步";
             this.toolbarWechat.Click += new System.EventHandler(this.toolbarWechat_Click);
             // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(98, 6);
+            // 
+            // toolbarErrorCodeWechatImport
+            // 
+            this.toolbarErrorCodeWechatImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeWechatImport.Image")));
+            this.toolbarErrorCodeWechatImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbarErrorCodeWechatImport.Name = "toolbarErrorCodeWechatImport";
+            this.toolbarErrorCodeWechatImport.Size = new System.Drawing.Size(98, 64);
+            this.toolbarErrorCodeWechatImport.Text = "代码微信导入";
+            this.toolbarErrorCodeWechatImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolbarErrorCodeWechatImport.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
+            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -356,27 +371,12 @@
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(98, 6);
-            // 
-            // toolbarErrorCodeWechatImport
-            // 
-            this.toolbarErrorCodeWechatImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeWechatImport.Image")));
-            this.toolbarErrorCodeWechatImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolbarErrorCodeWechatImport.Name = "toolbarErrorCodeWechatImport";
-            this.toolbarErrorCodeWechatImport.Size = new System.Drawing.Size(98, 64);
-            this.toolbarErrorCodeWechatImport.Text = "代码微信导入";
-            this.toolbarErrorCodeWechatImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolbarErrorCodeWechatImport.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.BackgroundImage = global::ChinaUnion_Agent.Properties.Resources.Desktop;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
