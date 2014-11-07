@@ -382,10 +382,12 @@ namespace ChinaUnion_Agent
             StringBuilder sbAgent = new StringBuilder();
 
             worker.ReportProgress(1, "准备数据...\r\n");
-
+            WechatAction wechatAction = new WechatAction();
             for (int i = 0; i < dgAgentFee.RowCount; i++)
             {
                 StringBuilder sb = new StringBuilder();
+                String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), this.dtFeeMonth.Value.ToString("yyyy-MM"));
+                wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), this.dtFeeMonth.Value.ToString("yyyy-MM") + url);
 
                 sb.Append("agent_no#").Append(dgAgentFee[0, i].Value.ToString()).Append(",");
                 sb.Append("agent_name#").Append(dgAgentFee[1, i].Value.ToString()).Append(",");
@@ -429,8 +431,8 @@ namespace ChinaUnion_Agent
                 mailJobDao.Delete(mailJob);
                 mailJobDao.Add(mailJob);
 
-                WechatAction wechatAction = new WechatAction();
-                wechatAction.sendMessageToWechat(this.dtFeeMonth.Value.ToString("yyyy-MM") + Settings.Default.Wechat_Message);
+             //  WechatAction wechatAction = new WechatAction();
+              //  wechatAction.sendMessageToWechat("@all",this.dtFeeMonth.Value.ToString("yyyy-MM") + Settings.Default.Wechat_Message);
                 MessageBox.Show("邮件重新发送成功");
 
             }

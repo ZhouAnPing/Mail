@@ -14,6 +14,7 @@ using System.Threading;
 
 using System.Configuration;
 using System.IO;
+using System.Reflection;
 
 
 namespace ChinaUnion_Agent
@@ -369,259 +370,25 @@ namespace ChinaUnion_Agent
                 AgentFee agentFee = new AgentFee();
                 agentFee.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
                 agentFee.agentNo = dgAgentFee[0, i].Value.ToString();
-                agentFee.agentFeeSeq = dgAgentFee[1, i].Value.ToString();
-                if (dgAgentFee.Columns.Count > 3)
-                {
-                    agentFee.feeName1 = dgAgentFee.Columns[2].HeaderCell.Value.ToString();
-                    agentFee.fee1 = dgAgentFee[2, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 4)
-                {
-                    agentFee.feeName2 = dgAgentFee.Columns[3].HeaderCell.Value.ToString();
-                    agentFee.fee2 = dgAgentFee[3, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 5)
-                {
-                    agentFee.feeName3 = dgAgentFee.Columns[4].HeaderCell.Value.ToString();
-                    agentFee.fee3 = dgAgentFee[4, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 6)
-                {
-                    agentFee.feeName4 = dgAgentFee.Columns[5].HeaderCell.Value.ToString();
-                    agentFee.fee4 = dgAgentFee[5, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 7)
-                {
-                    agentFee.feeName5 = dgAgentFee.Columns[6].HeaderCell.Value.ToString();
-                    agentFee.fee5 = dgAgentFee[6, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 8)
-                {
-                    agentFee.feeName6 = dgAgentFee.Columns[7].HeaderCell.Value.ToString();
-                    agentFee.fee6 = dgAgentFee[7, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 9)
-                {
-                    agentFee.feeName7 = dgAgentFee.Columns[8].HeaderCell.Value.ToString();
-                    agentFee.fee7 = dgAgentFee[8, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 10)
-                {
-                    agentFee.feeName8 = dgAgentFee.Columns[9].HeaderCell.Value.ToString();
-                    agentFee.fee8 = dgAgentFee[9, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 11)
-                {
-                    agentFee.feeName9 = dgAgentFee.Columns[10].HeaderCell.Value.ToString();
-                    agentFee.fee9 = dgAgentFee[10, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 12)
-                {
-                    agentFee.feeName10 = dgAgentFee.Columns[11].HeaderCell.Value.ToString();
-                    agentFee.fee10 = dgAgentFee[11, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 13)
-                {
-                    agentFee.feeName11 = dgAgentFee.Columns[12].HeaderCell.Value.ToString();
-                    agentFee.fee11 = dgAgentFee[12, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 14)
-                {
-                    agentFee.feeName12 = dgAgentFee.Columns[13].HeaderCell.Value.ToString();
-                    agentFee.fee12 = dgAgentFee[13, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 15)
-                {
-                    agentFee.feeName13 = dgAgentFee.Columns[14].HeaderCell.Value.ToString();
-                    agentFee.fee13 = dgAgentFee[14, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 16)
-                {
-                    agentFee.feeName14 = dgAgentFee.Columns[15].HeaderCell.Value.ToString();
-                    agentFee.fee14 = dgAgentFee[15, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 17)
-                {
-                    agentFee.feeName15 = dgAgentFee.Columns[16].HeaderCell.Value.ToString();
-                    agentFee.fee15 = dgAgentFee[16, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 18)
-                {
-                    agentFee.feeName16 = dgAgentFee.Columns[17].HeaderCell.Value.ToString();
-                    agentFee.fee16 = dgAgentFee[17, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 19)
-                {
-                    agentFee.feeName17 = dgAgentFee.Columns[18].HeaderCell.Value.ToString();
-                    agentFee.fee17 = dgAgentFee[18, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 20)
-                {
-                    agentFee.feeName18 = dgAgentFee.Columns[19].HeaderCell.Value.ToString();
-                    agentFee.fee18 = dgAgentFee[19, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 21)
-                {
-                    agentFee.feeName19 = dgAgentFee.Columns[20].HeaderCell.Value.ToString();
-                    agentFee.fee19 = dgAgentFee[20, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 22)
-                {
-                    agentFee.feeName20 = dgAgentFee.Columns[21].HeaderCell.Value.ToString();
-                    agentFee.fee20 = dgAgentFee[21, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 23)
-                {
-                    agentFee.feeName21 = dgAgentFee.Columns[22].HeaderCell.Value.ToString();
-                    agentFee.fee21 = dgAgentFee[22, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 24)
-                {
-                    agentFee.feeName22 = dgAgentFee.Columns[23].HeaderCell.Value.ToString();
-                    agentFee.fee22 = dgAgentFee[23, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 25)
-                {
-                    agentFee.feeName23 = dgAgentFee.Columns[24].HeaderCell.Value.ToString();
-                    agentFee.fee23 = dgAgentFee[24, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 26)
-                {
-                    agentFee.feeName24 = dgAgentFee.Columns[25].HeaderCell.Value.ToString();
-                    agentFee.fee24 = dgAgentFee[25, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 27)
-                {
-                    agentFee.feeName25 = dgAgentFee.Columns[26].HeaderCell.Value.ToString();
-                    agentFee.fee25 = dgAgentFee[26, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 28)
-                {
-                    agentFee.feeName26 = dgAgentFee.Columns[27].HeaderCell.Value.ToString();
-                    agentFee.fee26 = dgAgentFee[27, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 29)
-                {
-                    agentFee.feeName27 = dgAgentFee.Columns[28].HeaderCell.Value.ToString();
-                    agentFee.fee27 = dgAgentFee[28, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 30)
-                {
-                    agentFee.feeName28 = dgAgentFee.Columns[29].HeaderCell.Value.ToString();
-                    agentFee.fee28 = dgAgentFee[29, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 31)
-                {
-                    agentFee.feeName29 = dgAgentFee.Columns[30].HeaderCell.Value.ToString();
-                    agentFee.fee29 = dgAgentFee[30, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 32)
-                {
-                    agentFee.feeName30 = dgAgentFee.Columns[31].HeaderCell.Value.ToString();
-                    agentFee.fee30 = dgAgentFee[31, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 33)
-                {
-                    agentFee.feeName31 = dgAgentFee.Columns[32].HeaderCell.Value.ToString();
-                    agentFee.fee31 = dgAgentFee[32, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 34)
-                {
-                    agentFee.feeName32 = dgAgentFee.Columns[33].HeaderCell.Value.ToString();
-                    agentFee.fee32 = dgAgentFee[33, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 35)
-                {
-                    agentFee.feeName33 = dgAgentFee.Columns[34].HeaderCell.Value.ToString();
-                    agentFee.fee33 = dgAgentFee[34, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 36)
-                {
-                    agentFee.feeName34 = dgAgentFee.Columns[35].HeaderCell.Value.ToString();
-                    agentFee.fee34 = dgAgentFee[35, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 37)
-                {
-                    agentFee.feeName35 = dgAgentFee.Columns[36].HeaderCell.Value.ToString();
-                    agentFee.fee35 = dgAgentFee[36, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 38)
-                {
-                    agentFee.feeName36 = dgAgentFee.Columns[37].HeaderCell.Value.ToString();
-                    agentFee.fee36 = dgAgentFee[37, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 39)
-                {
-                    agentFee.feeName37 = dgAgentFee.Columns[38].HeaderCell.Value.ToString();
-                    agentFee.fee37 = dgAgentFee[38, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 40)
-                {
-                    agentFee.feeName38 = dgAgentFee.Columns[39].HeaderCell.Value.ToString();
-                    agentFee.fee38 = dgAgentFee[39, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 41)
-                {
-                    agentFee.feeName39 = dgAgentFee.Columns[40].HeaderCell.Value.ToString();
-                    agentFee.fee39 = dgAgentFee[40, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 42)
-                {
-                    agentFee.feeName40 = dgAgentFee.Columns[41].HeaderCell.Value.ToString();
-                    agentFee.fee40 = dgAgentFee[41, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 43)
-                {
-                    agentFee.feeName41 = dgAgentFee.Columns[42].HeaderCell.Value.ToString();
-                    agentFee.fee41 = dgAgentFee[42, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 44)
-                {
-                    agentFee.feeName42 = dgAgentFee.Columns[43].HeaderCell.Value.ToString();
-                    agentFee.fee42 = dgAgentFee[43, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 45)
-                {
-                    agentFee.feeName43 = dgAgentFee.Columns[44].HeaderCell.Value.ToString();
-                    agentFee.fee43 = dgAgentFee[44, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 46)
-                {
-                    agentFee.feeName44 = dgAgentFee.Columns[45].HeaderCell.Value.ToString();
-                    agentFee.fee44 = dgAgentFee[45, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 47)
-                {
-                    agentFee.feeName45 = dgAgentFee.Columns[46].HeaderCell.Value.ToString();
-                    agentFee.fee45 = dgAgentFee[46, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 48)
-                {
-                    agentFee.feeName46 = dgAgentFee.Columns[47].HeaderCell.Value.ToString();
-                    agentFee.fee46 = dgAgentFee[47, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 49)
-                {
-                    agentFee.feeName47 = dgAgentFee.Columns[48].HeaderCell.Value.ToString();
-                    agentFee.fee47 = dgAgentFee[48, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 50)
-                {
-                    agentFee.feeName48 = dgAgentFee.Columns[49].HeaderCell.Value.ToString();
-                    agentFee.fee48 = dgAgentFee[49, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 51)
-                {
-                    agentFee.feeName49 = dgAgentFee.Columns[50].HeaderCell.Value.ToString();
-                    agentFee.fee49 = dgAgentFee[50, i].Value.ToString();
-                }
-                if (dgAgentFee.Columns.Count > 52)
-                {
-                    agentFee.feeName50 = dgAgentFee.Columns[51].HeaderCell.Value.ToString();
-                    agentFee.fee50 = dgAgentFee[51, i].Value.ToString();
-                }
-
+                agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
                 agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
+
+                for (int j = 1; j <= 100 && j < dgAgentFee.Columns.Count-1; j++)
+                {
+
+                    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
+                    FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+
+                    String feeNameFieldValue = dgAgentFee.Columns[j].HeaderCell.Value.ToString();
+                    String feeFieldValue = dgAgentFee[j, i].Value.ToString();
+                    if (feeFieldValue.Trim().Equals("0") || String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        feeFieldValue = null;
+                    }
+                    feeNameField.SetValue(agentFee, feeNameFieldValue);
+                    feeField.SetValue(agentFee, feeFieldValue);
+
+                }
 
                 agentFeeDao.Delete(agentFee);
                 agentFeeDao.Add(agentFee);
@@ -682,6 +449,7 @@ namespace ChinaUnion_Agent
             importLog.type="Agent";
             importLog.import_month = this.dtFeeMonth.Value.ToString("yyyy-MM");
             ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
+            importLogDao.Delete(importLog);
             importLogDao.Add(importLog);
             worker.ReportProgress(8, "导入代理商类型完成...\r\n");
            

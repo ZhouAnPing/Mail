@@ -35,7 +35,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("api@chinaunicom.cn")]
         public string TripoisUserName {
             get {
                 return ((string)(this["TripoisUserName"]));
@@ -53,7 +53,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Training")]
+        [global::System.Configuration.DefaultSettingValueAttribute("China Unicom")]
         public string TripolisClient {
             get {
                 return ((string)(this["TripolisClient"]));
@@ -62,7 +62,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("agent@chinaunicom.cn")]
         public string MailFromAddress {
             get {
                 return ((string)(this["MailFromAddress"]));
@@ -74,7 +74,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zapjx@hotmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("agent@chinaunicom.cn")]
         public string MailReplyAddress {
             get {
                 return ((string)(this["MailReplyAddress"]));
@@ -110,7 +110,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MjYxMTI2MTFnUydR54n7AA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MjYxNTI2MTXJNzwjtk5i_w")]
         public string TripolisDBId {
             get {
                 return ((string)(this["TripolisDBId"]));
@@ -122,7 +122,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MjA3MDIwNzB7FCIp4OwTNA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MjA3NTIwNzVxWpsg5oprpg")]
         public string TripolisWorkspaceId {
             get {
                 return ((string)(this["TripolisWorkspaceId"]));
@@ -134,7 +134,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NTk2NjAzNTkBUvjETM2B7g")]
+        [global::System.Configuration.DefaultSettingValueAttribute("NjI4Mzk4NjJKsgFCFCvomQ")]
         public string TripolisDirectEmailId {
             get {
                 return ((string)(this["TripolisDirectEmailId"]));
@@ -146,7 +146,7 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MTgyOTE4MjnRoLwFOdhKZw")]
+        [global::System.Configuration.DefaultSettingValueAttribute("MTgzMjE4MzKEP3h36*317g")]
         public string TripolisEmailTypeId {
             get {
                 return ((string)(this["TripolisEmailTypeId"]));
@@ -182,7 +182,8 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况,点击查询<a href=\"http://115.29.229.134/Wechat/Agent" +
+            "FeeQuery.aspx?agentNo={0}&feeMonth={1}\">本月佣金详情</a>")]
         public string Wechat_Message {
             get {
                 return ((string)(this["Wechat_Message"]));

@@ -73,29 +73,9 @@ namespace ChinaUnion_Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap 桌面 {
-            get {
-                object obj = ResourceManager.GetObject("桌面", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap 桌面1 {
             get {
                 object obj = ResourceManager.GetObject("桌面1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap 桌面2 {
-            get {
-                object obj = ResourceManager.GetObject("桌面2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

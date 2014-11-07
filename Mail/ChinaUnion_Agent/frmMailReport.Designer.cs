@@ -29,11 +29,19 @@
         private void InitializeComponent()
         {
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnReSend = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.cboFeeBatch = new System.Windows.Forms.ComboBox();
             this.btnQuery = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabSent = new System.Windows.Forms.TabPage();
+            this.dgvSent = new System.Windows.Forms.DataGridView();
+            this.tabOpened = new System.Windows.Forms.TabPage();
+            this.dgvOpened = new System.Windows.Forms.DataGridView();
+            this.tabBounced = new System.Windows.Forms.TabPage();
+            this.dgvBounced = new System.Windows.Forms.DataGridView();
             this.panel3 = new BSE.Windows.Forms.Panel();
             this.progressBar8 = new BSE.Windows.Forms.ProgressBar();
             this.progressBar7 = new BSE.Windows.Forms.ProgressBar();
@@ -50,31 +58,19 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblRecipients = new System.Windows.Forms.Label();
             this.linkRecipients = new System.Windows.Forms.LinkLabel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabSent = new System.Windows.Forms.TabPage();
-            this.dgvSent = new System.Windows.Forms.DataGridView();
-            this.tabOpened = new System.Windows.Forms.TabPage();
-            this.dgvOpened = new System.Windows.Forms.DataGridView();
-            this.tabSkipped = new System.Windows.Forms.TabPage();
-            this.dgvSkipped = new System.Windows.Forms.DataGridView();
-            this.tabBounced = new System.Windows.Forms.TabPage();
-            this.dgvBounced = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabSent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).BeginInit();
             this.tabOpened.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).BeginInit();
-            this.tabSkipped.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).BeginInit();
             this.tabBounced.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBounced)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -90,6 +86,17 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1016, 38);
             this.panel5.TabIndex = 2;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(755, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnReSend
             // 
@@ -138,6 +145,96 @@
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 6;
             this.label5.Text = "发送批次：";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl1.Controls.Add(this.tabSent);
+            this.tabControl1.Controls.Add(this.tabOpened);
+            this.tabControl1.Controls.Add(this.tabBounced);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 137);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1016, 604);
+            this.tabControl1.TabIndex = 6;
+            // 
+            // tabSent
+            // 
+            this.tabSent.Controls.Add(this.dgvSent);
+            this.tabSent.Location = new System.Drawing.Point(4, 25);
+            this.tabSent.Name = "tabSent";
+            this.tabSent.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSent.Size = new System.Drawing.Size(1008, 575);
+            this.tabSent.TabIndex = 0;
+            this.tabSent.Text = "已发送(Sent)";
+            this.tabSent.UseVisualStyleBackColor = true;
+            // 
+            // dgvSent
+            // 
+            this.dgvSent.AllowUserToAddRows = false;
+            this.dgvSent.AllowUserToDeleteRows = false;
+            this.dgvSent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvSent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSent.Location = new System.Drawing.Point(3, 3);
+            this.dgvSent.Name = "dgvSent";
+            this.dgvSent.ReadOnly = true;
+            this.dgvSent.RowHeadersWidth = 10;
+            this.dgvSent.RowTemplate.Height = 23;
+            this.dgvSent.Size = new System.Drawing.Size(1002, 569);
+            this.dgvSent.TabIndex = 5;
+            // 
+            // tabOpened
+            // 
+            this.tabOpened.Controls.Add(this.dgvOpened);
+            this.tabOpened.Location = new System.Drawing.Point(4, 25);
+            this.tabOpened.Name = "tabOpened";
+            this.tabOpened.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOpened.Size = new System.Drawing.Size(1008, 575);
+            this.tabOpened.TabIndex = 1;
+            this.tabOpened.Text = "已打开(Opened)";
+            this.tabOpened.UseVisualStyleBackColor = true;
+            // 
+            // dgvOpened
+            // 
+            this.dgvOpened.AllowUserToAddRows = false;
+            this.dgvOpened.AllowUserToDeleteRows = false;
+            this.dgvOpened.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvOpened.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOpened.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOpened.Location = new System.Drawing.Point(3, 3);
+            this.dgvOpened.Name = "dgvOpened";
+            this.dgvOpened.ReadOnly = true;
+            this.dgvOpened.RowHeadersWidth = 10;
+            this.dgvOpened.RowTemplate.Height = 23;
+            this.dgvOpened.Size = new System.Drawing.Size(1002, 569);
+            this.dgvOpened.TabIndex = 5;
+            // 
+            // tabBounced
+            // 
+            this.tabBounced.Controls.Add(this.dgvBounced);
+            this.tabBounced.Location = new System.Drawing.Point(4, 25);
+            this.tabBounced.Name = "tabBounced";
+            this.tabBounced.Size = new System.Drawing.Size(1008, 575);
+            this.tabBounced.TabIndex = 3;
+            this.tabBounced.Text = "退回(Bounced)";
+            this.tabBounced.UseVisualStyleBackColor = true;
+            // 
+            // dgvBounced
+            // 
+            this.dgvBounced.AllowUserToAddRows = false;
+            this.dgvBounced.AllowUserToDeleteRows = false;
+            this.dgvBounced.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgvBounced.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBounced.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBounced.Location = new System.Drawing.Point(0, 0);
+            this.dgvBounced.Name = "dgvBounced";
+            this.dgvBounced.ReadOnly = true;
+            this.dgvBounced.RowHeadersWidth = 10;
+            this.dgvBounced.RowTemplate.Height = 23;
+            this.dgvBounced.Size = new System.Drawing.Size(1008, 575);
+            this.dgvBounced.TabIndex = 5;
             // 
             // panel3
             // 
@@ -342,133 +439,6 @@
             this.linkRecipients.TabStop = true;
             this.linkRecipients.Text = "需要发送的数量";
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.tabSent);
-            this.tabControl1.Controls.Add(this.tabOpened);
-            this.tabControl1.Controls.Add(this.tabSkipped);
-            this.tabControl1.Controls.Add(this.tabBounced);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 137);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1016, 604);
-            this.tabControl1.TabIndex = 6;
-            // 
-            // tabSent
-            // 
-            this.tabSent.Controls.Add(this.dgvSent);
-            this.tabSent.Location = new System.Drawing.Point(4, 25);
-            this.tabSent.Name = "tabSent";
-            this.tabSent.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSent.Size = new System.Drawing.Size(1008, 575);
-            this.tabSent.TabIndex = 0;
-            this.tabSent.Text = "已发送(Sent)";
-            this.tabSent.UseVisualStyleBackColor = true;
-            // 
-            // dgvSent
-            // 
-            this.dgvSent.AllowUserToAddRows = false;
-            this.dgvSent.AllowUserToDeleteRows = false;
-            this.dgvSent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgvSent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSent.Location = new System.Drawing.Point(3, 3);
-            this.dgvSent.Name = "dgvSent";
-            this.dgvSent.ReadOnly = true;
-            this.dgvSent.RowHeadersWidth = 10;
-            this.dgvSent.RowTemplate.Height = 23;
-            this.dgvSent.Size = new System.Drawing.Size(1002, 569);
-            this.dgvSent.TabIndex = 5;
-            // 
-            // tabOpened
-            // 
-            this.tabOpened.Controls.Add(this.dgvOpened);
-            this.tabOpened.Location = new System.Drawing.Point(4, 25);
-            this.tabOpened.Name = "tabOpened";
-            this.tabOpened.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOpened.Size = new System.Drawing.Size(1008, 575);
-            this.tabOpened.TabIndex = 1;
-            this.tabOpened.Text = "已打开(Opened)";
-            this.tabOpened.UseVisualStyleBackColor = true;
-            // 
-            // dgvOpened
-            // 
-            this.dgvOpened.AllowUserToAddRows = false;
-            this.dgvOpened.AllowUserToDeleteRows = false;
-            this.dgvOpened.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgvOpened.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOpened.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOpened.Location = new System.Drawing.Point(3, 3);
-            this.dgvOpened.Name = "dgvOpened";
-            this.dgvOpened.ReadOnly = true;
-            this.dgvOpened.RowHeadersWidth = 10;
-            this.dgvOpened.RowTemplate.Height = 23;
-            this.dgvOpened.Size = new System.Drawing.Size(1002, 569);
-            this.dgvOpened.TabIndex = 5;
-            // 
-            // tabSkipped
-            // 
-            this.tabSkipped.Controls.Add(this.dgvSkipped);
-            this.tabSkipped.Location = new System.Drawing.Point(4, 25);
-            this.tabSkipped.Name = "tabSkipped";
-            this.tabSkipped.Size = new System.Drawing.Size(1008, 575);
-            this.tabSkipped.TabIndex = 2;
-            this.tabSkipped.Text = "已跳过(Skipped)";
-            this.tabSkipped.UseVisualStyleBackColor = true;
-            // 
-            // dgvSkipped
-            // 
-            this.dgvSkipped.AllowUserToAddRows = false;
-            this.dgvSkipped.AllowUserToDeleteRows = false;
-            this.dgvSkipped.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgvSkipped.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSkipped.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSkipped.Location = new System.Drawing.Point(0, 0);
-            this.dgvSkipped.Name = "dgvSkipped";
-            this.dgvSkipped.ReadOnly = true;
-            this.dgvSkipped.RowHeadersWidth = 10;
-            this.dgvSkipped.RowTemplate.Height = 23;
-            this.dgvSkipped.Size = new System.Drawing.Size(1008, 575);
-            this.dgvSkipped.TabIndex = 5;
-            // 
-            // tabBounced
-            // 
-            this.tabBounced.Controls.Add(this.dgvBounced);
-            this.tabBounced.Location = new System.Drawing.Point(4, 25);
-            this.tabBounced.Name = "tabBounced";
-            this.tabBounced.Size = new System.Drawing.Size(1008, 575);
-            this.tabBounced.TabIndex = 3;
-            this.tabBounced.Text = "退回(Bounced)";
-            this.tabBounced.UseVisualStyleBackColor = true;
-            // 
-            // dgvBounced
-            // 
-            this.dgvBounced.AllowUserToAddRows = false;
-            this.dgvBounced.AllowUserToDeleteRows = false;
-            this.dgvBounced.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgvBounced.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBounced.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBounced.Location = new System.Drawing.Point(0, 0);
-            this.dgvBounced.Name = "dgvBounced";
-            this.dgvBounced.ReadOnly = true;
-            this.dgvBounced.RowHeadersWidth = 10;
-            this.dgvBounced.RowTemplate.Height = 23;
-            this.dgvBounced.Size = new System.Drawing.Size(1008, 575);
-            this.dgvBounced.TabIndex = 5;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(755, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 31);
-            this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // frmMailReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -485,6 +455,13 @@
             this.Load += new System.EventHandler(this.frmMailReport_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabSent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).EndInit();
+            this.tabOpened.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).EndInit();
+            this.tabBounced.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBounced)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
@@ -494,15 +471,6 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabSent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSent)).EndInit();
-            this.tabOpened.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOpened)).EndInit();
-            this.tabSkipped.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSkipped)).EndInit();
-            this.tabBounced.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBounced)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -536,8 +504,6 @@
         private System.Windows.Forms.DataGridView dgvSent;
         private System.Windows.Forms.TabPage tabOpened;
         private System.Windows.Forms.DataGridView dgvOpened;
-        private System.Windows.Forms.TabPage tabSkipped;
-        private System.Windows.Forms.DataGridView dgvSkipped;
         private System.Windows.Forms.TabPage tabBounced;
         private System.Windows.Forms.DataGridView dgvBounced;
         private System.Windows.Forms.Button btnCancel;

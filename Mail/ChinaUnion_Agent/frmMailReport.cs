@@ -101,7 +101,10 @@ namespace ChinaUnion_Agent
 
                         for (int j = 0; j < dgvSent.ColumnCount; j++)
                         {
-                            row.Cells[j].Value = reportData.sent[i].contactFields[j].value;
+                            if (reportData.sent[i].contactFields != null)
+                            {
+                                row.Cells[j].Value = reportData.sent[i].contactFields[j].value;
+                            }
                         }
 
                     }
@@ -128,7 +131,7 @@ namespace ChinaUnion_Agent
                     for (int i = 0; i < reportData.bounced.Length; i++)
                     {
 
-                        if (emailList.Contains(reportData.bounced[i].contactFields[0].value))
+                        if (reportData.bounced[i].contactFields != null&&emailList.Contains(reportData.bounced[i].contactFields[0].value))
                         {
                             continue;
                         }
@@ -138,44 +141,65 @@ namespace ChinaUnion_Agent
 
                         for (int j = 0; j < dgvBounced.ColumnCount - 2; j++)
                         {
-                            row.Cells[j].Value = reportData.bounced[i].contactFields[j].value;
+                            if (reportData.bounced[i].contactFields != null)
+                            {
+                                row.Cells[j].Value = reportData.bounced[i].contactFields[j].value;
+                            }
                         }
                         row.Cells[4].Value = reportData.bounced[i].bouncedAt.ToString("yyyy-MM-dd hh:mm:ss");
                         row.Cells[5].Value = reportData.bounced[i].bounceCode + "-" + reportData.bounced[i].bounceCategoryDescription + "-" + reportData.bounced[i].bounceReason;
                     }
 
-                }
-                this.tabBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount + "】";
-
-                //已跳过
-                if (reportData != null && reportData.skipped != null && reportData.skipped.Length > 0)
-                {
-
-                    this.dgvSkipped.Rows.Clear();
-                    dgvSkipped.Columns.Clear();
-
-                    dgvSkipped.Columns.Add("邮件地址", "邮件地址");
-                    dgvSkipped.Columns.Add("代理商编号", "代理商编号");
-                    dgvSkipped.Columns.Add("代理商名称", "代理商名称");
-                    dgvSkipped.Columns.Add("联系人", "联系人");
-                    dgvSkipped.Columns.Add("跳过时间", "跳过时间");
-
                     for (int i = 0; i < reportData.skipped.Length; i++)
                     {
-                        dgvSkipped.Rows.Add();
-                        DataGridViewRow row = dgvSkipped.Rows[i];
+                        dgvBounced.Rows.Add();
+                        DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount-1];
 
-                        for (int j = 0; j < dgvSkipped.ColumnCount - 1; j++)
+                        for (int j = 0; j < dgvBounced.ColumnCount - 1; j++)
                         {
-                            row.Cells[j].Value = reportData.skipped[i].contactFields[j].value;
+                            if (reportData.skipped[i].contactFields != null)
+                            {
+                                row.Cells[j].Value = reportData.skipped[i].contactFields[j].value;
+                            }
                         }
                         row.Cells[4].Value = reportData.skipped[i].skippedAt.ToString("yyyy-MM-dd hh:mm:ss");
                     }
 
                 }
-                this.tabSkipped.Text = "已跳过(Skipped)【" + dgvSkipped.RowCount + "】";
+                this.tabBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount+  "】";
 
-                //已退回
+                ////已跳过
+                //if (reportData != null && reportData.skipped != null && reportData.skipped.Length > 0)
+                //{
+
+                //    this.dgvSkipped.Rows.Clear();
+                //    dgvSkipped.Columns.Clear();
+
+                //    dgvSkipped.Columns.Add("邮件地址", "邮件地址");
+                //    dgvSkipped.Columns.Add("代理商编号", "代理商编号");
+                //    dgvSkipped.Columns.Add("代理商名称", "代理商名称");
+                //    dgvSkipped.Columns.Add("联系人", "联系人");
+                //    dgvSkipped.Columns.Add("跳过时间", "跳过时间");
+
+                //    for (int i = 0; i < reportData.skipped.Length; i++)
+                //    {
+                //        dgvSkipped.Rows.Add();
+                //        DataGridViewRow row = dgvSkipped.Rows[i];
+
+                //        for (int j = 0; j < dgvSkipped.ColumnCount - 1; j++)
+                //        {
+                //            if (reportData.skipped[i].contactFields != null)
+                //            {
+                //                row.Cells[j].Value = reportData.skipped[i].contactFields[j].value;
+                //            }
+                //        }
+                //        row.Cells[4].Value = reportData.skipped[i].skippedAt.ToString("yyyy-MM-dd hh:mm:ss");
+                //    }
+
+                //}
+                //this.tabSkipped.Text = "已跳过(Skipped)【" + dgvSkipped.RowCount + "】";
+
+                //已opened
                 if (reportData != null && reportData.opened != null && reportData.opened.Length > 0)
                 {
 
@@ -194,7 +218,7 @@ namespace ChinaUnion_Agent
                     for (int i = 0; i < reportData.opened.Length; i++)
                     {
 
-                        if (emailList.Contains(reportData.opened[i].contact.contactFields[0].value))
+                        if (reportData.opened[i].contact.contactFields != null && emailList.Contains(reportData.opened[i].contact.contactFields[0].value))
                         {
                             continue;
                         }
@@ -205,7 +229,10 @@ namespace ChinaUnion_Agent
 
                         for (int j = 0; j < dgvOpened.ColumnCount - 2; j++)
                         {
-                            row.Cells[j].Value = reportData.opened[i].contact.contactFields[j].value;
+                            if (reportData.opened[i].contact.contactFields != null)
+                            {
+                                row.Cells[j].Value = reportData.opened[i].contact.contactFields[j].value;
+                            }
                         }
                         row.Cells[4].Value = reportData.opened[i].openedAt.ToString("yyyy-MM-dd hh:mm:ss");
                         row.Cells[5].Value = reportData.opened[i].ip;
@@ -252,7 +279,7 @@ namespace ChinaUnion_Agent
 
                 this.dgvSent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 this.dgvOpened.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                this.dgvSkipped.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+               // this.dgvSkipped.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 this.dgvBounced.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
                 Cursor.Current = Cursors.Default;

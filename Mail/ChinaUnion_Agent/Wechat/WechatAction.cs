@@ -237,7 +237,7 @@ namespace ChinaUnion_Agent.Wechat
             return wechatUser;
         }
 
-        public HttpResult sendMessageToWechat(String content)
+        public HttpResult sendMessageToWechat(String toUser,String content)
         {
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Settings.Default.Wechat_AgentSecret);
@@ -248,7 +248,7 @@ namespace ChinaUnion_Agent.Wechat
             var msgData = new
             {
 
-                touser = "@all",
+                touser = toUser,
                 msgtype = "text",
                 agentid = 2,
                 safe = 0,

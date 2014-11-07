@@ -102,7 +102,17 @@ namespace ChinaUnion_Agent
             }
             ChildForm.MdiParent = MdiForm;
             ChildForm.ShowInTaskbar = false;
+            ChildForm.BackgroundImage = Properties.Resources.Desktop;
+            ChildForm.BackgroundImageLayout = ImageLayout.Stretch;
             ChildForm.ShowIcon = false;
+            foreach (Control c in ChildForm.Controls)
+            {
+                
+                    c.BackgroundImage = Properties.Resources.Desktop;
+                    c.BackgroundImageLayout = ImageLayout.Stretch;
+               
+            }
+         
             ChildForm.Show();
             ChildForm.WindowState = FormWindowState.Maximized;
         }
@@ -124,7 +134,22 @@ namespace ChinaUnion_Agent
         {
             frmErrorCodeWechat frmErrorCodeWechat = new frmErrorCodeWechat();
             CheckChildOpenState(this, frmErrorCodeWechat);
-        }  
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.DoubleBuffered = true;
+            this.BackgroundImage = Properties.Resources.Desktop;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+           
+
+         
+        }
        
 
         

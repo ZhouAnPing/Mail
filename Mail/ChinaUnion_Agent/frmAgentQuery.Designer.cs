@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new BSE.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnMail = new System.Windows.Forms.Button();
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgAgent = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).BeginInit();
@@ -92,6 +92,17 @@
             this.panel1.ToolTipTextCloseIcon = null;
             this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.panel1.ToolTipTextExpandIconPanelExpanded = null;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(530, 10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(70, 35);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnMail
             // 
@@ -175,10 +186,10 @@
             this.tabPage2.Controls.Add(this.dgAgentTypeComment);
             this.tabPage2.Controls.Add(this.dgAgentType);
             this.tabPage2.Controls.Add(this.splitter2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1008, 258);
+            this.tabPage2.Size = new System.Drawing.Size(1008, 255);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "代理商类型";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -195,7 +206,7 @@
             this.dgAgentTypeComment.ReadOnly = true;
             this.dgAgentTypeComment.RowHeadersWidth = 10;
             this.dgAgentTypeComment.RowTemplate.Height = 23;
-            this.dgAgentTypeComment.Size = new System.Drawing.Size(473, 252);
+            this.dgAgentTypeComment.Size = new System.Drawing.Size(473, 249);
             this.dgAgentTypeComment.TabIndex = 8;
             // 
             // dgAgentType
@@ -210,7 +221,7 @@
             this.dgAgentType.ReadOnly = true;
             this.dgAgentType.RowHeadersWidth = 10;
             this.dgAgentType.RowTemplate.Height = 23;
-            this.dgAgentType.Size = new System.Drawing.Size(526, 252);
+            this.dgAgentType.Size = new System.Drawing.Size(526, 249);
             this.dgAgentType.TabIndex = 6;
             // 
             // splitter2
@@ -218,17 +229,17 @@
             this.splitter2.BackColor = System.Drawing.Color.Transparent;
             this.splitter2.Location = new System.Drawing.Point(3, 3);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 252);
+            this.splitter2.Size = new System.Drawing.Size(3, 249);
             this.splitter2.TabIndex = 7;
             this.splitter2.TabStop = false;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dgAgent);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1008, 258);
+            this.tabPage1.Size = new System.Drawing.Size(1008, 255);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "代理商信息";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -245,11 +256,12 @@
             this.dgAgent.ReadOnly = true;
             this.dgAgent.RowHeadersWidth = 10;
             this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(1002, 252);
+            this.dgAgent.Size = new System.Drawing.Size(1002, 249);
             this.dgAgent.TabIndex = 6;
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -258,17 +270,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1016, 284);
             this.tabControl1.TabIndex = 9;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(530, 10);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(70, 35);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmAgentQuery
             // 

@@ -65,6 +65,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.错误查询微信号导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -74,8 +75,8 @@
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemSystem,
             this.menuItemAgent,
-            this.微信管理ToolStripMenuItem,
-            this.错误代码管理ToolStripMenuItem});
+            this.错误代码管理ToolStripMenuItem,
+            this.微信管理ToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
             this.menuMain.Size = new System.Drawing.Size(1016, 24);
@@ -148,7 +149,8 @@
             // 
             this.微信管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolWechatSync,
-            this.toolBroadcast});
+            this.toolBroadcast,
+            this.错误查询微信号导入ToolStripMenuItem});
             this.微信管理ToolStripMenuItem.Name = "微信管理ToolStripMenuItem";
             this.微信管理ToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.微信管理ToolStripMenuItem.Text = "微信管理";
@@ -156,15 +158,15 @@
             // toolWechatSync
             // 
             this.toolWechatSync.Name = "toolWechatSync";
-            this.toolWechatSync.Size = new System.Drawing.Size(142, 22);
-            this.toolWechatSync.Text = "微信账号同步";
+            this.toolWechatSync.Size = new System.Drawing.Size(178, 22);
+            this.toolWechatSync.Text = "代理商微信账号同步";
             this.toolWechatSync.Click += new System.EventHandler(this.toolbarWechat_Click);
             // 
             // toolBroadcast
             // 
             this.toolBroadcast.Name = "toolBroadcast";
-            this.toolBroadcast.Size = new System.Drawing.Size(142, 22);
-            this.toolBroadcast.Text = "微信公告发布";
+            this.toolBroadcast.Size = new System.Drawing.Size(178, 22);
+            this.toolBroadcast.Text = "代理商微信公告发布";
             this.toolBroadcast.Click += new System.EventHandler(this.toolbarBroadcast_Click);
             // 
             // 错误代码管理ToolStripMenuItem
@@ -218,7 +220,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(100, 717);
+            this.toolStrip1.Size = new System.Drawing.Size(120, 717);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -232,7 +234,7 @@
             this.toolbarFeeImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarFeeImport.Image")));
             this.toolbarFeeImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarFeeImport.Name = "toolbarFeeImport";
-            this.toolbarFeeImport.Size = new System.Drawing.Size(98, 64);
+            this.toolbarFeeImport.Size = new System.Drawing.Size(118, 64);
             this.toolbarFeeImport.Text = "代理商佣金导入";
             this.toolbarFeeImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarFeeImport.Click += new System.EventHandler(this.menuItemAgentImport_Click);
@@ -323,8 +325,8 @@
             this.toolbarErrorCodeWechatImport.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorCodeWechatImport.Image")));
             this.toolbarErrorCodeWechatImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarErrorCodeWechatImport.Name = "toolbarErrorCodeWechatImport";
-            this.toolbarErrorCodeWechatImport.Size = new System.Drawing.Size(98, 64);
-            this.toolbarErrorCodeWechatImport.Text = "代码微信导入";
+            this.toolbarErrorCodeWechatImport.Size = new System.Drawing.Size(118, 64);
+            this.toolbarErrorCodeWechatImport.Text = " 错误查询微信导入";
             this.toolbarErrorCodeWechatImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarErrorCodeWechatImport.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
             // 
@@ -365,11 +367,18 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(100, 719);
+            this.statusStrip1.Location = new System.Drawing.Point(120, 719);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(916, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(896, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // 错误查询微信号导入ToolStripMenuItem
+            // 
+            this.错误查询微信号导入ToolStripMenuItem.Name = "错误查询微信号导入ToolStripMenuItem";
+            this.错误查询微信号导入ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.错误查询微信号导入ToolStripMenuItem.Text = "错误查询微信号导入";
+            this.错误查询微信号导入ToolStripMenuItem.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
             // 
             // frmMain
             // 
@@ -389,6 +398,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "联通佣金管理";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -436,6 +446,7 @@
         private System.Windows.Forms.ToolStripMenuItem 错误代码查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripButton toolbarErrorCodeWechatImport;
+        private System.Windows.Forms.ToolStripMenuItem 错误查询微信号导入ToolStripMenuItem;
     }
 }
 

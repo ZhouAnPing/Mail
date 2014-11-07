@@ -283,9 +283,7 @@
     <Content Include="html\head.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\桌面.jpg" />
     <None Include="Resources\桌面1.jpg" />
-    <None Include="Resources\桌面2.jpg" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

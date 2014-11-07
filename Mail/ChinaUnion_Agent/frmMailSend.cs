@@ -86,10 +86,14 @@ namespace ChinaUnion_Agent
                 String workspaceId = Settings.Default.TripolisWorkspaceId;
                 String emailId = Settings.Default.TripolisDirectEmailId;
                 worker.ReportProgress(1, "准备数据...\r\n");
-
+                WechatAction wechatAction = new WechatAction();
+             
                 for (int i = 0; i < dgAgentFee.RowCount; i++)
                 {
                     StringBuilder sb = new StringBuilder();
+
+                    String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM"));
+                    wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM") + url);
 
                     sb.Append("agent_no#").Append(dgAgentFee[0, i].Value.ToString()).Append(",");
                     sb.Append("agent_name#").Append(dgAgentFee[1, i].Value.ToString()).Append(",");
@@ -102,8 +106,9 @@ namespace ChinaUnion_Agent
                     for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
                     {
                         int index = j - 6;
+                        String fieldValue = dgAgentFee[j, i].Value == null ? "" : dgAgentFee[j, i].Value.ToString();
                         sb.Append("fee_name").Append(index.ToString()).Append("#").Append(dgAgentFee.Columns[j].HeaderCell.Value.ToString()).Append(",");
-                        sb.Append("fee").Append(index.ToString()).Append("#").Append(dgAgentFee[j, i].Value.ToString()).Append(",");
+                        sb.Append("fee").Append(index.ToString()).Append("#").Append(fieldValue).Append(",");
 
                     }
 
@@ -135,10 +140,7 @@ namespace ChinaUnion_Agent
                     mailJobDao.Delete(mailJob);
                     mailJobDao.Add(mailJob);
 
-                    WechatAction wechatAction = new WechatAction();
-                    wechatAction.sendMessageToWechat(this.dateTimePicker1.Value.ToString("yyyy-MM") + Settings.Default.Wechat_Message);
-
-                    MessageBox.Show("邮件发送成功");
+                                     MessageBox.Show("邮件发送成功");
 
                 }
                 else
@@ -185,18 +187,13 @@ namespace ChinaUnion_Agent
             StringBuilder sbAgent = new StringBuilder();
 
             int seq = 1;
-
-
-
-
+            
 
             for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
             {
-
-
-
-                if (!String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()))
-                {
+                
+                if (dgAgentFee[j, rowIndex].Value!=null&&!String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()) && !dgAgentFee[j, rowIndex].Value.ToString().Equals("0"))
+                { 
                     sbAgent.Append("<tr>");
                     sbAgent.Append("<tr>");
                     sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
@@ -308,7 +305,7 @@ namespace ChinaUnion_Agent
                         String workspaceId = Settings.Default.TripolisWorkspaceId;
                         String emailTypeId = Settings.Default.TripolisEmailTypeId;
 
-                        String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, email, mailData.subject, this.webBrowser1.DocumentText);
+                        String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, email,"Test", mailData.subject, this.webBrowser1.DocumentText);
 
                         if (message.Contains("OK:"))
                         {
