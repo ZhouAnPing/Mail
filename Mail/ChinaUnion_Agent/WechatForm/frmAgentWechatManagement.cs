@@ -111,10 +111,12 @@ namespace ChinaUnion_Agent.Wechat
 
 
             }
+            dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// (DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+            dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgWechat.AutoResizeColumns();
-            dgWechat.AutoResizeRows();
+           // dgWechat.AutoResizeRows();
             dgAgent.AutoResizeColumns();
-            dgAgent.AutoResizeRows();
+            //dgAgent.AutoResizeRows();
         }
         /// <summary>
         /// 异步 开始事件

@@ -74,7 +74,20 @@ namespace ChinaUnion_Agent
                 var execelfile = new ExcelQueryFactory(FileName);
                 this.txtErrorCode.Text = FileName;
                 this.txtErrorCode.Enabled = false;
-                
+
+
+                List<string> sheetNames = execelfile.GetWorksheetNames().ToList();
+                if (!sheetNames.Contains("ESS"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:ESS的sheet.");
+                    return;
+                }
+                if (!sheetNames.Contains("CBSS"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:CBSS的sheet.");
+                    return;
+                }
+
                 dgErrorCode.Rows.Clear();
                 dgErrorCode.Columns.Clear();
 
@@ -275,6 +288,23 @@ namespace ChinaUnion_Agent
 
             this.btnImport.Enabled = false;
 
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel格式|*.xlsx";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "系统报错汇总模板.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                File.Copy("./Template/系统报错汇总模板.xlsx", saveFileDialog.FileName);
+                String path =Path.GetDirectoryName(saveFileDialog.FileName);
+                Directory.CreateDirectory(path+"/ESS");
+                Directory.CreateDirectory(path + "/CBSS");
+            }
         }
     }
 }

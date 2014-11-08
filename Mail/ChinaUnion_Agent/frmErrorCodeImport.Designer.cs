@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgErrorCode = new System.Windows.Forms.DataGridView();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgErrorCode)).BeginInit();
@@ -47,6 +48,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.btnSelect);
@@ -82,7 +84,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(658, 13);
+            this.btnCancel.Location = new System.Drawing.Point(802, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 13;
@@ -94,7 +96,7 @@
             // 
             this.btnImport.Enabled = false;
             this.btnImport.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnImport.Location = new System.Drawing.Point(563, 13);
+            this.btnImport.Location = new System.Drawing.Point(563, 10);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 31);
             this.btnImport.TabIndex = 9;
@@ -157,6 +159,17 @@
             this.dgErrorCode.TabIndex = 5;
             this.dgErrorCode.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgErrorCode_CellFormatting);
             // 
+            // btnDownload
+            // 
+            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDownload.Location = new System.Drawing.Point(683, 10);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 31);
+            this.btnDownload.TabIndex = 15;
+            this.btnDownload.Text = "模板下载";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
             // frmErrorCodeImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -190,5 +203,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgErrorCode;
+        private System.Windows.Forms.Button btnDownload;
     }
 }

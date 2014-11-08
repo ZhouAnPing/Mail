@@ -37,10 +37,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
             this.dgAgentType = new System.Windows.Forms.DataGridView();
-            this.splitter2 = new BSE.Windows.Forms.Splitter();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.splitter2 = new BSE.Windows.Forms.Splitter();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
@@ -165,6 +166,17 @@
             this.dgAgentType.Size = new System.Drawing.Size(526, 394);
             this.dgAgentType.TabIndex = 6;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(929, 11);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // splitter2
             // 
             this.splitter2.BackColor = System.Drawing.Color.Transparent;
@@ -173,17 +185,6 @@
             this.splitter2.Size = new System.Drawing.Size(3, 394);
             this.splitter2.TabIndex = 7;
             this.splitter2.TabStop = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(849, 13);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 31);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // splitter1
             // 
@@ -201,6 +202,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.dtFeeMonth);
             this.panel1.Controls.Add(this.label1);
@@ -235,6 +237,17 @@
             this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.panel1.ToolTipTextExpandIconPanelExpanded = null;
             // 
+            // btnDownload
+            // 
+            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDownload.Location = new System.Drawing.Point(844, 11);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 31);
+            this.btnDownload.TabIndex = 14;
+            this.btnDownload.Text = "模板下载";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
             // dtFeeMonth
             // 
             this.dtFeeMonth.CustomFormat = "yyyy-MM";
@@ -257,7 +270,7 @@
             // 
             this.btnImport.Enabled = false;
             this.btnImport.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnImport.Location = new System.Drawing.Point(754, 13);
+            this.btnImport.Location = new System.Drawing.Point(754, 11);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 31);
             this.btnImport.TabIndex = 9;
@@ -344,6 +357,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtFeeMonth;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnDownload;
 
     }
 }

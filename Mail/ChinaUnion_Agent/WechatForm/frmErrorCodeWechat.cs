@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,13 @@ namespace ChinaUnion_Agent.WechatForm
                 var execelfile = new ExcelQueryFactory(FileName);
                 this.txtErrorCode.Text = FileName;
                 this.txtErrorCode.Enabled = false;
+
+                List<string> sheetNames = execelfile.GetWorksheetNames().ToList();
+                if (!sheetNames.Contains("微信用户"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:微信用户的sheet.");
+                    return;
+                }
 
                 this.dgWechat.Rows.Clear();
                 dgWechat.Columns.Clear();
@@ -187,6 +195,22 @@ namespace ChinaUnion_Agent.WechatForm
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel格式|*.xlsx";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "微信用户导入模板.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                File.Copy("./Template/微信用户导入模板.xlsx", saveFileDialog.FileName);
+               
+              
+            }
         }
     }
 }

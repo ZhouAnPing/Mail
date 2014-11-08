@@ -42,6 +42,28 @@ namespace ChinaUnion_Agent
                 this.txtAgent.Text = FileName;
                 this.txtAgent.Enabled = false;
 
+                List<string> sheetNames=  execelfile.GetWorksheetNames().ToList();
+                if (!sheetNames.Contains("明细表"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:明细表的sheet.");
+                    return;
+                }
+                if (!sheetNames.Contains("代理商相关信息"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:代理商相关信息的sheet.");
+                    return;
+                }
+                if (!sheetNames.Contains("代理商渠道类型"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:代理商渠道类型的sheet.");
+                    return;
+                }
+                if (!sheetNames.Contains("说明格式"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:说明格式的sheet.");
+                    return;
+                }
+
                 //代理商佣金明细
                 List<Row> agentFee = execelfile.Worksheet("明细表").ToList(); ;
 
@@ -472,6 +494,20 @@ namespace ChinaUnion_Agent
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel格式|*.xlsx";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "上海联通佣金告知单模板.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                File.Copy("./Template/上海联通佣金告知单_模板.xlsx", saveFileDialog.FileName);
+            }
         }
 
 
