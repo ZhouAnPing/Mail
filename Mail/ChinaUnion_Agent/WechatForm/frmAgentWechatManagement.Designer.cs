@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgAgent = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
@@ -54,10 +54,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(236, 20);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // btnSync
             // 
             this.btnSync.AutoSize = true;
-            this.btnSync.Location = new System.Drawing.Point(27, 29);
+            this.btnSync.Location = new System.Drawing.Point(36, 20);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(138, 23);
             this.btnSync.TabIndex = 0;
@@ -125,18 +137,6 @@
             this.dgAgent.RowTemplate.Height = 23;
             this.dgAgent.Size = new System.Drawing.Size(429, 649);
             this.dgAgent.TabIndex = 7;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(227, 29);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmWechatManagement
             // 

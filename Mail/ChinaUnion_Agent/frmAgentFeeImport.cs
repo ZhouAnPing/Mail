@@ -19,9 +19,9 @@ using System.Reflection;
 
 namespace ChinaUnion_Agent
 {
-    public partial class frmAgentImport : Form
+    public partial class frmAgentFeeImport : Form
     {
-        public frmAgentImport()
+        public frmAgentFeeImport()
         {
             InitializeComponent();
         }
@@ -43,7 +43,11 @@ namespace ChinaUnion_Agent
                 this.txtAgent.Enabled = false;
 
                 List<string> sheetNames=  execelfile.GetWorksheetNames().ToList();
-               
+                if (!sheetNames.Contains("明细表"))
+                {
+                    MessageBox.Show("Excel格式不正确，必须含有名称:明细表的sheet.");
+                    return;
+                }
                 if (!sheetNames.Contains("代理商相关信息"))
                 {
                     MessageBox.Show("Excel格式不正确，必须含有名称:代理商相关信息的sheet.");
@@ -60,7 +64,30 @@ namespace ChinaUnion_Agent
                     return;
                 }
 
-                
+                //代理商佣金明细
+                List<Row> agentFee = execelfile.Worksheet("明细表").ToList(); ;
+
+                if (agentFee != null && agentFee.Count > 0)
+                {
+                    this.btnImport.Enabled = true;
+                    dgAgentFee.Rows.Clear();
+                    dgAgentFee.Columns.Clear();
+                    foreach (String coloumn in agentFee[0].ColumnNames)
+                    {
+                        this.dgAgentFee.Columns.Add(coloumn, coloumn);
+                    }
+
+                    for (int i = 0; i < agentFee.Count; i++)
+                    {
+                        dgAgentFee.Rows.Add();
+                        DataGridViewRow row = dgAgentFee.Rows[i];
+                        foreach (String coloumn in agentFee[0].ColumnNames)
+                        {
+                            row.Cells[coloumn].Value = agentFee[i][coloumn];
+                        }
+
+                    }
+                }
 
                 //代理商信息
                 List<Row> agent = execelfile.Worksheet("代理商相关信息").ToList(); ;
@@ -144,7 +171,40 @@ namespace ChinaUnion_Agent
                 HashSet<String> agentFeeSet = new HashSet<string>();
 
                 StringBuilder sb = new StringBuilder();               
-              
+                foreach (DataGridViewRow v in this.dgAgentFee.Rows)
+                {
+                   
+                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()))
+                    {
+                        
+                        foreach (DataGridViewRow v2 in dgAgentFee.Rows)
+                        {
+                            if (v.Index == v2.Index)
+                            {
+                                continue;
+                            }
+
+                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) )
+                            {
+                                
+                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()))
+                                {
+                                    if (!agentFeeSet.Contains<String>(v.Cells[0].Value.ToString()))
+                                    {
+                                        agentFeeSet.Add(v.Cells[0].Value.ToString());
+                                        sb.AppendFormat("代理商:{0}", v.Cells[0].Value.ToString()).AppendLine();
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(sb.ToString()))
+                {
+                    sbDuplicated.AppendLine("代理商佣金存在以下重复记录:");
+                    sbDuplicated.AppendLine(sb.ToString());
+                }
 
                 //
                 sb = new StringBuilder();
@@ -281,7 +341,17 @@ namespace ChinaUnion_Agent
         private void btnImport_Click(object sender, EventArgs e)
         {
 
-           
+            ImportLog importLog = new ChinaUnion_BO.ImportLog();
+            importLog.type = "Agent";
+            importLog.import_month = this.dtFeeMonth.Value.ToString("yyyy-MM");
+            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
+            if (importLogDao.Get(importLog) != null)
+            {
+                if (MessageBox.Show("本月佣金已经导入，是否需要再次导入？", "数据导入", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
             //异步执行开始
             worker.RunWorkerAsync();
             frmProgress frm = new frmProgress(this.worker);
@@ -294,7 +364,7 @@ namespace ChinaUnion_Agent
         }
 
         BackgroundWorker worker; 
-        private void frmAgentImport_Load(object sender, EventArgs e)
+        private void frmAgentFeeImport_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             worker = new BackgroundWorker();
@@ -315,7 +385,39 @@ namespace ChinaUnion_Agent
 
             worker.ReportProgress(1, "开始导入代理商佣金...\r\n");
 
-         
+            //导入代理商佣金
+            AgentFeeDao agentFeeDao = new AgentFeeDao();
+            for (int i = 0; i < dgAgentFee.RowCount; i++)
+            {
+                AgentFee agentFee = new AgentFee();
+                agentFee.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
+                agentFee.agentNo = dgAgentFee[0, i].Value.ToString();
+                agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
+                agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
+
+                for (int j = 1; j <= 100 && j < dgAgentFee.Columns.Count-1; j++)
+                {
+
+                    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
+                    FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+
+                    String feeNameFieldValue = dgAgentFee.Columns[j].HeaderCell.Value.ToString();
+                    String feeFieldValue = dgAgentFee[j, i].Value.ToString();
+                    if (feeFieldValue.Trim().Equals("0") || String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        feeFieldValue = null;
+                    }
+                    feeNameField.SetValue(agentFee, feeNameFieldValue);
+                    feeField.SetValue(agentFee, feeFieldValue);
+
+                }
+
+                agentFeeDao.Delete(agentFee);
+                agentFeeDao.Add(agentFee);
+
+            }
+
+            worker.ReportProgress(2, "导入代理商佣金完成...\r\n");
             worker.ReportProgress(3, "开始导入代理商...\r\n");
             //导入代理商
             AgentDao agentDao = new AgentDao();
@@ -365,7 +467,12 @@ namespace ChinaUnion_Agent
                 agentTypeCommentDao.Add(agentTypeComment);
             }
 
-            
+            ImportLog importLog = new ChinaUnion_BO.ImportLog();
+            importLog.type="Agent";
+            importLog.import_month = this.dtFeeMonth.Value.ToString("yyyy-MM");
+            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
+            importLogDao.Delete(importLog);
+            importLogDao.Add(importLog);
             worker.ReportProgress(8, "导入代理商类型完成...\r\n");
            
 

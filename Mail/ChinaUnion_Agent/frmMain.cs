@@ -33,11 +33,11 @@ namespace ChinaUnion_Agent
             }
         }
 
-        private void menuItemAgentImport_Click(object sender, EventArgs e)
+        private void menuItemAgentFeeImport_Click(object sender, EventArgs e)
         {
-            
-            frmAgentImport frmAgentImport = new frmAgentImport();
-            CheckChildOpenState(this, frmAgentImport);
+
+            frmAgentFeeImport frmAgentFeeImport = new frmAgentFeeImport();
+            CheckChildOpenState(this, frmAgentFeeImport);
 
 
         }
@@ -121,7 +121,11 @@ namespace ChinaUnion_Agent
             ChildForm.Show();
             ChildForm.WindowState = FormWindowState.Maximized;
         }
-
+        private void menuItemAgentImport_Click(object sender, EventArgs e)
+        {
+            frmAgentImport frmAgentImport = new frmAgentImport();
+            CheckChildOpenState(this, frmAgentImport);
+        }
         private void toolbarErrorCodeImport_Click(object sender, EventArgs e)
         {
             frmErrorCodeImport frmErrorCodeImport = new frmErrorCodeImport();
@@ -152,15 +156,22 @@ namespace ChinaUnion_Agent
             this.BackgroundImage = Properties.Resources.Desktop;
             this.BackgroundImageLayout = ImageLayout.Stretch;
 
-            foreach (Control c1 in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                c1.BackgroundImage = Properties.Resources.Desktop;
-                c1.BackgroundImageLayout = ImageLayout.Stretch;
+                c.BackgroundImage = Properties.Resources.Desktop;
+                c.BackgroundImageLayout = ImageLayout.Stretch;
+                foreach (Control c1 in c.Controls)
+                {
+                    c1.BackgroundImage = Properties.Resources.Desktop;
+                    c1.BackgroundImageLayout = ImageLayout.Stretch;
+                }
             }
                
 
          
         }
+
+      
        
 
         
