@@ -105,11 +105,16 @@ namespace ChinaUnion_Agent
             ChildForm.BackgroundImage = Properties.Resources.Desktop;
             ChildForm.BackgroundImageLayout = ImageLayout.Stretch;
             ChildForm.ShowIcon = false;
-            foreach (Control c in ChildForm.Controls)
-            {
-                
+            foreach (Control c in ChildForm.Controls)            {
+                               
                     c.BackgroundImage = Properties.Resources.Desktop;
                     c.BackgroundImageLayout = ImageLayout.Stretch;
+
+                    foreach (Control c1 in c.Controls)
+                    {
+                        c1.BackgroundImage = Properties.Resources.Desktop;
+                        c1.BackgroundImageLayout = ImageLayout.Stretch;
+                    }
                
             }
          
@@ -146,7 +151,13 @@ namespace ChinaUnion_Agent
             this.DoubleBuffered = true;
             this.BackgroundImage = Properties.Resources.Desktop;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-           
+
+            foreach (Control c1 in this.Controls)
+            {
+                c1.BackgroundImage = Properties.Resources.Desktop;
+                c1.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+               
 
          
         }

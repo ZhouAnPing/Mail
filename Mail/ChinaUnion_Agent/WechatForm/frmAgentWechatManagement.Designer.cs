@@ -35,6 +35,7 @@
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
@@ -44,6 +45,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSync);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -54,6 +56,7 @@
             // 
             // btnSync
             // 
+            this.btnSync.AutoSize = true;
             this.btnSync.Location = new System.Drawing.Point(27, 29);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(138, 23);
@@ -123,10 +126,23 @@
             this.dgAgent.Size = new System.Drawing.Size(429, 649);
             this.dgAgent.TabIndex = 7;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(227, 29);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmWechatManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.splitter1);
@@ -139,6 +155,7 @@
             this.Text = "微信管理";
             this.Load += new System.EventHandler(this.frmWechatManagement_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -156,5 +173,6 @@
         private BSE.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgAgent;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

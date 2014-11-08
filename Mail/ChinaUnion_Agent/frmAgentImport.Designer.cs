@@ -37,8 +37,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
             this.dgAgentType = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.splitter2 = new BSE.Windows.Forms.Splitter();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
@@ -165,6 +165,15 @@
             this.dgAgentType.Size = new System.Drawing.Size(526, 394);
             this.dgAgentType.TabIndex = 6;
             // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.Color.Transparent;
+            this.splitter2.Location = new System.Drawing.Point(3, 3);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 394);
+            this.splitter2.TabIndex = 7;
+            this.splitter2.TabStop = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -175,15 +184,6 @@
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.Transparent;
-            this.splitter2.Location = new System.Drawing.Point(3, 3);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 394);
-            this.splitter2.TabIndex = 7;
-            this.splitter2.TabStop = false;
             // 
             // splitter1
             // 

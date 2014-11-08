@@ -231,6 +231,11 @@ namespace ChinaUnion_Agent.Wechat
             this.Cursor = Cursors.Default;
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
      
        
     }

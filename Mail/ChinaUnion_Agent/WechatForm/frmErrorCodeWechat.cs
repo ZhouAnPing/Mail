@@ -183,5 +183,10 @@ namespace ChinaUnion_Agent.WechatForm
         {
             MessageBox.Show("微信同步完毕。", "微信同步", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

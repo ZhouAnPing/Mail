@@ -35,6 +35,7 @@
             this.txtErrorCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSync = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSelect);
             this.groupBox1.Controls.Add(this.txtErrorCode);
             this.groupBox1.Controls.Add(this.label2);
@@ -81,10 +83,11 @@
             // 
             // btnSelect
             // 
+            this.btnSelect.AutoSize = true;
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSelect.Location = new System.Drawing.Point(473, 18);
+            this.btnSelect.Location = new System.Drawing.Point(473, 16);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(55, 28);
+            this.btnSelect.Size = new System.Drawing.Size(55, 31);
             this.btnSelect.TabIndex = 10;
             this.btnSelect.Text = "...";
             this.btnSelect.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -109,19 +112,33 @@
             // 
             // btnSync
             // 
+            this.btnSync.AutoSize = true;
             this.btnSync.Enabled = false;
-            this.btnSync.Location = new System.Drawing.Point(598, 24);
+            this.btnSync.Location = new System.Drawing.Point(598, 16);
             this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(138, 23);
+            this.btnSync.Size = new System.Drawing.Size(138, 31);
             this.btnSync.TabIndex = 0;
             this.btnSync.Text = "账号同步到微信";
             this.btnSync.UseVisualStyleBackColor = true;
             this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(776, 16);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmErrorCodeWechat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -148,5 +165,6 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.TextBox txtErrorCode;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
