@@ -156,7 +156,7 @@ namespace TripolisDialogueAdapter
         /// <param name="emailSubject">emailSubject</param>
         /// <param name="emailBody">emailBody</param>
         /// <returns></returns>  
-        public String sendSingleEmail(String contactDatabaseId, String workspaceId, String directEmailTypeId,String fromName, String emailFrom, String emailTo, String emailSubject, String emailBody)
+        public String sendSingleEmail(String contactDatabaseId, String workspaceId, String directEmailTypeId,String fromName, String emailFrom, String emailTo,String agent_no, String emailSubject, String emailBody)
         {
             logger.Debug("************send Single Mail***************");
             String result = OK_RESULT;
@@ -187,7 +187,7 @@ namespace TripolisDialogueAdapter
                 //String contactGroupId = contactGroupAction.createContactGroup(contactDatabaseId, emailId, emailId);
                 ContactAction contactAction = new ContactAction(client, userName, password, oWebProxy);
                 ArrayList list = new ArrayList();
-                String jsonStr =EMAIL + "#" + emailTo;
+                String jsonStr = EMAIL + "#" + emailTo + ",agent_no#" + agent_no;
                 list.Add(jsonStr);
                 String contactId = contactAction.createContact(contactDatabaseId, list);
 

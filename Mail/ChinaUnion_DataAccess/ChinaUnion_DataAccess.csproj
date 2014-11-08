@@ -51,15 +51,27 @@
     <Compile Include="AgentTypeCommentDao.cs" />
     <Compile Include="AgentTypeDao.cs" />
     <Compile Include="AgentErrorCodeDao.cs" />
+    <Compile Include="DBConstant.cs" />
     <Compile Include="ImportLogDao.cs" />
     <Compile Include="MailJobDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChinaUnion_BO\ChinaUnion_BO.csproj">
       <Project>{cb255730-944c-4693-b4ba-7b03fea5cc96}</Project>
       <Name>ChinaUnion_BO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

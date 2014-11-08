@@ -9,7 +9,7 @@ namespace ChinaUnion_DataAccess
 {
     public class AgentTypeCommentDao
     {
-        public const string mysqlConnection = "User Id=root;Host=115.29.229.134;Database=chinaunion;password=c513324665;charset=utf8";
+        public const string mysqlConnection = DBConstant.mysqlConnection;//"User Id=root;Host=115.29.229.134;Database=chinaunion;password=c513324665;charset=utf8";
         /// <summary> 
         /// 添加数据 
         /// </summary> 

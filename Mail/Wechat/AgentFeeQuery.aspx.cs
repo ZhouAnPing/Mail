@@ -24,7 +24,7 @@ namespace Wechat
 
             Request.ContentEncoding = Encoding.UTF8;
             string feeMonth = Request.QueryString["feeMonth"];
-            string agentNo = "P001";// Request.QueryString["agentNo"];
+            string agentNo = Request.QueryString["agentNo"];
 
             AgentFeeDao AgentFeeDao = new AgentFeeDao();
 
@@ -60,7 +60,7 @@ namespace Wechat
             int i = 1;
             DataRow row = null;
 
-            for (int j = 1; j <= 50;j++){
+            for (int j = 1; j <= 100;j++){
                 FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
                  FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
                  if (feeNameField != null && feeField != null)
