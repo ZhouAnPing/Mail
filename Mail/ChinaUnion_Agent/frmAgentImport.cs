@@ -87,56 +87,7 @@ namespace ChinaUnion_Agent
                     }
                 }
 
-                //代理商渠道类型
-                List<Row> agentType = execelfile.Worksheet("代理商渠道类型").ToList(); ;
-
-                if (agentType != null && agentType.Count > 0)
-                {
-                    this.btnImport.Enabled = true;
-                    dgAgentType.Rows.Clear();
-                    dgAgentType.Columns.Clear();
-                    foreach (String coloumn in agentType[0].ColumnNames)
-                    {
-                        this.dgAgentType.Columns.Add(coloumn, coloumn);
-                    }
-
-                    for (int i = 0; i < agentType.Count; i++)
-                    {
-                        dgAgentType.Rows.Add();
-                        DataGridViewRow row = dgAgentType.Rows[i];
-                        foreach (String coloumn in agentType[0].ColumnNames)
-                        {
-                            row.Cells[coloumn].Value = agentType[i][coloumn];
-                        }
-
-                    }
-                }
-
-
-                //代理商渠道类型说明
-                List<Row> agentTypeComment = execelfile.Worksheet("说明格式").ToList(); ;
-
-                if (agentTypeComment != null && agentTypeComment.Count > 0)
-                {
-                    this.btnImport.Enabled = true;
-                    dgAgentTypeComment.Rows.Clear();
-                    dgAgentTypeComment.Columns.Clear();
-                    foreach (String coloumn in agentTypeComment[0].ColumnNames)
-                    {
-                        this.dgAgentTypeComment.Columns.Add(coloumn, coloumn);
-                    }
-
-                    for (int i = 0; i < agentTypeComment.Count; i++)
-                    {
-                        dgAgentTypeComment.Rows.Add();
-                        DataGridViewRow row = dgAgentTypeComment.Rows[i];
-                        foreach (String coloumn in agentTypeComment[0].ColumnNames)
-                        {
-                            row.Cells[coloumn].Value = agentTypeComment[i][coloumn];
-                        }
-
-                    }
-                }
+                
 
 
                 //检查重复记录
@@ -183,83 +134,7 @@ namespace ChinaUnion_Agent
                     sbDuplicated.AppendLine(sb.ToString());
                 }
 
-                //
-                sb = new StringBuilder();
-                HashSet<String> agentFeeTypeSet = new HashSet<string>();
-                foreach (DataGridViewRow v in this.dgAgentType.Rows)
-                {
-                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v.Cells[1].Value.ToString()))
-                    {
-
-                       
-                        foreach (DataGridViewRow v2 in this.dgAgentType.Rows)
-                        {
-                            if (v.Index == v2.Index)
-                            {
-                                continue;
-                            }
-                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v2.Cells[1].Value.ToString()))
-                            {
-
-                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()) && v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
-                                {
-                                    if (!agentFeeTypeSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString()))
-                                    {
-                                        agentFeeTypeSet.Add(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString());
-                                        sb.AppendFormat("渠道类型:{0}-{1}", v.Cells[0].Value.ToString(), v.Cells[1].Value.ToString()).AppendLine();
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (!String.IsNullOrEmpty(sb.ToString()))
-                {
-                    sbDuplicated.AppendLine("\n代理商渠道类型存在以下重复记录:");
-                    sbDuplicated.AppendLine(sb.ToString());
-                }
-
-
-                //
-                sb = new StringBuilder();
-                HashSet<String> agentFeeTypeCommentSet = new HashSet<string>();
-                foreach (DataGridViewRow v in this.dgAgentTypeComment.Rows)
-                {
-                    if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v.Cells[1].Value.ToString()))
-                    {
-                        
-                        foreach (DataGridViewRow v2 in dgAgentTypeComment.Rows)
-                        {
-                            if (v.Index == v2.Index)
-                            {
-                                continue;
-                            }
-                            if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()) && !String.IsNullOrEmpty(v2.Cells[1].Value.ToString()))
-                            {
-                                if (agentFeeTypeCommentSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[1].Value.ToString()))
-                                {
-                                    continue;
-                                }
-                                if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()) && v.Cells[1].Value.ToString().Equals(v2.Cells[1].Value.ToString()))
-                                {
-                                    if (!agentFeeTypeCommentSet.Contains<String>(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString()))
-                                    {
-                                        agentFeeTypeCommentSet.Add(v2.Cells[0].Value.ToString() + v2.Cells[0].Value.ToString());
-
-                                        sb.AppendFormat("渠道类型说明:{0}-{1}", v.Cells[0].Value.ToString(), v.Cells[1].Value.ToString()).AppendLine();
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (!String.IsNullOrEmpty(sb.ToString()))
-                {
-                    sbDuplicated.AppendLine("\n代理商渠道类型说明存在以下重复记录:");
-                    sbDuplicated.AppendLine(sb.ToString());
-                }
+              
 
 
                 if (!String.IsNullOrEmpty(sbDuplicated.ToString()))
@@ -328,45 +203,13 @@ namespace ChinaUnion_Agent
                 agent.contactName = dgAgent[3, i].Value.ToString();
                 agent.contactTel = dgAgent[4, i].Value.ToString();
                 agent.contactWechatAccount = dgAgent[5, i].Value.ToString();
+                agent.status = dgAgent[6, i].Value.ToString();
                 agentDao.Delete(agent.agentNo);
                 agentDao.Add(agent);
 
             }
             worker.ReportProgress(4, "导入代理商完成...\r\n");
-            worker.ReportProgress(5, "开始导入代理商类型...\r\n");
-
-            //导入代理商类型
-            AgentTypeDao agentTypeDao = new AgentTypeDao();
-            for (int i = 0; i < dgAgentType.RowCount; i++)
-            {
-                AgentType agentType = new AgentType();
-                agentType.agentNo = dgAgentType[0, i].Value.ToString();
-                agentType.agentType = dgAgentType[1, i].Value.ToString();
-
-                agentTypeDao.Delete(agentType);
-                agentTypeDao.Add(agentType);
-            }
-
-          
-            worker.ReportProgress(6, "导入代理商类型完成...\r\n");
-            worker.ReportProgress(7, "开始导入代理商类型说明...\r\n");
-
-
-            //导入代理商类型说明
-            AgentTypeCommentDao agentTypeCommentDao = new AgentTypeCommentDao();
-            for (int i = 0; i < dgAgentTypeComment.RowCount; i++)
-            {
-                AgentTypeComment agentTypeComment = new AgentTypeComment();
-
-                agentTypeComment.agentType = dgAgentTypeComment[0, i].Value.ToString();
-                agentTypeComment.agentTypeComment = dgAgentTypeComment[1, i].Value.ToString();
-
-                agentTypeCommentDao.Delete(agentTypeComment.agentType);
-                agentTypeCommentDao.Add(agentTypeComment);
-            }
-
-            
-            worker.ReportProgress(8, "导入代理商类型完成...\r\n");
+           
            
 
             //MessageBox.Show("数据上传完毕");

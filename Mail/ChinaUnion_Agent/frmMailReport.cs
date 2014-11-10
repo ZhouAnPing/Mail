@@ -52,14 +52,19 @@ namespace ChinaUnion_Agent
             //进行绑定
             cboFeeBatch.DisplayMember = "DisplayMember";//控件显示的列名
             cboFeeBatch.ValueMember = "ValueMember";//控件值的列名
-            cboFeeBatch.DataSource = ADt;       
+            cboFeeBatch.DataSource = ADt;
 
+            if (String.IsNullOrEmpty(this.cboFeeBatch.Text))
+            {
+                this.btnQuery.Enabled = false;
+            }
 
 
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
+            
             Cursor.Current = Cursors.WaitCursor;
             try
             {

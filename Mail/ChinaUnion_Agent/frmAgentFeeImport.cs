@@ -430,6 +430,7 @@ namespace ChinaUnion_Agent
                 agent.contactName = dgAgent[3, i].Value.ToString();
                 agent.contactTel = dgAgent[4, i].Value.ToString();
                 agent.contactWechatAccount = dgAgent[5, i].Value.ToString();
+                agent.status = dgAgent[6, i].Value.ToString();
                 agentDao.Delete(agent.agentNo);
                 agentDao.Add(agent);
 
@@ -444,7 +445,7 @@ namespace ChinaUnion_Agent
                 AgentType agentType = new AgentType();
                 agentType.agentNo = dgAgentType[0, i].Value.ToString();
                 agentType.agentType = dgAgentType[1, i].Value.ToString();
-
+                agentType.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
                 agentTypeDao.Delete(agentType);
                 agentTypeDao.Add(agentType);
             }
@@ -462,8 +463,8 @@ namespace ChinaUnion_Agent
 
                 agentTypeComment.agentType = dgAgentTypeComment[0, i].Value.ToString();
                 agentTypeComment.agentTypeComment = dgAgentTypeComment[1, i].Value.ToString();
-
-                agentTypeCommentDao.Delete(agentTypeComment.agentType);
+                agentTypeComment.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
+                agentTypeCommentDao.Delete(agentTypeComment);
                 agentTypeCommentDao.Add(agentTypeComment);
             }
 

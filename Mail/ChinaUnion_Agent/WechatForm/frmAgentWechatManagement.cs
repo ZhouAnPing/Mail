@@ -46,6 +46,7 @@ namespace ChinaUnion_Agent.Wechat
                 // dgAgent.Columns.Add("联系人姓名", "联系人姓名");
                 dgAgent.Columns.Add("联系人电话", "联系人电话");
                 dgAgent.Columns.Add("联系人微信账号", "联系人微信账号");
+                dgAgent.Columns.Add("代理商状态", "代理商状态");
 
 
                 for (int i = 0; i < agentList.Count; i++)
@@ -59,7 +60,14 @@ namespace ChinaUnion_Agent.Wechat
                     //   row.Cells[3].Value = agentList[i].contactName;
                     row.Cells[3].Value = agentList[i].contactTel;
                     row.Cells[4].Value = agentList[i].contactWechatAccount;
-
+                    if (!String.IsNullOrEmpty(agentList[i].status) && agentList[i].status.ToUpper().Equals("Y"))
+                    {
+                        row.Cells[5].Value = "账号已经停用";
+                    }
+                    else
+                    {
+                        row.Cells[5].Value = "";
+                    }
 
                 }
                 dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -197,7 +205,14 @@ namespace ChinaUnion_Agent.Wechat
                     wechatJsonUser = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
                     if (!String.IsNullOrEmpty(wechatJsonUser.userid))
                     {
-                        result = wechatAction.updateUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                        if (this.dgAgent[5, i].Value.ToString().Equals("账号已经停用"))
+                        {
+                            wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_AgentSecret);
+                        }
+                        else
+                        {
+                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                        }
                     }
                     else
                     {

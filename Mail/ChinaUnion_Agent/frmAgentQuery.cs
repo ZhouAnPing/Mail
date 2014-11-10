@@ -40,6 +40,7 @@ namespace ChinaUnion_Agent
                 dgAgent.Columns.Add("联系人电话", "联系人电话");
                 dgAgent.Columns.Add("联系人微信账号", "联系人微信账号");
 
+                dgAgent.Columns.Add("代理商状态", "代理商状态");
 
                 for (int i = 0; i < agentList.Count; i++)
                 {
@@ -52,6 +53,15 @@ namespace ChinaUnion_Agent
                     row.Cells[3].Value = agentList[i].contactName;
                     row.Cells[4].Value = agentList[i].contactTel;
                     row.Cells[5].Value = agentList[i].contactWechatAccount;
+                    if (!String.IsNullOrEmpty(agentList[i].status) && agentList[i].status.ToUpper().Equals("Y"))
+                    {
+                        row.Cells[6].Value = "账号已经停用";
+                    }
+                    else
+                    {
+                        row.Cells[6].Value = "";
+                    }
+                    
 
 
                 }
@@ -59,7 +69,7 @@ namespace ChinaUnion_Agent
            // Queryworker.ReportProgress(2, "代理商渠道类型...\r\n");
             //代理商渠道类型
             AgentTypeDao agentTypeDao = new AgentTypeDao();
-            IList<AgentType> agentTypeList = agentTypeDao.GetList();
+            IList<AgentType> agentTypeList = agentTypeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
 
             if (agentTypeList != null && agentTypeList.Count > 0)
             {
@@ -81,7 +91,7 @@ namespace ChinaUnion_Agent
           //  Queryworker.ReportProgress(3, "代理商渠道类型说明...\r\n");
             //代理商渠道类型说明
             AgentTypeCommentDao agentTypeCommentDao = new AgentTypeCommentDao();
-            IList<AgentTypeComment> agentTypeCommentList = agentTypeCommentDao.GetList();
+            IList<AgentTypeComment> agentTypeCommentList = agentTypeCommentDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
 
             if (agentTypeCommentList != null && agentTypeCommentList.Count > 0)
             {
