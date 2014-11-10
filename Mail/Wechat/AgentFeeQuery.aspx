@@ -47,40 +47,40 @@
 				
                
                 <tr>
-                    <td style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px 30px 30px 30px" bgcolor="#ffffff">
+                    <td style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px 30px 30px 30px" bgcolor="#ffffff">
                         <table width="100%"  class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: bottom; padding:0px; background-color: #FFFFFF;" bgcolor="#DEDBDE" colspan="4">
-                                              <a href="#"><img src="http://dialogue.tripolis.cn/public/image_MTAwMjg5NTaMdCDprzC_oRpaAAO2LvZr.png" alt="" border="0" /></a><b style="font-size: 30px; text-align: center">上海联通合作伙伴佣金告知单</b></td>
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: bottom; padding:0px; background-color: #ffffff;" bgcolor="#ffffff" colspan="4">
+                                              <a href="#"><img src="http://dialogue.tripolis.cn/public/image_MTAwMjg5NTaMdCDprzC_oRpaAAO2LvZr.png" alt="" border="0"  /></a><b style="font-size: 40px; text-align: center">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;上海联通合作伙伴佣金告知单</b></td>
 			                    
 			                </tr> 
                         	<tr>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	告知单编号：		
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblFeeSeq" runat="server"></asp:Label>
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	佣金账期：	
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblFeeMonth" runat="server"></asp:Label>
 &nbsp;</td>
 			                    
 			                </tr> 
 			                <tr>
 			                   
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	合作伙伴编号：		
 			                    </td>
-			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblAgentNo" runat="server"></asp:Label>
 			                    </td>
-			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	合作伙伴名称：	
 			                    </td>
-			                    <td style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                    <td style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblAgentName" runat="server"></asp:Label>
 			                    </td>
 			                </tr> 
@@ -88,10 +88,10 @@
 			                   
 			                    
 			                    
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	渠道类型：		
 			                    </td>
-			                     <td colspan="3" style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                     <td colspan="3" style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblAgentType" runat="server"></asp:Label>
 			                    </td>
 			                    
@@ -100,13 +100,13 @@
                        			
                        	 <table width="100%"  class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
-			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#006699">
+			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#006699">
 			                        	（一）佣金明细		
 			                    </td>				
 							  
 			                </tr> 
 			                <tr>
-			                    <td  style="font-size: 30px; color: black; font-weight: normal; text-align: center; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:5px" bgcolor="white">
+			                    <td  style="font-size: 30px; color: black; font-weight: normal; text-align: center; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:5px" bgcolor="white">
 			                        	<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
                                                 ForeColor="#333333" GridLines="None" Width="100%" >
                                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -125,13 +125,13 @@
 							  
 			                </tr> 
 			                <tr>
-			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#006699">
+			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#006699">
 			                        	（二）本月佣金说明	
 			                    </td>				
 							  
 			                </tr> 
 			                <tr>
-			                    <td  style="font-size: 30px; color: black; font-weight:bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: middle; padding:0px" bgcolor="white">
+			                    <td  style="font-size: 30px; color: black; font-weight:bold; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: middle; padding:0px" bgcolor="white">
 			                        		
 										
 										 <asp:Label ID="lblAgentComment" runat="server"></asp:Label>
@@ -140,13 +140,13 @@
 							  
 			                </tr>  
 			                <tr>
-			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#006699">
+			                    <td  style="font-size: 30px; color: white; font-weight: bold; text-align: center; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#006699">
 			                        	（三）备注说明
 			                    </td>				
 							  
 			                </tr>  
 			                 <tr>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="white">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="white">
 			                        	<p>1、本通知单仅用于佣金告知，不作为任何凭证使用，实际佣金以支付金额为准；<br/>
 										2、本通知单仅包含公众渠道下产生的佣金，不含其它渠道佣金；<br/>
 										3、如对本月佣金有疑问，请请于30日内与对应区县佣金管理员联系；<br/>
@@ -158,16 +158,16 @@
 						
 						  <table width="100%"  class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	发送人：		
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	上海联通销售部		
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	发送日期：	
 			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px" bgcolor="#ffffff">
+			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblSendDate" runat="server"></asp:Label>
 &nbsp;</td>
 			                    

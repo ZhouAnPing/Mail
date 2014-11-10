@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -79,7 +80,7 @@ namespace Wechat
             {
                 case "OtherFeeMonth":
                     sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                    sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"2014-10\"查询2014年10月份佣金\n\n");
+                    sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
 
                     break;
 
@@ -109,7 +110,7 @@ namespace Wechat
                     if (!Regex.IsMatch(wechatMessage.Content, "((20[0-9][0-9])|(19[0-9][0-9]))-((0[1-9])|(1[0-2]))"))
                     {
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"2014-10\"查询2014年10月份佣金\n\n");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
                     }
                     else
                     {                  
@@ -171,24 +172,48 @@ namespace Wechat
 
             StringBuilder sbDesc = new StringBuilder();
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-            sbDesc.AppendFormat("告知单编号：{0}\n\n", agentFee.agentFeeSeq);
+            sbDesc.AppendFormat("告知单编号：{0}\n", agentFee.agentFeeSeq);
             sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
             sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agent.contactName);
             sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
 
             // sb1.AppendFormat("佣金\n\n");
-            sbDesc.Append("佣金总计:").Append(agentFee.feeTotal).Append("\n");
+          
+            sbDesc.AppendFormat("佣金明细：\n");
+            int i = 1;
+            for (int j = 1; j <= 100; j++)
+            {
+                FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
+                FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+                if (feeNameField != null && feeField != null)
+                {
+                    String feeNameFieldValue = feeNameField.GetValue(agentFee) == null ? null : feeNameField.GetValue(agentFee).ToString();
+
+                    String feeFieldValue = feeField.GetValue(agentFee) == null ? null : feeField.GetValue(agentFee).ToString();
+
+                    if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+           
+                    }
+                }
+
+
+            }
+            sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "佣金总计").Append(" ").AppendFormat("{0}\n", agentFee.feeTotal);
+
+          
 
 
             char[] separator = "<br>".ToCharArray();
 
             if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
             {
-                sbDesc.AppendFormat("\n渠道说明：\n");
+                sbDesc.AppendFormat("\n本月佣金说明：\n");
                 string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 for (int count = 0; count < agentTypeCommentList.Length; count++)
                 {
-                    sbDesc.Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
+                    sbDesc.Append("        ").Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
                 }
             }
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");

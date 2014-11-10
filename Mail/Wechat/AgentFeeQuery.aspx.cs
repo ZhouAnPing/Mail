@@ -74,7 +74,7 @@ namespace Wechat
                          row = dt.NewRow();
                          row["seq"] = i++;
                          row["feeName"] = feeNameFieldValue;
-                         logger.Info("asdasdasd");
+                        
                          row["fee"] = feeFieldValue;
                          dt.Rows.Add(row);
                      }

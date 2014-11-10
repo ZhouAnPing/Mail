@@ -29,9 +29,9 @@ namespace Wechat
             {
                 this.lblKeyword.Text = agentErrorCode.keyword;
                 logger.Info("solution=" + agentErrorCode.solution);
-                this.lblErrorSolution.Text = agentErrorCode.solution;
+                this.lblErrorSolution.Text = agentErrorCode.solution.Replace("解决办法", "<br>解决办法").Replace("解决方法", "<br>解决方法");
                 this.lblErrerDesc.Text = agentErrorCode.errorDesc;
-                this.lblContact.Text = agentErrorCode.contactName;
+                this.lblContact.Text = agentErrorCode.contactName.Replace("联系电话", "<br><br>联系电话"); ;
                 String dir = this.Server.MapPath("~/") + @"\ErrorImages\";
 
                 if (!Directory.Exists(dir))
