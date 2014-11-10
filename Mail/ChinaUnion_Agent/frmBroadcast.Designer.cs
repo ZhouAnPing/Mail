@@ -57,7 +57,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(331, 295);
+            this.btnSend.Location = new System.Drawing.Point(340, 295);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 1;
@@ -68,7 +68,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(428, 295);
+            this.btnClose.Location = new System.Drawing.Point(435, 295);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
@@ -89,6 +89,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "微信公告发布";
+            this.Load += new System.EventHandler(this.frmBroadcast_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

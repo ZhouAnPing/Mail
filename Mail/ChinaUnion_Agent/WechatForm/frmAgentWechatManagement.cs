@@ -32,11 +32,6 @@ namespace ChinaUnion_Agent.Wechat
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
             //代理商信息            
             //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
-            this.prepareGrid();
-            this.Cursor = Cursors.Default;
-        }
-        private void prepareGrid()
-        {
             AgentDao agentDao = new AgentDao();
             IList<Agent> agentList = agentDao.GetList();
 
@@ -67,10 +62,25 @@ namespace ChinaUnion_Agent.Wechat
 
 
                 }
+                dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+             
+                dgAgent.AutoResizeColumns();
+                this.grpWechat.Dock = DockStyle.None;
+                
+               // this.ResizeRedraw = true;
+
             }
+
+
+            this.Cursor = Cursors.Default;
+        }
+        private void prepareGrid()
+        {
+           
             WechatAction wechatAction = new WechatAction();
             WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wecaht_Agent_Department, Settings.Default.Wechat_AgentSecret);
-
+            this.grpWechat.Dock = DockStyle.Right;
+          
             if (wechatUser != null && wechatUser.userlist.Count > 0)
             {
                 this.dgWechat.Rows.Clear();
@@ -112,10 +122,10 @@ namespace ChinaUnion_Agent.Wechat
 
             }
             dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// (DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-            dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+           // dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgWechat.AutoResizeColumns();
            // dgWechat.AutoResizeRows();
-            dgAgent.AutoResizeColumns();
+           // dgAgent.AutoResizeColumns();
             //dgAgent.AutoResizeRows();
         }
         /// <summary>

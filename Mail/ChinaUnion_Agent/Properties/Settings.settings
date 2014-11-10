@@ -50,5 +50,11 @@
     <Setting Name="Wecaht_Agent_Department" Type="System.String" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="Wechat_ErrorSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">g02XwYOdt8C1Cv8n3nSiAo2EEh371VKaYby5MbjWw4PwVf2mTegVbMuOiBuSXYAi</Value>
+    </Setting>
+    <Setting Name="Wecaht_Error_Department" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

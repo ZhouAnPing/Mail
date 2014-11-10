@@ -204,5 +204,29 @@ namespace ChinaUnion_Agent.Properties {
                 this["Wecaht_Agent_Department"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("g02XwYOdt8C1Cv8n3nSiAo2EEh371VKaYby5MbjWw4PwVf2mTegVbMuOiBuSXYAi")]
+        public string Wechat_ErrorSecret {
+            get {
+                return ((string)(this["Wechat_ErrorSecret"]));
+            }
+            set {
+                this["Wechat_ErrorSecret"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public string Wecaht_Error_Department {
+            get {
+                return ((string)(this["Wecaht_Error_Department"]));
+            }
+            set {
+                this["Wecaht_Error_Department"] = value;
+            }
+        }
     }
 }

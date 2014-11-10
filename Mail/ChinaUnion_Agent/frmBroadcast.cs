@@ -16,6 +16,8 @@ namespace ChinaUnion_Agent
 {
     public partial class frmBroadcast : Form
     {
+        public String Wechat_secretId = Settings.Default.Wechat_AgentSecret;
+        public String Wechar_Department = Settings.Default.Wecaht_Agent_Department;
         public frmBroadcast()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace ChinaUnion_Agent
             }
             this.Cursor = Cursors.WaitCursor;
             WechatAction wechatAction = new WechatAction();
-            HttpResult result= wechatAction.sendMessageToWechat("@all",this.txtContent.Text.Trim());
+            HttpResult result = wechatAction.sendMessageToWechat("@all", this.txtContent.Text.Trim(), Wechat_secretId, Wechar_Department);
            this.Cursor = Cursors.Default; 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -49,6 +51,12 @@ namespace ChinaUnion_Agent
         {
             this.Cursor = Cursors.Default; 
             this.Close();
+        }
+
+        private void frmBroadcast_Load(object sender, EventArgs e)
+        {
+            this.BackgroundImage = Properties.Resources.Desktop;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }

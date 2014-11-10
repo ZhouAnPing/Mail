@@ -125,9 +125,9 @@ namespace ChinaUnion_Agent
                         row.Cells["子系统"].Value = "ESS";
                         row.Cells["报错关键字"].Value = ESSList[i][1].ToString().Trim(); ;
                         row.Cells["Image"].Value = Path.GetDirectoryName(FileName)+"\\ESS\\" + ESSList[i][0].ToString().Trim() + ".jpg";
-                        row.Cells["报错描述"].Value = ESSList[i][2].ToString().Trim();
-                        row.Cells["原因及处理方法"].Value = ESSList[i][3].ToString().Trim();
-                        row.Cells["联系方式"].Value = ESSList[i][4].ToString().Trim();                        
+                        row.Cells["报错描述"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(ESSList[i][2].ToString().Trim(), " ");
+                        row.Cells["原因及处理方法"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(ESSList[i][3].ToString().Trim(), " ");
+                        row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(ESSList[i][4].ToString().Trim(), " ");                       
 
                     }
                 }
@@ -152,16 +152,16 @@ namespace ChinaUnion_Agent
                         row.Cells["子系统"].Value = "CBSS";
                         row.Cells["报错关键字"].Value = CBSSList[i][1].ToString().Trim();
                         row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\CBSS\\" + CBSSList[i][0].ToString().Trim() + ".jpg";
-                        row.Cells["报错描述"].Value = CBSSList[i][2].ToString().Trim();
-                        row.Cells["原因及处理方法"].Value = CBSSList[i][3].ToString().Trim();
-                        row.Cells["联系方式"].Value = CBSSList[i][4].ToString().Trim();
+                        row.Cells["报错描述"].Value =  new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][2].ToString().Trim(), " ");
+                        row.Cells["原因及处理方法"].Value =  new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][3].ToString().Trim(), " ");
+                        row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][4].ToString().Trim(), " ");
 
                     }
                 }
 
 
 
-              this.dgErrorCode.AutoResizeColumns();
+                this.dgErrorCode.AutoResizeColumns();
                 this.dgErrorCode.AutoResizeRows();
 
                 StringBuilder sb = new StringBuilder();

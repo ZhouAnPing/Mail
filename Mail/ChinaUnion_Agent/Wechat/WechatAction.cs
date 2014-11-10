@@ -237,10 +237,10 @@ namespace ChinaUnion_Agent.Wechat
             return wechatUser;
         }
 
-        public HttpResult sendMessageToWechat(String toUser,String content)
+        public HttpResult sendMessageToWechat(String toUser, String content, String Wechat_Secret, String agentid)
         {
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Settings.Default.Wechat_AgentSecret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Wechat_Secret);
 
             var msgUrl = string.Format("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}", accessToken);
 
@@ -250,7 +250,7 @@ namespace ChinaUnion_Agent.Wechat
 
                 touser = toUser,
                 msgtype = "text",
-                agentid = 2,
+                agentid = agentid,
                 safe = 0,
                 text = new
                 {

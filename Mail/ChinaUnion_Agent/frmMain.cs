@@ -1,4 +1,5 @@
 ﻿
+using ChinaUnion_Agent.Properties;
 using ChinaUnion_Agent.Wechat;
 using ChinaUnion_Agent.WechatForm;
 using System;
@@ -72,6 +73,9 @@ namespace ChinaUnion_Agent
         {
            
              frmBroadcast frmBroadcast = new frmBroadcast();
+             frmBroadcast.Wechat_secretId = Settings.Default.Wechat_AgentSecret;
+             frmBroadcast.Wechar_Department = Settings.Default.Wecaht_Agent_Department;
+
              frmBroadcast.ShowInTaskbar = false;
 
              frmBroadcast.ShowDialog();
@@ -169,6 +173,18 @@ namespace ChinaUnion_Agent
                
 
          
+        }
+
+        private void toolbarErrorBroadcast_Click(object sender, EventArgs e)
+        {
+            frmBroadcast frmBroadcast = new frmBroadcast();
+            frmBroadcast.Wechat_secretId = Settings.Default.Wechat_ErrorSecret;
+            frmBroadcast.Wechar_Department = Settings.Default.Wecaht_Error_Department;
+
+            frmBroadcast.ShowInTaskbar = false;
+
+            frmBroadcast.ShowDialog();
+
         }
 
       
