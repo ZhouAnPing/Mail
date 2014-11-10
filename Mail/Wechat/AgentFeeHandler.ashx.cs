@@ -76,61 +76,74 @@ namespace Wechat
             // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
 
-            switch (actionType)
+            AgentDao agentDao = new AgentDao();
+            Agent agent = agentDao.Get(wechatMessage.FromUserName);
+
+            if (agent!=null&&!String.IsNullOrEmpty(agent.status) && agent.status.Equals("Y"))
             {
-                case "OtherFeeMonth":
-                    sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                    sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
+                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员。。。\n\n");
 
-                    break;
+            }
+            else
+            {
 
-                case "PreMonthFeeQuery":
-                case "CurMonthFeeQuery":
-                    String feeMonth = DateTime.Now.ToString("yyyy-MM");
-                    if (actionType.Equals("PreMonthFeeQuery"))
-                    {
-                        feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
-                    }
-                    AgentFeeDao agentFeeDao = new AgentFeeDao();
-                    AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
-                    if (agentFee != null&&!String.IsNullOrEmpty( agentFee.agentFeeSeq))
-                    {
-                        sb.Append(this.createNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
-                    }
-                    else
-                    {
-                        sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",feeMonth+ "佣金还未发布，请稍后。。。\n\n");
-                    }
-                    break;
-              
-
-                default:
-
-                    if (!Regex.IsMatch(wechatMessage.Content, "((20[0-9][0-9])|(19[0-9][0-9]))-((0[1-9])|(1[0-2]))"))
-                    {
+                switch (actionType)
+                {
+                    case "OtherFeeMonth":
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                         sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
-                    }
-                    else
-                    {                  
-                        feeMonth = wechatMessage.Content;                       
-                        agentFeeDao = new AgentFeeDao();
-                        agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
-                        if (agentFee != null && !String.IsNullOrEmpty( agentFee.agentFeeSeq))
+
+                        break;
+
+                    case "PreMonthFeeQuery":
+                    case "CurMonthFeeQuery":
+                        String feeMonth = DateTime.Now.ToString("yyyy-MM");
+                        if (actionType.Equals("PreMonthFeeQuery"))
                         {
-                            sb.Append(this.createNewsMessages(feeMonth,agentFee,wechatMessage.FromUserName));
-                           
+                            feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
+                        }
+                        AgentFeeDao agentFeeDao = new AgentFeeDao();
+                        AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
+                        if (agentFee != null && !String.IsNullOrEmpty(agentFee.agentFeeSeq))
+                        {
+                            sb.Append(this.createNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
                         }
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",feeMonth+ "佣金还未发布，请稍后。。。\n\n");
-
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后。。。\n\n");
                         }
-                    }
+                        break;
 
-                    break;
+
+                    default:
+
+                        if (!Regex.IsMatch(wechatMessage.Content, "((20[0-9][0-9])|(19[0-9][0-9]))-((0[1-9])|(1[0-2]))"))
+                        {
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
+                        }
+                        else
+                        {
+                            feeMonth = wechatMessage.Content;
+                            agentFeeDao = new AgentFeeDao();
+                            agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
+                            if (agentFee != null && !String.IsNullOrEmpty(agentFee.agentFeeSeq))
+                            {
+                                sb.Append(this.createNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
+
+                            }
+                            else
+                            {
+                                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后。。。\n\n");
+
+                            }
+                        }
+
+                        break;
+                }
             }
 
             //  sb.AppendFormat("<AgentID>{0}</AgentID>", textMessage.AgentID);

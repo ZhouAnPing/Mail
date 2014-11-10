@@ -16,16 +16,14 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Add(AgentType entity)
         {
-
-
-            string sql = "INSERT INTO agent_type (agentNo,agentType) VALUE (@agentNo,@agentType)";
+            string sql = "INSERT INTO agent_type (agentNo,agentType,agentFeeMonth) VALUE (@agentNo,@agentType,@agentFeeMonth)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
-               
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }
@@ -36,7 +34,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(AgentType entity)
         {
-            string sql = "UPDATE  agent_type SET agentNo=@agentNo,agentType=@agentType where agentNo=@agentNo ";
+            string sql = "UPDATE  agent_type SET agentNo=@agentNo,agentType=@agentType where agentNo=@agentNo  and agentFeeMonth=@agentFeeMonth";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -45,7 +43,7 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
-               
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }
@@ -56,13 +54,14 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Delete(AgentType entity)
         {
-            string sql = "DELETE FROM agent_type WHERE agentNo=@agentNo and agentType=@agentType";
+            string sql = "DELETE FROM agent_type WHERE agentNo=@agentNo and agentType=@agentType and agentFeeMonth=@agentFeeMonth";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }
@@ -94,13 +93,14 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentType> GetList()
+        public IList<AgentType> GetList(String agentFeeMonth)
         {
-            string sql = "SELECT agentNo,agentType FROM agent_type";
+            string sql = "SELECT agentNo,agentType,agentFeeMonth FROM agent_type where agentFeeMonth=@agentFeeMonth";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentFeeMonth", agentFeeMonth);
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentType> list = new List<AgentType>();
                 AgentType agent_Type = null;
@@ -110,6 +110,7 @@ namespace ChinaUnion_DataAccess
 
                     agent_Type.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agent_Type.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
+                    agent_Type.agentFeeMonth = reader["agentFeeMonth"] == DBNull.Value ? null : reader["agentFeeMonth"].ToString();
 
                     list.Add(agent_Type);
                 }

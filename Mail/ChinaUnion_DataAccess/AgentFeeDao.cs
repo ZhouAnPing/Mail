@@ -92,14 +92,15 @@ namespace ChinaUnion_DataAccess
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo) agentType,");
-            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType) agentTypeComment,");
+            sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
             sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
             sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");
 
             sb.Append("  and t1.agentNo= t2.agentNo ");
             sb.Append("  and t1.agentNo= @agentNo ");
+            sb.Append("  and t2.status!='Y'");
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -159,13 +160,14 @@ namespace ChinaUnion_DataAccess
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo) agentType,");
-            sb.Append("(select group_concat(t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType) agentTypeComment,");
+            sb.Append("feeTotal, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
             sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
             sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");
 
             sb.Append("  and t1.agentNo= t2.agentNo ");
+            sb.Append("  and t2.status!='Y'");
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {

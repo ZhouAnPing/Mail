@@ -18,13 +18,14 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO agent_type_comment (agentTypeComment,agentType) VALUE (@agentTypeComment,@agentType)";
+            string sql = "INSERT INTO agent_type_comment (agentTypeComment,agentType,agentFeeMonth) VALUE (@agentTypeComment,@agentType,@agentFeeMonth)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@agentTypeComment", entity.agentTypeComment);
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 
 
                 return command.ExecuteNonQuery();
@@ -37,7 +38,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(AgentTypeComment entity)
         {
-            string sql = "UPDATE  agent_type_comment SET agentTypeComment=@agentTypeComment,agentType=@agentType where agentType=@agentType ";
+            string sql = "UPDATE  agent_type_comment SET agentTypeComment=@agentTypeComment,agentType=@agentType, agentFeeMonth=@agentFeeMonth where agentType=@agentType and agentFeeMonth=@agentFeeMonth ";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -46,7 +47,7 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentTypeComment", entity.agentTypeComment);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
-
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }
@@ -55,14 +56,15 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="primaryKey"></param> 
         /// <returns></returns> 
-        public int Delete(String primaryKey)
+        public int Delete(AgentTypeComment entity)
         {
-            string sql = "DELETE FROM agent_type_comment WHERE agentType=@agentType";
+            string sql = "DELETE FROM agent_type_comment WHERE agentType=@agentType and agentFeeMonth=@agentFeeMonth";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentType", primaryKey);
+                command.Parameters.AddWithValue("@agentType", entity.agentType);
+                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
                 return command.ExecuteNonQuery();
             }
         }
@@ -94,13 +96,14 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentTypeComment> GetList()
+        public IList<AgentTypeComment> GetList(String agentFeeMonth)
         {
-            string sql = "SELECT agentTypeComment,agentType FROM agent_type_comment";
+            string sql = "SELECT agentTypeComment,agentType,agentFeeMonth FROM agent_type_comment where agentFeeMonth=@agentFeeMonth";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentFeeMonth", agentFeeMonth);
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentTypeComment> list = new List<AgentTypeComment>();
                 AgentTypeComment agentTypeComment = null;
@@ -110,6 +113,7 @@ namespace ChinaUnion_DataAccess
 
                     agentTypeComment.agentTypeComment = reader["agentTypeComment"] == DBNull.Value ? null : reader["agentTypeComment"].ToString();
                     agentTypeComment.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
+                    agentTypeComment.agentFeeMonth = reader["agentFeeMonth"] == DBNull.Value ? null : reader["agentFeeMonth"].ToString();
 
                     list.Add(agentTypeComment);
                 }

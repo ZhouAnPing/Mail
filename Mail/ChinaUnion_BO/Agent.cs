@@ -16,5 +16,6 @@ namespace ChinaUnion_BO
 
         public String agentType;
         public String agentTypeComment;
+        public String status;
     }
 }

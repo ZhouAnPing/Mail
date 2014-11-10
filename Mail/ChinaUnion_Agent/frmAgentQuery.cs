@@ -26,6 +26,7 @@ namespace ChinaUnion_Agent
             //代理商信息            
          //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
             AgentDao agentDao = new AgentDao();
+            //agentDao.Get("P001");
             IList<Agent> agentList = agentDao.GetList();
 
             if (agentList != null && agentList.Count > 0)

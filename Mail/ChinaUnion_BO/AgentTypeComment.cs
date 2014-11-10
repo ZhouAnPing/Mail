@@ -7,7 +7,7 @@ namespace ChinaUnion_BO
 {
    public  class AgentTypeComment
     {
-       
+       public String agentFeeMonth;
         public String agentType;
         public String agentTypeComment;
     }
