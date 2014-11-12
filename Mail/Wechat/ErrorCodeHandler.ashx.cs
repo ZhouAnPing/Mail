@@ -28,9 +28,13 @@ namespace Wechat
             logger.Info(context.Request.Url.AbsoluteUri);
 
 
-            string sToken = "ErrorCode";
-            string sCorpID = "wx4fe8b74e01fffcbb";
-            string sEncodingAESKey = "KsTUiKS3INKdvPL2vupBgslE1EUEK7KzHOKIBtIqQnU";
+            //string sToken = "AgentFee";
+            //string sCorpID = "wx4fe8b74e01fffcbb";
+            //string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
+
+            string sToken = Properties.Settings.Default.Wechat_ErrorCode_Token;// "ErrorCode";
+            string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx31204de5a3ae758e";
+            string sEncodingAESKey = Properties.Settings.Default.Wechat_ErrorCode_EncodingAESKey;// "VcEu5ijaEa6xVklONE9APWJgfvh1UhGjXGKAdeHWAWQ";
 
             System.Collections.Specialized.NameValueCollection queryStrings = context.Request.QueryString;
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
@@ -145,9 +149,9 @@ namespace Wechat
                                 sbDesc.AppendFormat("联系人员：{0}\n\n", agentErrorCode.contactName);
                                 sbDesc.AppendFormat("备注：\n{0}\n", agentErrorCode.comment);
                                 sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://115.29.229.134/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
-                                logger.Info("path=" + "http://115.29.229.134/Wechat/ErrorCodeQuery.aspx?keyword=" + context.Server.UrlEncode(agentErrorCode.keyword));
-                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}]]>", "http://115.29.229.134/Wechat/ErrorCodeQuery.aspx?keyword=", context.Server.UrlEncode(agentErrorCode.keyword)).Append("</Url>");
+                                sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://"+Properties.Settings.Default.Host+"/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
+                                //logger.Info("path=" + "http://"http://"+Properties.Settings.Default.Host+"/Wechat/ErrorCodeQuery.aspx?keyword=" + context.Server.UrlEncode(agentErrorCode.keyword));
+                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}]]>", "http://"+Properties.Settings.Default.Host+"/Wechat/ErrorCodeQuery.aspx?keyword=", context.Server.UrlEncode(agentErrorCode.keyword)).Append("</Url>");
                                 //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                                 sb.AppendFormat("</item>");
                                 //  logger.Info(sb.ToString());

@@ -105,12 +105,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Util\Cryptography.cs" />
     <Compile Include="Util\Sample.cs" />
     <Compile Include="Util\WXBizMsgCrypt.cs" />
-    <Compile Include="Wechat.ashx.cs">
-      <DependentUpon>Wechat.ashx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="log4net.config">
@@ -130,7 +128,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Wechat.ashx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChinaUnion_BO\ChinaUnion_BO.csproj">

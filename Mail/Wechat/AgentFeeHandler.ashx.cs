@@ -32,9 +32,13 @@ namespace Wechat
             logger.Info(context.Request.Url.AbsoluteUri);
 
 
-            string sToken = "AgentFee";
-            string sCorpID = "wx4fe8b74e01fffcbb";
-            string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
+            //string sToken = "AgentFee";
+            //string sCorpID = "wx4fe8b74e01fffcbb";
+            //string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
+
+            string sToken = Properties.Settings.Default.Wechat_AgentFee_Token;//"AgentFee";
+            string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx31204de5a3ae758e";
+            string sEncodingAESKey = Properties.Settings.Default.Wechat_AgentFee_EncodingAESKey;// "he8dYrZ5gLbDrDhfHVJkea1AfmHgRZQJq47kuKpQrSO";
 
             System.Collections.Specialized.NameValueCollection queryStrings = context.Request.QueryString;
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
@@ -231,7 +235,7 @@ namespace Wechat
             }
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
-            String url1 = String.Format("http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&feeMonth={1}", toUser, feeMonth);
+            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host,toUser, feeMonth);
 
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");

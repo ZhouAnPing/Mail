@@ -25,28 +25,55 @@ namespace Wechat.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("L3TqpgplkguXp1Dtpz68NkBOCHE9fT")]
-        public string Token {
+        [global::System.Configuration.DefaultSettingValueAttribute("ErrorCode")]
+        public string Wechat_ErrorCode_Token {
             get {
-                return ((string)(this["Token"]));
+                return ((string)(this["Wechat_ErrorCode_Token"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("wx4fe8b74e01fffcbb")]
-        public string CorpID {
+        [global::System.Configuration.DefaultSettingValueAttribute("AgentFee")]
+        public string Wechat_AgentFee_Token {
             get {
-                return ((string)(this["CorpID"]));
+                return ((string)(this["Wechat_AgentFee_Token"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L")]
-        public string EncodingAESKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("wx31204de5a3ae758e")]
+        public string Wechat_CorpId {
             get {
-                return ((string)(this["EncodingAESKey"]));
+                return ((string)(this["Wechat_CorpId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("VcEu5ijaEa6xVklONE9APWJgfvh1UhGjXGKAdeHWAWQ")]
+        public string Wechat_ErrorCode_EncodingAESKey {
+            get {
+                return ((string)(this["Wechat_ErrorCode_EncodingAESKey"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("he8dYrZ5gLbDrDhfHVJkea1AfmHgRZQJq47kuKpQrSO")]
+        public string Wechat_AgentFee_EncodingAESKey {
+            get {
+                return ((string)(this["Wechat_AgentFee_EncodingAESKey"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("112.64.17.80")]
+        public string Host {
+            get {
+                return ((string)(this["Host"]));
             }
         }
     }

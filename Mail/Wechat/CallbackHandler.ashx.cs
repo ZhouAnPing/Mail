@@ -13,7 +13,7 @@ namespace Wechat
     public class CallbackHandler : IHttpHandler
     {
 
-        private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(Wechat));
+        private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(CallbackHandler));
         /// <summary>
         /// 处理企业号的信息
         /// </summary>

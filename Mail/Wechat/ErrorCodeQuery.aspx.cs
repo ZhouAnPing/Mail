@@ -45,7 +45,7 @@ namespace Wechat
                     System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
                 }
 
-                this.Image1.ImageUrl = "http://115.29.229.134/Wechat/ErrorImages/" + agentErrorCode.seq + ".jpg";
+                this.Image1.ImageUrl = "http://" + Properties.Settings.Default.Host + "/Wechat/ErrorImages/" + agentErrorCode.seq + ".jpg";
 
             }
 

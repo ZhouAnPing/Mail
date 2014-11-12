@@ -2,14 +2,23 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Wechat.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Token" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">L3TqpgplkguXp1Dtpz68NkBOCHE9fT</Value>
+    <Setting Name="Wechat_ErrorCode_Token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ErrorCode</Value>
     </Setting>
-    <Setting Name="CorpID" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">wx4fe8b74e01fffcbb</Value>
+    <Setting Name="Wechat_AgentFee_Token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AgentFee</Value>
     </Setting>
-    <Setting Name="EncodingAESKey" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">7YgmiXBs5fAe2gANxnnYdTkJT3pHeaPrOpn2GKsuX3L</Value>
+    <Setting Name="Wechat_CorpId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wx31204de5a3ae758e</Value>
+    </Setting>
+    <Setting Name="Wechat_ErrorCode_EncodingAESKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VcEu5ijaEa6xVklONE9APWJgfvh1UhGjXGKAdeHWAWQ</Value>
+    </Setting>
+    <Setting Name="Wechat_AgentFee_EncodingAESKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">he8dYrZ5gLbDrDhfHVJkea1AfmHgRZQJq47kuKpQrSO</Value>
+    </Setting>
+    <Setting Name="Host" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">112.64.17.80</Value>
     </Setting>
   </Settings>
 </SettingsFile>
