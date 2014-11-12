@@ -183,12 +183,13 @@
             this.xPanderPanel1.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
             this.xPanderPanel1.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
             this.xPanderPanel1.CustomColors.InnerBorderColor = System.Drawing.Color.SkyBlue;
+            this.xPanderPanel1.Expand = true;
             this.xPanderPanel1.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.xPanderPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.xPanderPanel1.Image = null;
             this.xPanderPanel1.Name = "xPanderPanel1";
             this.xPanderPanel1.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.xPanderPanel1.Size = new System.Drawing.Size(142, 40);
+            this.xPanderPanel1.Size = new System.Drawing.Size(142, 655);
             this.xPanderPanel1.TabIndex = 0;
             this.xPanderPanel1.Text = "佣金管理";
             this.xPanderPanel1.ToolTipTextCloseIcon = null;
@@ -218,7 +219,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(1, 40);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(140, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(140, 615);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -232,7 +233,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton1.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton1.Text = "代理商佣金导入";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton1.Click += new System.EventHandler(this.menuItemAgentFeeImport_Click);
@@ -247,7 +248,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton2.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton2.Text = "代理商佣金发布";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton2.Click += new System.EventHandler(this.menuItemAgentFeeQuery_Click);
@@ -262,7 +263,7 @@
             this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton12.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton12.Text = "代理商报告查询";
             this.toolStripButton12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton12.Click += new System.EventHandler(this.menuItemReportQuery_Click);
@@ -277,7 +278,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(69, 64);
+            this.toolStripButton3.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton3.Text = "代理商导入";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton3.Click += new System.EventHandler(this.menuItemAgentImport_Click);
@@ -292,7 +293,7 @@
             this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton15.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton15.Text = "代理商微信同步";
             this.toolStripButton15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton15.ToolTipText = "代理商微信同步";
@@ -308,7 +309,7 @@
             this.toolStripButton17.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton17.Image")));
             this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton17.Name = "toolStripButton17";
-            this.toolStripButton17.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton17.Size = new System.Drawing.Size(138, 64);
             this.toolStripButton17.Text = "代理商微信公告";
             this.toolStripButton17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton17.Click += new System.EventHandler(this.toolbarBroadcast_Click);
@@ -339,13 +340,12 @@
             this.xPanderPanel2.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
             this.xPanderPanel2.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
             this.xPanderPanel2.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.xPanderPanel2.Expand = true;
             this.xPanderPanel2.Font = new System.Drawing.Font("SimSun", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.xPanderPanel2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.xPanderPanel2.Image = null;
             this.xPanderPanel2.Name = "xPanderPanel2";
             this.xPanderPanel2.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.xPanderPanel2.Size = new System.Drawing.Size(142, 655);
+            this.xPanderPanel2.Size = new System.Drawing.Size(142, 40);
             this.xPanderPanel2.TabIndex = 1;
             this.xPanderPanel2.Text = "错误代码管理";
             this.xPanderPanel2.ToolTipTextCloseIcon = null;
@@ -372,7 +372,7 @@
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip2.Location = new System.Drawing.Point(1, 40);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(140, 615);
+            this.toolStrip2.Size = new System.Drawing.Size(140, 0);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 

@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ChinaUnion_Agent.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DBConnectString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">User Id=root;Host=115.29.229.134;Database=chinaunion;password=c513324665;charset=utf8</Value>
-    </Setting>
     <Setting Name="TripoisUserName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">api@chinaunicom.cn</Value>
     </Setting>
@@ -39,22 +36,22 @@
       <Value Profile="(Default)">MTgzMjE4MzKEP3h36*317g</Value>
     </Setting>
     <Setting Name="Wechat_Corpid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">wx4fe8b74e01fffcbb</Value>
+      <Value Profile="(Default)">wx31204de5a3ae758e</Value>
     </Setting>
     <Setting Name="Wechat_AgentSecret" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ITnmki1ObPK9wNtPOaaCDkKb0VcEVMOf_IoLRaiGDQr6V_SZc9ZSOC1LdNSAuyyo</Value>
+      <Value Profile="(Default)">DU09Cdt9oowLw9U-mW2WYKMzY21p8iNi5-xPlEqNEWWDHXm2bh9Te5nYA4ZPgtN9</Value>
     </Setting>
     <Setting Name="Wechat_Message" Type="System.String" Scope="User">
-      <Value Profile="(Default)">佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况,点击查询&lt;a href="http://115.29.229.134/Wechat/AgentFeeQuery.aspx?agentNo={0}&amp;feeMonth={1}"&gt;本月佣金详情&lt;/a&gt;</Value>
+      <Value Profile="(Default)">佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况,点击查询&lt;a href="http://112.64.17.80/Wechat/AgentFeeQuery.aspx?agentNo={0}&amp;feeMonth={1}"&gt;本月佣金详情&lt;/a&gt;</Value>
     </Setting>
     <Setting Name="Wecaht_Agent_Department" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="Wechat_ErrorSecret" Type="System.String" Scope="User">
-      <Value Profile="(Default)">g02XwYOdt8C1Cv8n3nSiAo2EEh371VKaYby5MbjWw4PwVf2mTegVbMuOiBuSXYAi</Value>
+      <Value Profile="(Default)">YTQ8mFvRxVIzebNiQS03dxbiSt4sVOBxhb_LyoQGXMIown-ULDnzdrnnVHcHJZAq</Value>
     </Setting>
     <Setting Name="Wecaht_Error_Department" Type="System.String" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
