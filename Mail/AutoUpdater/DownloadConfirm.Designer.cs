@@ -31,18 +31,18 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.listDownloadFile = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(184, 236);
+            this.btnOk.Location = new System.Drawing.Point(184, 218);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 25);
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 0;
             this.btnOk.Text = "马上更新";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(265, 236);
+            this.btnCancel.Location = new System.Drawing.Point(265, 218);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "以后再说";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -63,9 +63,9 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listDownloadFile.Location = new System.Drawing.Point(12, 39);
+            this.listDownloadFile.Location = new System.Drawing.Point(12, 36);
             this.listDownloadFile.Name = "listDownloadFile";
-            this.listDownloadFile.Size = new System.Drawing.Size(328, 190);
+            this.listDownloadFile.Size = new System.Drawing.Size(433, 176);
             this.listDownloadFile.TabIndex = 1;
             this.listDownloadFile.UseCompatibleStateImageBehavior = false;
             this.listDownloadFile.View = System.Windows.Forms.View.Details;
@@ -73,12 +73,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "文件名";
-            this.columnHeader1.Width = 139;
+            this.columnHeader1.Width = 213;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "最新版本";
-            this.columnHeader2.Width = 110;
+            this.columnHeader2.Width = 144;
             // 
             // columnHeader3
             // 
@@ -88,19 +88,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 13);
+            this.label1.Size = new System.Drawing.Size(113, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "以下文件需要更新：";
             // 
             // DownloadConfirm
             // 
             this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(352, 273);
+            this.ClientSize = new System.Drawing.Size(457, 248);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listDownloadFile);

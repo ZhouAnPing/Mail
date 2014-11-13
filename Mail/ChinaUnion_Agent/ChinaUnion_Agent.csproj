@@ -52,12 +52,20 @@
   <PropertyGroup>
     <ApplicationIcon>ChinaUnion-img2ico.net.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LinqToExcel">
       <HintPath>Dll\LinqToExcel_1.7.1\LinqToExcel.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>Dll\LinqToExcel_1.7.1\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TripolisDialogueAdapter\lib\Microsoft.Web.Services3.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Dll\Json60r6\Bin\Net40\Newtonsoft.Json.dll</HintPath>

@@ -64,7 +64,7 @@ namespace ChinaUnion_Agent
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            
+
             Cursor.Current = Cursors.WaitCursor;
             try
             {
@@ -84,19 +84,19 @@ namespace ChinaUnion_Agent
 
 
 
+
+
+
+                this.dgvSent.Rows.Clear();
+                dgvSent.Columns.Clear();
+
+                dgvSent.Columns.Add("邮件地址", "邮件地址");
+                dgvSent.Columns.Add("代理商编号", "代理商编号");
+                dgvSent.Columns.Add("代理商名称", "代理商名称");
+                dgvSent.Columns.Add("联系人", "联系人");
                 //已发送
                 if (reportData != null && reportData.sent != null && reportData.sent.Length > 0)
                 {
-
-
-
-                    this.dgvSent.Rows.Clear();
-                    dgvSent.Columns.Clear();
-
-                    dgvSent.Columns.Add("邮件地址", "邮件地址");
-                    dgvSent.Columns.Add("代理商编号", "代理商编号");
-                    dgvSent.Columns.Add("代理商名称", "代理商名称");
-                    dgvSent.Columns.Add("联系人", "联系人");
 
 
                     for (int i = 0; i < reportData.sent.Length; i++)
@@ -117,26 +117,26 @@ namespace ChinaUnion_Agent
                 }
                 this.tabSent.Text = "已发送(Sent)【" + dgvSent.RowCount + "】";
 
+
+
+                this.dgvBounced.Rows.Clear();
+                dgvBounced.Columns.Clear();
+                dgvBounced.Columns.Add("邮件地址", "邮件地址");
+                dgvBounced.Columns.Add("代理商编号", "代理商编号");
+                dgvBounced.Columns.Add("代理商名称", "代理商名称");
+                dgvBounced.Columns.Add("联系人", "联系人");
+                dgvBounced.Columns.Add("退回时间", "退回时间");
+                dgvBounced.Columns.Add("退回原因", "退回原因");
+
                 //已退回
                 if (reportData != null && reportData.bounced != null && reportData.bounced.Length > 0)
                 {
-
-                    this.dgvBounced.Rows.Clear();
-                    dgvBounced.Columns.Clear();
-                    dgvBounced.Columns.Add("邮件地址", "邮件地址");
-                    dgvBounced.Columns.Add("代理商编号", "代理商编号");
-                    dgvBounced.Columns.Add("代理商名称", "代理商名称");
-                    dgvBounced.Columns.Add("联系人", "联系人");
-                    dgvBounced.Columns.Add("退回时间", "退回时间");
-                    dgvBounced.Columns.Add("退回原因", "退回原因");
-
-
                     ArrayList emailList = new ArrayList();
 
                     for (int i = 0; i < reportData.bounced.Length; i++)
                     {
 
-                        if (reportData.bounced[i].contactFields != null&&emailList.Contains(reportData.bounced[i].contactFields[0].value))
+                        if (reportData.bounced[i].contactFields != null && emailList.Contains(reportData.bounced[i].contactFields[0].value))
                         {
                             continue;
                         }
@@ -158,7 +158,7 @@ namespace ChinaUnion_Agent
                     for (int i = 0; i < reportData.skipped.Length; i++)
                     {
                         dgvBounced.Rows.Add();
-                        DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount-1];
+                        DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount - 1];
 
                         for (int j = 0; j < dgvBounced.ColumnCount - 1; j++)
                         {
@@ -171,7 +171,7 @@ namespace ChinaUnion_Agent
                     }
 
                 }
-                this.tabBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount+  "】";
+                this.tabBounced.Text = "已退回(Bounced)【" + dgvBounced.RowCount + "】";
 
                 ////已跳过
                 //if (reportData != null && reportData.skipped != null && reportData.skipped.Length > 0)
@@ -204,20 +204,20 @@ namespace ChinaUnion_Agent
                 //}
                 //this.tabSkipped.Text = "已跳过(Skipped)【" + dgvSkipped.RowCount + "】";
 
+
+
+                this.dgvOpened.Rows.Clear();
+                dgvOpened.Columns.Clear();
+
+                dgvOpened.Columns.Add("邮件地址", "邮件地址");
+                dgvOpened.Columns.Add("代理商编号", "代理商编号");
+                dgvOpened.Columns.Add("代理商名称", "代理商名称");
+                dgvOpened.Columns.Add("联系人", "联系人");
+                dgvOpened.Columns.Add("退回时间", "退回时间");
+                dgvOpened.Columns.Add("打开IP地址", "打开IP地址");
                 //已opened
                 if (reportData != null && reportData.opened != null && reportData.opened.Length > 0)
                 {
-
-                    this.dgvOpened.Rows.Clear();
-                    dgvOpened.Columns.Clear();
-
-                    dgvOpened.Columns.Add("邮件地址", "邮件地址");
-                    dgvOpened.Columns.Add("代理商编号", "代理商编号");
-                    dgvOpened.Columns.Add("代理商名称", "代理商名称");
-                    dgvOpened.Columns.Add("联系人", "联系人");
-                    dgvOpened.Columns.Add("退回时间", "退回时间");
-                    dgvOpened.Columns.Add("打开IP地址", "打开IP地址");
-
                     ArrayList emailList = new ArrayList();
 
                     for (int i = 0; i < reportData.opened.Length; i++)
@@ -284,7 +284,7 @@ namespace ChinaUnion_Agent
 
                 this.dgvSent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 this.dgvOpened.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-               // this.dgvSkipped.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                // this.dgvSkipped.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 this.dgvBounced.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
                 Cursor.Current = Cursors.Default;
