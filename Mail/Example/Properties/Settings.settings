@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Example.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Example_cn_tripolis_dialogue_import_ImportService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://dialogue.tripolis.cn/api2/soap/ImportService</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

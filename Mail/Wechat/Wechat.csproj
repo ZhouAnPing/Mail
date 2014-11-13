@@ -66,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
+    <Content Include="ChinaUnicom.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ChinaUnicom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ErrorCodeQuery.aspx" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

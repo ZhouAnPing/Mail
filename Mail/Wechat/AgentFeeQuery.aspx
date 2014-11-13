@@ -51,7 +51,7 @@
                         <table width="100%"  class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
 			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: bottom; padding:0px; background-color: #ffffff;" bgcolor="#ffffff" colspan="4">
-                                              <a href="#"><img src="http://dialogue.tripolis.cn/public/image_MTAwMjg5NTaMdCDprzC_oRpaAAO2LvZr.png" alt="" border="0"  /></a><b style="font-size: 40px; text-align: center">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;上海联通合作伙伴佣金告知单</b></td>
+                                              <a href="#"><img src="./ChinaUnicom.png" alt="" border="0"  /></a><b style="font-size: 40px; text-align: center">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;上海联通合作伙伴佣金告知单</b></td>
 			                    
 			                </tr> 
                         	<tr>
