@@ -332,8 +332,7 @@ namespace ChinaUnion_Agent
                     this.btnImport.Enabled = true;
                 }
 
-
-
+               
                 Cursor.Current = Cursors.Default;
             }
         }

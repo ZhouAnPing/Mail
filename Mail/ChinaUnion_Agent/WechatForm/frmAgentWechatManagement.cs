@@ -70,7 +70,7 @@ namespace ChinaUnion_Agent.Wechat
                     }
 
                 }
-             //   dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
              
                 dgAgent.AutoResizeColumns();
                 this.grpWechat.Dock = DockStyle.None;
@@ -129,12 +129,10 @@ namespace ChinaUnion_Agent.Wechat
 
 
             }
-            dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// (DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-           // dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;// (DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+           
             dgWechat.AutoResizeColumns();
-           // dgWechat.AutoResizeRows();
-           // dgAgent.AutoResizeColumns();
-            //dgAgent.AutoResizeRows();
+          
         }
         /// <summary>
         /// 异步 开始事件

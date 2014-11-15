@@ -85,7 +85,11 @@ namespace ChinaUnion_Agent.WechatForm
                     }
                 }
             }
-            this.dgWechat.AutoResizeColumns();
+
+            dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgWechat.AutoResizeColumns();
+            
           
 
         }

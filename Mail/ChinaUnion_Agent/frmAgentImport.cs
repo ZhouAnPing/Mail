@@ -147,7 +147,9 @@ namespace ChinaUnion_Agent
                     this.btnImport.Enabled = true;
                 }
 
+                dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+                dgAgent.AutoResizeColumns();
 
                 Cursor.Current = Cursors.Default;
             }
