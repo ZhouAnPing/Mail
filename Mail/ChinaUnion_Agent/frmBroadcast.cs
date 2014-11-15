@@ -16,7 +16,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmBroadcast : Form
     {
-        public String Wechat_secretId = Settings.Default.Wechat_AgentSecret;
+        public String Wechat_secretId = Settings.Default.Wechat_Secret;
         public String Wechar_Department = Settings.Default.Wecaht_Agent_Department;
         public frmBroadcast()
         {
@@ -39,6 +39,7 @@ namespace ChinaUnion_Agent
             {
                 //表示访问成功，具体的大家就参考HttpStatusCode类
                 MessageBox.Show("发送成功");
+                this.Close();
             }
             else
             {

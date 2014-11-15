@@ -86,7 +86,7 @@ namespace ChinaUnion_Agent.Wechat
         {
            
             WechatAction wechatAction = new WechatAction();
-            WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wecaht_Agent_Department, Settings.Default.Wechat_AgentSecret);
+            WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wecaht_Agent_Department, Settings.Default.Wechat_Secret);
             this.grpWechat.Dock = DockStyle.Right;
           
             if (wechatUser != null && wechatUser.userlist.Count > 0)
@@ -110,7 +110,7 @@ namespace ChinaUnion_Agent.Wechat
                     row.Cells[0].Value = wechatUser.userlist[i].userid;
                     row.Cells[1].Value = wechatUser.userlist[i].name;
 
-                    HttpResult result = wechatAction.getUserFromWechat(wechatUser.userlist[i].userid, Settings.Default.Wechat_AgentSecret);
+                    HttpResult result = wechatAction.getUserFromWechat(wechatUser.userlist[i].userid, Settings.Default.Wechat_Secret);
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         //表示访问成功，具体的大家就参考HttpStatusCode类
@@ -165,7 +165,7 @@ namespace ChinaUnion_Agent.Wechat
             {
                 if (!agentList.Contains(userId))
                 {
-                    wechatAction.deleteUserFromWechat(userId, Settings.Default.Wechat_AgentSecret);
+                    wechatAction.deleteUserFromWechat(userId, Settings.Default.Wechat_Secret);
                     // wecharList.Remove(userId);
 
                 }
@@ -197,7 +197,7 @@ namespace ChinaUnion_Agent.Wechat
 
                 string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
 
-                HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_AgentSecret);
+                HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //表示访问成功，具体的大家就参考HttpStatusCode类
@@ -207,16 +207,16 @@ namespace ChinaUnion_Agent.Wechat
                     {
                         if (this.dgAgent[5, i].Value.ToString().Equals("账号已经停用"))
                         {
-                            wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_AgentSecret);
+                            wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
                         }
                         else
                         {
-                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, userJson);
                         }
                     }
                     else
                     {
-                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
                     }
                 }
 

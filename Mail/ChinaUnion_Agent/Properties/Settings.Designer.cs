@@ -160,18 +160,6 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DU09Cdt9oowLw9U-mW2WYKMzY21p8iNi5-xPlEqNEWWDHXm2bh9Te5nYA4ZPgtN9")]
-        public string Wechat_AgentSecret {
-            get {
-                return ((string)(this["Wechat_AgentSecret"]));
-            }
-            set {
-                this["Wechat_AgentSecret"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况,点击查询<a href=\"http://112.64.17.80/Wechat/AgentFe" +
             "eQuery.aspx?agentNo={0}&feeMonth={1}\">本月佣金详情</a>")]
         public string Wechat_Message {
@@ -197,25 +185,25 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YTQ8mFvRxVIzebNiQS03dxbiSt4sVOBxhb_LyoQGXMIown-ULDnzdrnnVHcHJZAq")]
-        public string Wechat_ErrorSecret {
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string Wechat_Error_Department {
             get {
-                return ((string)(this["Wechat_ErrorSecret"]));
+                return ((string)(this["Wechat_Error_Department"]));
             }
             set {
-                this["Wechat_ErrorSecret"] = value;
+                this["Wechat_Error_Department"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public string Wecaht_Error_Department {
+        [global::System.Configuration.DefaultSettingValueAttribute("stkc3kfO0sCrIJTFCHzOhmEsRWAnVGHqrzBIy4le6mV6EcSkNbpY0Tt49Uci2Buu")]
+        public string Wechat_Secret {
             get {
-                return ((string)(this["Wecaht_Error_Department"]));
+                return ((string)(this["Wechat_Secret"]));
             }
             set {
-                this["Wecaht_Error_Department"] = value;
+                this["Wechat_Secret"] = value;
             }
         }
     }

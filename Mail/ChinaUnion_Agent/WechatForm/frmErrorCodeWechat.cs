@@ -151,8 +151,8 @@ namespace ChinaUnion_Agent.WechatForm
                 };
 
                 string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
-                
-                HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_AgentSecret);
+
+                HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //表示访问成功，具体的大家就参考HttpStatusCode类
@@ -160,11 +160,11 @@ namespace ChinaUnion_Agent.WechatForm
                     wechatJsonUser = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
                     if (!String.IsNullOrEmpty(wechatJsonUser.userid))
                     {
-                        result = wechatAction.updateUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                        result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, userJson);
                     }
                     else
                     {
-                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_AgentSecret, userJson);
+                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
                     }
                 }
 
