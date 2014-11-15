@@ -17,7 +17,7 @@ namespace ChinaUnion_Agent
     public partial class frmBroadcast : Form
     {
         public String Wechat_secretId = Settings.Default.Wechat_Secret;
-        public String Wechar_Department = Settings.Default.Wecaht_Agent_Department;
+        public int Wechar_Department = Settings.Default.Wecaht_Agent_Department;
         public frmBroadcast()
         {
             InitializeComponent();

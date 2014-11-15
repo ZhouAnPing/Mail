@@ -201,7 +201,7 @@ namespace ChinaUnion_Agent.Wechat
             return result;
         }
      
-        public WechatUser getUserFromWechatByDepartment(String department, String secret)
+        public WechatUser getUserFromWechatByDepartment(int department, String secret)
         {
             WechatUser wechatUser = null;
             WechatUtil wechatUtil = new WechatUtil();
@@ -237,7 +237,7 @@ namespace ChinaUnion_Agent.Wechat
             return wechatUser;
         }
 
-        public HttpResult sendMessageToWechat(String toUser, String content, String Wechat_Secret, String agentid)
+        public HttpResult sendMessageToWechat(String toUser, String content, String Wechat_Secret, int agentid)
         {
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Wechat_Secret);

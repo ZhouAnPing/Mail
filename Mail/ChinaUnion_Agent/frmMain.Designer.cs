@@ -191,7 +191,7 @@
             this.xPanderPanel1.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
             this.xPanderPanel1.Size = new System.Drawing.Size(142, 655);
             this.xPanderPanel1.TabIndex = 0;
-            this.xPanderPanel1.Text = "佣金管理";
+            this.xPanderPanel1.Text = "佣金受理管理";
             this.xPanderPanel1.ToolTipTextCloseIcon = null;
             this.xPanderPanel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.xPanderPanel1.ToolTipTextExpandIconPanelExpanded = null;
@@ -294,7 +294,7 @@
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Name = "toolStripButton15";
             this.toolStripButton15.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton15.Text = "代理商微信同步";
+            this.toolStripButton15.Text = "微信账号同步";
             this.toolStripButton15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton15.ToolTipText = "代理商微信同步";
             this.toolStripButton15.Click += new System.EventHandler(this.toolbarWechat_Click);
@@ -310,7 +310,7 @@
             this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton17.Name = "toolStripButton17";
             this.toolStripButton17.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton17.Text = "代理商微信公告";
+            this.toolStripButton17.Text = "微信公告发布";
             this.toolStripButton17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton17.Click += new System.EventHandler(this.toolbarBroadcast_Click);
             // 
@@ -347,7 +347,7 @@
             this.xPanderPanel2.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
             this.xPanderPanel2.Size = new System.Drawing.Size(142, 40);
             this.xPanderPanel2.TabIndex = 1;
-            this.xPanderPanel2.Text = "错误代码管理";
+            this.xPanderPanel2.Text = "报错受理管理";
             this.xPanderPanel2.ToolTipTextCloseIcon = null;
             this.xPanderPanel2.ToolTipTextExpandIconPanelCollapsed = null;
             this.xPanderPanel2.ToolTipTextExpandIconPanelExpanded = null;
@@ -387,7 +387,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton5.Text = "错误代码导入";
+            this.toolStripButton5.Text = "报错信息导入";
             this.toolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton5.Click += new System.EventHandler(this.toolbarErrorCodeImport_Click);
             // 
@@ -402,7 +402,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton6.Text = "错误代码查询";
+            this.toolStripButton6.Text = "报错信息查询";
             this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton6.Click += new System.EventHandler(this.toolbarErrorCodeQuery_Click);
             // 
@@ -417,7 +417,7 @@
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
             this.toolStripButton8.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton8.Text = " 错误查询微信导入";
+            this.toolStripButton8.Text = "微信账号导入";
             this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton8.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
             // 
@@ -432,7 +432,7 @@
             this.toolbarErrorBroadcast.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarErrorBroadcast.Name = "toolbarErrorBroadcast";
             this.toolbarErrorBroadcast.Size = new System.Drawing.Size(138, 64);
-            this.toolbarErrorBroadcast.Text = "微信公告";
+            this.toolbarErrorBroadcast.Text = "微信公告发布";
             this.toolbarErrorBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarErrorBroadcast.ToolTipText = "微信公告";
             this.toolbarErrorBroadcast.Click += new System.EventHandler(this.toolbarErrorBroadcast_Click);

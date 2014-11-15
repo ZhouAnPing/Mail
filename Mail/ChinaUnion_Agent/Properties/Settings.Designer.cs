@@ -173,10 +173,10 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string Wecaht_Agent_Department {
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int Wecaht_Agent_Department {
             get {
-                return ((string)(this["Wecaht_Agent_Department"]));
+                return ((int)(this["Wecaht_Agent_Department"]));
             }
             set {
                 this["Wecaht_Agent_Department"] = value;
@@ -185,10 +185,10 @@ namespace ChinaUnion_Agent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public string Wechat_Error_Department {
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Wechat_Error_Department {
             get {
-                return ((string)(this["Wechat_Error_Department"]));
+                return ((int)(this["Wechat_Error_Department"]));
             }
             set {
                 this["Wechat_Error_Department"] = value;
@@ -204,6 +204,42 @@ namespace ChinaUnion_Agent.Properties {
             }
             set {
                 this["Wechat_Secret"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int Wechat_Error_Sub_Department_1 {
+            get {
+                return ((int)(this["Wechat_Error_Sub_Department_1"]));
+            }
+            set {
+                this["Wechat_Error_Sub_Department_1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int Wechat_Error_Sub_Department_2 {
+            get {
+                return ((int)(this["Wechat_Error_Sub_Department_2"]));
+            }
+            set {
+                this["Wechat_Error_Sub_Department_2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int Wechat_Error_Sub_Department_3 {
+            get {
+                return ((int)(this["Wechat_Error_Sub_Department_3"]));
+            }
+            set {
+                this["Wechat_Error_Sub_Department_3"] = value;
             }
         }
     }
