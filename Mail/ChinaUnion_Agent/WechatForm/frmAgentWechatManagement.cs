@@ -70,7 +70,7 @@ namespace ChinaUnion_Agent.Wechat
                     }
 
                 }
-                dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+             //   dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
              
                 dgAgent.AutoResizeColumns();
                 this.grpWechat.Dock = DockStyle.None;
@@ -86,7 +86,7 @@ namespace ChinaUnion_Agent.Wechat
         {
            
             WechatAction wechatAction = new WechatAction();
-            WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wecaht_Agent_Department, Settings.Default.Wechat_Secret);
+            WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wechat_Agent_Department, Settings.Default.Wechat_Secret);
             this.grpWechat.Dock = DockStyle.Right;
           
             if (wechatUser != null && wechatUser.userlist.Count > 0)
@@ -145,84 +145,75 @@ namespace ChinaUnion_Agent.Wechat
         {
             //需要执行的代码
 
-
             worker.ReportProgress(1, "开始同步微信账号...\r\n");
-
-            ArrayList agentList = new ArrayList();
-            ArrayList wecharList = new ArrayList();
+         
             WechatAction wechatAction = new WechatAction();
+
             for (int i = 0; i < dgAgent.RowCount; i++)
             {
-                agentList.Add(this.dgAgent[0, i].Value.ToString());
-            }
-
-            for (int i = 0; i < this.dgWechat.RowCount; i++)
-            {
-                wecharList.Add(this.dgWechat[0, i].Value.ToString());
-            }
-
-            foreach (String userId in wecharList)
-            {
-                if (!agentList.Contains(userId))
-                {
-                    wechatAction.deleteUserFromWechat(userId, Settings.Default.Wechat_Secret);
-                    // wecharList.Remove(userId);
-
-                }
-            }
-
-           
-            for (int i = 0; i < dgAgent.RowCount && i < 50; i++)
-            {
-              
                 WechatJsonUser wechatJsonUser = new WechatJsonUser();
                 wechatJsonUser.userid = this.dgAgent[0, i].Value.ToString();
                 wechatJsonUser.name = this.dgAgent[1, i].Value.ToString();
                 wechatJsonUser.email = this.dgAgent[2, i].Value.ToString();
                 wechatJsonUser.mobile = this.dgAgent[3, i].Value.ToString();
-                //   wechatJsonUser.weixinid = this.dgAgent[4, i].Value.ToString(); 
+                wechatJsonUser.weixinid = this.dgAgent[4, i].Value.ToString();
+                wechatJsonUser.department = new List<int>();
+                wechatJsonUser.department.Add(Settings.Default.Wechat_Agent_Department);
                 worker.ReportProgress(2, "同步微信账号" + wechatJsonUser.userid + "\r\n");
                 var userData = new
                 {
                     userid = wechatJsonUser.userid,
                     name = wechatJsonUser.name,
-                    department = Settings.Default.Wecaht_Agent_Department,
+                    department = wechatJsonUser.department,
                     position = wechatJsonUser.name,
-                    // mobile = wechatJsonUser.mobile,             
-
-                    email = wechatJsonUser.email
-
-                    // weixinid = "HappyV_W"
+                    mobile = wechatJsonUser.mobile,
+                    email = wechatJsonUser.email,
+                    weixinid = wechatJsonUser.weixinid
                 };
 
-                string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
+                string InsertUserJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
 
                 HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //表示访问成功，具体的大家就参考HttpStatusCode类
-
                     wechatJsonUser = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
                     if (!String.IsNullOrEmpty(wechatJsonUser.userid))
                     {
                         if (this.dgAgent[5, i].Value.ToString().Equals("账号已经停用"))
-                        {
-                            wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
+                        {                          
+                            wechatJsonUser.department.Remove(Settings.Default.Wechat_Agent_Department);                           
                         }
                         else
                         {
-                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, userJson);
+                            wechatJsonUser.department.Add(Settings.Default.Wechat_Agent_Department);                           
+                        }
+                        var updateUserData = new
+                        {
+                            userid = this.dgAgent[0, i].Value.ToString(),
+                            name = this.dgAgent[1, i].Value.ToString(),
+                            email = this.dgAgent[2, i].Value.ToString(),
+                            mobile = this.dgAgent[3, i].Value.ToString(),
+                            weixinid = this.dgAgent[4, i].Value.ToString(),
+                            department = wechatJsonUser.department
+                        };
+
+                        string updateUserJson = JsonConvert.SerializeObject(updateUserData, Formatting.Indented);
+
+                        if (wechatJsonUser.department.Count == 0)
+                        {
+                            result = wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
+                        }
+                        else
+                        {
+                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
                         }
                     }
                     else
                     {
-                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
+                        result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, InsertUserJson);
                     }
                 }
-
-
-
-
 
             }
 

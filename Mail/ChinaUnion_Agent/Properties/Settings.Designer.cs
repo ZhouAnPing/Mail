@@ -174,12 +174,12 @@ namespace ChinaUnion_Agent.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int Wecaht_Agent_Department {
+        public int Wechat_Agent_Department {
             get {
-                return ((int)(this["Wecaht_Agent_Department"]));
+                return ((int)(this["Wechat_Agent_Department"]));
             }
             set {
-                this["Wecaht_Agent_Department"] = value;
+                this["Wechat_Agent_Department"] = value;
             }
         }
         

@@ -36,14 +36,9 @@ namespace ChinaUnion_Agent
 
         private void menuItemAgentFeeImport_Click(object sender, EventArgs e)
         {
-
             frmAgentFeeImport frmAgentFeeImport = new frmAgentFeeImport();
             CheckChildOpenState(this, frmAgentFeeImport);
-
-
-        }
-
-      
+        }      
 
         private void menuItemAgentFeeQuery_Click(object sender, EventArgs e)
         {
@@ -57,7 +52,6 @@ namespace ChinaUnion_Agent
             
             frmMailReport frmMailReport = new frmMailReport();
             CheckChildOpenState(this, frmMailReport);
-
         }
 
 
@@ -74,7 +68,7 @@ namespace ChinaUnion_Agent
            
              frmBroadcast frmBroadcast = new frmBroadcast();
              frmBroadcast.Wechat_secretId = Settings.Default.Wechat_Secret;
-             frmBroadcast.Wechar_Department = Settings.Default.Wecaht_Agent_Department;
+             frmBroadcast.Wechar_Department = Settings.Default.Wechat_Agent_Department;
 
              frmBroadcast.ShowInTaskbar = false;
 
@@ -93,16 +87,17 @@ namespace ChinaUnion_Agent
         {
             foreach (Form tempChildForm in MdiForm.MdiChildren)
             {
-                if (tempChildForm.Name == ChildForm.Name.ToString())
-                {                  
-                    tempChildForm.WindowState = FormWindowState.Maximized;                   
-                    tempChildForm.Activate();
-                    return;
-                }
-                else
-                {
-                  //  tempChildForm.Close();
-                }
+                tempChildForm.Close();
+                //if (tempChildForm.Name == ChildForm.Name.ToString())
+                //{                  
+                //    tempChildForm.WindowState = FormWindowState.Maximized;                   
+                //    tempChildForm.Activate();
+                //    return;
+                //}
+                //else
+                //{
+                //  //  tempChildForm.Close();
+                //}
             }
             ChildForm.MdiParent = MdiForm;
             ChildForm.ShowInTaskbar = false;

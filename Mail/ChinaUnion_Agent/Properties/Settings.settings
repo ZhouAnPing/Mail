@@ -41,7 +41,7 @@
     <Setting Name="Wechat_Message" Type="System.String" Scope="User">
       <Value Profile="(Default)">佣金邮件已发送，请注意查收，你也可以通过微信企业号实时查收佣金情况,点击查询&lt;a href="http://112.64.17.80/Wechat/AgentFeeQuery.aspx?agentNo={0}&amp;feeMonth={1}"&gt;本月佣金详情&lt;/a&gt;</Value>
     </Setting>
-    <Setting Name="Wecaht_Agent_Department" Type="System.Int32" Scope="User">
+    <Setting Name="Wechat_Agent_Department" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="Wechat_Error_Department" Type="System.Int32" Scope="User">

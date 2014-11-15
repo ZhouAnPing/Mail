@@ -279,7 +279,7 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(138, 64);
-            this.toolStripButton3.Text = "代理商导入";
+            this.toolStripButton3.Text = "代理商信息导入";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton3.Click += new System.EventHandler(this.menuItemAgentImport_Click);
             // 
@@ -386,7 +386,7 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(138, 64);
+            this.toolStripButton5.Size = new System.Drawing.Size(81, 64);
             this.toolStripButton5.Text = "报错信息导入";
             this.toolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton5.Click += new System.EventHandler(this.toolbarErrorCodeImport_Click);
@@ -401,7 +401,7 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(138, 64);
+            this.toolStripButton6.Size = new System.Drawing.Size(81, 64);
             this.toolStripButton6.Text = "报错信息查询";
             this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton6.Click += new System.EventHandler(this.toolbarErrorCodeQuery_Click);
@@ -416,7 +416,7 @@
             this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(138, 64);
+            this.toolStripButton8.Size = new System.Drawing.Size(81, 64);
             this.toolStripButton8.Text = "微信账号导入";
             this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton8.Click += new System.EventHandler(this.toolbarErrorCodeWechatImport_Click);
@@ -431,7 +431,7 @@
             this.toolbarErrorBroadcast.Image = ((System.Drawing.Image)(resources.GetObject("toolbarErrorBroadcast.Image")));
             this.toolbarErrorBroadcast.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbarErrorBroadcast.Name = "toolbarErrorBroadcast";
-            this.toolbarErrorBroadcast.Size = new System.Drawing.Size(138, 64);
+            this.toolbarErrorBroadcast.Size = new System.Drawing.Size(81, 64);
             this.toolbarErrorBroadcast.Text = "微信公告发布";
             this.toolbarErrorBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolbarErrorBroadcast.ToolTipText = "微信公告";
