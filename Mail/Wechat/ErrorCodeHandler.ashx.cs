@@ -163,7 +163,7 @@ namespace Wechat
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有找到与" + wechatMessage.Content+"相关的错误详细信息。");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有找到与" + wechatMessage.Content+"相关的错误详细信息,请更改查询条件或者与联通相关人员确认。");
            
                         }
                         break;
