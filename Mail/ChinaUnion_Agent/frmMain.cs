@@ -68,7 +68,7 @@ namespace ChinaUnion_Agent
            
              frmBroadcast frmBroadcast = new frmBroadcast();
              frmBroadcast.Wechat_secretId = Settings.Default.Wechat_Secret;
-             frmBroadcast.Wechar_Department = Settings.Default.Wechat_Agent_Department;
+             frmBroadcast.Wechar_AppId = Settings.Default.Wechat_Agent_AppId;
 
              frmBroadcast.ShowInTaskbar = false;
 
@@ -174,7 +174,7 @@ namespace ChinaUnion_Agent
         {
             frmBroadcast frmBroadcast = new frmBroadcast();
             frmBroadcast.Wechat_secretId = Settings.Default.Wechat_Secret;
-            frmBroadcast.Wechar_Department = Settings.Default.Wechat_Error_Department;
+            frmBroadcast.Wechar_AppId = Settings.Default.Wechar_Error_AppId;
 
             frmBroadcast.ShowInTaskbar = false;
 

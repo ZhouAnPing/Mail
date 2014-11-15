@@ -242,5 +242,29 @@ namespace ChinaUnion_Agent.Properties {
                 this["Wechat_Error_Sub_Department_3"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int Wechat_Agent_AppId {
+            get {
+                return ((int)(this["Wechat_Agent_AppId"]));
+            }
+            set {
+                this["Wechat_Agent_AppId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int Wechar_Error_AppId {
+            get {
+                return ((int)(this["Wechar_Error_AppId"]));
+            }
+            set {
+                this["Wechar_Error_AppId"] = value;
+            }
+        }
     }
 }

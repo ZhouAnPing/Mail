@@ -17,7 +17,7 @@ namespace ChinaUnion_Agent
     public partial class frmBroadcast : Form
     {
         public String Wechat_secretId = Settings.Default.Wechat_Secret;
-        public int Wechar_Department = Settings.Default.Wechat_Agent_Department;
+        public int Wechar_AppId = Settings.Default.Wechat_Agent_AppId;
         public frmBroadcast()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace ChinaUnion_Agent
             }
             this.Cursor = Cursors.WaitCursor;
             WechatAction wechatAction = new WechatAction();
-            HttpResult result = wechatAction.sendMessageToWechat("@all", this.txtContent.Text.Trim(), Wechat_secretId, Wechar_Department);
+            HttpResult result = wechatAction.sendMessageToWechat("@all", this.txtContent.Text.Trim(), Wechat_secretId, Wechar_AppId);
            this.Cursor = Cursors.Default; 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
