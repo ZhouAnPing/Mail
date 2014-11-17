@@ -28,11 +28,12 @@ namespace ChinaUnion_Agent
             AgentDao agentDao = new AgentDao();
             //agentDao.Get("P001");
             IList<Agent> agentList = agentDao.GetList();
+            dgAgent.Rows.Clear();
+            dgAgent.Columns.Clear();
 
             if (agentList != null && agentList.Count > 0)
             {
-                dgAgent.Rows.Clear();
-                dgAgent.Columns.Clear();
+                
 
                 dgAgent.Columns.Add("代理商编号", "代理商编号");
                 dgAgent.Columns.Add("代理商名称", "代理商名称");
@@ -71,11 +72,11 @@ namespace ChinaUnion_Agent
             //代理商渠道类型
             AgentTypeDao agentTypeDao = new AgentTypeDao();
             IList<AgentType> agentTypeList = agentTypeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
-
+            dgAgentType.Rows.Clear();
+            dgAgentType.Columns.Clear();
             if (agentTypeList != null && agentTypeList.Count > 0)
             {
-                dgAgentType.Rows.Clear();
-                dgAgentType.Columns.Clear();
+               
                 dgAgentType.Columns.Add("代理商编号", "代理商编号");
                 dgAgentType.Columns.Add("渠道类型", "渠道类型");
 
@@ -93,11 +94,11 @@ namespace ChinaUnion_Agent
             //代理商渠道类型说明
             AgentTypeCommentDao agentTypeCommentDao = new AgentTypeCommentDao();
             IList<AgentTypeComment> agentTypeCommentList = agentTypeCommentDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
-
+            dgAgentTypeComment.Rows.Clear();
+            dgAgentTypeComment.Columns.Clear();
             if (agentTypeCommentList != null && agentTypeCommentList.Count > 0)
             {
-                dgAgentTypeComment.Rows.Clear();
-                dgAgentTypeComment.Columns.Clear();
+               
 
                 dgAgentTypeComment.Columns.Add("渠道类型", "渠道类型");
                 dgAgentTypeComment.Columns.Add("佣金说明", "佣金说明");
@@ -120,11 +121,11 @@ namespace ChinaUnion_Agent
             AgentFeeDao agentFeeDao = new AgentFeeDao();
             IList<AgentFee> agentFeeList = agentFeeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
 
-
+            dgAgentFee.Rows.Clear();
+            dgAgentFee.Columns.Clear();
             if (agentFeeList != null && agentFeeList.Count > 0)
             {
-                dgAgentFee.Rows.Clear();
-                dgAgentFee.Columns.Clear();
+               
 
                 dgAgentFee.Columns.Add("代理商编号", "代理商编号");
                 dgAgentFee.Columns.Add("代理商名称", "代理商名称");
@@ -196,6 +197,10 @@ namespace ChinaUnion_Agent
             if (dgAgentFee.RowCount > 0)
             {
                 this.btnMail.Visible = true;
+            }
+            else
+            {
+                this.btnMail.Visible = false;
             }
 
             this.Cursor = Cursors.Default;     

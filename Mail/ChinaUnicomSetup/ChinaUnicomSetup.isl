@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject></subject>
+		<subject>ChinaUnicom Channel Management</subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -340,19 +340,22 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AutoUpdater.dll</td><td>{4E365DE7-B028-43E1-A5EA-81394F0BB905}</td><td>INSTALLDIR</td><td>2</td><td/><td>autoupdater.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>AutoUpdater.dll</td><td>{56D004C1-E73B-4114-9881-39BF78A382B3}</td><td>INSTALLDIR</td><td>2</td><td/><td>autoupdater.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>BSE.Windows.Forms.dll</td><td>{51391D71-E4AD-4FC6-BFB5-43A22645057A}</td><td>INSTALLDIR</td><td>2</td><td/><td>bse.windows.forms.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ChinaUnion_Agent.Primary_output</td><td>{21CB4E98-B827-4F7C-AC77-7EC4256E1B8B}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_agent.primary_out</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ChinaUnion_BO.dll</td><td>{43484066-8EAD-4E52-8398-9D328B34A0DC}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_bo.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ChinaUnion_DataAccess.dll</td><td>{6249BEC8-51E2-4A75-BE91-8E1EDBE8F74C}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_dataaccess.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ChinaUnion_Agent.exe</td><td>{DB2A0607-1650-4E1C-8F3F-63EFF30CBB59}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_agent.exe</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ChinaUnion_BO.dll</td><td>{5468EB02-1D88-4914-8504-7D4C5EEE44BD}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_bo.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ChinaUnion_DataAccess.dll</td><td>{0736F758-FD6A-4C60-8C38-7677FEA5C11E}</td><td>INSTALLDIR</td><td>2</td><td/><td>chinaunion_dataaccess.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{3645B160-3B36-4222-BAA6-B4FA94100D4E}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{68FA7FDD-D312-4496-AB36-88A67488F181}</td><td>HTML</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{C776A36F-36C3-418E-BF8E-B93C586BB2DE}</td><td>TEMPLATE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>LinqToExcel.dll</td><td>{6CE48CAF-C6C9-4FDA-B5D1-F6B1F6955DEE}</td><td>INSTALLDIR</td><td>2</td><td/><td>linqtoexcel.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.Web.Services3.dll</td><td>{8EF34A16-045E-4390-9FBB-1A94D3E1C35C}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.web.services3.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>MySql.Data.dll</td><td>{0CD70E01-ECB6-4AF3-A734-89CB6E2D4FDA}</td><td>INSTALLDIR</td><td>2</td><td/><td>mysql.data.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MySql.Data.dll</td><td>{0CD70E01-ECB6-4AF3-A734-89CB6E2D4FDA}</td><td>INSTALLDIR</td><td>2</td><td/><td>mysql.data.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>NewComponent1</td><td>{2E833EAD-0046-4CCA-B72D-44E7ABDD246A}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Newtonsoft.Json.dll</td><td>{D96DEF31-4CE9-4BB6-9E6A-B0FDD176A7AE}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Remotion.Data.Linq.dll</td><td>{0678A6F5-FACD-4170-871B-BDFCC1D2C127}</td><td>INSTALLDIR</td><td>2</td><td/><td>remotion.data.linq.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>TripolisDialogueAdapter.dll</td><td>{3CB6018A-8888-434A-B1AE-E1C5774B54EB}</td><td>INSTALLDIR</td><td>2</td><td/><td>tripolisdialogueadapter.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>TripolisDialogueAdapter.dll</td><td>{51E56F98-ACC0-42AA-ACE7-2D4624D55BD1}</td><td>INSTALLDIR</td><td>2</td><td/><td>tripolisdialogueadapter.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WHC.OrderWater.Commons.dll</td><td>{A4AE0517-CF8F-4D83-8599-5491A6940D1B}</td><td>INSTALLDIR</td><td>2</td><td/><td>whc.orderwater.commons.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>WinSCP.dll</td><td>{34964462-61F6-4BDD-8C58-95C9B5AC20C3}</td><td>INSTALLDIR</td><td>2</td><td/><td>winscp.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>log4net.dll</td><td>{F7D93D21-F88A-48F3-95F6-88483D8B3F1B}</td><td>INSTALLDIR</td><td>2</td><td/><td>log4net.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1155,6 +1158,7 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
+		<row><td>HTML</td><td>INSTALLDIR</td><td>html</td><td/><td>0</td><td/></row>
 		<row><td>INSTALLDIR</td><td>MY_PRODUCT_NAME</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
@@ -1178,6 +1182,7 @@
 		<row><td>System64Folder</td><td>TARGETDIR</td><td>.:System64</td><td/><td>0</td><td/></row>
 		<row><td>SystemFolder</td><td>TARGETDIR</td><td>.:System32</td><td/><td>0</td><td/></row>
 		<row><td>TARGETDIR</td><td/><td>SourceDir</td><td/><td>0</td><td/></row>
+		<row><td>TEMPLATE</td><td>INSTALLDIR</td><td>Template</td><td/><td>0</td><td/></row>
 		<row><td>TempFolder</td><td>TARGETDIR</td><td>.:Temp</td><td/><td>0</td><td/></row>
 		<row><td>TemplateFolder</td><td>TARGETDIR</td><td>.:ShellNew</td><td/><td>0</td><td/></row>
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
@@ -1879,9 +1884,12 @@
 		<row><td>AlwaysInstall</td><td>AutoUpdater.dll</td></row>
 		<row><td>AlwaysInstall</td><td>BSE.Windows.Forms.dll</td></row>
 		<row><td>AlwaysInstall</td><td>ChinaUnion_Agent.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ChinaUnion_Agent.exe</td></row>
 		<row><td>AlwaysInstall</td><td>ChinaUnion_BO.dll</td></row>
 		<row><td>AlwaysInstall</td><td>ChinaUnion_DataAccess.dll</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>LinqToExcel.dll</td></row>
 		<row><td>AlwaysInstall</td><td>Microsoft.Web.Services3.dll</td></row>
 		<row><td>AlwaysInstall</td><td>MySql.Data.dll</td></row>
@@ -1909,15 +1917,21 @@
 		<row><td>autoupdater.dll</td><td>AutoUpdater.dll</td><td>AUTOUP~1.DLL|AutoUpdater.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\AutoUpdater.dll</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.dll</td><td>BSE.Windows.Forms.dll</td><td>BSEWIN~1.DLL|BSE.Windows.Forms.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.dll</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>BSEWIN~1.XML|BSE.Windows.Forms.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.xml</td><td>1</td><td/></row>
+		<row><td>chinaunion_agent.exe</td><td>ChinaUnion_Agent.exe</td><td>CHINAU~1.EXE|ChinaUnion_Agent.exe</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_Agent.exe</td><td>1</td><td/></row>
 		<row><td>chinaunion_agent.primary_out</td><td>ChinaUnion_Agent.Primary_output</td><td>ChinaUnion_Agent.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;ChinaUnion_Agent&gt;|Built</td><td>3</td><td/></row>
 		<row><td>chinaunion_bo.dll</td><td>ChinaUnion_BO.dll</td><td>CHINAU~1.DLL|ChinaUnion_BO.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_BO.dll</td><td>1</td><td/></row>
 		<row><td>chinaunion_dataaccess.dll</td><td>ChinaUnion_DataAccess.dll</td><td>CHINAU~1.DLL|ChinaUnion_DataAccess.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_DataAccess.dll</td><td>1</td><td/></row>
+		<row><td>footer.html</td><td>ISX_DEFAULTCOMPONENT1</td><td>FOOTER~1.HTM|footer.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\html\footer.html</td><td>1</td><td/></row>
+		<row><td>head.html</td><td>ISX_DEFAULTCOMPONENT1</td><td>HEAD~1.HTM|head.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\html\head.html</td><td>1</td><td/></row>
+		<row><td>importcommissio_template.xls</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportCommissio_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportCommissio_Template.xlsx</td><td>1</td><td/></row>
+		<row><td>importerror_template.xlsx</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportError_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportError_Template.xlsx</td><td>1</td><td/></row>
+		<row><td>importwechat_template.xlsx</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportWechat_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportWechat_Template.xlsx</td><td>1</td><td/></row>
 		<row><td>linqtoexcel.dll</td><td>LinqToExcel.dll</td><td>LINQTO~1.DLL|LinqToExcel.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\LinqToExcel.dll</td><td>1</td><td/></row>
 		<row><td>linqtoexcel.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>LINQTO~1.XML|LinqToExcel.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\LinqToExcel.xml</td><td>1</td><td/></row>
 		<row><td>log4net.config</td><td>ISX_DEFAULTCOMPONENT</td><td>LOG4NE~1.CON|log4net.config</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\Wechat\log4net.config</td><td>1</td><td/></row>
 		<row><td>log4net.dll</td><td>log4net.dll</td><td>log4net.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\log4net.dll</td><td>1</td><td/></row>
 		<row><td>microsoft.web.services3.dll</td><td>Microsoft.Web.Services3.dll</td><td>MICROS~1.DLL|Microsoft.Web.Services3.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Microsoft.Web.Services3.dll</td><td>1</td><td/></row>
-		<row><td>mysql.data.dll</td><td>MySql.Data.dll</td><td>MYSQLD~1.DLL|MySql.Data.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.4\Assemblies\v4.5\MySql.Data.dll</td><td>1</td><td/></row>
+		<row><td>mysql.data.dll</td><td>MySql.Data.dll</td><td>MYSQLD~1.DLL|MySql.Data.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.4\Assemblies\v4.5\MySql.Data.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Newtonsoft.Json.xml</td><td>1</td><td/></row>
 		<row><td>remotion.data.linq.dll</td><td>Remotion.Data.Linq.dll</td><td>REMOTI~1.DLL|Remotion.Data.Linq.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Remotion.Data.Linq.dll</td><td>1</td><td/></row>
@@ -2070,19 +2084,22 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AutoUpdater.dll</td><td/><td/><td>_C865FF51_2AD8_4437_809B_CD162D32D41E_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>AutoUpdater.dll</td><td/><td/><td>_EFAB45CE_190C_43B0_B6EC_F0A471354DAD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>BSE.Windows.Forms.dll</td><td/><td/><td>_55E260E8_A4DC_4312_97C5_48083AD7B2A6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ChinaUnion_Agent.Primary_output</td><td/><td/><td>_152199A5_7B48_4FFF_B665_744ACFBABC63_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ChinaUnion_BO.dll</td><td/><td/><td>_78330013_8E0C_4900_BA47_B06946BA0D2A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ChinaUnion_DataAccess.dll</td><td/><td/><td>_03276027_0B76_4E72_9446_26714AC1B114_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ChinaUnion_Agent.exe</td><td/><td/><td>_F372860D_7971_4CDB_80E2_7CBB8C4D597D_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ChinaUnion_BO.dll</td><td/><td/><td>_7AD11959_3C89_4154_A047_6896195A1930_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ChinaUnion_DataAccess.dll</td><td/><td/><td>_D294592D_8583_4F30_BD73_E4FB64FD9CDC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_2092E42F_B703_4B45_9E4A_A8007633D2DE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_993D216C_880F_4EAE_9101_736C2BEC6A4A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7B00AC16_6C44_43BE_93C2_9A360A046DA6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>LinqToExcel.dll</td><td/><td/><td>_1F42DD4A_9DCC_4AA3_BD2A_4DFF3A51B99D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.Web.Services3.dll</td><td/><td/><td>_1CDFA865_B3AB_4F4E_915F_31937E88C6EC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MySql.Data.dll</td><td/><td/><td>_B8D4C0B6_29AA_467B_B26B_850F8F4EDA5E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>NewComponent1</td><td/><td/><td>_29962161_52CD_4554_A595_DBA69E68880D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_AABA95DF_9A09_4859_8657_BFE7A104F18F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Remotion.Data.Linq.dll</td><td/><td/><td>_C37F94B6_D882_46EB_B548_B67C860951C9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>TripolisDialogueAdapter.dll</td><td/><td/><td>_13EDAC41_AEA6_41EF_ACC4_2FADCCA4A1C1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>TripolisDialogueAdapter.dll</td><td/><td/><td>_60A5D7F4_BFB0_427C_8C0D_E6D526AB6EEB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WHC.OrderWater.Commons.dll</td><td/><td/><td>_98A907B6_44E4_4F51_BC52_568F6909CEAC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>WinSCP.dll</td><td/><td/><td>_EF85FAF5_424B_4216_993A_7B64A7963421_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>log4net.dll</td><td/><td/><td>_F53190BD_0504_45AF_848F_EAB5C6555F1A_FILTER</td><td/><td/><td/><td/></row>
@@ -2704,7 +2721,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>ChinaUnicom</td><td>0</td><td/><td>1839364342</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>ChinaUnicom</td><td>0</td><td/><td>-1918749781</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40FULL</td><td>1033</td><td>Microsoft .NET Framework 4.0 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>1839339574</td></row>
@@ -3518,6 +3535,7 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>ChinaUnicom Channel Management</td><td>0</td><td/><td>1839364182</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch ChinaUnion_Agent.exe</td><td>0</td><td/><td>-1918737911</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>1839384598</td></row>
@@ -3806,9 +3824,10 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1839384598</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1839384598</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.ChinaUnicom.com</td><td>0</td><td/><td>1839364342</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>ChinaUnicom</td><td>0</td><td/><td>1839364342</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.ChinaUnicom.com</td><td>0</td><td/><td>-1918749781</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>ChinaUnicom</td><td>0</td><td/><td>-1918749781</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>ChinaUnicom Channel Management</td><td>0</td><td/><td>1839364182</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>ChinaUnicom Channel Management</td><td>0</td><td/><td>-1918749845</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1839384598</td></row>
 	</table>
 
@@ -4050,7 +4069,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{473BF939-62F3-42B9-8F44-B8356D948A55}</td></row>
 		<row><td>ISUSSignature</td><td>{2CBA5574-B805-41F2-8D0D-7637ACE4142A}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewFeatureFiles,viewSystemSearch,viewTextMessages,viewObjects,viewAppFiles</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewFeatureFiles,viewSystemSearch,viewTextMessages,viewObjects,viewAppFiles,viewSetupTypes,viewProject</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4424,7 +4443,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{C8A93669-AE42-4512-A62C-FB7D1D217548}</td><td/></row>
-		<row><td>ProductName</td><td>ChinaUnicomSetup</td><td/></row>
+		<row><td>ProductName</td><td>ChinaUnicom Channel Management</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>

@@ -238,11 +238,13 @@ namespace ChinaUnion_Agent.WechatForm
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "微信用户导入模板.xlsx";
+            saveFileDialog.FileName = "ImportWechat_Template.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                String filePath = Application.StartupPath + @"\Template\ImportWechat_Template.xlsx";
+                File.Copy(filePath, saveFileDialog.FileName,true);
 
-                File.Copy("./Template/微信用户导入模板.xlsx", saveFileDialog.FileName);
+               
                
               
             }

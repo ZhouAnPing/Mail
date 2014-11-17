@@ -296,14 +296,20 @@ namespace ChinaUnion_Agent
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "系统报错汇总模板.xlsx";
+            saveFileDialog.FileName = "ImportError_Template.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-
-                File.Copy("./Template/系统报错汇总模板.xlsx", saveFileDialog.FileName);
+                String filePath = Application.StartupPath + @"\Template\ImportError_Template.xlsx";
+                File.Copy(filePath, saveFileDialog.FileName,true);
                 String path =Path.GetDirectoryName(saveFileDialog.FileName);
-                Directory.CreateDirectory(path+"/ESS");
-                Directory.CreateDirectory(path + "/CBSS");
+                if (!Directory.Exists(path + "/ESS"))
+                {
+                    Directory.CreateDirectory(path + "/ESS");
+                }
+                if (!Directory.Exists(path + "/CBSS"))
+                {
+                    Directory.CreateDirectory(path + "/CBSS");
+                }
             }
         }
     }

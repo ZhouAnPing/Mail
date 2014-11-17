@@ -238,10 +238,12 @@ namespace ChinaUnion_Agent
 
 
             StringBuilder sb1 = new StringBuilder();
-            sb1.Append(System.IO.File.ReadAllText("./html/head.html", Encoding.UTF8));
+            String HeadFilePath = Application.StartupPath + @"\html\head.html";
+            sb1.Append(System.IO.File.ReadAllText(HeadFilePath, Encoding.UTF8));
 
             sb1.Append(sbAgent.ToString());
-            sb1.Append(System.IO.File.ReadAllText("./html/footer.html", Encoding.UTF8));
+            String FooterFilePath = Application.StartupPath + @"\html\footer.html";
+            sb1.Append(System.IO.File.ReadAllText(FooterFilePath, Encoding.UTF8));
 
 
             sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value.ToString());

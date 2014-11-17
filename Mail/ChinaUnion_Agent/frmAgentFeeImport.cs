@@ -502,11 +502,11 @@ namespace ChinaUnion_Agent
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "上海联通佣金告知单模板.xlsx";
+            saveFileDialog.FileName = "ImportCommissio_Template.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-
-                File.Copy("./Template/上海联通佣金告知单_模板.xlsx", saveFileDialog.FileName);
+                String filePath = Application.StartupPath + @"\Template\ImportCommissio_Template.xlsx";
+                File.Copy(filePath, saveFileDialog.FileName,true);
             }
         }
 

@@ -265,13 +265,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Template\上海联通佣金告知单_模板.xlsx">
+    <None Include="Template\ImportCommissio_Template.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Template\微信用户导入模板.xlsx">
+    <None Include="Template\ImportWechat_Template.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Template\系统报错汇总模板.xlsx">
+    <None Include="Template\ImportError_Template.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="update.config">
