@@ -164,44 +164,44 @@ namespace ChinaUnion_Agent
                 this.dgErrorCode.AutoResizeColumns();
                 this.dgErrorCode.AutoResizeRows();
 
-                StringBuilder sb = new StringBuilder();
-                HashSet<String> ErrorCodeSet = new HashSet<string>();
-                foreach (DataGridViewRow v in this.dgErrorCode.Rows)
-                {
-                    if (v.Cells[2].Value != null)
-                    {
+                //StringBuilder sb = new StringBuilder();
+                //HashSet<String> ErrorCodeSet = new HashSet<string>();
+                //foreach (DataGridViewRow v in this.dgErrorCode.Rows)
+                //{
+                //    if (v.Cells[2].Value != null)
+                //    {
 
-                        foreach (DataGridViewRow v2 in dgErrorCode.Rows)
-                        {
-                            if (v.Index == v2.Index)
-                            {
-                                continue;
-                            }
-                            if (v2.Cells[2].Value != null)
-                            {
-                                if (v.Cells[2].Value.ToString().Equals(v2.Cells[2].Value.ToString()))
-                                {
-                                    if (!ErrorCodeSet.Contains<String>(v2.Cells[2].Value.ToString()))
-                                    {
-                                        ErrorCodeSet.Add(v2.Cells[2].Value.ToString() );
-                                        sb.AppendFormat("{0}", v.Cells[2].Value.ToString()).AppendLine();
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                //        foreach (DataGridViewRow v2 in dgErrorCode.Rows)
+                //        {
+                //            if (v.Index == v2.Index)
+                //            {
+                //                continue;
+                //            }
+                //            if (v2.Cells[2].Value != null)
+                //            {
+                //                if (v.Cells[2].Value.ToString().Equals(v2.Cells[2].Value.ToString()))
+                //                {
+                //                    if (!ErrorCodeSet.Contains<String>(v2.Cells[2].Value.ToString()))
+                //                    {
+                //                        ErrorCodeSet.Add(v2.Cells[2].Value.ToString() );
+                //                        sb.AppendFormat("{0}", v.Cells[2].Value.ToString()).AppendLine();
+                //                    }
+                //                    break;
+                //                }
+                //            }
+                //        }
+                //    }
 
-                }
-                if (!String.IsNullOrEmpty(sb.ToString()))
-                {
-                    this.btnImport.Enabled = false;
-                    MessageBox.Show("以下记录关键字重复:\n"+sb.ToString());
-                }
-                else
-                {
-                    this.btnImport.Enabled = true;
-                }
+                //}
+                //if (!String.IsNullOrEmpty(sb.ToString()))
+                //{
+                //    this.btnImport.Enabled = false;
+                //    MessageBox.Show("以下记录关键字重复:\n"+sb.ToString());
+                //}
+                //else
+                //{
+                //    this.btnImport.Enabled = true;
+                //}
             }
         }
 
