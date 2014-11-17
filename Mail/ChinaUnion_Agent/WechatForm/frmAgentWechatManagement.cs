@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using TripolisDialogueAdapter;
 
 namespace ChinaUnion_Agent.Wechat
 {
@@ -205,11 +206,19 @@ namespace ChinaUnion_Agent.Wechat
                         else
                         {
                             result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
+                            if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
+                            {
+                                this.sendEmail(this.dgAgent[2, i].Value.ToString());
+                            }
                         }
                     }
                     else
                     {
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, InsertUserJson);
+                        if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
+                        {
+                            this.sendEmail(this.dgAgent[2, i].Value.ToString());
+                        }
                     }
                 }
 
@@ -221,7 +230,29 @@ namespace ChinaUnion_Agent.Wechat
 
 
         }
+        private void sendEmail(String emailId)
+        {
+            String client = Settings.Default.TripolisClient;
+            String userName = Settings.Default.TripoisUserName;
+            String password = Settings.Default.TripolisPassword;
+            ChinaUnionAdapter mailAdapter = new ChinaUnionAdapter(client, userName, password, null);
+            MailData mailData = new MailData();
+            mailData.fromAddress = Settings.Default.MailFromAddress;
+            mailData.replyAddress = Settings.Default.MailReplyAddress;
+            mailData.sender = Settings.Default.MailSender;
+            mailData.subject = "扫一扫，加入上海联通合作伙伴微信平台";
 
+            String databaseId = Settings.Default.TripolisDBId;
+            String workspaceId = Settings.Default.TripolisWorkspaceId;
+            String emailTypeId = Settings.Default.TripolisEmailTypeId;
+
+            String FilePath = Application.StartupPath + @"\BarcodeNotification.html";
+            String content = System.IO.File.ReadAllText(FilePath, Encoding.UTF8);
+
+            String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, emailId, "Test", mailData.subject, content);
+
+
+        }
 
         /// <summary>
         /// 事件: 异步执行完成后 

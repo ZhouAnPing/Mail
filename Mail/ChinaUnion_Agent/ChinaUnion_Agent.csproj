@@ -319,6 +319,9 @@
     </Content>
     <Content Include="Dll\WHC.OrderWater.Commons.dll" />
     <Content Include="Dll\WHC.OrderWater.Commons.XML" />
+    <Content Include="BarcodeNotification.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="html\footer.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
