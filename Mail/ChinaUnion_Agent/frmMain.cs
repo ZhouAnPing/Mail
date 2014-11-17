@@ -182,6 +182,13 @@ namespace ChinaUnion_Agent
 
         }
 
+        private void toolbarErrorCodeWechatManagement_Click(object sender, EventArgs e)
+        {
+            frmErrorCodeWechatManagement frmErrorCodeWechatManagement = new frmErrorCodeWechatManagement();
+            CheckChildOpenState(this, frmErrorCodeWechatManagement);
+
+        }
+
       
        
 

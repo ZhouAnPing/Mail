@@ -50,13 +50,15 @@ namespace ChinaUnion_Agent.WechatForm
 
                 this.dgWechat.Rows.Clear();
                 dgWechat.Columns.Clear();
-
-                dgWechat.Columns.Add("姓名", "姓名");
-                dgWechat.Columns.Add("账号", "账号");
-                dgWechat.Columns.Add("邮箱", "邮箱");
-                dgWechat.Columns.Add("手机号", "手机号");
-
+                dgWechat.Columns.Add("渠道名称", "渠道名称");
+                dgWechat.Columns.Add("门店联系人", "门店联系人");
                 dgWechat.Columns.Add("微信号", "微信号");
+                dgWechat.Columns.Add("手机号", "手机号");
+                dgWechat.Columns.Add("邮箱", "邮箱");
+                dgWechat.Columns.Add("账号禁用", "账号禁用");
+               
+
+               
 
 
 
@@ -75,11 +77,13 @@ namespace ChinaUnion_Agent.WechatForm
                         }
                         this.dgWechat.Rows.Add();
                         DataGridViewRow row = dgWechat.Rows[dgWechat.RowCount - 1];
-                        row.Cells["姓名"].Value = WechatList[i][0].ToString().Trim();
-                        row.Cells["账号"].Value = WechatList[i][1].ToString().Trim();
-                        row.Cells["邮箱"].Value = WechatList[i][2].ToString().Trim();
-                        row.Cells["手机号"].Value = WechatList[i][3].ToString().Trim();
-                        row.Cells["微信号"].Value = WechatList[i][4].ToString().Trim(); 
+                        row.Cells["渠道名称"].Value = WechatList[i][0].ToString().Trim();
+                        row.Cells["门店联系人"].Value = WechatList[i][1].ToString().Trim();
+                        row.Cells["微信号"].Value = WechatList[i][2].ToString().Trim();
+                        row.Cells["手机号"].Value = WechatList[i][3].ToString().Trim();  
+                        row.Cells["邮箱"].Value = WechatList[i][4].ToString().Trim();
+                        row.Cells["账号禁用"].Value = WechatList[i][5].ToString().Trim();
+                                        
                        
 
                     }
@@ -129,6 +133,7 @@ namespace ChinaUnion_Agent.WechatForm
 
 
             bool isNewUser = false;
+            bool isDisableUser = false;
 
 
             for (int i = 0; i < this.dgWechat.RowCount; i++)
@@ -150,12 +155,20 @@ namespace ChinaUnion_Agent.WechatForm
                     {
                         isNewUser = true;
                     }
-                    toWechatJsonUser.name = this.dgWechat[0, i].Value.ToString();
-                    toWechatJsonUser.userid = this.dgWechat[1, i].Value.ToString();
 
+                    if (!String.IsNullOrEmpty(this.dgWechat[5, i].Value.ToString()) && this.dgWechat[5, i].Value.ToString().ToUpper()=="Y")
+                    {
+                        isDisableUser = true;
+                    }
+
+                  
+                    toWechatJsonUser.position = this.dgWechat[0, i].Value.ToString();
+                    toWechatJsonUser.name = this.dgWechat[1, i].Value.ToString();
+                    toWechatJsonUser.userid = this.dgWechat[2, i].Value.ToString();
                     toWechatJsonUser.weixinid = this.dgWechat[2, i].Value.ToString();
-                    toWechatJsonUser.email = this.dgWechat[4, i].Value.ToString();
                     toWechatJsonUser.mobile = this.dgWechat[3, i].Value.ToString();
+                    toWechatJsonUser.email = this.dgWechat[4, i].Value.ToString();
+                   
 
                     if (toWechatJsonUser.department == null)
                     {
@@ -206,6 +219,10 @@ namespace ChinaUnion_Agent.WechatForm
                     else
                     {
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
+                    }
+                    if (isDisableUser)
+                    {
+                        result = wechatAction.deleteUserFromWechat(toWechatJsonUser.userid, Settings.Default.Wechat_Secret);
                     }
                 }
 
