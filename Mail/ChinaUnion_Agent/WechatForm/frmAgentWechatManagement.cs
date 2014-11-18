@@ -16,15 +16,15 @@ using TripolisDialogueAdapter;
 
 namespace ChinaUnion_Agent.Wechat
 {
-    public partial class frmWechatManagement : Form
+    public partial class frmAgentWechatManagement : Form
     {
-        public frmWechatManagement()
+        public frmAgentWechatManagement()
         {
             InitializeComponent();
         }
 
         BackgroundWorker worker; 
-        private void frmWechatManagement_Load(object sender, EventArgs e)
+        private void frmAgentWechatManagement_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
             worker = new BackgroundWorker();
@@ -74,10 +74,8 @@ namespace ChinaUnion_Agent.Wechat
                 dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
              
                 dgAgent.AutoResizeColumns();
-                this.grpWechat.Dock = DockStyle.None;
-                
+                this.grpWechat.Dock = DockStyle.None;                
                // this.ResizeRedraw = true;
-
             }
 
 

@@ -58,8 +58,8 @@ namespace ChinaUnion_Agent
         private void toolbarWechat_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            frmWechatManagement frmWechatManagement = new frmWechatManagement();
-            CheckChildOpenState(this, frmWechatManagement);
+            frmAgentWechatManagement frmAgentWechatManagement = new frmAgentWechatManagement();
+            CheckChildOpenState(this, frmAgentWechatManagement);
             this.Cursor = Cursors.Default;
         }
 
@@ -184,12 +184,20 @@ namespace ChinaUnion_Agent
 
         private void toolbarErrorCodeWechatManagement_Click(object sender, EventArgs e)
         {
-            frmErrorCodeWechatManagement frmErrorCodeWechatManagement = new frmErrorCodeWechatManagement();
-            CheckChildOpenState(this, frmErrorCodeWechatManagement);
+            frmWechatManagement frmWechatManagementTmp = new frmWechatManagement();
+            frmWechatManagementTmp.wechatType = "ErrorCode";
+          
+            CheckChildOpenState(this, frmWechatManagementTmp);
 
         }
 
-      
+        private void toolbarAgentWechatManagement_Click(object sender, EventArgs e)
+        {
+            frmWechatManagement frmWechatManagementTmp = new frmWechatManagement();
+            frmWechatManagementTmp.wechatType = "Agent";
+            CheckChildOpenState(this, frmWechatManagementTmp);
+
+        }
        
 
         

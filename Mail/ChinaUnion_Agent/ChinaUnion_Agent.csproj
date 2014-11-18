@@ -196,11 +196,11 @@
     <Compile Include="WechatForm\frmErrorCodeWechat.Designer.cs">
       <DependentUpon>frmErrorCodeWechat.cs</DependentUpon>
     </Compile>
-    <Compile Include="WechatForm\frmErrorCodeWechatManagement.cs">
+    <Compile Include="WechatForm\frmWechatManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WechatForm\frmErrorCodeWechatManagement.Designer.cs">
-      <DependentUpon>frmErrorCodeWechatManagement.cs</DependentUpon>
+    <Compile Include="WechatForm\frmWechatManagement.Designer.cs">
+      <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Wechat\User.cs" />
     <Compile Include="Wechat\WechatAction.cs" />
@@ -260,8 +260,8 @@
     <EmbeddedResource Include="WechatForm\frmErrorCodeWechat.resx">
       <DependentUpon>frmErrorCodeWechat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WechatForm\frmErrorCodeWechatManagement.resx">
-      <DependentUpon>frmErrorCodeWechatManagement.cs</DependentUpon>
+    <EmbeddedResource Include="WechatForm\frmWechatManagement.resx">
+      <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Dll\Json60r6.zip" />
     <None Include="Dll\LinqToExcel_1.7.1.zip" />

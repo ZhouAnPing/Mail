@@ -204,7 +204,7 @@ namespace ChinaUnion_Agent.WechatForm
                         userid = toWechatJsonUser.userid,
                         name = toWechatJsonUser.name,
                         department = toWechatJsonUser.department,
-                        position = toWechatJsonUser.name,
+                        position = toWechatJsonUser.position,
                         mobile = toWechatJsonUser.mobile,
                         email = toWechatJsonUser.email,
                         weixinid = toWechatJsonUser.weixinid

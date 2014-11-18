@@ -1,6 +1,6 @@
 ﻿namespace ChinaUnion_Agent.Wechat
 {
-    partial class frmWechatManagement
+    partial class frmAgentWechatManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -137,12 +137,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpWechat);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmWechatManagement";
+            this.Name = "frmAgentWechatManagement";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "微信管理";
-            this.Load += new System.EventHandler(this.frmWechatManagement_Load);
+            this.Load += new System.EventHandler(this.frmAgentWechatManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpWechat.ResumeLayout(false);
