@@ -185,7 +185,7 @@ namespace ChinaUnion_Agent.WechatForm
                     {
                         if (fromWechatUser.userlist.Count > 1000 && fromWechatUser.userlist.Count <= 2000)
                         {
-                            toWechatJsonUser.department.Add(Settings.Default.Wechat_Error_Sub_Department_2);
+                           toWechatJsonUser.department.Add(Settings.Default.Wechat_Error_Sub_Department_2);
                         }
                         else
                         {
@@ -195,7 +195,7 @@ namespace ChinaUnion_Agent.WechatForm
                             }
                             else
                             {
-                                toWechatJsonUser.department.Add(Settings.Default.Wechat_Error_Department);
+                               toWechatJsonUser.department.Add(Settings.Default.Wechat_Error_Department);
                             }
                         }
                     }
@@ -226,7 +226,7 @@ namespace ChinaUnion_Agent.WechatForm
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
                         if (!String.IsNullOrEmpty(toWechatJsonUser.email))
                         {
-                            this.sendEmail(toWechatJsonUser.email);
+                           this.sendEmail(toWechatJsonUser.email);
                         }
                     }
                     if (isDisableUser)

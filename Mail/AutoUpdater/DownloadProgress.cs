@@ -150,6 +150,14 @@ namespace Utility
         delegate void SetProcessBarCallBack(int current, int total);
         private void SetProcessBar(int current, int total)
         {
+            if (total > 100)
+            {
+                total = 100;
+            }
+            if (current > total)
+            {
+                current = total;
+            }
             if (this.progressBarCurrent.InvokeRequired)
             {
                 SetProcessBarCallBack cb = new SetProcessBarCallBack(SetProcessBar);
