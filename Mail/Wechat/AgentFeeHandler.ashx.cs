@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using Wechat.BO;
+using Wechat.Util;
 
 namespace Wechat
 {
@@ -32,13 +33,13 @@ namespace Wechat
             logger.Info(context.Request.Url.AbsoluteUri);
 
 
-            //string sToken = "AgentFee";
-            //string sCorpID = "wx4fe8b74e01fffcbb";
-            //string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
+           // string sToken = "AgentFee";
+           // string sCorpID = "wx4fe8b74e01fffcbb";
+           // string sEncodingAESKey = "gvGJnhpjeljcKzvfe8B8vnmMBBLkJFuzUYSjsGcDQFE";
 
             string sToken = Properties.Settings.Default.Wechat_AgentFee_Token;//"AgentFee";
-            string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx31204de5a3ae758e";
-            string sEncodingAESKey = Properties.Settings.Default.Wechat_AgentFee_EncodingAESKey;// "he8dYrZ5gLbDrDhfHVJkea1AfmHgRZQJq47kuKpQrSO";
+           string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx31204de5a3ae758e";
+           string sEncodingAESKey = Properties.Settings.Default.Wechat_AgentFee_EncodingAESKey;// "he8dYrZ5gLbDrDhfHVJkea1AfmHgRZQJq47kuKpQrSO";
 
             System.Collections.Specialized.NameValueCollection queryStrings = context.Request.QueryString;
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
@@ -164,7 +165,7 @@ namespace Wechat
 
                 return;
             }
-
+             
             context.Response.Write(sEncryptMsg);
           
 
@@ -235,8 +236,10 @@ namespace Wechat
             }
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
-            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host,toUser, feeMonth);
 
+
+            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");
 

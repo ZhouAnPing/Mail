@@ -113,6 +113,7 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Util\Cryptography.cs" />
+    <Compile Include="Util\QueryStringEncryption.cs" />
     <Compile Include="Util\Sample.cs" />
     <Compile Include="Util\WXBizMsgCrypt.cs" />
   </ItemGroup>

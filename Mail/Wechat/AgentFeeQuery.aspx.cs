@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using Wechat.BO;
 using Wechat.Properties;
+using Wechat.Util;
 
 namespace Wechat
 {
@@ -21,15 +22,31 @@ namespace Wechat
         private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(AgentFeeQuery));
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            Request.ContentEncoding = Encoding.UTF8;
-            string feeMonth = Request.QueryString["feeMonth"];
-            string agentNo = Request.QueryString["agentNo"];
-
+            string feeMonth =Request.QueryString["feeMonth"];
+            string agentNo =Request.QueryString["agentNo"];
+            logger.Info("feeMonth=" + Request.QueryString["feeMonth"]);
+            logger.Info("agentNo=" + Request.QueryString["agentNo"]);
+            try
+            {
+                
+                Request.ContentEncoding = Encoding.UTF8;
+                feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
+                agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
+                logger.Info("feeMonth=" + feeMonth);
+                logger.Info("agentNo=" + agentNo);
+            }
+            catch (Exception)
+            {
+                return;
+            }
             AgentFeeDao AgentFeeDao = new AgentFeeDao();
 
             AgentFee agentFee = AgentFeeDao.GetByKey(feeMonth, agentNo);
            // this.Label1.Text = agentFee.agent.agentName;
+            if (agentFee == null)
+            {
+                return;
+            }
 
             char[] separator = "<br>".ToCharArray();
             StringBuilder sbDesc = new StringBuilder();

@@ -94,23 +94,20 @@ namespace Wechat
                     default:
                        
                         AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
-                       
+                        int maxArticleCnt = 10;
                         IList<AgentErrorCode> agentErrorCodeList = agentErrorCodeDao.GetList(wechatMessage.Content);
                         if (agentErrorCodeList != null && agentErrorCodeList.Count > 0)
                         {
                             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-                            if (agentErrorCodeList.Count > 5)
+                            if (agentErrorCodeList.Count > maxArticleCnt)
                             {
-                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 5);
+                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", maxArticleCnt);
                             }
-                            else if (agentErrorCodeList.Count <= 5 && agentErrorCodeList.Count > 0)
+                            else if (agentErrorCodeList.Count <= 10 && agentErrorCodeList.Count > 0)
                             {
                                 sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", agentErrorCodeList.Count);
                             }
-                            else
-                            {
-                                sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", 1);
-                            }
+                           
                             sb.AppendFormat("<Articles>");
 
                             int count = 0;
@@ -118,7 +115,7 @@ namespace Wechat
                             {
                                 count++;
 
-                                if (count > 5)
+                                if (count > maxArticleCnt)
                                 {
                                     break;
                                 }
