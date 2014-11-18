@@ -115,6 +115,7 @@ namespace ChinaUnion_Agent.WechatForm
         BackgroundWorker worker; 
         private void frmErrorCodeWechat_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;   
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);

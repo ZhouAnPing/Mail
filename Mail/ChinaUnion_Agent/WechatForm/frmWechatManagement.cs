@@ -133,6 +133,7 @@ namespace ChinaUnion_Agent.WechatForm
 
         private void frmWechatManagement_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;   
             if (wechatType.Equals("ErrorCode"))
             {
                 this.lblType.Text = "渠道名称:";

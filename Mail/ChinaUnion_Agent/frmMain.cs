@@ -198,6 +198,15 @@ namespace ChinaUnion_Agent
             CheckChildOpenState(this, frmWechatManagementTmp);
 
         }
+
+        private void menuItemLog_Click(object sender, EventArgs e)
+        {
+
+            frmLogMemo frmLogMemo = new frmLogMemo();
+
+            CheckChildOpenState(this, frmLogMemo);
+
+        }
        
 
         

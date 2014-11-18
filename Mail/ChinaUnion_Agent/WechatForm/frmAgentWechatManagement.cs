@@ -27,6 +27,7 @@ namespace ChinaUnion_Agent.Wechat
         private void frmAgentWechatManagement_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            this.WindowState = FormWindowState.Maximized;   
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);

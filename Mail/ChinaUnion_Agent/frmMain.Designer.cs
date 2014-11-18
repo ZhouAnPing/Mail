@@ -32,8 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuItemSystem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemLogin = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -88,31 +87,23 @@
             // menuItemSystem
             // 
             this.menuItemSystem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemLogin,
-            this.menuItemLogout,
+            this.menuItemLog,
             this.menuItemExit});
             this.menuItemSystem.Name = "menuItemSystem";
             this.menuItemSystem.Size = new System.Drawing.Size(65, 20);
             this.menuItemSystem.Text = "系统管理";
             // 
-            // menuItemLogin
+            // menuItemLog
             // 
-            this.menuItemLogin.Name = "menuItemLogin";
-            this.menuItemLogin.Size = new System.Drawing.Size(94, 22);
-            this.menuItemLogin.Text = "登陆";
-            this.menuItemLogin.Visible = false;
-            // 
-            // menuItemLogout
-            // 
-            this.menuItemLogout.Name = "menuItemLogout";
-            this.menuItemLogout.Size = new System.Drawing.Size(94, 22);
-            this.menuItemLogout.Text = "注销";
-            this.menuItemLogout.Visible = false;
+            this.menuItemLog.Name = "menuItemLog";
+            this.menuItemLog.Size = new System.Drawing.Size(152, 22);
+            this.menuItemLog.Text = "版本日志";
+            this.menuItemLog.Click += new System.EventHandler(this.menuItemLog_Click);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(94, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(118, 22);
             this.menuItemExit.Text = "退出";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -496,7 +487,7 @@
             this.MainMenuStrip = this.menuMain;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "联通佣金管理";
+            this.Text = "上海联通合作伙伴支撑平台V1.0.1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuMain.ResumeLayout(false);
@@ -517,8 +508,6 @@
 
         private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ToolStripMenuItem menuItemSystem;
-        private System.Windows.Forms.ToolStripMenuItem menuItemLogin;
-        private System.Windows.Forms.ToolStripMenuItem menuItemLogout;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private BSE.Windows.Forms.XPanderPanelList xPanderPanelList1;
@@ -552,6 +541,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripMenuItem menuItemLog;
     }
 }
 
