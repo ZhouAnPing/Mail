@@ -1915,6 +1915,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>autoupdater.dll</td><td>AutoUpdater.dll</td><td>AUTOUP~1.DLL|AutoUpdater.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\AutoUpdater.dll</td><td>1</td><td/></row>
+		<row><td>barcodenotification.html</td><td>ISX_DEFAULTCOMPONENT</td><td>BARCOD~1.HTM|BarcodeNotification.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\BarcodeNotification.html</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.dll</td><td>BSE.Windows.Forms.dll</td><td>BSEWIN~1.DLL|BSE.Windows.Forms.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.dll</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>BSEWIN~1.XML|BSE.Windows.Forms.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.xml</td><td>1</td><td/></row>
 		<row><td>chinaunion_agent.exe</td><td>ChinaUnion_Agent.exe</td><td>CHINAU~1.EXE|ChinaUnion_Agent.exe</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_Agent.exe</td><td>1</td><td/></row>
