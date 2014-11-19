@@ -331,7 +331,12 @@ namespace ChinaUnion_Agent
                 {
                     this.btnImport.Enabled = true;
                 }
-
+                this.dgAgentType.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgAgentType.AutoResizeColumns();
+                this.dgAgentTypeComment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgAgentTypeComment.AutoResizeColumns();
+                this.dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgAgent.AutoResizeColumns();
                
                 Cursor.Current = Cursors.Default;
             }
@@ -395,11 +400,11 @@ namespace ChinaUnion_Agent
                 agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
                 agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
 
-                for (int j = 2; j <= 100 && j < dgAgentFee.Columns.Count-1; j++)
+                for (int j = 2; j <= 101 && j < dgAgentFee.Columns.Count-1; j++)
                 {
 
-                    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
-                    FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+                    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + (j-1));
+                    FieldInfo feeField = agentFee.GetType().GetField("fee" + (j-1));
 
                     String feeNameFieldValue = dgAgentFee.Columns[j].HeaderCell.Value.ToString();
                     String feeFieldValue = dgAgentFee[j, i].Value.ToString();

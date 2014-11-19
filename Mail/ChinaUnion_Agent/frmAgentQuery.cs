@@ -195,6 +195,12 @@ namespace ChinaUnion_Agent
 
                 }
             }
+            this.dgAgentType.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgAgentType.AutoResizeColumns();
+            this.dgAgentTypeComment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgAgentTypeComment.AutoResizeColumns();
+            this.dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgAgent.AutoResizeColumns();
             if (dgAgentFee.RowCount > 0)
             {
                 this.btnMail.Visible = true;

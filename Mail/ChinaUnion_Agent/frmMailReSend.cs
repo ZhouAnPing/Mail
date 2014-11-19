@@ -173,8 +173,6 @@ namespace ChinaUnion_Agent
                 sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value == null ? "" : dgAgentFee[3, i].Value.ToString()).Append(",");
                 sb.Append("email#").Append(dgAgentFee[4, i].Value == null ? "" : dgAgentFee[4, i].Value.ToString());
 
-
-
                 mailData.ContactJsonList.Add(sb.ToString());
             }
 
@@ -283,13 +281,13 @@ namespace ChinaUnion_Agent
 
             sbAgent.Append("<tr>");
             sbAgent.Append("<tr>");
-            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(seq.ToString());
             sbAgent.Append("</td>");
-            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 1].HeaderCell.Value.ToString());
             sbAgent.Append("</td>");
-            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value.ToString());
             sbAgent.Append("</td>");
 
@@ -309,12 +307,13 @@ namespace ChinaUnion_Agent
             sb1.Append(System.IO.File.ReadAllText(FooterFilePath, Encoding.UTF8));
 
 
-            sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_no!}", dgAgentFee[0, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_name!}", dgAgentFee[1, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_type!}", dgAgentFee[2, rowIndex].Value.ToString());
 
-            sb1.Replace("${contact.agent_type_comment!}", dgAgentFee[3, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value == null ? "" : dgAgentFee[6, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_no!}", dgAgentFee[0, rowIndex].Value == null ? "" : dgAgentFee[0, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_name!}", dgAgentFee[1, rowIndex].Value == null ? "" : dgAgentFee[1, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_type!}", dgAgentFee[2, rowIndex].Value == null ? "" : dgAgentFee[2, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_fee_month!}", this.feeMonth);
+            sb1.Replace("${contact.agent_type_comment!}", dgAgentFee[3, rowIndex].Value == null ? "" : dgAgentFee[3, rowIndex].Value.ToString());
 
             sb1.Replace("${currentdate.date?string(\"yyyy年 M月 d日\")}", DateTime.Now.ToString("yyyy年MM月dd日"));
 
