@@ -16,6 +16,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmMailSend : Form
     {
+        public string feeMonth = "";
         private String subject;
         public DateTime schduleAt = DateTime.Now;
         public DataGridView dgvTemp;
@@ -35,7 +36,7 @@ namespace ChinaUnion_Agent
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
 
-
+           
 
             dgAgentFee.Rows.Clear();
             dgAgentFee.Columns.Clear();
@@ -95,13 +96,13 @@ namespace ChinaUnion_Agent
                     String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM"));
                     wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), this.dateTimePicker1.Value.ToString("yyyy-MM") + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
 
-                    sb.Append("agent_no#").Append(dgAgentFee[0, i].Value.ToString()).Append(",");
-                    sb.Append("agent_name#").Append(dgAgentFee[1, i].Value.ToString()).Append(",");
-                    sb.Append("agent_type#").Append(dgAgentFee[2, i].Value.ToString()).Append(",");
-                    sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value.ToString()).Append(",");
-                    sb.Append("email#").Append(dgAgentFee[4, i].Value.ToString()).Append(",");
-                    sb.Append("contact_name#").Append(dgAgentFee[5, i].Value.ToString()).Append(",");
-                    sb.Append("agent_fee_seq#").Append(dgAgentFee[6, i].Value.ToString()).Append(",");
+                    sb.Append("agent_no#").Append(dgAgentFee[0, i].Value == null ? "" : dgAgentFee[0, i].Value.ToString()).Append(",");
+                    sb.Append("agent_name#").Append(dgAgentFee[1, i].Value == null ? "" : dgAgentFee[1, i].Value.ToString()).Append(",");
+                    sb.Append("agent_type#").Append(dgAgentFee[2, i].Value == null ? "" : dgAgentFee[2, i].Value.ToString()).Append(",");
+                    sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value == null ? "" : dgAgentFee[3, i].Value.ToString()).Append(",");
+                    sb.Append("email#").Append(dgAgentFee[4, i].Value == null ? "" : dgAgentFee[4, i].Value.ToString()).Append(",");
+                    sb.Append("contact_name#").Append(dgAgentFee[5, i].Value == null ? "" : dgAgentFee[5, i].Value.ToString()).Append(",");
+                    sb.Append("agent_fee_seq#").Append(dgAgentFee[6, i].Value == null ? "" : dgAgentFee[6, i].Value.ToString()).Append(",");
 
                     for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
                     {
@@ -128,7 +129,7 @@ namespace ChinaUnion_Agent
                     String mailJobId = message.Substring(3);
 
                     MailJob mailJob = new MailJob();
-                    mailJob.feeMonth = this.dateTimePicker1.Value.ToString("yyyy-MM");
+                    mailJob.feeMonth = this.feeMonth;
                     mailJob.mailJobId = mailJobId;
                     mailJob.subject = mailData.subject;
                     if (dateTimePicker1.Value != null)
@@ -167,7 +168,7 @@ namespace ChinaUnion_Agent
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             frmMailSubject frmMailSubject = new ChinaUnion_Agent.frmMailSubject();
-            frmMailSubject.subject = Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
+            frmMailSubject.subject = Settings.Default.MailSubject + "(" + this.feeMonth + ")";
             DialogResult dialogResult =  frmMailSubject.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -246,12 +247,12 @@ namespace ChinaUnion_Agent
             sb1.Append(System.IO.File.ReadAllText(FooterFilePath, Encoding.UTF8));
 
 
-            sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_no!}", dgAgentFee[0, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_name!}", dgAgentFee[1, rowIndex].Value.ToString());
-            sb1.Replace("${contact.agent_type!}", dgAgentFee[2, rowIndex].Value.ToString());
-
-            sb1.Replace("${contact.agent_type_comment!}", dgAgentFee[3, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value == null ? "" : dgAgentFee[6, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_no!}", dgAgentFee[0, rowIndex].Value == null ? "" : dgAgentFee[0, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_name!}", dgAgentFee[1, rowIndex].Value == null ? "" : dgAgentFee[1, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_type!}", dgAgentFee[2, rowIndex].Value == null ? "" : dgAgentFee[2, rowIndex].Value.ToString());
+            sb1.Replace("${contact.agent_fee_month!}", this.feeMonth);
+            sb1.Replace("${contact.agent_type_comment!}", dgAgentFee[3, rowIndex].Value == null ? "" : dgAgentFee[3, rowIndex].Value.ToString());
 
             sb1.Replace("${currentdate.date?string(\"yyyy年 M月 d日\")}", DateTime.Now.ToString("yyyy年MM月dd日"));
 
@@ -281,7 +282,7 @@ namespace ChinaUnion_Agent
             try
             {
                 frmMailAddress frmMailAddress = new frmMailAddress();
-                frmMailAddress.subject = "测试:" + Settings.Default.MailSubject + "(" + this.dateTimePicker1.Value.ToString("yyyy-MM") + ")";
+                frmMailAddress.subject = "测试:" + Settings.Default.MailSubject + "(" + this.feeMonth + ")";
                 DialogResult dialogResult = frmMailAddress.ShowDialog();
                 if (dialogResult == DialogResult.OK)
                 {

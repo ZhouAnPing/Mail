@@ -15,6 +15,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmAgentQuery : Form
     {
+       
         public frmAgentQuery()
         {
             InitializeComponent();
@@ -222,7 +223,7 @@ namespace ChinaUnion_Agent
 
             frmMailSend frmMailSend = new ChinaUnion_Agent.frmMailSend();
             frmMailSend.ShowIcon = false;
-            
+            frmMailSend.feeMonth = dtFeeMonth.Value.ToString("yyyy-MM");
             frmMailSend.dgvTemp = this.dgAgentFee;
             frmMailSend.ShowDialog();
 

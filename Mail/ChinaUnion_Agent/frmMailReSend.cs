@@ -29,7 +29,7 @@ namespace ChinaUnion_Agent
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             frmMailSubject frmMailSubject = new ChinaUnion_Agent.frmMailSubject();
-            frmMailSubject.subject = "重新发送:" + Settings.Default.MailSubject + "(" + this.dtFeeMonth.Value.ToString("yyyy-MM") + ")";
+            frmMailSubject.subject = "重新发送:" + Settings.Default.MailSubject + "(" + feeMonth + ")";
             DialogResult dialogResult = frmMailSubject.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -164,14 +164,14 @@ namespace ChinaUnion_Agent
             for (int i = 0; i < dgAgentFee.RowCount; i++)
             {
                 StringBuilder sb = new StringBuilder();
-                String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), this.dtFeeMonth.Value.ToString("yyyy-MM"));
-                wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), this.dtFeeMonth.Value.ToString("yyyy-MM") + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
+                String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), feeMonth);
+                wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), feeMonth + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
 
-                sb.Append("agent_no#").Append(dgAgentFee[0, i].Value.ToString()).Append(",");
-                sb.Append("agent_name#").Append(dgAgentFee[1, i].Value.ToString()).Append(",");
-                sb.Append("agent_type#").Append(dgAgentFee[2, i].Value.ToString()).Append(",");
-                sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value.ToString()).Append(",");
-                sb.Append("email#").Append(dgAgentFee[4, i].Value.ToString());
+                sb.Append("agent_no#").Append(dgAgentFee[0, i].Value == null ? "" : dgAgentFee[0, i].Value.ToString()).Append(",");
+                sb.Append("agent_name#").Append(dgAgentFee[1, i].Value == null ? "" : dgAgentFee[1, i].Value.ToString()).Append(",");
+                sb.Append("agent_type#").Append(dgAgentFee[2, i].Value == null ? "" : dgAgentFee[2, i].Value.ToString()).Append(",");
+                sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value == null ? "" : dgAgentFee[3, i].Value.ToString()).Append(",");
+                sb.Append("email#").Append(dgAgentFee[4, i].Value == null ? "" : dgAgentFee[4, i].Value.ToString());
 
 
 
@@ -198,7 +198,7 @@ namespace ChinaUnion_Agent
                 String mailJobId = message.Substring(3);
 
                 MailJob mailJob = new MailJob();
-                mailJob.feeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
+                mailJob.feeMonth = feeMonth;
                 mailJob.mailJobId = mailJobId;
                 mailJob.subject = mailData.subject;
 

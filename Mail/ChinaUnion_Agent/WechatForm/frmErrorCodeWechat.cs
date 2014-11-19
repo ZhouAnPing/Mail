@@ -143,10 +143,25 @@ namespace ChinaUnion_Agent.WechatForm
             {
                 isNewUser = false;
                 WechatJsonUser toWechatJsonUser = new WechatJsonUser();
+                String userId = this.dgWechat[2, i].Value.ToString().Trim();
+                if (String.IsNullOrEmpty(this.dgWechat[2, i].Value.ToString().Trim()))
+                {
+                    if (String.IsNullOrEmpty(this.dgWechat[3, i].Value.ToString().Trim()))
+                    {
+                       userId = this.dgWechat[4, i].Value.ToString();
+                    }
+                    else
+                    {
+                       userId = this.dgWechat[3, i].Value.ToString();
+                    }
+                }
+                else
+                {
+                   userId = this.dgWechat[2, i].Value.ToString();
+                }
 
-                toWechatJsonUser.userid = this.dgWechat[2, i].Value.ToString();
-
-                worker.ReportProgress(2, "同步微信账号" + toWechatJsonUser.userid + "\r\n");
+                toWechatJsonUser.userid = userId;
+                worker.ReportProgress(2, "同步微信账号" + this.dgWechat[1, i].Value.ToString() + "\r\n");
                 HttpResult result = wechatAction.getUserFromWechat(toWechatJsonUser.userid, Settings.Default.Wechat_Secret);
 
 
@@ -167,10 +182,12 @@ namespace ChinaUnion_Agent.WechatForm
                   
                     toWechatJsonUser.position = this.dgWechat[0, i].Value.ToString();
                     toWechatJsonUser.name = this.dgWechat[1, i].Value.ToString();
-                    toWechatJsonUser.userid = this.dgWechat[2, i].Value.ToString();
                     toWechatJsonUser.weixinid = this.dgWechat[2, i].Value.ToString();
                     toWechatJsonUser.mobile = this.dgWechat[3, i].Value.ToString();
                     toWechatJsonUser.email = this.dgWechat[4, i].Value.ToString();
+                    toWechatJsonUser.userid = userId;
+                   
+                   
                    
 
                     if (toWechatJsonUser.department == null)
