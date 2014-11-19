@@ -65,13 +65,18 @@ namespace ChinaUnion_Agent
                 }
 
                 //代理商佣金明细
-                List<Row> agentFee = execelfile.Worksheet("明细表").ToList(); ;
+                List<Row> agentFee = execelfile.Worksheet("明细表").ToList(); 
 
                 if (agentFee != null && agentFee.Count > 0)
                 {
                     this.btnImport.Enabled = true;
                     dgAgentFee.Rows.Clear();
                     dgAgentFee.Columns.Clear();
+                    if (agentFee[0].ColumnNames.Count() > 103)
+                    {
+                        MessageBox.Show("Excel格式不正确，明细表的sheet列的数量太多.");
+                        return;
+                    }
                     foreach (String coloumn in agentFee[0].ColumnNames)
                     {
                         this.dgAgentFee.Columns.Add(coloumn, coloumn);

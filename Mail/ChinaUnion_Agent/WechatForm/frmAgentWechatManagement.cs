@@ -26,7 +26,7 @@ namespace ChinaUnion_Agent.Wechat
         BackgroundWorker worker; 
         private void frmAgentWechatManagement_Load(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
+          
             this.WindowState = FormWindowState.Maximized;   
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
@@ -34,8 +34,27 @@ namespace ChinaUnion_Agent.Wechat
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
             //代理商信息            
             //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
+         
+        }
+        private void prepareGrid(string agentNo)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
             AgentDao agentDao = new AgentDao();
-            IList<Agent> agentList = agentDao.GetList();
+            Agent agent = null;
+            IList<Agent> agentList = new List<Agent>();
+            if (!string.IsNullOrEmpty(agentNo))
+            {
+                agent = agentDao.Get(agentNo);
+                if (agent != null)
+                {
+                    agentList.Add(agent);
+                }
+            }
+            else
+            {
+                agentList = agentDao.GetList();
+            }
 
             if (agentList != null && agentList.Count > 0)
             {
@@ -44,11 +63,11 @@ namespace ChinaUnion_Agent.Wechat
 
                 dgAgent.Columns.Add("代理商编号", "代理商编号");
                 dgAgent.Columns.Add("代理商名称", "代理商名称");
-                dgAgent.Columns.Add("联系人邮箱", "联系人邮箱");
-                // dgAgent.Columns.Add("联系人姓名", "联系人姓名");
+                dgAgent.Columns.Add("联系人邮箱", "联系人邮箱");               
                 dgAgent.Columns.Add("联系人电话", "联系人电话");
-                dgAgent.Columns.Add("联系人微信账号", "联系人微信账号");
-                dgAgent.Columns.Add("代理商状态", "代理商状态");
+                dgAgent.Columns.Add("联系人微信", "联系人微信");
+                dgAgent.Columns.Add("账号禁用", "账号禁用");
+                dgAgent.Columns.Add("微信同步备注", "微信同步备注");
 
 
                 for (int i = 0; i < agentList.Count; i++)
@@ -58,8 +77,7 @@ namespace ChinaUnion_Agent.Wechat
 
                     row.Cells[0].Value = agentList[i].agentNo;
                     row.Cells[1].Value = agentList[i].agentName;
-                    row.Cells[2].Value = agentList[i].contactEmail;
-                    //   row.Cells[3].Value = agentList[i].contactName;
+                    row.Cells[2].Value = agentList[i].contactEmail;                  
                     row.Cells[3].Value = agentList[i].contactTel;
                     row.Cells[4].Value = agentList[i].contactWechatAccount;
                     if (!String.IsNullOrEmpty(agentList[i].status) && agentList[i].status.ToUpper().Equals("Y"))
@@ -70,68 +88,17 @@ namespace ChinaUnion_Agent.Wechat
                     {
                         row.Cells[5].Value = "";
                     }
+                    row.Cells[6].Value = "";
 
                 }
                 dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-             
+
                 dgAgent.AutoResizeColumns();
-                this.grpWechat.Dock = DockStyle.None;                
-               // this.ResizeRedraw = true;
+
             }
 
 
             this.Cursor = Cursors.Default;
-        }
-        private void prepareGrid()
-        {
-           
-            WechatAction wechatAction = new WechatAction();
-            WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(Settings.Default.Wechat_Agent_Department, Settings.Default.Wechat_Secret);
-            this.grpWechat.Dock = DockStyle.Right;
-          
-            if (wechatUser != null && wechatUser.userlist.Count > 0)
-            {
-                this.dgWechat.Rows.Clear();
-                dgWechat.Columns.Clear();
-
-                dgWechat.Columns.Add("代理商编号", "代理商编号");
-                dgWechat.Columns.Add("代理商名称", "代理商名称");
-
-                //  dgAgent.Columns.Add("联系人邮箱", "联系人邮箱");               
-                //  dgAgent.Columns.Add("联系人电话", "联系人电话");
-                dgWechat.Columns.Add("联系人微信账号", "联系人微信账号");
-
-
-                for (int i = 0; i < wechatUser.userlist.Count; i++)
-                {
-                    dgWechat.Rows.Add();
-                    DataGridViewRow row = dgWechat.Rows[i];
-
-                    row.Cells[0].Value = wechatUser.userlist[i].userid;
-                    row.Cells[1].Value = wechatUser.userlist[i].name;
-
-                    HttpResult result = wechatAction.getUserFromWechat(wechatUser.userlist[i].userid, Settings.Default.Wechat_Secret);
-                    if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        //表示访问成功，具体的大家就参考HttpStatusCode类
-                        try
-                        {
-                            WechatJsonUser wechatJsonUser = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
-                            row.Cells[2].Value = wechatJsonUser.weixinid;
-                        }
-                        catch (Exception ex)
-                        {
-                            String exr = ex.Message;
-                        }
-                    }
-
-                }
-
-
-            }
-            dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;// (DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-           
-            dgWechat.AutoResizeColumns();
           
         }
         /// <summary>
@@ -147,7 +114,7 @@ namespace ChinaUnion_Agent.Wechat
          
             WechatAction wechatAction = new WechatAction();
 
-            for (int i = 0; i < dgAgent.RowCount; i++)
+            for (int i = 0; i < dgAgent.RowCount ; i++)
             {
                 WechatJsonUser wechatJsonUser = new WechatJsonUser();
                 wechatJsonUser.userid = this.dgAgent[0, i].Value.ToString();
@@ -207,17 +174,27 @@ namespace ChinaUnion_Agent.Wechat
                             result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
                             if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
                             {
-                             // this.sendEmail(this.dgAgent[2, i].Value.ToString());
+                              //this.sendEmail(this.dgAgent[2, i].Value.ToString());
                             }
                         }
                     }
                     else
                     {
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, InsertUserJson);
-                        if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
+                        ReturnMessage returnMessage1 = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
+                        if (returnMessage1 != null && returnMessage1.errcode .Equals( "0") && !String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
                         {
                           this.sendEmail(this.dgAgent[2, i].Value.ToString());
                         }
+                    }
+                    ReturnMessage returnMessage = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
+                    if (returnMessage != null && returnMessage.errcode != "0")
+                    {
+                        this.dgAgent[6, i].Value = returnMessage.errmsg;
+                    }
+                    else
+                    {
+                        this.dgAgent[6, i].Value = "同步成功";
                     }
                 }
 
@@ -270,16 +247,21 @@ namespace ChinaUnion_Agent.Wechat
             frmProgress frm = new frmProgress(this.worker);
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowDialog(this);
-            frm.Close();
-           
+            frm.Close();           
 
-            this.prepareGrid();
+          
             this.Cursor = Cursors.Default;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            this.prepareGrid(this.txtAgentNo.Text.Trim());
+
         }
 
      

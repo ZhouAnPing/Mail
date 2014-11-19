@@ -43,7 +43,7 @@ namespace ChinaUnion_Agent
                 dgAgent.Columns.Add("联系人电话", "联系人电话");
                 dgAgent.Columns.Add("联系人微信账号", "联系人微信账号");
 
-                dgAgent.Columns.Add("代理商状态", "代理商状态");
+                dgAgent.Columns.Add("是否禁用", "是否禁用");
 
                 for (int i = 0; i < agentList.Count; i++)
                 {

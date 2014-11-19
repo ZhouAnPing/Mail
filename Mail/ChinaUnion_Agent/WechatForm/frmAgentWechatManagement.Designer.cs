@@ -31,19 +31,21 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
-            this.grpWechat = new System.Windows.Forms.GroupBox();
-            this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.txtAgentNo = new System.Windows.Forms.TextBox();
+            this.lblType = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.grpWechat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnFind);
+            this.groupBox1.Controls.Add(this.txtAgentNo);
+            this.groupBox1.Controls.Add(this.lblType);
             this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSync);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -57,9 +59,9 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(355, 20);
+            this.btnCancel.Location = new System.Drawing.Point(595, 17);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(55, 31);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -68,39 +70,13 @@
             // btnSync
             // 
             this.btnSync.AutoSize = true;
-            this.btnSync.Location = new System.Drawing.Point(198, 20);
+            this.btnSync.Location = new System.Drawing.Point(452, 17);
             this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(138, 23);
+            this.btnSync.Size = new System.Drawing.Size(99, 31);
             this.btnSync.TabIndex = 0;
             this.btnSync.Text = "账号同步到微信";
             this.btnSync.UseVisualStyleBackColor = true;
             this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
-            // 
-            // grpWechat
-            // 
-            this.grpWechat.Controls.Add(this.dgWechat);
-            this.grpWechat.Dock = System.Windows.Forms.DockStyle.Right;
-            this.grpWechat.Location = new System.Drawing.Point(719, 56);
-            this.grpWechat.Name = "grpWechat";
-            this.grpWechat.Size = new System.Drawing.Size(297, 685);
-            this.grpWechat.TabIndex = 6;
-            this.grpWechat.TabStop = false;
-            this.grpWechat.Text = "企业微信用户列表";
-            // 
-            // dgWechat
-            // 
-            this.dgWechat.AllowUserToAddRows = false;
-            this.dgWechat.AllowUserToDeleteRows = false;
-            this.dgWechat.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgWechat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgWechat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgWechat.Location = new System.Drawing.Point(3, 17);
-            this.dgWechat.Name = "dgWechat";
-            this.dgWechat.ReadOnly = true;
-            this.dgWechat.RowHeadersWidth = 10;
-            this.dgWechat.RowTemplate.Height = 23;
-            this.dgWechat.Size = new System.Drawing.Size(291, 665);
-            this.dgWechat.TabIndex = 7;
             // 
             // groupBox2
             // 
@@ -108,7 +84,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 56);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(719, 685);
+            this.groupBox2.Size = new System.Drawing.Size(1016, 685);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "代理商列表";
@@ -125,17 +101,44 @@
             this.dgAgent.ReadOnly = true;
             this.dgAgent.RowHeadersWidth = 10;
             this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(713, 665);
+            this.dgAgent.Size = new System.Drawing.Size(1010, 665);
             this.dgAgent.TabIndex = 7;
             // 
-            // frmWechatManagement
+            // btnFind
+            // 
+            this.btnFind.AutoSize = true;
+            this.btnFind.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnFind.Location = new System.Drawing.Point(353, 17);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(55, 31);
+            this.btnFind.TabIndex = 17;
+            this.btnFind.Text = "查询";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // txtAgentNo
+            // 
+            this.txtAgentNo.Location = new System.Drawing.Point(81, 19);
+            this.txtAgentNo.Name = "txtAgentNo";
+            this.txtAgentNo.Size = new System.Drawing.Size(248, 21);
+            this.txtAgentNo.TabIndex = 19;
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(12, 22);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(71, 12);
+            this.lblType.TabIndex = 18;
+            this.lblType.Text = "代理商编号:";
+            // 
+            // frmAgentWechatManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.grpWechat);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAgentWechatManagement";
             this.ShowIcon = false;
@@ -145,8 +148,6 @@
             this.Load += new System.EventHandler(this.frmAgentWechatManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.grpWechat.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
             this.ResumeLayout(false);
@@ -158,9 +159,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSync;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.GroupBox grpWechat;
-        private System.Windows.Forms.DataGridView dgWechat;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgAgent;
+        private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.TextBox txtAgentNo;
+        private System.Windows.Forms.Label lblType;
     }
 }

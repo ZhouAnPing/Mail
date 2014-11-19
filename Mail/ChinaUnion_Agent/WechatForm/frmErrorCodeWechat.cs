@@ -57,7 +57,7 @@ namespace ChinaUnion_Agent.WechatForm
                 dgWechat.Columns.Add("手机号", "手机号");
                 dgWechat.Columns.Add("邮箱", "邮箱");
                 dgWechat.Columns.Add("账号禁用", "账号禁用");
-                dgWechat.Columns.Add("提示信息", "提示信息");
+                dgWechat.Columns.Add("微信导入备注", "微信导入备注");
                
 
                
@@ -85,7 +85,7 @@ namespace ChinaUnion_Agent.WechatForm
                         row.Cells["手机号"].Value = WechatList[i][3].ToString().Trim();  
                         row.Cells["邮箱"].Value = WechatList[i][4].ToString().Trim();
                         row.Cells["账号禁用"].Value = WechatList[i][5].ToString().Trim();
-                        row.Cells["提示信息"].Value = "";                
+                        row.Cells["微信导入备注"].Value = "";                
                        
 
                     }
@@ -244,7 +244,9 @@ namespace ChinaUnion_Agent.WechatForm
                     {
                        
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
-                        if (!String.IsNullOrEmpty(toWechatJsonUser.email))
+                        ReturnMessage returnMessage1 = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
+                        
+                        if (returnMessage1 != null && returnMessage1.errcode.Equals( "0")&&!String.IsNullOrEmpty(toWechatJsonUser.email))
                         {
                            this.sendEmail(toWechatJsonUser.email);
                         }
@@ -258,6 +260,10 @@ namespace ChinaUnion_Agent.WechatForm
                    if (returnMessage != null && returnMessage.errcode != "0")
                    {
                        this.dgWechat[6, i].Value = returnMessage.errmsg;
+                   }
+                   else
+                   {
+                       this.dgWechat[6, i].Value = "导入成功";
                    }
                 }
 
