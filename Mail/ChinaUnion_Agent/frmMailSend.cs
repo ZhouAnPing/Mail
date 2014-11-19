@@ -308,7 +308,7 @@ namespace ChinaUnion_Agent
                         String workspaceId = Settings.Default.TripolisWorkspaceId;
                         String emailTypeId = Settings.Default.TripolisEmailTypeId;
 
-                        String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, email,"Test", mailData.subject, this.webBrowser1.DocumentText);
+                        String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId,null,mailData.sender, mailData.fromAddress, email,"Test", mailData.subject, this.webBrowser1.DocumentText);
 
                         if (message.Contains("OK:"))
                         {

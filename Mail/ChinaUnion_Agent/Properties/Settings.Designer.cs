@@ -266,5 +266,17 @@ namespace ChinaUnion_Agent.Properties {
                 this["Wechar_Error_AppId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("NjUwMjk5NjXE_H8ej61hJQ")]
+        public string TripolisEmailId {
+            get {
+                return ((string)(this["TripolisEmailId"]));
+            }
+            set {
+                this["TripolisEmailId"] = value;
+            }
+        }
     }
 }

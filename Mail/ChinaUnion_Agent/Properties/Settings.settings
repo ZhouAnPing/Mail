@@ -65,5 +65,8 @@
     <Setting Name="Wechar_Error_AppId" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="TripolisEmailId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NjUwMjk5NjXE_H8ej61hJQ</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -248,7 +248,7 @@ namespace ChinaUnion_Agent.Wechat
             String FilePath = Application.StartupPath + @"\BarcodeNotification.html";
             String content = System.IO.File.ReadAllText(FilePath, Encoding.UTF8);
 
-            String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, mailData.sender, mailData.fromAddress, emailId, "Test", mailData.subject, content);
+            String message = mailAdapter.sendSingleEmail(databaseId, workspaceId, emailTypeId, Settings.Default.TripolisEmailId, mailData.sender, mailData.fromAddress, emailId, "Test", mailData.subject, content);
 
 
         }
