@@ -1914,6 +1914,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>autoupdater.config</td><td>ISX_DEFAULTCOMPONENT</td><td>AUTOUP~1.CON|Autoupdater.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Autoupdater.config</td><td>1</td><td/></row>
 		<row><td>autoupdater.dll</td><td>AutoUpdater.dll</td><td>AUTOUP~1.DLL|AutoUpdater.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\AutoUpdater.dll</td><td>1</td><td/></row>
 		<row><td>barcodenotification.html</td><td>ISX_DEFAULTCOMPONENT</td><td>BARCOD~1.HTM|BarcodeNotification.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\BarcodeNotification.html</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.dll</td><td>BSE.Windows.Forms.dll</td><td>BSEWIN~1.DLL|BSE.Windows.Forms.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.dll</td><td>1</td><td/></row>
@@ -1938,7 +1939,6 @@
 		<row><td>remotion.data.linq.dll</td><td>Remotion.Data.Linq.dll</td><td>REMOTI~1.DLL|Remotion.Data.Linq.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Remotion.Data.Linq.dll</td><td>1</td><td/></row>
 		<row><td>testerror.png</td><td>ISX_DEFAULTCOMPONENT</td><td>TESTER~1.PNG|TestError.png</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\TestError.png</td><td>1</td><td/></row>
 		<row><td>tripolisdialogueadapter.dll</td><td>TripolisDialogueAdapter.dll</td><td>TRIPOL~1.DLL|TripolisDialogueAdapter.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\TripolisDialogueAdapter.dll</td><td>1</td><td/></row>
-		<row><td>update.config</td><td>ISX_DEFAULTCOMPONENT</td><td>UPDATE~1.CON|update.config</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\update.config</td><td>1</td><td/></row>
 		<row><td>whc.orderwater.commons.dll</td><td>WHC.OrderWater.Commons.dll</td><td>WHCORD~1.DLL|WHC.OrderWater.Commons.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WHC.OrderWater.Commons.dll</td><td>1</td><td/></row>
 		<row><td>whc.orderwater.commons.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>WHCORD~1.XML|WHC.OrderWater.Commons.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WHC.OrderWater.Commons.xml</td><td>1</td><td/></row>
 		<row><td>winscp.dll</td><td>WinSCP.dll</td><td>WinSCP.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WinSCP.dll</td><td>1</td><td/></row>

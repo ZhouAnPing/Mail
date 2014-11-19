@@ -273,6 +273,9 @@
     <EmbeddedResource Include="WechatForm\frmWechatManagement.resx">
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Autoupdater.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Dll\Json60r6.zip" />
     <None Include="Dll\LinqToExcel_1.7.1.zip" />
     <None Include="Properties\Settings.settings">
@@ -293,14 +296,15 @@
     <None Include="Template\ImportError_Template.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="update.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater\AutoUpdater.csproj">
+      <Project>{4ba4719c-c6ab-49ba-9754-848ca24c1fd6}</Project>
+      <Name>AutoUpdater</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSE.Windows.Forms\BSE.Windows.Forms.csproj">
       <Project>{9CA367B8-0B98-49D1-84FB-735E612E3BA9}</Project>
       <Name>BSE.Windows.Forms</Name>
