@@ -156,7 +156,7 @@ namespace TripolisDialogueAdapter
         /// <param name="emailSubject">emailSubject</param>
         /// <param name="emailBody">emailBody</param>
         /// <returns></returns>  
-        public String sendSingleEmail(String contactDatabaseId, String workspaceId, String directEmailTypeId,String fromName, String emailFrom, String emailTo,String agent_no, String emailSubject, String emailBody)
+        public String sendSingleEmail(String contactDatabaseId, String workspaceId, String directEmailTypeId,String emailId, String fromName, String emailFrom, String emailTo,String agent_no, String emailSubject, String emailBody)
         {
             logger.Debug("************send Single Mail***************");
             String result = OK_RESULT;
@@ -191,10 +191,13 @@ namespace TripolisDialogueAdapter
                 list.Add(jsonStr);
                 String contactId = contactAction.createContact(contactDatabaseId, list);
 
-              
-                DirectEmailAction directEmailAction = new DirectEmailAction(client, userName, password, oWebProxy);
-                String directEmailId = directEmailAction.createDirectEmail(directEmailTypeId, "测试邮件" + sequence, "mail" + sequence, emailSubject, "测试邮件", fromName, emailFrom, emailBody);
+                String directEmailId = emailId;
+                if (String.IsNullOrEmpty(emailId))
+                {
 
+                    DirectEmailAction directEmailAction = new DirectEmailAction(client, userName, password, oWebProxy);
+                     directEmailId = directEmailAction.createDirectEmail(directEmailTypeId, "测试邮件" + sequence, "mail" + sequence, emailSubject, "测试邮件", fromName, emailFrom, emailBody);
+                }
                 PublishingAction publishingAction = new PublishingAction(client, userName, password, oWebProxy);
                 String publishId = publishingAction.publishTransactionalEmail(contactId, directEmailId, DateTime.Now);
 

@@ -301,10 +301,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoUpdater\AutoUpdater.csproj">
-      <Project>{4a635af9-90b2-4ab6-a418-eab10a712ba7}</Project>
-      <Name>AutoUpdater</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BSE.Windows.Forms\BSE.Windows.Forms.csproj">
       <Project>{9CA367B8-0B98-49D1-84FB-735E612E3BA9}</Project>
       <Name>BSE.Windows.Forms</Name>
