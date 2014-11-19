@@ -370,6 +370,7 @@ namespace ChinaUnion_Agent
             worker.WorkerReportsProgress = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
+            this.dtFeeMonth.Value = DateTime.Now.AddMonths(-1);
         }
 
         /// <summary>
@@ -394,7 +395,7 @@ namespace ChinaUnion_Agent
                 agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
                 agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
 
-                for (int j = 1; j <= 100 && j < dgAgentFee.Columns.Count-1; j++)
+                for (int j = 2; j <= 100 && j < dgAgentFee.Columns.Count-1; j++)
                 {
 
                     FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);

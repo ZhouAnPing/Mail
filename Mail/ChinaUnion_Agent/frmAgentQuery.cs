@@ -236,7 +236,8 @@ namespace ChinaUnion_Agent
       
         private void frmAgentQuery_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;    
+            this.WindowState = FormWindowState.Maximized;
+            this.dtFeeMonth.Value = DateTime.Now.AddMonths(-1);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
