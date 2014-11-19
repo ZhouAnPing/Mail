@@ -65,7 +65,8 @@ namespace ChinaUnion_Agent.WechatForm
                 }
                 dgWechat.Columns.Add("微信号", "微信号");
                 dgWechat.Columns.Add("手机", "手机");
-                dgWechat.Columns.Add("邮箱", "邮箱");               
+                dgWechat.Columns.Add("邮箱", "邮箱");
+                dgWechat.Columns.Add("是否关注", "是否关注"); 
 
 
                 for (int i = 0; i < wechatUser.userlist.Count; i++)
@@ -98,7 +99,7 @@ namespace ChinaUnion_Agent.WechatForm
                             if (isExist)
                             {
                                 dgWechat.Rows.Add();
-                                DataGridViewRow row = dgWechat.Rows[dgWechat.RowCount-1];
+                                DataGridViewRow row = dgWechat.Rows[dgWechat.RowCount - 1];
                                 if (wechatType.Equals("ErrorCode"))
                                 {
                                     row.Cells[0].Value = wechatJsonUser.position;
@@ -107,11 +108,27 @@ namespace ChinaUnion_Agent.WechatForm
                                 if (wechatType.Equals("Agent"))
                                 {
                                     row.Cells[0].Value = wechatJsonUser.userid;
-                                    row.Cells[1].Value = wechatJsonUser.name; 
+                                    row.Cells[1].Value = wechatJsonUser.name;
                                 }
                                 row.Cells[2].Value = wechatJsonUser.weixinid;
                                 row.Cells[3].Value = wechatJsonUser.mobile;
                                 row.Cells[4].Value = wechatJsonUser.email;
+
+                                if (wechatJsonUser.status == "1")
+                                {
+
+                                    row.Cells[5].Value = "已关注";
+                                }
+                                if (wechatJsonUser.status == "2")
+                                {
+
+                                    row.Cells[5].Value = "已冻结";
+                                }
+                                if (wechatJsonUser.status == "4")
+                                {
+
+                                    row.Cells[5].Value = "未关注";
+                                }
                             }
 
                         }

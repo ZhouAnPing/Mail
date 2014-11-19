@@ -208,6 +208,7 @@
     <Compile Include="WechatForm\frmWechatManagement.Designer.cs">
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wechat\ReturnMessage.cs" />
     <Compile Include="Wechat\User.cs" />
     <Compile Include="Wechat\WechatAction.cs" />
     <Compile Include="Wechat\WechatJsonUser.cs" />

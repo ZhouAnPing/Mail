@@ -57,6 +57,7 @@ namespace ChinaUnion_Agent.WechatForm
                 dgWechat.Columns.Add("手机号", "手机号");
                 dgWechat.Columns.Add("邮箱", "邮箱");
                 dgWechat.Columns.Add("账号禁用", "账号禁用");
+                dgWechat.Columns.Add("提示信息", "提示信息");
                
 
                
@@ -84,7 +85,7 @@ namespace ChinaUnion_Agent.WechatForm
                         row.Cells["手机号"].Value = WechatList[i][3].ToString().Trim();  
                         row.Cells["邮箱"].Value = WechatList[i][4].ToString().Trim();
                         row.Cells["账号禁用"].Value = WechatList[i][5].ToString().Trim();
-                                        
+                        row.Cells["提示信息"].Value = "";                
                        
 
                     }
@@ -94,8 +95,8 @@ namespace ChinaUnion_Agent.WechatForm
             dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgWechat.AutoResizeColumns();
-            
-          
+
+            this.dgWechat.Columns[6].MinimumWidth = 300;
 
         }
 
@@ -140,10 +141,10 @@ namespace ChinaUnion_Agent.WechatForm
 
             for (int i = 0; i < this.dgWechat.RowCount; i++)
             {
-
+                isNewUser = false;
                 WechatJsonUser toWechatJsonUser = new WechatJsonUser();
 
-                toWechatJsonUser.userid = this.dgWechat[1, i].Value.ToString();
+                toWechatJsonUser.userid = this.dgWechat[2, i].Value.ToString();
 
                 worker.ReportProgress(2, "同步微信账号" + toWechatJsonUser.userid + "\r\n");
                 HttpResult result = wechatAction.getUserFromWechat(toWechatJsonUser.userid, Settings.Default.Wechat_Secret);
@@ -216,9 +217,10 @@ namespace ChinaUnion_Agent.WechatForm
                     if (!isNewUser)
                     {
                         result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, userJson);
+                        
                         if (!String.IsNullOrEmpty(toWechatJsonUser.email))
                         {
-                            this.sendEmail(toWechatJsonUser.email);
+                           // this.sendEmail(toWechatJsonUser.email);
                         }
                     }
                     else
@@ -227,17 +229,25 @@ namespace ChinaUnion_Agent.WechatForm
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
                         if (!String.IsNullOrEmpty(toWechatJsonUser.email))
                         {
-                           this.sendEmail(toWechatJsonUser.email);
+                           //this.sendEmail(toWechatJsonUser.email);
                         }
                     }
                     if (isDisableUser)
                     {
                         result = wechatAction.deleteUserFromWechat(toWechatJsonUser.userid, Settings.Default.Wechat_Secret);
                     }
+                   
+                   ReturnMessage returnMessage= (ReturnMessage) JsonConvert.DeserializeObject(result.Html,typeof(ReturnMessage));
+                   if (returnMessage != null && returnMessage.errcode != "0")
+                   {
+                       this.dgWechat[6, i].Value = returnMessage.errmsg;
+                   }
                 }
 
             }
+           // dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+           
             worker.ReportProgress(2, "同步微信账号完毕...\r\n");
 
 
