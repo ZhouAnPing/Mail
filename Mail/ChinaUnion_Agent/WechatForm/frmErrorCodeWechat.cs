@@ -229,7 +229,7 @@ namespace ChinaUnion_Agent.WechatForm
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, userJson);
                         if (!String.IsNullOrEmpty(toWechatJsonUser.email))
                         {
-                           //this.sendEmail(toWechatJsonUser.email);
+                           this.sendEmail(toWechatJsonUser.email);
                         }
                     }
                     if (isDisableUser)

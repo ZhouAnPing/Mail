@@ -207,7 +207,7 @@ namespace ChinaUnion_Agent.Wechat
                             result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
                             if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
                             {
-                              this.sendEmail(this.dgAgent[2, i].Value.ToString());
+                             // this.sendEmail(this.dgAgent[2, i].Value.ToString());
                             }
                         }
                     }
