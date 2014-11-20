@@ -190,7 +190,7 @@ namespace ChinaUnion_Agent.Wechat
                     ReturnMessage returnMessage = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
                     if (returnMessage != null && returnMessage.errcode != "0")
                     {
-                        this.dgAgent[6, i].Value = returnMessage.errmsg;
+                        this.dgAgent[6, i].Value = returnMessage.getErrorDescrition();
                     }
                     else
                     {

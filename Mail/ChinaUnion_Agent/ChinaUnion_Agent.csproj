@@ -211,6 +211,7 @@
     <Compile Include="Wechat\ReturnMessage.cs" />
     <Compile Include="Wechat\User.cs" />
     <Compile Include="Wechat\WechatAction.cs" />
+    <Compile Include="Wechat\WechatErrorConstant.cs" />
     <Compile Include="Wechat\WechatJsonUser.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
