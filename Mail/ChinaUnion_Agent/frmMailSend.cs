@@ -110,10 +110,14 @@ namespace ChinaUnion_Agent
                         String fieldValue = dgAgentFee[j, i].Value == null ? "" : dgAgentFee[j, i].Value.ToString();
                         sb.Append("fee_name").Append(index.ToString()).Append("#").Append(dgAgentFee.Columns[j].HeaderCell.Value.ToString()).Append(",");
                         sb.Append("fee").Append(index.ToString()).Append("#").Append(fieldValue).Append(",");
-
                     }
 
-
+                    for (int j = dgAgentFee.ColumnCount - 1; j <= 106; j++)
+                    {
+                        int index = j - 6;
+                        sb.Append("fee_name").Append(index.ToString()).Append("#").Append("").Append(",");
+                        sb.Append("fee").Append(index.ToString()).Append("#").Append("").Append(",");
+                    }
 
                     sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
 
