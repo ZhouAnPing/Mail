@@ -34,7 +34,7 @@
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpAgentFee = new System.Windows.Forms.GroupBox();
             this.dgAgentFee = new System.Windows.Forms.DataGridView();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -45,7 +45,7 @@
             this.dgAgent = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpAgentFee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentTypeComment)).BeginInit();
@@ -145,16 +145,16 @@
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // groupBox1
+            // grpAgentFee
             // 
-            this.groupBox1.Controls.Add(this.dgAgentFee);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 58);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1016, 396);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "月度佣金明细信息";
+            this.grpAgentFee.Controls.Add(this.dgAgentFee);
+            this.grpAgentFee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpAgentFee.Location = new System.Drawing.Point(0, 58);
+            this.grpAgentFee.Name = "grpAgentFee";
+            this.grpAgentFee.Size = new System.Drawing.Size(1016, 396);
+            this.grpAgentFee.TabIndex = 7;
+            this.grpAgentFee.TabStop = false;
+            this.grpAgentFee.Text = "月度佣金明细信息";
             // 
             // dgAgentFee
             // 
@@ -279,7 +279,7 @@
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpAgentFee);
             this.Controls.Add(this.panel1);
             this.Name = "frmAgentQuery";
             this.ShowIcon = false;
@@ -288,7 +288,7 @@
             this.Load += new System.EventHandler(this.frmAgentQuery_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.grpAgentFee.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentTypeComment)).EndInit();
@@ -304,7 +304,7 @@
 
         private BSE.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnQuery;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpAgentFee;
         private System.Windows.Forms.DataGridView dgAgentFee;
         private BSE.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.DateTimePicker dtFeeMonth;

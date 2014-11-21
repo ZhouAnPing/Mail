@@ -69,6 +69,7 @@ namespace ChinaUnion_Agent
 
                 if (agentFee != null && agentFee.Count > 0)
                 {
+                    this.grpAgentFee.Text = "月度佣金明细信息(" + agentFee.Count + ")";
                     this.btnImport.Enabled = true;
                     dgAgentFee.Rows.Clear();
                     dgAgentFee.Columns.Clear();

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgentFeeImport));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpAgentFee = new System.Windows.Forms.GroupBox();
             this.dgAgentFee = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -37,8 +37,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
             this.dgAgentType = new System.Windows.Forms.DataGridView();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.splitter2 = new BSE.Windows.Forms.Splitter();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
             this.btnDownload = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtAgent = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.grpAgentFee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -59,16 +59,16 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpAgentFee
             // 
-            this.groupBox1.Controls.Add(this.dgAgentFee);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 58);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1016, 251);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "月度佣金明细信息";
+            this.grpAgentFee.Controls.Add(this.dgAgentFee);
+            this.grpAgentFee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpAgentFee.Location = new System.Drawing.Point(0, 58);
+            this.grpAgentFee.Name = "grpAgentFee";
+            this.grpAgentFee.Size = new System.Drawing.Size(1016, 251);
+            this.grpAgentFee.TabIndex = 6;
+            this.grpAgentFee.TabStop = false;
+            this.grpAgentFee.Text = "月度佣金明细信息";
             // 
             // dgAgentFee
             // 
@@ -166,6 +166,15 @@
             this.dgAgentType.Size = new System.Drawing.Size(526, 394);
             this.dgAgentType.TabIndex = 6;
             // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.Color.Transparent;
+            this.splitter2.Location = new System.Drawing.Point(3, 3);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 394);
+            this.splitter2.TabIndex = 7;
+            this.splitter2.TabStop = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -176,15 +185,6 @@
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.Transparent;
-            this.splitter2.Location = new System.Drawing.Point(3, 3);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 394);
-            this.splitter2.TabIndex = 7;
-            this.splitter2.TabStop = false;
             // 
             // splitter1
             // 
@@ -314,7 +314,7 @@
             this.ClientSize = new System.Drawing.Size(1016, 741);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpAgentFee);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAgentFeeImport";
@@ -323,7 +323,7 @@
             this.Text = "佣金导入";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmAgentFeeImport_Load);
-            this.groupBox1.ResumeLayout(false);
+            this.grpAgentFee.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -343,7 +343,7 @@
         private System.Windows.Forms.TextBox txtAgent;
         private System.Windows.Forms.Button btnSelect;
         private BSE.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpAgentFee;
         private System.Windows.Forms.DataGridView dgAgentFee;
         private BSE.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.TabControl tabControl1;

@@ -50,6 +50,7 @@ namespace ChinaUnion_Agent.WechatForm
           
             if (wechatUser != null && wechatUser.userlist.Count > 0)
             {
+                this.grpWechatList.Text = "微信用户列表(" + wechatUser.userlist.Count + ")";
                 this.dgWechat.Rows.Clear();
                 dgWechat.Columns.Clear();
                 if (wechatType.Equals("ErrorCode"))

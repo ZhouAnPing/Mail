@@ -121,13 +121,11 @@ namespace ChinaUnion_Agent
             //代理商佣金
             AgentFeeDao agentFeeDao = new AgentFeeDao();
             IList<AgentFee> agentFeeList = agentFeeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
-
             dgAgentFee.Rows.Clear();
             dgAgentFee.Columns.Clear();
             if (agentFeeList != null && agentFeeList.Count > 0)
             {
-               
-
+                this.grpAgentFee.Text = "月度佣金明细信息(" + agentFeeList.Count + ")";
                 dgAgentFee.Columns.Add("代理商编号", "代理商编号");
                 dgAgentFee.Columns.Add("代理商名称", "代理商名称");
                 dgAgentFee.Columns.Add("代理商类型", "代理商类型");
@@ -135,8 +133,6 @@ namespace ChinaUnion_Agent
                 dgAgentFee.Columns.Add("联系人邮件", "联系人邮件");
                 dgAgentFee.Columns.Add("联系人名称", "联系人名称");
                 dgAgentFee.Columns.Add("告知单编号", "告知单编号");
-
-
 
                 for (int i = 0; i < agentFeeList.Count; i++)
                 {

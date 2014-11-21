@@ -13,6 +13,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using TripolisDialogueAdapter;
+using System.Text.RegularExpressions;
 
 namespace ChinaUnion_Agent.Wechat
 {
@@ -58,6 +59,7 @@ namespace ChinaUnion_Agent.Wechat
 
             if (agentList != null && agentList.Count > 0)
             {
+                this.grpAgentList.Text = "代理商列表(" + agentList.Count+")";
                 dgAgent.Rows.Clear();
                 dgAgent.Columns.Clear();
 
@@ -125,15 +127,53 @@ namespace ChinaUnion_Agent.Wechat
                 wechatJsonUser.department = new List<int>();
                 wechatJsonUser.department.Add(Settings.Default.Wechat_Agent_Department);
                 worker.ReportProgress(2, "同步微信账号" + wechatJsonUser.userid + "\r\n");
+
+                //Check the Wechat rule
+                #region
+                String email = "";
+                String mobile = this.dgAgent[3, i].Value.ToString();
+                String weixinid = this.dgAgent[4, i].Value.ToString();
+              
+
+               
+                   // ^[1]+[3,5,8]+\d{9}
+                    if (Regex.IsMatch(weixinid, @"^[1]+[3,5,8]+\d{9}"))
+                    {
+                        mobile = weixinid;
+                        weixinid = "";
+                    }
+                    else
+                    {
+                        if (Regex.IsMatch(weixinid, @"^\d+$"))
+                        {
+                            weixinid = "QQ" + weixinid;
+                            mobile = "";
+                        }
+                        else
+                        {
+                            mobile = "";
+                        } 
+                    }
+                
+
+               // this.dgAgent[2, i].Value = email;
+               // this.dgAgent[3, i].Value = mobile;
+               // this.dgAgent[4, i].Value = weixinid;
+
+             
+
+                   
+                #endregion
+
+
                 var userData = new
                 {
                     userid = wechatJsonUser.userid,
                     name = wechatJsonUser.name,
-                    department = wechatJsonUser.department,
-                    position = wechatJsonUser.name,
-                    mobile = wechatJsonUser.mobile,
-                    email = wechatJsonUser.email,
-                    weixinid = wechatJsonUser.weixinid
+                    department = wechatJsonUser.department,                    
+                    mobile = mobile,
+                    email = email,
+                    weixinid = weixinid
                 };
 
                 string InsertUserJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
@@ -157,9 +197,9 @@ namespace ChinaUnion_Agent.Wechat
                         {
                             userid = this.dgAgent[0, i].Value.ToString(),
                             name = this.dgAgent[1, i].Value.ToString(),
-                            email = this.dgAgent[2, i].Value.ToString(),
-                            mobile = this.dgAgent[3, i].Value.ToString(),
-                            weixinid = this.dgAgent[4, i].Value.ToString(),
+                            email = email,
+                            mobile = mobile,
+                            weixinid = weixinid,
                             department = wechatJsonUser.department
                         };
 

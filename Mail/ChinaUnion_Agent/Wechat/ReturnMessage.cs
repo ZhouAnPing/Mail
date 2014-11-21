@@ -13,7 +13,14 @@ namespace ChinaUnion_Agent.Wechat
         public String getErrorDescrition()
         {
             WechatErrorConstant wechatErrorConstant = new WechatErrorConstant();
-            return  wechatErrorConstant.WechatErrorHT[errcode].ToString();
+            if (wechatErrorConstant.WechatErrorHT[errcode] != null)
+            {
+                return wechatErrorConstant.WechatErrorHT[errcode].ToString();
+            }
+            else
+            {
+                return errmsg;
+            }
 
         }
 

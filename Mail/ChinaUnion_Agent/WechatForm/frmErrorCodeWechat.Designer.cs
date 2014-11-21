@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtErrorCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSync = new System.Windows.Forms.Button();
-            this.btnDownload = new System.Windows.Forms.Button();
-            this.groupBox3.SuspendLayout();
+            this.grpWechatList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox3
+            // grpWechatList
             // 
-            this.groupBox3.Controls.Add(this.dgWechat);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 55);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1016, 686);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = " 错误代码微信用户列表";
+            this.grpWechatList.Controls.Add(this.dgWechat);
+            this.grpWechatList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpWechatList.Location = new System.Drawing.Point(0, 55);
+            this.grpWechatList.Name = "grpWechatList";
+            this.grpWechatList.Size = new System.Drawing.Size(1016, 686);
+            this.grpWechatList.TabIndex = 5;
+            this.grpWechatList.TabStop = false;
+            this.grpWechatList.Text = " 错误代码微信用户列表";
             // 
             // dgWechat
             // 
@@ -82,6 +82,17 @@
             this.groupBox1.Size = new System.Drawing.Size(1016, 55);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDownload.Location = new System.Drawing.Point(694, 16);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 31);
+            this.btnDownload.TabIndex = 15;
+            this.btnDownload.Text = "模板下载";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnCancel
             // 
@@ -136,24 +147,13 @@
             this.btnSync.UseVisualStyleBackColor = true;
             this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
-            // btnDownload
-            // 
-            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDownload.Location = new System.Drawing.Point(694, 16);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(75, 31);
-            this.btnDownload.TabIndex = 15;
-            this.btnDownload.Text = "模板下载";
-            this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
-            // 
             // frmErrorCodeWechat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.grpWechatList);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmErrorCodeWechat";
             this.ShowIcon = false;
@@ -161,7 +161,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "微信账号导入";
             this.Load += new System.EventHandler(this.frmErrorCodeWechat_Load);
-            this.groupBox3.ResumeLayout(false);
+            this.grpWechatList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -171,7 +171,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grpWechatList;
         private System.Windows.Forms.DataGridView dgWechat;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSync;

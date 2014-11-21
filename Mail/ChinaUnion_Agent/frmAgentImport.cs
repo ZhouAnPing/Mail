@@ -49,17 +49,7 @@ namespace ChinaUnion_Agent
                     MessageBox.Show("Excel格式不正确，必须含有名称:代理商相关信息的sheet.");
                     return;
                 }
-                if (!sheetNames.Contains("代理商渠道类型"))
-                {
-                    MessageBox.Show("Excel格式不正确，必须含有名称:代理商渠道类型的sheet.");
-                    return;
-                }
-                if (!sheetNames.Contains("说明格式"))
-                {
-                    MessageBox.Show("Excel格式不正确，必须含有名称:说明格式的sheet.");
-                    return;
-                }
-
+              
                 
 
                 //代理商信息
@@ -67,6 +57,7 @@ namespace ChinaUnion_Agent
 
                 if (agent != null && agent.Count > 0)
                 {
+                   
                     this.btnImport.Enabled = true;
                     dgAgent.Rows.Clear();
                     dgAgent.Columns.Clear();

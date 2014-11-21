@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFind = new System.Windows.Forms.Button();
@@ -36,21 +36,21 @@
             this.lblType = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.groupBox3.SuspendLayout();
+            this.grpWechatList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox3
+            // grpWechatList
             // 
-            this.groupBox3.Controls.Add(this.dgWechat);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 55);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1016, 686);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "微信用户列表";
+            this.grpWechatList.Controls.Add(this.dgWechat);
+            this.grpWechatList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpWechatList.Location = new System.Drawing.Point(0, 55);
+            this.grpWechatList.Name = "grpWechatList";
+            this.grpWechatList.Size = new System.Drawing.Size(1016, 686);
+            this.grpWechatList.TabIndex = 7;
+            this.grpWechatList.TabStop = false;
+            this.grpWechatList.Text = "微信用户列表";
             // 
             // dgWechat
             // 
@@ -139,14 +139,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.grpWechatList);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmWechatManagement";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "微信管理";
             this.Load += new System.EventHandler(this.frmWechatManagement_Load);
-            this.groupBox3.ResumeLayout(false);
+            this.grpWechatList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -156,7 +156,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grpWechatList;
         private System.Windows.Forms.DataGridView dgWechat;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCancel;
