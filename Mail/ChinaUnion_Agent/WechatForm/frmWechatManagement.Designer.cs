@@ -31,6 +31,7 @@
             this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
@@ -69,6 +70,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.lblType);
@@ -80,6 +82,16 @@
             this.groupBox1.Size = new System.Drawing.Size(1016, 55);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(451, 16);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 31);
+            this.btnExport.TabIndex = 17;
+            this.btnExport.Text = "数据导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnFind
             // 
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnExport;
     }
 }

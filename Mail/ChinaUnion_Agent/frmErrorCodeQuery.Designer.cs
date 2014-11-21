@@ -28,17 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new BSE.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgErrorCode = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.panel1 = new BSE.Windows.Forms.Panel();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
             this.txtErrorCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgErrorCode = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgErrorCode)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgErrorCode);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 58);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1016, 683);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "错误代码列表";
+            // 
+            // dgErrorCode
+            // 
+            this.dgErrorCode.AllowUserToAddRows = false;
+            this.dgErrorCode.AllowUserToDeleteRows = false;
+            this.dgErrorCode.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgErrorCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgErrorCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgErrorCode.Location = new System.Drawing.Point(3, 17);
+            this.dgErrorCode.Name = "dgErrorCode";
+            this.dgErrorCode.ReadOnly = true;
+            this.dgErrorCode.RowHeadersWidth = 10;
+            this.dgErrorCode.RowTemplate.Height = 23;
+            this.dgErrorCode.Size = new System.Drawing.Size(1010, 663);
+            this.dgErrorCode.TabIndex = 5;
+            this.dgErrorCode.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgErrorCode_CellFormatting);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(642, 13);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // panel1
             // 
@@ -46,6 +85,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnQuery);
             this.panel1.Controls.Add(this.txtErrorCode);
@@ -77,16 +117,16 @@
             this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.panel1.ToolTipTextExpandIconPanelExpanded = null;
             // 
-            // btnCancel
+            // btnExport
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(608, 13);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 31);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnExport.Location = new System.Drawing.Point(751, 13);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 31);
+            this.btnExport.TabIndex = 21;
+            this.btnExport.Text = "数据导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Visible = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnQuery
             // 
@@ -115,33 +155,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "错误代码关键字：";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dgErrorCode);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 58);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1016, 683);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "错误代码列表";
-            // 
-            // dgErrorCode
-            // 
-            this.dgErrorCode.AllowUserToAddRows = false;
-            this.dgErrorCode.AllowUserToDeleteRows = false;
-            this.dgErrorCode.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgErrorCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgErrorCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgErrorCode.Location = new System.Drawing.Point(3, 17);
-            this.dgErrorCode.Name = "dgErrorCode";
-            this.dgErrorCode.ReadOnly = true;
-            this.dgErrorCode.RowHeadersWidth = 10;
-            this.dgErrorCode.RowTemplate.Height = 23;
-            this.dgErrorCode.Size = new System.Drawing.Size(1010, 663);
-            this.dgErrorCode.TabIndex = 5;
-            this.dgErrorCode.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgErrorCode_CellFormatting);
-            // 
             // frmErrorCodeQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -157,10 +170,10 @@
             this.Text = "错误代码导入";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmErrorCode_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgErrorCode)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -174,5 +187,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgErrorCode;
+        private System.Windows.Forms.Button btnExport;
     }
 }

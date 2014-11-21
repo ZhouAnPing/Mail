@@ -189,6 +189,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Util\ExportData.cs" />
     <Compile Include="Util\HttpHelper.cs" />
     <Compile Include="WechatForm\frmAgentWechatManagement.cs">
       <SubType>Form</SubType>

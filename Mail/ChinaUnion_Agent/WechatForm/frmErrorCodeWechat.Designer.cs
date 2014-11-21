@@ -31,6 +31,7 @@
             this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -70,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSelect);
@@ -83,10 +85,20 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(812, 16);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 31);
+            this.btnExport.TabIndex = 16;
+            this.btnExport.Text = "数据导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // btnDownload
             // 
             this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDownload.Location = new System.Drawing.Point(694, 16);
+            this.btnDownload.Location = new System.Drawing.Point(712, 16);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(75, 31);
             this.btnDownload.TabIndex = 15;
@@ -98,7 +110,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(776, 16);
+            this.btnCancel.Location = new System.Drawing.Point(912, 16);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 14;
@@ -180,5 +192,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button btnExport;
     }
 }

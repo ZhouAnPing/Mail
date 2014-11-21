@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new BSE.Windows.Forms.Panel();
+            this.grpAgentFee = new System.Windows.Forms.GroupBox();
+            this.dgAgentFee = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
+            this.dgAgentType = new System.Windows.Forms.DataGridView();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.splitter2 = new BSE.Windows.Forms.Splitter();
+            this.splitter1 = new BSE.Windows.Forms.Splitter();
+            this.panel1 = new BSE.Windows.Forms.Panel();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnMail = new System.Windows.Forms.Button();
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
-            this.grpAgentFee = new System.Windows.Forms.GroupBox();
-            this.dgAgentFee = new System.Windows.Forms.DataGridView();
-            this.splitter1 = new BSE.Windows.Forms.Splitter();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
-            this.dgAgentType = new System.Windows.Forms.DataGridView();
-            this.splitter2 = new BSE.Windows.Forms.Splitter();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dgAgent = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.panel1.SuspendLayout();
             this.grpAgentFee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -53,97 +53,8 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.AssociatedSplitter = null;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
-            this.panel1.CaptionHeight = 27;
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Controls.Add(this.btnMail);
-            this.panel1.Controls.Add(this.dtFeeMonth);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnQuery);
-            this.panel1.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.panel1.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
-            this.panel1.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
-            this.panel1.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
-            this.panel1.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
-            this.panel1.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(189)))), ((int)(((byte)(210)))));
-            this.panel1.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(189)))), ((int)(((byte)(210)))));
-            this.panel1.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
-            this.panel1.CustomColors.CollapsedCaptionText = System.Drawing.SystemColors.ControlText;
-            this.panel1.CustomColors.ContentGradientBegin = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.CustomColors.ContentGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(245)))), ((int)(((byte)(244)))));
-            this.panel1.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Image = null;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(27, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.ShowCaptionbar = false;
-            this.panel1.Size = new System.Drawing.Size(1016, 58);
-            this.panel1.TabIndex = 1;
-            this.panel1.Text = "代理商导入";
-            this.panel1.ToolTipTextCloseIcon = null;
-            this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
-            this.panel1.ToolTipTextExpandIconPanelExpanded = null;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(530, 10);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(70, 35);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "关闭";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnMail
-            // 
-            this.btnMail.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnMail.Location = new System.Drawing.Point(387, 10);
-            this.btnMail.Name = "btnMail";
-            this.btnMail.Size = new System.Drawing.Size(70, 35);
-            this.btnMail.TabIndex = 10;
-            this.btnMail.Text = "邮件发送";
-            this.btnMail.UseVisualStyleBackColor = true;
-            this.btnMail.Visible = false;
-            this.btnMail.Click += new System.EventHandler(this.btnMail_Click);
-            // 
-            // dtFeeMonth
-            // 
-            this.dtFeeMonth.CustomFormat = "yyyy-MM";
-            this.dtFeeMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFeeMonth.Location = new System.Drawing.Point(108, 21);
-            this.dtFeeMonth.Name = "dtFeeMonth";
-            this.dtFeeMonth.Size = new System.Drawing.Size(113, 21);
-            this.dtFeeMonth.TabIndex = 13;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "佣金月份：";
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuery.Location = new System.Drawing.Point(244, 10);
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(70, 35);
-            this.btnQuery.TabIndex = 9;
-            this.btnQuery.Text = "查询";
-            this.btnQuery.UseVisualStyleBackColor = true;
-            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // grpAgentFee
             // 
@@ -170,16 +81,6 @@
             this.dgAgentFee.RowTemplate.Height = 23;
             this.dgAgentFee.Size = new System.Drawing.Size(1010, 376);
             this.dgAgentFee.TabIndex = 5;
-            // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.Color.Transparent;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 454);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1016, 3);
-            this.splitter1.TabIndex = 8;
-            this.splitter1.TabStop = false;
             // 
             // tabPage2
             // 
@@ -224,15 +125,6 @@
             this.dgAgentType.Size = new System.Drawing.Size(526, 249);
             this.dgAgentType.TabIndex = 6;
             // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.Transparent;
-            this.splitter2.Location = new System.Drawing.Point(3, 3);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 249);
-            this.splitter2.TabIndex = 7;
-            this.splitter2.TabStop = false;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dgAgent);
@@ -271,6 +163,126 @@
             this.tabControl1.Size = new System.Drawing.Size(1016, 284);
             this.tabControl1.TabIndex = 9;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(528, 10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(70, 35);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "关闭";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.Color.Transparent;
+            this.splitter2.Location = new System.Drawing.Point(3, 3);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 249);
+            this.splitter2.TabIndex = 7;
+            this.splitter2.TabStop = false;
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.Color.Transparent;
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter1.Location = new System.Drawing.Point(0, 454);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(1016, 3);
+            this.splitter1.TabIndex = 8;
+            this.splitter1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.AssociatedSplitter = null;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
+            this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.btnExport);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnMail);
+            this.panel1.Controls.Add(this.dtFeeMonth);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnQuery);
+            this.panel1.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.panel1.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
+            this.panel1.CustomColors.CaptionExpandIcon = System.Drawing.SystemColors.ControlText;
+            this.panel1.CustomColors.CaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
+            this.panel1.CustomColors.CaptionGradientEnd = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.CustomColors.CaptionGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
+            this.panel1.CustomColors.CaptionSelectedGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(189)))), ((int)(((byte)(210)))));
+            this.panel1.CustomColors.CaptionSelectedGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(189)))), ((int)(((byte)(210)))));
+            this.panel1.CustomColors.CaptionText = System.Drawing.SystemColors.ControlText;
+            this.panel1.CustomColors.CollapsedCaptionText = System.Drawing.SystemColors.ControlText;
+            this.panel1.CustomColors.ContentGradientBegin = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.CustomColors.ContentGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(245)))), ((int)(((byte)(244)))));
+            this.panel1.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Image = null;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.MinimumSize = new System.Drawing.Size(27, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.ShowCaptionbar = false;
+            this.panel1.Size = new System.Drawing.Size(1016, 58);
+            this.panel1.TabIndex = 1;
+            this.panel1.Text = "代理商导入";
+            this.panel1.ToolTipTextCloseIcon = null;
+            this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
+            this.panel1.ToolTipTextExpandIconPanelExpanded = null;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(430, 10);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(70, 35);
+            this.btnExport.TabIndex = 21;
+            this.btnExport.Text = "佣金导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnMail
+            // 
+            this.btnMail.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnMail.Location = new System.Drawing.Point(337, 10);
+            this.btnMail.Name = "btnMail";
+            this.btnMail.Size = new System.Drawing.Size(70, 35);
+            this.btnMail.TabIndex = 10;
+            this.btnMail.Text = "邮件发送";
+            this.btnMail.UseVisualStyleBackColor = true;
+            this.btnMail.Visible = false;
+            this.btnMail.Click += new System.EventHandler(this.btnMail_Click);
+            // 
+            // dtFeeMonth
+            // 
+            this.dtFeeMonth.CustomFormat = "yyyy-MM";
+            this.dtFeeMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFeeMonth.Location = new System.Drawing.Point(108, 21);
+            this.dtFeeMonth.Name = "dtFeeMonth";
+            this.dtFeeMonth.Size = new System.Drawing.Size(113, 21);
+            this.dtFeeMonth.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "佣金月份：";
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnQuery.Location = new System.Drawing.Point(244, 10);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(70, 35);
+            this.btnQuery.TabIndex = 9;
+            this.btnQuery.Text = "查询";
+            this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
             // frmAgentQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -286,8 +298,6 @@
             this.Text = "代理商佣金查询";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmAgentQuery_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.grpAgentFee.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentFee)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -296,6 +306,8 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -318,5 +330,6 @@
         private System.Windows.Forms.DataGridView dgAgent;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnExport;
     }
 }

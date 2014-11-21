@@ -1,4 +1,5 @@
-﻿using ChinaUnion_BO;
+﻿using ChinaUnion_Agent.Util;
+using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
 using System.Collections.Generic;
@@ -109,6 +110,13 @@ namespace ChinaUnion_Agent
             }
             this.Cursor = Cursors.Default;
             
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            ExportData.exportGridData(this.dgErrorCode);
+            this.Cursor = Cursors.Default;
         }
     }
 }

@@ -304,6 +304,13 @@ namespace ChinaUnion_Agent.Wechat
 
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            ExportData.exportGridData(this.dgAgent);
+            this.Cursor = Cursors.Default;
+        }
+
      
        
     }

@@ -36,6 +36,7 @@
             this.btnSync = new System.Windows.Forms.Button();
             this.grpAgentList = new System.Windows.Forms.GroupBox();
             this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpAgentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
@@ -43,6 +44,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
             this.groupBox1.Controls.Add(this.txtAgentNo);
             this.groupBox1.Controls.Add(this.lblType);
@@ -59,7 +61,7 @@
             // 
             this.btnFind.AutoSize = true;
             this.btnFind.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnFind.Location = new System.Drawing.Point(353, 17);
+            this.btnFind.Location = new System.Drawing.Point(350, 16);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(55, 31);
             this.btnFind.TabIndex = 17;
@@ -87,7 +89,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(595, 17);
+            this.btnCancel.Location = new System.Drawing.Point(690, 16);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(55, 31);
             this.btnCancel.TabIndex = 14;
@@ -98,7 +100,7 @@
             // btnSync
             // 
             this.btnSync.AutoSize = true;
-            this.btnSync.Location = new System.Drawing.Point(452, 17);
+            this.btnSync.Location = new System.Drawing.Point(442, 16);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(99, 31);
             this.btnSync.TabIndex = 0;
@@ -132,6 +134,16 @@
             this.dgAgent.Size = new System.Drawing.Size(1010, 665);
             this.dgAgent.TabIndex = 7;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(578, 16);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 31);
+            this.btnExport.TabIndex = 20;
+            this.btnExport.Text = "数据导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // frmAgentWechatManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtAgentNo;
         private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Button btnExport;
     }
 }
