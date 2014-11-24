@@ -64,8 +64,38 @@ namespace ChinaUnion_Agent
                     return;
                 }
 
+                ArrayList AgentNoList = new ArrayList();
+                StringBuilder NotExistAgentNo = new StringBuilder();
+
+                //代理商信息
+                List<Row> agent = execelfile.Worksheet("代理商相关信息").ToList(); ;
+
+                if (agent != null && agent.Count > 0)
+                {
+                    this.btnImport.Enabled = true;
+                    dgAgent.Rows.Clear();
+                    dgAgent.Columns.Clear();
+                    foreach (String coloumn in agent[0].ColumnNames)
+                    {
+                        this.dgAgent.Columns.Add(coloumn, coloumn);
+                    }
+
+                    for (int i = 0; i < agent.Count; i++)
+                    {
+                        dgAgent.Rows.Add();
+                        DataGridViewRow row = dgAgent.Rows[i];
+                        foreach (String coloumn in agent[0].ColumnNames)
+                        {
+                            row.Cells[coloumn].Value = agent[i][coloumn];
+                        }
+
+                        AgentNoList.Add(agent[i][0].ToString());
+
+                    }
+                }
+
                 //代理商佣金明细
-                List<Row> agentFee = execelfile.Worksheet("明细表").ToList(); 
+                List<Row> agentFee = execelfile.Worksheet("明细表").ToList();
 
                 if (agentFee != null && agentFee.Count > 0)
                 {
@@ -91,30 +121,9 @@ namespace ChinaUnion_Agent
                         {
                             row.Cells[coloumn].Value = agentFee[i][coloumn];
                         }
-
-                    }
-                }
-
-                //代理商信息
-                List<Row> agent = execelfile.Worksheet("代理商相关信息").ToList(); ;
-
-                if (agent != null && agent.Count > 0)
-                {
-                    this.btnImport.Enabled = true;
-                    dgAgent.Rows.Clear();
-                    dgAgent.Columns.Clear();
-                    foreach (String coloumn in agent[0].ColumnNames)
-                    {
-                        this.dgAgent.Columns.Add(coloumn, coloumn);
-                    }
-
-                    for (int i = 0; i < agent.Count; i++)
-                    {
-                        dgAgent.Rows.Add();
-                        DataGridViewRow row = dgAgent.Rows[i];
-                        foreach (String coloumn in agent[0].ColumnNames)
+                        if (!AgentNoList.Contains(agentFee[i][0].ToString()))
                         {
-                            row.Cells[coloumn].Value = agent[i][coloumn];
+                            NotExistAgentNo.AppendFormat("明细表中代理商编号:{0}不存在", agentFee[i][0].ToString()).AppendLine();
                         }
 
                     }
@@ -141,10 +150,15 @@ namespace ChinaUnion_Agent
                         {
                             row.Cells[coloumn].Value = agentType[i][coloumn];
                         }
+                        if (!AgentNoList.Contains(agentType[i][0].ToString()))
+                        {
+                            NotExistAgentNo.AppendFormat("代理商渠道类型中代理商编号:{0}不存在", agentType[i][0].ToString()).AppendLine();
+                        }
 
                     }
                 }
 
+              
 
                 //代理商渠道类型说明
                 List<Row> agentTypeComment = execelfile.Worksheet("说明格式").ToList(); ;
@@ -328,10 +342,10 @@ namespace ChinaUnion_Agent
                 }
 
 
-                if (!String.IsNullOrEmpty(sbDuplicated.ToString()))
+                if (!String.IsNullOrEmpty(sbDuplicated.ToString()) || !String.IsNullOrEmpty(NotExistAgentNo.ToString()))
                 {
                     this.btnImport.Enabled = false;
-                    MessageBox.Show(sbDuplicated.ToString());
+                    MessageBox.Show(NotExistAgentNo.AppendLine().ToString()+sbDuplicated.AppendLine().ToString()+"请修复后重新导入");
                 }
                 else
                 {
