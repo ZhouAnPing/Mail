@@ -1,6 +1,9 @@
-﻿using KnightsWarriorAutoupdater;
+﻿using ChinaUnion_DataAccess;
+using KnightsWarriorAutoupdater;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -20,6 +23,16 @@ namespace ChinaUnion_Agent
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Process[] pary = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+            if (pary.Length > 1)
+            {
+                
+                MessageBox.Show("已经有相同的程序在运行,请关闭已经打开的程序！");
+              
+                return;
+            }
+
 
             #region check and download new version program
             bool bHasError = false;
@@ -69,8 +82,24 @@ namespace ChinaUnion_Agent
             }
             #endregion
 
+            bool isNewVersion = true ;
+            if (isNewVersion)
+            {
+                frmLogin fLogin = new frmLogin();
+                fLogin.ShowDialog();
+                if (fLogin.DialogResult != DialogResult.OK)
+                    return;
 
-            Application.Run(new frmMain());
+
+                frmMain frmMain = new ChinaUnion_Agent.frmMain();
+                frmMain.isNewVersion = isNewVersion;
+                frmMain.menuTable = fLogin.menuTable;
+                Application.Run(frmMain);
+            }
+            else
+            {
+                Application.Run(new frmMain());
+            }
         }
     }
 }

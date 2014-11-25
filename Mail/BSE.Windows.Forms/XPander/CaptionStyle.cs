@@ -7,7 +7,7 @@ namespace BSE.Windows.Forms
 	/// <summary>
 	/// Specifies constants that define the style of the caption in a XPanderPanel.
 	/// </summary>
-    /// <copyright>Copyright © 2008 Uwe Eichkorn
+    /// <copyright>Copyright ?2008 Uwe Eichkorn
     /// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
     /// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
     /// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR

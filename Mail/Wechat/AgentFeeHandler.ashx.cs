@@ -103,10 +103,10 @@ namespace Wechat
 
                     case "PreMonthFeeQuery":
                     case "CurMonthFeeQuery":
-                        String feeMonth = DateTime.Now.ToString("yyyy-MM");
+                        String feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
                         if (actionType.Equals("PreMonthFeeQuery"))
                         {
-                            feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
+                            feeMonth = DateTime.Now.AddMonths(-2).ToString("yyyy-MM");
                         }
                         AgentFeeDao agentFeeDao = new AgentFeeDao();
                         AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);

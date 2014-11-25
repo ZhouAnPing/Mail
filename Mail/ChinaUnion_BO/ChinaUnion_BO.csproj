@@ -49,6 +49,7 @@
     <Compile Include="AgentErrorCode.cs" />
     <Compile Include="ImportLog.cs" />
     <Compile Include="MailJob.cs" />
+    <Compile Include="MyMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
