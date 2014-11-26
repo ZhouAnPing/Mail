@@ -94,6 +94,7 @@ namespace ChinaUnion_Agent
                 frmMain frmMain = new ChinaUnion_Agent.frmMain();
                 frmMain.isNewVersion = isNewVersion;
                 frmMain.menuTable = fLogin.menuTable;
+                frmMain.loginUser = fLogin.loginUser;
                 Application.Run(frmMain);
             }
             else

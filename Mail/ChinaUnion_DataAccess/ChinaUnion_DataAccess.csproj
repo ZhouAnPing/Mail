@@ -51,6 +51,8 @@
     <Compile Include="AgentTypeCommentDao.cs" />
     <Compile Include="AgentTypeDao.cs" />
     <Compile Include="AgentErrorCodeDao.cs" />
+    <Compile Include="UserRightDao.cs" />
+    <Compile Include="UserDao.cs" />
     <Compile Include="DBConstant.cs" />
     <Compile Include="ImportLogDao.cs" />
     <Compile Include="MailJobDao.cs" />

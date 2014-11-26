@@ -325,7 +325,7 @@ namespace ChinaUnion_Agent
         int currentRowIndex = 0;
         private void dgAgentFee_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgAgentFee.CurrentRow != null & dgAgentFee.CurrentRow.Index != currentRowIndex)
+            if (dgAgentFee.CurrentRow != null && dgAgentFee.CurrentRow.Index != currentRowIndex)
             {
                 currentRowIndex = dgAgentFee.CurrentRow.Index;
                 showHtml(currentRowIndex);

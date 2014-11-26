@@ -26,6 +26,7 @@ namespace ChinaUnion_Agent
     public partial class frmMain : Form
     {
         public DataTable menuTable = new DataTable();
+        public ChinaUnion_BO.User loginUser = new ChinaUnion_BO.User();
         public bool isNewVersion = false;
         public frmMain()
         {
@@ -477,7 +478,7 @@ namespace ChinaUnion_Agent
                     case "ChangePassword":
 
                         frmUserModification frmUserModification = new frmUserModification();
-
+                        frmUserModification.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmUserModification);
                         break;
 

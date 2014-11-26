@@ -1,4 +1,6 @@
-﻿using ChinaUnion_DataAccess;
+﻿using ChinaUnion_Agent.UserManagement;
+using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ namespace ChinaUnion_Agent
     public partial class frmLogin : Form
     {
         public DataTable menuTable = new DataTable();
+        public User loginUser = new User();
 
         public frmLogin()
         {
@@ -21,6 +24,26 @@ namespace ChinaUnion_Agent
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(this.txtUserName.Text))
+            {
+                MessageBox.Show("请输入用户名");
+                txtUserName.Focus();
+                return;
+            }
+            if (String.IsNullOrEmpty(this.txtPassword.Text))
+            {
+                MessageBox.Show("请输入密码");
+                txtPassword.Focus();
+                return;
+            }
+            UserDao userDao = new UserDao();
+            this.loginUser = userDao.Get(this.txtUserName.Text);
+            if (loginUser == null || (loginUser != null && !loginUser.password.Equals(this.txtPassword.Text)))
+            {
+                MessageBox.Show("用户名或者密码不正确，请重新输入.");
+                txtUserName.Focus();
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             this.Hide();
             //异步执行开始
@@ -58,7 +81,7 @@ namespace ChinaUnion_Agent
         {
             worker.ReportProgress(2, "系统正在加载数据，请稍后...\r\n");
             MyMenuItemDao menuDao = new MyMenuItemDao();
-            menuTable = menuDao.GetListDT();
+            menuTable = menuDao.GetListDT();            
             worker.ReportProgress(2, "系统加载数据完成，正在启动...\r\n");
         }
         /// <summary>
@@ -69,6 +92,35 @@ namespace ChinaUnion_Agent
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // MessageBox.Show("处理完成。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnModifyPassword_Click(object sender, EventArgs e)
+        {
+          
+            if (String.IsNullOrEmpty(this.txtUserName.Text))
+            {
+                MessageBox.Show("请输入用户名");
+                txtUserName.Focus();
+                return;
+            }
+            if (String.IsNullOrEmpty(this.txtPassword.Text))
+            {
+                MessageBox.Show("请输入密码");
+                txtPassword.Focus();
+                return;
+            }
+            this.Cursor = Cursors.WaitCursor;
+            UserDao userDao = new UserDao();
+            this.loginUser = userDao.Get(this.txtUserName.Text);
+            if (loginUser == null || (loginUser != null && !loginUser.password.Equals(this.txtPassword.Text)))
+            {
+                MessageBox.Show("用户名或者密码不正确，请重新输入.");
+                txtUserName.Focus();
+                return;
+            }
+            this.Cursor = Cursors.Default;
+            frmUserModification frmUserModification = new frmUserModification();
+            frmUserModification.ShowDialog();
         }
     }
 }
