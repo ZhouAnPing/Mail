@@ -481,6 +481,11 @@ namespace ChinaUnion_Agent
                         frmUserModification.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmUserModification);
                         break;
+                    case "WechatMemberManagement":
+                        frmWechatContactManagement frmWechatContactManagement = new frmWechatContactManagement();
+                      
+                        CheckChildOpenState(this, frmWechatContactManagement);
+                        break;
 
                 }
 

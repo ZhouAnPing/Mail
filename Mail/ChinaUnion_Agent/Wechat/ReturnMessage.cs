@@ -10,6 +10,7 @@ namespace ChinaUnion_Agent.Wechat
         public string errcode { get; set; }
 
         public string errmsg { get; set; }
+        
         public String getErrorDescrition()
         {
             WechatErrorConstant wechatErrorConstant = new WechatErrorConstant();

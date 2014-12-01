@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgAgent = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnQueryHistory = new System.Windows.Forms.Button();
+            this.btnQuery = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgPolicy = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnPreview = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnPublish = new System.Windows.Forms.Button();
@@ -44,18 +45,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnPreview = new System.Windows.Forms.Button();
+            this.txtPolicy = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPolicy)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtPolicy);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnNew);
             this.groupBox1.Controls.Add(this.btnCancel);
-            this.groupBox1.Controls.Add(this.btnQueryHistory);
+            this.groupBox1.Controls.Add(this.btnQuery);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -63,35 +67,10 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgAgent);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 72);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1006, 245);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            // 
-            // dgAgent
-            // 
-            this.dgAgent.AllowUserToAddRows = false;
-            this.dgAgent.AllowUserToDeleteRows = false;
-            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgent.Location = new System.Drawing.Point(3, 17);
-            this.dgAgent.Name = "dgAgent";
-            this.dgAgent.ReadOnly = true;
-            this.dgAgent.RowHeadersWidth = 10;
-            this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(1000, 225);
-            this.dgAgent.TabIndex = 7;
-            // 
             // btnNew
             // 
             this.btnNew.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnNew.Location = new System.Drawing.Point(178, 20);
+            this.btnNew.Location = new System.Drawing.Point(464, 20);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 31);
             this.btnNew.TabIndex = 17;
@@ -101,7 +80,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(307, 20);
+            this.btnCancel.Location = new System.Drawing.Point(593, 20);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 16;
@@ -109,15 +88,40 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnQueryHistory
+            // btnQuery
             // 
-            this.btnQueryHistory.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQueryHistory.Location = new System.Drawing.Point(24, 20);
-            this.btnQueryHistory.Name = "btnQueryHistory";
-            this.btnQueryHistory.Size = new System.Drawing.Size(100, 31);
-            this.btnQueryHistory.TabIndex = 15;
-            this.btnQueryHistory.Text = "查询历史政策";
-            this.btnQueryHistory.UseVisualStyleBackColor = true;
+            this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnQuery.Location = new System.Drawing.Point(310, 20);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(100, 31);
+            this.btnQuery.TabIndex = 15;
+            this.btnQuery.Text = "查询政策";
+            this.btnQuery.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgPolicy);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 72);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1006, 245);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            // 
+            // dgPolicy
+            // 
+            this.dgPolicy.AllowUserToAddRows = false;
+            this.dgPolicy.AllowUserToDeleteRows = false;
+            this.dgPolicy.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgPolicy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPolicy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgPolicy.Location = new System.Drawing.Point(3, 17);
+            this.dgPolicy.Name = "dgPolicy";
+            this.dgPolicy.ReadOnly = true;
+            this.dgPolicy.RowHeadersWidth = 10;
+            this.dgPolicy.RowTemplate.Height = 23;
+            this.dgPolicy.Size = new System.Drawing.Size(1000, 225);
+            this.dgPolicy.TabIndex = 7;
             // 
             // groupBox3
             // 
@@ -137,6 +141,16 @@
             this.groupBox3.Size = new System.Drawing.Size(1006, 424);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPreview.Location = new System.Drawing.Point(536, 239);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(75, 31);
+            this.btnPreview.TabIndex = 21;
+            this.btnPreview.Text = "预览";
+            this.btnPreview.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
@@ -223,15 +237,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "政策标题:";
             // 
-            // btnPreview
+            // txtPolicy
             // 
-            this.btnPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPreview.Location = new System.Drawing.Point(536, 239);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(75, 31);
-            this.btnPreview.TabIndex = 21;
-            this.btnPreview.Text = "预览";
-            this.btnPreview.UseVisualStyleBackColor = true;
+            this.txtPolicy.Location = new System.Drawing.Point(76, 26);
+            this.txtPolicy.Name = "txtPolicy";
+            this.txtPolicy.Size = new System.Drawing.Size(206, 21);
+            this.txtPolicy.TabIndex = 21;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "政策主题:";
             // 
             // frmPolicyPublish
             // 
@@ -249,8 +269,9 @@
             this.Text = "政策发布";
             this.Load += new System.EventHandler(this.frmPolicyPublish_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPolicy)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -261,10 +282,10 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dgAgent;
+        private System.Windows.Forms.DataGridView dgPolicy;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnQueryHistory;
+        private System.Windows.Forms.Button btnQuery;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClear;
@@ -276,5 +297,7 @@
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPreview;
+        private System.Windows.Forms.TextBox txtPolicy;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -12,10 +12,12 @@ namespace ChinaUnion_Agent.Wechat
 {
     class WechatAction
     {
+        //String corpId ="wx4fe8b74e01fffcbb";// Settings.Default.Wechat_Corpid;
+        String corpId = Settings.Default.Wechat_Corpid;
         public HttpResult addUserToWechat(String secret, string userJson)
         {
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
 
             string addUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token={0}";
             var addUserUrl = string.Format(addUserUrlFormat, accessToken);
@@ -62,28 +64,12 @@ namespace ChinaUnion_Agent.Wechat
         public HttpResult updateUserToWechat( String secret, string userJson)
         {
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
 
             string updateUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/update?access_token={0}";
             var updateUserUrl = string.Format(updateUserUrlFormat, accessToken);
 
-            //var userData = new
-            //{
-            //    userid = "viviwu",
-            //    name = "Vivi",
-            //    department = 1,
-            //    position = "Manager",
-            //    mobile = "18621180524",
-            //    gender = 1,
-            //    tel = "18621180524",
-            //    email = "vivi.wu@yourzine.com.cn",
-            //    agentid = 1,
-            //    weixinid = "HappyV_W"
-            //};
-
-            //string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
-
-            HttpHelper httpHelper = new HttpHelper();
+           HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
             {
                 Encoding = Encoding.GetEncoding("UTF-8"),
@@ -109,26 +95,12 @@ namespace ChinaUnion_Agent.Wechat
         {
             
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
 
             string deleteUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token={0}&userid={1}";
             var deleteUserUrl = string.Format(deleteUserUrlFormat, accessToken, userId);
 
-            //var userData = new
-            //{
-            //    userid = "viviwu",
-            //    name = "Vivi",
-            //    department = 1,
-            //    position = "Manager",
-            //    mobile = "18621180524",
-            //    gender = 1,
-            //    tel = "18621180524",
-            //    email = "vivi.wu@yourzine.com.cn",
-            //    agentid = 1,
-            //    weixinid = "HappyV_W"
-            //};
-
-            //string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
+          
 
             HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
@@ -156,26 +128,12 @@ namespace ChinaUnion_Agent.Wechat
         {
 
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
 
             string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={0}&userid={1}";
             var getUserUrl = string.Format(getUserUrlFormat, accessToken, userId);
 
-            //var userData = new
-            //{
-            //    userid = "viviwu",
-            //    name = "Vivi",
-            //    department = 1,
-            //    position = "Manager",
-            //    mobile = "18621180524",
-            //    gender = 1,
-            //    tel = "18621180524",
-            //    email = "vivi.wu@yourzine.com.cn",
-            //    agentid = 1,
-            //    weixinid = "HappyV_W"
-            //};
-
-            //string userJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
+          
 
             HttpHelper httpHelper = new HttpHelper();
             HttpItem item = new HttpItem()
@@ -205,7 +163,7 @@ namespace ChinaUnion_Agent.Wechat
         {
             WechatUser wechatUser = null;
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
 
             string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token={0}&department_id={1}&fetch_child=1&status=0";
 
@@ -240,7 +198,7 @@ namespace ChinaUnion_Agent.Wechat
         public HttpResult sendMessageToWechat(String toUser, String content, String Wechat_Secret, int agentid)
         {
             WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(Settings.Default.Wechat_Corpid, Wechat_Secret);
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, Wechat_Secret);
 
             var msgUrl = string.Format("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}", accessToken);
 
@@ -278,5 +236,152 @@ namespace ChinaUnion_Agent.Wechat
 
             return result;
         }
+
+
+        public HttpResult getDepartmentListFromWechat(String secret)
+        {
+
+            WechatUtil wechatUtil = new WechatUtil();
+           String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);         
+
+            
+            string urlFormat = "https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token={0}";
+            var url = string.Format(urlFormat, accessToken);
+
+         
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = url,
+                Method = "get"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+
+            return result;
+        }
+
+
+        public HttpResult addDepartmentToWechat(String secret, string msgJson)
+        {
+
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+
+            string urlFormat = "https://qyapi.weixin.qq.com/cgi-bin/department/create?access_token={0}";
+            var url = string.Format(urlFormat, accessToken);
+
+
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                Postdata = msgJson,
+                URL = url,
+                Method = "post"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+
+            return result;
+        }
+
+        public HttpResult updateDepartmentToWechat(String secret, string msgJson)
+        {
+
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+
+            string urlFormat = "https://qyapi.weixin.qq.com/cgi-bin/department/update?access_token={0}";
+            var url = string.Format(urlFormat, accessToken);
+
+
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                Postdata = msgJson,
+                URL = url,
+                Method = "post"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+
+            return result;
+        }
+
+
+        public HttpResult deleteDepartmentFromWechat(int id, String secret)
+        {
+
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+            string UrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/department/delete?access_token={0}&id={1}";
+            var Url = string.Format(UrlFormat, accessToken, id);
+
+            
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                URL = Url,
+                Method = "get"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+
+            return result;
+        }
+
     }
 }

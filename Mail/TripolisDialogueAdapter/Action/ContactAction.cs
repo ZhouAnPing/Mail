@@ -80,6 +80,7 @@ namespace TripolisDialogueAdapter.Action
                             contactDatabaseFieldAction.addContactField(contactDatabaseId, field.name, field.value);
 
                         }
+                        
                     }
 
                     try

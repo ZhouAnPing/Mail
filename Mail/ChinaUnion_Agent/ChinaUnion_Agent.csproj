@@ -221,6 +221,18 @@
     </Compile>
     <Compile Include="Util\ExportData.cs" />
     <Compile Include="Util\HttpHelper.cs" />
+    <Compile Include="WechatForm\frmAddDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WechatForm\frmAddDepartment.Designer.cs">
+      <DependentUpon>frmAddDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WechatForm\frmAddWechatUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WechatForm\frmAddWechatUser.Designer.cs">
+      <DependentUpon>frmAddWechatUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="WechatForm\frmAgentWechatManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,12 +245,21 @@
     <Compile Include="WechatForm\frmErrorCodeWechat.Designer.cs">
       <DependentUpon>frmErrorCodeWechat.cs</DependentUpon>
     </Compile>
+    <Compile Include="WechatForm\frmWechatContactManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WechatForm\frmWechatContactManagement.Designer.cs">
+      <DependentUpon>frmWechatContactManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="WechatForm\frmWechatManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WechatForm\frmWechatManagement.Designer.cs">
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wechat\AddDepartmentReturnMessage.cs" />
+    <Compile Include="Wechat\Department.cs" />
+    <Compile Include="Wechat\DepartmentList.cs" />
     <Compile Include="Wechat\ReturnMessage.cs" />
     <Compile Include="Wechat\User.cs" />
     <Compile Include="Wechat\WechatAction.cs" />
@@ -311,11 +332,20 @@
     <EmbeddedResource Include="UserManagement\frmUserModification.resx">
       <DependentUpon>frmUserModification.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WechatForm\frmAddDepartment.resx">
+      <DependentUpon>frmAddDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WechatForm\frmAddWechatUser.resx">
+      <DependentUpon>frmAddWechatUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WechatForm\frmAgentWechatManagement.resx">
       <DependentUpon>frmAgentWechatManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WechatForm\frmErrorCodeWechat.resx">
       <DependentUpon>frmErrorCodeWechat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WechatForm\frmWechatContactManagement.resx">
+      <DependentUpon>frmWechatContactManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WechatForm\frmWechatManagement.resx">
       <DependentUpon>frmWechatManagement.cs</DependentUpon>

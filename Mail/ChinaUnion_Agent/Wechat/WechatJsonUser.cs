@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChinaUnion_Agent.Wechat
 {
-    class WechatJsonUser
+    public class WechatJsonUser
     {
         public String errcode;
         public String errmsg;
