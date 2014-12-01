@@ -95,6 +95,65 @@ namespace ChinaUnion_Agent.WechatForm
                 }
             }
 
+
+            //检查重复记录
+            StringBuilder sbDuplicated = new StringBuilder();
+            HashSet<String> agentFeeSet = new HashSet<string>();
+
+            StringBuilder sb = new StringBuilder();
+
+
+            //
+            sb = new StringBuilder();
+            HashSet<String> weChatSet = new HashSet<string>();
+            foreach (DataGridViewRow v in this.dgWechat.Rows)
+            {
+                if (!String.IsNullOrEmpty(v.Cells[0].Value.ToString()))
+                {
+                    foreach (DataGridViewRow v2 in dgWechat.Rows)
+                    {
+                        if (v.Index == v2.Index)
+                        {
+                            continue;
+                        }
+                        if (!String.IsNullOrEmpty(v2.Cells[0].Value.ToString()))
+                        {
+
+                            if (v.Cells[0].Value.ToString().Equals(v2.Cells[0].Value.ToString()))
+                            {
+                                v2.Cells[0].Style.BackColor = Color.Red;
+                                if (!weChatSet.Contains<String>(v2.Cells[0].Value.ToString()))
+                                {
+                                    weChatSet.Add(v2.Cells[0].Value.ToString() );
+                                    sb.AppendFormat("渠道名称:{0}", v.Cells[0].Value.ToString()).AppendLine();
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if (!String.IsNullOrEmpty(sb.ToString()))
+            {
+                sbDuplicated.AppendLine("\n渠道名称存在以下重复记录:");
+                sbDuplicated.AppendLine(sb.ToString());
+                sbDuplicated.AppendLine("\n请修复后重新导入");
+            }
+
+
+
+
+            if (!String.IsNullOrEmpty(sbDuplicated.ToString()))
+            {
+                this.btnSync.Enabled = false;
+                MessageBox.Show(sbDuplicated.ToString());
+            }
+            else
+            {
+                this.btnSync.Enabled = true;
+            }
+
+
             dgWechat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgWechat.AutoResizeColumns();
