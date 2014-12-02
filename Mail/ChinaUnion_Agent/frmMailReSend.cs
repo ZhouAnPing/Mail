@@ -105,7 +105,7 @@ namespace ChinaUnion_Agent
                     row.Cells[0].Value = agentFeeList[i].agentNo;
                     row.Cells[1].Value = agentFeeList[i].agent.agentName;
                     row.Cells[2].Value = agentFeeList[i].agent.agentType;
-                    row.Cells[3].Value = agentFeeList[i].agent.agentTypeComment;
+                    row.Cells[3].Value = agentFeeList[i].agent.agentTypeComment.Replace(",","、").Replace("#","%");
                     row.Cells[4].Value = agentFeeList[i].agent.contactEmail;
                     row.Cells[5].Value = agentFeeList[i].agent.contactName;
                     row.Cells[6].Value = agentFeeList[i].agentFeeSeq;
@@ -168,9 +168,9 @@ namespace ChinaUnion_Agent
                 wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), feeMonth + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
 
                 sb.Append("agent_no#").Append(dgAgentFee[0, i].Value == null ? "" : dgAgentFee[0, i].Value.ToString()).Append(",");
-                sb.Append("agent_name#").Append(dgAgentFee[1, i].Value == null ? "" : dgAgentFee[1, i].Value.ToString()).Append(",");
-                sb.Append("agent_type#").Append(dgAgentFee[2, i].Value == null ? "" : dgAgentFee[2, i].Value.ToString()).Append(",");
-                sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value == null ? "" : dgAgentFee[3, i].Value.ToString()).Append(",");
+                sb.Append("agent_name#").Append(dgAgentFee[1, i].Value == null ? "" : dgAgentFee[1, i].Value.ToString().Replace(",", "、").Replace("#", "%")).Append(",");
+                sb.Append("agent_type#").Append(dgAgentFee[2, i].Value == null ? "" : dgAgentFee[2, i].Value.ToString().Replace(",", "、").Replace("#", "%")).Append(",");
+                sb.Append("agent_type_comment#").Append(dgAgentFee[3, i].Value == null ? "" : dgAgentFee[3, i].Value.ToString().Replace(",", "、").Replace("#", "%")).Append(",");
                 sb.Append("email#").Append(dgAgentFee[4, i].Value == null ? "" : dgAgentFee[4, i].Value.ToString());
 
                 mailData.ContactJsonList.Add(sb.ToString());
@@ -242,47 +242,126 @@ namespace ChinaUnion_Agent
         {
             StringBuilder sbAgent = new StringBuilder();
 
-            int seq = 1;
+            //    int seq = 1;
 
-
-
-
-
+            HashSet<String> category = new HashSet<string>();
+            Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
+            //按结账科目分类
             for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
             {
-
-
-
-                if (!String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()))
+                if (dgAgentFee[j, rowIndex].Value != null && !String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()) && !dgAgentFee[j, rowIndex].Value.ToString().Equals("0"))
                 {
-                    sbAgent.Append("<tr>");
-                    sbAgent.Append("<tr>");
-                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-                    sbAgent.Append(seq.ToString());
-                    sbAgent.Append("</td>");
-                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-                    sbAgent.Append(dgAgentFee.Columns[j].HeaderCell.Value.ToString());
-                    sbAgent.Append("</td>");
-                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-                    sbAgent.Append(dgAgentFee[j, rowIndex].Value.ToString());
-                    sbAgent.Append("</td>");
-
-                    sbAgent.Append("</tr>");
-                    seq++;
+                    String headText = dgAgentFee.Columns[j].HeaderText;
+                    int locationIndex = headText.IndexOf("-");
+                    int endIndex = headText.IndexOf("（");
+                    if (locationIndex == -1)
+                    {
+                        locationIndex = headText.IndexOf("-");
+                    }
+                    if (endIndex == -1)
+                    {
+                        endIndex = headText.IndexOf("(");
+                    }
+                    String key = dgAgentFee.Columns[j].HeaderText.Substring(locationIndex + 1);
+                    if (endIndex != -1)
+                    {
+                        key = dgAgentFee.Columns[j].HeaderText.Substring(locationIndex + 1, endIndex - locationIndex - 1);
+                    }
+                    String value = dgAgentFee[j, rowIndex].Value.ToString();
+                    if (!CategoryMap.ContainsKey(key))
+                    {
+                        Dictionary<String, String> valueMap = new Dictionary<string, string>();
+                        valueMap.Add(headText, value);
+                        CategoryMap.Add(key, valueMap);
+                    }
+                    else
+                    {
+                        Dictionary<String, String> valueMap = CategoryMap[key];
+                        valueMap.Add(headText, value);
+                    }
                 }
-
-
-
-
             }
 
 
+            int index = 1;
+            foreach (String itemKey in CategoryMap.Keys)
+            {
+                Dictionary<String, String> valueMap = CategoryMap[itemKey];
+                float subTotal = 0;
+                foreach (String value in valueMap.Values)
+                {
+                    if (!String.IsNullOrEmpty(value))
+                    {
+                        subTotal = subTotal + float.Parse(value);
+                    }
+                }
+
+                sbAgent.Append("<tr><td colspan=3/></tr>");
+                sbAgent.Append("<tr>");
+                sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                sbAgent.Append("");
+                sbAgent.Append("</td>");
+                sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                sbAgent.Append(itemKey);
+                sbAgent.Append("</td>");
+                sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                sbAgent.Append(subTotal);
+                sbAgent.Append("</td>");
+
+                sbAgent.Append("</tr>");
+
+                foreach (String subKey in valueMap.Keys)
+                {
+                    // sbAgent.Append("<tr>");
+                    sbAgent.Append("<tr>");
+                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                    sbAgent.Append(index.ToString());
+                    sbAgent.Append("</td>");
+                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                    sbAgent.Append(subKey);
+                    sbAgent.Append("</td>");
+                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                    sbAgent.Append(valueMap[subKey]);
+                    sbAgent.Append("</td>");
+
+                    sbAgent.Append("</tr>");
+
+                    index++;
+                }
+
+            }
+
+            //for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
+            //{
+
+            //    if (dgAgentFee[j, rowIndex].Value!=null&&!String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()) && !dgAgentFee[j, rowIndex].Value.ToString().Equals("0"))
+            //    { 
+            //        sbAgent.Append("<tr>");
+            //        sbAgent.Append("<tr>");
+            //        sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            //        sbAgent.Append(seq.ToString());
+            //        sbAgent.Append("</td>");
+            //        sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            //        sbAgent.Append(dgAgentFee.Columns[j].HeaderCell.Value.ToString());
+            //        sbAgent.Append("</td>");
+            //        sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            //        sbAgent.Append(dgAgentFee[j, rowIndex].Value.ToString());
+            //        sbAgent.Append("</td>");
+
+            //        sbAgent.Append("</tr>");
+            //        seq++;
+            //    }
+            //}
 
 
-            sbAgent.Append("<tr>");
+
+
+            //sbAgent.Append("<tr>");
+            sbAgent.Append("<tr><td colspan=3/></tr>");
+
             sbAgent.Append("<tr>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-            sbAgent.Append(seq.ToString());
+            sbAgent.Append(index.ToString());
             sbAgent.Append("</td>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 1].HeaderCell.Value.ToString());
@@ -307,7 +386,6 @@ namespace ChinaUnion_Agent
             sb1.Append(System.IO.File.ReadAllText(FooterFilePath, Encoding.UTF8));
 
 
-
             sb1.Replace("${contact.agent_fee_seq!}", dgAgentFee[6, rowIndex].Value == null ? "" : dgAgentFee[6, rowIndex].Value.ToString());
             sb1.Replace("${contact.agent_no!}", dgAgentFee[0, rowIndex].Value == null ? "" : dgAgentFee[0, rowIndex].Value.ToString());
             sb1.Replace("${contact.agent_name!}", dgAgentFee[1, rowIndex].Value == null ? "" : dgAgentFee[1, rowIndex].Value.ToString());
@@ -322,6 +400,8 @@ namespace ChinaUnion_Agent
 
             webBrowser1.Show();
         }
+
+
         int currentRowIndex = 0;
         private void dgAgentFee_SelectionChanged(object sender, EventArgs e)
         {
