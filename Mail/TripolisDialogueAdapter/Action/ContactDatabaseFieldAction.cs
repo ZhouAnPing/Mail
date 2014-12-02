@@ -102,7 +102,7 @@ namespace TripolisDialogueAdapter.Action
             {
                 request.contactDatabaseId = databaseId;
                 request.paging = new cn.tripolis.dialogue.contactDatabaseField.PagingIn();
-                request.paging.pageSize = 300;
+                request.paging.pageSize = 500;
                 request.paging.pageNr = 1;
                 
                 cn.tripolis.dialogue.contactDatabaseField.ContactDatabaseFieldListResponse response = contactDatabaseFieldService.getByContactDatabaseId(request);
