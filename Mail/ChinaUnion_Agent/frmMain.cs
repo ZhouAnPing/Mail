@@ -535,6 +535,7 @@ namespace ChinaUnion_Agent
                 CreateToolbar(this.menuTable);
                 this.ToolBarPannelList.XPanderPanels[0].Expand = true;
             }
+            this.Text =this.Text+ Application.ProductVersion;
           
         }
 

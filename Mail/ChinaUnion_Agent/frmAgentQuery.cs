@@ -192,11 +192,11 @@ namespace ChinaUnion_Agent
 
                 }
             }
-            this.dgAgentType.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgAgentType.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgAgentType.AutoResizeColumns();
-            this.dgAgentTypeComment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgAgentTypeComment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgAgentTypeComment.AutoResizeColumns();
-            this.dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgAgent.AutoResizeColumns();
             if (dgAgentFee.RowCount > 0)
             {

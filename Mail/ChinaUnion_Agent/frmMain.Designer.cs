@@ -157,7 +157,6 @@
             // 
             this.xPanderPanel1.CaptionFont = new System.Drawing.Font("SimSun", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.xPanderPanel1.CaptionHeight = 40;
-            this.xPanderPanel1.ColorScheme = BSE.Windows.Forms.ColorScheme.Custom;
             this.xPanderPanel1.Controls.Add(this.toolStrip1);
             this.xPanderPanel1.CustomColors.BackColor = System.Drawing.Color.Blue;
             this.xPanderPanel1.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -489,7 +488,7 @@
             this.MainMenuStrip = this.menuMain;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "上海联通合作伙伴支撑平台V1.0.1";
+            this.Text = "上海联通合作伙伴支撑平台";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuMain.ResumeLayout(false);
