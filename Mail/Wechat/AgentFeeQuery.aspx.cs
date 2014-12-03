@@ -37,8 +37,10 @@ namespace Wechat
             }
             catch (Exception)
             {
-                return;
+               return;
             }
+            //agentNo = "DL0010";
+            //feeMonth = "2014-10";
             AgentFeeDao AgentFeeDao = new AgentFeeDao();
 
             AgentFee agentFee = AgentFeeDao.GetByKey(feeMonth, agentNo);
@@ -77,32 +79,118 @@ namespace Wechat
             int i = 1;
             DataRow row = null;
 
-            for (int j = 1; j <= 100;j++){
+            HashSet<String> category = new HashSet<string>();
+            Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
+            //按结账科目分类
+            for (int j = 1; j <= 100; j++)
+            {
                 FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
-                 FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
-                 if (feeNameField != null && feeField != null)
-                 {
-                     String feeNameFieldValue = feeNameField.GetValue(agentFee)==null?null:feeNameField.GetValue(agentFee).ToString();
+                FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+                if (feeNameField != null && feeField != null)
+                {
+                    String feeNameFieldValue = feeNameField.GetValue(agentFee) == null ? null : feeNameField.GetValue(agentFee).ToString();
 
-                     String feeFieldValue = feeField.GetValue(agentFee) == null ? null : feeField.GetValue(agentFee).ToString();
+                    String feeFieldValue = feeField.GetValue(agentFee) == null ? null : feeField.GetValue(agentFee).ToString();
 
-                     if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
-                     {
-                         row = dt.NewRow();
-                         row["seq"] = i++;
-                         row["feeName"] = feeNameFieldValue;
+                    if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        String headText = feeNameFieldValue;
+                        int locationIndex = headText.IndexOf("-");
+                        int endIndex = headText.IndexOf("（");
+                        if (locationIndex == -1)
+                        {
+                            locationIndex = headText.IndexOf("-");
+                        }
+                        if (endIndex == -1)
+                        {
+                            endIndex = headText.IndexOf("(");
+                        }
+                        String key = headText.Substring(locationIndex + 1);
+                        if (endIndex != -1)
+                        {
+                            key = headText.Substring(locationIndex + 1, endIndex - locationIndex - 1);
+                        }
+                        String value = feeFieldValue;
+                        if (!CategoryMap.ContainsKey(key))
+                        {
+                            Dictionary<String, String> valueMap = new Dictionary<string, string>();
+                            valueMap.Add(headText, value);
+                            CategoryMap.Add(key, valueMap);
+                        }
+                        else
+                        {
+                            Dictionary<String, String> valueMap = CategoryMap[key];
+                            valueMap.Add(headText, value);
+                        }
+                    }
+                }
+            }
+
+              int index = 1;
+              foreach (String itemKey in CategoryMap.Keys)
+              {
+                  Dictionary<String, String> valueMap = CategoryMap[itemKey];
+                  float subTotal = 0;
+                  foreach (String value in valueMap.Values)
+                  {
+                      if (!String.IsNullOrEmpty(value))
+                      {
+                          subTotal = subTotal + float.Parse(value);
+                      }
+                  }
+                  if (index > 1)
+                  {
+                      row = dt.NewRow();
+                      dt.Rows.Add(row);
+
+                  }
+                  row = dt.NewRow();
+                  row["seq"] =null;
+                  row["feeName"] = itemKey  ;
+
+                  row["fee"] = subTotal;
+                  dt.Rows.Add(row);
+                  foreach (String subKey in valueMap.Keys)
+                  {
+                      row = dt.NewRow();
+                      row["seq"] = index++;
+                      row["feeName"] = subKey;
+
+                      row["fee"] = valueMap[subKey];
+                      dt.Rows.Add(row);
+                  }
+
+              }          
+
+            //for (int j = 1; j <= 100;j++){
+            //    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
+            //     FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+            //     if (feeNameField != null && feeField != null)
+            //     {
+            //         String feeNameFieldValue = feeNameField.GetValue(agentFee)==null?null:feeNameField.GetValue(agentFee).ToString();
+
+            //         String feeFieldValue = feeField.GetValue(agentFee) == null ? null : feeField.GetValue(agentFee).ToString();
+
+            //         if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+            //         {
+            //             row = dt.NewRow();
+            //             row["seq"] = i++;
+            //             row["feeName"] = feeNameFieldValue;
                         
-                         row["fee"] = feeFieldValue;
-                         dt.Rows.Add(row);
-                     }
-                 }
+            //             row["fee"] = feeFieldValue;
+            //             dt.Rows.Add(row);
+            //         }
+            //     }
 
                 
-            }
+            //}
+              row = dt.NewRow();
+              dt.Rows.Add(row);
+
             row = dt.NewRow();
-            row["seq"] = i++;
-            row["feeName"] = "总计";
-            row["fee"] = agentFee.feeTotal;
+            row["seq"] =   index++ ;
+            row["feeName"] =   "总计" ;
+            row["fee"] =   agentFee.feeTotal ;
             dt.Rows.Add(row);
            
 
@@ -110,6 +198,39 @@ namespace Wechat
             GridView1.DataBind();
             
 
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+               if (String.IsNullOrEmpty(e.Row.Cells[0].Text)||e.Row.Cells[0].Text.Equals("&nbsp;"))
+                {
+                    if (!String.IsNullOrEmpty(e.Row.Cells[1].Text) || e.Row.Cells[1].Text.Equals("&nbsp;"))
+                    {
+                        e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                        e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                        e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                    }
+                    else
+                    {
+                        e.Row.Cells[0].Attributes.Add("style", "display:none");
+                        e.Row.Cells[1].Attributes.Add("style", "display:none");
+                        e.Row.Cells[2].Attributes.Add("style", "display:none");
+                    }
+                }
+            if(e.Row.Cells[1].Text.Equals("总计")){
+                e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+            }
+                //隐藏列
+
+                //   e.Row.Cells[6].Attributes.Add("style", "display:none");   //隐藏数据列
+
+            }
+           
         }
     }
 }

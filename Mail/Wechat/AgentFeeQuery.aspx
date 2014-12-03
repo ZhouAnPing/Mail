@@ -61,15 +61,17 @@
 			                    </td>
 			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblFeeSeq" runat="server"></asp:Label>
-			                    </td>
-			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    </td>           
+&nbsp;</td>
+			                    
+			                </tr>
+                            <tr>
+                                 <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	佣金账期：	
 			                    </td>
 			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
-			                        	<asp:Label ID="lblFeeMonth" runat="server"></asp:Label>
-&nbsp;</td>
-			                    
-			                </tr> 
+			                        	<asp:Label ID="lblFeeMonth" runat="server"></asp:Label></td>
+                            </tr> 
 			                <tr>
 			                   
 			                    <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
@@ -78,13 +80,18 @@
 			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblAgentNo" runat="server"></asp:Label>
 			                    </td>
-			                     <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
+			                    
+			                </tr> 
+
+                                 <tr>
+ <td  style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
 			                        	合作伙伴名称：	
 			                    </td>
 			                    <td style="font-size: 25px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblAgentName" runat="server"></asp:Label>
 			                    </td>
-			                </tr> 
+
+                                 </tr>
 			                <tr>
 			                   
 			                    
@@ -109,18 +116,19 @@
 			                <tr>
 			                    <td  style="font-size: 30px; color: black; font-weight: normal; text-align: center; font-family: Georgia, Times, serif; line-height: 45px; vertical-align: top; padding:5px" bgcolor="white">
 			                        	<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                                                ForeColor="#333333" GridLines="None" Width="100%" >
+                                                ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound" >
                                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                                 <Columns>                                                    
-                                                    <asp:BoundField DataField="seq" HeaderText="序号" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" HeaderStyle-Width="20%" />
-                                                    <asp:BoundField DataField="feeName" HeaderText="佣金类型" ReadOnly="True" ItemStyle-HorizontalAlign="Left"/>
-                                                    <asp:BoundField DataField="fee" HeaderText="金额" ReadOnly="True" HeaderStyle-Width="20%"/>
+                                                    <asp:BoundField DataField="seq" HeaderText="序号" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" HeaderStyle-Width="20%" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />
+                                                    <asp:BoundField DataField="feeName" HeaderText="佣金类型" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
+                                                    <asp:BoundField DataField="fee" HeaderText="金额" ReadOnly="True" HeaderStyle-Width="20%" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
                                                                                                        
                                                 </Columns>
-                                                <RowStyle ForeColor="#000066" />
+                                                <RowStyle ForeColor="#000066" BorderWidth="1" BorderColor="Black" />
                                                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
                                                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
                                                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                                                                                      
                                             </asp:GridView>
 			                    </td>				
 							  
