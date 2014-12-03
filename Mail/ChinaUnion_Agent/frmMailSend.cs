@@ -170,7 +170,7 @@ namespace ChinaUnion_Agent
                            
                         }
                         sb.Append("fee_seq").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
-                        sb.Append("fee_name").Append(feeSeq.ToString()).Append("#<b>").Append(itemKey).Append("</b>,");
+                        sb.Append("fee_name").Append(feeSeq.ToString()).Append("#<b>").Append(itemKey.Replace(",", "、").Replace("#", "%")).Append("</b>,");
                         if (subTotal<=0)
                         {
                             sb.Append("fee").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
@@ -184,8 +184,8 @@ namespace ChinaUnion_Agent
 
                         foreach (String subKey in valueMap.Keys)
                         {
-                            
-                            sb.Append("fee_name").Append(feeSeq.ToString()).Append("#").Append(subKey).Append(",");
+
+                            sb.Append("fee_name").Append(feeSeq.ToString()).Append("#").Append(subKey.Replace(",", "、").Replace("#", "%")).Append(",");
                             if (String.IsNullOrEmpty(valueMap[subKey]) ||(!String.IsNullOrEmpty(valueMap[subKey]) && valueMap[subKey].Equals("0")))
                             {
                                 sb.Append("fee_seq").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
