@@ -304,7 +304,7 @@ namespace ChinaUnion_Agent
                 sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
                 sbAgent.Append(itemKey);
                 sbAgent.Append("</td>");
-                sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
                 sbAgent.Append(subTotal);
                 sbAgent.Append("</td>");
 
@@ -318,9 +318,9 @@ namespace ChinaUnion_Agent
                     sbAgent.Append(index.ToString());
                     sbAgent.Append("</td>");
                     sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-                    sbAgent.Append(subKey);
+                    sbAgent.Append("&nbsp;&nbsp;&nbsp;&nbsp;").Append(subKey);
                     sbAgent.Append("</td>");
-                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+                    sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: normal; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
                     sbAgent.Append(valueMap[subKey]);
                     sbAgent.Append("</td>");
 
@@ -366,7 +366,7 @@ namespace ChinaUnion_Agent
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 1].HeaderCell.Value.ToString());
             sbAgent.Append("</td>");
-            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value.ToString());
             sbAgent.Append("</td>");
 
