@@ -35,10 +35,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.txtPolicy = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpWechatList = new System.Windows.Forms.GroupBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.dgWechatMember = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAddSubDepartment = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,6 +122,16 @@
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(422, 22);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(74, 34);
+            this.btnAdd.TabIndex = 36;
+            this.btnAdd.Text = "添加成员";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // txtPolicy
             // 
             this.txtPolicy.Location = new System.Drawing.Point(65, 30);
@@ -150,22 +160,13 @@
             this.grpWechatList.TabStop = false;
             this.grpWechatList.Text = "通讯录成员";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(422, 22);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(74, 34);
-            this.btnAdd.TabIndex = 36;
-            this.btnAdd.Text = "添加成员";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // dgWechatMember
             // 
             this.dgWechatMember.AllowUserToAddRows = false;
             this.dgWechatMember.AllowUserToDeleteRows = false;
             this.dgWechatMember.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgWechatMember.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgWechatMember.ContextMenuStrip = this.contextMenuStrip2;
             this.dgWechatMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgWechatMember.Location = new System.Drawing.Point(3, 17);
             this.dgWechatMember.MultiSelect = false;
@@ -216,21 +217,21 @@
             // menuModifyUser
             // 
             this.menuModifyUser.Name = "menuModifyUser";
-            this.menuModifyUser.Size = new System.Drawing.Size(152, 22);
+            this.menuModifyUser.Size = new System.Drawing.Size(118, 22);
             this.menuModifyUser.Text = "修改成员";
             this.menuModifyUser.Click += new System.EventHandler(this.menuModifyUser_Click);
             // 
             // menuDeleteUser
             // 
             this.menuDeleteUser.Name = "menuDeleteUser";
-            this.menuDeleteUser.Size = new System.Drawing.Size(152, 22);
+            this.menuDeleteUser.Size = new System.Drawing.Size(118, 22);
             this.menuDeleteUser.Text = "删除成员";
             this.menuDeleteUser.Click += new System.EventHandler(this.menuDeleteUser_Click);
             // 
             // menuAddUser
             // 
             this.menuAddUser.Name = "menuAddUser";
-            this.menuAddUser.Size = new System.Drawing.Size(152, 22);
+            this.menuAddUser.Size = new System.Drawing.Size(118, 22);
             this.menuAddUser.Text = "添加成员";
             this.menuAddUser.Click += new System.EventHandler(this.btnAdd_Click);
             // 

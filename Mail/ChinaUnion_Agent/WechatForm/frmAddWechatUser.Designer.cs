@@ -36,19 +36,21 @@
             this.txtUserId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtWeixinId = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtMobile = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtMobile = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtWeixinId = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.tvOrganization = new System.Windows.Forms.TreeView();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(297, 341);
+            this.btnCancel.Location = new System.Drawing.Point(290, 457);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -75,10 +77,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(187, 341);
+            this.btnSave.Location = new System.Drawing.Point(183, 457);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 13;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -104,7 +106,7 @@
             this.txtUserId.Location = new System.Drawing.Point(100, 53);
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(327, 21);
-            this.txtUserId.TabIndex = 11;
+            this.txtUserId.TabIndex = 7;
             // 
             // label3
             // 
@@ -126,73 +128,19 @@
             this.groupBox1.Controls.Add(this.txtWeixinId);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(32, 110);
+            this.groupBox1.Location = new System.Drawing.Point(32, 100);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(411, 184);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "身份验证信息(以下三种信息不能同时为空)";
             // 
-            // txtWeixinId
-            // 
-            this.txtWeixinId.Location = new System.Drawing.Point(67, 26);
-            this.txtWeixinId.Name = "txtWeixinId";
-            this.txtWeixinId.Size = new System.Drawing.Size(328, 21);
-            this.txtWeixinId.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "微信号：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(64, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(221, 12);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "(若与员工扫描的微信匹配，则允许关注)";
-            // 
-            // txtMobile
-            // 
-            this.txtMobile.Location = new System.Drawing.Point(67, 77);
-            this.txtMobile.Name = "txtMobile";
-            this.txtMobile.Size = new System.Drawing.Size(328, 21);
-            this.txtMobile.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 80);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "手机：";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(64, 105);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(317, 12);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "(若该手机对应的微信与员工扫描的微信匹配，则允许关注)";
-            // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(67, 131);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(328, 21);
-            this.txtEmail.TabIndex = 20;
+            this.txtEmail.TabIndex = 10;
             // 
             // label8
             // 
@@ -214,17 +162,71 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "(若未匹配到员工的微信，则通过邮箱来验证身份)";
             // 
+            // txtMobile
+            // 
+            this.txtMobile.Location = new System.Drawing.Point(67, 77);
+            this.txtMobile.Name = "txtMobile";
+            this.txtMobile.Size = new System.Drawing.Size(328, 21);
+            this.txtMobile.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 80);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "手机：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(64, 105);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(317, 12);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "(若该手机对应的微信与员工扫描的微信匹配，则允许关注)";
+            // 
+            // txtWeixinId
+            // 
+            this.txtWeixinId.Location = new System.Drawing.Point(67, 26);
+            this.txtWeixinId.Name = "txtWeixinId";
+            this.txtWeixinId.Size = new System.Drawing.Size(328, 21);
+            this.txtWeixinId.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "微信号：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(64, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(221, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "(若与员工扫描的微信匹配，则允许关注)";
+            // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(100, 306);
+            this.txtPosition.Location = new System.Drawing.Point(100, 295);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(327, 21);
-            this.txtPosition.TabIndex = 14;
+            this.txtPosition.TabIndex = 11;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(39, 309);
+            this.label10.Location = new System.Drawing.Point(35, 298);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 12);
             this.label10.TabIndex = 13;
@@ -252,11 +254,33 @@
             this.label12.TabIndex = 16;
             this.label12.Text = "*";
             // 
+            // tvOrganization
+            // 
+            this.tvOrganization.CheckBoxes = true;
+            this.tvOrganization.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tvOrganization.ItemHeight = 20;
+            this.tvOrganization.Location = new System.Drawing.Point(100, 333);
+            this.tvOrganization.Name = "tvOrganization";
+            this.tvOrganization.ShowNodeToolTips = true;
+            this.tvOrganization.Size = new System.Drawing.Size(327, 85);
+            this.tvOrganization.TabIndex = 12;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(35, 333);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "所属部门：";
+            // 
             // frmAddWechatUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 385);
+            this.ClientSize = new System.Drawing.Size(496, 501);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.tvOrganization);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtPosition);
@@ -306,5 +330,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TreeView tvOrganization;
+        private System.Windows.Forms.Label label13;
     }
 }

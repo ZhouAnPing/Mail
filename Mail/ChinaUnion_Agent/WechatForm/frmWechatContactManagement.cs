@@ -64,6 +64,8 @@ namespace ChinaUnion_Agent.WechatForm
                     CreateChildNode(rootNode, tb);
 
                     tvOrganization.ExpandAll();
+                    tvOrganization.SelectedNode = rootNode;
+                    
 
                 }
 
@@ -304,18 +306,19 @@ namespace ChinaUnion_Agent.WechatForm
 
         private void menuModifyUser_Click(object sender, EventArgs e)
         {
-            String userId = null;
+            //String userId = null;
             if (this.dgWechatMember.SelectedRows == null)
             {
                 MessageBox.Show("请先选择");
                 return;
             }
             frmAddWechatUser frmAddWechatUser = new frmAddWechatUser();
+            frmAddWechatUser.wechatJsonUser.userid = this.dgWechatMember.CurrentRow.Cells[1].Value.ToString();
             DialogResult result = frmAddWechatUser.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                dgWechatMember.Rows.Add();
-                DataGridViewRow row = dgWechatMember.Rows[dgWechatMember.RowCount - 1];
+
+                DataGridViewRow row = dgWechatMember.CurrentRow;
                 row.Cells[0].Value = frmAddWechatUser.wechatJsonUser.name;
                 row.Cells[1].Value = frmAddWechatUser.wechatJsonUser.userid;
                 row.Cells[2].Value = frmAddWechatUser.wechatJsonUser.weixinid;
@@ -328,7 +331,21 @@ namespace ChinaUnion_Agent.WechatForm
 
         private void menuDeleteUser_Click(object sender, EventArgs e)
         {
+            if (this.dgWechatMember.SelectedRows == null)
+            {
+                MessageBox.Show("请先选择一个用户");
+                return;
+            }
+            this.Cursor= Cursors.WaitCursor;
+           HttpResult result = this.wechatAction.deleteUserFromWechat(this.dgWechatMember.CurrentRow.Cells[1].Value.ToString(), this.secret);
+           AddDepartmentReturnMessage deleteMessage = (AddDepartmentReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(AddDepartmentReturnMessage));
+           if (deleteMessage != null && deleteMessage.errcode.Equals("0"))
+           {
+               this.dgWechatMember.Rows.Remove(this.dgWechatMember.CurrentRow);
 
+           }
+             MessageBox.Show("操作完成！");
+            this.Cursor = Cursors.Default;
         }
     }
 }
