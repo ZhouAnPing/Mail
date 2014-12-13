@@ -155,6 +155,7 @@ namespace ChinaUnion_Agent
                        
 
                         this.dgAgentFee.Columns.Add("总计", "总计");
+                        this.dgAgentFee.Columns.Add("开票金额", "开票金额");
 
                     }
 
@@ -188,7 +189,8 @@ namespace ChinaUnion_Agent
                     }
                   
 
-                    row.Cells[dgAgentFee.Columns.Count - 1].Value = agentFeeList[i].feeTotal;
+                    row.Cells[dgAgentFee.Columns.Count - 2].Value = agentFeeList[i].feeTotal;
+                    row.Cells[dgAgentFee.Columns.Count - 1].Value = agentFeeList[i].invoiceFee;
 
                 }
             }
@@ -218,11 +220,6 @@ namespace ChinaUnion_Agent
             {
                 return;
             }
-         
-               
-
-
-
 
             frmMailSend frmMailSend = new ChinaUnion_Agent.frmMailSend();
             frmMailSend.ShowIcon = false;

@@ -121,7 +121,7 @@
                                                 <Columns>                                                    
                                                     <asp:BoundField DataField="seq" HeaderText="序号" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" HeaderStyle-Width="20%" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />
                                                     <asp:BoundField DataField="feeName" HeaderText="佣金类型" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
-                                                    <asp:BoundField DataField="fee" HeaderText="金额" ReadOnly="True" HeaderStyle-Width="20%" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
+                                                    <asp:BoundField DataField="fee" HeaderText="金额" ReadOnly="True" HeaderStyle-Width="20%" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Right"/>
                                                                                                        
                                                 </Columns>
                                                 <RowStyle ForeColor="#000066" BorderWidth="1" BorderColor="Black" />

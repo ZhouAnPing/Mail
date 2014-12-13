@@ -117,7 +117,7 @@ namespace ChinaUnion_Agent
                     Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
                     //按结账科目分类
                     int rowIndex = i;
-                    for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
+                    for (int j = 7; j < dgAgentFee.ColumnCount - 2; j++)
                     {
 
                         String headText = dgAgentFee.Columns[j].HeaderText;
@@ -203,27 +203,24 @@ namespace ChinaUnion_Agent
                        
                     }
 
+
+
+
+                    for (int j = feeSeq; j <= 62; j++)
+                    {
+                        sb.Append("fee_seq").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
+                        sb.Append("fee_name").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
+                        sb.Append("fee").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
+                        feeSeq++;
+                    }
+
                     sb.Append("fee_total_seq").Append("#").Append(seq.ToString()).Append(",");
-                    sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
+                    sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString()).Append(",");
 
-                    ////
-                    
-                    //for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
-                    //{
-                    //    int index = j - 6;
-                    //    String fieldValue = dgAgentFee[j, i].Value == null ? "" : dgAgentFee[j, i].Value.ToString();
-                    //    sb.Append("fee_name").Append(index.ToString()).Append("#").Append(dgAgentFee.Columns[j].HeaderCell.Value.ToString()).Append(",");
-                    //    sb.Append("fee").Append(index.ToString()).Append("#").Append(fieldValue).Append(",");
-                    //}
-
-                    //for (int j = dgAgentFee.ColumnCount - 1; j <= 106; j++)
-                    //{
-                    //    int index = j - 6;
-                    //    sb.Append("fee_name").Append(index.ToString()).Append("#").Append("").Append(",");
-                    //    sb.Append("fee").Append(index.ToString()).Append("#").Append("").Append(",");
-                    //}
-
-                    //sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
+                    seq++;
+                    sb.Append("invoice_fee_seq").Append("#").Append(seq.ToString()).Append(",");
+                    sb.Append("invoice_fee#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
+                  
 
                     mailData.ContactJsonList.Add(sb.ToString());
 
@@ -299,7 +296,7 @@ namespace ChinaUnion_Agent
             HashSet<String> category = new HashSet<string>();
             Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
             //按结账科目分类
-            for (int j = 7; j < dgAgentFee.ColumnCount - 1; j++)
+            for (int j = 7; j < dgAgentFee.ColumnCount - 2; j++)
             {
                 if (dgAgentFee[j, rowIndex].Value != null && !String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()) && !dgAgentFee[j, rowIndex].Value.ToString().Equals("0"))
                 {
@@ -416,10 +413,31 @@ namespace ChinaUnion_Agent
             sbAgent.Append(index.ToString());
             sbAgent.Append("</td>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 2].HeaderCell.Value.ToString());
+            sbAgent.Append("</td>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 2, rowIndex].Value.ToString());
+            sbAgent.Append("</td>");
+
+            sbAgent.Append("</tr>");
+
+            index++;
+
+            sbAgent.Append("<tr><td colspan=3/></tr>");
+
+            sbAgent.Append("<tr>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append(index.ToString());
+            sbAgent.Append("</td>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
             sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 1].HeaderCell.Value.ToString());
             sbAgent.Append("</td>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-            sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value.ToString());
+            if (dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value != null)
+            {
+                sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value.ToString());
+            }
+           
             sbAgent.Append("</td>");
 
             sbAgent.Append("</tr>");

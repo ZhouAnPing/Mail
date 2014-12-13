@@ -40,7 +40,7 @@ namespace Wechat
                return;
             }
             //agentNo = "DL0010";
-            //feeMonth = "2014-10";
+          //  feeMonth = "2014-10";
             AgentFeeDao AgentFeeDao = new AgentFeeDao();
 
             AgentFee agentFee = AgentFeeDao.GetByKey(feeMonth, agentNo);
@@ -140,8 +140,8 @@ namespace Wechat
                   }
                   if (index > 1)
                   {
-                      row = dt.NewRow();
-                      dt.Rows.Add(row);
+                     // row = dt.NewRow();
+                    //  dt.Rows.Add(row);
 
                   }
                   row = dt.NewRow();
@@ -184,13 +184,19 @@ namespace Wechat
 
                 
             //}
-              row = dt.NewRow();
-              dt.Rows.Add(row);
+             // row = dt.NewRow();
+            //  dt.Rows.Add(row);
 
             row = dt.NewRow();
             row["seq"] =   index++ ;
             row["feeName"] =   "总计" ;
             row["fee"] =   agentFee.feeTotal ;
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["seq"] = index++;
+            row["feeName"] = "开票金额";
+            row["fee"] = agentFee.invoiceFee;
             dt.Rows.Add(row);
            
 
@@ -217,13 +223,23 @@ namespace Wechat
                     {
                         e.Row.Cells[0].Attributes.Add("style", "display:none");
                         e.Row.Cells[1].Attributes.Add("style", "display:none");
-                        e.Row.Cells[2].Attributes.Add("style", "display:none");
+                        e.Row.Cells[2].Attributes.Add("style", "display:none;");
                     }
                 }
             if(e.Row.Cells[1].Text.Equals("总计")){
                 e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
                 e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
                 e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+            }
+            if (e.Row.Cells[1].Text.Equals("开票金额"))
+            {
+                e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+            }
+            if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计"))
+            {
+                e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;            
             }
                 //隐藏列
 
