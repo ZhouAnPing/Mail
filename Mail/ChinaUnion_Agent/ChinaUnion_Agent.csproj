@@ -199,6 +199,12 @@
     <Compile Include="PolicyForm\frmPolicyPublish.Designer.cs">
       <DependentUpon>frmPolicyPublish.cs</DependentUpon>
     </Compile>
+    <Compile Include="PolicyForm\frmPublishPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolicyForm\frmPublishPreview.Designer.cs">
+      <DependentUpon>frmPublishPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -258,6 +264,7 @@
       <DependentUpon>frmWechatManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Wechat\AddDepartmentReturnMessage.cs" />
+    <Compile Include="Wechat\Article.cs" />
     <Compile Include="Wechat\Department.cs" />
     <Compile Include="Wechat\DepartmentList.cs" />
     <Compile Include="Wechat\ReturnMessage.cs" />
@@ -320,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PolicyForm\frmPolicyPublish.resx">
       <DependentUpon>frmPolicyPublish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolicyForm\frmPublishPreview.resx">
+      <DependentUpon>frmPublishPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

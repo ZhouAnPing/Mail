@@ -33,7 +33,7 @@ namespace ChinaUnion_Agent
             }
             this.Cursor = Cursors.WaitCursor;
             WechatAction wechatAction = new WechatAction();
-            HttpResult result = wechatAction.sendMessageToWechat("@all", this.txtContent.Text.Trim(), Wechat_secretId, Wechar_AppId);
+            HttpResult result = wechatAction.sendTextMessageToWechat("@all", this.txtContent.Text.Trim(), Wechat_secretId, Wechar_AppId);
            this.Cursor = Cursors.Default; 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {

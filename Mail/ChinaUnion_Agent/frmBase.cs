@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChinaUnion_BO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace ChinaUnion_Agent
 {
     public partial class frmBase : Form
     {
+        public User loginUser = new User();
         public frmBase()
         {
             InitializeComponent();

@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO tb_policy (subject,content,sender,sendtime) VALUE (@subject,@content,@sender,@sendtime)";
+            string sql = "INSERT INTO tb_policy (subject,content,sender,sendtime,department) VALUE (@subject,@content,@sender,@sendtime,@department)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -28,6 +28,7 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@content", entity.content);
                 command.Parameters.AddWithValue("@sender", entity.sender);
                 command.Parameters.AddWithValue("@sendtime", entity.sendTime);
+                command.Parameters.AddWithValue("@department", entity.department);
                
                 return command.ExecuteNonQuery();
             }
@@ -39,7 +40,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(Policy entity)
         {
-            string sql = "UPDATE  tb_policy SET subject=@subject,content=@content,sender=@sender,sendtime=@sendtime where subject=@subject ";
+            string sql = "UPDATE  tb_policy SET subject=@subject,content=@content,sender=@sender,sendtime=@sendtime,department=@department where subject=@subject ";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -50,6 +51,7 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@content", entity.content);
                 command.Parameters.AddWithValue("@sender", entity.sender);
                 command.Parameters.AddWithValue("@sendtime", entity.sendTime);
+                command.Parameters.AddWithValue("@department", entity.department);
                 return command.ExecuteNonQuery();
             }
         }
@@ -76,7 +78,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public Policy Get(String primaryKey)
         {
-            string sql = "SELECT subject,content,sender,sendtime from tb_policy where subject=@subject";
+            string sql = "SELECT subject,content,sender,sendtime,department from tb_policy where subject=@subject";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -93,7 +95,7 @@ namespace ChinaUnion_DataAccess
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
                     policy.sender = reader["sender"] == DBNull.Value ? null : reader["sender"].ToString();
                     policy.sendTime = reader["sendtime"] == DBNull.Value ? null : reader["sendtime"].ToString();
-                  
+                    policy.department = reader["department"] == DBNull.Value ? null : reader["department"].ToString();
 
                 }
                 return policy;
@@ -104,9 +106,13 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<Policy> GetList()
+        public IList<Policy> GetList(string subject)
         {
-            string sql = "SELECT subject,content,sender,sendtime from tb_policy";
+            string sql = "SELECT subject,content,sender,sendtime,department from tb_policy";
+            if (!String.IsNullOrEmpty(subject))
+            {
+                sql = sql + " where subject like \"%" + subject + "%\"";
+            }
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -122,6 +128,7 @@ namespace ChinaUnion_DataAccess
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
                     policy.sender = reader["sender"] == DBNull.Value ? null : reader["sender"].ToString();
                     policy.sendTime = reader["sendtime"] == DBNull.Value ? null : reader["sendtime"].ToString();
+                    policy.department = reader["department"] == DBNull.Value ? null : reader["department"].ToString();
                     list.Add(policy);
                 }
                 return list;

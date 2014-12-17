@@ -90,6 +90,7 @@ namespace ChinaUnion_Agent.WechatForm
              this.Cursor = Cursors.Default;
             if (returnMessage != null && returnMessage.errcode.Equals("0"))
              {
+                 MessageBox.Show("操作成功！");
                  DialogResult = System.Windows.Forms.DialogResult.OK;
              }
              else

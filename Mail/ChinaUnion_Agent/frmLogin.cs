@@ -36,12 +36,14 @@ namespace ChinaUnion_Agent
                 txtPassword.Focus();
                 return;
             }
+            this.Cursor = Cursors.WaitCursor;
             UserDao userDao = new UserDao();
             this.loginUser = userDao.Get(this.txtUserName.Text);
             if (loginUser == null || (loginUser != null && !loginUser.password.Equals(this.txtPassword.Text)))
             {
                 MessageBox.Show("用户名或者密码不正确，请重新输入.");
                 txtUserName.Focus();
+                this.Cursor = Cursors.Default;
                 return;
             }
             this.DialogResult = DialogResult.OK;
@@ -53,6 +55,7 @@ namespace ChinaUnion_Agent
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.ShowDialog(this);
             frm.Close();
+            this.Cursor = Cursors.Default;
 
             this.Close();
            

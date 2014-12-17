@@ -459,7 +459,7 @@ namespace ChinaUnion_Agent
                     case "PolicyPublish":
 
                         frmPolicyPublish frmPolicyPublish = new frmPolicyPublish();
-
+                        frmPolicyPublish.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmPolicyPublish);
                         break;
                     case "KnowledgeManagment":
@@ -485,6 +485,16 @@ namespace ChinaUnion_Agent
                         frmWechatContactManagement frmWechatContactManagement = new frmWechatContactManagement();
                       
                         CheckChildOpenState(this, frmWechatContactManagement);
+                        break;
+                    case "AgentManagement":
+
+                        frmAgentImport frmAgentManagement = new frmAgentImport();
+                        CheckChildOpenState(this, frmAgentManagement);
+                        break;
+                    case "BranchManagement":
+
+                        frmAgentImport BranchManagement = new frmAgentImport();
+                        CheckChildOpenState(this, BranchManagement);
                         break;
 
                 }

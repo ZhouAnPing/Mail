@@ -29,7 +29,7 @@ namespace ChinaUnion_Agent
             {
                 
                 MessageBox.Show("已经有相同的程序在运行,请关闭已经打开的程序！");
-              
+                Application.Exit();
                 return;
             }
 

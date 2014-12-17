@@ -11,5 +11,6 @@ namespace ChinaUnion_BO
         public string content;
         public string sender;
         public String sendTime;
+        public String department;
     }
 }

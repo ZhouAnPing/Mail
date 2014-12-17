@@ -12,8 +12,8 @@ namespace ChinaUnion_Agent.Wechat
 {
     class WechatAction
     {
-        //String corpId ="wx4fe8b74e01fffcbb";// Settings.Default.Wechat_Corpid;
-        String corpId = Settings.Default.Wechat_Corpid;
+       //String corpId ="wx4fe8b74e01fffcbb";// Settings.Default.Wechat_Corpid;
+      String corpId = Settings.Default.Wechat_Corpid;
         public HttpResult addUserToWechat(String secret, string userJson)
         {
             WechatUtil wechatUtil = new WechatUtil();
@@ -195,7 +195,7 @@ namespace ChinaUnion_Agent.Wechat
             return wechatUser;
         }
 
-        public HttpResult sendMessageToWechat(String toUser, String content, String Wechat_Secret, int agentid)
+        public HttpResult sendTextMessageToWechat(String toUser, String content, String Wechat_Secret, int agentid)
         {
             WechatUtil wechatUtil = new WechatUtil();
             String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, Wechat_Secret);
@@ -236,7 +236,32 @@ namespace ChinaUnion_Agent.Wechat
 
             return result;
         }
+        public HttpResult sendNewsMessageToWechat(String msgJson, String Wechat_Secret)
+        {
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, Wechat_Secret);
 
+            var msgUrl = string.Format("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}", accessToken);
+
+
+         
+
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                URL = msgUrl,
+                Method = "post",//URL     可选项 默认为Get
+                Postdata = msgJson,
+                PostEncoding = Encoding.GetEncoding("UTF-8")//可以发送中文消息了，开心
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            return result;
+        }
 
         public HttpResult getDepartmentListFromWechat(String secret)
         {

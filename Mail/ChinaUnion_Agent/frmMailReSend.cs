@@ -167,7 +167,7 @@ namespace ChinaUnion_Agent
             {
                 StringBuilder sb = new StringBuilder();
                 String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), feeMonth);
-                wechatAction.sendMessageToWechat(dgAgentFee[0, i].Value.ToString(), feeMonth + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
+                wechatAction.sendTextMessageToWechat(dgAgentFee[0, i].Value.ToString(), feeMonth + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);
 
                 sb.Append("agent_no#").Append(dgAgentFee[0, i].Value == null ? "" : dgAgentFee[0, i].Value.ToString()).Append(",");
                 sb.Append("agent_name#").Append(dgAgentFee[1, i].Value == null ? "" : dgAgentFee[1, i].Value.ToString().Replace(",", "、").Replace("#", "%")).Append(",");

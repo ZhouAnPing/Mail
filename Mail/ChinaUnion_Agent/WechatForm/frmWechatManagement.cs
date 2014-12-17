@@ -47,8 +47,8 @@ namespace ChinaUnion_Agent.WechatForm
                 department = Settings.Default.Wechat_Agent_Department;
             }
             WechatUser wechatUser = wechatAction.getUserFromWechatByDepartment(department, Settings.Default.Wechat_Secret);
-          
-            if (wechatUser != null && wechatUser.userlist.Count > 0)
+
+            if (wechatUser != null && wechatUser.userlist !=null&& wechatUser.userlist.Count > 0)
             {
                 this.grpWechatList.Text = "微信用户列表(" + wechatUser.userlist.Count + ")";
                 this.dgWechat.Rows.Clear();
