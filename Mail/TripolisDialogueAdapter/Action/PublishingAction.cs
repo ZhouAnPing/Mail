@@ -53,7 +53,7 @@ namespace TripolisDialogueAdapter.Action
             {
                 request.contactGroupId = contactGroupId;
                 request.directEmailId = emailId;
-                request.mailsPerHour = 50000;
+                request.mailsPerHour = 10000;
                 request.scheduleAtSpecified = true;
                 request.scheduleAt = scheduleAt;
              
