@@ -16,5 +16,6 @@ namespace ChinaUnion_BO
         public String solution;
         public String contactName;
         public String comment;
+        public int queryCount;
     }
 }

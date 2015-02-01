@@ -77,8 +77,8 @@ namespace ChinaUnion_Agent
                 ChinaUnionAdapter mailAdapter = new ChinaUnionAdapter(client, userName, password, null);
 
                 String feeMonth = cboFeeBatch.Text.Substring(0, 7) + "-01";
-                DateTime startTime = DateTime.Parse(feeMonth);
-                DateTime endTime = startTime.AddMonths(1);
+                DateTime startTime = DateTime.Parse(feeMonth).AddMonths(1);
+                DateTime endTime = startTime.AddMonths(2);
 
                 ReportData reportData = mailAdapter.getRerportByJobId(this.cboFeeBatch.SelectedValue.ToString(), startTime, endTime);
 
@@ -104,11 +104,11 @@ namespace ChinaUnion_Agent
                         dgvSent.Rows.Add();
                         DataGridViewRow row = dgvSent.Rows[i];
 
-                        for (int j = 0; j < dgvSent.ColumnCount; j++)
+                        for (int j = 0; j < dgvSent.ColumnCount && j<reportData.sent[i].contactFields.Length; j++)
                         {
-                            if (reportData.sent[i].contactFields != null)
+                            if (reportData.sent[i].contactFields != null )
                             {
-                                row.Cells[j].Value = reportData.sent[i].contactFields[j].value;
+                                row.Cells[j].Value = reportData.sent[i].contactFields[j] == null ? "" : reportData.sent[i].contactFields[j].value;
                             }
                         }
 
@@ -144,30 +144,32 @@ namespace ChinaUnion_Agent
                         DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount - 1];
                         emailList.Add(reportData.bounced[i].contactFields[0].value);
 
-                        for (int j = 0; j < dgvBounced.ColumnCount - 2; j++)
+                        for (int j = 0; j < dgvBounced.ColumnCount - 2 && j < reportData.bounced[i].contactFields.Length ; j++)
                         {
                             if (reportData.bounced[i].contactFields != null)
                             {
-                                row.Cells[j].Value = reportData.bounced[i].contactFields[j].value;
+                                row.Cells[j].Value = reportData.bounced[i].contactFields[j] == null ? "" : reportData.bounced[i].contactFields[j].value;
                             }
                         }
                         row.Cells[4].Value = reportData.bounced[i].bouncedAt.ToString("yyyy-MM-dd hh:mm:ss");
                         row.Cells[5].Value = reportData.bounced[i].bounceCode + "-" + reportData.bounced[i].bounceCategoryDescription + "-" + reportData.bounced[i].bounceReason;
                     }
-
-                    for (int i = 0; i < reportData.skipped.Length; i++)
+                    if (reportData != null && reportData.skipped != null && reportData.skipped.Length > 0)
                     {
-                        dgvBounced.Rows.Add();
-                        DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount - 1];
-
-                        for (int j = 0; j < dgvBounced.ColumnCount - 1; j++)
+                        for (int i = 0; i < reportData.skipped.Length; i++)
                         {
-                            if (reportData.skipped[i].contactFields != null)
+                            dgvBounced.Rows.Add();
+                            DataGridViewRow row = dgvBounced.Rows[dgvBounced.RowCount - 1];
+
+                            for (int j = 0; j < dgvBounced.ColumnCount - 1 && j < reportData.skipped[i].contactFields.Length; j++)
                             {
-                                row.Cells[j].Value = reportData.skipped[i].contactFields[j].value;
+                                if (reportData.skipped[i].contactFields != null)
+                                {
+                                    row.Cells[j].Value = reportData.skipped[i].contactFields[j].value == null ? "" : reportData.skipped[i].contactFields[j].value;
+                                }
                             }
+                            row.Cells[4].Value = reportData.skipped[i].skippedAt.ToString("yyyy-MM-dd hh:mm:ss");
                         }
-                        row.Cells[4].Value = reportData.skipped[i].skippedAt.ToString("yyyy-MM-dd hh:mm:ss");
                     }
 
                 }
@@ -213,14 +215,14 @@ namespace ChinaUnion_Agent
                 dgvOpened.Columns.Add("代理商编号", "代理商编号");
                 dgvOpened.Columns.Add("代理商名称", "代理商名称");
                 dgvOpened.Columns.Add("联系人", "联系人");
-                dgvOpened.Columns.Add("退回时间", "退回时间");
+                dgvOpened.Columns.Add("打开时间", "打开时间");
                 dgvOpened.Columns.Add("打开IP地址", "打开IP地址");
                 //已opened
                 if (reportData != null && reportData.opened != null && reportData.opened.Length > 0)
                 {
                     ArrayList emailList = new ArrayList();
 
-                    for (int i = 0; i < reportData.opened.Length; i++)
+                    for (int i = 0; i < reportData.opened.Length ; i++)
                     {
 
                         if (reportData.opened[i].contact.contactFields != null && emailList.Contains(reportData.opened[i].contact.contactFields[0].value))
@@ -232,11 +234,11 @@ namespace ChinaUnion_Agent
                         emailList.Add(reportData.opened[i].contact.contactFields[0].value);
 
 
-                        for (int j = 0; j < dgvOpened.ColumnCount - 2; j++)
+                        for (int j = 0; j < dgvOpened.ColumnCount - 2 && j < reportData.opened[i].contact.contactFields.Length; j++)
                         {
                             if (reportData.opened[i].contact.contactFields != null)
                             {
-                                row.Cells[j].Value = reportData.opened[i].contact.contactFields[j].value;
+                                row.Cells[j].Value = reportData.opened[i].contact.contactFields[j] == null ? "" : reportData.opened[i].contact.contactFields[j].value;
                             }
                         }
                         row.Cells[4].Value = reportData.opened[i].openedAt.ToString("yyyy-MM-dd hh:mm:ss");

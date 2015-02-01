@@ -254,8 +254,15 @@ namespace ChinaUnion_Agent
                 agentErrorCode.contactName = dgErrorCode[6, i].Value.ToString();
                // agentErrorCode.comment = dgErrorCode[5, i].Value.ToString();
                 agentErrorCode.module = dgErrorCode[1, i].Value.ToString();
-                agentErrorCodeDao.Delete(agentErrorCode.keyword);
-                agentErrorCodeDao.Add(agentErrorCode);
+                if (agentErrorCodeDao.GetByKey(agentErrorCode.keyword) != null)
+                {
+                    agentErrorCodeDao.Update(agentErrorCode);
+                }
+                else
+                {
+                    //agentErrorCodeDao.Delete(agentErrorCode.keyword);
+                    agentErrorCodeDao.Add(agentErrorCode);
+                }
             }
 
             worker.ReportProgress(2, "导入错误代码完成...\r\n");

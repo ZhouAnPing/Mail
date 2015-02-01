@@ -27,6 +27,7 @@ namespace Wechat
             AgentErrorCode agentErrorCode = agentErrorCodeDao.GetByKey(keyword);
             if (agentErrorCode != null)
             {
+                agentErrorCodeDao.UpdateQueryCount(agentErrorCode);
                 this.lblKeyword.Text = agentErrorCode.keyword;
                 logger.Info("solution=" + agentErrorCode.solution);
                 this.lblErrorSolution.Text = agentErrorCode.solution.Replace("解决办法", "<br>解决办法").Replace("解决方法", "<br>解决方法");

@@ -58,6 +58,20 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
+
+        public int UpdateQueryCount(AgentErrorCode entity)
+        {
+            string sql = "UPDATE  agent_error_code SET queryCount=queryCount+1 where  keyword=@keyword";
+
+            //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@keyword", entity.keyword);
+                return command.ExecuteNonQuery();
+            }
+        }
         /// <summary> 
         /// 删除数据 
         /// </summary> 
@@ -110,7 +124,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentErrorCode> GetList(String qeuryString)
         {
-            string sql = "SELECT seq,module,keyword,errorDesc,errorImg,solution,contactName,comment FROM agent_error_code ";
+            string sql = "SELECT seq,module,keyword,errorDesc,errorImg,solution,contactName,comment,queryCount FROM agent_error_code ";
 
             if(!String.IsNullOrEmpty(qeuryString)){
                 sql = sql + " where (keyword like \"%" + qeuryString + "%\" or errorDesc  like \"%" + qeuryString + "%\")";
@@ -135,6 +149,7 @@ namespace ChinaUnion_DataAccess
                     agentErrorCode.solution = reader["solution"] == DBNull.Value ? null : reader["solution"].ToString();
                     agentErrorCode.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
                     agentErrorCode.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
+                    agentErrorCode.queryCount = reader["queryCount"] == DBNull.Value ? 0 : int.Parse(reader["queryCount"].ToString());
                     list.Add(agentErrorCode);
                 }
                 return list;

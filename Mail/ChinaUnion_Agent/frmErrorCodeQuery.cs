@@ -79,6 +79,7 @@ namespace ChinaUnion_Agent
                 dgErrorCode.Columns.Add("原因及处理方法", "原因及处理方法");
                 dgErrorCode.Columns.Add("联系方式", "联系方式");
                // dgErrorCode.Columns.Add("备注", "备注");
+                dgErrorCode.Columns.Add("查询次数", "查询次数");
 
             AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
             IList<AgentErrorCode> ErrorCodeList = agentErrorCodeDao.GetList(this.txtErrorCode.Text.Trim());
@@ -99,7 +100,7 @@ namespace ChinaUnion_Agent
                     row.Cells[4].Value = ErrorCodeList[i].errorImg;
                     row.Cells[5].Value = ErrorCodeList[i].solution;
                     row.Cells[6].Value = ErrorCodeList[i].contactName;
-                   // row.Cells[6].Value = ErrorCodeList[i].comment;
+                    row.Cells[7].Value = ErrorCodeList[i].queryCount;
 
 
                 }
