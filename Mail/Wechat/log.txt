@@ -186,4 +186,18 @@
 2014-12-04 11:17:56,777 [2847] INFO  Wechat.AgentFeeQuery - agentNo=
 [Footer]\r\n[Header]\r\n2014-12-04 11:19:58,294 [2846] INFO  Wechat.AgentFeeQuery - feeMonth=
 2014-12-04 11:19:58,314 [2846] INFO  Wechat.AgentFeeQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 20:35:59,131 [9] INFO  Wechat.AgentInvoiceQuery - feeMonth=
+2015-02-04 20:35:59,211 [9] INFO  Wechat.AgentInvoiceQuery - agentNo=
+2015-02-04 20:37:55,754 [12] INFO  Wechat.AgentInvoiceQuery - feeMonth=
+2015-02-04 20:37:56,533 [12] INFO  Wechat.AgentInvoiceQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 20:38:14,549 [6] INFO  Wechat.AgentInvoiceQuery - feeMonth=
+2015-02-04 20:38:14,567 [6] INFO  Wechat.AgentInvoiceQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 20:39:41,958 [18] INFO  Wechat.AgentInvoiceQuery - feeMonth=
+2015-02-04 20:39:41,977 [18] INFO  Wechat.AgentInvoiceQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 20:42:39,620 [12] INFO  Wechat.AgentInvoiceQuery - feeMonth=
+2015-02-04 20:42:39,634 [12] INFO  Wechat.AgentInvoiceQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 21:11:27,543 [56] INFO  Wechat.AgentInvoicePaymentQuery - feeMonth=
+2015-02-04 21:11:27,559 [56] INFO  Wechat.AgentInvoicePaymentQuery - agentNo=
+[Footer]\r\n[Header]\r\n2015-02-04 21:24:52,317 [9] INFO  Wechat.AgentInvoicePaymentQuery - feeMonth=
+2015-02-04 21:24:52,388 [9] INFO  Wechat.AgentInvoicePaymentQuery - agentNo=
 [Footer]\r\n

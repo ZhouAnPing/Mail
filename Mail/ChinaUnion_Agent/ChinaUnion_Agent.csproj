@@ -187,6 +187,30 @@
     <Compile Include="frmProgress.Designer.cs">
       <DependentUpon>frmProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceForm\frmAgentInvoicePaymentManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmAgentInvoicePaymentManagement.Designer.cs">
+      <DependentUpon>frmAgentInvoicePaymentManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm\frmAgentInvoiceManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmAgentInvoiceManagement.Designer.cs">
+      <DependentUpon>frmAgentInvoiceManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm\frmPaymentImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmPaymentImport.Designer.cs">
+      <DependentUpon>frmPaymentImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoiceImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoiceImport.Designer.cs">
+      <DependentUpon>frmInvoiceImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PolicyForm\frmKnowledgeManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +345,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgress.resx">
       <DependentUpon>frmProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmAgentInvoicePaymentManagement.resx">
+      <DependentUpon>frmAgentInvoicePaymentManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmAgentInvoiceManagement.resx">
+      <DependentUpon>frmAgentInvoiceManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmPaymentImport.resx">
+      <DependentUpon>frmPaymentImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmInvoiceImport.resx">
+      <DependentUpon>frmInvoiceImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PolicyForm\frmKnowledgeManagement.resx">
       <DependentUpon>frmKnowledgeManagement.cs</DependentUpon>

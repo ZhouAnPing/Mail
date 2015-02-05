@@ -66,12 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
+    <Content Include="AgentInvoiceQuery.aspx" />
     <Content Include="ChinaUnicom.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ChinaUnicom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="AgentInvoicePaymentQuery.aspx" />
     <Content Include="ErrorCodeQuery.aspx" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -91,9 +93,26 @@
     <Compile Include="AgentFeeQuery.aspx.designer.cs">
       <DependentUpon>AgentFeeQuery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgentInvoiceHandler.ashx.cs">
+      <DependentUpon>AgentInvoiceHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AgentInvoiceQuery.aspx.cs">
+      <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgentInvoiceQuery.aspx.designer.cs">
+      <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BO\WechatMessage.cs" />
     <Compile Include="CallbackHandler.ashx.cs">
       <DependentUpon>CallbackHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AgentInvoicePaymentQuery.aspx.cs">
+      <DependentUpon>AgentInvoicePaymentQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgentInvoicePaymentQuery.aspx.designer.cs">
+      <DependentUpon>AgentInvoicePaymentQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorCodeHandler.ashx.cs">
       <DependentUpon>ErrorCodeHandler.ashx</DependentUpon>
@@ -124,6 +143,7 @@
     <Content Include="CallbackHandler.ashx" />
     <Content Include="ErrorCodeHandler.ashx" />
     <Content Include="AgentFeeHandler.ashx" />
+    <Content Include="AgentInvoiceHandler.ashx" />
     <None Include="Properties\PublishProfiles\ChinaUnion.pubxml" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

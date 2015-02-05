@@ -47,6 +47,8 @@
     <Compile Include="AgentType.cs" />
     <Compile Include="AgentTypeComment.cs" />
     <Compile Include="AgentErrorCode.cs" />
+    <Compile Include="AgentInvoice.cs" />
+    <Compile Include="AgentInvoicePayment.cs" />
     <Compile Include="ImportLog.cs" />
     <Compile Include="MailJob.cs" />
     <Compile Include="MyMenuItem.cs" />

@@ -1,5 +1,6 @@
 ﻿
 using BSE.Windows.Forms;
+using ChinaUnion_Agent.InvoiceForm;
 using ChinaUnion_Agent.PolicyForm;
 using ChinaUnion_Agent.Properties;
 using ChinaUnion_Agent.UserManagement;
@@ -547,6 +548,30 @@ namespace ChinaUnion_Agent
             }
             this.Text =this.Text+ Application.ProductVersion;
           
+        }
+
+        private void btnInvoiceImport_Click(object sender, EventArgs e)
+        {
+            frmInvoiceImport frmInvoiceImport = new frmInvoiceImport();
+            CheckChildOpenState(this, frmInvoiceImport);
+        }
+
+        private void btnPaymentImport_Click(object sender, EventArgs e)
+        {
+            frmPaymentImport frmPaymentImport = new frmPaymentImport();
+            CheckChildOpenState(this, frmPaymentImport);
+        }
+
+        private void btnInvoiceManagement_Click(object sender, EventArgs e)
+        {
+            frmAgentInvoiceManagement frmAgentInvoiceManagement = new frmAgentInvoiceManagement();
+            CheckChildOpenState(this, frmAgentInvoiceManagement);
+        }
+
+        private void btnPaymentManagement_Click(object sender, EventArgs e)
+        {
+            frmAgentInvoicePaymentManagement frmAgentInvoicePaymentManagement = new frmAgentInvoicePaymentManagement();
+            CheckChildOpenState(this, frmAgentInvoicePaymentManagement);
         }
 
        
