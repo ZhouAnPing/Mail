@@ -206,7 +206,7 @@ namespace ChinaUnion_Agent
 
 
 
-                    for (int j = feeSeq; j <= 62; j++)
+                    for (int j = feeSeq; j <= 101; j++)
                     {
                         sb.Append("fee_seq").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
                         sb.Append("fee_name").Append(feeSeq.ToString()).Append("#").Append("").Append(",");
