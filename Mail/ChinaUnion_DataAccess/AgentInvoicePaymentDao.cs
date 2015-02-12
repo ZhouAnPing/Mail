@@ -133,7 +133,7 @@ namespace ChinaUnion_DataAccess
             {
                 sql = sql + "  and ( date_format(str_to_date(processtime, '%Y-%m-%d'),'%Y%m') = '" + processMonth + "')";
             }
-           
+            sql = sql + " order by processtime asc";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();

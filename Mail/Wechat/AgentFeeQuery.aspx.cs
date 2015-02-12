@@ -39,8 +39,8 @@ namespace Wechat
             {
                return;
             }
-            //agentNo = "DL0010";
-          //  feeMonth = "2014-10";
+           // agentNo = "yangqinxiao1";
+          //  feeMonth = "2015-01";
             AgentFeeDao AgentFeeDao = new AgentFeeDao();
 
             AgentFee agentFee = AgentFeeDao.GetByKey(feeMonth, agentNo);
@@ -210,7 +210,9 @@ namespace Wechat
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
+               
+
                if (String.IsNullOrEmpty(e.Row.Cells[0].Text)||e.Row.Cells[0].Text.Equals("&nbsp;"))
                 {
                     if (!String.IsNullOrEmpty(e.Row.Cells[1].Text) || e.Row.Cells[1].Text.Equals("&nbsp;"))

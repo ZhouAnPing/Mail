@@ -139,6 +139,7 @@ namespace ChinaUnion_DataAccess
             {
                 sql = sql + " and  invoiceMonth='" + invoiceMonth + "'";
             }
+            sql = sql + " order by invoiceDate asc";
            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();

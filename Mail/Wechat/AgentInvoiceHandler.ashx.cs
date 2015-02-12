@@ -111,7 +111,7 @@ namespace Wechat
 
                          IList<AgentInvoice> agentInvoiceList = new List<AgentInvoice>();
 
-                         agentNo = "DL224049";
+                         agentNo = "";//"DL224049";
                          feeMonth = "201501";
                       
 
@@ -146,7 +146,7 @@ namespace Wechat
 
                         IList<AgentInvoicePayment> agentInvoicePaymentList = new List<AgentInvoicePayment>();
 
-                        agentNo = "DL224049";
+                        agentNo = "";//"DL224049";
                         feeMonth = "201412";
                          logger.Info("1.feeMonth=" + feeMonth);
                         logger.Info("2.agentNo=" + agentNo);
@@ -265,8 +265,12 @@ namespace Wechat
             StringBuilder sbDesc = new StringBuilder();
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
             sbDesc.AppendFormat("总共处理了：{0}次发票信息\n", agentInvoiceList.Count);
-            
 
+            foreach (AgentInvoice agentInvoice in agentInvoiceList)
+            {
+               sbDesc.AppendFormat("\n收票日期:" + agentInvoice.invoiceDate + "\n内容:" + agentInvoice.invoiceContent + "\n金额:" + agentInvoice.invoiceFee + "\n发票类型:" + agentInvoice.invoiceType + "\n发票号:" + agentInvoice.invoiceNo + "\n备注:" + agentInvoice.comment).AppendLine();
+
+            }
             
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
@@ -295,7 +299,11 @@ namespace Wechat
             StringBuilder sbDesc = new StringBuilder();
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
             sbDesc.AppendFormat("总共处理了：{0}次支付信息\n", agentInvoicePaymentList.Count);
+            foreach (AgentInvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+            {
+                sbDesc.AppendFormat( "\n处理时间：" + agentInvoicePayment.processTime + "\n发票金额：" + agentInvoicePayment.invoiceFee + "\n付款金额：" + agentInvoicePayment.payFee + "\n摘要：" + agentInvoicePayment.summary + "\n付款状态：" + agentInvoicePayment.payStatus).AppendLine();
 
+            }
 
 
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
