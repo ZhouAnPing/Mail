@@ -64,6 +64,8 @@ namespace ChinaUnion_Agent.InvoiceForm
                         this.dgInvoice.Columns.Add(coloumn, coloumn);
                     }
 
+                    this.dgInvoice.Columns.Add("result", "导入结果");
+
                     for (int i = 0; i < invoice.Count; i++)
                     {
                         if (String.IsNullOrEmpty(invoice[i][0].Value.ToString().Trim()))
@@ -120,13 +122,10 @@ namespace ChinaUnion_Agent.InvoiceForm
         {
             //需要执行的代码
 
-
-         
-
-
             worker.ReportProgress(3, "开始导入发票信息...\r\n");
             //导入代理商
             AgentInvoiceDao agentInvoiceDao = new AgentInvoiceDao();
+            AgentDao agentDao = new AgentDao();
             for (int i = 0; i < dgInvoice.RowCount; i++)
             {
                 AgentInvoice agentInvoice = new AgentInvoice();
@@ -139,10 +138,22 @@ namespace ChinaUnion_Agent.InvoiceForm
                 agentInvoice.invoiceType = dgInvoice[6, i].Value.ToString();
                 agentInvoice.invoiceNo = dgInvoice[7, i].Value.ToString();
                 agentInvoice.comment = dgInvoice[8, i].Value.ToString();
-                agentInvoiceDao.Delete(agentInvoice);
-                agentInvoiceDao.Add(agentInvoice);
+
+                Agent agent = agentDao.Get(agentInvoice.agentNo);
+                if (agent != null && !String.IsNullOrEmpty(agent.agentName))
+                {
+                    agentInvoiceDao.Delete(agentInvoice);
+                    agentInvoiceDao.Add(agentInvoice);
+                    dgInvoice["result", i].Value = "导入成功";
+                }
+                else
+                {
+                    dgInvoice["result", i].Value = "导入失败，代理商编号：" + agentInvoice.agentNo+"不存在,请先导入代理商.";
+                }
 
             }
+            //dgInvoice.AutoResizeColumns();
+            
             worker.ReportProgress(4, "导入发票信息完成...\r\n");
 
 

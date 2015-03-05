@@ -72,7 +72,7 @@ namespace ChinaUnion_Agent.InvoiceForm
                     {
                         this.dgInvoicePayment.Columns.Add(coloumn, coloumn);
                     }
-
+                    this.dgInvoicePayment.Columns.Add("result", "导入结果");
                     for (int i = 0; i < payment.Count; i++)
                     {
                         if (String.IsNullOrEmpty(payment[i][0].Value.ToString().Trim()))
@@ -127,6 +127,7 @@ namespace ChinaUnion_Agent.InvoiceForm
             worker.ReportProgress(3, "开始导入支付记录...\r\n");
             //导入代理商
             AgentInvoicePaymentDao agentInvoicePaymentDao = new AgentInvoicePaymentDao();
+            AgentDao agentDao = new AgentDao();
             for (int i = 0; i < dgInvoicePayment.RowCount; i++)
             {
                 AgentInvoicePayment agentInvoicePayment = new AgentInvoicePayment();
@@ -137,8 +138,17 @@ namespace ChinaUnion_Agent.InvoiceForm
                 agentInvoicePayment.payFee = dgInvoicePayment[4, i].Value.ToString();
                 agentInvoicePayment.summary = dgInvoicePayment[5, i].Value.ToString();
                 agentInvoicePayment.payStatus = dgInvoicePayment[6, i].Value.ToString();
-                agentInvoicePaymentDao.Delete(agentInvoicePayment);
-                agentInvoicePaymentDao.Add(agentInvoicePayment);
+                Agent agent = agentDao.Get(agentInvoicePayment.agentNo);
+                 if (agent != null && !String.IsNullOrEmpty(agent.agentName))
+                 {
+                     agentInvoicePaymentDao.Delete(agentInvoicePayment);
+                     agentInvoicePaymentDao.Add(agentInvoicePayment);
+                     dgInvoicePayment["result", i].Value = "导入成功";
+                 }
+                 else
+                 {
+                     dgInvoicePayment["result", i].Value = "导入失败，代理商编号：" + agentInvoicePayment.agentNo + "不存在,请先导入代理商.";
+                 }
 
             }
             worker.ReportProgress(4, "导入支付记录完成...\r\n");
