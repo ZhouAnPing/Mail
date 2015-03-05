@@ -83,5 +83,45 @@ namespace ChinaUnion_Agent.InvoiceForm
             this.Cursor = Cursors.Default;
 
         }
+
+        private void frmAgentInvoicePaymentManagement_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void menuModify_Click(object sender, EventArgs e)
+        {
+            if (this.dgInvoicePayment.SelectedRows == null)
+            {
+                MessageBox.Show("请先选择");
+                return;
+            }
+            frmAgentInvoicePaymentModification frmAgentInvoicePaymentModification = new frmAgentInvoicePaymentModification();
+
+
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.agentNo = this.dgInvoicePayment.CurrentRow.Cells[0].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.agentName = this.dgInvoicePayment.CurrentRow.Cells[1].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.processTime = this.dgInvoicePayment.CurrentRow.Cells[2].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.invoiceFee = this.dgInvoicePayment.CurrentRow.Cells[3].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.payFee = this.dgInvoicePayment.CurrentRow.Cells[4].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.summary = this.dgInvoicePayment.CurrentRow.Cells[5].Value.ToString();
+            frmAgentInvoicePaymentModification.inputAgentInvoicePayment.payStatus = this.dgInvoicePayment.CurrentRow.Cells[6].Value.ToString();
+
+            DialogResult result = frmAgentInvoicePaymentModification.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+
+                DataGridViewRow row = dgInvoicePayment.CurrentRow;
+
+                row.Cells[0].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.agentNo;
+                row.Cells[1].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.agentName;
+                row.Cells[2].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.processTime;
+                row.Cells[3].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.invoiceFee;
+                row.Cells[4].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.payFee;
+                row.Cells[5].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.summary;
+                row.Cells[6].Value = frmAgentInvoicePaymentModification.outputAgentInvoicePayment.payStatus;
+
+            }
+        }
     }
 }

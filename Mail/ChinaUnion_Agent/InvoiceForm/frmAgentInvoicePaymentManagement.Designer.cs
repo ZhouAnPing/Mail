@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtAgentName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,9 +39,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.grpList = new System.Windows.Forms.GroupBox();
             this.dgInvoicePayment = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuModify = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.grpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicePayment)).BeginInit();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -142,14 +146,31 @@
             this.dgInvoicePayment.AllowUserToDeleteRows = false;
             this.dgInvoicePayment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgInvoicePayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvoicePayment.ContextMenuStrip = this.contextMenuStrip2;
             this.dgInvoicePayment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvoicePayment.Location = new System.Drawing.Point(3, 17);
             this.dgInvoicePayment.Name = "dgInvoicePayment";
             this.dgInvoicePayment.ReadOnly = true;
             this.dgInvoicePayment.RowHeadersWidth = 10;
             this.dgInvoicePayment.RowTemplate.Height = 23;
+            this.dgInvoicePayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgInvoicePayment.Size = new System.Drawing.Size(1010, 665);
             this.dgInvoicePayment.TabIndex = 7;
+            this.dgInvoicePayment.DoubleClick += new System.EventHandler(this.menuModify_Click);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuModify});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 48);
+            // 
+            // menuModify
+            // 
+            this.menuModify.Name = "menuModify";
+            this.menuModify.Size = new System.Drawing.Size(152, 22);
+            this.menuModify.Text = "修改";
+            this.menuModify.Click += new System.EventHandler(this.menuModify_Click);
             // 
             // frmAgentInvoicePaymentManagement
             // 
@@ -161,10 +182,12 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAgentInvoicePaymentManagement";
             this.Text = "支付记录管理";
+            this.Load += new System.EventHandler(this.frmAgentInvoicePaymentManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicePayment)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -181,5 +204,7 @@
         private System.Windows.Forms.DataGridView dgInvoicePayment;
         private System.Windows.Forms.TextBox txtAgentName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem menuModify;
     }
 }

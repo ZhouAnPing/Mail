@@ -84,5 +84,48 @@ namespace ChinaUnion_Agent.InvoiceForm
             this.Cursor = Cursors.Default;
 
         }
+
+        private void frmAgentInvoiceManagement_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void menuModify_Click(object sender, EventArgs e)
+        {
+            if (this.dgInvoice.SelectedRows == null)
+            {
+                MessageBox.Show("请先选择");
+                return;
+            }
+            frmAgentInvoiceModification frmAgentInvoiceModification = new frmAgentInvoiceModification();
+
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceMonth = this.dgInvoice.CurrentRow.Cells[0].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceDate = this.dgInvoice.CurrentRow.Cells[1].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.agentNo = this.dgInvoice.CurrentRow.Cells[2].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.agentName = this.dgInvoice.CurrentRow.Cells[3].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceContent = this.dgInvoice.CurrentRow.Cells[4].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceType = this.dgInvoice.CurrentRow.Cells[5].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceFee = this.dgInvoice.CurrentRow.Cells[6].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.invoiceNo = this.dgInvoice.CurrentRow.Cells[7].Value.ToString();
+            frmAgentInvoiceModification.inputAgentInvoice.comment = this.dgInvoice.CurrentRow.Cells[8].Value.ToString();
+
+            DialogResult result = frmAgentInvoiceModification.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+
+                DataGridViewRow row = dgInvoice.CurrentRow;
+
+                row.Cells[0].Value =frmAgentInvoiceModification. outputAgentInvoice.invoiceMonth;
+                row.Cells[1].Value =frmAgentInvoiceModification. outputAgentInvoice.invoiceDate;
+                row.Cells[2].Value = frmAgentInvoiceModification. outputAgentInvoice.agentNo;
+                row.Cells[3].Value = frmAgentInvoiceModification. outputAgentInvoice.agentName;
+                row.Cells[4].Value = frmAgentInvoiceModification. outputAgentInvoice.invoiceContent;
+                row.Cells[5].Value = frmAgentInvoiceModification. outputAgentInvoice.invoiceType;
+                row.Cells[6].Value = frmAgentInvoiceModification. outputAgentInvoice.invoiceFee;
+                row.Cells[7].Value = frmAgentInvoiceModification. outputAgentInvoice.invoiceNo;
+                row.Cells[8].Value = frmAgentInvoiceModification. outputAgentInvoice.comment;
+
+            }
+        }
     }
 }

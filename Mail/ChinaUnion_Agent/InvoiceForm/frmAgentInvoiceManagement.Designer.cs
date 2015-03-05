@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMonth = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,9 +41,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.grpList = new System.Windows.Forms.GroupBox();
             this.dgInvoice = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuModify = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.grpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -162,14 +166,31 @@
             this.dgInvoice.AllowUserToDeleteRows = false;
             this.dgInvoice.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvoice.ContextMenuStrip = this.contextMenuStrip2;
             this.dgInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvoice.Location = new System.Drawing.Point(3, 17);
             this.dgInvoice.Name = "dgInvoice";
             this.dgInvoice.ReadOnly = true;
             this.dgInvoice.RowHeadersWidth = 10;
             this.dgInvoice.RowTemplate.Height = 23;
+            this.dgInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgInvoice.Size = new System.Drawing.Size(1010, 665);
             this.dgInvoice.TabIndex = 7;
+            this.dgInvoice.DoubleClick += new System.EventHandler(this.menuModify_Click);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuModify});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(95, 26);
+            // 
+            // menuModify
+            // 
+            this.menuModify.Name = "menuModify";
+            this.menuModify.Size = new System.Drawing.Size(94, 22);
+            this.menuModify.Text = "修改";
+            this.menuModify.Click += new System.EventHandler(this.menuModify_Click);
             // 
             // frmAgentInvoiceManagement
             // 
@@ -181,10 +202,12 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAgentInvoiceManagement";
             this.Text = "发票登记管理";
+            this.Load += new System.EventHandler(this.frmAgentInvoiceManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -203,5 +226,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMonth;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem menuModify;
     }
 }
