@@ -20,5 +20,11 @@
     <Setting Name="Host" Type="System.String" Scope="Application">
       <Value Profile="(Default)">112.64.17.80</Value>
     </Setting>
+    <Setting Name="Wechat_AgentInvoice_EncodingAESKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">omiSDTqK4GjKmsQ6eCJSWpOtmqPcz6A3B41RBcg6Ey9</Value>
+    </Setting>
+    <Setting Name="Wechat_AgentInvoice_Token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">agentInvoice</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

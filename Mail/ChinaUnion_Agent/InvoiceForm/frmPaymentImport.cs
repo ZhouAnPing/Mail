@@ -1,4 +1,6 @@
-﻿using ChinaUnion_BO;
+﻿using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using LinqToExcel;
 using System;
@@ -128,6 +130,7 @@ namespace ChinaUnion_Agent.InvoiceForm
             //导入代理商
             AgentInvoicePaymentDao agentInvoicePaymentDao = new AgentInvoicePaymentDao();
             AgentDao agentDao = new AgentDao();
+            WechatAction wechatAction = new WechatAction();
             for (int i = 0; i < dgInvoicePayment.RowCount; i++)
             {
                 AgentInvoicePayment agentInvoicePayment = new AgentInvoicePayment();
@@ -144,6 +147,9 @@ namespace ChinaUnion_Agent.InvoiceForm
                      agentInvoicePaymentDao.Delete(agentInvoicePayment);
                      agentInvoicePaymentDao.Add(agentInvoicePayment);
                      dgInvoicePayment["result", i].Value = "导入成功";
+                     String message = String.Format(Settings.Default.InvoicePayment_Wechat_Message, agentInvoicePayment.processTime, agentInvoicePayment.invoiceFee, agentInvoicePayment.payFee, agentInvoicePayment.summary, agentInvoicePayment.payStatus);
+                     wechatAction.sendTextMessageToWechat(agentInvoicePayment.agentNo, message, Settings.Default.Wechat_Secret, Settings.Default.Wechar_Invoice_AppId);
+
                  }
                  else
                  {

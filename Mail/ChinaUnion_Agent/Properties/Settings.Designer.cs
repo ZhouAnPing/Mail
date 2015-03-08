@@ -278,5 +278,42 @@ namespace ChinaUnion_Agent.Properties {
                 this["TripolisEmailId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("上海联通已经收到您的发票信息【收票日期：{0}，内容：{1}，金额：{2}，发票类型：{3}，发票号：{4}，备注：{5}】，您也可以通过微信企业号实时查询了解发" +
+            "票接收情况。")]
+        public string Invoice_Wechat_Message {
+            get {
+                return ((string)(this["Invoice_Wechat_Message"]));
+            }
+            set {
+                this["Invoice_Wechat_Message"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("上海联通已经支付了一笔款项【处理时间：{0}，发票金额：{1}，付款金额：{2}，摘要：{3}，支付状态：{4}】，您也可以通过微信企业号实时查询了解支付情况。")]
+        public string InvoicePayment_Wechat_Message {
+            get {
+                return ((string)(this["InvoicePayment_Wechat_Message"]));
+            }
+            set {
+                this["InvoicePayment_Wechat_Message"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int Wechar_Invoice_AppId {
+            get {
+                return ((int)(this["Wechar_Invoice_AppId"]));
+            }
+            set {
+                this["Wechar_Invoice_AppId"] = value;
+            }
+        }
     }
 }

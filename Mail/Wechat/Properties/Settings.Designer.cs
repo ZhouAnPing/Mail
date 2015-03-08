@@ -76,5 +76,23 @@ namespace Wechat.Properties {
                 return ((string)(this["Host"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("omiSDTqK4GjKmsQ6eCJSWpOtmqPcz6A3B41RBcg6Ey9")]
+        public string Wechat_AgentInvoice_EncodingAESKey {
+            get {
+                return ((string)(this["Wechat_AgentInvoice_EncodingAESKey"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("agentInvoice")]
+        public string Wechat_AgentInvoice_Token {
+            get {
+                return ((string)(this["Wechat_AgentInvoice_Token"]));
+            }
+        }
     }
 }

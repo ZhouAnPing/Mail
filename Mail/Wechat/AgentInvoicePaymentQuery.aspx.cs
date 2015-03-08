@@ -43,8 +43,8 @@ namespace Wechat
             //dt.Columns.Add("summary");
             //dt.Columns.Add("payStatus");
 
-            agentNo = "";// "DL224049";
-            feeMonth = "201412";
+           // agentNo = "";// "DL224049";
+           // feeMonth = "201412";
             AgentInvoicePaymentDao agentInvoicePaymentDao = new AgentInvoicePaymentDao();
 
             IList<AgentInvoicePayment> agentInvoicePaymentList = new List<AgentInvoicePayment>();

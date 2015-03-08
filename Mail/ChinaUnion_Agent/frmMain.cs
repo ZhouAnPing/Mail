@@ -574,6 +574,17 @@ namespace ChinaUnion_Agent
             CheckChildOpenState(this, frmAgentInvoicePaymentManagement);
         }
 
+        private void btnInvoiceWechatPublish_Click(object sender, EventArgs e)
+        {
+            frmBroadcast frmBroadcast = new frmBroadcast();
+            frmBroadcast.Wechat_secretId = Settings.Default.Wechat_Secret;
+            frmBroadcast.Wechar_AppId = Settings.Default.Wechar_Invoice_AppId;
+
+            frmBroadcast.ShowInTaskbar = false;
+
+            frmBroadcast.ShowDialog();
+        }
+
        
 
         

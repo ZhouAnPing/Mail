@@ -246,7 +246,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton1.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton1.Text = "代理商佣金导入";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton1.Click += new System.EventHandler(this.CommissionImport_Click);
@@ -261,7 +261,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton2.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton2.Text = "代理商佣金发布";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton2.Click += new System.EventHandler(this.CommissionPublish_Click);
@@ -276,7 +276,7 @@
             this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton12.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton12.Text = "代理商报告查询";
             this.toolStripButton12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton12.Click += new System.EventHandler(this.CommissionOpenReport_Click);
@@ -291,7 +291,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(93, 64);
+            this.toolStripButton3.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton3.Text = "代理商信息导入";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton3.Click += new System.EventHandler(this.ChannelImport_Click);
@@ -306,7 +306,7 @@
             this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(81, 64);
+            this.toolStripButton15.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton15.Text = "微信账号同步";
             this.toolStripButton15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton15.ToolTipText = "代理商微信同步";
@@ -322,7 +322,7 @@
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(81, 64);
+            this.toolStripButton7.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton7.Text = "微信账号查询";
             this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton7.Click += new System.EventHandler(this.ChannelWechatQuery_Click);
@@ -337,7 +337,7 @@
             this.toolStripButton17.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton17.Image")));
             this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton17.Name = "toolStripButton17";
-            this.toolStripButton17.Size = new System.Drawing.Size(81, 64);
+            this.toolStripButton17.Size = new System.Drawing.Size(130, 64);
             this.toolStripButton17.Text = "微信公告发布";
             this.toolStripButton17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton17.Click += new System.EventHandler(this.ChannelWechatBroadcast_Click);
@@ -626,6 +626,7 @@
             this.btnInvoiceWechatPublish.Text = "微信公告发布";
             this.btnInvoiceWechatPublish.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnInvoiceWechatPublish.ToolTipText = "微信公告公告";
+            this.btnInvoiceWechatPublish.Click += new System.EventHandler(this.btnInvoiceWechatPublish_Click);
             // 
             // toolStripSeparator19
             // 

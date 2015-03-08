@@ -43,8 +43,8 @@ namespace Wechat
             //dt.Columns.Add("invoiceNo");
             //dt.Columns.Add("comment");
 
-            agentNo = "";// "DL224049";
-            feeMonth = "201501";
+           // agentNo = "";// "DL224049";
+           // feeMonth = "201501";
             AgentInvoiceDao agentInvoiceDao = new AgentInvoiceDao();
 
             IList<AgentInvoice> agentInvoiceList = new List<AgentInvoice>();

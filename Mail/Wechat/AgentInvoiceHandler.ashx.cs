@@ -32,9 +32,9 @@ namespace Wechat
             logger.Info(context.Request.Url.AbsoluteUri);
 
 
-            string sToken = "agentInvoice";
-             string sCorpID = "wx4fe8b74e01fffcbb";
-             string sEncodingAESKey = "8qwNW7qLkFzYj3bZM56AAKJMuaq33d8rTY0kqFwq09y";
+            string sToken = Properties.Settings.Default.Wechat_AgentInvoice_Token;// "agentInvoice";
+            string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx4fe8b74e01fffcbb";
+            string sEncodingAESKey = Properties.Settings.Default.Wechat_AgentInvoice_EncodingAESKey;// "omiSDTqK4GjKmsQ6eCJSWpOtmqPcz6A3B41RBcg6Ey9";
 
           //  string sToken = Properties.Settings.Default.Wechat_AgentFee_Token;//"AgentFee";
           //  string sCorpID = Properties.Settings.Default.Wechat_CorpId;// "wx31204de5a3ae758e";
@@ -96,7 +96,7 @@ namespace Wechat
                 {
                     case "OtherInvoiceQuery":
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"1.yyyymm\"查询某月发票,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "发票\n\n");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"1.yyyymm\"查询某月发票,例如:\"1." + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "发票\n\n");
 
                         break;
 
@@ -111,8 +111,8 @@ namespace Wechat
 
                          IList<AgentInvoice> agentInvoiceList = new List<AgentInvoice>();
 
-                         agentNo = "";//"DL224049";
-                         feeMonth = "201501";
+                       //  agentNo = "";//"DL224049";
+                       //  feeMonth = "201501";
                       
 
                          agentInvoiceList = agentInvoiceDao.GetList(agentNo, null, feeMonth);
@@ -131,7 +131,7 @@ namespace Wechat
 
                     case "OtherInvoicePaymentQuery":
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"2.yyyymm\"查询某月支付,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "支付\n\n");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"2.yyyymm\"查询某月支付,例如:\"2." + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "支付\n\n");
 
                         break;
 
@@ -146,8 +146,8 @@ namespace Wechat
 
                         IList<AgentInvoicePayment> agentInvoicePaymentList = new List<AgentInvoicePayment>();
 
-                        agentNo = "";//"DL224049";
-                        feeMonth = "201412";
+                      //  agentNo = "";//"DL224049";
+                       // feeMonth = "201412";
                          logger.Info("1.feeMonth=" + feeMonth);
                         logger.Info("2.agentNo=" + agentNo);
 
@@ -177,7 +177,7 @@ namespace Wechat
 
                                 agentInvoiceList = new List<AgentInvoice>();
 
-                                agentNo = "DL224049";
+                             //   agentNo = "DL224049";
                                 // feeMonth = "201501";
 
 
@@ -199,7 +199,7 @@ namespace Wechat
 
                                 agentInvoicePaymentList = new List<AgentInvoicePayment>();
 
-                                agentNo = "DL224049";
+                               // agentNo = "DL224049";
                                 //feeMonth = "2014-12";
                                 logger.Info("1.feeMonth=" + feeMonth);
                                 logger.Info("2.agentNo=" + agentNo);

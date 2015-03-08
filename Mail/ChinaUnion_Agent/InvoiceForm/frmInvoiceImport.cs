@@ -1,4 +1,6 @@
-﻿using ChinaUnion_BO;
+﻿using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using LinqToExcel;
 using System;
@@ -124,13 +126,14 @@ namespace ChinaUnion_Agent.InvoiceForm
 
             worker.ReportProgress(3, "开始导入发票信息...\r\n");
             //导入代理商
+            WechatAction wechatAction = new WechatAction();
             AgentInvoiceDao agentInvoiceDao = new AgentInvoiceDao();
             AgentDao agentDao = new AgentDao();
             for (int i = 0; i < dgInvoice.RowCount; i++)
             {
                 AgentInvoice agentInvoice = new AgentInvoice();
                 agentInvoice.invoiceMonth = dgInvoice[0, i].Value.ToString();
-                agentInvoice.invoiceDate = dgInvoice[1, i].Value.ToString();
+                agentInvoice.invoiceDate = DateTime.Parse( dgInvoice[1, i].Value.ToString()).ToString("yyyy-MM-dd");
                 agentInvoice.agentNo = dgInvoice[2, i].Value.ToString();
                 agentInvoice.agentName = dgInvoice[3, i].Value.ToString();
                 agentInvoice.invoiceContent = dgInvoice[4, i].Value.ToString();               
@@ -145,6 +148,10 @@ namespace ChinaUnion_Agent.InvoiceForm
                     agentInvoiceDao.Delete(agentInvoice);
                     agentInvoiceDao.Add(agentInvoice);
                     dgInvoice["result", i].Value = "导入成功";
+
+                   String message = String.Format(Settings.Default.Invoice_Wechat_Message, agentInvoice.invoiceDate, agentInvoice.invoiceContent, agentInvoice.invoiceFee, agentInvoice.invoiceType, agentInvoice.invoiceNo,agentInvoice.comment);
+                   wechatAction.sendTextMessageToWechat(agentInvoice.agentNo, message, Settings.Default.Wechat_Secret, Settings.Default.Wechar_Invoice_AppId);
+
                 }
                 else
                 {
