@@ -54,6 +54,12 @@ namespace TripolisDialogueAdapter.Action
             try
             {
                 request.directEmailTypeId = emailTypeId;
+                request.sorting = new Sorting();
+                request.sorting.sortBy = "label";
+                request.sorting.sortOrder = "desc";
+                request.paging = new PagingIn();
+                request.paging.pageNr = 1;
+                request.paging.pageSize = 300;
                 DirectEmailListResponse response = directEmailService.getByDirectEmailTypeId(request);
 
                 foreach (DirectEmailForListing item in response.directEmails)

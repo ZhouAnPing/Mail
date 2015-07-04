@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://publishing.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PublishingService" targetNamespace="http://publishing.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:28.483+02:00</wsdl:documentation>
+				Published by Tripolis Solutions - buildnumber: 2012-12-05T11:07:15.014+01:00</wsdl:documentation>
   <wsdl:types>
     <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="authInfo" type="tns:AuthInfo" />
@@ -34,7 +34,7 @@
         </xs:sequence>
       </xs:complexType>
     </xs:schema>
-    <xs:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" xmlns:ns3="http://common.services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsd:schema xmlns:tns="http://response.services.tripolis.com/" xmlns:ns1="http://services.tripolis.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns3="http://common.services.tripolis.com/" targetNamespace="http://response.services.tripolis.com/" version="1.0">
       <xs:import namespace="http://services.tripolis.com/" />
       <xs:import namespace="http://request.services.tripolis.com/" />
       <xs:import namespace="http://common.services.tripolis.com/" />
@@ -130,7 +130,7 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-    </xs:schema>
+    </xsd:schema>
     <xs:schema xmlns:tns="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://request.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://common.services.tripolis.com/" />
       <xs:complexType name="IDRequest">
@@ -265,7 +265,7 @@
         </xs:complexContent>
       </xs:complexType>
     </xs:schema>
-    <xs:schema xmlns:ns4="http://contactgroup.services.tripolis.com/" xmlns:ns3="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://publish.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://publishing.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:ns4="http://contactgroup.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://response.services.tripolis.com/" xmlns:ns2="http://publish.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://publishing.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://request.services.tripolis.com/" />
       <xs:import namespace="http://publish.services.tripolis.com/" />
       <xs:import namespace="http://response.services.tripolis.com/" />
@@ -438,7 +438,7 @@
         </xs:sequence>
       </xs:complexType>
     </xs:schema>
-    <xs:schema xmlns:ns3="http://request.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://publish.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://request.services.tripolis.com/" xmlns:ns2="http://response.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" targetNamespace="http://publish.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://common.services.tripolis.com/" />
       <xs:import namespace="http://response.services.tripolis.com/" />
       <xs:import namespace="http://request.services.tripolis.com/" />
@@ -852,7 +852,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="publishTestEmail">
@@ -867,7 +867,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="updateTag">
@@ -882,7 +882,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="createTag">
@@ -897,7 +897,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="publishEmail">
@@ -912,7 +912,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="publishSms">
@@ -927,7 +927,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="viewLastMailing">
@@ -942,7 +942,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getByTagIds">
@@ -957,7 +957,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getTagsByWorkspaceId">
@@ -972,7 +972,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getServiceInfo">
@@ -996,7 +996,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="viewLastSms">
@@ -1011,7 +1011,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="deleteTag">
@@ -1026,7 +1026,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="publishSampleTestEmail">
@@ -1041,7 +1041,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

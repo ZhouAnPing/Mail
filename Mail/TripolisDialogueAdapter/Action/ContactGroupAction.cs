@@ -47,6 +47,16 @@ namespace TripolisDialogueAdapter.Action
             {
                 logger.Debug("createContactGroup: contactDatabaseId=" + contactDatabaseId + ",groupLable=" + groupLable + ",groupName=" + groupName);
             }
+           ContactGroup[] groups= this.getContactGroup(contactDatabaseId);
+
+           foreach (ContactGroup group in groups)
+           {
+               if(group.label.Equals(groupLable)){
+                   return group.id;
+
+               }
+           }
+          
             String result;
             cn.tripolis.dialogue.contactGroup.CreateContactGroupRequest request = new cn.tripolis.dialogue.contactGroup.CreateContactGroupRequest
                 {
@@ -64,6 +74,7 @@ namespace TripolisDialogueAdapter.Action
                     logger.Debug("create new contact group, group Id=" + result);
                 }
             }
+
             catch (System.Web.Services.Protocols.SoapException ex)
             {
                 if (!Util.isCodeExist(ex.Detail) || Util.getExistId(ex.Detail).Equals(""))
@@ -81,6 +92,11 @@ namespace TripolisDialogueAdapter.Action
                     logger.Debug("contact group is existed, group Id=" + result);
                 }
             }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+                logger.Debug("error happens in create contact group, error is" + result);
+            }
             return result;
         }
         /// <summary>
@@ -95,10 +111,18 @@ namespace TripolisDialogueAdapter.Action
                 logger.Debug("getContactGroup: contactDatabaseId=" + contactDatabaseId);
             }
 
-            cn.tripolis.dialogue.contactGroup.ContactGroupsByContactDatabaseIdRequest request = new cn.tripolis.dialogue.contactGroup.ContactGroupsByContactDatabaseIdRequest
-            {                
-                contactDatabaseId = contactDatabaseId,
-            };
+            cn.tripolis.dialogue.contactGroup.ContactGroupsByContactDatabaseIdRequest request = new cn.tripolis.dialogue.contactGroup.ContactGroupsByContactDatabaseIdRequest();
+
+
+            request.contactDatabaseId = contactDatabaseId;
+            request.sorting = new Sorting();
+            request.sorting.sortBy = "label";
+            request.sorting.sortOrder = "desc";
+            request.paging = new PagingIn();
+            request.paging.pageNr = 1;
+            request.paging.pageSize = 300;
+
+
 
             cn.tripolis.dialogue.contactGroup.ContactGroupListResponse response = contactGroupService.getByContactDatabaseId(request);
             if (response != null)

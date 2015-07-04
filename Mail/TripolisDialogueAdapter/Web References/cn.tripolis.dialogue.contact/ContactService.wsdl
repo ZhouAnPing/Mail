@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://contact.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactService" targetNamespace="http://contact.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:30.142+02:00</wsdl:documentation>
+				Published by Tripolis Solutions - buildnumber: 2012-12-05T11:07:14.407+01:00</wsdl:documentation>
   <wsdl:types>
     <xs:schema xmlns:tns="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="authInfo" type="tns:AuthInfo" />
@@ -241,7 +241,7 @@
         </xs:complexContent>
       </xs:complexType>
     </xs:schema>
-    <xs:schema xmlns:ns3="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://response.services.tripolis.com/" xmlns:ns2="http://request.services.tripolis.com/" xmlns:ns1="http://common.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://contact.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://common.services.tripolis.com/" />
       <xs:import namespace="http://request.services.tripolis.com/" />
       <xs:import namespace="http://response.services.tripolis.com/" />
@@ -1207,7 +1207,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="update">
@@ -1222,7 +1222,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getByContactGroupId">
@@ -1237,7 +1237,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getBySmartGroupId">
@@ -1252,7 +1252,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getById">
@@ -1267,7 +1267,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getCommunicationHistory">
@@ -1282,7 +1282,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="create">
@@ -1297,7 +1297,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getBlacklistedByContactDatabaseId">
@@ -1312,7 +1312,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getServiceInfo">
@@ -1336,7 +1336,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="addToContactGroup">
@@ -1351,7 +1351,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="countBySmartGroupIds">
@@ -1366,7 +1366,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="delete">
@@ -1381,7 +1381,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getByContactDatabaseId">
@@ -1396,7 +1396,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="countBySearch">
@@ -1411,7 +1411,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="search">
@@ -1426,7 +1426,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="countByContactDatabaseId">
@@ -1441,7 +1441,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="countByContactGroupIds">
@@ -1456,7 +1456,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

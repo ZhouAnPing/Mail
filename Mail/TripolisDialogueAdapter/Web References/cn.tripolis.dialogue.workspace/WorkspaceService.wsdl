@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:ts="http://services.tripolis.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://workspace.services.tripolis.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WorkspaceService" targetNamespace="http://workspace.services.tripolis.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-				Published by Tripolis Solutions - buildnumber: 2012-07-23T13:40:29.383+02:00</wsdl:documentation>
+				Published by Tripolis Solutions - buildnumber: 2012-12-05T11:07:14.794+01:00</wsdl:documentation>
   <wsdl:types>
-    <xs:schema xmlns:ns4="http://services.tripolis.com/" xmlns:ns3="http://response.services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://common.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://workspace.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:ns4="http://services.tripolis.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://response.services.tripolis.com/" xmlns:ns2="http://common.services.tripolis.com/" xmlns:ns1="http://request.services.tripolis.com/" elementFormDefault="unqualified" targetNamespace="http://workspace.services.tripolis.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://request.services.tripolis.com/" />
       <xs:import namespace="http://common.services.tripolis.com/" />
       <xs:import namespace="http://response.services.tripolis.com/" />
@@ -463,7 +463,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="copy">
@@ -478,7 +478,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="delete">
@@ -493,7 +493,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="copyForContactDatabase">
@@ -508,7 +508,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getServiceInfo">
@@ -532,7 +532,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getAll">
@@ -547,7 +547,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="update">
@@ -562,7 +562,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getByContactDatabaseId">
@@ -577,7 +577,7 @@
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="errorResponse">
-        <soap12:fault use="literal" namespace="" />
+        <soap12:fault use="literal" name="errorResponse" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
