@@ -187,6 +187,24 @@
     <Compile Include="frmProgress.Designer.cs">
       <DependentUpon>frmProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentManagement.Designer.cs">
+      <DependentUpon>frmInvoicePaymentManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentModification.Designer.cs">
+      <DependentUpon>frmInvoicePaymentModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceForm\frmInvoicePaymentImport.Designer.cs">
+      <DependentUpon>frmInvoicePaymentImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="InvoiceForm\frmAgentInvoicePaymentModification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +240,54 @@
     </Compile>
     <Compile Include="InvoiceForm\frmInvoiceImport.Designer.cs">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentImport.Designer.cs">
+      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentQuery.Designer.cs">
+      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataForm\frmWechatQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmWechatQuery.Designer.cs">
+      <DependentUpon>frmWechatQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterDataForm\frmWechatSync.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmWechatSync.Designer.cs">
+      <DependentUpon>frmWechatSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentDailyPerformanceImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentDailyPerformanceImport.Designer.cs">
+      <DependentUpon>frmAgentDailyPerformanceImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentDailyPerformanceQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentDailyPerformanceQuery.Designer.cs">
+      <DependentUpon>frmAgentDailyPerformanceQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentMonthPerformanceImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentMonthPerformanceImport.Designer.cs">
+      <DependentUpon>frmAgentMonthPerformanceImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentMonthPerformanceQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceForm\frmAgentMonthPerformanceQuery.Designer.cs">
+      <DependentUpon>frmAgentMonthPerformanceQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="PolicyForm\frmKnowledgeManagement.cs">
       <SubType>Form</SubType>
@@ -261,6 +327,7 @@
     <Compile Include="UserManagement\frmUserModification.Designer.cs">
       <DependentUpon>frmUserModification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\Constant.cs" />
     <Compile Include="Util\ExportData.cs" />
     <Compile Include="Util\HttpHelper.cs" />
     <Compile Include="WechatForm\frmAddDepartment.cs">
@@ -358,6 +425,15 @@
     <EmbeddedResource Include="frmProgress.resx">
       <DependentUpon>frmProgress.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmInvoicePaymentManagement.resx">
+      <DependentUpon>frmInvoicePaymentManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmInvoicePaymentModification.resx">
+      <DependentUpon>frmInvoicePaymentModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceForm\frmInvoicePaymentImport.resx">
+      <DependentUpon>frmInvoicePaymentImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InvoiceForm\frmAgentInvoicePaymentModification.resx">
       <DependentUpon>frmAgentInvoicePaymentModification.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,6 +451,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceForm\frmInvoiceImport.resx">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmAgentImport.resx">
+      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmAgentQuery.resx">
+      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmWechatQuery.resx">
+      <DependentUpon>frmWechatQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmWechatSync.resx">
+      <DependentUpon>frmWechatSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceForm\frmAgentDailyPerformanceImport.resx">
+      <DependentUpon>frmAgentDailyPerformanceImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceForm\frmAgentDailyPerformanceQuery.resx">
+      <DependentUpon>frmAgentDailyPerformanceQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceForm\frmAgentMonthPerformanceImport.resx">
+      <DependentUpon>frmAgentMonthPerformanceImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceForm\frmAgentMonthPerformanceQuery.resx">
+      <DependentUpon>frmAgentMonthPerformanceQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PolicyForm\frmKnowledgeManagement.resx">
       <DependentUpon>frmKnowledgeManagement.cs</DependentUpon>
@@ -429,13 +529,28 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Template\ImportCommissio_Template.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportInvoicePayment_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportInvoice_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportMonthPermance_NoDirect_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportMonthPermance_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportPayment_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportWechat_Template.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportError_Template.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

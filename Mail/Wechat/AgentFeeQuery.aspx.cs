@@ -198,8 +198,14 @@ namespace Wechat
             row["feeName"] = "开票金额";
             row["fee"] = agentFee.invoiceFee;
             dt.Rows.Add(row);
-           
 
+            row = dt.NewRow();
+            row["seq"] = index++;
+            row["feeName"] = "过往开票金额";
+            row["fee"] = agentFee.preInvoiceFee;
+            dt.Rows.Add(row);
+           
+            
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
             
@@ -239,6 +245,13 @@ namespace Wechat
                 e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
                 e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
             }
+
+            if (e.Row.Cells[1].Text.Equals("过往开票金额"))
+            {
+                e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+            }
             if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计"))
             {
                 e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;            
@@ -247,6 +260,7 @@ namespace Wechat
 
                 //   e.Row.Cells[6].Attributes.Add("style", "display:none");   //隐藏数据列
 
+               
             }
            
         }

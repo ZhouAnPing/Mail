@@ -82,7 +82,7 @@ namespace ChinaUnion_Agent
             }
             #endregion
 
-            bool isNewVersion = false ;
+            bool isNewVersion = true ;
             if (isNewVersion)
             {
                 frmLogin fLogin = new frmLogin();

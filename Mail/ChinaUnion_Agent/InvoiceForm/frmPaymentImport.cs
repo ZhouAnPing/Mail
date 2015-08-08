@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -174,6 +175,21 @@ namespace ChinaUnion_Agent.InvoiceForm
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("数据上传完毕。", "数据上传", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel格式|*.xlsx";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "ImportPayment_Template.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                String filePath = Application.StartupPath + @"\Template\ImportPayment_Template.xlsx";
+                File.Copy(filePath, saveFileDialog.FileName, true);
+            }
         }
     }
 }

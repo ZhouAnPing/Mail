@@ -67,6 +67,9 @@
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
     <Content Include="AgentInvoiceQuery.aspx" />
+    <Content Include="BusinessPolicyAttachmentDetail.aspx" />
+    <Content Include="BusinessPolicyDetail.aspx" />
+    <Content Include="BusinessPolicyQuery.aspx" />
     <Content Include="ChinaUnicom.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -74,7 +77,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="AgentInvoicePaymentQuery.aspx" />
+    <Content Include="InvoicePaymentQuery.aspx" />
     <Content Include="ErrorCodeQuery.aspx" />
+    <Content Include="PerformanceDetailQuery.aspx" />
+    <Content Include="PerformanceSummaryQuery.aspx" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -83,6 +89,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentFeeAndInvoicePaymentHandler.ashx.cs">
+      <DependentUpon>AgentFeeAndInvoicePaymentHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="AgentFeeHandler.ashx.cs">
       <DependentUpon>AgentFeeHandler.ashx</DependentUpon>
     </Compile>
@@ -104,6 +113,30 @@
       <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="BO\WechatMessage.cs" />
+    <Compile Include="BusinessPolicyAttachmentDetail.aspx.cs">
+      <DependentUpon>BusinessPolicyAttachmentDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPolicyAttachmentDetail.aspx.designer.cs">
+      <DependentUpon>BusinessPolicyAttachmentDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPolicyDetail.aspx.cs">
+      <DependentUpon>BusinessPolicyDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPolicyDetail.aspx.designer.cs">
+      <DependentUpon>BusinessPolicyDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPolicyHandler.ashx.cs">
+      <DependentUpon>BusinessPolicyHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPolicyQuery.aspx.cs">
+      <DependentUpon>BusinessPolicyQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusinessPolicyQuery.aspx.designer.cs">
+      <DependentUpon>BusinessPolicyQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CallbackHandler.ashx.cs">
       <DependentUpon>CallbackHandler.ashx</DependentUpon>
     </Compile>
@@ -113,6 +146,16 @@
     </Compile>
     <Compile Include="AgentInvoicePaymentQuery.aspx.designer.cs">
       <DependentUpon>AgentInvoicePaymentQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUsHandler.ashx.cs">
+      <DependentUpon>ContactUsHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicePaymentQuery.aspx.cs">
+      <DependentUpon>InvoicePaymentQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InvoicePaymentQuery.aspx.designer.cs">
+      <DependentUpon>InvoicePaymentQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorCodeHandler.ashx.cs">
       <DependentUpon>ErrorCodeHandler.ashx</DependentUpon>
@@ -124,11 +167,37 @@
     <Compile Include="ErrorCodeQuery.aspx.designer.cs">
       <DependentUpon>ErrorCodeQuery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OnlineServiceHandler.ashx.cs">
+      <DependentUpon>OnlineServiceHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceDetailQuery.aspx.cs">
+      <DependentUpon>PerformanceDetailQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceDetailQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceDetailQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceHandler.ashx.cs">
+      <DependentUpon>PerformanceHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceSummaryQuery.aspx.cs">
+      <DependentUpon>PerformanceSummaryQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceSummaryQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceSummaryQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceComplainHandler.ashx.cs">
+      <DependentUpon>ServiceComplainHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceMonitorHandler.ashx.cs">
+      <DependentUpon>ServiceMonitorHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Util\Cryptography.cs" />
@@ -144,11 +213,18 @@
     <Content Include="ErrorCodeHandler.ashx" />
     <Content Include="AgentFeeHandler.ashx" />
     <Content Include="AgentInvoiceHandler.ashx" />
+    <Content Include="PerformanceHandler.ashx" />
+    <Content Include="ContactUsHandler.ashx" />
+    <Content Include="BusinessPolicyHandler.ashx" />
+    <Content Include="OnlineServiceHandler.ashx" />
+    <Content Include="AgentFeeAndInvoicePaymentHandler.ashx" />
     <None Include="Properties\PublishProfiles\ChinaUnion.pubxml" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="ServiceMonitorHandler.ashx" />
+    <Content Include="ServiceComplainHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

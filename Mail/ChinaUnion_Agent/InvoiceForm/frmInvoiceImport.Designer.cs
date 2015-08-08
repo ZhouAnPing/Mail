@@ -112,6 +112,7 @@
             this.btnDownload.TabIndex = 14;
             this.btnDownload.Text = "模板下载";
             this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnImport
             // 

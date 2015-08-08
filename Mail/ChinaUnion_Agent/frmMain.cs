@@ -4,6 +4,7 @@ using ChinaUnion_Agent.InvoiceForm;
 using ChinaUnion_Agent.PolicyForm;
 using ChinaUnion_Agent.Properties;
 using ChinaUnion_Agent.UserManagement;
+using ChinaUnion_Agent.Util;
 using ChinaUnion_Agent.Wechat;
 using ChinaUnion_Agent.WechatForm;
 using ChinaUnion_BO;
@@ -377,28 +378,7 @@ namespace ChinaUnion_Agent
                         break;
 
 
-                    case "ChannelImport":
-
-                        frmAgentImport frmAgentImport = new frmAgentImport();
-                        CheckChildOpenState(this, frmAgentImport);
-                        break;
-
-
-                    case "ChannelWechatSync":
-
-                        this.Cursor = Cursors.WaitCursor;
-                        frmAgentWechatManagement frmAgentWechatManagement = new frmAgentWechatManagement();
-                        CheckChildOpenState(this, frmAgentWechatManagement);
-                        this.Cursor = Cursors.Default;
-                        break;
-
-
-                    case "ChannelWechatQuery":
-
-                        frmWechatManagement frmWechatManagementTmp = new frmWechatManagement();
-                        frmWechatManagementTmp.wechatType = "Agent";
-                        CheckChildOpenState(this, frmWechatManagementTmp);
-                        break;
+                
 
 
 
@@ -487,15 +467,101 @@ namespace ChinaUnion_Agent
                       
                         CheckChildOpenState(this, frmWechatContactManagement);
                         break;
-                    case "AgentManagement":
+                    case "AgentQuery":
 
-                        frmAgentImport frmAgentManagement = new frmAgentImport();
+                        MasterDataForm.frmAgentQuery frmAgentManagement = new MasterDataForm.frmAgentQuery();
                         CheckChildOpenState(this, frmAgentManagement);
                         break;
-                    case "BranchManagement":
+                    case "AgentImport":
 
-                        frmAgentImport BranchManagement = new frmAgentImport();
-                        CheckChildOpenState(this, BranchManagement);
+                        MasterDataForm.frmAgentImport frmAgentImport = new MasterDataForm.frmAgentImport();
+                        CheckChildOpenState(this, frmAgentImport);
+                        break;
+                    case "WechatSync":
+
+                        MasterDataForm.frmWechatSync frmWechatSync = new MasterDataForm.frmWechatSync();
+                        CheckChildOpenState(this, frmWechatSync);
+                        break;
+                    case "WechatQuery":
+
+                        MasterDataForm.frmWechatQuery frmWechatQuery = new MasterDataForm.frmWechatQuery();
+                        frmWechatQuery.wechatType = "Agent";
+                        CheckChildOpenState(this, frmWechatQuery);
+                        break;
+
+                    case "InvoicePaymentImport":
+
+                        InvoiceForm.frmInvoicePaymentImport frmInvoicePaymentImport = new frmInvoicePaymentImport();
+
+                        CheckChildOpenState(this, frmInvoicePaymentImport);
+                        break;
+
+                    case "InvoicePaymentManagement":
+
+                        InvoiceForm.frmInvoicePaymentManagement frmInvoicePaymentManagement = new frmInvoicePaymentManagement();
+
+                        CheckChildOpenState(this, frmInvoicePaymentManagement);
+                        break;
+
+                    case "MonthPermanceImport":
+
+                        PerformanceForm.frmAgentMonthPerformanceImport frmAgentMonthPerformanceImport = new PerformanceForm.frmAgentMonthPerformanceImport();
+                        frmAgentMonthPerformanceImport.performanceType = MyConstant.NoDIRECT;
+                        frmAgentMonthPerformanceImport.Text = "月绩效导入-非直供渠道";
+                        CheckChildOpenState(this, frmAgentMonthPerformanceImport);
+                        break;
+                    case "MonthPermanceQuery":
+
+                        PerformanceForm.frmAgentMonthPerformanceQuery frmAgentMonthPerformanceQuery = new PerformanceForm.frmAgentMonthPerformanceQuery();
+                        frmAgentMonthPerformanceQuery.performanceType = MyConstant.NoDIRECT;
+                        frmAgentMonthPerformanceQuery.Text = "月绩效查询-非直供渠道";
+                        CheckChildOpenState(this, frmAgentMonthPerformanceQuery);
+                        break;
+
+                    case "MonthPermanceDirectImport":
+
+                        PerformanceForm.frmAgentMonthPerformanceImport frmAgentMonthPerformanceDirectImport = new PerformanceForm.frmAgentMonthPerformanceImport();
+                        frmAgentMonthPerformanceDirectImport.performanceType = MyConstant.DIRECT;
+                        frmAgentMonthPerformanceDirectImport.Text = "月绩效导入-直供渠道";
+                        CheckChildOpenState(this, frmAgentMonthPerformanceDirectImport);
+                        break;
+                    case "MonthPermanceDirectQuery":
+
+                        PerformanceForm.frmAgentMonthPerformanceQuery frmAgentMonthPerformanceDirectQuery = new PerformanceForm.frmAgentMonthPerformanceQuery();
+                        frmAgentMonthPerformanceDirectQuery.performanceType = MyConstant.DIRECT;
+                        frmAgentMonthPerformanceDirectQuery.Text = "月绩效查询-直供渠道";
+                        CheckChildOpenState(this, frmAgentMonthPerformanceDirectQuery);
+                        break;
+
+
+                    case "DailyPermanceImport":
+
+                        PerformanceForm.frmAgentDailyPerformanceImport frmAgentDailyPerformanceImport = new PerformanceForm.frmAgentDailyPerformanceImport();
+                        frmAgentDailyPerformanceImport.performanceType = MyConstant.NoDIRECT;
+                        frmAgentDailyPerformanceImport.Text = "日绩效导入-非直供渠道";
+                        CheckChildOpenState(this, frmAgentDailyPerformanceImport);
+                        break;
+                    case "DailyPermanceQuery":
+
+                        PerformanceForm.frmAgentDailyPerformanceQuery frmAgentDailyPerformanceQuery = new PerformanceForm.frmAgentDailyPerformanceQuery();
+                        frmAgentDailyPerformanceQuery.performanceType = MyConstant.NoDIRECT;
+                        frmAgentDailyPerformanceQuery.Text = "日绩效查询-非直供渠道";
+                        CheckChildOpenState(this, frmAgentDailyPerformanceQuery);
+                        break;
+
+                    case "DailyPermanceDirectImport":
+
+                        PerformanceForm.frmAgentDailyPerformanceImport frmAgentDailyPerformanceDirectImport = new PerformanceForm.frmAgentDailyPerformanceImport();
+                        frmAgentDailyPerformanceDirectImport.performanceType = MyConstant.DIRECT;
+                        frmAgentDailyPerformanceDirectImport.Text = "日绩效导入-直供渠道";
+                        CheckChildOpenState(this, frmAgentDailyPerformanceDirectImport);
+                        break;
+                    case "DailyPermanceDirectQuery":
+
+                        PerformanceForm.frmAgentDailyPerformanceQuery frmAgentDailyPerformanceDirectQuery = new PerformanceForm.frmAgentDailyPerformanceQuery();
+                        frmAgentDailyPerformanceDirectQuery.performanceType = MyConstant.DIRECT;
+                        frmAgentDailyPerformanceDirectQuery.Text = "日绩效查询-直供渠道";
+                        CheckChildOpenState(this, frmAgentDailyPerformanceDirectQuery);
                         break;
 
                 }

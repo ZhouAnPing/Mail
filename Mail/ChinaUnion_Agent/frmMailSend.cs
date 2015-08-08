@@ -117,7 +117,7 @@ namespace ChinaUnion_Agent
                     Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
                     //按结账科目分类
                     int rowIndex = i;
-                    for (int j = 7; j < dgAgentFee.ColumnCount - 2; j++)
+                    for (int j = 7; j < dgAgentFee.ColumnCount - 3; j++)
                     {
 
                         String headText = dgAgentFee.Columns[j].HeaderText;
@@ -215,12 +215,15 @@ namespace ChinaUnion_Agent
                     }
 
                     sb.Append("fee_total_seq").Append("#").Append(seq.ToString()).Append(",");
-                    sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString()).Append(",");
+                    sb.Append("fee_total#").Append(dgAgentFee[dgAgentFee.Columns.Count - 3, i].Value.ToString()).Append(",");
 
                     seq++;
                     sb.Append("invoice_fee_seq").Append("#").Append(seq.ToString()).Append(",");
-                    sb.Append("invoice_fee#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
-                  
+                    sb.Append("invoice_fee#").Append(dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString()).Append(",");
+
+                    seq++;
+                    sb.Append("pre_invoice_fee_seq").Append("#").Append(seq.ToString()).Append(",");
+                    sb.Append("pre_invoice_fee#").Append(dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString());
 
                     mailData.ContactJsonList.Add(sb.ToString());
 
@@ -296,7 +299,7 @@ namespace ChinaUnion_Agent
             HashSet<String> category = new HashSet<string>();
             Dictionary<String, Dictionary<String, String>> CategoryMap = new Dictionary<string, Dictionary<String, String>>();
             //按结账科目分类
-            for (int j = 7; j < dgAgentFee.ColumnCount - 2; j++)
+            for (int j = 7; j < dgAgentFee.ColumnCount - 3; j++)
             {
                 if (dgAgentFee[j, rowIndex].Value != null && !String.IsNullOrEmpty(dgAgentFee[j, rowIndex].Value.ToString()) && !dgAgentFee[j, rowIndex].Value.ToString().Equals("0"))
                 {
@@ -413,13 +416,35 @@ namespace ChinaUnion_Agent
             sbAgent.Append(index.ToString());
             sbAgent.Append("</td>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-            sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 2].HeaderCell.Value.ToString());
+            sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 3].HeaderCell.Value.ToString());
             sbAgent.Append("</td>");
             sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
-            sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 2, rowIndex].Value.ToString());
+            sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 3, rowIndex].Value.ToString());
             sbAgent.Append("</td>");
 
             sbAgent.Append("</tr>");
+
+            index++;
+
+            sbAgent.Append("<tr><td colspan=3/></tr>");
+
+            sbAgent.Append("<tr>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append(index.ToString());
+            sbAgent.Append("</td>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            sbAgent.Append(dgAgentFee.Columns[dgAgentFee.Columns.Count - 2].HeaderCell.Value.ToString());
+            sbAgent.Append("</td>");
+            sbAgent.Append("<td nowrap style=\"font-size: 13px; color: black; font-weight: bold; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding:0px\" bgcolor=\"#ffffff\">");
+            if (dgAgentFee[dgAgentFee.Columns.Count - 2, rowIndex].Value != null)
+            {
+                sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 2, rowIndex].Value.ToString());
+            }
+           
+            sbAgent.Append("</td>");
+
+            sbAgent.Append("</tr>");
+
 
             index++;
 
@@ -437,7 +462,7 @@ namespace ChinaUnion_Agent
             {
                 sbAgent.Append(dgAgentFee[dgAgentFee.Columns.Count - 1, rowIndex].Value.ToString());
             }
-           
+
             sbAgent.Append("</td>");
 
             sbAgent.Append("</tr>");

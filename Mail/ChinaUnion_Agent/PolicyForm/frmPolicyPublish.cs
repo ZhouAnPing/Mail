@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -32,8 +33,11 @@ namespace ChinaUnion_Agent.PolicyForm
             this.btnDelete.Enabled = false;
             this.btnPreview.Enabled = false;
             this.btnPublish.Enabled = false;
-            this.txtSubject.Clear();
+            this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
+            this.txtSubject.Clear();
+            this.txtSequence.Clear();
+            this.txtAttachmentName.Text = "";
             this.txtSubject.Focus();
             this.Cursor = Cursors.Default;
         }
@@ -60,8 +64,10 @@ namespace ChinaUnion_Agent.PolicyForm
             IList<Policy> policyList = policyDao.GetList(condition);
             this.dgPolicy.Rows.Clear();
             dgPolicy.Columns.Clear();
+            dgPolicy.Columns.Add("序列号", "序列号");
             dgPolicy.Columns.Add("标题", "标题");
             dgPolicy.Columns.Add("内容", "内容");
+            dgPolicy.Columns.Add("附件", "附件");
             dgPolicy.Columns.Add("创建人", "创建人");
             dgPolicy.Columns.Add("创建时间", "创建时间");
             if (policyList != null && policyList.Count > 0)
@@ -71,14 +77,22 @@ namespace ChinaUnion_Agent.PolicyForm
                 {
                     dgPolicy.Rows.Add();
                     DataGridViewRow row = dgPolicy.Rows[dgPolicy.RowCount - 1];
-                    row.Cells[0].Value = policyList[i].subject;
-                    row.Cells[1].Value = policyList[i].content;
-                    row.Cells[2].Value = policyList[i].sender;
-                    row.Cells[3].Value = policyList[i].sendTime;
+                    row.Cells[0].Value = policyList[i].sequence;
+                    row.Cells[1].Value = policyList[i].subject;
+                    row.Cells[2].Value = policyList[i].content;
+                    row.Cells[3].Value = policyList[i].attachmentName;
+                    row.Cells[4].Value = policyList[i].sender;
+                    row.Cells[5].Value = policyList[i].creatTime;
 
                 }
             }
-            this.dgPolicy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.txtAttachmentLocation.Clear();
+            this.txtContent.Clear();
+            this.txtSubject.Clear();
+            this.txtSequence.Clear();
+            this.txtAttachmentName.Text = "";
+
+            this.dgPolicy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             this.dgPolicy.AutoResizeColumns();
             this.Cursor = Cursors.Default;
         }
@@ -120,14 +134,42 @@ namespace ChinaUnion_Agent.PolicyForm
                 this.txtContent.Focus();
                 return;
             }
-           
+
             this.Cursor = Cursors.WaitCursor;
             Policy policy = new Policy();
+            policy.sequence = this.txtSequence.Text.Trim();
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
             policy.sender = this.loginUser.name;
-            policy.sendTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-            this.policyDao.Delete(policy.subject);
+            policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            policy.isDelete = "N";
+            policy.isValidate = "Y";
+
+            byte[] b = new byte[0];
+            String fullpath = this.txtAttachmentLocation.Text;
+            if (!String.IsNullOrEmpty(fullpath))
+            {
+                FileStream fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
+                byte[] attachmentBytes = new byte[fs.Length];
+
+                fs.Read(attachmentBytes, 0, System.Convert.ToInt32(fs.Length));    
+
+              //  BinaryReader br = new BinaryReader(fs);
+               // attachmentBytes = br.ReadBytes(Convert.ToInt32(fs.Length));
+                fs.Close();
+               // br.Close();
+
+                if (attachmentBytes.Length > 0)
+                {
+                    policy.attachmentName = this.txtAttachmentName.Text;
+                    policy.attachment = attachmentBytes;
+                }
+                
+            }
+            if (!String.IsNullOrEmpty(policy.sequence))
+            {
+                this.policyDao.Delete(Int32.Parse(policy.sequence));
+            }
             policyDao.Add(policy);
             this.prepareGrid("");
             MessageBox.Show("操作完成");
@@ -143,7 +185,7 @@ namespace ChinaUnion_Agent.PolicyForm
                 return;
             }
             this.Cursor = Cursors.WaitCursor;
-            String subject = this.dgPolicy.CurrentRow.Cells[0].Value.ToString();
+            int subject = (Int32.Parse(this.dgPolicy.CurrentRow.Cells[0].Value.ToString()));
             this.policyDao.Delete(subject);
             this.prepareGrid("");
 
@@ -161,12 +203,14 @@ namespace ChinaUnion_Agent.PolicyForm
                 {
                     this.initControl();
                    
-                    Policy policy = policyDao.Get(this.dgPolicy[0, this.dgPolicy.CurrentRow.Index].Value.ToString());
+                    Policy policy = policyDao.Get(Int32.Parse(this.dgPolicy[0, this.dgPolicy.CurrentRow.Index].Value.ToString()));
                     if (policy != null)
                     {
                         this.txtSubject.Text = policy.subject;
                         this.txtContent.Text = policy.content;
-                        this.txtSubject.Enabled = false;
+                       // this.txtSubject.Enabled = false;
+                        this.txtAttachmentName.Text = policy.attachmentName;
+                        this.txtSequence.Text = policy.sequence;
                         
                     }
                 }
@@ -180,11 +224,83 @@ namespace ChinaUnion_Agent.PolicyForm
             Policy policy = new Policy();
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
-            policy.sender = this.loginUser.name; 
+            policy.sender = this.loginUser.name;
+            policy.sequence = this.txtSequence.Text.Trim();
+            byte[] b = new byte[0];
+            String fullpath = this.txtAttachmentLocation.Text;
+            if (!String.IsNullOrEmpty(fullpath))
+            {
+                FileStream fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
+                byte[] attachmentBytes = new byte[fs.Length];
+                fs.Read(attachmentBytes, 0, System.Convert.ToInt32(fs.Length));
+
+                //  BinaryReader br = new BinaryReader(fs);
+                // attachmentBytes = br.ReadBytes(Convert.ToInt32(fs.Length));
+                fs.Close();
+                // br.Close();
+
+                if (attachmentBytes.Length > 0)
+                {
+                    policy.attachment = attachmentBytes;
+                    policy.attachmentName = this.txtAttachmentName.Text;
+                }
+            }
             frmPublishPreview frmPublishPreview = new frmPublishPreview();
             frmPublishPreview.policy = policy;
             frmPublishPreview.ShowDialog();
             this.prepareGrid("");
         }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            // openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            openFileDialog.Filter = "Word 2000-2003(*.doc)|*.doc";
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+               this.txtAttachmentLocation.Text = openFileDialog.FileName;
+               this.txtAttachmentName.Text = Path.GetFileName(openFileDialog.FileName); ;
+            }
+        }
+
+        private void txtAttachmentName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+            Policy policy = policyDao.Get(Int32.Parse(this.txtSequence.Text));
+            if (policy != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Word|*.docx";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+                saveFileDialog.FileName = policy.attachmentName;
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                   // System.IO.File.WriteAllBytes(saveFileDialog.FileName, policy.attachment);
+
+                    try
+                    {
+                        string saveFileName = saveFileDialog.FileName;
+                        int arraysize = new int();
+                        arraysize = policy.attachment.GetUpperBound(0);
+                        FileStream fs = new FileStream(saveFileName, FileMode.OpenOrCreate, FileAccess.Write);
+                        fs.Write(policy.attachment, 0, arraysize);
+                        fs.Close();
+                        if (MessageBox.Show("文件存储成功，是否立即打开文件？","保存文件",MessageBoxButtons.YesNoCancel) ==   System.Windows.Forms.DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start(saveFileName);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("操作失败！");
+                    }
+                }
+            }
+        }
+
+      
     }
 }

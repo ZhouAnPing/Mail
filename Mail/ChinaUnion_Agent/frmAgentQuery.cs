@@ -156,6 +156,7 @@ namespace ChinaUnion_Agent
 
                         this.dgAgentFee.Columns.Add("总计", "总计");
                         this.dgAgentFee.Columns.Add("开票金额", "开票金额");
+                        this.dgAgentFee.Columns.Add("过往开票金额", "过往开票金额");
 
                     }
 
@@ -189,8 +190,9 @@ namespace ChinaUnion_Agent
                     }
                   
 
-                    row.Cells[dgAgentFee.Columns.Count - 2].Value = agentFeeList[i].feeTotal;
-                    row.Cells[dgAgentFee.Columns.Count - 1].Value = agentFeeList[i].invoiceFee;
+                    row.Cells[dgAgentFee.Columns.Count - 3].Value = agentFeeList[i].feeTotal;
+                    row.Cells[dgAgentFee.Columns.Count - 2].Value = agentFeeList[i].invoiceFee;
+                    row.Cells[dgAgentFee.Columns.Count - 1].Value = agentFeeList[i].preInvoiceFee;
 
                 }
             }
@@ -220,6 +222,33 @@ namespace ChinaUnion_Agent
             {
                 return;
             }
+
+
+            //StringBuilder sb = new StringBuilder();           
+            //for (int i = 1; i <= 100; i++)
+            //{
+            //    sb.AppendLine("<#if contact.fee"+i.ToString()+"?has_content>");
+            //    sb.AppendLine("<tr>");
+            //    sb.AppendLine("<td nowrap=\"nowrap\" style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding: 0px;\" bgcolor=\"#ffffff\">");
+
+            //    sb.AppendLine("${contact.fee_seq"+i.ToString()+"!}");
+            //    sb.AppendLine("</td>");
+
+            //    sb.AppendLine("<td nowrap=\"nowrap\" style=\"font-size: 13px; color: black; font-weight: normal; text-align: left; font-family: Georgia, Times, serif; line-height: 24px; vertical-align: top; padding: 0px;\" bgcolor=\"#ffffff\">");
+
+            //    sb.AppendLine("${contact.fee_name" + i.ToString() + "!}");
+            //    sb.AppendLine("</td>");
+
+            //    sb.AppendLine("<td nowrap=\"nowrap\" style=\"font-size: 13px; color: black; font-weight: normal; text-align: right; font-family: Microsoft YaHei, Times, serif; line-height: 24px; vertical-align: top; padding: 0px;\" bgcolor=\"#ffffff\">");
+
+            //    sb.AppendLine("${contact.fee" + i.ToString() + "!}");
+            //    sb.AppendLine("</td>");
+            //    sb.AppendLine("</tr>");
+            //    sb.AppendLine("</#if>");
+
+            //}
+
+            //String s = sb.ToString();
 
             frmMailSend frmMailSend = new ChinaUnion_Agent.frmMailSend();
             frmMailSend.ShowIcon = false;

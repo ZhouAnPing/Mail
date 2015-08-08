@@ -53,6 +53,9 @@
     <Compile Include="AgentErrorCodeDao.cs" />
     <Compile Include="AgentInvoiceDao.cs" />
     <Compile Include="AgentInvoicePaymentDao.cs" />
+    <Compile Include="AgentMonthPerformanceDao.cs" />
+    <Compile Include="AgentDailyPerformanceDao.cs" />
+    <Compile Include="InvoicePaymentDao.cs" />
     <Compile Include="PolicyDao.cs" />
     <Compile Include="UserRightDao.cs" />
     <Compile Include="UserDao.cs" />

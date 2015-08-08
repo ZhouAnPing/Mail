@@ -310,7 +310,7 @@ namespace Wechat
 
 
 
-            String url1 = String.Format("http://{0}/Wechat/AgentInvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", "115.29.229.134", QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            String url1 = String.Format("http://{0}/Wechat/AgentInvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");

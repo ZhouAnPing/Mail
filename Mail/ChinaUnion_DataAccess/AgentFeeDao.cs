@@ -24,12 +24,12 @@ namespace ChinaUnion_DataAccess
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee) VALUE (@agentNo, @agentFeeSeq,@agentFeeMonth,");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee) VALUE (@agentNo, @agentFeeSeq,@agentFeeMonth,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("@feeName").Append(i.ToString()).Append(",").Append("@fee").Append(i.ToString()).Append(",");
             }
-            sb.Append("@feeTotal,@invoiceFee)");
+            sb.Append("@feeTotal,@invoiceFee,@preInvoiceFee)");
 
             //string sql = "INSERT INTO agent_Fee (agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal) VALUE (@agentNo, @agentFeeSeq,@feeName1,@fee1,@feeName2,@fee2,@feeName3,@fee3,@feeName4,@fee4,@feeTotal)";
             string sql = sb.ToString();
@@ -59,6 +59,7 @@ namespace ChinaUnion_DataAccess
 
                 command.Parameters.AddWithValue("@feeTotal", entity.feeTotal);
                 command.Parameters.AddWithValue("@invoiceFee", entity.invoiceFee);
+                command.Parameters.AddWithValue("@preInvoiceFee", entity.preInvoiceFee);
                 return command.ExecuteNonQuery();
             }
         }
@@ -93,7 +94,7 @@ namespace ChinaUnion_DataAccess
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
             sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
             sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
@@ -133,6 +134,7 @@ namespace ChinaUnion_DataAccess
 
                     agentFee.feeTotal = reader["feeTotal"] == DBNull.Value ? null : reader["feeTotal"].ToString();
                     agentFee.invoiceFee = reader["invoiceFee"] == DBNull.Value ? null : reader["invoiceFee"].ToString();
+                    agentFee.preInvoiceFee = reader["preInvoiceFee"] == DBNull.Value ? null : reader["preInvoiceFee"].ToString();
 
                     Agent agent = new Agent();
                     agent.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
@@ -162,7 +164,7 @@ namespace ChinaUnion_DataAccess
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
             sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
             sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
@@ -200,6 +202,7 @@ namespace ChinaUnion_DataAccess
 
                     agentFee.feeTotal = reader["feeTotal"] == DBNull.Value ? null : reader["feeTotal"].ToString();
                     agentFee.invoiceFee = reader["invoiceFee"] == DBNull.Value ? null : reader["invoiceFee"].ToString();
+                    agentFee.preInvoiceFee = reader["preInvoiceFee"] == DBNull.Value ? null : reader["preInvoiceFee"].ToString();
 
                     Agent agent = new Agent();
                     agent.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();

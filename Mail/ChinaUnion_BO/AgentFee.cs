@@ -214,6 +214,7 @@ namespace ChinaUnion_BO
 
         public String feeTotal;
         public String invoiceFee;
+        public String preInvoiceFee;
 
         public Agent agent;
       

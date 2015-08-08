@@ -418,10 +418,11 @@ namespace ChinaUnion_Agent
                 agentFee.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
                 agentFee.agentNo = dgAgentFee[0, i].Value.ToString();
                 agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
-                agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString();
-                agentFee.invoiceFee = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
+                agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 3, i].Value.ToString();
+                agentFee.invoiceFee = dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString();
+                agentFee.preInvoiceFee = dgAgentFee[dgAgentFee.Columns.Count - 1, i].Value.ToString();
 
-                for (int j = 2; j <= 101 && j < dgAgentFee.Columns.Count-2; j++)
+                for (int j = 2; j <= 101 && j < dgAgentFee.Columns.Count-3; j++)
                 {
 
                     FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + (j-1));

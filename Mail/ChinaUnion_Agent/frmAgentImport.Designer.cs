@@ -184,6 +184,7 @@
             this.txtAgent.Name = "txtAgent";
             this.txtAgent.Size = new System.Drawing.Size(360, 21);
             this.txtAgent.TabIndex = 6;
+            this.txtAgent.TextChanged += new System.EventHandler(this.txtAgent_TextChanged);
             // 
             // label2
             // 
@@ -193,6 +194,7 @@
             this.label2.Size = new System.Drawing.Size(101, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "代理商文件地址：";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // frmAgentImport
             // 

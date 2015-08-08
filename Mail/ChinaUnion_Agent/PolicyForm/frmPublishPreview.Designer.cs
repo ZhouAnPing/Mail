@@ -28,28 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tvOrganization = new System.Windows.Forms.TreeView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPublish = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtContent = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.txtAttachmentLocation = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSequence = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // tvOrganization
-            // 
-            this.tvOrganization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tvOrganization.CheckBoxes = true;
-            this.tvOrganization.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tvOrganization.ItemHeight = 20;
-            this.tvOrganization.Location = new System.Drawing.Point(113, 258);
-            this.tvOrganization.Name = "tvOrganization";
-            this.tvOrganization.ShowNodeToolTips = true;
-            this.tvOrganization.Size = new System.Drawing.Size(407, 133);
-            this.tvOrganization.TabIndex = 32;
             // 
             // btnCancel
             // 
@@ -72,15 +62,6 @@
             this.btnPublish.Text = "发布";
             this.btnPublish.UseVisualStyleBackColor = true;
             this.btnPublish.Click += new System.EventHandler(this.btnPublish_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 256);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "接收方：";
             // 
             // txtContent
             // 
@@ -119,16 +100,65 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "标题:";
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSelect.Location = new System.Drawing.Point(476, 262);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(55, 28);
+            this.btnSelect.TabIndex = 36;
+            this.btnSelect.Text = "...";
+            this.btnSelect.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSelect.UseVisualStyleBackColor = true;
+            // 
+            // txtAttachmentLocation
+            // 
+            this.txtAttachmentLocation.Location = new System.Drawing.Point(113, 268);
+            this.txtAttachmentLocation.Name = "txtAttachmentLocation";
+            this.txtAttachmentLocation.Size = new System.Drawing.Size(360, 21);
+            this.txtAttachmentLocation.TabIndex = 35;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(51, 271);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "附件：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(51, 322);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 12);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "序列号:";
+            // 
+            // txtSequence
+            // 
+            this.txtSequence.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSequence.Enabled = false;
+            this.txtSequence.Location = new System.Drawing.Point(113, 313);
+            this.txtSequence.Name = "txtSequence";
+            this.txtSequence.Size = new System.Drawing.Size(64, 21);
+            this.txtSequence.TabIndex = 32;
+            // 
             // frmPublishPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(616, 480);
-            this.Controls.Add(this.tvOrganization);
+            this.Controls.Add(this.btnSelect);
+            this.Controls.Add(this.txtAttachmentLocation);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtSequence);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPublish);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtContent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSubject);
@@ -147,13 +177,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView tvOrganization;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnPublish;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox txtContent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.TextBox txtAttachmentLocation;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSequence;
     }
 }
