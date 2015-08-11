@@ -192,5 +192,155 @@ namespace ChinaUnion_DataAccess
                 return list;
             }
         }
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<AgentDailyPerformance> GetList(String agentNo, String date)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT branchNo, branchName,agentNo,agentName,");
+            for (int i = 1; i <= 100; i++)
+            {
+                sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+            }
+
+            sb.Append("date");
+
+            sb.Append(" FROM agent_daily_performance  where agentNo = @agentNo and date=@date");
+
+            string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentNo", agentNo);
+                command.Parameters.AddWithValue("@date", date);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentDailyPerformance> list = new List<AgentDailyPerformance>();
+                AgentDailyPerformance agentPerformance = null;
+                while (reader.Read())
+                {
+                    agentPerformance = new AgentDailyPerformance();
+
+                    agentPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    agentPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                    agentPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    agentPerformance.date = reader["date"] == DBNull.Value ? null : reader["date"].ToString();
+
+                    for (int i = 1; i <= 100; i++)
+                    {
+                        FieldInfo feeNameField = agentPerformance.GetType().GetField("feeName" + i);
+                        FieldInfo feeField = agentPerformance.GetType().GetField("fee" + i);
+                        String feeNameFieldValue = reader["feeName" + i] == DBNull.Value ? null : reader["feeName" + i].ToString();
+                        String feeFieldValue = reader["fee" + i] == DBNull.Value ? null : reader["fee" + i].ToString();
+                        feeNameField.SetValue(agentPerformance, feeNameFieldValue);
+                        feeField.SetValue(agentPerformance, feeFieldValue);
+
+                    }
+
+                    list.Add(agentPerformance);
+                }
+                return list;
+            }
+        }
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public AgentDailyPerformance GetSummary(String agentNo, String date)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT agentNo,agentName,");
+            for (int i = 1; i <= 100; i++)
+            {
+                sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
+            }
+
+            sb.Append("date");
+
+            sb.Append(" FROM agent_daily_performance group by agentNo,agentName,");
+            for (int i = 1; i <= 100; i++)
+            {
+                sb.Append("feeName").Append(i.ToString()).Append(",");
+            }
+            sb.Append("date");
+            sb.Append(" having agentNo = @agentNo and date=@date");
+
+            string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentNo", agentNo);
+                command.Parameters.AddWithValue("@date", date);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                AgentDailyPerformance agentDailyPerformance = null;
+                if (reader.Read())
+                {
+                    agentDailyPerformance = new AgentDailyPerformance();
+
+                    agentDailyPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentDailyPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    //agentDailyPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                    //agentDailyPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    agentDailyPerformance.date = reader["date"] == DBNull.Value ? null : reader["date"].ToString();
+                    for (int i = 1; i <= 100; i++)
+                    {
+                        FieldInfo feeNameField = agentDailyPerformance.GetType().GetField("feeName" + i);
+                        FieldInfo feeField = agentDailyPerformance.GetType().GetField("fee" + i);
+                        String feeNameFieldValue = reader["feeName" + i] == DBNull.Value ? null : reader["feeName" + i].ToString();
+                        String feeFieldValue = reader["fee" + i] == DBNull.Value ? null : reader["fee" + i].ToString();
+                        feeNameField.SetValue(agentDailyPerformance, feeNameFieldValue);
+                        feeField.SetValue(agentDailyPerformance, feeFieldValue);
+
+                    }
+                }
+                return agentDailyPerformance;
+            }
+        }
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<AgentDailyPerformance> GetAllListDate(String agentNo)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT distinct agentNo,agentName,date");
+
+
+            sb.Append(" FROM agent_daily_performance  where agentNo = @agentNo order by date desc");
+
+            string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentNo", agentNo);
+                // command.Parameters.AddWithValue("@month", month);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentDailyPerformance> list = new List<AgentDailyPerformance>();
+                AgentDailyPerformance agentDailyPerformance = null;
+                while (reader.Read())
+                {
+                    agentDailyPerformance = new AgentDailyPerformance();
+
+                    agentDailyPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentDailyPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+
+                    agentDailyPerformance.date = reader["date"] == DBNull.Value ? null : reader["date"].ToString();
+
+
+
+                    list.Add(agentDailyPerformance);
+                }
+                return list;
+            }
+        }
     }
 }

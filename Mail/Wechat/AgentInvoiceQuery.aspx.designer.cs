@@ -10,7 +10,7 @@
 namespace Wechat {
     
     
-    public partial class PerformanceDetailQuery {
+    public partial class AgentInvoiceQuery {
         
         /// <summary>
         /// form1 control.

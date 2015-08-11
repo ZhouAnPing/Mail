@@ -119,7 +119,7 @@ namespace ChinaUnion_Agent.PerformanceForm
         private void frmAgentQuery_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            this.dtDay.Value = DateTime.Now.AddMonths(-1);
+            this.dtDay.Value = DateTime.Now.AddDays(-1);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

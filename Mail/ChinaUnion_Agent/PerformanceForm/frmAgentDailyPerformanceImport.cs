@@ -132,7 +132,7 @@ namespace ChinaUnion_Agent.PerformanceForm
             worker.WorkerReportsProgress = true;
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
-            this.dtDay.Value = DateTime.Now.AddMonths(-1);
+            this.dtDay.Value = DateTime.Now.AddDays(-1);
         }
 
         /// <summary>

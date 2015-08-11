@@ -77,10 +77,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="AgentInvoicePaymentQuery.aspx" />
+    <Content Include="PerformanceDailyDetailQuery.aspx" />
+    <Content Include="PerformanceDailySummaryQuery.aspx" />
     <Content Include="InvoicePaymentQuery.aspx" />
     <Content Include="ErrorCodeQuery.aspx" />
-    <Content Include="PerformanceDetailQuery.aspx" />
-    <Content Include="PerformanceSummaryQuery.aspx" />
+    <Content Include="PerformanceMonthDetailQuery.aspx" />
+    <Content Include="PerformanceMonthSummaryQuery.aspx" />
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -150,6 +152,20 @@
     <Compile Include="ContactUsHandler.ashx.cs">
       <DependentUpon>ContactUsHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="PerformanceDailyDetailQuery.aspx.cs">
+      <DependentUpon>PerformanceDailyDetailQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceDailyDetailQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceDailyDetailQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceDailySummaryQuery.aspx.cs">
+      <DependentUpon>PerformanceDailySummaryQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceDailySummaryQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceDailySummaryQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="InvoicePaymentQuery.aspx.cs">
       <DependentUpon>InvoicePaymentQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,22 +186,22 @@
     <Compile Include="OnlineServiceHandler.ashx.cs">
       <DependentUpon>OnlineServiceHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="PerformanceDetailQuery.aspx.cs">
-      <DependentUpon>PerformanceDetailQuery.aspx</DependentUpon>
+    <Compile Include="PerformanceMonthDetailQuery.aspx.cs">
+      <DependentUpon>PerformanceMonthDetailQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerformanceDetailQuery.aspx.designer.cs">
-      <DependentUpon>PerformanceDetailQuery.aspx</DependentUpon>
+    <Compile Include="PerformanceMonthDetailQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceMonthDetailQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerformanceHandler.ashx.cs">
       <DependentUpon>PerformanceHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="PerformanceSummaryQuery.aspx.cs">
-      <DependentUpon>PerformanceSummaryQuery.aspx</DependentUpon>
+    <Compile Include="PerformanceMonthSummaryQuery.aspx.cs">
+      <DependentUpon>PerformanceMonthSummaryQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PerformanceSummaryQuery.aspx.designer.cs">
-      <DependentUpon>PerformanceSummaryQuery.aspx</DependentUpon>
+    <Compile Include="PerformanceMonthSummaryQuery.aspx.designer.cs">
+      <DependentUpon>PerformanceMonthSummaryQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

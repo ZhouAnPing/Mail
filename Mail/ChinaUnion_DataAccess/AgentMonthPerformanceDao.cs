@@ -91,7 +91,7 @@ namespace ChinaUnion_DataAccess
             sb.Append("SELECT branchNo, branchName,agentNo,agentName,");
             for (int i = 1; i <= 100; i++)
             {
-                sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
+                sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
             }
 
             sb.Append("month");
@@ -251,6 +251,8 @@ namespace ChinaUnion_DataAccess
         }
 
 
+
+
         /// <summary> 
         /// 查询集合 
         /// </summary> 
@@ -305,6 +307,46 @@ namespace ChinaUnion_DataAccess
                     }
                 }
                 return agentMonthPerformance;
+            }
+        }
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<AgentMonthPerformance> GetAllListMonth(String agentNo)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT distinct agentNo,agentName,month");
+            
+
+            sb.Append(" FROM agent_month_performance  where agentNo = @agentNo order by month desc");
+
+            string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentNo", agentNo);
+               // command.Parameters.AddWithValue("@month", month);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentMonthPerformance> list = new List<AgentMonthPerformance>();
+                AgentMonthPerformance agentMonthPerformance = null;
+                while (reader.Read())
+                {
+                    agentMonthPerformance = new AgentMonthPerformance();
+
+                    agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                   
+                    agentMonthPerformance.month = reader["month"] == DBNull.Value ? null : reader["month"].ToString();
+
+                    
+
+                    list.Add(agentMonthPerformance);
+                }
+                return list;
             }
         }
     }
