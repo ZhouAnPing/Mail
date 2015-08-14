@@ -55,6 +55,7 @@
     <Compile Include="AgentInvoicePaymentDao.cs" />
     <Compile Include="AgentMonthPerformanceDao.cs" />
     <Compile Include="AgentDailyPerformanceDao.cs" />
+    <Compile Include="AgentContactDao.cs" />
     <Compile Include="InvoicePaymentDao.cs" />
     <Compile Include="PolicyDao.cs" />
     <Compile Include="UserRightDao.cs" />

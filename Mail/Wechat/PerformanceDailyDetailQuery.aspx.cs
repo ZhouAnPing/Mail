@@ -118,33 +118,40 @@ namespace Wechat
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //隐藏列
-           // e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
+            // e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-
-
-                if (String.IsNullOrEmpty(e.Row.Cells[0].Text) || e.Row.Cells[0].Text.Equals("&nbsp;"))
+                if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && (e.Row.Cells[0].Text.Equals("后付费发展数") || e.Row.Cells[0].Text.Equals("预付费发展数")))
                 {
-                    if (!String.IsNullOrEmpty(e.Row.Cells[1].Text) || e.Row.Cells[1].Text.Equals("&nbsp;"))
+                    e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                    e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                   // e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                }
+                else
+                {
+                    //e.Row.Cells[0].Attributes.Add("style", "display:none");
+                  //  e.Row.Cells[1].Attributes.Add("style", "display:none");
+                   // e.Row.Cells[2].Attributes.Add("style", "display:none;");
+                }
+
+                if (e.Row.RowIndex > 1)
+                {
+                    if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && (e.Row.Cells[0].Text.Equals("后付费发展数") || e.Row.Cells[0].Text.Equals("预付费发展数")))
                     {
-                        e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
-                        e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
-                        e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                        //e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;
+                        e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:left;");
+                        e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:right;");
+                       // e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:right;");
                     }
                     else
                     {
-                        e.Row.Cells[0].Attributes.Add("style", "display:none");
-                        e.Row.Cells[1].Attributes.Add("style", "display:none");
-                        e.Row.Cells[2].Attributes.Add("style", "display:none;");
+                        e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: normal;text-align:right;");
+                        e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;
                     }
                 }
-
-                if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计"))
-                {
-                    //e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;
-                }
+                
 
 
             }

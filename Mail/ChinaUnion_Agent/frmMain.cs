@@ -563,6 +563,15 @@ namespace ChinaUnion_Agent
                         frmAgentDailyPerformanceDirectQuery.Text = "日绩效查询-直供渠道";
                         CheckChildOpenState(this, frmAgentDailyPerformanceDirectQuery);
                         break;
+                    case "ContactImport":
+
+                        ContactUs.frmAgentContactImport frmAgentContactImport = new ContactUs.frmAgentContactImport();
+                        CheckChildOpenState(this, frmAgentContactImport);
+                        break;
+                    case "ContactQuery":
+                        ContactUs.frmAgentContactQuery frmAgentContactQuery = new ContactUs.frmAgentContactQuery();
+                         CheckChildOpenState(this, frmAgentContactQuery);
+                        break;
 
                 }
 

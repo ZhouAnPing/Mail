@@ -51,6 +51,7 @@
     <Compile Include="AgentInvoicePayment.cs" />
     <Compile Include="AgentMonthPerformance.cs" />
     <Compile Include="AgentDailyPerformance.cs" />
+    <Compile Include="AgentContact.cs" />
     <Compile Include="InvoicePayment.cs" />
     <Compile Include="ImportLog.cs" />
     <Compile Include="MailJob.cs" />

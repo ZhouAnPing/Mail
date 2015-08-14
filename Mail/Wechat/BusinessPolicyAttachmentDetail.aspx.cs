@@ -17,7 +17,9 @@ namespace Wechat
 
             PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
             Policy policy = policyDao.Get(Int32.Parse(sequence));
-            Response.ContentType = "Application/msword";
+
+
+            Response.ContentType = "Application/pdf";
             this.Response.Clear();
 
             System.IO.Stream fs = this.Response.OutputStream;

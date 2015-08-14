@@ -34,17 +34,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSelect = new System.Windows.Forms.Button();
-            this.txtAttachmentLocation = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSequence = new System.Windows.Forms.TextBox();
+            this.dtValidateDate = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtAttachmentName = new System.Windows.Forms.LinkLabel();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(335, 430);
+            this.btnCancel.Location = new System.Drawing.Point(335, 394);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 31;
@@ -55,7 +58,7 @@
             // btnPublish
             // 
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPublish.Location = new System.Drawing.Point(197, 430);
+            this.btnPublish.Location = new System.Drawing.Point(197, 394);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(75, 31);
             this.btnPublish.TabIndex = 28;
@@ -67,7 +70,8 @@
             // 
             this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContent.Location = new System.Drawing.Point(113, 55);
+            this.txtContent.Enabled = false;
+            this.txtContent.Location = new System.Drawing.Point(113, 82);
             this.txtContent.Name = "txtContent";
             this.txtContent.Size = new System.Drawing.Size(453, 194);
             this.txtContent.TabIndex = 26;
@@ -76,17 +80,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 55);
+            this.label2.Location = new System.Drawing.Point(51, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 25;
-            this.label2.Text = "正文:";
+            this.label2.Text = "内容:";
             // 
             // txtSubject
             // 
             this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubject.Location = new System.Drawing.Point(113, 20);
+            this.txtSubject.Enabled = false;
+            this.txtSubject.Location = new System.Drawing.Point(113, 47);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(453, 21);
             this.txtSubject.TabIndex = 24;
@@ -94,34 +99,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 23);
+            this.label1.Location = new System.Drawing.Point(51, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 23;
-            this.label1.Text = "标题:";
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSelect.Location = new System.Drawing.Point(476, 262);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(55, 28);
-            this.btnSelect.TabIndex = 36;
-            this.btnSelect.Text = "...";
-            this.btnSelect.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSelect.UseVisualStyleBackColor = true;
-            // 
-            // txtAttachmentLocation
-            // 
-            this.txtAttachmentLocation.Location = new System.Drawing.Point(113, 268);
-            this.txtAttachmentLocation.Name = "txtAttachmentLocation";
-            this.txtAttachmentLocation.Size = new System.Drawing.Size(360, 21);
-            this.txtAttachmentLocation.TabIndex = 35;
+            this.label1.Text = "名称:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 271);
+            this.label5.Location = new System.Drawing.Point(51, 298);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 34;
@@ -130,30 +117,85 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 322);
+            this.label3.Location = new System.Drawing.Point(363, 360);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 33;
             this.label3.Text = "序列号:";
+            this.label3.Visible = false;
             // 
             // txtSequence
             // 
             this.txtSequence.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSequence.Enabled = false;
-            this.txtSequence.Location = new System.Drawing.Point(113, 313);
+            this.txtSequence.Location = new System.Drawing.Point(425, 351);
             this.txtSequence.Name = "txtSequence";
             this.txtSequence.Size = new System.Drawing.Size(64, 21);
             this.txtSequence.TabIndex = 32;
+            this.txtSequence.Visible = false;
+            // 
+            // dtValidateDate
+            // 
+            this.dtValidateDate.Enabled = false;
+            this.dtValidateDate.Location = new System.Drawing.Point(113, 339);
+            this.dtValidateDate.Name = "dtValidateDate";
+            this.dtValidateDate.Size = new System.Drawing.Size(126, 21);
+            this.dtValidateDate.TabIndex = 36;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(51, 339);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "有效期:";
+            // 
+            // txtAttachmentName
+            // 
+            this.txtAttachmentName.AutoSize = true;
+            this.txtAttachmentName.Location = new System.Drawing.Point(116, 296);
+            this.txtAttachmentName.Name = "txtAttachmentName";
+            this.txtAttachmentName.Size = new System.Drawing.Size(41, 12);
+            this.txtAttachmentName.TabIndex = 37;
+            this.txtAttachmentName.TabStop = true;
+            this.txtAttachmentName.Text = "附件名";
+            // 
+            // cbType
+            // 
+            this.cbType.Enabled = false;
+            this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "政策",
+            "通知公告",
+            "重点关注",
+            "服务规范"});
+            this.cbType.Location = new System.Drawing.Point(113, 14);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(185, 20);
+            this.cbType.TabIndex = 39;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(51, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 12);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "类型:";
             // 
             // frmPublishPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(616, 480);
-            this.Controls.Add(this.btnSelect);
-            this.Controls.Add(this.txtAttachmentLocation);
+            this.ClientSize = new System.Drawing.Size(616, 447);
+            this.Controls.Add(this.cbType);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtAttachmentName);
+            this.Controls.Add(this.dtValidateDate);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSequence);
@@ -183,10 +225,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSelect;
-        private System.Windows.Forms.TextBox txtAttachmentLocation;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSequence;
+        private System.Windows.Forms.DateTimePicker dtValidateDate;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel txtAttachmentName;
+        private System.Windows.Forms.ComboBox cbType;
+        private System.Windows.Forms.Label label8;
     }
 }

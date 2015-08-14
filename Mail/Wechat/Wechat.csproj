@@ -63,6 +63,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WHC.OrderWater.Commons">
+      <HintPath>..\ChinaUnion_Agent\Dll\WHC.OrderWater.Commons.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
@@ -115,6 +118,7 @@
       <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="BO\WechatMessage.cs" />
+    <Compile Include="BO\WechatUserId.cs" />
     <Compile Include="BusinessPolicyAttachmentDetail.aspx.cs">
       <DependentUpon>BusinessPolicyAttachmentDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,8 +221,10 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Util\Cryptography.cs" />
+    <Compile Include="Util\HttpHelper.cs" />
     <Compile Include="Util\QueryStringEncryption.cs" />
     <Compile Include="Util\Sample.cs" />
+    <Compile Include="Util\WechatUtil.cs" />
     <Compile Include="Util\WXBizMsgCrypt.cs" />
   </ItemGroup>
   <ItemGroup>

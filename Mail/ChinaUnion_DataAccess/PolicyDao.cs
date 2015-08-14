@@ -128,13 +128,19 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<Policy> GetList(string subject)
+        public IList<Policy> GetList(string keyWord, String type)
         {
             string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
-            if (!String.IsNullOrEmpty(subject))
+            sql = sql + " where 1=1 ";
+            if (!String.IsNullOrEmpty(keyWord))
             {
-                sql = sql + " where subject like \"%" + subject + "%\"";
+                sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
             }
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type =\"" + type + "\"";
+            }
+            sql = sql + " order by creatTime desc LIMIT 30";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -165,16 +171,71 @@ namespace ChinaUnion_DataAccess
         }
 
 
-            /// <summary> 
+         /// <summary> 
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<Policy> GetAllValidatedList()
+        public IList<Policy> GetAllValidatedList(string keyWord, String type)
         {
             string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
-           
-                sql = sql + " where isValidate='Y' order by creatTime desc ";
+
+            sql = sql + " where STR_TO_DATE( validateTime,'%Y-%m-%d') >= now()  ";
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
+            }
+
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type =\"" + type + "\"";
+            }
+
+            sql = sql + " order by creatTime desc LIMIT 30";
             
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<Policy> list = new List<Policy>();
+                Policy policy = null;
+                while (reader.Read())
+                {
+                    policy = new Policy();
+
+                    policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
+                    policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
+                    policy.sender = reader["sender"] == DBNull.Value ? null : reader["sender"].ToString();
+                    policy.attachmentName = reader["attachmentName"] == DBNull.Value ? null : reader["attachmentName"].ToString();
+                    policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
+                    policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
+                    policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    policy.validateTime = reader["validateTime"] == DBNull.Value ? null : reader["validateTime"].ToString();
+                    policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
+                    policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
+                    policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
+                    policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    list.Add(policy);
+                }
+                return list;
+            }
+        }
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<Policy> GetAllList(string keyWord)
+        {
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
+            sql = sql + " where 1=1 ";
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
+            }
+            sql = sql + "  order by creatTime desc ";
+
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();

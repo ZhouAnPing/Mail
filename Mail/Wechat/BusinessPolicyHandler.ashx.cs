@@ -90,50 +90,49 @@ namespace Wechat
             else
             {
 
+                PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
+
                 switch (actionType)
                 {
-                    case "PolicyQuery":
-                        sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"1.yyyymm\"查询某月发票,例如:\"1." + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "发票\n\n");
 
-                        break;
-
-                    case "ValidPolicy":
                     case "LatestPolicy":
-                        String feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
-                        if (actionType.Equals("PreInvoiceQuery"))
+
+                    case "HistoryPolicy":
+                    case "LatestNotice":                  
+
+                    case "HistoryNotice":
+                         IList<Policy> policyList =null;
+                         if (actionType.Equals("LatestNotice"))
+                         {
+                             policyList = policyDao.GetAllList("");
+                         }
+                         else
+                         {
+                             policyList = policyDao.GetAllList("");
+                         }
+
+
+
+
+
+
+                         if (policyList != null && policyList.Count > 0)
                         {
-                            feeMonth = DateTime.Now.AddMonths(-2).ToString("yyyyMM");
-                        }
-                        AgentInvoiceDao agentInvoiceDao = new AgentInvoiceDao();
-
-                        IList<AgentInvoice> agentInvoiceList = new List<AgentInvoice>();
-
-                        //  agentNo = "";//"DL224049";
-                        //  feeMonth = "201501";
-
-
-                        agentInvoiceList = agentInvoiceDao.GetList(agentNo, null, feeMonth);
-
-                        if (agentInvoiceList != null && agentInvoiceList.Count > 0)
-                        {
-                            sb.Append(this.createNewsMessages(feeMonth, wechatMessage.FromUserName, agentInvoiceList));
+                            sb.Append(this.createNewsMessages(wechatMessage.FromUserName, policyList));
                         }
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "发票还未受理，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有公告发布。。。\n\n");
                         }
                         break;
 
 
                     default:
 
-
                         break;
                 }
             }
-
             //  sb.AppendFormat("<AgentID>{0}</AgentID>", textMessage.AgentID);
 
             sb.AppendFormat("</xml>");
@@ -161,72 +160,40 @@ namespace Wechat
             }
         }
 
-        private StringBuilder createNewsMessages(String feeMonth, String toUser, IList<AgentInvoice> agentInvoiceList)
+        private StringBuilder createNewsMessages(String toUser, IList<Policy> policyList)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+            sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", policyList.Count);
             sb.AppendFormat("<Articles>");
-
-            sb.AppendFormat("<item>");
-            sb.Append("<Title>").AppendFormat("{0}发票查询结果", feeMonth).Append("</Title>");
-
-            StringBuilder sbDesc = new StringBuilder();
-            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-            sbDesc.AppendFormat("总共处理了：{0}次发票信息\n", agentInvoiceList.Count);
-
-            foreach (AgentInvoice agentInvoice in agentInvoiceList)
+            foreach (Policy policy in policyList)
             {
-                sbDesc.AppendFormat("\n收票日期:" + agentInvoice.invoiceDate + "\n内容:" + agentInvoice.invoiceContent + "\n金额:" + agentInvoice.invoiceFee + "\n发票类型:" + agentInvoice.invoiceType + "\n发票号:" + agentInvoice.invoiceNo + "\n备注:" + agentInvoice.comment).AppendLine();
+                sb.AppendFormat("<item>");
+                sb.Append("<Title>").AppendFormat(policy.subject).Append("</Title>");
 
+                StringBuilder sbDesc = new StringBuilder();
+             
+
+
+                sbDesc.AppendFormat("\n创建日期:" + policy.creatTime + "\n名称:" + policy.subject + "\n内容:" + policy.content + "\n类型:" + policy.type + "\n有效期:" + policy.validateTime).AppendLine();
+
+
+
+                sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+
+
+
+                String url1 = String.Format("http://{0}/Wechat/BusinessPolicyDetail.aspx?seq={1}", Properties.Settings.Default.Host, policy.sequence);
+                logger.Info(url1);
+                sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+                sb.AppendFormat("</item>");
             }
-
-            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-
-
-
-            String url1 = String.Format("http://{0}/Wechat/AgentInvoiceQuery.aspx?agentNo={1}&feeMonth={2}", "115.29.229.134", QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
-            logger.Info(url1);
-            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-            sb.AppendFormat("</item>");
 
             sb.AppendFormat("</Articles>");
             return sb;
         }
 
 
-        private StringBuilder createNewsMessages(String feeMonth, String toUser, IList<AgentInvoicePayment> agentInvoicePaymentList)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
-            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
-            sb.AppendFormat("<Articles>");
-
-            sb.AppendFormat("<item>");
-            sb.Append("<Title>").AppendFormat("{0}发票支付结果", feeMonth).Append("</Title>");
-
-            StringBuilder sbDesc = new StringBuilder();
-            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
-            sbDesc.AppendFormat("总共处理了：{0}次支付信息\n", agentInvoicePaymentList.Count);
-            foreach (AgentInvoicePayment agentInvoicePayment in agentInvoicePaymentList)
-            {
-                sbDesc.AppendFormat("\n处理时间：" + agentInvoicePayment.processTime + "\n发票金额：" + agentInvoicePayment.invoiceFee + "\n付款金额：" + agentInvoicePayment.payFee + "\n摘要：" + agentInvoicePayment.summary + "\n付款状态：" + agentInvoicePayment.payStatus).AppendLine();
-
-            }
-
-
-            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
-
-
-
-            String url1 = String.Format("http://{0}/Wechat/AgentInvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", "115.29.229.134", QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
-            logger.Info(url1);
-            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
-            sb.AppendFormat("</item>");
-
-            sb.AppendFormat("</Articles>");
-            return sb;
-        }
       
     }
 }

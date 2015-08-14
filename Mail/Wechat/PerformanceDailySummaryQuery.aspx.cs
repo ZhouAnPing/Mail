@@ -30,7 +30,7 @@ namespace Wechat
             try
             {
                 Request.ContentEncoding = Encoding.UTF8;
-                feeDate = QueryStringEncryption.Decode(feeDate, QueryStringEncryption.key);
+               feeDate = QueryStringEncryption.Decode(feeDate, QueryStringEncryption.key);
                 agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
                 logger.Info("feeDate=" + feeDate);
                 logger.Info("agentNo=" + agentNo);
@@ -52,7 +52,7 @@ namespace Wechat
             dt.Columns.Add("summary");
 
              //agentNo = "P001";
-            //feeDate = "2015-07-08";// DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
+           // feeDate = "2015-07-08";// DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
 
             AgentDailyPerformanceDao agentPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
 

@@ -30,6 +30,10 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtValidateDate = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtAttachmentName = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -71,6 +75,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cbType);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.dtValidateDate);
+            this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.txtAttachmentName);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.btnSelect);
@@ -93,10 +101,49 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             // 
+            // cbType
+            // 
+            this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "政策",
+            "通知公告",
+            "重点关注",
+            "服务规范"});
+            this.cbType.Location = new System.Drawing.Point(99, 24);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(185, 20);
+            this.cbType.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 12);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "类型:";
+            // 
+            // dtValidateDate
+            // 
+            this.dtValidateDate.Location = new System.Drawing.Point(99, 361);
+            this.dtValidateDate.Name = "dtValidateDate";
+            this.dtValidateDate.Size = new System.Drawing.Size(126, 21);
+            this.dtValidateDate.TabIndex = 31;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(37, 361);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "有效期:";
+            // 
             // txtAttachmentName
             // 
             this.txtAttachmentName.AutoSize = true;
-            this.txtAttachmentName.Location = new System.Drawing.Point(97, 359);
+            this.txtAttachmentName.Location = new System.Drawing.Point(162, 316);
             this.txtAttachmentName.Name = "txtAttachmentName";
             this.txtAttachmentName.Size = new System.Drawing.Size(0, 12);
             this.txtAttachmentName.TabIndex = 29;
@@ -105,7 +152,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 359);
+            this.label6.Location = new System.Drawing.Point(37, 316);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 12);
             this.label6.TabIndex = 28;
@@ -114,7 +161,7 @@
             // btnSelect
             // 
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSelect.Location = new System.Drawing.Point(462, 256);
+            this.btnSelect.Location = new System.Drawing.Point(99, 305);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(55, 28);
             this.btnSelect.TabIndex = 26;
@@ -125,43 +172,47 @@
             // 
             // txtAttachmentLocation
             // 
-            this.txtAttachmentLocation.Location = new System.Drawing.Point(99, 262);
+            this.txtAttachmentLocation.Location = new System.Drawing.Point(99, 411);
             this.txtAttachmentLocation.Name = "txtAttachmentLocation";
             this.txtAttachmentLocation.Size = new System.Drawing.Size(360, 21);
             this.txtAttachmentLocation.TabIndex = 25;
+            this.txtAttachmentLocation.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 265);
+            this.label5.Location = new System.Drawing.Point(37, 414);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 24;
             this.label5.Text = "附件：";
+            this.label5.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 316);
+            this.label3.Location = new System.Drawing.Point(272, 370);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 23;
             this.label3.Text = "序列号:";
+            this.label3.Visible = false;
             // 
             // txtSequence
             // 
             this.txtSequence.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSequence.Enabled = false;
-            this.txtSequence.Location = new System.Drawing.Point(99, 307);
+            this.txtSequence.Location = new System.Drawing.Point(334, 361);
             this.txtSequence.Name = "txtSequence";
             this.txtSequence.Size = new System.Drawing.Size(64, 21);
             this.txtSequence.TabIndex = 22;
+            this.txtSequence.Visible = false;
             // 
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(128, 429);
+            this.btnSave.Location = new System.Drawing.Point(99, 438);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 20;
@@ -172,7 +223,7 @@
             // btnDelete
             // 
             this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDelete.Location = new System.Drawing.Point(238, 429);
+            this.btnDelete.Location = new System.Drawing.Point(209, 438);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 31);
             this.btnDelete.TabIndex = 19;
@@ -183,7 +234,7 @@
             // btnPublish
             // 
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPublish.Location = new System.Drawing.Point(348, 429);
+            this.btnPublish.Location = new System.Drawing.Point(319, 438);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(75, 31);
             this.btnPublish.TabIndex = 18;
@@ -195,7 +246,7 @@
             // 
             this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContent.Location = new System.Drawing.Point(99, 54);
+            this.txtContent.Location = new System.Drawing.Point(99, 92);
             this.txtContent.Name = "txtContent";
             this.txtContent.Size = new System.Drawing.Size(453, 194);
             this.txtContent.TabIndex = 3;
@@ -204,17 +255,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 54);
+            this.label2.Location = new System.Drawing.Point(37, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "正文:";
+            this.label2.Text = "内容:";
             // 
             // txtSubject
             // 
             this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubject.Location = new System.Drawing.Point(99, 19);
+            this.txtSubject.Location = new System.Drawing.Point(99, 57);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(453, 21);
             this.txtSubject.TabIndex = 1;
@@ -223,21 +274,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 22);
+            this.label1.Location = new System.Drawing.Point(37, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "标题:";
+            this.label1.Text = "名称:";
             // 
             // btnPreview
             // 
             this.btnPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPreview.Location = new System.Drawing.Point(348, 429);
+            this.btnPreview.Location = new System.Drawing.Point(435, 438);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 31);
             this.btnPreview.TabIndex = 21;
             this.btnPreview.Text = "预览";
             this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Visible = false;
             // 
             // groupBox2
             // 
@@ -302,7 +354,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 31);
             this.btnNew.TabIndex = 17;
-            this.btnNew.Text = "新建政策";
+            this.btnNew.Text = "新建";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -313,7 +365,7 @@
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(100, 31);
             this.btnQuery.TabIndex = 15;
-            this.btnQuery.Text = "查询政策";
+            this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -327,7 +379,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPolicyPublish";
-            this.Text = "政策发布";
+            this.Text = "信息发布";
             this.Load += new System.EventHandler(this.frmPolicyPublish_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -365,5 +417,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel txtAttachmentName;
+        private System.Windows.Forms.DateTimePicker dtValidateDate;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbType;
+        private System.Windows.Forms.Label label8;
     }
 }

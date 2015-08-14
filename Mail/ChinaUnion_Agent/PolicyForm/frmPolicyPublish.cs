@@ -33,6 +33,8 @@ namespace ChinaUnion_Agent.PolicyForm
             this.btnDelete.Enabled = false;
             this.btnPreview.Enabled = false;
             this.btnPublish.Enabled = false;
+            this.cbType.Text = "";
+            this.dtValidateDate.ResetText();
             this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
             this.txtSubject.Clear();
@@ -61,13 +63,15 @@ namespace ChinaUnion_Agent.PolicyForm
         {
             this.Cursor = Cursors.WaitCursor;
 
-            IList<Policy> policyList = policyDao.GetList(condition);
+            IList<Policy> policyList = policyDao.GetAllList(condition);
             this.dgPolicy.Rows.Clear();
             dgPolicy.Columns.Clear();
             dgPolicy.Columns.Add("序列号", "序列号");
+            dgPolicy.Columns.Add("类型", "类型");
             dgPolicy.Columns.Add("标题", "标题");
             dgPolicy.Columns.Add("内容", "内容");
             dgPolicy.Columns.Add("附件", "附件");
+            dgPolicy.Columns.Add("有效期", "有效期");
             dgPolicy.Columns.Add("创建人", "创建人");
             dgPolicy.Columns.Add("创建时间", "创建时间");
             if (policyList != null && policyList.Count > 0)
@@ -78,14 +82,18 @@ namespace ChinaUnion_Agent.PolicyForm
                     dgPolicy.Rows.Add();
                     DataGridViewRow row = dgPolicy.Rows[dgPolicy.RowCount - 1];
                     row.Cells[0].Value = policyList[i].sequence;
-                    row.Cells[1].Value = policyList[i].subject;
-                    row.Cells[2].Value = policyList[i].content;
-                    row.Cells[3].Value = policyList[i].attachmentName;
-                    row.Cells[4].Value = policyList[i].sender;
-                    row.Cells[5].Value = policyList[i].creatTime;
+                    row.Cells[1].Value = policyList[i].type;
+                    row.Cells[2].Value = policyList[i].subject;
+                    row.Cells[3].Value = policyList[i].content;
+                    row.Cells[4].Value = policyList[i].attachmentName;
+                    row.Cells[5].Value = policyList[i].validateTime;
+                    row.Cells[6].Value = policyList[i].sender;
+                    row.Cells[7].Value = policyList[i].creatTime;
 
                 }
             }
+            this.cbType.Text = "";
+            this.dtValidateDate.ResetText();
             this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
             this.txtSubject.Clear();
@@ -122,15 +130,21 @@ namespace ChinaUnion_Agent.PolicyForm
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(this.cbType.Text.Trim()))
+            {
+                MessageBox.Show("请选择类型！");
+                this.txtSubject.Focus();
+                return;
+            }
             if (String.IsNullOrEmpty(this.txtSubject.Text.Trim()))
             {
-                MessageBox.Show("请输入标题！");
+                MessageBox.Show("请输入名称！");
                 this.txtSubject.Focus();
                 return;
             }
             if (String.IsNullOrEmpty(this.txtContent.Text.Trim()))
             {
-                MessageBox.Show("请输入正文！");
+                MessageBox.Show("请输入内容！");
                 this.txtContent.Focus();
                 return;
             }
@@ -138,9 +152,11 @@ namespace ChinaUnion_Agent.PolicyForm
             this.Cursor = Cursors.WaitCursor;
             Policy policy = new Policy();
             policy.sequence = this.txtSequence.Text.Trim();
+            policy.type = this.cbType.Text;
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
             policy.sender = this.loginUser.name;
+            policy.validateTime = this.dtValidateDate.Value.ToString("yyyy-MM-dd");
             policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             policy.isDelete = "N";
             policy.isValidate = "Y";
@@ -152,19 +168,28 @@ namespace ChinaUnion_Agent.PolicyForm
                 FileStream fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
                 byte[] attachmentBytes = new byte[fs.Length];
 
-                fs.Read(attachmentBytes, 0, System.Convert.ToInt32(fs.Length));    
+                fs.Read(attachmentBytes, 0, System.Convert.ToInt32(fs.Length));
 
-              //  BinaryReader br = new BinaryReader(fs);
-               // attachmentBytes = br.ReadBytes(Convert.ToInt32(fs.Length));
+                //  BinaryReader br = new BinaryReader(fs);
+                // attachmentBytes = br.ReadBytes(Convert.ToInt32(fs.Length));
                 fs.Close();
-               // br.Close();
+                // br.Close();
 
                 if (attachmentBytes.Length > 0)
                 {
                     policy.attachmentName = this.txtAttachmentName.Text;
                     policy.attachment = attachmentBytes;
                 }
-                
+
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(policy.sequence))
+                {
+                    Policy tempPolicy = this.policyDao.Get(Int32.Parse(policy.sequence));
+                    policy.attachment = tempPolicy.attachment;
+                    policy.attachmentName = tempPolicy.attachmentName;
+                }
             }
             if (!String.IsNullOrEmpty(policy.sequence))
             {
@@ -208,9 +233,10 @@ namespace ChinaUnion_Agent.PolicyForm
                     {
                         this.txtSubject.Text = policy.subject;
                         this.txtContent.Text = policy.content;
-                       // this.txtSubject.Enabled = false;
-                        this.txtAttachmentName.Text = policy.attachmentName;
                         this.txtSequence.Text = policy.sequence;
+                        this.txtAttachmentName.Text = policy.attachmentName;
+                        this.cbType.Text = policy.type;
+                        this.dtValidateDate.Value = DateTime.Parse(policy.validateTime);
                         
                     }
                 }
@@ -220,8 +246,31 @@ namespace ChinaUnion_Agent.PolicyForm
 
         private void btnPublish_Click(object sender, EventArgs e)
         {
-           // this.btnSave_Click(sender, e);
+            if (String.IsNullOrEmpty(this.cbType.Text.Trim()))
+            {
+                MessageBox.Show("请选择类型！");
+                this.txtSubject.Focus();
+                return;
+            }
+            if (String.IsNullOrEmpty(this.txtSubject.Text.Trim()))
+            {
+                MessageBox.Show("请输入名称！");
+                this.txtSubject.Focus();
+                return;
+            }
+            if (String.IsNullOrEmpty(this.txtContent.Text.Trim()))
+            {
+                MessageBox.Show("请输入内容！");
+                this.txtContent.Focus();
+                return;
+            }
             Policy policy = new Policy();
+            if (!string.IsNullOrEmpty(this.txtSequence.Text.Trim()))
+            {
+                policy = policyDao.Get(Int32.Parse(this.txtSequence.Text.Trim()));
+            }
+            policy.type = this.cbType.Text;
+            policy.validateTime = this.dtValidateDate.Value.ToString("yyyy-MM-dd hh:mm:ss");
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
             policy.sender = this.loginUser.name;
@@ -256,7 +305,7 @@ namespace ChinaUnion_Agent.PolicyForm
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.CurrentDirectory;
             // openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Word 2000-2003(*.doc)|*.doc";
+            openFileDialog.Filter = "PDF(*.pdf)|*.pdf";
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -272,7 +321,7 @@ namespace ChinaUnion_Agent.PolicyForm
             if (policy != null)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Word|*.docx";
+                saveFileDialog.Filter = "PDF|*.pdf";
                 saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
                 saveFileDialog.FileName = policy.attachmentName;
