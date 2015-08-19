@@ -10,16 +10,7 @@
 namespace Wechat {
     
     
-    public partial class BusinessPolicyQuery {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class OnlineComplainSuggestionDetail {
         
         /// <summary>
         /// form1 control.
@@ -31,75 +22,75 @@ namespace Wechat {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// lblSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label lblSubject;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lblContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label lblContent;
         
         /// <summary>
-        /// lblType control.
+        /// lblCreateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblType;
+        protected global::System.Web.UI.WebControls.Label lblCreateTime;
         
         /// <summary>
-        /// lblScope control.
+        /// lblCheckStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblScope;
+        protected global::System.Web.UI.WebControls.Label lblCheckStatus;
         
         /// <summary>
-        /// txtCondition control.
+        /// lblDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCondition;
+        protected global::System.Web.UI.WebControls.HyperLink lblDepartment;
         
         /// <summary>
-        /// btnSearch control.
+        /// lblDepartmentReply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lblDepartmentReply;
         
         /// <summary>
-        /// UpdateProgress1 control.
+        /// lblReplyTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
+        protected global::System.Web.UI.WebControls.Label lblReplyTime;
         
         /// <summary>
-        /// GridView1 control.
+        /// lblReplyContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label lblReplyContent;
     }
 }

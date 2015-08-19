@@ -107,8 +107,7 @@
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
             "政策",
-            "通知公告",
-            "重点关注",
+            "通知公告/重点关注",
             "服务规范"});
             this.cbType.Location = new System.Drawing.Point(99, 24);
             this.cbType.Name = "cbType";

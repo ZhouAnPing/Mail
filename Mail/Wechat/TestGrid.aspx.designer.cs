@@ -10,7 +10,7 @@
 namespace Wechat {
     
     
-    public partial class BusinessPolicyQuery {
+    public partial class TestGrid {
         
         /// <summary>
         /// Head1 control.

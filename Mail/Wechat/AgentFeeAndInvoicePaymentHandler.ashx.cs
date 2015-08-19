@@ -101,6 +101,40 @@ namespace Wechat
 
                         break;
 
+                    case "BonusQuery":
+                        AgentBonusDao agentBonusDao = new AgentBonusDao();
+                        AgentBonus agentBonus = agentBonusDao.Get(wechatMessage.FromUserName);
+                        if (agentBonus != null)
+                        {
+
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+
+                            StringBuilder sbContent = new StringBuilder();
+
+
+                            sbContent.AppendFormat("代理商编号:{0}", agentBonus.agentNo).Append("\n");
+                            sbContent.AppendFormat("代理商名称:{0}", agentBonus.agentName).Append("\n");
+
+                            sbContent.AppendFormat("渠道积分奖励:{0}", agentBonus.scoreBonus).Append("\n");
+                            sbContent.AppendFormat("后付费奖励:{0}", agentBonus.afterFeeBonus).Append("\n");
+
+                            sbContent.AppendFormat("渠道星级补贴:{0}", agentBonus.starBonus).Append("\n");
+                            sbContent.AppendFormat("红包总金额:{0}", agentBonus.totalBonus).Append("\n");
+
+
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());
+                            // sb.Append(sbContent.ToString());
+                            // sb.Append(this.createNewsMessages(feeDate, wechatMessage.FromUserName, agentDailyPerformance));
+                        }
+                        else
+                        {
+                            logger.Info("is not Existed Record: ");
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "红包还没发布，如有疑问，请直接与上海联通确认。。。\n\n");
+                        }
+
+                        break;
+
                     case "Latest6MonthFeeQuery":
                         String strList = "最近6月佣金查询\n\n";
                         for (int i = 1; i <= 6; i++)
@@ -314,6 +348,7 @@ namespace Wechat
 
             }
             sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "佣金总计").Append(" ").AppendFormat("{0}\n", agentFee.feeTotal);
+            sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "过网开票金额").Append(" ").AppendFormat("{0}\n", agentFee.preInvoiceFee);
 
 
 

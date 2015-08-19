@@ -573,6 +573,24 @@ namespace ChinaUnion_Agent
                          CheckChildOpenState(this, frmAgentContactQuery);
                         break;
 
+
+                    case "BonusImport":
+                        ScoreGrade.frmAgentBonusImport frmAgentBonusImport = new ScoreGrade.frmAgentBonusImport();
+                        CheckChildOpenState(this, frmAgentBonusImport);
+                        break;
+                    case "BonusQuery":
+                        ScoreGrade.frmAgentBonusQuery frmAgentBonusQuery = new ScoreGrade.frmAgentBonusQuery();
+                        CheckChildOpenState(this, frmAgentBonusQuery);
+                        break;
+
+                    case "ScoreStarImport":
+                        ScoreGrade.frmAgentScoreStarImport frmAgentStarImport = new ScoreGrade.frmAgentScoreStarImport();
+                        CheckChildOpenState(this, frmAgentStarImport);
+                        break;
+                    case "ScoreStarQuery":
+                        ScoreGrade.frmAgentScoreStarQuery frmAgentStarQuery = new ScoreGrade.frmAgentScoreStarQuery();
+                        CheckChildOpenState(this, frmAgentStarQuery);
+                        break;
                 }
 
             }

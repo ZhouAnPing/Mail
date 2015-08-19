@@ -326,6 +326,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScoreGrade\frmAgentBonusImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentBonusImport.Designer.cs">
+      <DependentUpon>frmAgentBonusImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentBonusQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentBonusQuery.Designer.cs">
+      <DependentUpon>frmAgentBonusQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentScoreStarImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentScoreStarImport.Designer.cs">
+      <DependentUpon>frmAgentScoreStarImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentScoreStarQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentScoreStarQuery.Designer.cs">
+      <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="UserManagement\frmUserManagement.cs">
       <SubType>Form</SubType>
@@ -508,6 +532,18 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentBonusImport.resx">
+      <DependentUpon>frmAgentBonusImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentBonusQuery.resx">
+      <DependentUpon>frmAgentBonusQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentScoreStarImport.resx">
+      <DependentUpon>frmAgentScoreStarImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentScoreStarQuery.resx">
+      <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\frmUserManagement.resx">
       <DependentUpon>frmUserManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -546,6 +582,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template\ImportBonus_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Template\ImportCommissio_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -565,6 +604,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportPayment_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\ImportScore_Star_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportWechat_Template.xlsx">

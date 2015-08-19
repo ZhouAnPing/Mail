@@ -27,5 +27,41 @@ namespace Wechat.Util
             string token = CRegex.GetText(result, regex, "token");
             return token;
         }
+
+        public HttpResult getUserInfoFromWechat(String code, String agentId, String secret)
+        {
+            String corpId = Properties.Settings.Default.Wechat_CorpId;
+
+           
+            String accessToken = this.GetAccessTokenNoCache(corpId, secret);
+
+            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token={0}&code={1}&agentid={2}";
+            var getUserUrl = string.Format(getUserUrlFormat, accessToken, code, agentId);
+
+
+
+            Wechat.Util.HttpHelper httpHelper = new Wechat.Util.HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = getUserUrl,
+                Method = "get"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+
+            return result;
+        }
     }
 }

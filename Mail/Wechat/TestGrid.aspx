@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BusinessPolicyQuery.aspx.cs" Inherits="Wechat.BusinessPolicyQuery" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestGrid.aspx.cs" Inherits="Wechat.TestGrid" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title></title>
@@ -49,7 +49,7 @@
                         </ProgressTemplate>
                     </asp:UpdateProgress>
 
-                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" PageSize="30" AllowPaging="True"
+                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" PageSize="1" AllowPaging="True"
                                     OnPageIndexChanging="GridView1_PageIndexChanging"
                                     ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound">
                                     <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

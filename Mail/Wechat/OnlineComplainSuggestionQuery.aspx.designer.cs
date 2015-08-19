@@ -10,7 +10,7 @@
 namespace Wechat {
     
     
-    public partial class BusinessPolicyQuery {
+    public partial class OnlineComplainSuggestionQuery {
         
         /// <summary>
         /// Head1 control.
@@ -58,13 +58,13 @@ namespace Wechat {
         protected global::System.Web.UI.WebControls.Label lblType;
         
         /// <summary>
-        /// lblScope control.
+        /// lblAgentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblScope;
+        protected global::System.Web.UI.WebControls.Label lblAgentNo;
         
         /// <summary>
         /// txtCondition control.

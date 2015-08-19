@@ -96,8 +96,128 @@ namespace Wechat
             {
                 AgentMonthPerformanceDao agentMonthPerformanceDao = new ChinaUnion_DataAccess.AgentMonthPerformanceDao();
                 AgentDailyPerformanceDao agentDailyPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
+                AgentStarDao agentStarDao = new AgentStarDao();
+                IList<AgentStar> agentStarList = null;
+
+                AgentScoreDao agentScoreDao = new AgentScoreDao();
+                IList<AgentScore> agentScoreList = null;
+                String dateTime = "";
+
+                DateTime dt = DateTime.Now;  //当前时间
+                DateTime startQuarter = dt.AddMonths(0 - (dt.Month - 1) % 3).AddDays(1 - dt.Day);  //本季度初
+                if (startQuarter.Month >= 1 && startQuarter.Month <= 3)
+                {
+                    dateTime = startQuarter.Year + "年第一季度";
+                }
+                if (startQuarter.Month >= 4 && startQuarter.Month <= 6)
+                {
+                    dateTime = startQuarter.Year + "年第二季度";
+                }
+                if (startQuarter.Month >= 7 && startQuarter.Month <= 9)
+                {
+                    dateTime = startQuarter.Year + "年第三季度";
+                }
+                if (startQuarter.Month >= 10 && startQuarter.Month <= 12)
+                {
+                    dateTime = startQuarter.Year + "年第四季度";
+                }
+
+                logger.Info("agentNo: " + agentNo);
+                logger.Info("dateTime: " + dateTime);
                 switch (actionType)
                 {
+
+                    case "curQuaterStar":
+                    case "HistoryQuaterStar":
+                        if (actionType.Equals("curQuaterStar"))
+                        {
+                            agentStarList = agentStarDao.GetLatestByKeyword(agentNo, dateTime);
+                        }
+                        if (actionType.Equals("HistoryQuaterStar"))
+                        {
+                            agentStarList = agentStarDao.GetListByKeyword(agentNo);
+                        }
+
+                      if (agentStarList != null && agentStarList.Count > 0)
+                        {
+                            logger.Info("Exist Record: " + agentStarList.Count);
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+
+                            StringBuilder sbContent = new StringBuilder();
+                            sbContent.AppendFormat("星级查询详情").Append("\n");
+                            for (int i = 0; i < agentStarList.Count;i++ )
+                            {
+                                AgentStar agentStar = agentStarList[i];
+                                sbContent.AppendFormat("\n时间:{0}", agentStar.dateTime).Append("\n");
+                                sbContent.AppendFormat("代理商编号:{0}", agentStar.agentNo).Append("\n");
+                                sbContent.AppendFormat("代理商名称:{0}", agentStar.agentName).Append("\n");
+                                if (!String.IsNullOrEmpty(agentStar.branchNo))
+                                {
+                                    sbContent.AppendFormat("渠道编码:{0}", agentStar.branchNo).Append("\n");
+                                    sbContent.AppendFormat("渠道名称:{0}", agentStar.branchName).Append("\n");
+                                }
+                               
+                                sbContent.AppendFormat("星级:{0}", agentStar.star).Append("\n");
+
+                            }
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());
+                            // sb.Append(sbContent.ToString());
+                            // sb.Append(this.createNewsMessages(feeDate, wechatMessage.FromUserName, agentDailyPerformance));
+                        }
+                        else
+                        {
+                            logger.Info("is not Existed Record: ");
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "星级还没上传，请直接与上海联通确认。。。\n\n");
+                        }
+                        break;
+
+                    case "curScore":
+                    case "HistoryScore":
+                        if (actionType.Equals("curScore"))
+                        {
+                            agentScoreList = agentScoreDao.GetLatestByKeyword(agentNo, dateTime);
+                        }
+                        if (actionType.Equals("HistoryScore"))
+                        {
+                            agentScoreList = agentScoreDao.GetListByKeyword(agentNo);
+                        }
+
+                        if (agentScoreList != null && agentScoreList.Count > 0)
+                        {
+                            logger.Info("Exist Record: " + agentScoreList.Count);
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+
+                            StringBuilder sbContent = new StringBuilder();
+                            sbContent.AppendFormat("积分查询详情").Append("\n");
+                            for (int i = 0; i < agentScoreList.Count; i++)
+                            {
+                                AgentScore agentScore = agentScoreList[i];
+                                sbContent.AppendFormat("\n时间:{0}", agentScore.dateTime).Append("\n");
+
+                                sbContent.AppendFormat("代理商编号:{0}", agentScore.agentNo).Append("\n");
+                                sbContent.AppendFormat("代理商名称:{0}", agentScore.agentName).Append("\n");
+                                if (!String.IsNullOrEmpty(agentScore.branchNo))
+                                {
+                                    sbContent.AppendFormat("渠道编码:{0}", agentScore.branchNo).Append("\n");
+                                    sbContent.AppendFormat("渠道名称:{0}", agentScore.branchName).Append("\n");
+                                }
+
+                                sbContent.AppendFormat("积分:{0}", agentScore.score).Append("\n");
+
+                            }
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());
+                            // sb.Append(sbContent.ToString());
+                            // sb.Append(this.createNewsMessages(feeDate, wechatMessage.FromUserName, agentDailyPerformance));
+                        }
+                        else
+                        {
+                            logger.Info("is not Existed Record: ");
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",  "积分还没上传，请直接与上海联通确认。。。\n\n");
+                        }
+                        break;
+
                     case "YesterdayPerformance":
                         String feeDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
                         AgentDailyPerformance agentDailyPerformance = new AgentDailyPerformance();

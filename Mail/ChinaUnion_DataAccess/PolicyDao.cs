@@ -140,7 +140,7 @@ namespace ChinaUnion_DataAccess
             {
                 sql = sql + " and type =\"" + type + "\"";
             }
-            sql = sql + " order by creatTime desc LIMIT 30";
+            sql = sql + " order by creatTime desc LIMIT 300";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -190,7 +190,7 @@ namespace ChinaUnion_DataAccess
                 sql = sql + " and type =\"" + type + "\"";
             }
 
-            sql = sql + " order by creatTime desc LIMIT 30";
+            sql = sql + " order by creatTime desc LIMIT 300";
             
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {

@@ -80,6 +80,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="AgentInvoicePaymentQuery.aspx" />
+    <Content Include="OnlineComplainSuggestionDetail.aspx" />
+    <Content Include="OnlineComplainSuggestionQuery.aspx" />
+    <Content Include="OnlineComplainSuggestion.aspx" />
     <Content Include="PerformanceDailyDetailQuery.aspx" />
     <Content Include="PerformanceDailySummaryQuery.aspx" />
     <Content Include="InvoicePaymentQuery.aspx" />
@@ -89,6 +92,7 @@
     <Content Include="TestError.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestGrid.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -156,6 +160,27 @@
     <Compile Include="ContactUsHandler.ashx.cs">
       <DependentUpon>ContactUsHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="OnlineComplainSuggestionDetail.aspx.cs">
+      <DependentUpon>OnlineComplainSuggestionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineComplainSuggestionDetail.aspx.designer.cs">
+      <DependentUpon>OnlineComplainSuggestionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineComplainSuggestionQuery.aspx.cs">
+      <DependentUpon>OnlineComplainSuggestionQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineComplainSuggestionQuery.aspx.designer.cs">
+      <DependentUpon>OnlineComplainSuggestionQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineComplainSuggestion.aspx.cs">
+      <DependentUpon>OnlineComplainSuggestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineComplainSuggestion.aspx.designer.cs">
+      <DependentUpon>OnlineComplainSuggestion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PerformanceDailyDetailQuery.aspx.cs">
       <DependentUpon>PerformanceDailyDetailQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,8 +245,16 @@
       <DependentUpon>ServiceMonitorHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="TestGrid.aspx.cs">
+      <DependentUpon>TestGrid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestGrid.aspx.designer.cs">
+      <DependentUpon>TestGrid.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Util\Cryptography.cs" />
     <Compile Include="Util\HttpHelper.cs" />
+    <Compile Include="Util\MyConstant.cs" />
     <Compile Include="Util\QueryStringEncryption.cs" />
     <Compile Include="Util\Sample.cs" />
     <Compile Include="Util\WechatUtil.cs" />

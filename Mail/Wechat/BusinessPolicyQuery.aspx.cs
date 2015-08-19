@@ -4,19 +4,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using Wechat.BO;
-using Wechat.Properties;
 using Wechat.Util;
-using WHC.OrderWater.Commons;
-
 
 namespace Wechat
 {
@@ -24,56 +18,21 @@ namespace Wechat
     {
         private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(BusinessPolicyQuery));
 
-        public HttpResult getUserInfoFromWechat(String code, String agentId, String secret)
-        {
-            String corpId = Properties.Settings.Default.Wechat_CorpId;
-
-            WechatUtil wechatUtil = new WechatUtil();
-            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
-
-            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token={0}&code={1}&agentid={2}";
-            var getUserUrl = string.Format(getUserUrlFormat, accessToken, code, agentId);
-
-
-
-            Wechat.Util.HttpHelper httpHelper = new Wechat.Util.HttpHelper();
-            HttpItem item = new HttpItem()
-            {
-                Encoding = Encoding.GetEncoding("UTF-8"),
-                PostEncoding = Encoding.GetEncoding("UTF-8"),
-                URL = getUserUrl,
-                Method = "get"//URL     可选项 默认为Get
-
-            };
-
-            HttpResult result = httpHelper.GetHtml(item);
-
-            //返回的Html内容
-            string html = result.Html;
-            if (result.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                //表示访问成功，具体的大家就参考HttpStatusCode类
-            }
-            //表示StatusCode的文字说明与描述
-            string statusCodeDescription = result.StatusDescription;
-
-            return result;
-        }
-
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-
             logger.Info(this.Request.Url.AbsoluteUri);
 
-          //  String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice";
-           // myUrl = this.Server.UrlEncode(myUrl);
+            //  String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice";
+            // myUrl = this.Server.UrlEncode(myUrl);
             string code = Request.QueryString["code"];
             string state = Request.QueryString["state"];
             string search_scope = Request.QueryString["search_scope"];
             logger.Info("code=" + Request.QueryString["code"]);
             logger.Info("state=" + Request.QueryString["state"]);
             logger.Info("search_scope=" + Request.QueryString["search_scope"]);
-            HttpResult result = getUserInfoFromWechat(code, "6", "stkc3kfO0sCrIJTFCHzOhmEsRWAnVGHqrzBIy4le6mV6EcSkNbpY0Tt49Uci2Buu");
+             WechatUtil wechatUtil = new Util.WechatUtil();
+            HttpResult result = wechatUtil. getUserInfoFromWechat(code, "6", "stkc3kfO0sCrIJTFCHzOhmEsRWAnVGHqrzBIy4le6mV6EcSkNbpY0Tt49Uci2Buu");
             logger.Info("result=" + result.Html);
             if (result.Html.Contains("UserId"))
             {
@@ -81,21 +40,30 @@ namespace Wechat
 
             }
             search_scope = "all";
-            String type = "通知公告";
+            String type = "通知公告/重点关注";
             if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
             {
-                type = "通知公告";
+                type = "通知公告/重点关注";
             }
 
             if (!String.IsNullOrEmpty(state) && state.Equals("policy"))
             {
                 type = "政策";
             }
+
+            if (!String.IsNullOrEmpty(state) && state.Equals("rule"))
+            {
+                type = "服务规范";
+            }
             bindDataToGrid("", type, search_scope);
-          
-           
+
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread.Sleep(3000);
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim());
+        }
         void bindDataToGrid(String subject, String type, String search_scope)
         {
             logger.Info("bindDataToGrid=");
@@ -157,12 +125,20 @@ namespace Wechat
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
         }
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim());
+        }
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //隐藏列
-
-              e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
-              e.Row.Cells[3].Attributes.Add("style", "display:none");   //隐藏数据列
+            if (e.Row.RowType != DataControlRowType.Pager)
+            {
+                e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
+                e.Row.Cells[3].Attributes.Add("style", "display:none");   //隐藏数据列
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
@@ -183,21 +159,17 @@ namespace Wechat
                         e.Row.Cells[2].Attributes.Add("style", "display:none;");
                     }
                 }
-               
+
                 if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计"))
                 {
                     e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;
                 }
-             
+
 
             }
 
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            bindDataToGrid(this.txtCondition.Text.Trim(),this.lblType.Text,this.lblScope.Text.Trim());
-          //  bindDataToGrid("t","政策","validate");
-        }
+
     }
 }

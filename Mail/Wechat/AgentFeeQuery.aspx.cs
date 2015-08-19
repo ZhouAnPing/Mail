@@ -201,7 +201,7 @@ namespace Wechat
 
             row = dt.NewRow();
             row["seq"] = index++;
-            row["feeName"] = "过往开票金额";
+            row["feeName"] = "过网开票金额";
             row["fee"] = agentFee.preInvoiceFee;
             dt.Rows.Add(row);
            
@@ -246,7 +246,7 @@ namespace Wechat
                 e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
             }
 
-            if (e.Row.Cells[1].Text.Equals("过往开票金额"))
+            if (e.Row.Cells[1].Text.Equals("过网开票金额"))
             {
                 e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
                 e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");

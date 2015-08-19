@@ -971,4 +971,346 @@
 2015-08-13 20:42:39,548 [60] INFO  Wechat.BusinessPolicyQuery - subject=t
 2015-08-13 20:42:39,548 [60] INFO  Wechat.BusinessPolicyQuery - type=政策
 2015-08-13 20:42:39,548 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=validate
+[Footer]\r\n[Header]\r\n2015-08-14 21:40:26,228 [66] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:40:26,262 [66] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:40:26,262 [66] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:40:26,263 [66] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:40:26,444 [66] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:40:26,458 [66] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:40:26,458 [66] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:40:26,459 [66] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:40:26,459 [66] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:40:31,531 [66] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:40:34,774 [55] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:40:34,774 [55] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:40:34,774 [55] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:40:34,775 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:40:34,837 [55] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:40:34,837 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:40:34,838 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:40:34,838 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:40:34,838 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:40:35,067 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:40:38,069 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:40:38,069 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:40:38,070 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:40:38,070 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:40:38,300 [55] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-14 21:40:55,809 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:40:55,833 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:40:55,833 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:40:55,833 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:40:56,010 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:40:56,024 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:40:56,024 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:40:56,025 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:40:56,025 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:01,161 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:04,918 [55] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:41:04,919 [55] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:41:04,919 [55] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:41:04,919 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:41:04,965 [55] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:41:04,965 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:04,966 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:04,966 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:04,966 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:05,208 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:05,210 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:05,211 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:05,211 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:05,211 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:05,451 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:07,097 [55] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:41:07,097 [55] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:41:07,097 [55] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:41:07,098 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:41:07,154 [55] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:41:07,155 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:07,155 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:07,155 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:07,156 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:07,397 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:07,398 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:07,398 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:07,398 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:07,399 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:07,641 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:09,631 [60] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:41:09,631 [60] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:41:09,631 [60] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:41:09,631 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:41:09,690 [60] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:41:09,690 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:09,690 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:09,691 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:09,691 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:09,931 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:09,932 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:09,932 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:09,932 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:09,932 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:10,173 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:12,358 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:41:12,358 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:41:12,358 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:41:12,359 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:41:12,410 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:41:12,411 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:12,411 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:12,411 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:12,411 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:12,650 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:12,651 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:12,652 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:12,652 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:12,652 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:12,897 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:14,509 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:41:14,510 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:41:14,510 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:41:14,510 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:41:14,560 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:41:14,560 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:14,560 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:14,561 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:14,561 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:14,802 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:41:14,803 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:41:14,804 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:41:14,804 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:41:14,804 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:41:15,044 [701] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-14 21:42:05,733 [60] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:05,765 [60] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:05,766 [60] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:05,767 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:05,973 [60] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:06,005 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:06,006 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:06,006 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:06,006 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:11,136 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:14,128 [55] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:14,129 [55] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:14,129 [55] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:14,129 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:14,177 [55] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:14,177 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:14,177 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:14,177 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:14,177 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:14,417 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:14,418 [55] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:14,419 [55] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:14,419 [55] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:14,419 [55] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:14,657 [55] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:15,975 [60] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:15,975 [60] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:15,975 [60] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:15,976 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:16,035 [60] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:16,035 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:16,036 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:16,036 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:16,036 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:16,275 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:16,276 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:16,276 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:16,277 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:16,277 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:16,516 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:29,456 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:29,457 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:29,457 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:29,457 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:29,552 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:29,552 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:29,553 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:29,553 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:29,553 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:29,794 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:29,795 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:29,795 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:29,796 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:29,796 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:30,033 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:31,143 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:31,143 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:31,143 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:31,143 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:31,206 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:31,207 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:31,207 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:31,207 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:31,207 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:31,445 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:31,446 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:31,446 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:31,446 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:31,446 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:31,685 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:38,049 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:38,050 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:38,050 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:38,050 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:38,097 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:38,097 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:38,097 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:38,098 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:38,098 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:38,337 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:38,338 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:38,338 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:38,338 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:38,338 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:38,576 [701] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:39,428 [60] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:39,428 [60] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:39,428 [60] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:39,429 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:39,482 [60] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:39,482 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:39,483 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:39,483 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:39,483 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:39,722 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:39,723 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:39,723 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:39,723 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:39,723 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:39,961 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:41,355 [60] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 21:42:41,355 [60] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 21:42:41,355 [60] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 21:42:41,356 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 21:42:41,424 [60] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 21:42:41,425 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:41,425 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:41,425 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:41,425 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:41,664 [60] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-14 21:42:41,665 [60] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 21:42:41,665 [60] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 21:42:41,666 [60] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 21:42:41,666 [60] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 21:42:41,903 [60] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-14 22:14:18,898 [701] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-14 22:14:18,915 [701] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-14 22:14:18,915 [701] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-14 22:14:18,915 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-14 22:14:19,077 [701] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-14 22:14:19,089 [701] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-14 22:14:19,090 [701] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-14 22:14:19,091 [701] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-14 22:14:19,091 [701] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-14 22:14:25,193 [701] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n2015-08-16 12:33:16,191 [66] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:33:16,211 [66] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:33:16,211 [66] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:33:16,408 [66] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:33:16,421 [66] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:33:16,422 [66] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:33:16,423 [66] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:33:16,423 [66] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+2015-08-16 12:33:24,528 [166] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:33:24,528 [166] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:33:24,528 [166] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:33:24,587 [166] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:33:24,587 [166] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:33:24,587 [166] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:33:24,588 [166] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:33:24,588 [166] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+2015-08-16 12:33:27,589 [166] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:33:27,589 [166] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:33:27,590 [166] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:33:27,590 [166] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:34:10,661 [166] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:34:12,560 [166] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:34:12,918 [166] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:34:14,212 [166] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:34:34,223 [166] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:34:34,521 [166] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:34:34,799 [166] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:34:35,182 [166] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:37:24,961 [166] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:37:27,673 [166] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:37:27,674 [166] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:37:27,848 [166] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:37:27,860 [166] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:37:27,860 [166] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:37:27,861 [166] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:37:27,861 [166] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:39:06,202 [166] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:39:06,221 [166] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:39:06,222 [166] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:39:06,395 [166] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:39:06,409 [166] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:39:06,410 [166] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:39:06,410 [166] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:39:06,410 [166] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:40:07,305 [167] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:40:07,323 [167] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:40:07,324 [167] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:40:07,477 [167] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:40:07,490 [167] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:40:07,491 [167] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:40:07,491 [167] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:40:07,491 [167] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:41:20,748 [7] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:41:20,803 [7] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:41:20,803 [7] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:41:21,033 [7] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:41:21,035 [7] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:41:21,035 [7] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:41:21,035 [7] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:41:21,036 [7] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-16 12:42:14,011 [15] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestionQuery.aspx
+2015-08-16 12:42:14,029 [15] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-08-16 12:42:14,029 [15] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+2015-08-16 12:42:14,221 [15] INFO  Wechat.OnlineComplainSuggestionQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-16 12:42:14,233 [15] INFO  Wechat.OnlineComplainSuggestionQuery - bindDataToGrid=
+2015-08-16 12:42:14,234 [15] INFO  Wechat.OnlineComplainSuggestionQuery - subject=
+2015-08-16 12:42:14,234 [15] INFO  Wechat.OnlineComplainSuggestionQuery - type=投诉
+2015-08-16 12:42:14,234 [15] INFO  Wechat.OnlineComplainSuggestionQuery - agentNo=P001
+[Footer]\r\n[Header]\r\n2015-08-19 16:08:11,683 [7] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-19 16:08:11,991 [7] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-19 16:08:11,991 [7] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+[Footer]\r\n[Header]\r\n2015-08-19 16:10:06,086 [13] INFO  Wechat.BusinessPolicyQuery - is not Existed Record: 
+2015-08-19 16:10:06,093 [13] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-19 16:10:06,093 [13] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-19 16:10:06,093 [13] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-19 16:10:06,449 [13] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-19 16:10:06,451 [13] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-19 16:10:06,452 [13] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-19 16:10:06,452 [13] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-19 16:10:06,452 [13] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-19 16:10:06,560 [13] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-19 16:10:22,920 [13] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-19 16:10:22,930 [13] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-19 16:10:22,931 [13] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-19 16:10:37,129 [13] INFO  Wechat.BusinessPolicyQuery - is not Existed Record: 
+2015-08-19 16:10:37,129 [13] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-19 16:10:37,129 [13] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-19 16:10:37,130 [13] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-19 16:10:37,266 [13] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-19 16:10:37,268 [13] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-19 16:10:37,269 [13] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-19 16:10:37,269 [13] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-19 16:10:37,269 [13] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-19 16:10:37,371 [13] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-19 16:12:27,190 [18] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-19 16:12:27,208 [18] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-19 16:12:27,208 [18] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-19 16:12:47,786 [18] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-19 16:12:51,568 [18] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-19 16:12:51,569 [18] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-19 16:12:51,569 [18] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-19 16:12:51,741 [18] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-19 16:12:51,757 [18] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-19 16:12:51,757 [18] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-19 16:12:51,758 [18] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-19 16:12:51,758 [18] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-19 16:12:51,870 [18] INFO  Wechat.BusinessPolicyQuery - all=
 [Footer]\r\n

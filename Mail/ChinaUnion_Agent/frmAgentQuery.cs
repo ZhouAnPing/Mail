@@ -156,7 +156,7 @@ namespace ChinaUnion_Agent
 
                         this.dgAgentFee.Columns.Add("总计", "总计");
                         this.dgAgentFee.Columns.Add("开票金额", "开票金额");
-                        this.dgAgentFee.Columns.Add("过往开票金额", "过往开票金额");
+                        this.dgAgentFee.Columns.Add("过网开票金额", "过网开票金额");
 
                     }
 
