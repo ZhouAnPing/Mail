@@ -488,6 +488,11 @@ namespace ChinaUnion_Agent
                         frmWechatQuery.wechatType = "Agent";
                         CheckChildOpenState(this, frmWechatQuery);
                         break;
+                    case "WechatImport":
+
+                        MasterDataForm.frmAgentWechatAccountImport frmAgentWechatAccountImport = new MasterDataForm.frmAgentWechatAccountImport();
+                        CheckChildOpenState(this, frmAgentWechatAccountImport);
+                        break;
 
                     case "InvoicePaymentImport":
 

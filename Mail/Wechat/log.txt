@@ -1313,4 +1313,17 @@
 2015-08-19 16:12:51,758 [18] INFO  Wechat.BusinessPolicyQuery - type=通知公告
 2015-08-19 16:12:51,758 [18] INFO  Wechat.BusinessPolicyQuery - search_scope=all
 2015-08-19 16:12:51,870 [18] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-19 20:03:38,062 [7] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-19 20:03:38,171 [7] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-19 20:03:38,171 [7] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-19 20:03:43,575 [7] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-19 20:03:43,576 [7] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-19 20:03:43,576 [7] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-19 20:03:43,576 [7] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-19 20:03:43,818 [7] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-19 20:03:43,820 [7] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-19 20:03:43,820 [7] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-19 20:03:43,820 [7] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-19 20:03:43,821 [7] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-19 20:03:43,926 [7] INFO  Wechat.BusinessPolicyQuery - all=
 [Footer]\r\n

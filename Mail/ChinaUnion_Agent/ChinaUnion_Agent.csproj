@@ -378,6 +378,12 @@
     <Compile Include="WechatForm\frmAddWechatUser.Designer.cs">
       <DependentUpon>frmAddWechatUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterDataForm\frmAgentWechatAccountImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentWechatAccountImport.Designer.cs">
+      <DependentUpon>frmAgentWechatAccountImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="WechatForm\frmAgentWechatManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -555,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WechatForm\frmAddWechatUser.resx">
       <DependentUpon>frmAddWechatUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmAgentWechatAccountImport.resx">
+      <DependentUpon>frmAgentWechatAccountImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WechatForm\frmAgentWechatManagement.resx">
       <DependentUpon>frmAgentWechatManagement.cs</DependentUpon>

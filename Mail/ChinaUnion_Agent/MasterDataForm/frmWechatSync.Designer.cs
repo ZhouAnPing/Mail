@@ -31,22 +31,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
-            this.txtAgentNo = new System.Windows.Forms.TextBox();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSync = new System.Windows.Forms.Button();
             this.grpAgentList = new System.Windows.Forms.GroupBox();
-            this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.dgAgentWechatAccount = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.grpAgentList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
-            this.groupBox1.Controls.Add(this.txtAgentNo);
+            this.groupBox1.Controls.Add(this.txtKeyword);
             this.groupBox1.Controls.Add(this.lblType);
             this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSync);
@@ -79,21 +79,21 @@
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
-            // txtAgentNo
+            // txtKeyword
             // 
-            this.txtAgentNo.Location = new System.Drawing.Point(81, 19);
-            this.txtAgentNo.Name = "txtAgentNo";
-            this.txtAgentNo.Size = new System.Drawing.Size(248, 21);
-            this.txtAgentNo.TabIndex = 19;
+            this.txtKeyword.Location = new System.Drawing.Point(81, 19);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(248, 21);
+            this.txtKeyword.TabIndex = 19;
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
             this.lblType.Location = new System.Drawing.Point(12, 22);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(71, 12);
+            this.lblType.Size = new System.Drawing.Size(47, 12);
             this.lblType.TabIndex = 18;
-            this.lblType.Text = "代理商编号:";
+            this.lblType.Text = "关键字:";
             // 
             // btnCancel
             // 
@@ -120,7 +120,7 @@
             // 
             // grpAgentList
             // 
-            this.grpAgentList.Controls.Add(this.dgAgent);
+            this.grpAgentList.Controls.Add(this.dgAgentWechatAccount);
             this.grpAgentList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpAgentList.Location = new System.Drawing.Point(0, 56);
             this.grpAgentList.Name = "grpAgentList";
@@ -129,20 +129,20 @@
             this.grpAgentList.TabStop = false;
             this.grpAgentList.Text = "代理商列表";
             // 
-            // dgAgent
+            // dgAgentWechatAccount
             // 
-            this.dgAgent.AllowUserToAddRows = false;
-            this.dgAgent.AllowUserToDeleteRows = false;
-            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgent.Location = new System.Drawing.Point(3, 17);
-            this.dgAgent.Name = "dgAgent";
-            this.dgAgent.ReadOnly = true;
-            this.dgAgent.RowHeadersWidth = 10;
-            this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(1010, 665);
-            this.dgAgent.TabIndex = 7;
+            this.dgAgentWechatAccount.AllowUserToAddRows = false;
+            this.dgAgentWechatAccount.AllowUserToDeleteRows = false;
+            this.dgAgentWechatAccount.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentWechatAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentWechatAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentWechatAccount.Location = new System.Drawing.Point(3, 17);
+            this.dgAgentWechatAccount.Name = "dgAgentWechatAccount";
+            this.dgAgentWechatAccount.ReadOnly = true;
+            this.dgAgentWechatAccount.RowHeadersWidth = 10;
+            this.dgAgentWechatAccount.RowTemplate.Height = 23;
+            this.dgAgentWechatAccount.Size = new System.Drawing.Size(1010, 665);
+            this.dgAgentWechatAccount.TabIndex = 7;
             // 
             // frmWechatSync
             // 
@@ -161,7 +161,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grpAgentList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -172,9 +172,9 @@
         private System.Windows.Forms.Button btnSync;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.GroupBox grpAgentList;
-        private System.Windows.Forms.DataGridView dgAgent;
+        private System.Windows.Forms.DataGridView dgAgentWechatAccount;
         private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.TextBox txtAgentNo;
+        private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Button btnExport;
     }

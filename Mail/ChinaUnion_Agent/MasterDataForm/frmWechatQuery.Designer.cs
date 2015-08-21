@@ -33,7 +33,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -72,7 +72,7 @@
             // 
             this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtKeyword);
             this.groupBox1.Controls.Add(this.lblType);
             this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnDelete);
@@ -105,21 +105,21 @@
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
-            // textBox1
+            // txtKeyword
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 18);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(248, 21);
-            this.textBox1.TabIndex = 16;
+            this.txtKeyword.Location = new System.Drawing.Point(82, 18);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(248, 21);
+            this.txtKeyword.TabIndex = 16;
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
             this.lblType.Location = new System.Drawing.Point(13, 21);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(59, 12);
+            this.lblType.Size = new System.Drawing.Size(47, 12);
             this.lblType.TabIndex = 15;
-            this.lblType.Text = "渠道名称:";
+            this.lblType.Text = "关键字:";
             // 
             // btnCancel
             // 
@@ -145,7 +145,7 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Visible = false;
             // 
-            // frmWechatManagement
+            // frmWechatQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,7 +175,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.Button btnExport;
     }
 }

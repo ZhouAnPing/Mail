@@ -124,6 +124,37 @@ namespace ChinaUnion_Agent.Wechat
             return result;
         }
 
+        public HttpResult inviteUserToWechat(String secret, string userJson)
+        {
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+            string updateUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/invite/send?access_token={0}";
+            var updateUserUrl = string.Format(updateUserUrlFormat, accessToken);
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = updateUserUrl,
+                Method = "post",//URL     可选项 默认为Get
+                Postdata = userJson
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+            return result;
+        }
+
         public HttpResult getUserFromWechat(String userId, String secret)
         {
 
@@ -405,6 +436,74 @@ namespace ChinaUnion_Agent.Wechat
             //表示StatusCode的文字说明与描述
             string statusCodeDescription = result.StatusDescription;
 
+            return result;
+        }
+
+        public HttpResult addTagUsers(String secret, string userJson)
+        {
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+            string addUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/tag/addtagusers?access_token={0}";
+            var addUserUrl = string.Format(addUserUrlFormat, accessToken);
+
+            
+
+            HttpHelper httpHelper = new HttpHelper();
+
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = addUserUrl,
+                Method = "post",//URL     可选项 默认为Get
+                Postdata = userJson
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+            return result;
+        }
+
+        public HttpResult deleteTagUsers(String secret, string userJson)
+        {
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+            string delUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/tag/deltagusers?access_token={0}";
+            var delUserUrl = string.Format(delUserUrlFormat, accessToken);
+
+
+
+            HttpHelper httpHelper = new HttpHelper();
+
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = delUserUrl,
+                Method = "post",//URL     可选项 默认为Get
+                Postdata = userJson
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
             return result;
         }
 

@@ -38,65 +38,84 @@ namespace ChinaUnion_Agent.MasterDataForm
             //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
          
         }
-        private void prepareGrid(string agentNo)
+        private void prepareGrid(string keyword)
         {
             this.Cursor = Cursors.WaitCursor;
 
-            AgentDao agentDao = new AgentDao();
-            Agent agent = null;
-            IList<Agent> agentList = new List<Agent>();
-            if (!string.IsNullOrEmpty(agentNo))
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+
+            IList<AgentWechatAccount> agentWechatAccountList = new List<AgentWechatAccount>();
+            agentWechatAccountList = agentWechatAccountDao.GetListByKeyword(keyword);
+
+            dgAgentWechatAccount.Rows.Clear();
+            if (agentWechatAccountList != null && agentWechatAccountList.Count > 0)
             {
-                agent = agentDao.Get(agentNo);
-                if (agent != null)
+                this.grpAgentList.Text = "代理商联系信息列表(" + agentWechatAccountList.Count+")";
+                dgAgentWechatAccount.Rows.Clear();
+                dgAgentWechatAccount.Columns.Clear();
+
+                dgAgentWechatAccount.Columns.Add("类型", "类型");
+                
+                dgAgentWechatAccount.Columns.Add("代理商编号", "代理商编号");
+                dgAgentWechatAccount.Columns.Add("代理商名称", "代理商名称");
+                dgAgentWechatAccount.Columns.Add("区县", "区县");
+                dgAgentWechatAccount.Columns.Add("渠道编码", "渠道编码");
+                dgAgentWechatAccount.Columns.Add("渠道名称", "渠道名称");
+                dgAgentWechatAccount.Columns.Add("联系人编号", "联系人编号");
+                dgAgentWechatAccount.Columns.Add("联系人姓名", "联系人姓名");  
+                dgAgentWechatAccount.Columns.Add("联系人邮箱", "联系人邮箱");               
+                dgAgentWechatAccount.Columns.Add("联系人电话", "联系人电话");
+                dgAgentWechatAccount.Columns.Add("联系人微信", "联系人微信");
+                //dgAgent.Columns.Add("账号禁用", "账号禁用");
+                dgAgentWechatAccount.Columns.Add("微信同步备注", "微信同步备注");
+                dgAgentWechatAccount.Columns.Add("佣金结算与支付查询", "佣金结算与支付查询");
+                dgAgentWechatAccount.Columns.Add("业务政策", "业务政策");
+                dgAgentWechatAccount.Columns.Add("业绩查询", "业绩查询");
+                dgAgentWechatAccount.Columns.Add("在线学习", "在线学习");
+                dgAgentWechatAccount.Columns.Add("投诉协查", "投诉协查");
+                dgAgentWechatAccount.Columns.Add("服务监督", "服务监督");
+                dgAgentWechatAccount.Columns.Add("报错处理", "报错处理");
+                dgAgentWechatAccount.Columns.Add("企业小助手", "企业小助手");
+
+                for (int i = 0; i < agentWechatAccountList.Count; i++)
                 {
-                    agentList.Add(agent);
-                }
-            }
-            else
-            {
-                agentList = agentDao.GetList();
-            }
-
-            if (agentList != null && agentList.Count > 0)
-            {
-                this.grpAgentList.Text = "代理商列表(" + agentList.Count+")";
-                dgAgent.Rows.Clear();
-                dgAgent.Columns.Clear();
-
-                dgAgent.Columns.Add("代理商编号", "代理商编号");
-                dgAgent.Columns.Add("代理商名称", "代理商名称");
-                dgAgent.Columns.Add("联系人邮箱", "联系人邮箱");               
-                dgAgent.Columns.Add("联系人电话", "联系人电话");
-                dgAgent.Columns.Add("联系人微信", "联系人微信");
-                dgAgent.Columns.Add("账号禁用", "账号禁用");
-                dgAgent.Columns.Add("微信同步备注", "微信同步备注");
-
-
-                for (int i = 0; i < agentList.Count; i++)
-                {
-                    dgAgent.Rows.Add();
-                    DataGridViewRow row = dgAgent.Rows[i];
-
-                    row.Cells[0].Value = agentList[i].agentNo;
-                    row.Cells[1].Value = agentList[i].agentName;
-                    row.Cells[2].Value = agentList[i].contactEmail;                  
-                    row.Cells[3].Value = agentList[i].contactTel;
-                    row.Cells[4].Value = agentList[i].contactWechatAccount;
-                    if (!String.IsNullOrEmpty(agentList[i].status) && agentList[i].status.ToUpper().Equals("Y"))
-                    {
-                        row.Cells[5].Value = "账号已经停用";
-                    }
-                    else
-                    {
-                        row.Cells[5].Value = "";
-                    }
-                    row.Cells[6].Value = "";
+                    dgAgentWechatAccount.Rows.Add();
+                    DataGridViewRow row = dgAgentWechatAccount.Rows[i];
+                    int index = 0;
+                    row.Cells[index++].Value = agentWechatAccountList[i].type;
+                    row.Cells[index++].Value = agentWechatAccountList[i].agentNo;
+                    row.Cells[index++].Value = agentWechatAccountList[i].agentName;
+                    row.Cells[index++].Value = agentWechatAccountList[i].regionName;
+                    row.Cells[index++].Value = agentWechatAccountList[i].branchNo;
+                    row.Cells[index++].Value = agentWechatAccountList[i].branchName;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactId;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactName;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactEmail;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactTel;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactWechat;
+                   
+                    //if (!String.IsNullOrEmpty(agentWechatAccountList[i].status) && agentWechatAccountList[i].status.ToUpper().Equals("Y"))
+                    //{
+                    //    row.Cells[5].Value = "账号已经停用";
+                    //}
+                    //else
+                    //{
+                    //    row.Cells[5].Value = "";
+                    //}
+                    row.Cells[index++].Value = "";
+                    row.Cells[index++].Value = agentWechatAccountList[i].feeRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].policyRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].performanceRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].studyRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].complainRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].monitorRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].errorRight;
+                    row.Cells[index++].Value = agentWechatAccountList[i].contactRight;
 
                 }
-                dgAgent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgAgentWechatAccount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
-                dgAgent.AutoResizeColumns();
+                dgAgentWechatAccount.AutoResizeColumns();
 
             }
 
@@ -117,64 +136,96 @@ namespace ChinaUnion_Agent.MasterDataForm
          
             WechatAction wechatAction = new WechatAction();
 
-            for (int i = 0; i < dgAgent.RowCount ; i++)
+            List<String> feeRightUserIdsAll = new List<string>();
+            List<String> policyRightUserIdsAll = new List<string>();
+            List<String> performanceRightUserIdsAll = new List<string>();
+            List<String> studyRightUserIdsAll = new List<string>();
+            List<String> complainRightUserIdsAll = new List<string>();
+            List<String> monitorRightUserIdsAll = new List<string>();
+            List<String> errorRightUserIdsAll = new List<string>();
+            List<String> contactRightUserIdsAll = new List<string>();
+
+            List<String> feeRightUserIds = new List<string>();
+            List<String> policyRightUserIds = new List<string>();
+            List<String> performanceRightUserIds = new List<string>();
+            List<String> studyRightUserIds = new List<string>();
+            List<String> complainRightUserIds = new List<string>();
+            List<String> monitorRightUserIds = new List<string>();
+            List<String> errorRightUserIds = new List<string>();
+            List<String> contactRightUserIds = new List<string>();
+
+            for (int i = 0; i < dgAgentWechatAccount.RowCount ; i++)
             {
+                String userid = this.dgAgentWechatAccount[6, i].Value.ToString();
+                feeRightUserIdsAll.Add(userid);
+                policyRightUserIdsAll.Add(userid);
+                performanceRightUserIdsAll.Add(userid);
+                studyRightUserIdsAll.Add(userid);
+                complainRightUserIdsAll.Add(userid);
+                monitorRightUserIdsAll.Add(userid);
+                errorRightUserIdsAll.Add(userid);
+                contactRightUserIdsAll.Add(userid);
+
+                if (this.dgAgentWechatAccount[12, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    feeRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[13, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    policyRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[14, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    performanceRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[15, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    studyRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[16, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    complainRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[17, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    monitorRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[18, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    errorRightUserIds.Add(userid);
+                }
+                if (this.dgAgentWechatAccount[19, i].Value.ToString().ToUpper().Equals("Y"))
+                {
+                    contactRightUserIds.Add(userid);
+                }
+
                 WechatJsonUser wechatJsonUser = new WechatJsonUser();
-                wechatJsonUser.userid = this.dgAgent[0, i].Value.ToString();
-                wechatJsonUser.name = this.dgAgent[1, i].Value.ToString();
-                wechatJsonUser.email = this.dgAgent[2, i].Value.ToString();
-                wechatJsonUser.mobile = this.dgAgent[3, i].Value.ToString();
-                wechatJsonUser.weixinid = this.dgAgent[4, i].Value.ToString();
+                wechatJsonUser.userid = this.dgAgentWechatAccount[6, i].Value.ToString();
+                wechatJsonUser.name = this.dgAgentWechatAccount[7, i].Value.ToString();
+                wechatJsonUser.email = this.dgAgentWechatAccount[8, i].Value.ToString();
+                wechatJsonUser.mobile = this.dgAgentWechatAccount[9, i].Value.ToString();
+                wechatJsonUser.weixinid = this.dgAgentWechatAccount[10, i].Value.ToString();
+                wechatJsonUser.position = this.dgAgentWechatAccount[4, i].Value.ToString();
+                if (String.IsNullOrEmpty(wechatJsonUser.position))
+                {
+                    wechatJsonUser.position = this.dgAgentWechatAccount[1, i].Value.ToString();
+                }
                 wechatJsonUser.department = new List<int>();
-                wechatJsonUser.department.Add(Settings.Default.Wechat_Agent_Department);
+               wechatJsonUser.department.Add(1);
                 worker.ReportProgress(2, "同步微信账号" + wechatJsonUser.userid + "\r\n");
 
-                //Check the Wechat rule
-                #region
-                String email = "";
-                String mobile = this.dgAgent[3, i].Value.ToString();
-                String weixinid = this.dgAgent[4, i].Value.ToString();
-              
-
                
-                   // ^[1]+[3,5,8]+\d{9}
-                    if (Regex.IsMatch(weixinid, @"^[1]+[3,5,8]+\d{9}"))
-                    {
-                        mobile = weixinid;
-                        weixinid = "";
-                    }
-                    else
-                    {
-                        if (Regex.IsMatch(weixinid, @"^\d+$"))
-                        {
-                            weixinid = "QQ" + weixinid;
-                            mobile = "";
-                        }
-                        else
-                        {
-                            mobile = "";
-                        } 
-                    }
-                
-
-               // this.dgAgent[2, i].Value = email;
-               // this.dgAgent[3, i].Value = mobile;
-               // this.dgAgent[4, i].Value = weixinid;
-
-             
-
-                   
-                #endregion
-
+               
 
                 var userData = new
                 {
                     userid = wechatJsonUser.userid,
                     name = wechatJsonUser.name,
-                    department = wechatJsonUser.department,                    
-                    mobile = mobile,
-                    email = email,
-                    weixinid = weixinid
+                    department = wechatJsonUser.department,
+                    mobile = wechatJsonUser.mobile,
+                    email = wechatJsonUser.email,
+                    position = wechatJsonUser.position,
+                    weixinid = wechatJsonUser.weixinid
                 };
 
                 string InsertUserJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
@@ -182,70 +233,142 @@ namespace ChinaUnion_Agent.MasterDataForm
                 HttpResult result = wechatAction.getUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+                  
                     //表示访问成功，具体的大家就参考HttpStatusCode类
-                    wechatJsonUser = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
-                    if (!String.IsNullOrEmpty(wechatJsonUser.userid))
+                    WechatJsonUser wechatJsonUserFromWechat = JsonConvert.DeserializeObject<WechatJsonUser>(result.Html);
+                    if (!String.IsNullOrEmpty(wechatJsonUserFromWechat.userid))
                     {
-                        if (this.dgAgent[5, i].Value.ToString().Equals("账号已经停用"))
-                        {                          
-                            wechatJsonUser.department.Remove(Settings.Default.Wechat_Agent_Department);                           
-                        }
-                        else
-                        {
-                            wechatJsonUser.department.Add(Settings.Default.Wechat_Agent_Department);                           
-                        }
-                        var updateUserData = new
-                        {
-                            userid = this.dgAgent[0, i].Value.ToString(),
-                            name = this.dgAgent[1, i].Value.ToString(),
-                            email = email,
-                            mobile = mobile,
-                            weixinid = weixinid,
-                            department = wechatJsonUser.department
-                        };
+                        string updateUserJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
 
-                        string updateUserJson = JsonConvert.SerializeObject(updateUserData, Formatting.Indented);
-
-                        if (wechatJsonUser.department.Count == 0)
+                        // if (wechatJsonUser.department.Count == 0)
+                        // {
+                        //  result = wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
+                        // }
+                        // else
+                        // {
+                        result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
+                        if (!String.IsNullOrEmpty(wechatJsonUser.email))
                         {
-                            result = wechatAction.deleteUserFromWechat(wechatJsonUser.userid, Settings.Default.Wechat_Secret);
+                            //this.sendEmail(this.dgAgent[2, i].Value.ToString());
                         }
-                        else
-                        {
-                            result = wechatAction.updateUserToWechat(Settings.Default.Wechat_Secret, updateUserJson);
-                            if (!String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
-                            {
-                              //this.sendEmail(this.dgAgent[2, i].Value.ToString());
-                            }
-                        }
+                        // }
                     }
                     else
                     {
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, InsertUserJson);
                         ReturnMessage returnMessage1 = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
-                        if (returnMessage1 != null && returnMessage1.errcode .Equals( "0") && !String.IsNullOrEmpty(this.dgAgent[2, i].Value.ToString()))
+                        if (returnMessage1 != null && returnMessage1.errcode.Equals("0") && !String.IsNullOrEmpty(this.dgAgentWechatAccount[2, i].Value.ToString()))
                         {
-                          this.sendEmail(this.dgAgent[2, i].Value.ToString());
+                            this.sendEmail(wechatJsonUser.email);
                         }
                     }
+
+
+
                     ReturnMessage returnMessage = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
                     if (returnMessage != null && returnMessage.errcode != "0")
                     {
-                        this.dgAgent[6, i].Value = returnMessage.getErrorDescrition();
+
+
+                        this.dgAgentWechatAccount[11, i].Value = returnMessage.getErrorDescrition();
                     }
                     else
                     {
-                        this.dgAgent[6, i].Value = "同步成功";
+                        var userInviteData = new
+                        {
+                            userid = wechatJsonUser.userid
+                        };
+
+                        string inviteUserJson = JsonConvert.SerializeObject(userInviteData, Formatting.Indented);
+
+                        wechatAction.inviteUserToWechat(Settings.Default.Wechat_Secret, inviteUserJson);
+                        this.dgAgentWechatAccount[11, i].Value = "同步成功";
                     }
                 }
 
+
+
             }
+
+            deleteTagUser(feeRightUserIdsAll, 2);
+            addTagUser(feeRightUserIds, 2);
+
+            deleteTagUser(policyRightUserIdsAll, 3);
+            addTagUser(policyRightUserIds, 3);
+
+            deleteTagUser(performanceRightUserIdsAll, 4);
+            addTagUser(performanceRightUserIds, 4);
+
+            deleteTagUser(studyRightUserIdsAll, 5);
+            addTagUser(studyRightUserIds, 5);
+
+            deleteTagUser(complainRightUserIdsAll, 6);
+            addTagUser(complainRightUserIds, 6);
+
+            deleteTagUser(monitorRightUserIdsAll, 7);
+            addTagUser(monitorRightUserIds, 7);
+
+            deleteTagUser(errorRightUserIdsAll, 8);
+            addTagUser(errorRightUserIds, 8);
+
+            deleteTagUser(contactRightUserIdsAll, 9);
+            addTagUser(contactRightUserIds, 9);
+           
+           
 
 
 
             worker.ReportProgress(2, "同步微信账号完毕...\r\n");
 
 
+        }
+
+        private void deleteTagUser(List<String> RightUserIds, int tagId)
+        {
+            WechatAction wechatAction = new WechatAction();
+            List<String> rightUserIdsBuffer = new List<string>();
+            for (int i = 1; i <= RightUserIds.Count; i++)
+            {
+                rightUserIdsBuffer.Add(RightUserIds[i - 1]);
+                if (i % 300 == 0 || i == RightUserIds.Count)
+                {
+                    var userTagData = new
+                    {
+                        tagid = tagId,
+                        userlist = rightUserIdsBuffer
+                    };
+
+                    string updateTagJson = JsonConvert.SerializeObject(userTagData, Formatting.Indented);
+
+                    wechatAction.deleteTagUsers(Settings.Default.Wechat_Secret, updateTagJson);
+                    
+                    rightUserIdsBuffer.Clear();
+                }
+
+            }
+        }
+        private void addTagUser(List<String> RightUserIds, int tagId)
+        {
+            WechatAction wechatAction = new WechatAction();
+            List<String> rightUserIdsBuffer = new List<string>();
+            for (int i = 1; i <= RightUserIds.Count; i++)
+            {
+                rightUserIdsBuffer.Add(RightUserIds[i - 1]);
+                if (i % 300 == 0 || i == RightUserIds.Count)
+                {
+                    var userTagData = new
+                    {
+                        tagid = tagId,
+                        userlist = rightUserIdsBuffer
+                    };
+
+                    string updateTagJson = JsonConvert.SerializeObject(userTagData, Formatting.Indented);                   
+                   wechatAction.addTagUsers(Settings.Default.Wechat_Secret, updateTagJson);
+
+                    rightUserIdsBuffer.Clear();
+                }
+
+            }
         }
         private void sendEmail(String emailId)
         {
@@ -301,14 +424,14 @@ namespace ChinaUnion_Agent.MasterDataForm
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            this.prepareGrid(this.txtAgentNo.Text.Trim());
+            this.prepareGrid(this.txtKeyword.Text.Trim());
 
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            ExportData.exportGridData(this.dgAgent);
+            ExportData.exportGridData(this.dgAgentWechatAccount);
             this.Cursor = Cursors.Default;
         }
 

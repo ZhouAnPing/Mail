@@ -183,7 +183,7 @@ namespace Wechat
 
                             String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(wechatMessage.FromUserName, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
-                            strList1 = strList1 + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "月发票支付信息</a>";
+                            strList1 = strList1 + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
                             strList1 = strList1 + "\n";
                         }
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
