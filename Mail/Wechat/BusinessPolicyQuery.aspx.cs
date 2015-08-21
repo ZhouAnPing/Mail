@@ -32,7 +32,7 @@ namespace Wechat
             logger.Info("state=" + Request.QueryString["state"]);
             logger.Info("search_scope=" + Request.QueryString["search_scope"]);
              WechatUtil wechatUtil = new Util.WechatUtil();
-            HttpResult result = wechatUtil. getUserInfoFromWechat(code, "6", "stkc3kfO0sCrIJTFCHzOhmEsRWAnVGHqrzBIy4le6mV6EcSkNbpY0Tt49Uci2Buu");
+             HttpResult result = wechatUtil.getUserInfoFromWechat(code, "6", MyConstant.ScretId);
             logger.Info("result=" + result.Html);
             if (result.Html.Contains("UserId"))
             {

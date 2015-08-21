@@ -47,6 +47,7 @@ namespace Wechat
            // this.Label1.Text = agentFee.agent.agentName;
             if (agentFee == null)
             {
+                this.lblAgentComment.Text =feeMonth+ "佣金尚未发布。";
                 return;
             }
 

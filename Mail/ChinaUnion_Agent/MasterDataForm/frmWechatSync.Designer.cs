@@ -37,6 +37,8 @@
             this.btnSync = new System.Windows.Forms.Button();
             this.grpAgentList = new System.Windows.Forms.GroupBox();
             this.dgAgentWechatAccount = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.grpAgentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).BeginInit();
@@ -44,6 +46,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboType);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
             this.groupBox1.Controls.Add(this.txtKeyword);
@@ -59,7 +63,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(578, 16);
+            this.btnExport.Location = new System.Drawing.Point(772, 15);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 31);
             this.btnExport.TabIndex = 20;
@@ -71,7 +75,7 @@
             // 
             this.btnFind.AutoSize = true;
             this.btnFind.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnFind.Location = new System.Drawing.Point(350, 16);
+            this.btnFind.Location = new System.Drawing.Point(584, 15);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(55, 31);
             this.btnFind.TabIndex = 17;
@@ -81,7 +85,7 @@
             // 
             // txtKeyword
             // 
-            this.txtKeyword.Location = new System.Drawing.Point(81, 19);
+            this.txtKeyword.Location = new System.Drawing.Point(59, 19);
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.Size = new System.Drawing.Size(248, 21);
             this.txtKeyword.TabIndex = 19;
@@ -99,7 +103,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(690, 16);
+            this.btnCancel.Location = new System.Drawing.Point(864, 15);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(55, 31);
             this.btnCancel.TabIndex = 14;
@@ -110,7 +114,7 @@
             // btnSync
             // 
             this.btnSync.AutoSize = true;
-            this.btnSync.Location = new System.Drawing.Point(442, 16);
+            this.btnSync.Location = new System.Drawing.Point(656, 15);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(99, 31);
             this.btnSync.TabIndex = 0;
@@ -143,6 +147,29 @@
             this.dgAgentWechatAccount.RowTemplate.Height = 23;
             this.dgAgentWechatAccount.Size = new System.Drawing.Size(1010, 665);
             this.dgAgentWechatAccount.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(333, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "关键字:";
+            // 
+            // cboType
+            // 
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "全部",
+            "代理商联系人",
+            "直供渠道联系人",
+            "非直供渠道联系人"});
+            this.cboType.Location = new System.Drawing.Point(377, 19);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(171, 20);
+            this.cboType.TabIndex = 22;
             // 
             // frmWechatSync
             // 
@@ -177,5 +204,7 @@
         private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.Label label1;
     }
 }

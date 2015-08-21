@@ -50,25 +50,33 @@ namespace Wechat
             IList<AgentInvoicePayment> agentInvoicePaymentList = new List<AgentInvoicePayment>();
 
             agentInvoicePaymentList = agentInvoicePaymentDao.GetList(agentNo, null, feeMonth);
+            if (agentInvoicePaymentList != null && agentInvoicePaymentList.Count > 0)
+            {
+                foreach (AgentInvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+                {
+                    row = dt.NewRow();
+                    row["result"] = "<b>处理时间</b>：" + agentInvoicePayment.processTime + "<br/><b>发票金额</b>：" + agentInvoicePayment.invoiceFee + "<br/><b>付款金额</b>：" + agentInvoicePayment.payFee + "<br/><b>摘要</b>：" + agentInvoicePayment.summary + "<br/><b>付款状态</b>：" + agentInvoicePayment.payStatus;
+                    //row["processTime"] = agentInvoicePayment.processTime;
+                    //row["invoiceFee"] = agentInvoicePayment.invoiceFee;
+                    //row["payFee"] = agentInvoicePayment.payFee;
+                    //row["summary"] = agentInvoicePayment.summary;
+                    //row["payStatus"] = agentInvoicePayment.payStatus;
+                    dt.Rows.Add(row);
+                }
 
-            foreach (AgentInvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+                //this.lblFeeMonth.Text = feeMonth + "支付查询结果";
+
+               
+
+            }
+            else
             {
                 row = dt.NewRow();
-                row["result"] = "<b>处理时间</b>：" + agentInvoicePayment.processTime + "<br/><b>发票金额</b>：" + agentInvoicePayment.invoiceFee + "<br/><b>付款金额</b>：" + agentInvoicePayment.payFee + "<br/><b>摘要</b>：" + agentInvoicePayment.summary + "<br/><b>付款状态</b>：" + agentInvoicePayment.payStatus;
-                //row["processTime"] = agentInvoicePayment.processTime;
-                //row["invoiceFee"] = agentInvoicePayment.invoiceFee;
-                //row["payFee"] = agentInvoicePayment.payFee;
-                //row["summary"] = agentInvoicePayment.summary;
-                //row["payStatus"] = agentInvoicePayment.payStatus;
+                row["result"] = feeMonth+"计算支付信息尚未发布。";
                 dt.Rows.Add(row);
             }
-
-            //this.lblFeeMonth.Text = feeMonth + "支付查询结果";
-            
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
-            
-            
 
         }
 

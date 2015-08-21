@@ -68,6 +68,10 @@ namespace ChinaUnion_Agent.MasterDataForm
 
                     for (int i = 0; i < agent.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agent[i][0].Value.ToString().Trim()))
+                        {
+                            continue;
+                        }
                         dgAgent.Rows.Add();
                         DataGridViewRow row = dgAgent.Rows[i];
                         foreach (String coloumn in agent[0].ColumnNames)

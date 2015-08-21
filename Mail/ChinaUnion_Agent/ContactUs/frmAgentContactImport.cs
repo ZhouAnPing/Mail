@@ -61,6 +61,8 @@ namespace ChinaUnion_Agent.ContactUs
 
                     for (int i = 0; i < agentContact.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agentContact[i][0]))
+                            continue;
                         dgAgentContact.Rows.Add();
                         DataGridViewRow row = dgAgentContact.Rows[i];
                         foreach (String coloumn in agentContact[0].ColumnNames)

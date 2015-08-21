@@ -443,12 +443,7 @@ namespace ChinaUnion_Agent
                         frmPolicyPublish.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmPolicyPublish);
                         break;
-                    case "KnowledgeManagment":
-
-                        frmKnowledgeManagement frmKnowledgeManagement = new frmKnowledgeManagement();
-
-                        CheckChildOpenState(this, frmKnowledgeManagement);
-                        break;
+                 
 
                     case "UserMantain":
 

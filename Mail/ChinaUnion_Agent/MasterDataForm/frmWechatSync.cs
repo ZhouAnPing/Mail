@@ -38,14 +38,19 @@ namespace ChinaUnion_Agent.MasterDataForm
             //   Queryworker.ReportProgress(1, "代理商信息...\r\n");
          
         }
-        private void prepareGrid(string keyword)
+        private void prepareGrid(string keyword,String type)
         {
             this.Cursor = Cursors.WaitCursor;
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
 
             IList<AgentWechatAccount> agentWechatAccountList = new List<AgentWechatAccount>();
-            agentWechatAccountList = agentWechatAccountDao.GetListByKeyword(keyword);
+
+            if (type.Equals("全部"))
+            {
+                type = "";
+            }
+            agentWechatAccountList = agentWechatAccountDao.GetListByKeyword(keyword, type);
 
             dgAgentWechatAccount.Rows.Clear();
             if (agentWechatAccountList != null && agentWechatAccountList.Count > 0)
@@ -53,7 +58,7 @@ namespace ChinaUnion_Agent.MasterDataForm
                 this.grpAgentList.Text = "代理商联系信息列表(" + agentWechatAccountList.Count+")";
                 dgAgentWechatAccount.Rows.Clear();
                 dgAgentWechatAccount.Columns.Clear();
-
+                
                 dgAgentWechatAccount.Columns.Add("类型", "类型");
                 
                 dgAgentWechatAccount.Columns.Add("代理商编号", "代理商编号");
@@ -61,6 +66,20 @@ namespace ChinaUnion_Agent.MasterDataForm
                 dgAgentWechatAccount.Columns.Add("区县", "区县");
                 dgAgentWechatAccount.Columns.Add("渠道编码", "渠道编码");
                 dgAgentWechatAccount.Columns.Add("渠道名称", "渠道名称");
+                dgAgentWechatAccount.Columns["区县"].Visible = false;
+                dgAgentWechatAccount.Columns["渠道编码"].Visible = false;
+                dgAgentWechatAccount.Columns["渠道名称"].Visible = false;
+                if (!type.Equals("代理商联系人"))
+                {
+                    if (String.IsNullOrEmpty(type) || type.Equals("直供渠道联系人"))
+                    {
+                        dgAgentWechatAccount.Columns["区县"].Visible = true;
+                        
+                    }
+                    dgAgentWechatAccount.Columns["渠道编码"].Visible = true;
+                    dgAgentWechatAccount.Columns["渠道名称"].Visible = true;
+                   
+                }
                 dgAgentWechatAccount.Columns.Add("联系人编号", "联系人编号");
                 dgAgentWechatAccount.Columns.Add("联系人姓名", "联系人姓名");  
                 dgAgentWechatAccount.Columns.Add("联系人邮箱", "联系人邮箱");               
@@ -93,7 +112,7 @@ namespace ChinaUnion_Agent.MasterDataForm
                     row.Cells[index++].Value = agentWechatAccountList[i].contactEmail;
                     row.Cells[index++].Value = agentWechatAccountList[i].contactTel;
                     row.Cells[index++].Value = agentWechatAccountList[i].contactWechat;
-                   
+
                     //if (!String.IsNullOrEmpty(agentWechatAccountList[i].status) && agentWechatAccountList[i].status.ToUpper().Equals("Y"))
                     //{
                     //    row.Cells[5].Value = "账号已经停用";
@@ -424,7 +443,7 @@ namespace ChinaUnion_Agent.MasterDataForm
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            this.prepareGrid(this.txtKeyword.Text.Trim());
+            this.prepareGrid(this.txtKeyword.Text.Trim(), this.cboType.Text);
 
         }
 

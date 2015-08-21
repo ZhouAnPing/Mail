@@ -109,7 +109,7 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentWechatAccount> GetListByKeyword(String keyword)
+        public IList<AgentWechatAccount> GetListByKeyword(String keyword, String type)
         {
             string sql = "SELECT type,agentNo,agentName,branchNo,branchName,regionName,contactId,contactName,contactEmail,contactTel,contactWechat,feeRight,policyRight,performanceRight,studyRight,complainRight,monitorRight,errorRight,contactRight FROM agent_wechat_account";
 
@@ -122,6 +122,11 @@ namespace ChinaUnion_DataAccess
                 sql = sql + " or (contactWechat like \"%" + keyword + "%\")";
                 sql = sql + " or (branchNo like \"%" + keyword + "%\")";              
                 sql = sql + " or (branchName like \"%" + keyword + "%\"))";
+            }
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type= \"" + type + "\"";
+              
             }
             sql = sql + " order by agentNo asc,branchNo asc";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))

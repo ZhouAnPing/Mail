@@ -1,4 +1,4 @@
-﻿using ChinaUnion_BO;
+﻿ using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
 using System.Collections;
@@ -143,8 +143,8 @@ namespace Wechat
 
                             String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(wechatMessage.FromUserName, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
-                            strList = strList + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "月佣金</a>";
-                            strList = strList + "\n";
+                            strList = strList + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
+                            strList = strList + "\n\n";
                         }
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                         sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", strList);
@@ -184,7 +184,7 @@ namespace Wechat
                             String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(wechatMessage.FromUserName, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
                             strList1 = strList1 + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
-                            strList1 = strList1 + "\n";
+                            strList1 = strList1 + "\n\n";
                         }
                         sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                         sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", strList1);

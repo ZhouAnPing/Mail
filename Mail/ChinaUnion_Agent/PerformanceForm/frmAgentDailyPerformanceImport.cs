@@ -73,6 +73,8 @@ namespace ChinaUnion_Agent.PerformanceForm
 
                     for (int i = 0; i < agentPerformance.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agentPerformance[i][0]))
+                            continue;
                         dgAgentPerformance.Rows.Add();
                         DataGridViewRow row = dgAgentPerformance.Rows[i];
                         foreach (String coloumn in agentPerformance[0].ColumnNames)

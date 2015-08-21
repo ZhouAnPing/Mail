@@ -82,6 +82,8 @@ namespace ChinaUnion_Agent
 
                     for (int i = 0; i < agent.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agent[i][0]))
+                            continue;
                         dgAgent.Rows.Add();
                         DataGridViewRow row = dgAgent.Rows[i];
                         foreach (String coloumn in agent[0].ColumnNames)
@@ -115,6 +117,8 @@ namespace ChinaUnion_Agent
 
                     for (int i = 0; i < agentFee.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agentFee[i][0]))
+                            continue;
                         dgAgentFee.Rows.Add();
                         DataGridViewRow row = dgAgentFee.Rows[i];
                         foreach (String coloumn in agentFee[0].ColumnNames)
@@ -144,6 +148,8 @@ namespace ChinaUnion_Agent
 
                     for (int i = 0; i < agentType.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agentType[i][0]))
+                            continue;
                         dgAgentType.Rows.Add();
                         DataGridViewRow row = dgAgentType.Rows[i];
                         foreach (String coloumn in agentType[0].ColumnNames)
@@ -175,6 +181,8 @@ namespace ChinaUnion_Agent
 
                     for (int i = 0; i < agentTypeComment.Count; i++)
                     {
+                        if (String.IsNullOrEmpty(agentTypeComment[i][0]))
+                            continue;
                         dgAgentTypeComment.Rows.Add();
                         DataGridViewRow row = dgAgentTypeComment.Rows[i];
                         foreach (String coloumn in agentTypeComment[0].ColumnNames)

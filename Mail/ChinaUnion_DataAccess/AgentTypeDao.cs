@@ -117,5 +117,35 @@ namespace ChinaUnion_DataAccess
                 return list;
             }
         }
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<AgentType> GetDistinctType()
+        {
+            string sql = "SELECT distinct agentType FROM agent_type";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+               
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentType> list = new List<AgentType>();
+                AgentType agent_Type = null;
+                while (reader.Read())
+                {
+                    agent_Type = new AgentType();
+
+                    //agent_Type.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agent_Type.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
+                  //  agent_Type.agentFeeMonth = reader["agentFeeMonth"] == DBNull.Value ? null : reader["agentFeeMonth"].ToString();
+
+                    list.Add(agent_Type);
+                }
+                return list;
+            }
+        }
     }
 }

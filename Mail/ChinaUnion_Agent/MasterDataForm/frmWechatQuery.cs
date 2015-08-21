@@ -31,21 +31,25 @@ namespace ChinaUnion_Agent.MasterDataForm
         private void btnFind_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            this.prepareGrid(this.txtKeyword.Text.Trim());
+            this.prepareGrid(this.txtKeyword.Text.Trim(),this.cboType.Text);
             this.Cursor = Cursors.Default;
         }
 
-        private void prepareGrid(string keyword)
+        private void prepareGrid(string keyword, String type)
         {
             this.Cursor = Cursors.WaitCursor;
-
+            if (type.Equals("全部"))
+            {
+                type = "";
+            }
             WechatAction  wechatAction = new WechatAction();
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
 
             IList<AgentWechatAccount> agentWechatAccountList = new List<AgentWechatAccount>();
-            agentWechatAccountList = agentWechatAccountDao.GetListByKeyword(keyword);
+            agentWechatAccountList = agentWechatAccountDao.GetListByKeyword(keyword,type);
             this.grpWechatList.Text = "";
             dgWechat.Rows.Clear();
+
             if (agentWechatAccountList != null && agentWechatAccountList.Count > 0)
             {
                 this.grpWechatList.Text = "微信用户列表(" + agentWechatAccountList.Count + ")";
@@ -59,6 +63,20 @@ namespace ChinaUnion_Agent.MasterDataForm
                 dgWechat.Columns.Add("区县", "区县");
                 dgWechat.Columns.Add("渠道编码", "渠道编码");
                 dgWechat.Columns.Add("渠道名称", "渠道名称");
+                dgWechat.Columns["区县"].Visible = false;
+                dgWechat.Columns["渠道编码"].Visible = false;
+                dgWechat.Columns["渠道名称"].Visible = false;
+                if (!type.Equals("代理商联系人"))
+                {
+                    if (String.IsNullOrEmpty(type) || type.Equals("直供渠道联系人"))
+                    {
+                        dgWechat.Columns["区县"].Visible = true;
+
+                    }
+                    dgWechat.Columns["渠道编码"].Visible = true;
+                    dgWechat.Columns["渠道名称"].Visible = true;
+
+                }
                 dgWechat.Columns.Add("联系人编号", "联系人编号");
                 dgWechat.Columns.Add("联系人姓名", "联系人姓名");
                 dgWechat.Columns.Add("联系人邮箱", "联系人邮箱");
@@ -83,9 +101,12 @@ namespace ChinaUnion_Agent.MasterDataForm
                     row.Cells[index++].Value = agentWechatAccountList[i].type;
                     row.Cells[index++].Value = agentWechatAccountList[i].agentNo;
                     row.Cells[index++].Value = agentWechatAccountList[i].agentName;
+
                     row.Cells[index++].Value = agentWechatAccountList[i].regionName;
+
                     row.Cells[index++].Value = agentWechatAccountList[i].branchNo;
                     row.Cells[index++].Value = agentWechatAccountList[i].branchName;
+
                     row.Cells[index++].Value = agentWechatAccountList[i].contactId;
                     row.Cells[index++].Value = agentWechatAccountList[i].contactName;
                     row.Cells[index++].Value = agentWechatAccountList[i].contactEmail;

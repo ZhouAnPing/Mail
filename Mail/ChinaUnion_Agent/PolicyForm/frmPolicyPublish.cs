@@ -15,6 +15,7 @@ namespace ChinaUnion_Agent.PolicyForm
     public partial class frmPolicyPublish : frmBase
     {
         PolicyDao policyDao = new PolicyDao();
+        AgentTypeDao agentTypeDao = new AgentTypeDao();
         public frmPolicyPublish()
         {
             InitializeComponent();
@@ -34,12 +35,18 @@ namespace ChinaUnion_Agent.PolicyForm
             this.btnPreview.Enabled = false;
             this.btnPublish.Enabled = false;
             this.cbType.Text = "";
-            this.dtValidateDate.ResetText();
+            this.dtValidateDate.Value = this.dtValidateDate.Value.AddMonths(1);
             this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
             this.txtSubject.Clear();
             this.txtSequence.Clear();
             this.txtAttachmentName.Text = "";
+            IList<AgentType> agentTypeList = agentTypeDao.GetDistinctType();
+            this.lstAgentType.Items.Clear();
+            this.lstAgentType.Items.Add("所有渠道");
+            foreach(AgentType agentType in agentTypeList){
+                this.lstAgentType.Items.Add(agentType.agentType);
+            }
             this.txtSubject.Focus();
             this.Cursor = Cursors.Default;
         }
@@ -130,6 +137,8 @@ namespace ChinaUnion_Agent.PolicyForm
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(this.lstAgentType.CheckedItems.Count.ToString());
+            return;
             if (String.IsNullOrEmpty(this.cbType.Text.Trim()))
             {
                 MessageBox.Show("请选择类型！");

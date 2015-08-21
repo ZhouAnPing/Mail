@@ -30,6 +30,8 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lstAgentType = new System.Windows.Forms.CheckedListBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.dtValidateDate = new System.Windows.Forms.DateTimePicker();
@@ -56,6 +58,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtUserId = new System.Windows.Forms.RichTextBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPolicy)).BeginInit();
@@ -75,6 +79,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtUserId);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.lstAgentType);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.cbType);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.dtValidateDate);
@@ -101,6 +109,65 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             // 
+            // lstAgentType
+            // 
+            this.lstAgentType.CheckOnClick = true;
+            this.lstAgentType.FormattingEnabled = true;
+            this.lstAgentType.Items.AddRange(new object[] {
+            "3G专营店",
+            "O2O社会直销渠道",
+            "上网卡社会直销渠道",
+            "互联网社会渠道",
+            "公众直销渠道",
+            "其他他建他营厅",
+            "其他渠道",
+            "其他电子社会渠道",
+            "其它开户点",
+            "其它电子社会直销渠道",
+            "其它社会直销渠道",
+            "华盛专营店",
+            "卡批社会直销渠道",
+            "小区社会直销渠道",
+            "小型营业厅",
+            "平台商",
+            "平台特约店",
+            "战略合作厅",
+            "旗舰营业厅",
+            "普通代理店",
+            "普通代理点",
+            "标准营业厅",
+            "校园/小区代理点",
+            "校园代理点",
+            "校园厅",
+            "校园开户点",
+            "校园社会直销渠道",
+            "特约店",
+            "直供代理点",
+            "直供点",
+            "社区便利店",
+            "网上营业厅",
+            "自建他营厅",
+            "连锁渠道他建他营厅",
+            "连锁渠道代理点",
+            "集团客户社会直销渠道",
+            "集团直销渠道",
+            "集客固网社会直销渠道",
+            "集客移网社会直销渠道",
+            "非连锁渠道"});
+            this.lstAgentType.Location = new System.Drawing.Point(99, 398);
+            this.lstAgentType.Name = "lstAgentType";
+            this.lstAgentType.Size = new System.Drawing.Size(155, 100);
+            this.lstAgentType.TabIndex = 35;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 398);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 12);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "发送渠道类型(*):";
+            // 
             // cbType
             // 
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -109,7 +176,7 @@
             "政策",
             "通知公告/重点关注",
             "服务规范"});
-            this.cbType.Location = new System.Drawing.Point(99, 24);
+            this.cbType.Location = new System.Drawing.Point(99, 15);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(185, 20);
             this.cbType.TabIndex = 33;
@@ -117,15 +184,15 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 29);
+            this.label8.Location = new System.Drawing.Point(8, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 12);
+            this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 32;
-            this.label8.Text = "类型:";
+            this.label8.Text = "类型(*):";
             // 
             // dtValidateDate
             // 
-            this.dtValidateDate.Location = new System.Drawing.Point(99, 361);
+            this.dtValidateDate.Location = new System.Drawing.Point(99, 352);
             this.dtValidateDate.Name = "dtValidateDate";
             this.dtValidateDate.Size = new System.Drawing.Size(126, 21);
             this.dtValidateDate.TabIndex = 31;
@@ -133,7 +200,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(37, 361);
+            this.label7.Location = new System.Drawing.Point(8, 352);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 12);
             this.label7.TabIndex = 30;
@@ -142,7 +209,7 @@
             // txtAttachmentName
             // 
             this.txtAttachmentName.AutoSize = true;
-            this.txtAttachmentName.Location = new System.Drawing.Point(162, 316);
+            this.txtAttachmentName.Location = new System.Drawing.Point(162, 307);
             this.txtAttachmentName.Name = "txtAttachmentName";
             this.txtAttachmentName.Size = new System.Drawing.Size(0, 12);
             this.txtAttachmentName.TabIndex = 29;
@@ -151,7 +218,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 316);
+            this.label6.Location = new System.Drawing.Point(8, 307);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 12);
             this.label6.TabIndex = 28;
@@ -160,7 +227,7 @@
             // btnSelect
             // 
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSelect.Location = new System.Drawing.Point(99, 305);
+            this.btnSelect.Location = new System.Drawing.Point(99, 296);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(55, 28);
             this.btnSelect.TabIndex = 26;
@@ -171,7 +238,7 @@
             // 
             // txtAttachmentLocation
             // 
-            this.txtAttachmentLocation.Location = new System.Drawing.Point(99, 411);
+            this.txtAttachmentLocation.Location = new System.Drawing.Point(99, 371);
             this.txtAttachmentLocation.Name = "txtAttachmentLocation";
             this.txtAttachmentLocation.Size = new System.Drawing.Size(360, 21);
             this.txtAttachmentLocation.TabIndex = 25;
@@ -180,7 +247,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 414);
+            this.label5.Location = new System.Drawing.Point(8, 374);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 24;
@@ -190,7 +257,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(272, 370);
+            this.label3.Location = new System.Drawing.Point(272, 361);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 23;
@@ -202,7 +269,7 @@
             this.txtSequence.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSequence.Enabled = false;
-            this.txtSequence.Location = new System.Drawing.Point(334, 361);
+            this.txtSequence.Location = new System.Drawing.Point(334, 352);
             this.txtSequence.Name = "txtSequence";
             this.txtSequence.Size = new System.Drawing.Size(64, 21);
             this.txtSequence.TabIndex = 22;
@@ -211,7 +278,7 @@
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(99, 438);
+            this.btnSave.Location = new System.Drawing.Point(99, 522);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 20;
@@ -222,7 +289,7 @@
             // btnDelete
             // 
             this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDelete.Location = new System.Drawing.Point(209, 438);
+            this.btnDelete.Location = new System.Drawing.Point(209, 522);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 31);
             this.btnDelete.TabIndex = 19;
@@ -233,7 +300,7 @@
             // btnPublish
             // 
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPublish.Location = new System.Drawing.Point(319, 438);
+            this.btnPublish.Location = new System.Drawing.Point(319, 522);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(75, 31);
             this.btnPublish.TabIndex = 18;
@@ -245,7 +312,7 @@
             // 
             this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContent.Location = new System.Drawing.Point(99, 92);
+            this.txtContent.Location = new System.Drawing.Point(99, 83);
             this.txtContent.Name = "txtContent";
             this.txtContent.Size = new System.Drawing.Size(453, 194);
             this.txtContent.TabIndex = 3;
@@ -254,17 +321,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 92);
+            this.label2.Location = new System.Drawing.Point(8, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "内容:";
+            this.label2.Text = "内容(*):";
             // 
             // txtSubject
             // 
             this.txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubject.Location = new System.Drawing.Point(99, 57);
+            this.txtSubject.Location = new System.Drawing.Point(99, 48);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(453, 21);
             this.txtSubject.TabIndex = 1;
@@ -273,16 +340,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 60);
+            this.label1.Location = new System.Drawing.Point(8, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "名称:";
+            this.label1.Text = "名称(*):";
             // 
             // btnPreview
             // 
             this.btnPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPreview.Location = new System.Drawing.Point(435, 438);
+            this.btnPreview.Location = new System.Drawing.Point(435, 522);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 31);
             this.btnPreview.TabIndex = 21;
@@ -368,6 +435,25 @@
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(272, 398);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 12);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "发送用户账号:";
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserId.Location = new System.Drawing.Point(276, 419);
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(183, 79);
+            this.txtUserId.TabIndex = 37;
+            this.txtUserId.Text = "";
+            // 
             // frmPolicyPublish
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -420,5 +506,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckedListBox lstAgentType;
+        private System.Windows.Forms.RichTextBox txtUserId;
+        private System.Windows.Forms.Label label10;
     }
 }

@@ -37,6 +37,8 @@
             this.lblType = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpWechatList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -70,6 +72,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboType);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnExport);
             this.groupBox1.Controls.Add(this.btnFind);
             this.groupBox1.Controls.Add(this.txtKeyword);
@@ -85,7 +89,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(451, 16);
+            this.btnExport.Location = new System.Drawing.Point(711, 12);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 31);
             this.btnExport.TabIndex = 17;
@@ -97,7 +101,7 @@
             // 
             this.btnFind.AutoSize = true;
             this.btnFind.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnFind.Location = new System.Drawing.Point(354, 16);
+            this.btnFind.Location = new System.Drawing.Point(604, 12);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(55, 31);
             this.btnFind.TabIndex = 11;
@@ -125,7 +129,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(588, 16);
+            this.btnCancel.Location = new System.Drawing.Point(838, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 14;
@@ -137,13 +141,36 @@
             // 
             this.btnDelete.AutoSize = true;
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDelete.Location = new System.Drawing.Point(471, 16);
+            this.btnDelete.Location = new System.Drawing.Point(604, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(55, 31);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Visible = false;
+            // 
+            // cboType
+            // 
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "全部",
+            "代理商联系人",
+            "直供渠道联系人",
+            "非直供渠道联系人"});
+            this.cboType.Location = new System.Drawing.Point(392, 16);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(171, 20);
+            this.cboType.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(348, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "关键字:";
             // 
             // frmWechatQuery
             // 
@@ -177,5 +204,7 @@
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.Label label1;
     }
 }
