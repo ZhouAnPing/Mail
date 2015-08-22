@@ -35,45 +35,66 @@ namespace Wechat
                 WechatUtil wechatUtil = new Util.WechatUtil();
                 HttpResult result = wechatUtil.getUserInfoFromWechat(code, "9", "stkc3kfO0sCrIJTFCHzOhmEsRWAnVGHqrzBIy4le6mV6EcSkNbpY0Tt49Uci2Buu");
                 logger.Info("result=" + result.Html);
-                if (result.Html.Contains("UserId"))
+                if (result != null && result.Html != null && result.Html.Contains("UserId"))
                 {
                     WechatUserId returnMessage = (WechatUserId)JsonConvert.DeserializeObject(result.Html, typeof(WechatUserId));
-                    lblAgentNo.Text = returnMessage.UserId;
-                    String type = "投诉";
-                    if (!String.IsNullOrEmpty(state) && state.Equals("complain"))
-                    {
-                        type = "投诉";
-                    }
 
-                    if (!String.IsNullOrEmpty(state) && state.Equals("suggestion"))
-                    {
-                        type = "建议";
-                    }
+                    AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+                    AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(returnMessage.UserId);
 
-                    bindDataToGrid("", type, lblAgentNo.Text);
+                    if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
+                    {
+                        this.lblType.Text = "你的账号已被停用，请联系联通工作人员!";
+                        //  sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                        // sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
+
+                    }
+                    else if (agentWechatAccount == null)
+                    {
+                        this.lblType.Text = "用户不存在，请联系联通工作人员!";
+                        //sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                        // sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "用户不存在，请联系联通工作人员!\n\n");
+                    }
+                    else
+                    {
+                        String agentNo = agentWechatAccount.branchNo;
+                        if (String.IsNullOrEmpty(agentNo))
+                        {
+                            agentNo = agentWechatAccount.agentNo;
+                        }
+                        String type = "投诉";
+                        if (!String.IsNullOrEmpty(state) && state.Equals("complain"))
+                        {
+                            type = "投诉";
+                        }
+
+                        if (!String.IsNullOrEmpty(state) && state.Equals("suggestion"))
+                        {
+                            type = "建议";
+                        }
+
+                        bindDataToGrid("", type, agentNo, returnMessage.UserId);
+                    }
                 }
             }
             else
             {
                 string type = Request.QueryString["type"];
                 string agentNo = Request.QueryString["agentNo"];
+                string userId = Request.QueryString["userId"];
                 if (!String.IsNullOrEmpty(type) && !String.IsNullOrEmpty(agentNo))
                 {
-                    bindDataToGrid("", type, agentNo);
+                    bindDataToGrid("", type, agentNo, userId);
                 }
             }
-
-           
-           
-
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(3000);
-            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblAgentNo.Text.Trim());
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblAgentNo.Text.Trim(),this.lblUserId.Text.Trim());
         }
-        void bindDataToGrid(String subject, String type, String agentNo)
+        void bindDataToGrid(String subject, String type, String agentNo,String userId)
         {
             logger.Info("bindDataToGrid=");
             logger.Info("subject=" + subject);
@@ -83,20 +104,21 @@ namespace Wechat
            
             IList<AgentComplianSuggestion> agentComplianSuggestionList = null;
 
-            agentComplianSuggestionList = agentComplianSuggestionDao.GetListByKeyword("", type, agentNo);
+            agentComplianSuggestionList = agentComplianSuggestionDao.GetListByKeyword("", type, agentNo,userId);
           
             this.lblType.Text = type;
             this.lblAgentNo.Text = agentNo;
+            this.lblUserId.Text = userId;
             // int index = 1;
             DataTable dt = new DataTable();
             dt.Columns.Add("seq");
             dt.Columns.Add("createTime");
             dt.Columns.Add("subject");
-          //  dt.Columns.Add("content");
+            //  dt.Columns.Add("content");
             dt.Columns.Add("isReply");
 
             DataRow row = null;
-            if (agentComplianSuggestionList != null)
+            if (agentComplianSuggestionList != null && agentComplianSuggestionList.Count>0)
             {
                 foreach (AgentComplianSuggestion agentComplianSuggestion in agentComplianSuggestionList)
                 {
@@ -112,9 +134,13 @@ namespace Wechat
                     {
                         row["isReply"] = "已回复";
                     }
-                   
+
                     dt.Rows.Add(row);
                 }
+            }
+            else
+            {
+                this.lblMessag.Text = "未找到" + type+"记录!";
             }
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
@@ -122,7 +148,7 @@ namespace Wechat
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblAgentNo.Text.Trim());
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblAgentNo.Text.Trim(),lblUserId.Text.Trim());
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

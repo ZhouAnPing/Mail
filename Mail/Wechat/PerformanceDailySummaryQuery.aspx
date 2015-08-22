@@ -37,7 +37,7 @@
                                                 <RowStyle ForeColor="#000066" BorderWidth="1" BorderColor="Black" />
                                                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
                                                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                                                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                                                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" Font-Size="Medium" />
                                                                                       
                                             </asp:GridView>
 			                    </td>				

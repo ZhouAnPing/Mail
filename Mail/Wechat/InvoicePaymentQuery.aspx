@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+   
     <title></title>
 </head>
 <body>
@@ -22,7 +24,7 @@
                                                 ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound" >
                                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                                 <Columns>                                           
-                                                    <asp:BoundField DataField="result" HeaderText="查询结果" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-Wrap="true" />         
+                                                    <asp:BoundField DataField="result" HeaderText="支付结算查询结果" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-Wrap="true" />         
                                                 <%--    <asp:BoundField DataField="processTime" HeaderText="处理时间" ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />
                                                     <asp:BoundField DataField="invoiceFee" HeaderText="发票金额" ReadOnly="True" ItemStyle-HorizontalAlign="right" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
                                                     <asp:BoundField DataField="payFee" HeaderText="付款金额" ReadOnly="True"  ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="right"/>

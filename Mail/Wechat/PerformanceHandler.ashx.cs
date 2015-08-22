@@ -80,20 +80,29 @@ namespace Wechat
 
             // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
-            String agentNo = wechatMessage.FromUserName;
 
-            agentNo = "P001";
-            AgentDao agentDao = new AgentDao();
-            Agent agent = agentDao.Get(agentNo);
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+            AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
 
-            if (agent != null && !String.IsNullOrEmpty(agent.status) && agent.status.Equals("Y"))
+            if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
                 sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员。。。\n\n");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
 
+            }
+            else if (agentWechatAccount == null)
+            {
+                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "用户不存在，请联系联通工作人员!\n\n");
             }
             else
             {
+                String agentNo = agentWechatAccount.branchNo;
+                if (String.IsNullOrEmpty(agentNo))
+                {
+                    agentNo = agentWechatAccount.agentNo;
+                }
+
                 AgentMonthPerformanceDao agentMonthPerformanceDao = new ChinaUnion_DataAccess.AgentMonthPerformanceDao();
                 AgentDailyPerformanceDao agentDailyPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
                 AgentStarDao agentStarDao = new AgentStarDao();
@@ -168,15 +177,16 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "星级还没上传，请直接与上海联通确认。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "星级还没上传，请直接与上海联通确认!\n\n");
                         }
                         break;
 
                     case "curScore":
                     case "HistoryScore":
+                        String month = DateTime.Now.ToString("yyyyMM");
                         if (actionType.Equals("curScore"))
                         {
-                            agentScoreList = agentScoreDao.GetLatestByKeyword(agentNo, dateTime);
+                            agentScoreList = agentScoreDao.GetLatestByKeyword(agentNo, month);
                         }
                         if (actionType.Equals("HistoryScore"))
                         {
@@ -214,7 +224,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",  "积分还没上传，请直接与上海联通确认。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",  "积分还没上传，请直接与上海联通确认!\n\n");
                         }
                         break;
 
@@ -227,13 +237,13 @@ namespace Wechat
                         if (agentDailyPerformance != null)
                         {
                             logger.Info("Exist Record: " + agentDailyPerformance.agentName);
-                            sb.Append(this.createNewsMessages(feeDate, wechatMessage.FromUserName, agentDailyPerformance));
+                            sb.Append(this.createNewsMessages(feeDate, agentNo, agentDailyPerformance));
                         }
                         else
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeDate + "业绩还未发布，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeDate + "业绩还未发布，请稍后!\n\n");
                         }
                         break;
 
@@ -244,11 +254,11 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近日业绩还未发布，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近日业绩还未发布，请稍后!\n\n");
                         }
                         else
                         {
-                            sb.Append(this.createNewsMessages(wechatMessage.FromUserName, agentDailyPerformanceList));
+                            sb.Append(this.createNewsMessages(agentNo, agentDailyPerformanceList));
                         }
 
                         break;
@@ -264,13 +274,13 @@ namespace Wechat
                         if (agentMonthPerformance != null)
                         {
                             logger.Info("Exist Record: " + agentMonthPerformance.agentName);
-                            sb.Append(this.createNewsMessages(feeMonth, wechatMessage.FromUserName, agentMonthPerformance));
+                            sb.Append(this.createNewsMessages(feeMonth, agentNo, agentMonthPerformance));
                         }
                         else
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "业绩还未发布，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "业绩还未发布，请稍后!\n\n");
                         }
                         break;
 
@@ -281,11 +291,11 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近期业绩还未发布，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近期业绩还未发布，请稍后!\n\n");
                         }
                         else
                         {
-                            sb.Append(this.createNewsMessages(wechatMessage.FromUserName, agentMonthPerformanceList));
+                            sb.Append(this.createNewsMessages(agentNo, agentMonthPerformanceList));
                         }
 
                         break;
@@ -321,7 +331,7 @@ namespace Wechat
         }
 
 
-        private StringBuilder createNewsMessages(String toUser, IList<AgentDailyPerformance> agentPerformanceList)
+        private StringBuilder createNewsMessages(String agentNo, IList<AgentDailyPerformance> agentPerformanceList)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -332,7 +342,7 @@ namespace Wechat
                 AgentDailyPerformance agentPerformance = agentPerformanceList[month];
 
                 sb.AppendFormat("<item>");
-                sb.Append("<Title>").AppendFormat("{0}日业绩查询结果", agentPerformance.date).Append("</Title>");
+                sb.Append("<Title>").AppendFormat("{0}日业绩", agentPerformance.date).Append("</Title>");
 
                 StringBuilder sbDesc = new StringBuilder();
 
@@ -373,7 +383,7 @@ namespace Wechat
 
                 sb.Append("<PicUrl>").AppendFormat("<![CDATA[]]>").Append("</PicUrl>");
 
-                String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(agentPerformance.date, QueryStringEncryption.key));
+                String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentPerformance.date, QueryStringEncryption.key));
                 logger.Info(url1);
                 sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                 sb.AppendFormat("</item>");
@@ -384,7 +394,7 @@ namespace Wechat
             return sb;
         }
 
-        private StringBuilder createNewsMessages(String feeDate, String toUser, AgentDailyPerformance agentDailyPerformance)
+        private StringBuilder createNewsMessages(String feeDate, String agentNo, AgentDailyPerformance agentDailyPerformance)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -430,7 +440,7 @@ namespace Wechat
 
 
 
-            String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeDate, QueryStringEncryption.key));
+            String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeDate, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");
@@ -440,7 +450,7 @@ namespace Wechat
         }
 
 
-        private StringBuilder createNewsMessages(String toUser, IList<AgentMonthPerformance> agentMonthPerformanceList)
+        private StringBuilder createNewsMessages(String agentNo, IList<AgentMonthPerformance> agentMonthPerformanceList)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -451,7 +461,7 @@ namespace Wechat
                 AgentMonthPerformance agentMonthPerformance = agentMonthPerformanceList[month];
 
                 sb.AppendFormat("<item>");
-                sb.Append("<Title>").AppendFormat("{0}月业绩查询结果", agentMonthPerformance.month).Append("</Title>");
+                sb.Append("<Title>").AppendFormat("{0}月业绩", agentMonthPerformance.month).Append("</Title>");
 
                 StringBuilder sbDesc = new StringBuilder();
 
@@ -492,7 +502,7 @@ namespace Wechat
 
                 sb.Append("<PicUrl>").AppendFormat("<![CDATA[]]>").Append("</PicUrl>");
 
-                String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(agentMonthPerformance.month, QueryStringEncryption.key));
+                String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentMonthPerformance.month, QueryStringEncryption.key));
                 logger.Info(url1);
                 sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                 sb.AppendFormat("</item>");
@@ -503,7 +513,7 @@ namespace Wechat
             return sb;
         }
 
-        private StringBuilder createNewsMessages(String feeMonth, String toUser, AgentMonthPerformance agentMonthPerformance)
+        private StringBuilder createNewsMessages(String feeMonth, String agentNo, AgentMonthPerformance agentMonthPerformance)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -549,7 +559,7 @@ namespace Wechat
 
 
 
-            String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");

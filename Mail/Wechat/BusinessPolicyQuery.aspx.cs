@@ -23,39 +23,69 @@ namespace Wechat
         {
             logger.Info(this.Request.Url.AbsoluteUri);
 
-            //  String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice";
+            //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice%26agentId%3d6
+            //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice
+            //String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice&agentId=6";
             // myUrl = this.Server.UrlEncode(myUrl);
             string code = Request.QueryString["code"];
             string state = Request.QueryString["state"];
             string search_scope = Request.QueryString["search_scope"];
+            string agentId = Request.QueryString["agentId"];
+            logger.Info("agentId=" + Request.QueryString["agentId"]);
             logger.Info("code=" + Request.QueryString["code"]);
             logger.Info("state=" + Request.QueryString["state"]);
             logger.Info("search_scope=" + Request.QueryString["search_scope"]);
              WechatUtil wechatUtil = new Util.WechatUtil();
-             HttpResult result = wechatUtil.getUserInfoFromWechat(code, "6", MyConstant.ScretId);
+             HttpResult result = wechatUtil.getUserInfoFromWechat(code, agentId, MyConstant.ScretId);
             logger.Info("result=" + result.Html);
-            if (result.Html.Contains("UserId"))
+            if (result != null && result.Html != null && result.Html.Contains("UserId"))
             {
                 WechatUserId returnMessage = (WechatUserId)JsonConvert.DeserializeObject(result.Html, typeof(WechatUserId));
 
-            }
-            search_scope = "all";
-            String type = "通知公告/重点关注";
-            if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
-            {
-                type = "通知公告/重点关注";
-            }
+                AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+                AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(returnMessage.UserId);
 
-            if (!String.IsNullOrEmpty(state) && state.Equals("policy"))
-            {
-                type = "政策";
-            }
+                if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
+                {
+                    this.lblType.Text = "你的账号已被停用，请联系联通工作人员!";
+                    //  sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                    // sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
 
-            if (!String.IsNullOrEmpty(state) && state.Equals("rule"))
-            {
-                type = "服务规范";
+                }
+                else if (agentWechatAccount == null)
+                {
+                    this.lblType.Text = "用户不存在，请联系联通工作人员!";
+                    //sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                    // sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "用户不存在，请联系联通工作人员!\n\n");
+                }
+                else
+                {
+                    String agentNo = agentWechatAccount.branchNo;
+                    if (String.IsNullOrEmpty(agentNo))
+                    {
+                        agentNo = agentWechatAccount.agentNo;
+                    }
+
+                    search_scope = "all";
+                    String type = "通知公告/重点关注";
+                    if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
+                    {
+                        type = "通知公告/重点关注";
+                    }
+
+                    if (!String.IsNullOrEmpty(state) && state.Equals("policy"))
+                    {
+                        type = "政策";
+                    }
+
+                    if (!String.IsNullOrEmpty(state) && state.Equals("rule"))
+                    {
+                        type = "服务规范";
+                    }
+                    bindDataToGrid("", type, search_scope);
+                }
             }
-            bindDataToGrid("", type, search_scope);
+          
 
         }
 
@@ -98,7 +128,7 @@ namespace Wechat
             dt.Columns.Add("validateTime");
 
             DataRow row = null;
-            if (policyList != null)
+            if (policyList != null && policyList.Count>0)
             {
                 foreach (Policy policy in policyList)
                 {
@@ -121,6 +151,10 @@ namespace Wechat
                     row["validateTime"] = policy.validateTime;
                     dt.Rows.Add(row);
                 }
+            }
+            else
+            {
+                this.lblMessag.Text = "未找到" + type + "记录!";
             }
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();

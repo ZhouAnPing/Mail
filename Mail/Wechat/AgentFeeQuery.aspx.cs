@@ -253,7 +253,7 @@ namespace Wechat
                 e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
                 e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
             }
-            if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计"))
+            if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && !e.Row.Cells[0].Text.Equals("&nbsp;") && !e.Row.Cells[1].Text.Equals("总计") && !e.Row.Cells[1].Text.Equals("开票金额") && !e.Row.Cells[1].Text.Equals("过网开票金额"))
             {
                 e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;            
             }

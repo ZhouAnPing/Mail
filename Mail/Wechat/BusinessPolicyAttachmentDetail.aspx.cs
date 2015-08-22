@@ -18,15 +18,17 @@ namespace Wechat
             PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
             Policy policy = policyDao.Get(Int32.Parse(sequence));
 
+            if (policy != null)
+            {
+                Response.ContentType = "Application/pdf";
+                this.Response.Clear();
 
-            Response.ContentType = "Application/pdf";
-            this.Response.Clear();
+                System.IO.Stream fs = this.Response.OutputStream;
+                fs.Write(policy.attachment, 0, policy.attachment.Length);
 
-            System.IO.Stream fs = this.Response.OutputStream;
-            fs.Write(policy.attachment, 0, policy.attachment.Length);
-
-            fs.Close();
-            this.Response.End();
+                fs.Close();
+                this.Response.End();
+            }
 
         }
     }

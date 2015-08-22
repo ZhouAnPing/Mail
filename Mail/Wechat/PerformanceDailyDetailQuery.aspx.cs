@@ -31,8 +31,8 @@ namespace Wechat
             try
             {
                 Request.ContentEncoding = Encoding.UTF8;
-                //feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
-                // agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
+               // feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
+               // agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
                 logger.Info("feeMonth=" + feeDate);
                 logger.Info("branchNo=" + branchNo);
             }

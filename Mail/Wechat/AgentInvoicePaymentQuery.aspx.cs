@@ -72,7 +72,7 @@ namespace Wechat
             else
             {
                 row = dt.NewRow();
-                row["result"] = feeMonth+"计算支付信息尚未发布。";
+                row["result"] = feeMonth+"结算支付信息尚未发布。";
                 dt.Rows.Add(row);
             }
             GridView1.DataSource = dt.DefaultView;

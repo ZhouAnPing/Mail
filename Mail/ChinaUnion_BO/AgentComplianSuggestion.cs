@@ -10,6 +10,7 @@ namespace ChinaUnion_BO
         public int sequence;
         public String createTime;
         public String agentNo;
+        public String userId;
         public String type;
         public String subject;
         public String content;

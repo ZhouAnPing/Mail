@@ -175,17 +175,17 @@ namespace ChinaUnion_Agent.ScoreGrade
 
             worker.ReportProgress(3, "开始导入积分...\r\n");
 
-            //导入星级
+            //导入积分
             AgentScoreDao agentScoreDao = new AgentScoreDao();
-            for (int i = 0; i < dgAgentStar.RowCount; i++)
+            for (int i = 0; i < dgAgentScore.RowCount; i++)
             {
                 AgentScore agentScore = new AgentScore();
-                agentScore.dateTime = dgAgentStar[0, i].Value.ToString();
-                agentScore.agentNo = dgAgentStar[1, i].Value.ToString();
-                agentScore.agentName = dgAgentStar[2, i].Value.ToString();
-                agentScore.branchNo = dgAgentStar[3, i].Value.ToString();
-                agentScore.branchName = dgAgentStar[4, i].Value.ToString();
-                agentScore.score = dgAgentStar[5, i].Value.ToString();
+                agentScore.dateTime = dgAgentScore[0, i].Value.ToString();
+                agentScore.agentNo = dgAgentScore[1, i].Value.ToString();
+                agentScore.agentName = dgAgentScore[2, i].Value.ToString();
+                agentScore.branchNo = dgAgentScore[3, i].Value.ToString();
+                agentScore.branchName = dgAgentScore[4, i].Value.ToString();
+                agentScore.score = dgAgentScore[5, i].Value.ToString();
 
                 agentScoreDao.Delete(agentScore.agentNo.Trim(), agentScore.branchNo.Trim(), agentScore.dateTime.Trim());
                 agentScoreDao.Add(agentScore);

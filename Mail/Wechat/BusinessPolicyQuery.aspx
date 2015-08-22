@@ -31,7 +31,7 @@
                             <td style="font-size: 16px; color: black; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding: 0px" bgcolor="white">
 
                               
-                                <asp:TextBox  ID="txtCondition" runat="server" Width="70%" Height="32px"></asp:TextBox>
+                                <asp:TextBox  ID="txtCondition" runat="server" Width="60%" Height="32px"></asp:TextBox>
                                         <asp:Button ID="btnSearch" runat="server" Text="搜索" Width="25%" Font-Bold="True" Font-Size="16px" OnClick="btnSearch_Click" Height="36px"   />
                             </td>
 
@@ -42,7 +42,8 @@
                     <table width="100%" class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         <tr>
                             <td style="font-size: 16px; color: black; font-weight: normal; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding: 5px" bgcolor="white">
-                                   <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                                <asp:Label ID="lblMessag" runat="server" ForeColor="Red"></asp:Label>   
+                                <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                         <ProgressTemplate>
                             正在加载数据.............
        
@@ -73,6 +74,7 @@
 
 
                                 </asp:GridView>
+                                
                             </td>
                         </tr>
                     </table>

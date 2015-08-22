@@ -27,8 +27,8 @@ namespace Wechat
             try
             {
                 Request.ContentEncoding = Encoding.UTF8;
-                //feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
-               // agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
+                feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
+                agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
                 // invoiceNo = QueryStringEncryption.Decode(invoiceNo, QueryStringEncryption.key);
                 logger.Info("feeMonth=" + feeMonth);
                 logger.Info("agentNo=" + agentNo);
@@ -48,29 +48,37 @@ namespace Wechat
             //dt.Columns.Add("summary");
             //dt.Columns.Add("payStatus");
 
-            agentNo = "";// "DL224049";
-            feeMonth = "201501";
+           // agentNo = "";// "DL224049";
+           // feeMonth = "201501";
             InvoicePaymentDao agentInvoicePaymentDao = new InvoicePaymentDao();
 
             IList<InvoicePayment> agentInvoicePaymentList = new List<InvoicePayment>();
 
             agentInvoicePaymentList = agentInvoicePaymentDao.GetList(agentNo, null, feeMonth,null);
-
-            foreach (InvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+            if (agentInvoicePaymentList != null && agentInvoicePaymentList.Count > 0)
+            {
+                foreach (InvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+                {
+                    row = dt.NewRow();
+                    row["result"] = "<b>收票日期</b>：" + agentInvoicePayment.receivedTime
+                         + "<br/><b>处理时间</b>：" + agentInvoicePayment.processTime
+                        + "<br/><b>内容</b>：" + agentInvoicePayment.content
+                        + "<br/><b>金额</b>：" + agentInvoicePayment.invoiceFee
+                        + "<br/><b>发票类型</b>：" + agentInvoicePayment.invoiceType
+                        + "<br/><b>发票号</b>：" + "***" + agentInvoicePayment.invoiceNo.Substring(3)
+                        + "<br/><b>付款状态</b>：" + agentInvoicePayment.payStatus;
+                    //row["processTime"] = agentInvoicePayment.processTime;
+                    //row["invoiceFee"] = agentInvoicePayment.invoiceFee;
+                    //row["payFee"] = agentInvoicePayment.payFee;
+                    //row["summary"] = agentInvoicePayment.summary;
+                    //row["payStatus"] = agentInvoicePayment.payStatus;
+                    dt.Rows.Add(row);
+                }
+            }
+            else
             {
                 row = dt.NewRow();
-                row["result"] = "<b>收票日期</b>：" + agentInvoicePayment.receivedTime
-                     + "<br/><b>处理时间</b>：" + agentInvoicePayment.processTime
-                    + "<br/><b>内容</b>：" + agentInvoicePayment.content
-                    + "<br/><b>金额</b>：" + agentInvoicePayment.invoiceFee
-                    + "<br/><b>发票类型</b>：" + agentInvoicePayment.invoiceType
-                    + "<br/><b>发票号</b>：" + "***" + agentInvoicePayment.invoiceNo.Substring(3)
-                    + "<br/><b>付款状态</b>：" + agentInvoicePayment.payStatus;
-                //row["processTime"] = agentInvoicePayment.processTime;
-                //row["invoiceFee"] = agentInvoicePayment.invoiceFee;
-                //row["payFee"] = agentInvoicePayment.payFee;
-                //row["summary"] = agentInvoicePayment.summary;
-                //row["payStatus"] = agentInvoicePayment.payStatus;
+                row["result"] = feeMonth+"结算支付信息尚未发布。";
                 dt.Rows.Add(row);
             }
 

@@ -80,20 +80,28 @@ namespace Wechat
 
             // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
-            String agentNo = wechatMessage.FromUserName;
 
-            agentNo = "P001";
-            AgentDao agentDao = new AgentDao();
-            Agent agent = agentDao.Get(agentNo);
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+            AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
 
-            if (agent != null && !String.IsNullOrEmpty(agent.status) && agent.status.Equals("Y"))
+            if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
                 sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员。。。\n\n");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
 
+            }
+            else if (agentWechatAccount == null)
+            {
+                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "用户不存在，请联系联通工作人员!\n\n");
             }
             else
             {
+                String agentNo = agentWechatAccount.branchNo;
+                if (String.IsNullOrEmpty(agentNo))
+                {
+                    agentNo = agentWechatAccount.agentNo;
+                }
                 AgentContactDao agentContactDao = new ChinaUnion_DataAccess.AgentContactDao();
                
                 switch (actionType)
@@ -102,7 +110,7 @@ namespace Wechat
                       
                         //AgentContact agentContact = new AgentContact();
 
-                        IList<AgentContact> agentContactList = agentContactDao.GetListByNo(wechatMessage.FromUserName);
+                        IList<AgentContact> agentContactList = agentContactDao.GetListByNo(agentNo);
 
                         if (agentContactList != null && agentContactList.Count > 0)
                         {
@@ -115,7 +123,7 @@ namespace Wechat
                                 AgentContact agentContact = agentContactList[i];
                                 if (agentContactList.Count > 1)
                                 {
-                                    sbContent.AppendFormat("第{0}联系人", i+1).AppendLine();
+                                    sbContent.AppendFormat("第{0}联系人\n\n", i+1);
                                 }
                                 sbContent.AppendFormat("代理商编号:{0}", agentContact.agentNo).Append("\n");
                                 sbContent.AppendFormat("代理商名称:{0}", agentContact.agentName).Append("\n");
@@ -138,7 +146,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有找到对应的联系人，请直接与上海联通确认。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有找到对应的联系人，请直接与上海联通确认!\n\n");
                         }
                         break;
 

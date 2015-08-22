@@ -137,8 +137,8 @@ namespace ChinaUnion_Agent.PolicyForm
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.lstAgentType.CheckedItems.Count.ToString());
-            return;
+            //MessageBox.Show(this.lstAgentType.CheckedItems.Count.ToString());
+            //return;
             if (String.IsNullOrEmpty(this.cbType.Text.Trim()))
             {
                 MessageBox.Show("请选择类型！");

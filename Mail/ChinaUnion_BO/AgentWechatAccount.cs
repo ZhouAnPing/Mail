@@ -29,5 +29,6 @@ namespace ChinaUnion_BO
         public String contactRight;
 
         public String type;
+        public String status;
     }
 }

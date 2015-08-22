@@ -20,14 +20,26 @@ namespace Wechat
             this.lblSubject.Text = agentComplianSuggestion.subject;
             this.lblContent.Text = agentComplianSuggestion.content;
             this.lblCreateTime.Text = agentComplianSuggestion.createTime;
-            this.lblDepartment.Text = agentComplianSuggestion.ownerDepartment;
 
-            this.lblCheckStatus.Text = agentComplianSuggestion.checkStatus;
-            this.lblDepartmentReply.Text = agentComplianSuggestion.ownerReplyContent;
+            if (String.IsNullOrEmpty(agentComplianSuggestion.replyContent))
+            {
+               this.lblIsReply.Text= "尚未回复";
+               this.lblIsReply.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                this.lblIsReply.Text = "已回复";
+                this.lblIsReply.ForeColor = System.Drawing.Color.Blue;
+                agentComplianSuggestion.agentReadtime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                agentComplianSuggestionDao.updateReadTime(agentComplianSuggestion);
+            }
+           
+
+           
             this.lblReplyTime.Text = agentComplianSuggestion.replyTime;
             this.lblReplyContent.Text = agentComplianSuggestion.replyContent;
-
-          
+            
+            
         }
     }
 }

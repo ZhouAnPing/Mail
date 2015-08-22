@@ -10,15 +10,15 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <table width="100%"  class="deviceWidth" border="1" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+    <table width="100%"  class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
 			                    <td   style="font-size: 16px; color: white; font-weight: bold; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px" bgcolor="#006699">
-			                        	详情</td>				
+			                        	<b>详情</b></td>				
 							  
 			                </tr> 
 			                <tr>
 			                    <td  style=" font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	主题:
+			                        	<b>主题:</b>
 			                                    	
 			                            <asp:Label ID="lblSubject" runat="server" Text=""></asp:Label>
 			                                    	
@@ -27,7 +27,7 @@
 			                </tr> 
          <tr>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	内容:
+			                        	<b>内容:</b>
 			                            <asp:Label ID="lblContent" runat="server" Text=""></asp:Label>
 			                    </td>				
 							  
@@ -36,7 +36,7 @@
         
          <tr>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	发布时间:
+			                        	<b>发布时间:</b>
 			                            <asp:Label ID="lblCreateTime" runat="server" Text=""></asp:Label>
 			                    </td>				
 							  
@@ -44,35 +44,18 @@
 
         <tr>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	核实情况:
+			                        	<b>是否回复:</b>
 			                            
-			                            <asp:Label ID="lblCheckStatus" runat="server"></asp:Label>
-			                            
-			                    </td>				
-							  
-			                </tr> 
-        <tr>
-			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	涉及部门:
-			                            
-			                            <asp:HyperLink ID="lblDepartment" runat="server"></asp:HyperLink>
-			                            
-			                    </td>				
-							  
-			                </tr> 
-        <tr>
-			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	涉及部门反馈情况:
-			                            
-			                            <asp:Label ID="lblDepartmentReply" runat="server"></asp:Label>
+			                            <asp:Label ID="lblIsReply" runat="server"></asp:Label>
 			                            
 			                    </td>				
 							  
 			                </tr> 
         
+        
         <tr>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	答复时间:
+			                        	<b>答复时间:</b>
 			                            
 			                            <asp:Label ID="lblReplyTime" runat="server"></asp:Label>
 			                            
@@ -81,7 +64,7 @@
 			                </tr> 
         <tr>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	答复内容:
+			                        	<b>答复内容:</b>
 			                            
 			                            <asp:Label ID="lblReplyContent" runat="server"></asp:Label>
 			                            

@@ -104,6 +104,54 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
+
+        /// <summary> 
+        /// 根据主键查询 
+        /// </summary> 
+        /// <param name="primaryKey"></param> 
+        /// <returns></returns> 
+        public AgentWechatAccount Get(String primaryKey)
+        {
+            string sql = "SELECT agentNo,agentName,branchNo,branchName,regionName,contactId,contactName,contactEmail,contactTel,contactWechat,feeRight,policyRight,performanceRight,studyRight,complainRight,monitorRight,errorRight,contactRight,type, status from agent_wechat_account where contactId=@contactId";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@contactId", primaryKey);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                AgentWechatAccount agentContact = null;
+                if (reader.Read())
+                {
+                    agentContact = new AgentWechatAccount();
+                    agentContact.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    agentContact.status = reader["status"] == DBNull.Value ? null : reader["status"].ToString();
+
+                    agentContact.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentContact.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    agentContact.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                    agentContact.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    agentContact.regionName = reader["regionName"] == DBNull.Value ? null : reader["regionName"].ToString();
+                    agentContact.contactId = reader["contactId"] == DBNull.Value ? null : reader["contactId"].ToString();
+
+                    agentContact.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+                    agentContact.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
+                    agentContact.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    agentContact.contactWechat = reader["contactWechat"] == DBNull.Value ? null : reader["contactWechat"].ToString();
+                    agentContact.feeRight = reader["feeRight"] == DBNull.Value ? null : reader["feeRight"].ToString();
+                    agentContact.policyRight = reader["policyRight"] == DBNull.Value ? null : reader["policyRight"].ToString();
+                    agentContact.performanceRight = reader["performanceRight"] == DBNull.Value ? null : reader["performanceRight"].ToString();
+                    agentContact.studyRight = reader["studyRight"] == DBNull.Value ? null : reader["studyRight"].ToString();
+                    agentContact.complainRight = reader["complainRight"] == DBNull.Value ? null : reader["complainRight"].ToString();
+                    agentContact.monitorRight = reader["monitorRight"] == DBNull.Value ? null : reader["monitorRight"].ToString();
+                    agentContact.errorRight = reader["errorRight"] == DBNull.Value ? null : reader["errorRight"].ToString();
+                    agentContact.contactRight = reader["contactRight"] == DBNull.Value ? null : reader["contactRight"].ToString();
+
+                }
+                return agentContact;
+            }
+
+        }
         
         /// <summary> 
         /// 查询集合 

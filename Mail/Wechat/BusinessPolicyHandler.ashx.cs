@@ -84,7 +84,7 @@ namespace Wechat
             if (agent != null && !String.IsNullOrEmpty(agent.status) && agent.status.Equals("Y"))
             {
                 sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员。。。\n\n");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
 
             }
             else
@@ -123,7 +123,7 @@ namespace Wechat
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有公告发布。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "没有公告发布!\n\n");
                         }
                         break;
 

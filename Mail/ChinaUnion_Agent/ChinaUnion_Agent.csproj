@@ -345,6 +345,12 @@
       <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SuggestionForm\frmSuggestionQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuggestionForm\frmSuggestionQuery.Designer.cs">
+      <DependentUpon>frmSuggestionQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement\frmUserManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -540,6 +546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScoreGrade\frmAgentScoreStarQuery.resx">
       <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuggestionForm\frmSuggestionQuery.resx">
+      <DependentUpon>frmSuggestionQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagement\frmUserManagement.resx">
       <DependentUpon>frmUserManagement.cs</DependentUpon>

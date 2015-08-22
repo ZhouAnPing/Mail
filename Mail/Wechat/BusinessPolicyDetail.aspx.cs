@@ -17,11 +17,14 @@ namespace Wechat
 
             PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
             Policy policy = policyDao.Get(Int32.Parse(sequence));
-            this.lblSubject.Text = policy.subject;
-            this.lblSendTime.Text = policy.creatTime;
-            this.lblContent.Text = policy.content;
-            this.lblAttachment.Text = policy.attachmentName;
-            this.lblAttachment.NavigateUrl = "BusinessPolicyAttachmentDetail.aspx?seq=" + policy.sequence;
+            if (policy != null)
+            {
+                this.lblSubject.Text = policy.subject;
+                this.lblSendTime.Text = policy.creatTime;
+                this.lblContent.Text = policy.content;
+                this.lblAttachment.Text = policy.attachmentName;
+                this.lblAttachment.NavigateUrl = "BusinessPolicyAttachmentDetail.aspx?seq=" + policy.sequence;
+            }
         }
     }
 }

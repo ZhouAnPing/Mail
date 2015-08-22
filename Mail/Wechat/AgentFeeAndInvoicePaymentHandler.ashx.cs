@@ -81,18 +81,27 @@ namespace Wechat
             // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
 
-            AgentDao agentDao = new AgentDao();
-            Agent agent = agentDao.Get(wechatMessage.FromUserName);
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+            AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
 
-            if (agent != null && !String.IsNullOrEmpty(agent.status) && agent.status.Equals("Y"))
+            if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
                 sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员。。。\n\n");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "对不起，你的账号已被停用，请联系联通工作人员!\n\n");
 
+            }
+            else if (agentWechatAccount==null)
+            {
+                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "用户不存在，请联系联通工作人员!\n\n");
             }
             else
             {
-
+                String agentNo = agentWechatAccount.branchNo;
+                if (String.IsNullOrEmpty(agentNo))
+                {
+                    agentNo = agentWechatAccount.agentNo;
+                }
                 switch (actionType)
                 {
                     case "FeeQueryHelp":
@@ -103,7 +112,7 @@ namespace Wechat
 
                     case "BonusQuery":
                         AgentBonusDao agentBonusDao = new AgentBonusDao();
-                        AgentBonus agentBonus = agentBonusDao.Get(wechatMessage.FromUserName);
+                        AgentBonus agentBonus = agentBonusDao.Get(agentNo);
                         if (agentBonus != null)
                         {
 
@@ -111,7 +120,7 @@ namespace Wechat
 
                             StringBuilder sbContent = new StringBuilder();
 
-
+                            sbContent.AppendFormat("红包查询结果").AppendLine(); ;
                             sbContent.AppendFormat("代理商编号:{0}", agentBonus.agentNo).Append("\n");
                             sbContent.AppendFormat("代理商名称:{0}", agentBonus.agentName).Append("\n");
 
@@ -130,7 +139,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "红包还没发布，如有疑问，请直接与上海联通确认。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "红包还没发布，如有疑问，请直接与上海联通确认!\n\n");
                         }
 
                         break;
@@ -141,7 +150,7 @@ namespace Wechat
                         {
                             String tempFeeMonth = DateTime.Now.AddMonths(0 - i).ToString("yyyy-MM");
 
-                            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(wechatMessage.FromUserName, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
+                            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
                             strList = strList + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
                             strList = strList + "\n\n";
@@ -158,15 +167,15 @@ namespace Wechat
                             feeMonth = DateTime.Now.AddMonths(-2).ToString("yyyy-MM");
                         }
                         AgentFeeDao agentFeeDao = new AgentFeeDao();
-                        AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
+                        AgentFee agentFee = agentFeeDao.GetByKey(feeMonth, agentNo);
                         if (agentFee != null && !String.IsNullOrEmpty(agentFee.agentFeeSeq))
                         {
-                            sb.Append(this.createAgentFeeNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
+                            sb.Append(this.createAgentFeeNewsMessages(feeMonth, agentFee, agentNo));
                         }
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后!\n\n");
                         }
                         break;
                     case "PaymentQueryHelp":
@@ -181,7 +190,7 @@ namespace Wechat
                         {
                             String tempFeeMonth = DateTime.Now.AddMonths(0 - i).ToString("yyyyMM");
 
-                            String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(wechatMessage.FromUserName, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
+                            String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
                             strList1 = strList1 + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
                             strList1 = strList1 + "\n\n";
@@ -204,48 +213,23 @@ namespace Wechat
                         //  agentNo = "";//"DL224049";
                         // feeMonth = "201412";
                         logger.Info("1.feeMonth=" + feeMonth);
-                        logger.Info("2.agentNo=" + wechatMessage.FromUserName);
+                        logger.Info("2.agentNo=" + agentNo);
 
-                        agentInvoicePaymentList = agentInvoicePaymentDao.GetList(wechatMessage.FromUserName, null, feeMonth,null);
+                        agentInvoicePaymentList = agentInvoicePaymentDao.GetList(agentNo, null, feeMonth, null);
 
                         if (agentInvoicePaymentList != null && agentInvoicePaymentList.Count > 0)
                         {
-                            sb.Append(this.createPaymentNewsMessages(feeMonth, wechatMessage.FromUserName, agentInvoicePaymentList));
+                            sb.Append(this.createPaymentNewsMessages(feeMonth, agentNo, agentInvoicePaymentList));
                         }
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "发票支付还未受理，请稍后。。。\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "发票支付还未受理，请稍后!\n\n");
                         }
                         break;
 
 
-                    default:
-
-                        if (!Regex.IsMatch(wechatMessage.Content, "((20[0-9][0-9])|(19[0-9][0-9]))-((0[1-9])|(1[0-2]))"))
-                        {
-                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
-                        }
-                        else
-                        {
-                            feeMonth = wechatMessage.Content;
-                            agentFeeDao = new AgentFeeDao();
-                            agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
-                            if (agentFee != null && !String.IsNullOrEmpty(agentFee.agentFeeSeq))
-                            {
-                                sb.Append(this.createAgentFeeNewsMessages(feeMonth, agentFee, wechatMessage.FromUserName));
-
-                            }
-                            else
-                            {
-                                sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                                sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后。。。\n\n");
-
-                            }
-                        }
-
-                        break;
+                   
                 }
             }
 
@@ -275,7 +259,7 @@ namespace Wechat
                 return false;
             }
         }
-        private StringBuilder createPaymentNewsMessages(String feeMonth, String toUser, IList<InvoicePayment> agentInvoicePaymentList)
+        private StringBuilder createPaymentNewsMessages(String feeMonth, String agentNo, IList<InvoicePayment> agentInvoicePaymentList)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -299,7 +283,7 @@ namespace Wechat
 
 
 
-            String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            String url1 = String.Format("http://{0}/Wechat/InvoicePaymentQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");
@@ -307,7 +291,7 @@ namespace Wechat
             sb.AppendFormat("</Articles>");
             return sb;
         }
-        private StringBuilder createAgentFeeNewsMessages(String feeMonth, AgentFee agentFee, String toUser)
+        private StringBuilder createAgentFeeNewsMessages(String feeMonth, AgentFee agentFee, String agentNo)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -368,7 +352,7 @@ namespace Wechat
 
 
 
-            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(toUser, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");

@@ -591,6 +591,12 @@ namespace ChinaUnion_Agent
                         ScoreGrade.frmAgentScoreStarQuery frmAgentStarQuery = new ScoreGrade.frmAgentScoreStarQuery();
                         CheckChildOpenState(this, frmAgentStarQuery);
                         break;
+
+                    case "SuggestionReply":
+
+                        SuggestionForm.frmSuggestionQuery frmSuggestionQuery = new SuggestionForm.frmSuggestionQuery();
+                        CheckChildOpenState(this, frmSuggestionQuery);
+                        break;
                 }
 
             }

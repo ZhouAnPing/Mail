@@ -19,7 +19,7 @@
 			                </tr>
 			                <tr>
 			                    <td  style="font-size: 20px; color: black; font-weight: normal; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
-			                        	<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4"
+			                        	<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ShowHeader="false"
                                                 ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound" >
                                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                                 <Columns>  

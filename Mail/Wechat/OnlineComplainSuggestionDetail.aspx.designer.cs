@@ -49,31 +49,13 @@ namespace Wechat {
         protected global::System.Web.UI.WebControls.Label lblCreateTime;
         
         /// <summary>
-        /// lblCheckStatus control.
+        /// lblIsReply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCheckStatus;
-        
-        /// <summary>
-        /// lblDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lblDepartment;
-        
-        /// <summary>
-        /// lblDepartmentReply control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDepartmentReply;
+        protected global::System.Web.UI.WebControls.Label lblIsReply;
         
         /// <summary>
         /// lblReplyTime control.
