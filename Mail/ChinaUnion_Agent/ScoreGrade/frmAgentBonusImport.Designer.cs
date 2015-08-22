@@ -40,6 +40,8 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentBonus)).BeginInit();
@@ -86,7 +88,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(735, 11);
+            this.btnCancel.Location = new System.Drawing.Point(857, 11);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 13;
@@ -110,7 +112,9 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.dtFeeMonth);
             this.panel1.Controls.Add(this.btnDownload);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.btnSelect);
@@ -146,7 +150,7 @@
             // btnDownload
             // 
             this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDownload.Location = new System.Drawing.Point(650, 11);
+            this.btnDownload.Location = new System.Drawing.Point(772, 11);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(75, 31);
             this.btnDownload.TabIndex = 14;
@@ -158,7 +162,7 @@
             // 
             this.btnImport.Enabled = false;
             this.btnImport.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnImport.Location = new System.Drawing.Point(560, 11);
+            this.btnImport.Location = new System.Drawing.Point(682, 11);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 31);
             this.btnImport.TabIndex = 9;
@@ -169,7 +173,7 @@
             // btnSelect
             // 
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSelect.Location = new System.Drawing.Point(478, 13);
+            this.btnSelect.Location = new System.Drawing.Point(433, 11);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(55, 28);
             this.btnSelect.TabIndex = 7;
@@ -180,7 +184,7 @@
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(115, 19);
+            this.txtContact.Location = new System.Drawing.Point(70, 17);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(360, 21);
             this.txtContact.TabIndex = 6;
@@ -193,6 +197,24 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 5;
             this.label2.Text = "文件地址：";
+            // 
+            // dtFeeMonth
+            // 
+            this.dtFeeMonth.CustomFormat = "yyyy-MM";
+            this.dtFeeMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFeeMonth.Location = new System.Drawing.Point(565, 17);
+            this.dtFeeMonth.Name = "dtFeeMonth";
+            this.dtFeeMonth.Size = new System.Drawing.Size(113, 21);
+            this.dtFeeMonth.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(494, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "红包月份：";
             // 
             // frmAgentBonusImport
             // 
@@ -232,6 +254,8 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.DateTimePicker dtFeeMonth;
+        private System.Windows.Forms.Label label1;
 
     }
 }

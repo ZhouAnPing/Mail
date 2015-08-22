@@ -91,6 +91,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\frmAnalysisReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Analysis\frmAnalysisReport.Designer.cs">
+      <DependentUpon>frmAnalysisReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContactUs\frmAgentContactImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -419,6 +425,9 @@
     <Compile Include="Wechat\WechatJsonUser.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
+    <EmbeddedResource Include="Analysis\frmAnalysisReport.resx">
+      <DependentUpon>frmAnalysisReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContactUs\frmAgentContactImport.resx">
       <DependentUpon>frmAgentContactImport.cs</DependentUpon>
     </EmbeddedResource>
@@ -603,22 +612,13 @@
     <None Include="Template\ImportInvoicePayment_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Template\ImportInvoice_Template.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Template\ImportMonthPermance_NoDirect_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportMonthPermance_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Template\ImportPayment_Template.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Template\ImportScore_Star_Template.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Template\ImportWechat_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportError_Template.xlsx">

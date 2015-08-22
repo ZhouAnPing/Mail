@@ -135,7 +135,8 @@ namespace Wechat
                                 sbContent.AppendFormat("所属区县:{0}", agentContact.area).Append("\n");
                                 sbContent.AppendFormat("所属网格:{0}", agentContact.zone).Append("\n");
                                 sbContent.AppendFormat("联系人:{0}", agentContact.contactName).Append("\n");
-                                sbContent.AppendFormat("电话:{0}", agentContact.contactTel).Append("\n").AppendLine();
+                                sbContent.AppendFormat("电话:{0}", agentContact.contactTel).Append("\n");
+                                sbContent.AppendFormat("邮箱:{0}", agentContact.contactEmail).Append("\n").AppendLine();
 
                             }
                             sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());

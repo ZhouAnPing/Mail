@@ -80,6 +80,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="AgentInvoicePaymentQuery.aspx" />
+    <Content Include="AgentBonusDetailQuery.aspx" />
     <Content Include="OnlineComplainSuggestionDetail.aspx" />
     <Content Include="OnlineComplainSuggestionQuery.aspx" />
     <Content Include="OnlineComplainSuggestion.aspx" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="ContactUsHandler.ashx.cs">
       <DependentUpon>ContactUsHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AgentBonusDetailQuery.aspx.cs">
+      <DependentUpon>AgentBonusDetailQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgentBonusDetailQuery.aspx.designer.cs">
+      <DependentUpon>AgentBonusDetailQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="OnlineComplainSuggestionDetail.aspx.cs">
       <DependentUpon>OnlineComplainSuggestionDetail.aspx</DependentUpon>

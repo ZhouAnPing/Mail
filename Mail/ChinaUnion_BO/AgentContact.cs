@@ -15,5 +15,6 @@ namespace ChinaUnion_BO
         public String zone;
         public String contactTel;
         public String contactName;
+        public String contactEmail;
     }
 }

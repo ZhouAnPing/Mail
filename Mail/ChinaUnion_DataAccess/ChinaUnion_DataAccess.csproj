@@ -59,8 +59,12 @@
     <Compile Include="AgentComplianSuggestionDao.cs" />
     <Compile Include="AgentStarDao.cs" />
     <Compile Include="AgentScoreDao.cs" />
-    <Compile Include="AgentBonusDao.cs" />
     <Compile Include="AgentWechatAccountDao.cs" />
+    <Compile Include="AgentBonusDao.cs" />
+    <Compile Include="PolicyReceiverLogDao.cs" />
+    <Compile Include="PolicyReceiverDao.cs" />
+    <Compile Include="UserGroupDao.cs" />
+    <Compile Include="GroupDao.cs" />
     <Compile Include="InvoicePaymentDao.cs" />
     <Compile Include="PolicyDao.cs" />
     <Compile Include="UserRightDao.cs" />

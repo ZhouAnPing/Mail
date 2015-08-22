@@ -110,38 +110,39 @@ namespace Wechat
 
                         break;
 
-                    case "BonusQuery":
-                        AgentBonusDao agentBonusDao = new AgentBonusDao();
-                        AgentBonus agentBonus = agentBonusDao.Get(agentNo);
-                        if (agentBonus != null)
+                    case "last6MonthBonus":
+                        String strBonusList = "最近6月红包查询\n\n";
+                        for (int i = 1; i <= 6; i++)
                         {
+                            String tempFeeMonth = DateTime.Now.AddMonths(0 - i).ToString("yyyyMM");
 
-                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            String url1 = String.Format("http://{0}/Wechat/AgentBonusDetailQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(tempFeeMonth, QueryStringEncryption.key));
 
-                            StringBuilder sbContent = new StringBuilder();
+                            strBonusList = strBonusList + "<a href=\"" + url1 + "\">" + i + ":" + tempFeeMonth + "</a>";
+                            strBonusList = strBonusList + "\n\n";
+                        }
+                        sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", strBonusList);
+                        break;
 
-                            sbContent.AppendFormat("红包查询结果").AppendLine(); ;
-                            sbContent.AppendFormat("代理商编号:{0}", agentBonus.agentNo).Append("\n");
-                            sbContent.AppendFormat("代理商名称:{0}", agentBonus.agentName).Append("\n");
-
-                            sbContent.AppendFormat("渠道积分奖励:{0}", agentBonus.scoreBonus).Append("\n");
-                            sbContent.AppendFormat("后付费奖励:{0}", agentBonus.afterFeeBonus).Append("\n");
-
-                            sbContent.AppendFormat("渠道星级补贴:{0}", agentBonus.starBonus).Append("\n");
-                            sbContent.AppendFormat("红包总金额:{0}", agentBonus.totalBonus).Append("\n");
-
-
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());
-                            // sb.Append(sbContent.ToString());
-                            // sb.Append(this.createNewsMessages(feeDate, wechatMessage.FromUserName, agentDailyPerformance));
+                    case "preMonthBonus":
+                    case "curMonthBonus":
+                        String feeMonthBonus = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
+                        if (actionType.Equals("preMonthBonus"))
+                        {
+                            feeMonthBonus = DateTime.Now.AddMonths(-2).ToString("yyyyMM");
+                        }
+                        AgentBonusDao agentBonusDao = new AgentBonusDao();
+                        AgentBonus agentBonus = agentBonusDao.GetByKey(feeMonthBonus, agentNo);
+                        if (agentBonus != null && !String.IsNullOrEmpty(agentBonus.agentNo))
+                        {
+                            sb.Append(this.createAgentBonusNewsMessages(feeMonthBonus, agentBonus, agentNo));
                         }
                         else
                         {
-                            logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "红包还没发布，如有疑问，请直接与上海联通确认!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonthBonus + "红包还未发布，请稍后!\n\n");
                         }
-
                         break;
 
                     case "Latest6MonthFeeQuery":
@@ -360,5 +361,66 @@ namespace Wechat
             sb.AppendFormat("</Articles>");
             return sb;
         }
+
+        private StringBuilder createAgentBonusNewsMessages(String feeMonth, AgentBonus agentBonus, String agentNo)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+            sb.AppendFormat("<Articles>");
+
+            sb.AppendFormat("<item>");
+            sb.Append("<Title>").AppendFormat("{0}红包", feeMonth).Append("</Title>");
+
+            StringBuilder sbDesc = new StringBuilder();
+            //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
+          
+            sbDesc.AppendFormat("代理商编号：{0}\n", agentBonus.agentNo);
+            sbDesc.AppendFormat("代理商名字：{0}\n\n", agentBonus.agentName);
+           
+
+            // sb1.AppendFormat("佣金\n\n");
+
+            sbDesc.AppendFormat("红包明细：\n");
+            int i = 1;
+            for (int j = 1; j <= 100; j++)
+            {
+                FieldInfo feeNameField = agentBonus.GetType().GetField("feeName" + j);
+                FieldInfo feeField = agentBonus.GetType().GetField("fee" + j);
+                if (feeNameField != null && feeField != null)
+                {
+                    String feeNameFieldValue = feeNameField.GetValue(agentBonus) == null ? null : feeNameField.GetValue(agentBonus).ToString();
+
+                    String feeFieldValue = feeField.GetValue(agentBonus) == null ? null : feeField.GetValue(agentBonus).ToString();
+
+                    if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+
+                    }
+                }
+
+
+            }
+            //sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "佣金总计").Append(" ").AppendFormat("{0}\n", agentBonus.feeTotal);
+            //sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "过网开票金额").Append(" ").AppendFormat("{0}\n", agentBonus.preInvoiceFee);
+
+
+
+
+           
+            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+
+
+
+            String url1 = String.Format("http://{0}/Wechat/AgentBonusDetailQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            logger.Info(url1);
+            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+            sb.AppendFormat("</item>");
+
+            sb.AppendFormat("</Articles>");
+            return sb;
+        }
+
     }
 }

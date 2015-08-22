@@ -368,6 +368,10 @@ namespace Wechat
 
                             if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
                             {
+                                if (!feeNameFieldValue.Equals("后付费发展数") && !feeNameFieldValue.Equals("预付费发展数") && !feeNameFieldValue.Equals("总计"))
+                                {
+                                    sbDesc.Append("      ");
+                                }
                                 sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
 
                             }

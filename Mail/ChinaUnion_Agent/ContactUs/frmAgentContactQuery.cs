@@ -44,6 +44,7 @@ namespace ChinaUnion_Agent.ContactUs
                 dgAgentContact.Columns.Add("所属网格", "所属网格");
                 dgAgentContact.Columns.Add("联系人", "联系人");
                 dgAgentContact.Columns.Add("电话", "电话");
+                dgAgentContact.Columns.Add("邮箱", "邮箱");
                
 
                 for (int i = 0; i < agentContactList.Count; i++)
@@ -59,6 +60,7 @@ namespace ChinaUnion_Agent.ContactUs
                     row.Cells[5].Value = agentContactList[i].zone;
                     row.Cells[6].Value = agentContactList[i].contactName;
                     row.Cells[7].Value = agentContactList[i].contactTel;
+                    row.Cells[8].Value = agentContactList[i].contactEmail;
 
 
                 }

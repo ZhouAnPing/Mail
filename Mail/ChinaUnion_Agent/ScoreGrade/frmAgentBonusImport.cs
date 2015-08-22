@@ -46,30 +46,30 @@ namespace ChinaUnion_Agent.ScoreGrade
                
                 
                 //代理商信息
-                List<Row> agentContact = execelfile.Worksheet(0).ToList(); ;
+                List<Row> agentBonus = execelfile.Worksheet(0).ToList(); ;
 
-                if (agentContact != null && agentContact.Count > 0)
+                if (agentBonus != null && agentBonus.Count > 0)
                 {
                    
                     this.btnImport.Enabled = true;
                     dgAgentBonus.Rows.Clear();
                     dgAgentBonus.Columns.Clear();
-                    foreach (String coloumn in agentContact[0].ColumnNames)
+                    foreach (String coloumn in agentBonus[0].ColumnNames)
                     {
                         this.dgAgentBonus.Columns.Add(coloumn, coloumn);
                     }
 
-                    for (int i = 0; i < agentContact.Count; i++)
+                    for (int i = 0; i < agentBonus.Count; i++)
                     {
-                        if (String.IsNullOrEmpty(agentContact[i][0]))
+                        if (String.IsNullOrEmpty(agentBonus[i][0]))
                         {
                             continue;
                         }
                         dgAgentBonus.Rows.Add();
                         DataGridViewRow row = dgAgentBonus.Rows[i];
-                        foreach (String coloumn in agentContact[0].ColumnNames)
+                        foreach (String coloumn in agentBonus[0].ColumnNames)
                         {
-                            row.Cells[coloumn].Value = agentContact[i][coloumn];
+                            row.Cells[coloumn].Value = agentBonus[i][coloumn];
                         }
 
                     }
@@ -101,6 +101,7 @@ namespace ChinaUnion_Agent.ScoreGrade
         BackgroundWorker worker; 
         private void frmAgentImport_Load(object sender, EventArgs e)
         {
+            this.dtFeeMonth.Value = DateTime.Now.AddMonths(-1);
             this.WindowState = FormWindowState.Maximized;
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
@@ -120,28 +121,44 @@ namespace ChinaUnion_Agent.ScoreGrade
 
             worker.ReportProgress(1, "开始导入红包...\r\n");
 
-         
-            
-            //导入代理商
+
+
             AgentBonusDao agentBonusDao = new AgentBonusDao();
             for (int i = 0; i < dgAgentBonus.RowCount; i++)
             {
                 AgentBonus agentBonus = new AgentBonus();
+                agentBonus.month = this.dtFeeMonth.Value.ToString("yyyyMM");
+
+
+
                 agentBonus.agentNo = dgAgentBonus[0, i].Value.ToString();
                 agentBonus.agentName = dgAgentBonus[1, i].Value.ToString();
-                agentBonus.scoreBonus = dgAgentBonus[2, i].Value.ToString();
-                agentBonus.afterFeeBonus = dgAgentBonus[3, i].Value.ToString();
-                agentBonus.starBonus = dgAgentBonus[4, i].Value.ToString();
-                agentBonus.totalBonus = dgAgentBonus[5, i].Value.ToString();
 
+                int index = 2;
+                for (int j = index; j <= 101 && j < dgAgentBonus.Columns.Count; j++)
+                {
 
-                agentBonusDao.Delete(agentBonus.agentNo.Trim());
+                    FieldInfo feeNameField = agentBonus.GetType().GetField("feeName" + (j - index + 1));
+                    FieldInfo feeField = agentBonus.GetType().GetField("fee" + (j - index + 1));
+
+                    String feeNameFieldValue = dgAgentBonus.Columns[j].HeaderCell.Value.ToString();
+                    String feeFieldValue = dgAgentBonus[j, i].Value.ToString();
+                    if (feeFieldValue.Trim().Equals("0") || String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        feeFieldValue = null;
+                    }
+                    feeNameField.SetValue(agentBonus, feeNameFieldValue);
+                    feeField.SetValue(agentBonus, feeFieldValue);
+
+                }
+
+                agentBonusDao.Delete(agentBonus);
                 agentBonusDao.Add(agentBonus);
 
             }
             worker.ReportProgress(4, "导入红包完成...\r\n");
-           
-           
+
+
 
             //MessageBox.Show("数据上传完毕");
 

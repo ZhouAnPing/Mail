@@ -597,6 +597,12 @@ namespace ChinaUnion_Agent
                         SuggestionForm.frmSuggestionQuery frmSuggestionQuery = new SuggestionForm.frmSuggestionQuery();
                         CheckChildOpenState(this, frmSuggestionQuery);
                         break;
+
+                    case "AnyasisReport":
+
+                        Analysis.frmAnalysisReport frmAnalysisReport = new Analysis.frmAnalysisReport();
+                        CheckChildOpenState(this, frmAnalysisReport);
+                        break;
                 }
 
             }

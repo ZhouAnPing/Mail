@@ -14,8 +14,7 @@ namespace ChinaUnion_Agent.SuggestionForm
 {
     public partial class frmSuggestionQuery : frmBase
     {
-        PolicyDao policyDao = new PolicyDao();
-        AgentTypeDao agentTypeDao = new AgentTypeDao();
+      
         public frmSuggestionQuery()
         {
             InitializeComponent();

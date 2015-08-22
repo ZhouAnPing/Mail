@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO agent_Contact (agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName) VALUE (@agentNo,@agentName,@branchNo,@branchName,@area,@zone,@contactTel,@contactName)";
+            string sql = "INSERT INTO agent_Contact (agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName,contactEmail) VALUE (@agentNo,@agentName,@branchNo,@branchName,@area,@zone,@contactTel,@contactName,@contactEmail)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -32,6 +32,8 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@zone", entity.zone);
                 command.Parameters.AddWithValue("@contactTel", entity.contactTel);
                 command.Parameters.AddWithValue("@contactName", entity.contactName);
+                command.Parameters.AddWithValue("@contactEmail", entity.contactEmail);
+                
                 return command.ExecuteNonQuery();
             }
         }
@@ -77,7 +79,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentContact> GetListByKeyword(String keyword)
         {
-            string sql = "SELECT agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName FROM agent_contact";
+            string sql = "SELECT agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName,contactEmail FROM agent_contact";
 
              sql = sql+" where 1=1";
             if(!String.IsNullOrEmpty(keyword)){
@@ -106,6 +108,8 @@ namespace ChinaUnion_DataAccess
                     agentContact.zone = reader["zone"] == DBNull.Value ? null : reader["zone"].ToString();
                     agentContact.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
                     agentContact.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    agentContact.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+
                     list.Add(agentContact);
                 }
                 return list;
@@ -118,7 +122,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentContact> GetListByNo(String StringKey)
         {
-            string sql = "SELECT agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName FROM agent_contact";
+            string sql = "SELECT agentNo,agentName,branchNo,branchName,area,zone,contactTel,contactName,contactEmail FROM agent_contact";
 
             sql = sql + " where 1=1";
             if (!String.IsNullOrEmpty(StringKey))
@@ -146,6 +150,8 @@ namespace ChinaUnion_DataAccess
                     agentContact.zone = reader["zone"] == DBNull.Value ? null : reader["zone"].ToString();
                     agentContact.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
                     agentContact.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    agentContact.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+
                     list.Add(agentContact);
                 }
                 return list;

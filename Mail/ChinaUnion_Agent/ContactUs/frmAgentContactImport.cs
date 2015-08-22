@@ -133,6 +133,7 @@ namespace ChinaUnion_Agent.ContactUs
                 agentContact.zone = dgAgentContact[5, i].Value.ToString();
                 agentContact.contactName = dgAgentContact[6, i].Value.ToString();
                 agentContact.contactTel = dgAgentContact[7, i].Value.ToString();
+                agentContact.contactEmail = dgAgentContact[8, i].Value.ToString();
                 
                 agentContactDao.Delete(agentContact.agentNo.Trim(), agentContact.branchNo.Trim());
                 agentContactDao.Add(agentContact);

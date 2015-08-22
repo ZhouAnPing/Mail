@@ -37,6 +37,8 @@
             this.txtKeyword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentBonus)).BeginInit();
             this.panel1.SuspendLayout();
@@ -79,7 +81,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(414, 10);
+            this.btnCancel.Location = new System.Drawing.Point(644, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 35);
             this.btnCancel.TabIndex = 14;
@@ -103,6 +105,8 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.dtFeeMonth);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtKeyword);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.label1);
@@ -153,13 +157,31 @@
             // btnQuery
             // 
             this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuery.Location = new System.Drawing.Point(319, 10);
+            this.btnQuery.Location = new System.Drawing.Point(549, 10);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(70, 35);
             this.btnQuery.TabIndex = 9;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // dtFeeMonth
+            // 
+            this.dtFeeMonth.CustomFormat = "yyyy-MM";
+            this.dtFeeMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFeeMonth.Location = new System.Drawing.Point(389, 18);
+            this.dtFeeMonth.Name = "dtFeeMonth";
+            this.dtFeeMonth.Size = new System.Drawing.Size(113, 21);
+            this.dtFeeMonth.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(318, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "红包月份：";
             // 
             // frmAgentBonusQuery
             // 
@@ -195,5 +217,7 @@
         private System.Windows.Forms.DataGridView dgAgentBonus;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.TextBox txtKeyword;
+        private System.Windows.Forms.DateTimePicker dtFeeMonth;
+        private System.Windows.Forms.Label label2;
     }
 }

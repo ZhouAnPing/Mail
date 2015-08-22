@@ -104,7 +104,8 @@ namespace ChinaUnion_Agent.PerformanceForm
                     
                 }
             }
-            this.dgAgentPerformance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgAgentPerformance.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            this.dgAgentPerformance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgAgentPerformance.AutoResizeColumns();
            
 
