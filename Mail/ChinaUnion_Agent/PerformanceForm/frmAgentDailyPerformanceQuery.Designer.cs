@@ -36,6 +36,8 @@
             this.dtDay = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboType = new System.Windows.Forms.ComboBox();
             this.grpAgentFee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformance)).BeginInit();
             this.panel1.SuspendLayout();
@@ -70,7 +72,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(450, 10);
+            this.btnCancel.Location = new System.Drawing.Point(644, 11);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 35);
             this.btnCancel.TabIndex = 14;
@@ -84,6 +86,8 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.cboType);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.dtDay);
@@ -118,7 +122,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(352, 10);
+            this.btnExport.Location = new System.Drawing.Point(546, 11);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(70, 35);
             this.btnExport.TabIndex = 21;
@@ -130,7 +134,7 @@
             // 
             this.dtDay.CustomFormat = "yyyy-MM-dd";
             this.dtDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDay.Location = new System.Drawing.Point(84, 21);
+            this.dtDay.Location = new System.Drawing.Point(268, 19);
             this.dtDay.Name = "dtDay";
             this.dtDay.Size = new System.Drawing.Size(137, 21);
             this.dtDay.TabIndex = 13;
@@ -138,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 23);
+            this.label1.Location = new System.Drawing.Point(231, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 12;
@@ -147,13 +151,35 @@
             // btnQuery
             // 
             this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuery.Location = new System.Drawing.Point(244, 10);
+            this.btnQuery.Location = new System.Drawing.Point(438, 11);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(70, 35);
             this.btnQuery.TabIndex = 9;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "渠道类型：";
+            // 
+            // cboType
+            // 
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "",
+            "非直供渠道",
+            "直供渠道"});
+            this.cboType.Location = new System.Drawing.Point(63, 19);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(121, 20);
+            this.cboType.TabIndex = 23;
             // 
             // frmAgentDailyPerformanceQuery
             // 
@@ -186,5 +212,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.Label label2;
     }
 }

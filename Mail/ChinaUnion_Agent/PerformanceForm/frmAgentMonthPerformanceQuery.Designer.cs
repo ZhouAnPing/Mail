@@ -36,6 +36,8 @@
             this.dtFeeMonth = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.grpAgentFee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformance)).BeginInit();
             this.panel1.SuspendLayout();
@@ -45,9 +47,9 @@
             // 
             this.grpAgentFee.Controls.Add(this.dgAgentPerformance);
             this.grpAgentFee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpAgentFee.Location = new System.Drawing.Point(0, 58);
+            this.grpAgentFee.Location = new System.Drawing.Point(0, 52);
             this.grpAgentFee.Name = "grpAgentFee";
-            this.grpAgentFee.Size = new System.Drawing.Size(1016, 683);
+            this.grpAgentFee.Size = new System.Drawing.Size(1016, 689);
             this.grpAgentFee.TabIndex = 7;
             this.grpAgentFee.TabStop = false;
             this.grpAgentFee.Text = "业绩信息";
@@ -64,13 +66,13 @@
             this.dgAgentPerformance.ReadOnly = true;
             this.dgAgentPerformance.RowHeadersWidth = 10;
             this.dgAgentPerformance.RowTemplate.Height = 23;
-            this.dgAgentPerformance.Size = new System.Drawing.Size(1010, 663);
+            this.dgAgentPerformance.Size = new System.Drawing.Size(1010, 669);
             this.dgAgentPerformance.TabIndex = 5;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(450, 10);
+            this.btnCancel.Location = new System.Drawing.Point(691, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 35);
             this.btnCancel.TabIndex = 14;
@@ -84,6 +86,8 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.cboType);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.dtFeeMonth);
@@ -109,7 +113,7 @@
             this.panel1.MinimumSize = new System.Drawing.Size(27, 27);
             this.panel1.Name = "panel1";
             this.panel1.ShowCaptionbar = false;
-            this.panel1.Size = new System.Drawing.Size(1016, 58);
+            this.panel1.Size = new System.Drawing.Size(1016, 52);
             this.panel1.TabIndex = 1;
             this.panel1.Text = "代理商导入";
             this.panel1.ToolTipTextCloseIcon = null;
@@ -118,7 +122,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(352, 10);
+            this.btnExport.Location = new System.Drawing.Point(593, 12);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(70, 35);
             this.btnExport.TabIndex = 21;
@@ -130,7 +134,7 @@
             // 
             this.dtFeeMonth.CustomFormat = "yyyy-MM";
             this.dtFeeMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFeeMonth.Location = new System.Drawing.Point(84, 21);
+            this.dtFeeMonth.Location = new System.Drawing.Point(290, 19);
             this.dtFeeMonth.Name = "dtFeeMonth";
             this.dtFeeMonth.Size = new System.Drawing.Size(137, 21);
             this.dtFeeMonth.TabIndex = 13;
@@ -138,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 23);
+            this.label1.Location = new System.Drawing.Point(243, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 12;
@@ -147,13 +151,35 @@
             // btnQuery
             // 
             this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuery.Location = new System.Drawing.Point(244, 10);
+            this.btnQuery.Location = new System.Drawing.Point(485, 12);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(70, 35);
             this.btnQuery.TabIndex = 9;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
+            // 
+            // cboType
+            // 
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "",
+            "非直供渠道",
+            "直供渠道"});
+            this.cboType.Location = new System.Drawing.Point(72, 18);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(121, 20);
+            this.cboType.TabIndex = 25;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "渠道类型：";
             // 
             // frmAgentMonthPerformanceQuery
             // 
@@ -186,5 +212,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -19,13 +19,13 @@ namespace ChinaUnion_DataAccess
         {
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("INSERT INTO agent_month_performance (branchNo, branchName,agentNo,agentName,");
+            sb.Append("INSERT INTO  agent_month_performance (type,branchNo, branchName,agentNo,agentName,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("month) VALUE (@branchNo, @branchName,@agentNo,@agentName,");
+            sb.Append("month) VALUE (@type,@branchNo, @branchName,@agentNo,@agentName,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("@feeName").Append(i.ToString()).Append(",").Append("@fee").Append(i.ToString()).Append(",");
@@ -38,7 +38,7 @@ namespace ChinaUnion_DataAccess
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-
+                command.Parameters.AddWithValue("@type", entity.type);
                 command.Parameters.AddWithValue("@branchNo", entity.branchNo);
                 command.Parameters.AddWithValue("@branchName", entity.branchName);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
@@ -88,7 +88,7 @@ namespace ChinaUnion_DataAccess
         public AgentMonthPerformance GetByKey(String month, string branchNo)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT branchNo, branchName,agentNo,agentName,");
+            sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
@@ -112,6 +112,7 @@ namespace ChinaUnion_DataAccess
                 if (reader.Read())
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
+                    agentMonthPerformance.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
 
                     agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
@@ -141,10 +142,10 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentMonthPerformance> GetList(String month)
+        public IList<AgentMonthPerformance> GetAllList(String month, String type)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT branchNo, branchName,agentNo,agentName,");
+            sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
@@ -152,20 +153,31 @@ namespace ChinaUnion_DataAccess
 
             sb.Append("month");
 
-            sb.Append(" FROM agent_month_performance  where month=@month");
+            sb.Append(" FROM agent_month_performance  where 1=1");
+
+            if (!String.IsNullOrEmpty(month))
+            {
+                sb.Append(" and month = \"" + month + "\"");
+            }
+            if (!String.IsNullOrEmpty(type))
+            {
+                sb.Append(" and type = \"" + type + "\"");
+            }
+            
             
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@month", month);
+                //command.Parameters.AddWithValue("@month", month);
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentMonthPerformance> list = new List<AgentMonthPerformance>();
                 AgentMonthPerformance agentMonthPerformance = null;
                 while (reader.Read())
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
+                    agentMonthPerformance.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
 
                     agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
@@ -203,7 +215,7 @@ namespace ChinaUnion_DataAccess
         public IList<AgentMonthPerformance> GetList(String agentNo,String month)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT branchNo, branchName,agentNo,agentName,");
+            sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
@@ -226,6 +238,7 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
+                    agentMonthPerformance.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
 
                     agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();

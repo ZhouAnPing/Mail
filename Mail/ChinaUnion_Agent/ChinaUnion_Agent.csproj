@@ -612,10 +612,7 @@
     <None Include="Template\ImportInvoicePayment_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Template\ImportMonthPermance_NoDirect_Template.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Template\ImportMonthPermance_Template.xlsx">
+    <None Include="Template\ImportPerformance_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportScore_Star_Template.xlsx">

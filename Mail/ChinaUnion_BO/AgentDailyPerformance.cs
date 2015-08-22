@@ -7,6 +7,7 @@ namespace ChinaUnion_BO
 {
     public class AgentDailyPerformance
     {
+        public String type;
         public String date;
         public String branchNo;
         public String branchName;

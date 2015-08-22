@@ -52,42 +52,81 @@ namespace ChinaUnion_Agent.PerformanceForm
 
              
 
-                //代理商月绩效
-                List<Row> agentPerformance = execelfile.Worksheet(0).ToList();
+                //非直供
+                List<Row> agentPerformanceNoDirectList = execelfile.Worksheet("非直供渠道").ToList();
 
-                if (agentPerformance != null && agentPerformance.Count > 0)
+                if (agentPerformanceNoDirectList != null && agentPerformanceNoDirectList.Count > 0)
                 {
-                    this.grpAgentFee.Text = "绩效明细(" + agentPerformance.Count + ")";
+                    this.grpNoDirectAgentFee.Text = "绩效明细(" + agentPerformanceNoDirectList.Count + ")";
                     this.btnImport.Enabled = true;
-                    dgAgentPerformance.Rows.Clear();
-                    dgAgentPerformance.Columns.Clear();
-                    if (agentPerformance[0].ColumnNames.Count() > 103)
+                    dgAgentPerformanceNoDirect.Rows.Clear();
+                    dgAgentPerformanceNoDirect.Columns.Clear();
+                    if (agentPerformanceNoDirectList[0].ColumnNames.Count() > 103)
                     {
                         MessageBox.Show("Excel格式不正确，明细表的sheet列的数量太多.");
                         return;
                     }
-                    foreach (String coloumn in agentPerformance[0].ColumnNames)
+                    foreach (String coloumn in agentPerformanceNoDirectList[0].ColumnNames)
                     {
-                        this.dgAgentPerformance.Columns.Add(coloumn, coloumn);
+                        this.dgAgentPerformanceNoDirect.Columns.Add(coloumn, coloumn);
                     }
 
-                    for (int i = 0; i < agentPerformance.Count; i++)
+                    for (int i = 0; i < agentPerformanceNoDirectList.Count; i++)
                     {
-                        if (String.IsNullOrEmpty(agentPerformance[i][0]))
+                        if (String.IsNullOrEmpty(agentPerformanceNoDirectList[i][0]))
                             continue;
-                        dgAgentPerformance.Rows.Add();
-                        DataGridViewRow row = dgAgentPerformance.Rows[i];
-                        foreach (String coloumn in agentPerformance[0].ColumnNames)
+                        dgAgentPerformanceNoDirect.Rows.Add();
+                        DataGridViewRow row = dgAgentPerformanceNoDirect.Rows[i];
+                        foreach (String coloumn in agentPerformanceNoDirectList[0].ColumnNames)
                         {
-                            row.Cells[coloumn].Value = agentPerformance[i][coloumn];
+                            row.Cells[coloumn].Value = agentPerformanceNoDirectList[i][coloumn];
                         }
                        
 
                     }
                 }
 
-             
 
+
+                //直供
+                List<Row> agentPerformanceDirectList = execelfile.Worksheet("直供渠道").ToList();
+
+                if (agentPerformanceDirectList != null && agentPerformanceDirectList.Count > 0)
+                {
+                    this.groupBox1.Text = "绩效明细(" + agentPerformanceDirectList.Count + ")";
+                    this.btnImport.Enabled = true;
+                    dgAgentPerformanceDirect.Rows.Clear();
+                    dgAgentPerformanceDirect.Columns.Clear();
+                    if (agentPerformanceDirectList[0].ColumnNames.Count() > 103)
+                    {
+                        MessageBox.Show("Excel格式不正确，明细表的sheet列的数量太多.");
+                        return;
+                    }
+                    foreach (String coloumn in agentPerformanceDirectList[0].ColumnNames)
+                    {
+                        this.dgAgentPerformanceDirect.Columns.Add(coloumn, coloumn);
+                    }
+
+                    for (int i = 0; i < agentPerformanceDirectList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(agentPerformanceDirectList[i][0]))
+                            continue;
+                        dgAgentPerformanceDirect.Rows.Add();
+                        DataGridViewRow row = dgAgentPerformanceDirect.Rows[i];
+                        foreach (String coloumn in agentPerformanceDirectList[0].ColumnNames)
+                        {
+                            row.Cells[coloumn].Value = agentPerformanceDirectList[i][coloumn];
+                        }
+
+
+                    }
+                }
+
+                dgAgentPerformanceDirect.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                dgAgentPerformanceDirect.AutoResizeColumns();
+
+                dgAgentPerformanceNoDirect.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                dgAgentPerformanceNoDirect.AutoResizeColumns();
               
                
                 Cursor.Current = Cursors.Default;
@@ -97,24 +136,6 @@ namespace ChinaUnion_Agent.PerformanceForm
         private void btnImport_Click(object sender, EventArgs e)
         {
 
-            ImportLog importLog = new ChinaUnion_BO.ImportLog();
-            if (performanceType.Equals(MyConstant.NoDIRECT))
-            {
-                importLog.type = "AgentDailyPermanceNoDirect";
-            }
-            else
-            {
-                importLog.type = "AgentDailyPermanceDirect";
-            }
-            importLog.import_month = this.dtDay.Value.ToString("yyyy-MM-dd");
-            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
-            if (importLogDao.Get(importLog) != null)
-            {
-                if (MessageBox.Show("本日绩效已经导入，是否需要再次导入？", "数据导入", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
-                {
-                    return;
-                }
-            }
             //异步执行开始
             worker.RunWorkerAsync();
             frmProgress frm = new frmProgress(this.worker);
@@ -145,40 +166,71 @@ namespace ChinaUnion_Agent.PerformanceForm
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             //需要执行的代码
-           
+
 
             worker.ReportProgress(1, "开始导入日绩效...\r\n");
 
-            //导入代理商佣金
+            //导入非直供
             AgentDailyPerformanceDao agentDailyPerformanceDao = new AgentDailyPerformanceDao();
-            for (int i = 0; i < dgAgentPerformance.RowCount; i++)
+            for (int i = 0; i < dgAgentPerformanceNoDirect.RowCount; i++)
             {
                 AgentDailyPerformance agentDailyPerformance = new AgentDailyPerformance();
                 agentDailyPerformance.date = this.dtDay.Value.ToString("yyyy-MM-dd");
-                agentDailyPerformance.branchNo = dgAgentPerformance[0, i].Value.ToString();
-                agentDailyPerformance.branchName = dgAgentPerformance[1, i].Value.ToString();
-                int index = 2;
-                if (performanceType.Equals(MyConstant.NoDIRECT))
-                {
-                    agentDailyPerformance.agentNo = dgAgentPerformance[2, i].Value.ToString();
-                    agentDailyPerformance.agentName = dgAgentPerformance[3, i].Value.ToString();
-                    index = 4;
-                }
-                else
-                {
-                    agentDailyPerformance.agentNo = dgAgentPerformance[0, i].Value.ToString();
-                    agentDailyPerformance.agentName = dgAgentPerformance[1, i].Value.ToString();
-                    index = 2;
-                }
+                agentDailyPerformance.branchNo = dgAgentPerformanceNoDirect[0, i].Value.ToString();
+                agentDailyPerformance.branchName = dgAgentPerformanceNoDirect[1, i].Value.ToString();
+                int index = 4;
 
-                for (int j = index; j <= 101 && j < dgAgentPerformance.Columns.Count; j++)
+                agentDailyPerformance.agentNo = dgAgentPerformanceNoDirect[2, i].Value.ToString();
+                agentDailyPerformance.agentName = dgAgentPerformanceNoDirect[3, i].Value.ToString();
+                agentDailyPerformance.type = "非直供渠道";
+
+                for (int j = index; j <= 101 && j < dgAgentPerformanceNoDirect.Columns.Count; j++)
                 {
 
-                    FieldInfo feeNameField = agentDailyPerformance.GetType().GetField("feeName" + (j-index+1));
+                    FieldInfo feeNameField = agentDailyPerformance.GetType().GetField("feeName" + (j - index + 1));
                     FieldInfo feeField = agentDailyPerformance.GetType().GetField("fee" + (j - index + 1));
 
-                    String feeNameFieldValue = dgAgentPerformance.Columns[j].HeaderCell.Value.ToString();
-                    String feeFieldValue = dgAgentPerformance[j, i].Value.ToString();
+                    String feeNameFieldValue = dgAgentPerformanceNoDirect.Columns[j].HeaderCell.Value.ToString();
+                    String feeFieldValue = dgAgentPerformanceNoDirect[j, i].Value.ToString();
+                    if (feeFieldValue.Trim().Equals("0") || String.IsNullOrWhiteSpace(feeFieldValue))
+                    {
+                        feeFieldValue = null;
+                    }
+                    feeNameField.SetValue(agentDailyPerformance, feeNameFieldValue);
+                    feeField.SetValue(agentDailyPerformance, feeFieldValue);
+
+                }
+
+                agentDailyPerformanceDao.Delete(agentDailyPerformance);
+                agentDailyPerformanceDao.Add(agentDailyPerformance);
+
+            }
+
+
+            //导入直供
+            //AgentDailyPerformanceDao agentDailyPerformanceDao = new AgentDailyPerformanceDao();
+            for (int i = 0; i < dgAgentPerformanceNoDirect.RowCount; i++)
+            {
+                AgentDailyPerformance agentDailyPerformance = new AgentDailyPerformance();
+                agentDailyPerformance.type = "直供渠道";
+                agentDailyPerformance.date = this.dtDay.Value.ToString("yyyy-MM-dd");
+                agentDailyPerformance.branchNo = dgAgentPerformanceDirect[0, i].Value.ToString();
+                agentDailyPerformance.branchName = dgAgentPerformanceDirect[1, i].Value.ToString();
+                int index = 2;
+
+               // agentDailyPerformance.agentNo = dgAgentPerformanceDirect[0, i].Value.ToString();
+                //agentDailyPerformance.agentName = dgAgentPerformanceDirect[1, i].Value.ToString();
+
+
+
+                for (int j = index; j <= 101 && j < dgAgentPerformanceDirect.Columns.Count; j++)
+                {
+
+                    FieldInfo feeNameField = agentDailyPerformance.GetType().GetField("feeName" + (j - index + 1));
+                    FieldInfo feeField = agentDailyPerformance.GetType().GetField("fee" + (j - index + 1));
+
+                    String feeNameFieldValue = dgAgentPerformanceDirect.Columns[j].HeaderCell.Value.ToString();
+                    String feeFieldValue = dgAgentPerformanceDirect[j, i].Value.ToString();
                     if (feeFieldValue.Trim().Equals("0") || String.IsNullOrWhiteSpace(feeFieldValue))
                     {
                         feeFieldValue = null;
@@ -195,25 +247,6 @@ namespace ChinaUnion_Agent.PerformanceForm
 
             worker.ReportProgress(2, "导入日绩效完成...\r\n");
 
-
-            ImportLog importLog = new ChinaUnion_BO.ImportLog();
-            if (performanceType.Equals(MyConstant.NoDIRECT))
-            {
-                importLog.type = "AgentDailyPermanceNoDirect";
-            }
-            else
-            {
-                importLog.type = "AgentDailyPermanceDirect";
-            }
-            importLog.import_month = this.dtDay.Value.ToString("yyyy-MM-dd");
-            ImportLogDao importLogDao = new ChinaUnion_DataAccess.ImportLogDao();
-            importLogDao.Delete(importLog);
-            importLogDao.Add(importLog);
-
-        
-           
-
-            //MessageBox.Show("数据上传完毕");
 
         }
 
@@ -239,10 +272,10 @@ namespace ChinaUnion_Agent.PerformanceForm
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "ImportCommissio_Template.xlsx";
+            saveFileDialog.FileName = "销售业绩统计导入模板.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                String filePath = Application.StartupPath + @"\Template\ImportCommissio_Template.xlsx";
+                String filePath = Application.StartupPath + @"\Template\ImportPerformance_Template.xlsx";
                 File.Copy(filePath, saveFileDialog.FileName,true);
             }
         }

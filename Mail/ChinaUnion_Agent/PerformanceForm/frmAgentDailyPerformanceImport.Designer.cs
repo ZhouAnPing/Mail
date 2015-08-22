@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgentDailyPerformanceImport));
-            this.grpAgentFee = new System.Windows.Forms.GroupBox();
-            this.dgAgentPerformance = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new BSE.Windows.Forms.Panel();
             this.btnDownload = new System.Windows.Forms.Button();
@@ -40,36 +38,22 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtAgentPermanceFile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.grpAgentFee.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformance)).BeginInit();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.grpNoDirectAgentFee = new System.Windows.Forms.GroupBox();
+            this.dgAgentPerformanceNoDirect = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgAgentPerformanceDirect = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.grpNoDirectAgentFee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformanceNoDirect)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformanceDirect)).BeginInit();
             this.SuspendLayout();
-            // 
-            // grpAgentFee
-            // 
-            this.grpAgentFee.Controls.Add(this.dgAgentPerformance);
-            this.grpAgentFee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpAgentFee.Location = new System.Drawing.Point(0, 58);
-            this.grpAgentFee.Name = "grpAgentFee";
-            this.grpAgentFee.Size = new System.Drawing.Size(1016, 683);
-            this.grpAgentFee.TabIndex = 6;
-            this.grpAgentFee.TabStop = false;
-            this.grpAgentFee.Text = "日业绩信息";
-            // 
-            // dgAgentPerformance
-            // 
-            this.dgAgentPerformance.AllowUserToAddRows = false;
-            this.dgAgentPerformance.AllowUserToDeleteRows = false;
-            this.dgAgentPerformance.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgentPerformance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgentPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgentPerformance.Location = new System.Drawing.Point(3, 17);
-            this.dgAgentPerformance.Name = "dgAgentPerformance";
-            this.dgAgentPerformance.ReadOnly = true;
-            this.dgAgentPerformance.RowHeadersWidth = 10;
-            this.dgAgentPerformance.RowTemplate.Height = 23;
-            this.dgAgentPerformance.Size = new System.Drawing.Size(1010, 663);
-            this.dgAgentPerformance.TabIndex = 5;
             // 
             // btnCancel
             // 
@@ -192,13 +176,99 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "业绩文件地址：";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 58);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1016, 683);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.grpNoDirectAgentFee);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1008, 654);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "非直供渠道";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1008, 654);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "直供渠道";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // grpNoDirectAgentFee
+            // 
+            this.grpNoDirectAgentFee.Controls.Add(this.dgAgentPerformanceNoDirect);
+            this.grpNoDirectAgentFee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpNoDirectAgentFee.Location = new System.Drawing.Point(3, 3);
+            this.grpNoDirectAgentFee.Name = "grpNoDirectAgentFee";
+            this.grpNoDirectAgentFee.Size = new System.Drawing.Size(1002, 648);
+            this.grpNoDirectAgentFee.TabIndex = 7;
+            this.grpNoDirectAgentFee.TabStop = false;
+            this.grpNoDirectAgentFee.Text = "日业绩信息";
+            // 
+            // dgAgentPerformanceNoDirect
+            // 
+            this.dgAgentPerformanceNoDirect.AllowUserToAddRows = false;
+            this.dgAgentPerformanceNoDirect.AllowUserToDeleteRows = false;
+            this.dgAgentPerformanceNoDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentPerformanceNoDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentPerformanceNoDirect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentPerformanceNoDirect.Location = new System.Drawing.Point(3, 17);
+            this.dgAgentPerformanceNoDirect.Name = "dgAgentPerformanceNoDirect";
+            this.dgAgentPerformanceNoDirect.ReadOnly = true;
+            this.dgAgentPerformanceNoDirect.RowHeadersWidth = 10;
+            this.dgAgentPerformanceNoDirect.RowTemplate.Height = 23;
+            this.dgAgentPerformanceNoDirect.Size = new System.Drawing.Size(996, 628);
+            this.dgAgentPerformanceNoDirect.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgAgentPerformanceDirect);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1002, 648);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "日业绩信息";
+            // 
+            // dgAgentPerformanceDirect
+            // 
+            this.dgAgentPerformanceDirect.AllowUserToAddRows = false;
+            this.dgAgentPerformanceDirect.AllowUserToDeleteRows = false;
+            this.dgAgentPerformanceDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentPerformanceDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentPerformanceDirect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentPerformanceDirect.Location = new System.Drawing.Point(3, 17);
+            this.dgAgentPerformanceDirect.Name = "dgAgentPerformanceDirect";
+            this.dgAgentPerformanceDirect.ReadOnly = true;
+            this.dgAgentPerformanceDirect.RowHeadersWidth = 10;
+            this.dgAgentPerformanceDirect.RowTemplate.Height = 23;
+            this.dgAgentPerformanceDirect.Size = new System.Drawing.Size(996, 628);
+            this.dgAgentPerformanceDirect.TabIndex = 5;
+            // 
             // frmAgentDailyPerformanceImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1016, 741);
-            this.Controls.Add(this.grpAgentFee);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAgentDailyPerformanceImport";
@@ -207,10 +277,15 @@
             this.Text = "日业绩导入";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmAgentFeeImport_Load);
-            this.grpAgentFee.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformance)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.grpNoDirectAgentFee.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformanceNoDirect)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentPerformanceDirect)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,13 +296,18 @@
         private System.Windows.Forms.TextBox txtAgentPermanceFile;
         private System.Windows.Forms.Button btnSelect;
         private BSE.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox grpAgentFee;
-        private System.Windows.Forms.DataGridView dgAgentPerformance;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtDay;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox grpNoDirectAgentFee;
+        private System.Windows.Forms.DataGridView dgAgentPerformanceNoDirect;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView dgAgentPerformanceDirect;
 
     }
 }

@@ -188,7 +188,7 @@ namespace ChinaUnion_Agent.InvoiceForm
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "ImportInvoicePayment_Template.xlsx";
+            saveFileDialog.FileName = "结算支付.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 String filePath = Application.StartupPath + @"\Template\ImportInvoicePayment_Template.xlsx";
