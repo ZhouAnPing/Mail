@@ -21,5 +21,6 @@ namespace ChinaUnion_BO
         public String isValidate;
         public String deleteTime;
         public String isDelete;
+        public String toAll;
     }
 }

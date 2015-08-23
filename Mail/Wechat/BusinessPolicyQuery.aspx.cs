@@ -82,7 +82,7 @@ namespace Wechat
                     {
                         type = "服务规范";
                     }
-                    bindDataToGrid("", type, search_scope);
+                    bindDataToGrid("", type, search_scope, agentNo, agentWechatAccount.contactId);
                 }
             }
           
@@ -92,14 +92,16 @@ namespace Wechat
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.Sleep(3000);
-            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim());
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim(),this.lblAgentNo.Text.Trim(),this.lblUserId.Text.Trim());
         }
-        void bindDataToGrid(String subject, String type, String search_scope)
+        void bindDataToGrid(String subject, String type, String search_scope, String agentNo,String userId)
         {
             logger.Info("bindDataToGrid=");
             logger.Info("subject=" + subject);
             logger.Info("type=" + type);
             logger.Info("search_scope=" + search_scope);
+            logger.Info("agentNo=" + agentNo);
+            logger.Info("userId=" + userId);
             PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
 
             IList<Policy> policyList = null;
@@ -118,9 +120,11 @@ namespace Wechat
             }
             this.lblType.Text = type;
             this.lblScope.Text = search_scope;
+            this.lblAgentNo.Text = agentNo;
             // int index = 1;
             DataTable dt = new DataTable();
             dt.Columns.Add("seq");
+            dt.Columns.Add("userId");
             dt.Columns.Add("subject");
             dt.Columns.Add("content");
             dt.Columns.Add("attachment");
@@ -132,8 +136,18 @@ namespace Wechat
             {
                 foreach (Policy policy in policyList)
                 {
+                    if (!policy.toAll.Equals("Y"))
+                    {
+                        IList<String> agentNoList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
+                        if (!agentNoList.Contains(agentNo))
+                        {
+                            logger.Info("agentNo=" + agentNo + " 没有权限范围" + policy.sequence);
+                            continue;
+                        }
+                    }
                     row = dt.NewRow();
                     row["seq"] = policy.sequence;
+                    row["userId"] = userId;
                     row["subject"] = policy.subject;
                     if (policy.content.Length > 10)
                     {
@@ -162,7 +176,7 @@ namespace Wechat
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim());
+            bindDataToGrid(this.txtCondition.Text.Trim(), this.lblType.Text, this.lblScope.Text.Trim(), this.lblAgentNo.Text.Trim(), this.lblUserId.Text.Trim());
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -171,7 +185,8 @@ namespace Wechat
             if (e.Row.RowType != DataControlRowType.Pager)
             {
                 e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
-                e.Row.Cells[3].Attributes.Add("style", "display:none");   //隐藏数据列
+                e.Row.Cells[1].Attributes.Add("style", "display:none");   //隐藏数据列
+                e.Row.Cells[4].Attributes.Add("style", "display:none");   //隐藏数据列
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

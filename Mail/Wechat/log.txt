@@ -1338,3 +1338,12 @@
 2015-08-22 12:37:50,790 [7] INFO  Wechat.BusinessPolicyQuery - state=
 2015-08-22 12:37:50,790 [7] INFO  Wechat.BusinessPolicyQuery - search_scope=
 2015-08-22 12:37:51,162 [7] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Header]\r\n2015-08-23 21:29:28,967 [6] INFO  Wechat.BusinessPolicyDetail - sequence=30
+2015-08-23 21:29:29,116 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
+2015-08-23 21:29:45,047 [6] INFO  Wechat.BusinessPolicyDetail - sequence=30
+2015-08-23 21:29:45,569 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
+[Footer]\r\n[Header]\r\n2015-08-23 21:30:49,023 [6] INFO  Wechat.BusinessPolicyDetail - sequence=30
+2015-08-23 21:30:49,074 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
+2015-08-23 21:31:27,713 [6] INFO  Wechat.BusinessPolicyDetail - sequence=30
+2015-08-23 21:31:27,714 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
+[Footer]\r\n

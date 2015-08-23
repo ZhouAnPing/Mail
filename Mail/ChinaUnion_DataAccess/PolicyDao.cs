@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime, @isValidate, @isDelete, @deleteTime)";
+            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime, @isValidate, @isDelete, @deleteTime,@toAll)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -36,6 +36,7 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@isValidate", entity.isValidate);
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
+                command.Parameters.AddWithValue("@toAll", entity.toAll);
                
                
                 return command.ExecuteNonQuery();
@@ -49,7 +50,7 @@ namespace ChinaUnion_DataAccess
         public int Update(Policy entity)
         {
             string sql = "UPDATE  tb_policy SET subject=@subject,content=@content,sender=@sender,attachment=@attachment,attachmentName=@attachmentName,creatTime=@creatTime,";
-            sql = sql + " type=@type,validateStartTime=@validateStartTime,validateEndTime=@validateEndTime,isValidate=@isValidate,isDelete=@isDelete,deleteTime=@deleteTime where sequence=@sequence ";
+            sql = sql + " type=@type,validateStartTime=@validateStartTime,validateEndTime=@validateEndTime,isValidate=@isValidate,isDelete=@isDelete,deleteTime=@deleteTime,toAll=@toAll where sequence=@sequence ";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -69,6 +70,7 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@isValidate", entity.isValidate);
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
+                command.Parameters.AddWithValue("@toAll", entity.toAll);
                 return command.ExecuteNonQuery();
             }
         }
@@ -95,7 +97,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public Policy Get(int primaryKey)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy where sequence=@sequence";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where sequence=@sequence";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -121,6 +123,7 @@ namespace ChinaUnion_DataAccess
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
                     policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
 
                 }
                 return policy;
@@ -133,7 +136,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -168,6 +171,8 @@ namespace ChinaUnion_DataAccess
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
                     policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
+
                     list.Add(policy);
                 }
                 return list;
@@ -181,7 +186,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllValidatedList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll from tb_policy";
 
             sql = sql + " where STR_TO_DATE( validateStartTime,'%Y-%m-%d') <= now() and STR_TO_DATE( validateEndTime,'%Y-%m-%d') >= now()  ";
             if (!String.IsNullOrEmpty(keyWord))
@@ -220,7 +225,64 @@ namespace ChinaUnion_DataAccess
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
                     policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
+
                     list.Add(policy);
+                }
+                return list;
+            }
+        }
+
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<String> GetAllAgentNoListBySeq(string sequence)
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append("select distinct   agentNo from    agent_type ");
+            sb.Append("where    agentfeemonth = (select ");
+            sb.Append("max(agentfeemonth)       from ");
+            sb.Append("agent_type)       and agenttype in (SELECT  ");
+            sb.Append("receiver       FROM ");
+            sb.Append(" tb_policy_receiver      where ");
+            sb.Append(" type = '渠道类型' and  policy_sequence = @sequence  ");
+            sb.Append(" union  ");
+            sb.Append("     select  t.member        from  tb_user_define_group t   where ");
+            sb.Append(" t.groupName in (SELECT receiver ");
+            sb.Append("   FROM   tb_policy_receiver where ");
+            sb.Append("       type = '自定义组' and policy_sequence = @sequence) ");
+            sb.Append("    and t.type = '渠道类型')  ");
+            sb.Append("union  ");
+            sb.Append(" select distinct  t.member from   tb_user_define_group t ");
+            sb.Append("where   t.groupName in (SELECT   receiver ");
+            sb.Append("    FROM   tb_policy_receiver ");
+            sb.Append("  where    type = '自定义组' and policy_sequence = @sequence) ");
+            sb.Append(" and t.type = '代理商/渠道' ");
+
+
+            String sql = sb.ToString();
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@sequence", sequence);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<String> list = new List<String>();
+                String agentNo = "";
+                while (reader.Read())
+                {
+
+
+                    agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    if (String.IsNullOrEmpty(agentNo))
+                        continue;
+                    list.Add(agentNo);
                 }
                 return list;
             }
@@ -233,7 +295,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllList(string keyWord)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -265,6 +327,8 @@ namespace ChinaUnion_DataAccess
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
                     policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
+
                     list.Add(policy);
                 }
                 return list;

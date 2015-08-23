@@ -190,6 +190,14 @@ namespace ChinaUnion_Agent.PolicyForm
             policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             policy.isDelete = "N";
             policy.isValidate = "Y";
+            if (this.lstAgentType.CheckedItems.Contains("所有渠道"))
+            {
+                policy.toAll = "Y";
+            }
+            else
+            {
+                policy.toAll = "N";
+            }
 
             byte[] b = new byte[0];
             String fullpath = this.txtAttachmentLocation.Text;

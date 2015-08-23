@@ -443,6 +443,12 @@ namespace ChinaUnion_Agent
                         frmPolicyPublish.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmPolicyPublish);
                         break;
+                    case "Broadcast":
+
+                        PolicyForm.frmBroadcast frmBroadcast1 = new PolicyForm.frmBroadcast();
+                        //frmPolicyPublish.loginUser = this.loginUser;
+                        CheckChildOpenState(this, frmBroadcast1);
+                        break;
                  
 
                     case "UserMantain":

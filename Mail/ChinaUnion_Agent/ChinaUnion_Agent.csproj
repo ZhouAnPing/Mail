@@ -307,6 +307,12 @@
     <Compile Include="PerformanceForm\frmAgentMonthPerformanceQuery.Designer.cs">
       <DependentUpon>frmAgentMonthPerformanceQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="PolicyForm\frmBroadcast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolicyForm\frmBroadcast.Designer.cs">
+      <DependentUpon>frmBroadcast.cs</DependentUpon>
+    </Compile>
     <Compile Include="PolicyForm\frmPolicyPublish.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -538,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PerformanceForm\frmAgentMonthPerformanceQuery.resx">
       <DependentUpon>frmAgentMonthPerformanceQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolicyForm\frmBroadcast.resx">
+      <DependentUpon>frmBroadcast.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PolicyForm\frmPolicyPublish.resx">
       <DependentUpon>frmPolicyPublish.cs</DependentUpon>

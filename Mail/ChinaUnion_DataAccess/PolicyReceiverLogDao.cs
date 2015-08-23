@@ -16,7 +16,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Add(PolicyReceiverLog entity)
         {
-            string sql = "INSERT INTO tb_policy_userId (policy_sequence,userId,readtime) VALUE (@policy_sequence,@userId,@readtime)";
+            string sql = "INSERT INTO tb_policy_read_log (policy_sequence,userId,readtime) VALUE (@policy_sequence,@userId,@readtime)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -34,7 +34,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(PolicyReceiverLog entity)
         {
-            string sql = "UPDATE  tb_policy_userId SET policy_sequence=@policy_sequence,userId=@userId where policy_sequence=@policy_sequence  and readtime=@readtime";
+            string sql = "UPDATE  tb_policy_read_log SET policy_sequence=@policy_sequence,userId=@userId where policy_sequence=@policy_sequence  and readtime=@readtime";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -54,7 +54,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Delete(PolicyReceiverLog entity)
         {
-            string sql = "DELETE FROM tb_policy_userId WHERE policy_sequence=@policy_sequence and userId=@userId and readtime=@readtime";
+            string sql = "DELETE FROM tb_policy_read_log WHERE policy_sequence=@policy_sequence and userId=@userId and readtime=@readtime";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -95,7 +95,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<PolicyReceiverLog> GetList(String policySequence)
         {
-            string sql = "SELECT policy_sequence,userId,readtime FROM tb_policy_userId where policy_Sequence=@policy_Sequence";
+            string sql = "SELECT policy_sequence,userId,readtime FROM tb_policy_read_log where policy_Sequence=@policy_Sequence";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
