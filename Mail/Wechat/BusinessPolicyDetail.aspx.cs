@@ -22,6 +22,8 @@ namespace Wechat
                 this.lblSubject.Text = policy.subject;
                 this.lblSendTime.Text = policy.creatTime;
                 this.lblContent.Text = policy.content;
+                this.lblValidateStartTime.Text = policy.validateStartTime;
+                this.lblValidateEndTime.Text = policy.validateEndTime;
                 this.lblAttachment.Text = policy.attachmentName;
                 this.lblAttachment.NavigateUrl = "BusinessPolicyAttachmentDetail.aspx?seq=" + policy.sequence;
             }

@@ -16,7 +16,8 @@ namespace ChinaUnion_BO
         public String creatTime;
         public String type;
        
-        public String validateTime;
+        public String validateStartTime;
+        public String validateEndTime;
         public String isValidate;
         public String deleteTime;
         public String isDelete;

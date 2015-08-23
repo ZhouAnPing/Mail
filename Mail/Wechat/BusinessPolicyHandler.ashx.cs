@@ -175,7 +175,7 @@ namespace Wechat
              
 
 
-                sbDesc.AppendFormat("\n创建日期:" + policy.creatTime + "\n名称:" + policy.subject + "\n内容:" + policy.content + "\n类型:" + policy.type + "\n有效期:" + policy.validateTime).AppendLine();
+                sbDesc.AppendFormat("\n创建日期:" + policy.creatTime + "\n名称:" + policy.subject + "\n内容:" + policy.content + "\n类型:" + policy.type + "\n有效期:" + policy.validateStartTime).AppendLine();
 
 
 

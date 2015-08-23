@@ -66,7 +66,7 @@ namespace Wechat
                         agentNo = agentWechatAccount.agentNo;
                     }
 
-                    search_scope = "all";
+                   // search_scope = "all";
                     String type = "通知公告/重点关注";
                     if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
                     {
@@ -124,8 +124,8 @@ namespace Wechat
             dt.Columns.Add("subject");
             dt.Columns.Add("content");
             dt.Columns.Add("attachment");
-            dt.Columns.Add("createTime");
-            dt.Columns.Add("validateTime");
+            dt.Columns.Add("validateStartTime");
+            dt.Columns.Add("validateEndTime");
 
             DataRow row = null;
             if (policyList != null && policyList.Count>0)
@@ -147,8 +147,8 @@ namespace Wechat
                     {
                         row["attachment"] = "附件";
                     }
-                    row["createTime"] = policy.creatTime;
-                    row["validateTime"] = policy.validateTime;
+                    row["validateStartTime"] = policy.validateStartTime;
+                    row["validateEndTime"] = policy.validateEndTime;
                     dt.Rows.Add(row);
                 }
             }

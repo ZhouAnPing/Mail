@@ -16,6 +16,8 @@ namespace ChinaUnion_Agent.PolicyForm
     {
         PolicyDao policyDao = new PolicyDao();
         AgentTypeDao agentTypeDao = new AgentTypeDao();
+        GroupDao groupDao = new GroupDao();
+        PolicyReceiverDao policyReceiverDao = new PolicyReceiverDao();
         public frmPolicyPublish()
         {
             InitializeComponent();
@@ -35,7 +37,8 @@ namespace ChinaUnion_Agent.PolicyForm
             this.btnPreview.Enabled = false;
             this.btnPublish.Enabled = false;
             this.cbType.Text = "";
-            this.dtValidateDate.Value = this.dtValidateDate.Value.AddMonths(1);
+            this.dtStartDate.Value = DateTime.Now;
+            this.dtEndDate.Value = DateTime.Now.AddMonths(1);
             this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
             this.txtSubject.Clear();
@@ -47,6 +50,15 @@ namespace ChinaUnion_Agent.PolicyForm
             foreach(AgentType agentType in agentTypeList){
                 this.lstAgentType.Items.Add(agentType.agentType);
             }
+
+            IList<Group> groupList = groupDao.GetAll("");
+            this.lstGroup.Items.Clear();
+
+            foreach (Group group in groupList)
+            {
+                this.lstGroup.Items.Add(group.groupName);
+            }
+
             this.txtSubject.Focus();
             this.Cursor = Cursors.Default;
         }
@@ -74,6 +86,7 @@ namespace ChinaUnion_Agent.PolicyForm
             this.dgPolicy.Rows.Clear();
             dgPolicy.Columns.Clear();
             dgPolicy.Columns.Add("序列号", "序列号");
+           
             dgPolicy.Columns.Add("类型", "类型");
             dgPolicy.Columns.Add("标题", "标题");
             dgPolicy.Columns.Add("内容", "内容");
@@ -81,6 +94,7 @@ namespace ChinaUnion_Agent.PolicyForm
             dgPolicy.Columns.Add("有效期", "有效期");
             dgPolicy.Columns.Add("创建人", "创建人");
             dgPolicy.Columns.Add("创建时间", "创建时间");
+            dgPolicy.Columns[0].Visible = false;
             if (policyList != null && policyList.Count > 0)
             {
 
@@ -93,14 +107,14 @@ namespace ChinaUnion_Agent.PolicyForm
                     row.Cells[2].Value = policyList[i].subject;
                     row.Cells[3].Value = policyList[i].content;
                     row.Cells[4].Value = policyList[i].attachmentName;
-                    row.Cells[5].Value = policyList[i].validateTime;
+                    row.Cells[5].Value = policyList[i].validateStartTime;
                     row.Cells[6].Value = policyList[i].sender;
                     row.Cells[7].Value = policyList[i].creatTime;
 
                 }
             }
             this.cbType.Text = "";
-            this.dtValidateDate.ResetText();
+            this.dtStartDate.ResetText();
             this.txtAttachmentLocation.Clear();
             this.txtContent.Clear();
             this.txtSubject.Clear();
@@ -157,6 +171,12 @@ namespace ChinaUnion_Agent.PolicyForm
                 this.txtContent.Focus();
                 return;
             }
+            if (this.dtEndDate.Value.CompareTo(this.dtStartDate.Value)<=0)
+            {
+                MessageBox.Show("有效期结束时间必须大于开始时间");
+               
+                return;
+            }
 
             this.Cursor = Cursors.WaitCursor;
             Policy policy = new Policy();
@@ -165,7 +185,8 @@ namespace ChinaUnion_Agent.PolicyForm
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
             policy.sender = this.loginUser.name;
-            policy.validateTime = this.dtValidateDate.Value.ToString("yyyy-MM-dd");
+            policy.validateStartTime = this.dtStartDate.Value.ToString("yyyy-MM-dd");
+            policy.validateEndTime = this.dtEndDate.Value.ToString("yyyy-MM-dd");
             policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             policy.isDelete = "N";
             policy.isValidate = "Y";
@@ -201,11 +222,35 @@ namespace ChinaUnion_Agent.PolicyForm
                 }
             }
             if (!String.IsNullOrEmpty(policy.sequence))
-            {
-                this.policyDao.Delete(Int32.Parse(policy.sequence));
+            {               
+               
+                this.policyDao.Update(policy);
+                
+            }else{
+                     policyDao.Add(policy);
             }
-            policyDao.Add(policy);
-            this.prepareGrid("");
+
+            policyReceiverDao.Delete(policy.sequence);
+
+            foreach (Object item in this.lstAgentType.CheckedItems)
+            {
+                PolicyReceiver policyReceiver = new PolicyReceiver();
+                policyReceiver.policySequence = policy.sequence;
+                policyReceiver.receiver = item.ToString();
+                policyReceiver.type = "渠道类型";
+                policyReceiverDao.Add(policyReceiver);
+            }
+
+            foreach (Object item in this.lstGroup.CheckedItems)
+            {
+                PolicyReceiver policyReceiver = new PolicyReceiver();
+                policyReceiver.policySequence = policy.sequence;
+                policyReceiver.receiver = item.ToString();
+                policyReceiver.type = "自定义组";
+                policyReceiverDao.Add(policyReceiver);
+            }
+
+            this.prepareGrid(this.txtSearchCondition.Text);
             MessageBox.Show("操作完成");
 
             this.Cursor = Cursors.Default;
@@ -219,9 +264,11 @@ namespace ChinaUnion_Agent.PolicyForm
                 return;
             }
             this.Cursor = Cursors.WaitCursor;
-            int subject = (Int32.Parse(this.dgPolicy.CurrentRow.Cells[0].Value.ToString()));
-            this.policyDao.Delete(subject);
-            this.prepareGrid("");
+            int seq = (Int32.Parse(this.dgPolicy.CurrentRow.Cells[0].Value.ToString()));
+
+            this.policyReceiverDao.Delete(seq.ToString());
+            this.policyDao.Delete(seq);
+            this.prepareGrid(this.txtSearchCondition.Text);
 
             this.Cursor = Cursors.Default;
             MessageBox.Show("操作完成");
@@ -245,7 +292,33 @@ namespace ChinaUnion_Agent.PolicyForm
                         this.txtSequence.Text = policy.sequence;
                         this.txtAttachmentName.Text = policy.attachmentName;
                         this.cbType.Text = policy.type;
-                        this.dtValidateDate.Value = DateTime.Parse(policy.validateTime);
+                        this.dtStartDate.Value = DateTime.Parse(policy.validateStartTime);
+
+                        IList<PolicyReceiver> policyReceiverList = policyReceiverDao.GetList(policy.sequence);
+                        if (policyReceiverList != null)
+                        {
+                            
+                            foreach (PolicyReceiver policyReceiver in policyReceiverList)
+                            {
+                                if (policyReceiver.type.Equals("渠道类型"))
+                                {
+                                    int index = this.lstAgentType.FindStringExact(policyReceiver.receiver);
+                                    if (index >= 0)
+                                    {
+                                        lstAgentType.SetItemCheckState(index, CheckState.Checked);
+                                    }
+                                }
+                                if (policyReceiver.type.Equals("自定义组"))
+                                {
+                                    int index = this.lstGroup.FindString(policyReceiver.receiver);
+                                    if (index >= 0)
+                                    {
+                                        this.lstGroup.SetItemCheckState(index, CheckState.Checked);
+                                    }
+                                }
+                            }
+                        }
+                        
                         
                     }
                 }
@@ -279,7 +352,7 @@ namespace ChinaUnion_Agent.PolicyForm
                 policy = policyDao.Get(Int32.Parse(this.txtSequence.Text.Trim()));
             }
             policy.type = this.cbType.Text;
-            policy.validateTime = this.dtValidateDate.Value.ToString("yyyy-MM-dd hh:mm:ss");
+            policy.validateStartTime = this.dtStartDate.Value.ToString("yyyy-MM-dd hh:mm:ss");
             policy.subject = this.txtSubject.Text.Trim();
             policy.content = this.txtContent.Text.Trim();
             policy.sender = this.loginUser.name;
@@ -306,7 +379,7 @@ namespace ChinaUnion_Agent.PolicyForm
             frmPublishPreview frmPublishPreview = new frmPublishPreview();
             frmPublishPreview.policy = policy;
             frmPublishPreview.ShowDialog();
-            this.prepareGrid("");
+            this.prepareGrid(this.txtSearchCondition.Text);
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

@@ -63,7 +63,7 @@
     <Compile Include="AgentBonusDao.cs" />
     <Compile Include="PolicyReceiverLogDao.cs" />
     <Compile Include="PolicyReceiverDao.cs" />
-    <Compile Include="UserGroupDao.cs" />
+    <Compile Include="UserDefinedGroupDao.cs" />
     <Compile Include="GroupDao.cs" />
     <Compile Include="InvoicePaymentDao.cs" />
     <Compile Include="PolicyDao.cs" />

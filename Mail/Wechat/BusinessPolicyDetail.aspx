@@ -16,6 +16,15 @@
 			                        	通知详情</td>				
 							  
 			                </tr> 
+         <tr>
+			                    <td  style=" font-size: 14px; color: red; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
+			                        	<b>以下文字等同合同补充说明，请认真阅读。</b>
+			                                    	
+			                            
+			                                    	
+			                    </td>				
+							  
+			                </tr> 
 			                <tr>
 			                    <td  style=" font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
 			                        	<b>主题:</b>
@@ -45,6 +54,20 @@
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
 			                        	<b>发布时间:</b>
 			                            <asp:Label ID="lblSendTime" runat="server" Text=""></asp:Label>
+			                    </td>				
+							  
+			                </tr> 
+        <tr>
+			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
+			                        	<b>生效时间:</b>
+			                            <asp:Label ID="lblValidateStartTime" runat="server" Text=""></asp:Label>
+			                    </td>				
+							  
+			                </tr> 
+        <tr>
+			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
+			                        	<b>失效时间:</b>
+			                            <asp:Label ID="lblValidateEndTime" runat="server" Text=""></asp:Label>
 			                    </td>				
 							  
 			                </tr> 

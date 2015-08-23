@@ -7,22 +7,22 @@ using System.Text;
 
 namespace ChinaUnion_DataAccess
 {
-    public class PolicyReceiverDao
+    public class UserDefinedGroupDao
     {
         public const string mysqlConnection = DBConstant.mysqlConnection;//"User Id=root;Host=115.29.229.134;Database=chinaunion;password=c513324665;charset=utf8";
         /// <summary> 
         /// 添加数据 
         /// </summary> 
         /// <returns></returns> 
-        public int Add(PolicyReceiver entity)
+        public int Add(UserDefinedGroup entity)
         {
-            string sql = "INSERT INTO tb_policy_receiver (policy_sequence,receiver,type) VALUE (@policy_sequence,@receiver,@type)";
+            string sql = "INSERT INTO tb_user_define_group (groupName,member,type) VALUE (@groupName,@member,@type)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
-                command.Parameters.AddWithValue("@receiver", entity.receiver);
+                command.Parameters.AddWithValue("@groupName", entity.groupName);
+                command.Parameters.AddWithValue("@member", entity.member);
                 command.Parameters.AddWithValue("@type", entity.type);
                 return command.ExecuteNonQuery();
             }
@@ -32,17 +32,17 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="entity"></param> 
         /// <returns></returns> 
-        public int Update(PolicyReceiver entity)
+        public int Update(UserDefinedGroup entity)
         {
-            string sql = "UPDATE  tb_policy_receiver SET policy_sequence=@policy_sequence,receiver=@receiver where policy_sequence=@policy_sequence  and type=@type";
+            string sql = "UPDATE  tb_user_define_group SET groupName=@groupName,member=@member where groupName=@groupName and member=@member  and type=@type";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
-                command.Parameters.AddWithValue("@receiver", entity.receiver);
+                command.Parameters.AddWithValue("@groupName", entity.groupName);
+                command.Parameters.AddWithValue("@member", entity.member);
                 command.Parameters.AddWithValue("@type", entity.type);
                 return command.ExecuteNonQuery();
             }
@@ -52,34 +52,15 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="entity"></param> 
         /// <returns></returns> 
-        public int Delete(String policySequence)
+        public int Delete(String groupName)
         {
-            string sql = "DELETE FROM tb_policy_receiver WHERE policy_sequence=@policy_sequence";
+            string sql = "DELETE FROM tb_user_define_group WHERE groupName=@groupName ";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@policy_sequence", policySequence);
-               
-                return command.ExecuteNonQuery();
-            }
-        }
-
-        /// <summary> 
-        /// 删除数据 
-        /// </summary> 
-        /// <param name="entity"></param> 
-        /// <returns></returns> 
-        public int Delete(PolicyReceiver entity)
-        {
-            string sql = "DELETE FROM tb_policy_receiver WHERE policy_sequence=@policy_sequence and receiver=@receiver and type=@type";
-            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
-            {
-                mycn.Open();
-                MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
-                command.Parameters.AddWithValue("@receiver", entity.receiver);
-                command.Parameters.AddWithValue("@type", entity.type);
+                command.Parameters.AddWithValue("@groupName", groupName);
+   
                 return command.ExecuteNonQuery();
             }
         }
@@ -111,32 +92,32 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<PolicyReceiver> GetList(String policySequence)
+        public IList<UserDefinedGroup> GetList(String groupName)
         {
-            string sql = "SELECT policy_sequence,receiver,type FROM tb_policy_receiver where policy_Sequence=@policy_Sequence";
+            string sql = "SELECT groupName,member,type FROM tb_user_define_group where groupName=@groupName";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@policy_Sequence", policySequence);
+                command.Parameters.AddWithValue("@groupName", groupName);
                 MySqlDataReader reader = command.ExecuteReader();
-                IList<PolicyReceiver> list = new List<PolicyReceiver>();
-                PolicyReceiver policyReceiver = null;
+                IList<UserDefinedGroup> list = new List<UserDefinedGroup>();
+                UserDefinedGroup userDefinedGroup = null;
                 while (reader.Read())
                 {
-                    policyReceiver = new PolicyReceiver();
+                    userDefinedGroup = new UserDefinedGroup();
 
-                    policyReceiver.policySequence = reader["policy_sequence"] == DBNull.Value ? null : reader["policy_sequence"].ToString();
-                    policyReceiver.receiver = reader["receiver"] == DBNull.Value ? null : reader["receiver"].ToString();
-                    policyReceiver.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    userDefinedGroup.groupName = reader["groupName"] == DBNull.Value ? null : reader["groupName"].ToString();
+                    userDefinedGroup.member = reader["member"] == DBNull.Value ? null : reader["member"].ToString();
+                    userDefinedGroup.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
 
-                    list.Add(policyReceiver);
+                    list.Add(userDefinedGroup);
                 }
                 return list;
             }
         }
 
 
-       
+        
     }
 }

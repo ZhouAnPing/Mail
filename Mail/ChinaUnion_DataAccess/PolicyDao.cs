@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateTime, @isValidate, @isDelete, @deleteTime)";
+            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime, @isValidate, @isDelete, @deleteTime)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -31,7 +31,8 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@attachmentName", entity.attachmentName);
                 command.Parameters.AddWithValue("@creatTime", entity.creatTime);
                 command.Parameters.AddWithValue("@type", entity.type);
-                command.Parameters.AddWithValue("@validateTime", entity.validateTime);
+                command.Parameters.AddWithValue("@validateStartTime", entity.validateStartTime);
+                command.Parameters.AddWithValue("@validateEndTime", entity.validateEndTime);
                 command.Parameters.AddWithValue("@isValidate", entity.isValidate);
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
@@ -48,7 +49,7 @@ namespace ChinaUnion_DataAccess
         public int Update(Policy entity)
         {
             string sql = "UPDATE  tb_policy SET subject=@subject,content=@content,sender=@sender,attachment=@attachment,attachmentName=@attachmentName,creatTime=@creatTime,";
-            sql = sql + " type=@type,validateTime=@validateTime,isValidate=@isValidate,isDelete=@isDelete,deleteTime=@deleteTime where sequence=@sequence ";
+            sql = sql + " type=@type,validateStartTime=@validateStartTime,validateEndTime=@validateEndTime,isValidate=@isValidate,isDelete=@isDelete,deleteTime=@deleteTime where sequence=@sequence ";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -63,7 +64,8 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@attachmentName", entity.attachmentName);
                 command.Parameters.AddWithValue("@creatTime", entity.creatTime);
                 command.Parameters.AddWithValue("@type", entity.type);
-                command.Parameters.AddWithValue("@validateTime", entity.validateTime);
+                command.Parameters.AddWithValue("@validateStartTime", entity.validateStartTime);
+                 command.Parameters.AddWithValue("@validateEndTime", entity.validateEndTime);
                 command.Parameters.AddWithValue("@isValidate", entity.isValidate);
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
@@ -93,7 +95,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public Policy Get(int primaryKey)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy where sequence=@sequence";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy where sequence=@sequence";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -113,7 +115,8 @@ namespace ChinaUnion_DataAccess
                     policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
                     policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
                     policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
-                    policy.validateTime = reader["validateTime"] == DBNull.Value ? null : reader["validateTime"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                    policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
                     policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
@@ -130,7 +133,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -159,7 +162,8 @@ namespace ChinaUnion_DataAccess
                     policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
                     policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
                     policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
-                    policy.validateTime = reader["validateTime"] == DBNull.Value ? null : reader["validateTime"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                     policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
                     policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
@@ -177,9 +181,9 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllValidatedList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime from tb_policy";
 
-            sql = sql + " where STR_TO_DATE( validateTime,'%Y-%m-%d') >= now()  ";
+            sql = sql + " where STR_TO_DATE( validateStartTime,'%Y-%m-%d') <= now() and STR_TO_DATE( validateEndTime,'%Y-%m-%d') >= now()  ";
             if (!String.IsNullOrEmpty(keyWord))
             {
                 sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
@@ -210,7 +214,8 @@ namespace ChinaUnion_DataAccess
                     policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
                     policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
                     policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
-                    policy.validateTime = reader["validateTime"] == DBNull.Value ? null : reader["validateTime"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                     policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
                     policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
@@ -228,7 +233,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllList(string keyWord)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateTime, isValidate, isDelete, deleteTime from tb_policy";
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -254,7 +259,8 @@ namespace ChinaUnion_DataAccess
                     policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
                     policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
                     policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
-                    policy.validateTime = reader["validateTime"] == DBNull.Value ? null : reader["validateTime"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                     policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
                     policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
                     policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
                     policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();

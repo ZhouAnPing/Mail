@@ -489,6 +489,14 @@ namespace ChinaUnion_Agent
                         CheckChildOpenState(this, frmAgentWechatAccountImport);
                         break;
 
+                    case "userDefineGroup":
+
+                        UserManagement.frmUserGroup frmUserGroup = new UserManagement.frmUserGroup();
+                        CheckChildOpenState(this, frmUserGroup);
+                        break;
+
+                        
+
                     case "InvoicePaymentImport":
 
                         InvoiceForm.frmInvoicePaymentImport frmInvoicePaymentImport = new frmInvoicePaymentImport();

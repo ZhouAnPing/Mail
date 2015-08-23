@@ -56,8 +56,8 @@
                                     <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                     <Columns>
                                         <asp:BoundField DataField="seq" HeaderStyle-BorderWidth="1" HeaderText="编号" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />
-                                        <asp:BoundField DataField="createTime" HeaderStyle-BorderWidth="1" HeaderText="发布时间" ReadOnly="True" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
-                                        <asp:BoundField DataField="validateTime" HeaderStyle-BorderWidth="1" HeaderText="有效时间" ReadOnly="True" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
+                                        <asp:BoundField DataField="validateStartTime" HeaderStyle-BorderWidth="1" HeaderText="生效时间" ReadOnly="True" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
+                                        <asp:BoundField DataField="validateEndTime" HeaderStyle-BorderWidth="1" HeaderText="失效时间" ReadOnly="True" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
 
                                         <asp:HyperLinkField DataNavigateUrlFields="seq" HeaderStyle-BorderWidth="1" DataNavigateUrlFormatString="./BusinessPolicyDetail.aspx?seq={0}" DataTextField="content" HeaderText="内容" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />
 

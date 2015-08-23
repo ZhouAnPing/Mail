@@ -14,16 +14,16 @@ namespace ChinaUnion_DataAccess
         /// 添加数据 
         /// </summary> 
         /// <returns></returns> 
-        public int Add(AgentType entity)
+        public int Add(PolicyReceiverLog entity)
         {
-            string sql = "INSERT INTO agent_type (agentNo,agentType,agentFeeMonth) VALUE (@agentNo,@agentType,@agentFeeMonth)";
+            string sql = "INSERT INTO tb_policy_userId (policy_sequence,userId,readtime) VALUE (@policy_sequence,@userId,@readtime)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentNo", entity.agentNo);
-                command.Parameters.AddWithValue("@agentType", entity.agentType);
-                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
+                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
+                command.Parameters.AddWithValue("@userId", entity.userId);
+                command.Parameters.AddWithValue("@readtime", entity.readtime);
                 return command.ExecuteNonQuery();
             }
         }
@@ -32,18 +32,18 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="entity"></param> 
         /// <returns></returns> 
-        public int Update(AgentType entity)
+        public int Update(PolicyReceiverLog entity)
         {
-            string sql = "UPDATE  agent_type SET agentNo=@agentNo,agentType=@agentType where agentNo=@agentNo  and agentFeeMonth=@agentFeeMonth";
+            string sql = "UPDATE  tb_policy_userId SET policy_sequence=@policy_sequence,userId=@userId where policy_sequence=@policy_sequence  and readtime=@readtime";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentNo", entity.agentNo);
-                command.Parameters.AddWithValue("@agentType", entity.agentType);
-                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
+                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
+                command.Parameters.AddWithValue("@userId", entity.userId);
+                command.Parameters.AddWithValue("@readtime", entity.readtime);
                 return command.ExecuteNonQuery();
             }
         }
@@ -52,16 +52,16 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="entity"></param> 
         /// <returns></returns> 
-        public int Delete(AgentType entity)
+        public int Delete(PolicyReceiverLog entity)
         {
-            string sql = "DELETE FROM agent_type WHERE agentNo=@agentNo and agentType=@agentType and agentFeeMonth=@agentFeeMonth";
+            string sql = "DELETE FROM tb_policy_userId WHERE policy_sequence=@policy_sequence and userId=@userId and readtime=@readtime";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentNo", entity.agentNo);
-                command.Parameters.AddWithValue("@agentType", entity.agentType);
-                command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
+                command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
+                command.Parameters.AddWithValue("@userId", entity.userId);
+                command.Parameters.AddWithValue("@readtime", entity.readtime);
                 return command.ExecuteNonQuery();
             }
         }
@@ -93,59 +93,32 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentType> GetList(String agentFeeMonth)
+        public IList<PolicyReceiverLog> GetList(String policySequence)
         {
-            string sql = "SELECT agentNo,agentType,agentFeeMonth FROM agent_type where agentFeeMonth=@agentFeeMonth";
+            string sql = "SELECT policy_sequence,userId,readtime FROM tb_policy_userId where policy_Sequence=@policy_Sequence";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentFeeMonth", agentFeeMonth);
+                command.Parameters.AddWithValue("@policy_Sequence", policySequence);
                 MySqlDataReader reader = command.ExecuteReader();
-                IList<AgentType> list = new List<AgentType>();
-                AgentType agent_Type = null;
+                IList<PolicyReceiverLog> list = new List<PolicyReceiverLog>();
+                PolicyReceiverLog policyReceiver = null;
                 while (reader.Read())
                 {
-                    agent_Type = new AgentType();
+                    policyReceiver = new PolicyReceiverLog();
 
-                    agent_Type.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                    agent_Type.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
-                    agent_Type.agentFeeMonth = reader["agentFeeMonth"] == DBNull.Value ? null : reader["agentFeeMonth"].ToString();
+                    policyReceiver.policySequence = reader["policy_sequence"] == DBNull.Value ? null : reader["policy_sequence"].ToString();
+                    policyReceiver.userId = reader["userId"] == DBNull.Value ? null : reader["userId"].ToString();
+                    policyReceiver.readtime = reader["readtime"] == DBNull.Value ? null : reader["readtime"].ToString();
 
-                    list.Add(agent_Type);
+                    list.Add(policyReceiver);
                 }
                 return list;
             }
         }
 
 
-        /// <summary> 
-        /// 查询集合 
-        /// </summary> 
-        /// <returns></returns> 
-        public IList<AgentType> GetDistinctType()
-        {
-            string sql = "SELECT distinct agentType FROM agent_type";
-            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
-            {
-                mycn.Open();
-                MySqlCommand command = new MySqlCommand(sql, mycn);
-               
-                MySqlDataReader reader = command.ExecuteReader();
-                IList<AgentType> list = new List<AgentType>();
-                AgentType agent_Type = null;
-                while (reader.Read())
-                {
-                    agent_Type = new AgentType();
 
-                    //agent_Type.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                    agent_Type.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
-                  //  agent_Type.agentFeeMonth = reader["agentFeeMonth"] == DBNull.Value ? null : reader["agentFeeMonth"].ToString();
-
-                    list.Add(agent_Type);
-                }
-                return list;
-            }
-        }
     }
 }

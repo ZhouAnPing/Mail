@@ -161,20 +161,21 @@ namespace ChinaUnion_DataAccess
         {
             string sql = "SELECT type,agentNo,agentName,branchNo,branchName,regionName,contactId,contactName,contactEmail,contactTel,contactWechat,feeRight,policyRight,performanceRight,studyRight,complainRight,monitorRight,errorRight,contactRight FROM agent_wechat_account";
 
-             sql = sql+" where 1=1";
-            if(!String.IsNullOrEmpty(keyword)){
-                sql = sql + " and ((agentNo like \"%" + keyword +"%\")";
+            sql = sql + " where 1=1";
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                sql = sql + " and ((agentNo like \"%" + keyword + "%\")";
                 sql = sql + " or (agentName like \"%" + keyword + "%\")";
                 sql = sql + " or (contactId like \"%" + keyword + "%\")";
                 sql = sql + " or (contactName like \"%" + keyword + "%\")";
                 sql = sql + " or (contactWechat like \"%" + keyword + "%\")";
-                sql = sql + " or (branchNo like \"%" + keyword + "%\")";              
+                sql = sql + " or (branchNo like \"%" + keyword + "%\")";
                 sql = sql + " or (branchName like \"%" + keyword + "%\"))";
             }
             if (!String.IsNullOrEmpty(type))
             {
                 sql = sql + " and type= \"" + type + "\"";
-              
+
             }
             sql = sql + " order by agentNo asc,branchNo asc";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -209,6 +210,42 @@ namespace ChinaUnion_DataAccess
                     agentContact.errorRight = reader["errorRight"] == DBNull.Value ? null : reader["errorRight"].ToString();
                     agentContact.contactRight = reader["contactRight"] == DBNull.Value ? null : reader["contactRight"].ToString();
 
+                    list.Add(agentContact);
+                }
+                return list;
+            }
+        }
+
+
+            /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<AgentWechatAccount> GetAllAgentOrBranch()
+        {
+            string sql = "SELECT distinct type,agentNo,agentName,branchNo,branchName,regionName FROM agent_wechat_account";
+
+             sql = sql+" where 1=1";
+            
+            sql = sql + " order by agentNo asc,branchNo asc";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentWechatAccount> list = new List<AgentWechatAccount>();
+                AgentWechatAccount agentContact = null;
+                while (reader.Read())
+                {
+                    agentContact = new AgentWechatAccount();
+                    agentContact.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+
+                    agentContact.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentContact.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    agentContact.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                    agentContact.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    agentContact.regionName = reader["regionName"] == DBNull.Value ? null : reader["regionName"].ToString();
+                   
                     list.Add(agentContact);
                 }
                 return list;
