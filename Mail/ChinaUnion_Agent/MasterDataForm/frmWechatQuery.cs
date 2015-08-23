@@ -59,13 +59,14 @@ namespace ChinaUnion_Agent.MasterDataForm
                 dgWechat.Columns.Add("类型", "类型");
 
                 dgWechat.Columns.Add("代理商编号", "代理商编号");
-                dgWechat.Columns.Add("代理商名称", "代理商名称");
-                dgWechat.Columns.Add("区县", "区县");
+                dgWechat.Columns.Add("代理商名称", "代理商名称");                
                 dgWechat.Columns.Add("渠道编码", "渠道编码");
                 dgWechat.Columns.Add("渠道名称", "渠道名称");
-                dgWechat.Columns["区县"].Visible = false;
+                dgWechat.Columns.Add("区县", "区县");
+               
                 dgWechat.Columns["渠道编码"].Visible = false;
                 dgWechat.Columns["渠道名称"].Visible = false;
+                dgWechat.Columns["区县"].Visible = false;
                 if (!type.Equals("代理商联系人"))
                 {
                     if (String.IsNullOrEmpty(type) || type.Equals("直供渠道联系人"))
@@ -102,10 +103,11 @@ namespace ChinaUnion_Agent.MasterDataForm
                     row.Cells[index++].Value = agentWechatAccountList[i].agentNo;
                     row.Cells[index++].Value = agentWechatAccountList[i].agentName;
 
-                    row.Cells[index++].Value = agentWechatAccountList[i].regionName;
+                    
 
                     row.Cells[index++].Value = agentWechatAccountList[i].branchNo;
                     row.Cells[index++].Value = agentWechatAccountList[i].branchName;
+                    row.Cells[index++].Value = agentWechatAccountList[i].regionName;
 
                     row.Cells[index++].Value = agentWechatAccountList[i].contactId;
                     row.Cells[index++].Value = agentWechatAccountList[i].contactName;

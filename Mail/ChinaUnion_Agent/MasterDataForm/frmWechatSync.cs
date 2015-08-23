@@ -66,20 +66,37 @@ namespace ChinaUnion_Agent.MasterDataForm
                 dgAgentWechatAccount.Columns.Add("区县", "区县");
                 dgAgentWechatAccount.Columns.Add("渠道编码", "渠道编码");
                 dgAgentWechatAccount.Columns.Add("渠道名称", "渠道名称");
-                dgAgentWechatAccount.Columns["区县"].Visible = false;
-                dgAgentWechatAccount.Columns["渠道编码"].Visible = false;
-                dgAgentWechatAccount.Columns["渠道名称"].Visible = false;
-                if (!type.Equals("代理商联系人"))
+                dgAgentWechatAccount.Columns["区县"].Visible = true;
+                dgAgentWechatAccount.Columns["渠道编码"].Visible = true;
+                dgAgentWechatAccount.Columns["渠道名称"].Visible = true;
+                dgAgentWechatAccount.Columns["代理商编号"].Visible = true;
+                dgAgentWechatAccount.Columns["代理商名称"].Visible = true;
+                if (type.Equals("代理商联系人"))
                 {
-                    if (String.IsNullOrEmpty(type) || type.Equals("直供渠道联系人"))
-                    {
-                        dgAgentWechatAccount.Columns["区县"].Visible = true;
-                        
-                    }
+                    dgAgentWechatAccount.Columns["区县"].Visible = false;
+                    dgAgentWechatAccount.Columns["渠道编码"].Visible = false;
+                    dgAgentWechatAccount.Columns["渠道名称"].Visible = false;
+                    dgAgentWechatAccount.Columns["代理商编号"].Visible = true;
+                    dgAgentWechatAccount.Columns["代理商名称"].Visible = true;
+                }
+                if (type.Equals("直供渠道联系人"))
+                {
+                    dgAgentWechatAccount.Columns["区县"].Visible = true;
                     dgAgentWechatAccount.Columns["渠道编码"].Visible = true;
                     dgAgentWechatAccount.Columns["渠道名称"].Visible = true;
-                   
+                    dgAgentWechatAccount.Columns["代理商编号"].Visible = false;
+                    dgAgentWechatAccount.Columns["代理商名称"].Visible = false;
                 }
+                if (type.Equals("非直供渠道联系人"))
+                {
+                    dgAgentWechatAccount.Columns["区县"].Visible = false;
+                    dgAgentWechatAccount.Columns["渠道编码"].Visible = true;
+                    dgAgentWechatAccount.Columns["渠道名称"].Visible = true;
+                    dgAgentWechatAccount.Columns["代理商编号"].Visible = true;
+                    dgAgentWechatAccount.Columns["代理商名称"].Visible = true;
+                }
+
+                
                 dgAgentWechatAccount.Columns.Add("联系人编号", "联系人编号");
                 dgAgentWechatAccount.Columns.Add("联系人姓名", "联系人姓名");  
                 dgAgentWechatAccount.Columns.Add("联系人邮箱", "联系人邮箱");               

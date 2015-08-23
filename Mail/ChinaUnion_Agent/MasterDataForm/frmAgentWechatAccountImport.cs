@@ -46,7 +46,7 @@ namespace ChinaUnion_Agent.MasterDataForm
                
                 
                 //代理商信息
-                List<Row> agentWechatList = execelfile.Worksheet(0).ToList(); ;
+                List<Row> agentWechatList = execelfile.Worksheet("代理商联系信息表").ToList(); ;
 
                 if (agentWechatList != null && agentWechatList.Count > 0)
                 {
@@ -73,9 +73,75 @@ namespace ChinaUnion_Agent.MasterDataForm
                     }
                 }
 
+                //代理商信息
+                List<Row> agentWechatNoDirectList = execelfile.Worksheet("非直供渠道联系信息表").ToList(); ;
+
+                if (agentWechatNoDirectList != null && agentWechatNoDirectList.Count > 0)
+                {
+
+                    this.btnImport.Enabled = true;
+                    dgAgentWechatAccountNoDirect.Rows.Clear();
+                    dgAgentWechatAccountNoDirect.Columns.Clear();
+                    foreach (String coloumn in agentWechatNoDirectList[0].ColumnNames)
+                    {
+                        this.dgAgentWechatAccountNoDirect.Columns.Add(coloumn, coloumn);
+                    }
+
+                    for (int i = 0; i < agentWechatNoDirectList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(agentWechatNoDirectList[i][0]))
+                            continue;
+                        dgAgentWechatAccountNoDirect.Rows.Add();
+                        DataGridViewRow row = dgAgentWechatAccountNoDirect.Rows[i];
+                        foreach (String coloumn in agentWechatNoDirectList[0].ColumnNames)
+                        {
+                            row.Cells[coloumn].Value = agentWechatNoDirectList[i][coloumn];
+                        }
+
+                    }
+                }
+
+                //代理商信息
+                List<Row> agentWechatDirectList = execelfile.Worksheet("直供渠道联系信息表").ToList(); ;
+
+                if (agentWechatDirectList != null && agentWechatDirectList.Count > 0)
+                {
+
+                    this.btnImport.Enabled = true;
+                    dgAgentWechatAccountDirect.Rows.Clear();
+                    dgAgentWechatAccountDirect.Columns.Clear();
+                    foreach (String coloumn in agentWechatDirectList[0].ColumnNames)
+                    {
+                        this.dgAgentWechatAccountDirect.Columns.Add(coloumn, coloumn);
+                    }
+
+                    for (int i = 0; i < agentWechatDirectList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(agentWechatDirectList[i][0]))
+                            continue;
+                        dgAgentWechatAccountDirect.Rows.Add();
+                        DataGridViewRow row = dgAgentWechatAccountDirect.Rows[i];
+                        foreach (String coloumn in agentWechatDirectList[0].ColumnNames)
+                        {
+                            row.Cells[coloumn].Value = agentWechatDirectList[i][coloumn];
+                        }
+
+                    }
+                }
+                dgAgentWechatAccount.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
                 dgAgentWechatAccount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
 
                 dgAgentWechatAccount.AutoResizeColumns();
+
+                dgAgentWechatAccountDirect.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                dgAgentWechatAccountDirect.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+                dgAgentWechatAccountDirect.AutoResizeColumns();
+
+                dgAgentWechatAccountNoDirect.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                dgAgentWechatAccountNoDirect.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+                dgAgentWechatAccountNoDirect.AutoResizeColumns();
 
                 Cursor.Current = Cursors.Default;
             }
@@ -120,43 +186,61 @@ namespace ChinaUnion_Agent.MasterDataForm
 
          
             
-            //导入代理商
+            //导入联系人
+            this.saveGridData(this.dgAgentWechatAccount,"代理商联系人");
+            this.saveGridData(this.dgAgentWechatAccountDirect,"直供渠道联系人");
+            this.saveGridData(this.dgAgentWechatAccountNoDirect, "非直供渠道联系人");
+
+            worker.ReportProgress(4, "导入联系人信息完成...\r\n");
+           
+           
+
+            //MessageBox.Show("数据上传完毕");
+
+        }
+
+        private void saveGridData(DataGridView dg, String type)
+        {
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
-            for (int i = 0; i < dgAgentWechatAccount.RowCount; i++)
+            for (int i = 0; i < dg.RowCount; i++)
             {
                 AgentWechatAccount agentWechatAccount = new AgentWechatAccount();
                 int index = 0;
-                agentWechatAccount.type = "代理商联系人";
-                if (dgAgentWechatAccount.Columns[0].HeaderText.Equals("区县"))
+                agentWechatAccount.type = type;
+                if (dg.Columns[0].HeaderText.Equals("区县"))
                 {
-                    agentWechatAccount.regionName = dgAgentWechatAccount[index++, i].Value.ToString();
-                    agentWechatAccount.type = "直供渠道联系人";
+                    agentWechatAccount.regionName = dg[index++, i].Value.ToString();
+                    agentWechatAccount.branchNo = dg[index++, i].Value.ToString();
+                    agentWechatAccount.branchName = dg[index++, i].Value.ToString();
+                    //agentWechatAccount.type = "直供渠道联系人";
                 }
-                if (dgAgentWechatAccount.Columns[2].HeaderText.Equals("渠道编码"))
+                else if (dg.Columns[0].HeaderText.Equals("代理商编号"))
                 {
-                    agentWechatAccount.type = "非直供渠道联系";
-                }
-                agentWechatAccount.agentNo = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.agentName = dgAgentWechatAccount[index++, i].Value.ToString();
-                if (dgAgentWechatAccount.Columns[2].HeaderText.Equals("渠道编码") || dgAgentWechatAccount.Columns[0].HeaderText.Equals("区县"))
-                {
-                    agentWechatAccount.branchNo = dgAgentWechatAccount[index++, i].Value.ToString();
-                    agentWechatAccount.branchName = dgAgentWechatAccount[index++, i].Value.ToString();
-                }
-                agentWechatAccount.contactEmail = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.contactId = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.contactName = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.contactTel = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.contactWechat = dgAgentWechatAccount[index++, i].Value.ToString();
+                    agentWechatAccount.agentNo = dg[index++, i].Value.ToString();
+                    agentWechatAccount.agentName = dg[index++, i].Value.ToString();
+                    if (dg.Columns[2].HeaderText.Equals("渠道编码") )
+                    {
+                        agentWechatAccount.branchNo = dg[index++, i].Value.ToString();
+                        agentWechatAccount.branchName = dg[index++, i].Value.ToString();
 
-                agentWechatAccount.feeRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.policyRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.performanceRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.studyRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.complainRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.monitorRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.errorRight = dgAgentWechatAccount[index++, i].Value.ToString();
-                agentWechatAccount.contactRight = dgAgentWechatAccount[index++, i].Value.ToString();
+                    }
+                }
+                
+               
+                agentWechatAccount.contactEmail = dg[index++, i].Value.ToString();
+                agentWechatAccount.contactId = dg[index++, i].Value.ToString();
+                agentWechatAccount.contactName = dg[index++, i].Value.ToString();
+                agentWechatAccount.contactTel = dg[index++, i].Value.ToString();
+                agentWechatAccount.contactWechat = dg[index++, i].Value.ToString();
+
+                agentWechatAccount.feeRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.policyRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.performanceRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.studyRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.complainRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.monitorRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.errorRight = dg[index++, i].Value.ToString();
+                agentWechatAccount.contactRight = dg[index++, i].Value.ToString();
 
 
                 if (String.IsNullOrEmpty(agentWechatAccount.branchNo))
@@ -166,14 +250,7 @@ namespace ChinaUnion_Agent.MasterDataForm
                 agentWechatAccountDao.Add(agentWechatAccount);
 
             }
-            worker.ReportProgress(4, "导入联系人信息完成...\r\n");
-           
-           
-
-            //MessageBox.Show("数据上传完毕");
-
         }
-
 
         /// <summary>
         /// 事件: 异步执行完成后 

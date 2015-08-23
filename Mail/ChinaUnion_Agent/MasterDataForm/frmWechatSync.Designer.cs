@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.txtKeyword = new System.Windows.Forms.TextBox();
@@ -37,8 +39,6 @@
             this.btnSync = new System.Windows.Forms.Button();
             this.grpAgentList = new System.Windows.Forms.GroupBox();
             this.dgAgentWechatAccount = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cboType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.grpAgentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).BeginInit();
@@ -60,6 +60,29 @@
             this.groupBox1.Size = new System.Drawing.Size(1016, 56);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // cboType
+            // 
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "全部",
+            "代理商联系人",
+            "直供渠道联系人",
+            "非直供渠道联系人"});
+            this.cboType.Location = new System.Drawing.Point(404, 19);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(171, 20);
+            this.cboType.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(333, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "联系人类型:";
             // 
             // btnExport
             // 
@@ -147,29 +170,6 @@
             this.dgAgentWechatAccount.RowTemplate.Height = 23;
             this.dgAgentWechatAccount.Size = new System.Drawing.Size(1010, 665);
             this.dgAgentWechatAccount.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(333, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "关键字:";
-            // 
-            // cboType
-            // 
-            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboType.FormattingEnabled = true;
-            this.cboType.Items.AddRange(new object[] {
-            "全部",
-            "代理商联系人",
-            "直供渠道联系人",
-            "非直供渠道联系人"});
-            this.cboType.Location = new System.Drawing.Point(377, 19);
-            this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(171, 20);
-            this.cboType.TabIndex = 22;
             // 
             // frmWechatSync
             // 
