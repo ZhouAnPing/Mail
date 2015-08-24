@@ -17,28 +17,35 @@ namespace Wechat
 
             AgentComplianSuggestionDao agentComplianSuggestionDao = new ChinaUnion_DataAccess.AgentComplianSuggestionDao();
             AgentComplianSuggestion agentComplianSuggestion = agentComplianSuggestionDao.Get(Int32.Parse(sequence));
-            this.lblSubject.Text = agentComplianSuggestion.subject;
-            this.lblContent.Text = agentComplianSuggestion.content;
-            this.lblCreateTime.Text = agentComplianSuggestion.createTime;
-
-            if (String.IsNullOrEmpty(agentComplianSuggestion.replyContent))
+            if (agentComplianSuggestion != null)
             {
-               this.lblIsReply.Text= "尚未回复";
-               this.lblIsReply.ForeColor = System.Drawing.Color.Red;
+                this.lblType.Text = agentComplianSuggestion.type + "详情";
+                this.lblSubject.Text = agentComplianSuggestion.subject;
+                this.lblContent.Text = agentComplianSuggestion.content;
+                this.lblCreateTime.Text = agentComplianSuggestion.createTime;
+
+                if (String.IsNullOrEmpty(agentComplianSuggestion.replyContent))
+                {
+                    this.lblIsReply.Text = "尚未回复";
+                    this.lblIsReply.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    this.lblIsReply.Text = "已回复";
+                    this.lblIsReply.ForeColor = System.Drawing.Color.Blue;
+                    agentComplianSuggestion.agentReadtime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                    agentComplianSuggestionDao.updateReadTime(agentComplianSuggestion);
+                }
+
+
+
+                this.lblReplyTime.Text = agentComplianSuggestion.replyTime;
+                this.lblReplyContent.Text = agentComplianSuggestion.replyContent;
             }
             else
             {
-                this.lblIsReply.Text = "已回复";
-                this.lblIsReply.ForeColor = System.Drawing.Color.Blue;
-                agentComplianSuggestion.agentReadtime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-                agentComplianSuggestionDao.updateReadTime(agentComplianSuggestion);
+                this.lblType.Text = "记录不存在";
             }
-           
-
-           
-            this.lblReplyTime.Text = agentComplianSuggestion.replyTime;
-            this.lblReplyContent.Text = agentComplianSuggestion.replyContent;
-            
             
         }
     }

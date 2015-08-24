@@ -111,7 +111,7 @@
             this.groupBox3.Size = new System.Drawing.Size(563, 289);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "投诉建议详情";
+            this.groupBox3.Text = "吐槽建议详情";
             // 
             // txtType
             // 
@@ -176,7 +176,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 12);
             this.label6.TabIndex = 40;
-            this.label6.Text = "投诉建议用户：";
+            this.label6.Text = "吐槽建议用户：";
             // 
             // txtCreatetime
             // 
@@ -299,7 +299,7 @@
             this.groupBox2.Size = new System.Drawing.Size(443, 675);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "投诉建议列表";
+            this.groupBox2.Text = "吐槽建议列表";
             // 
             // dgSuggestion
             // 
@@ -356,7 +356,7 @@
             this.cboType.FormattingEnabled = true;
             this.cboType.Items.AddRange(new object[] {
             "",
-            "投诉",
+            "吐槽",
             "建议"});
             this.cboType.Location = new System.Drawing.Point(324, 27);
             this.cboType.Name = "cboType";
@@ -520,7 +520,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClear);
             this.Name = "frmSuggestionQuery";
-            this.Text = "投诉建议";
+            this.Text = "吐槽建议";
             this.Load += new System.EventHandler(this.frmPolicyPublish_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

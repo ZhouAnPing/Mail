@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO agent_suggestion_feedback (createTime,agentNo,userId,type,subject,content) VALUE (@createTime,@agentNo,@userId,@type,@subject,@content)";
+            string sql = "INSERT INTO agent_suggestion_feedback (createTime,agentNo,userId,type,subject,content,ownerDepartment) VALUE (@createTime,@agentNo,@userId,@type,@subject,@content,@ownerDepartment)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -30,6 +30,7 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@type", entity.type);
                 command.Parameters.AddWithValue("@subject", entity.subject);
                 command.Parameters.AddWithValue("@content", entity.content);
+                command.Parameters.AddWithValue("@ownerDepartment", entity.ownerDepartment);
                
                 return command.ExecuteNonQuery();
             }

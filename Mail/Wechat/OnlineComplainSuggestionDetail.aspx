@@ -12,8 +12,8 @@
     <div>
     <table width="100%"  class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
                         	<tr>
-			                    <td   style="font-size: 16px; color: white; font-weight: bold; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px" bgcolor="#006699">
-			                        	<b>详情</b></td>				
+			                    <td   style="font-size: 16px; color: white; font-weight: bold; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px" bgcolor="#ff6600">
+			                        	<asp:Label ID="lblType" runat="server" Font-Bold="true"></asp:Label></td>				
 							  
 			                </tr> 
 			                <tr>
@@ -74,7 +74,7 @@
         <tr>
 			                    <td  style="font-size: 25px;  color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
 			                        	
-			                        <input type="button" onclick="javascript: window.history.go(-1);"value="<<返回上一页" style="font-size: 25px;  color: white; font-weight: bold;height: 54px; width: 100%;font-size: 16px;background-color:#006699"/>
+			                        <input type="button" onclick="javascript: window.history.go(-1);"value="<<返回上一页" style="font-size: 25px;  color: white; font-weight: bold;height: 54px; width: 100%;font-size: 16px;background-color:#ff6600"/>
 			                        	
 			                    </td>				
 							  

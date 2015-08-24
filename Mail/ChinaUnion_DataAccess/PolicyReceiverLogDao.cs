@@ -65,30 +65,8 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
-        /// <summary> 
-        /// 根据主键查询 
-        /// </summary> 
-        /// <param name="primaryKey"></param> 
-        /// <returns></returns> 
-        //public Agent Get(int primaryKey)
-        //{
-        //    string sql = "SELECT userid,userNickName FROM cimuser where userid=@userid";
-        //    using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
-        //    {
-        //        mycn.Open();
-        //        MySqlCommand command = new MySqlCommand(sql, mycn);
-        //        command.Parameters.AddWithValue("@userid", primaryKey);
-        //        MySqlDataReader reader = command.ExecuteReader();
-        //        Agent userBase = null;
-        //        if (reader.Read())
-        //        {
-        //            userBase = new Agent();
-        //            userBase.UserId = Convert.ToInt32(reader["userid"]);
-        //            userBase.UserNickName = reader["userNickName"] == DBNull.Value ? null : reader["userNickName"].ToString();
-        //        }
-        //        return userBase;
-        //    }
-        //}
+        
+       
         /// <summary> 
         /// 查询集合 
         /// </summary> 
@@ -118,6 +96,61 @@ namespace ChinaUnion_DataAccess
             }
         }
 
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<PolicyReceiverLog> GetList(String subject, String userId, String readTime)
+        {
+            string sql = "SELECT t1.policy_sequence,t1.userId,t1.readtime FROM tb_policy_read_log t1,tb_policy t2,agent_wechat_account t3 ";
+            sql = sql + " where  t1.policy_sequence = t2.sequence and t1.userId = t3.contactId ";
+
+            if (!String.IsNullOrEmpty(subject))
+            {
+                sql = sql + " and ((t2.subject like \"%" + subject + "%\")";
+
+                sql = sql + " or (t2.content like \"%" + subject + "%\"))";
+            }
+            if (!String.IsNullOrEmpty(userId))
+            {
+                sql = sql + " and ((t3.agentNo like \"%" + userId + "%\")";
+                sql = sql + " or (t3.agentName like \"%" + userId + "%\")";
+                sql = sql + " or (t3.contactId like \"%" + userId + "%\")";
+                sql = sql + " or (t3.contactName like \"%" + userId + "%\")";
+                sql = sql + " or (t3.contactWechat like \"%" + userId + "%\")";
+                sql = sql + " or (t3.branchNo like \"%" + userId + "%\")";
+                sql = sql + " or (t3.branchName like \"%" + userId + "%\"))";
+            }
+            if (!String.IsNullOrEmpty(readTime))
+            {
+                sql = sql + " and left(readtime,10)<=\""+ readTime + "\"";
+
+              
+            }
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+               
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<PolicyReceiverLog> list = new List<PolicyReceiverLog>();
+                PolicyReceiverLog policyReceiver = null;
+                while (reader.Read())
+                {
+                    policyReceiver = new PolicyReceiverLog();
+
+                    policyReceiver.policySequence = reader["policy_sequence"] == DBNull.Value ? null : reader["policy_sequence"].ToString();
+                    policyReceiver.userId = reader["userId"] == DBNull.Value ? null : reader["userId"].ToString();
+                    policyReceiver.readtime = reader["readtime"] == DBNull.Value ? null : reader["readtime"].ToString();
+
+                    list.Add(policyReceiver);
+                }
+                return list;
+            }
+        }
 
 
     }

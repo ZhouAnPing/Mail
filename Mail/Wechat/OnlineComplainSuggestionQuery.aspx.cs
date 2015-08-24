@@ -62,15 +62,17 @@ namespace Wechat
                         {
                             agentNo = agentWechatAccount.agentNo;
                         }
-                        String type = "投诉";
+                        String type = "吐槽";
                         if (!String.IsNullOrEmpty(state) && state.Equals("complain"))
                         {
-                            type = "投诉";
+                            type = "吐槽";
+                            this.lblTitle.Text = "我的吐槽记录";
                         }
 
                         if (!String.IsNullOrEmpty(state) && state.Equals("suggestion"))
                         {
                             type = "建议";
+                            this.lblTitle.Text = "我的建议记录";
                         }
 
                         bindDataToGrid("", type, agentNo, returnMessage.UserId);

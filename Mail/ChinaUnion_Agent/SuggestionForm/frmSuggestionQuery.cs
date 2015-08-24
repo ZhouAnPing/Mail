@@ -83,7 +83,7 @@ namespace ChinaUnion_Agent.SuggestionForm
             dgSuggestion.Columns.Add("标题", "标题");
             dgSuggestion.Columns.Add("内容", "内容");
             dgSuggestion.Columns.Add("代理商/门店", "代理商/门店");
-            dgSuggestion.Columns.Add("投诉建议用户", "投诉建议用户");
+            dgSuggestion.Columns.Add("吐槽建议用户", "吐槽建议用户");
             dgSuggestion.Columns.Add("创建时间", "创建时间");
             dgSuggestion.Columns.Add("阅读时间", "阅读时间");
             if (agentComplianSuggestionList != null && agentComplianSuggestionList.Count > 0)
