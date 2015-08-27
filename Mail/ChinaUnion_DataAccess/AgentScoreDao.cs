@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO agent_score (agentNo,agentName,branchNo,branchName,score,dateTime) VALUE (@agentNo,@agentName,@branchNo,@branchName,@score,@dateTime)";
+            string sql = "INSERT INTO agent_score (agentNo,agentName,branchNo,branchName,score,standardScore,dateTime) VALUE (@agentNo,@agentName,@branchNo,@branchName,@score,@standardScore,@dateTime)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -29,6 +29,8 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@branchNo", entity.branchNo);
                 command.Parameters.AddWithValue("@branchName", entity.branchName);
                 command.Parameters.AddWithValue("@score", entity.score);
+                command.Parameters.AddWithValue("@standardScore", entity.standardScore);
+                
                 command.Parameters.AddWithValue("@dateTime", entity.dateTime);
 
                 return command.ExecuteNonQuery();
@@ -77,7 +79,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentScore> GetLatestByKeyword(String keyword, String dateTime)
         {
-            string sql = "SELECT agentNo,agentName,branchNo,branchName,score,dateTime FROM agent_score";
+            string sql = "SELECT agentNo,agentName,branchNo,branchName,score,standardScore,dateTime FROM agent_score";
             sql = sql + " where 1=1";
             if (!String.IsNullOrEmpty(dateTime))
             {
@@ -106,6 +108,8 @@ namespace ChinaUnion_DataAccess
                     agentScore.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
                     agentScore.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
                     agentScore.score = reader["score"] == DBNull.Value ? null : reader["score"].ToString();
+                    agentScore.standardScore = reader["standardScore"] == DBNull.Value ? null : reader["standardScore"].ToString();
+
                     agentScore.dateTime = reader["dateTime"] == DBNull.Value ? null : reader["dateTime"].ToString();
                     list.Add(agentScore);
                 }
@@ -118,7 +122,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<AgentScore> GetListByKeyword(String keyword)
         {
-            string sql = "SELECT agentNo,agentName,branchNo,branchName,score,dateTime FROM agent_score";
+            string sql = "SELECT agentNo,agentName,branchNo,branchName,score,standardScore,dateTime FROM agent_score";
 
             sql = sql + " where 1=1";
             if (!String.IsNullOrEmpty(keyword))
@@ -145,6 +149,8 @@ namespace ChinaUnion_DataAccess
                     agentScore.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
                     agentScore.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
                     agentScore.score = reader["score"] == DBNull.Value ? null : reader["score"].ToString();
+                    agentScore.standardScore = reader["standardScore"] == DBNull.Value ? null : reader["standardScore"].ToString();
+
                     agentScore.dateTime = reader["dateTime"] == DBNull.Value ? null : reader["dateTime"].ToString();
                     list.Add(agentScore);
                 }

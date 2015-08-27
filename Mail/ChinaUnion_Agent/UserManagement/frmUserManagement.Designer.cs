@@ -39,6 +39,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tvMenu = new System.Windows.Forms.TreeView();
             this.dgAssignRight = new System.Windows.Forms.DataGridView();
             this.dgAllRight = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
@@ -184,6 +185,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.tvMenu);
             this.groupBox4.Controls.Add(this.dgAssignRight);
             this.groupBox4.Controls.Add(this.dgAllRight);
             this.groupBox4.Controls.Add(this.label6);
@@ -194,10 +196,19 @@
             this.groupBox4.Controls.Add(this.btnLeft);
             this.groupBox4.Location = new System.Drawing.Point(20, 93);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(583, 287);
+            this.groupBox4.Size = new System.Drawing.Size(583, 319);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "权限分配";
+            // 
+            // tvMenu
+            // 
+            this.tvMenu.CheckBoxes = true;
+            this.tvMenu.FullRowSelect = true;
+            this.tvMenu.Location = new System.Drawing.Point(87, 20);
+            this.tvMenu.Name = "tvMenu";
+            this.tvMenu.Size = new System.Drawing.Size(391, 286);
+            this.tvMenu.TabIndex = 27;
             // 
             // dgAssignRight
             // 
@@ -212,6 +223,7 @@
             this.dgAssignRight.RowTemplate.Height = 23;
             this.dgAssignRight.Size = new System.Drawing.Size(238, 232);
             this.dgAssignRight.TabIndex = 29;
+            this.dgAssignRight.Visible = false;
             // 
             // dgAllRight
             // 
@@ -226,6 +238,7 @@
             this.dgAllRight.RowTemplate.Height = 23;
             this.dgAllRight.Size = new System.Drawing.Size(238, 232);
             this.dgAllRight.TabIndex = 28;
+            this.dgAllRight.Visible = false;
             // 
             // label6
             // 
@@ -235,6 +248,7 @@
             this.label6.Size = new System.Drawing.Size(71, 12);
             this.label6.TabIndex = 27;
             this.label6.Text = "已分配权限:";
+            this.label6.Visible = false;
             // 
             // label5
             // 
@@ -244,6 +258,7 @@
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 26;
             this.label5.Text = "所有权限：";
+            this.label5.Visible = false;
             // 
             // btnRightAll
             // 
@@ -254,6 +269,7 @@
             this.btnRightAll.TabIndex = 25;
             this.btnRightAll.Text = ">>";
             this.btnRightAll.UseVisualStyleBackColor = true;
+            this.btnRightAll.Visible = false;
             this.btnRightAll.Click += new System.EventHandler(this.btnRightAll_Click);
             // 
             // btnRight
@@ -265,6 +281,7 @@
             this.btnRight.TabIndex = 24;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Visible = false;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnLeftAll
@@ -276,6 +293,7 @@
             this.btnLeftAll.TabIndex = 23;
             this.btnLeftAll.Text = "<<";
             this.btnLeftAll.UseVisualStyleBackColor = true;
+            this.btnLeftAll.Visible = false;
             this.btnLeftAll.Click += new System.EventHandler(this.btnLeftAll_Click);
             // 
             // btnLeft
@@ -287,6 +305,7 @@
             this.btnLeft.TabIndex = 22;
             this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Visible = false;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // txtName
@@ -407,6 +426,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dgAssignRight;
         private System.Windows.Forms.DataGridView dgAllRight;
+        private System.Windows.Forms.TreeView tvMenu;
 
     }
 }

@@ -475,15 +475,15 @@ namespace ChinaUnion_Agent
                       
                         CheckChildOpenState(this, frmWechatContactManagement);
                         break;
-                    case "AgentQuery":
+                    case "AgentTypeQuery":
 
-                        MasterDataForm.frmAgentQuery frmAgentManagement = new MasterDataForm.frmAgentQuery();
-                        CheckChildOpenState(this, frmAgentManagement);
+                        MasterDataForm.frmAgentTypeQuery frmAgentTypeQuery = new MasterDataForm.frmAgentTypeQuery();
+                        CheckChildOpenState(this, frmAgentTypeQuery);
                         break;
-                    case "AgentImport":
+                    case "AgentTypeImport":
 
-                        MasterDataForm.frmAgentImport frmAgentImport = new MasterDataForm.frmAgentImport();
-                        CheckChildOpenState(this, frmAgentImport);
+                        MasterDataForm.frmAgentTypeImport frmAgentTypeImport = new MasterDataForm.frmAgentTypeImport();
+                        CheckChildOpenState(this, frmAgentTypeImport);
                         break;
                     case "WechatSync":
 

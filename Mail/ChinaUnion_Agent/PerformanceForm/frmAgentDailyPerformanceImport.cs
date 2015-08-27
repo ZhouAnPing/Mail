@@ -209,7 +209,7 @@ namespace ChinaUnion_Agent.PerformanceForm
 
             //导入直供
             //AgentDailyPerformanceDao agentDailyPerformanceDao = new AgentDailyPerformanceDao();
-            for (int i = 0; i < dgAgentPerformanceNoDirect.RowCount; i++)
+            for (int i = 0; i < dgAgentPerformanceDirect.RowCount; i++)
             {
                 AgentDailyPerformance agentDailyPerformance = new AgentDailyPerformance();
                 agentDailyPerformance.type = "直供渠道";

@@ -55,7 +55,7 @@ namespace ChinaUnion_Agent.ContactUs
                     row.Cells[0].Value = agentContactList[i].agentNo;
                     row.Cells[1].Value = agentContactList[i].agentName;
                     row.Cells[2].Value = agentContactList[i].branchNo;
-                    row.Cells[3].Value = agentContactList[i].contactName;
+                    row.Cells[3].Value = agentContactList[i].branchName;
                     row.Cells[4].Value = agentContactList[i].area;
                     row.Cells[5].Value = agentContactList[i].zone;
                     row.Cells[6].Value = agentContactList[i].contactName;

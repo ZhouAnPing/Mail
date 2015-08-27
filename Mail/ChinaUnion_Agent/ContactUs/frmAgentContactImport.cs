@@ -61,7 +61,7 @@ namespace ChinaUnion_Agent.ContactUs
 
                     for (int i = 0; i < agentContact.Count; i++)
                     {
-                        if (String.IsNullOrEmpty(agentContact[i][0]))
+                        if (String.IsNullOrEmpty(agentContact[i][0]) && String.IsNullOrEmpty(agentContact[i][2]))
                             continue;
                         dgAgentContact.Rows.Add();
                         DataGridViewRow row = dgAgentContact.Rows[i];
@@ -131,12 +131,39 @@ namespace ChinaUnion_Agent.ContactUs
                 agentContact.branchName = dgAgentContact[3, i].Value.ToString();
                 agentContact.area = dgAgentContact[4, i].Value.ToString();
                 agentContact.zone = dgAgentContact[5, i].Value.ToString();
-                agentContact.contactName = dgAgentContact[6, i].Value.ToString();
-                agentContact.contactTel = dgAgentContact[7, i].Value.ToString();
-                agentContact.contactEmail = dgAgentContact[8, i].Value.ToString();
-                
-                agentContactDao.Delete(agentContact.agentNo.Trim(), agentContact.branchNo.Trim());
-                agentContactDao.Add(agentContact);
+
+
+                agentContact.contactName = dgAgentContact[6, i].Value.ToString().Replace("；",";");
+                agentContact.contactTel = dgAgentContact[7, i].Value.ToString().Replace("；", ";");
+                agentContact.contactEmail = dgAgentContact[8, i].Value.ToString().Replace("；", ";");
+
+                String[] contactNames = agentContact.contactName.Split(';');
+                String[] contactTels = agentContact.contactTel.Split(';');
+                String[] contactEmails = agentContact.contactEmail.Split(';');
+                for (int j = 0; j < contactNames.Length; j++)
+                {
+                    String contactName = contactNames[j];
+                    agentContactDao.Delete(agentContact.agentNo.Trim(), agentContact.branchNo.Trim(), contactName);
+                    agentContact.contactName = contactName;
+
+                    if (contactTels.Length >= j + 1)
+                    {
+                        agentContact.contactTel = contactTels[j];
+                    }
+                    else
+                    {
+                        agentContact.contactTel = "";
+                    }
+                    if (contactEmails.Length >= j + 1)
+                    {
+                        agentContact.contactEmail = contactEmails[j];
+                    }
+                    else
+                    {
+                        agentContact.contactEmail = "";
+                    }
+                    agentContactDao.Add(agentContact);
+                }
 
             }
             worker.ReportProgress(4, "导入代理商联系人完成...\r\n");

@@ -1346,4 +1346,237 @@
 2015-08-23 21:30:49,074 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
 2015-08-23 21:31:27,713 [6] INFO  Wechat.BusinessPolicyDetail - sequence=30
 2015-08-23 21:31:27,714 [6] INFO  Wechat.BusinessPolicyDetail - userId=P001
+[Footer]\r\n[Header]\r\n2015-08-27 13:15:46,590 [41] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:15:46,625 [41] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:17:43,294 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:17:43,295 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:17:43,295 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:17:43,299 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:17:43,300 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:17:43,300 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+2015-08-27 13:18:04,421 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:18:04,637 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:18:05,110 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:18:09,468 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:18:09,663 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:18:09,862 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+[Footer]\r\n[Header]\r\n2015-08-27 13:18:32,092 [38] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:18:32,110 [38] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:19:00,348 [41] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:19:00,348 [41] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:19:00,349 [41] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:19:00,350 [41] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:19:00,351 [41] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:19:00,351 [41] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+2015-08-27 13:19:22,314 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:19:22,495 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:19:22,736 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:19:25,483 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:19:25,684 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:19:25,897 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+[Footer]\r\n[Header]\r\n2015-08-27 13:20:11,407 [40] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:20:11,422 [40] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:20:28,433 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:20:28,435 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:20:28,436 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:20:28,438 [40] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:20:28,438 [40] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:20:28,439 [40] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+[Footer]\r\n[Header]\r\n2015-08-27 13:21:21,651 [40] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:21:21,668 [40] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:21:37,058 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:21:37,059 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:21:37,059 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:21:37,060 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:21:37,060 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:21:37,061 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+[Footer]\r\n[Header]\r\n2015-08-27 13:23:21,338 [40] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:23:21,354 [40] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:23:28,758 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:23:28,760 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:23:28,760 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:23:28,762 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:23:28,762 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:23:28,762 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+2015-08-27 13:23:46,303 [40] INFO  Wechat.PerformanceDailyDetailQuery - feeDate=2015-08-26
+2015-08-27 13:23:46,304 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:23:46,304 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchName=东区臧年芬齐河路直供代理点
+2015-08-27 13:23:46,305 [40] INFO  Wechat.PerformanceDailyDetailQuery - type=直供渠道联系人
+2015-08-27 13:23:46,305 [40] INFO  Wechat.PerformanceDailyDetailQuery - feeMonth=2015-08-26
+2015-08-27 13:23:46,305 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:23:50,765 [39] INFO  Wechat.PerformanceDailyDetailQuery - feeDate=2015-08-26
+2015-08-27 13:23:50,765 [39] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:23:50,766 [39] INFO  Wechat.PerformanceDailyDetailQuery - branchName=总计
+2015-08-27 13:23:50,766 [39] INFO  Wechat.PerformanceDailyDetailQuery - type=直供渠道联系人
+2015-08-27 13:23:50,766 [39] INFO  Wechat.PerformanceDailyDetailQuery - feeMonth=2015-08-26
+2015-08-27 13:23:50,766 [39] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:24:16,998 [38] INFO  Wechat.PerformanceDailyDetailQuery - feeDate=2015-08-26
+2015-08-27 13:24:17,355 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:24:17,496 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchName=东区臧年芬齐河路直供代理点
+2015-08-27 13:24:17,882 [38] INFO  Wechat.PerformanceDailyDetailQuery - type=直供渠道联系人
+2015-08-27 13:24:19,825 [38] INFO  Wechat.PerformanceDailyDetailQuery - feeMonth=2015-08-26
+2015-08-27 13:24:20,052 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+[Footer]\r\n[Header]\r\n2015-08-27 13:25:19,332 [38] INFO  Wechat.BusinessPolicyDetail - sequence=
+2015-08-27 13:25:19,348 [38] INFO  Wechat.BusinessPolicyDetail - userId=
+2015-08-27 13:25:25,860 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB6152A2683CF1614DCD
+2015-08-27 13:25:25,862 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:25:25,862 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:25:25,864 [38] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-26
+2015-08-27 13:25:25,864 [38] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 13:25:25,864 [38] INFO  Wechat.PerformanceDailySummaryQuery - type=直供渠道联系人
+2015-08-27 13:25:39,155 [40] INFO  Wechat.PerformanceDailyDetailQuery - feeDate=2015-08-26
+2015-08-27 13:25:39,157 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:25:39,157 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchName=东区臧年芬齐河路直供代理点
+2015-08-27 13:25:39,157 [40] INFO  Wechat.PerformanceDailyDetailQuery - type=直供渠道联系人
+2015-08-27 13:25:39,158 [40] INFO  Wechat.PerformanceDailyDetailQuery - feeMonth=2015-08-26
+2015-08-27 13:25:39,158 [40] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:25:44,701 [38] INFO  Wechat.PerformanceDailyDetailQuery - feeDate=2015-08-26
+2015-08-27 13:25:44,702 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+2015-08-27 13:25:44,703 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchName=总计
+2015-08-27 13:25:44,703 [38] INFO  Wechat.PerformanceDailyDetailQuery - type=直供渠道联系人
+2015-08-27 13:25:44,703 [38] INFO  Wechat.PerformanceDailyDetailQuery - feeMonth=2015-08-26
+2015-08-27 13:25:44,704 [38] INFO  Wechat.PerformanceDailyDetailQuery - branchNo=31b0s1n
+[Footer]\r\n[Header]\r\n2015-08-27 13:29:40,950 [38] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-08-27 13:30:16,594 [40] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-08-27 13:30:43,362 [41] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 13:30:52,315 [41] INFO  Wechat.BusinessPolicyQuery - Exist Record: 
+2015-08-27 13:30:52,316 [41] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 13:30:52,316 [41] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 13:30:58,047 [41] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 13:30:58,048 [41] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 13:30:58,048 [41] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 13:30:58,049 [41] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 13:30:58,464 [41] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 13:30:58,466 [41] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 13:30:58,467 [41] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 13:30:58,468 [41] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 13:30:58,468 [41] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 13:30:58,569 [41] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-27 13:38:48,166 [172] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 13:39:04,654 [172] INFO  Wechat.BusinessPolicyQuery - Exist Record: 
+2015-08-27 13:39:04,655 [172] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 13:39:04,655 [172] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 13:39:07,594 [172] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 13:39:07,595 [172] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 13:39:07,595 [172] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 13:39:07,595 [172] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 13:39:07,794 [172] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 13:39:07,796 [172] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 13:39:07,796 [172] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 13:39:07,796 [172] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 13:39:07,797 [172] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 13:39:07,906 [172] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-27 13:39:12,764 [38] INFO  Wechat.PerformanceMonthSummaryQuery - feeMonth=3B365485DF6EE37B
+2015-08-27 13:39:12,765 [38] INFO  Wechat.PerformanceMonthSummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:39:12,766 [38] INFO  Wechat.PerformanceMonthSummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:39:12,767 [38] INFO  Wechat.PerformanceMonthSummaryQuery - feeMonth=2015-07
+2015-08-27 13:39:12,768 [38] INFO  Wechat.PerformanceMonthSummaryQuery - agentNo=31b0s1n
+2015-08-27 13:39:12,768 [38] INFO  Wechat.PerformanceMonthSummaryQuery - type=直供渠道联系人
+2015-08-27 13:39:15,077 [172] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=
+2015-08-27 13:39:15,078 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=31b0s1n
+2015-08-27 13:39:15,079 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchName=东区臧年芬齐河路直供代理点
+2015-08-27 13:39:15,079 [172] INFO  Wechat.PerformanceMonthDetailQuery - type=直供渠道联系人
+2015-08-27 13:39:15,079 [172] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=2015-07
+2015-08-27 13:39:15,079 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=31b0s1n
+2015-08-27 13:39:18,305 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=
+2015-08-27 13:39:18,306 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+2015-08-27 13:39:18,306 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchName=总计
+2015-08-27 13:39:18,306 [126] INFO  Wechat.PerformanceMonthDetailQuery - type=直供渠道联系人
+2015-08-27 13:39:18,306 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=2015-07
+2015-08-27 13:39:18,307 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+2015-08-27 13:39:47,560 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=
+2015-08-27 13:39:47,560 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+2015-08-27 13:39:47,561 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchName=总计
+2015-08-27 13:39:47,561 [126] INFO  Wechat.PerformanceMonthDetailQuery - type=直供渠道联系人
+2015-08-27 13:39:47,561 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=2015-07
+2015-08-27 13:39:47,562 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+2015-08-27 13:39:58,176 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=
+2015-08-27 13:39:58,176 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+2015-08-27 13:39:58,177 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchName=总计
+2015-08-27 13:39:58,177 [126] INFO  Wechat.PerformanceMonthDetailQuery - type=直供渠道联系人
+2015-08-27 13:39:58,177 [126] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=2015-07
+2015-08-27 13:39:58,177 [126] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=
+[Footer]\r\n[Header]\r\n2015-08-27 13:42:18,998 [172] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 13:42:27,341 [172] INFO  Wechat.BusinessPolicyQuery - Exist Record: 
+2015-08-27 13:42:27,344 [172] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 13:42:27,344 [172] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 13:42:27,453 [172] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 13:42:27,454 [172] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 13:42:27,454 [172] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 13:42:27,454 [172] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 13:42:27,631 [172] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 13:42:27,634 [172] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 13:42:27,634 [172] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 13:42:27,635 [172] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 13:42:27,635 [172] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 13:42:27,746 [172] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-27 13:42:39,018 [41] INFO  Wechat.PerformanceMonthSummaryQuery - feeMonth=3B365485DF6EE37B
+2015-08-27 13:42:39,019 [41] INFO  Wechat.PerformanceMonthSummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 13:42:39,019 [41] INFO  Wechat.PerformanceMonthSummaryQuery - type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:42:39,021 [41] INFO  Wechat.PerformanceMonthSummaryQuery - feeMonth=2015-07
+2015-08-27 13:42:39,021 [41] INFO  Wechat.PerformanceMonthSummaryQuery - agentNo=31b0s1n
+2015-08-27 13:42:39,022 [41] INFO  Wechat.PerformanceMonthSummaryQuery - type=直供渠道联系人
+2015-08-27 13:42:40,833 [172] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=
+2015-08-27 13:42:40,834 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=31b0s1n
+2015-08-27 13:42:40,834 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchName=总计
+2015-08-27 13:42:40,835 [172] INFO  Wechat.PerformanceMonthDetailQuery - type=直供渠道联系人
+2015-08-27 13:42:40,835 [172] INFO  Wechat.PerformanceMonthDetailQuery - feeMonth=2015-07
+2015-08-27 13:42:40,835 [172] INFO  Wechat.PerformanceMonthDetailQuery - branchNo=31b0s1n
+[Footer]\r\n[Header]\r\n2015-08-27 13:47:32,002 [41] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-08-27 13:49:55,088 [136] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-08-27 13:50:54,160 [86] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-08-27 13:54:17,667 [169] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 13:54:32,929 [169] INFO  Wechat.BusinessPolicyQuery - http://112.64.17.80/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo=A17640DB49A36C0B&feeMonth=3B365485DF6EE37B&type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:54:32,930 [169] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 13:54:32,930 [169] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 13:54:33,029 [169] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 13:54:33,029 [169] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 13:54:33,030 [169] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 13:54:33,030 [169] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 13:54:33,218 [169] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 13:54:33,221 [169] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 13:54:33,221 [169] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 13:54:33,222 [169] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 13:54:33,222 [169] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 13:54:33,321 [169] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-27 13:54:37,169 [169] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 13:54:54,426 [169] INFO  Wechat.BusinessPolicyQuery - http://112.64.17.80/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo=A17640DB49A36C0B&feeMonth=3B365485DF6EE37B&type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 13:54:54,427 [169] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 13:54:54,427 [169] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 13:54:54,525 [169] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 13:54:54,525 [169] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 13:54:54,525 [169] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 13:54:54,526 [169] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 13:54:54,630 [169] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 13:54:54,631 [169] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 13:54:54,631 [169] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 13:54:54,631 [169] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 13:54:54,631 [169] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 13:54:54,729 [169] INFO  Wechat.BusinessPolicyQuery - all=
+[Footer]\r\n[Header]\r\n2015-08-27 14:05:18,601 [144] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB61BE37190D6B3D7012
+2015-08-27 14:05:18,602 [108] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-08-27 14:05:18,619 [144] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 14:05:18,621 [144] INFO  Wechat.PerformanceDailySummaryQuery - type=9BE5F924EADD29453D1BDA94C63304110907734027BE07424A26849C4944DC88FDDDB1F9AA3B5F545A568C44FDFDDE48623F04F637247EA13F011E7B51BE2B4CFEF638EBD8BC4906F7C1B9786F876FB84EF44DBE906461B6D4B939043CB7E0D1677136C4C34B173F7385A6B298B89808
+2015-08-27 14:05:22,223 [144] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-25
+2015-08-27 14:05:22,224 [144] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 14:05:22,224 [144] INFO  Wechat.PerformanceDailySummaryQuery - type=%e7%9b%b4%e4%be%9b%e6%b8%a0%e9%81%93%e8%81%94%e7%b3%bb%e4%ba%ba
+2015-08-27 14:05:34,972 [108] INFO  Wechat.BusinessPolicyQuery - http://112.64.17.80/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo=A17640DB49A36C0B&feeMonth=3B365485DF6EE37B&type=8EC83E70C9618118F20300990F3D927934E20A716E3C2327E5E8197439164E9D86397C5CDB3BC0B39C7BE3B40131F6CDEDC750A140350159A52BF076B10225C1
+2015-08-27 14:05:34,973 [108] INFO  Wechat.BusinessPolicyQuery - agentNo: P001
+2015-08-27 14:05:34,974 [108] INFO  Wechat.BusinessPolicyQuery - dateTime: 2015年第三季度
+2015-08-27 14:05:35,088 [108] INFO  Wechat.BusinessPolicyQuery - Exist Record: 1
+2015-08-27 14:05:35,089 [108] INFO  Wechat.BusinessPolicyQuery - code=
+2015-08-27 14:05:35,089 [108] INFO  Wechat.BusinessPolicyQuery - state=
+2015-08-27 14:05:35,089 [108] INFO  Wechat.BusinessPolicyQuery - search_scope=
+2015-08-27 14:05:35,283 [108] INFO  Wechat.BusinessPolicyQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-08-27 14:05:35,285 [108] INFO  Wechat.BusinessPolicyQuery - bindDataToGrid=
+2015-08-27 14:05:35,286 [108] INFO  Wechat.BusinessPolicyQuery - subject=
+2015-08-27 14:05:35,286 [108] INFO  Wechat.BusinessPolicyQuery - type=通知公告
+2015-08-27 14:05:35,286 [108] INFO  Wechat.BusinessPolicyQuery - search_scope=all
+2015-08-27 14:05:35,387 [108] INFO  Wechat.BusinessPolicyQuery - all=
+2015-08-27 14:05:59,981 [172] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=87A256FFCA84EB61BE37190D6B3D7012
+2015-08-27 14:06:02,122 [172] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=A17640DB49A36C0B
+2015-08-27 14:06:02,346 [172] INFO  Wechat.PerformanceDailySummaryQuery - type=9BE5F924EADD29453D1BDA94C63304110907734027BE07424A26849C4944DC88FDDDB1F9AA3B5F545A568C44FDFDDE48623F04F637247EA13F011E7B51BE2B4CFEF638EBD8BC4906F7C1B9786F876FB84EF44DBE906461B6D4B939043CB7E0D1677136C4C34B173F7385A6B298B89808
+2015-08-27 14:06:14,231 [172] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-25
+2015-08-27 14:06:42,420 [172] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
+2015-08-27 14:06:42,421 [172] INFO  Wechat.PerformanceDailySummaryQuery - type=%e7%9b%b4%e4%be%9b%e6%b8%a0%e9%81%93%e8%81%94%e7%b3%bb%e4%ba%ba
 [Footer]\r\n

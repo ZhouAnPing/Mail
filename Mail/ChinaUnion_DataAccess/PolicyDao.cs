@@ -19,7 +19,7 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime, @isValidate, @isDelete, @deleteTime,@toAll)";
+            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime,@validateEndTime, @isValidate, @isDelete, @deleteTime,@toAll)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();

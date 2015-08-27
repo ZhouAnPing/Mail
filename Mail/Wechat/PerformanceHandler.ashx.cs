@@ -102,6 +102,7 @@ namespace Wechat
                 {
                     agentNo = agentWechatAccount.agentNo;
                 }
+                String agentType = agentWechatAccount.type;
 
                 AgentMonthPerformanceDao agentMonthPerformanceDao = new ChinaUnion_DataAccess.AgentMonthPerformanceDao();
                 AgentDailyPerformanceDao agentDailyPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
@@ -132,7 +133,7 @@ namespace Wechat
                 }
 
                 logger.Info("agentNo: " + agentNo);
-                logger.Info("dateTime: " + dateTime);
+                logger.Info("agentType: " + agentType);
                 switch (actionType)
                 {
 
@@ -158,8 +159,8 @@ namespace Wechat
                             {
                                 AgentStar agentStar = agentStarList[i];
                                 sbContent.AppendFormat("\n时间:{0}", agentStar.dateTime).Append("\n");
-                                sbContent.AppendFormat("代理商编号:{0}", agentStar.agentNo).Append("\n");
-                                sbContent.AppendFormat("代理商名称:{0}", agentStar.agentName).Append("\n");
+                               // sbContent.AppendFormat("代理商编号:{0}", agentStar.agentNo).Append("\n");
+                                //sbContent.AppendFormat("代理商名称:{0}", agentStar.agentName).Append("\n");
                                 if (!String.IsNullOrEmpty(agentStar.branchNo))
                                 {
                                     sbContent.AppendFormat("渠道编码:{0}", agentStar.branchNo).Append("\n");
@@ -213,7 +214,8 @@ namespace Wechat
                                     sbContent.AppendFormat("渠道名称:{0}", agentScore.branchName).Append("\n");
                                 }
 
-                                sbContent.AppendFormat("积分:{0}", agentScore.score).Append("\n");
+                                sbContent.AppendFormat("渠道积分:{0}", agentScore.score).Append("\n");
+                                sbContent.AppendFormat("本月得分:{0}", agentScore.standardScore).Append("\n");
 
                             }
                             sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent.ToString());
@@ -232,12 +234,12 @@ namespace Wechat
                         String feeDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
                         AgentDailyPerformance agentDailyPerformance = new AgentDailyPerformance();
 
-                        agentDailyPerformance = agentDailyPerformanceDao.GetSummary(agentNo, feeDate);
+                        agentDailyPerformance = agentDailyPerformanceDao.GetSummary(agentNo, feeDate,agentType);
 
                         if (agentDailyPerformance != null)
                         {
-                            logger.Info("Exist Record: " + agentDailyPerformance.agentName);
-                            sb.Append(this.createNewsMessages(feeDate, agentNo, agentDailyPerformance));
+                            logger.Info("Exist Record: " + agentNo);
+                            sb.Append(this.createNewsMessages(feeDate, agentNo, agentDailyPerformance, agentType));
                         }
                         else
                         {
@@ -249,7 +251,7 @@ namespace Wechat
 
                     case "HistoryDayPerformance":
 
-                        IList<AgentDailyPerformance> agentDailyPerformanceList = agentDailyPerformanceDao.GetAllListDate(agentNo);
+                        IList<AgentDailyPerformance> agentDailyPerformanceList = agentDailyPerformanceDao.GetAllListDate(agentNo, agentType);
                         if (agentDailyPerformanceList == null || agentDailyPerformanceList.Count == 0)
                         {
                             logger.Info("is not Existed Record: ");
@@ -258,7 +260,7 @@ namespace Wechat
                         }
                         else
                         {
-                            sb.Append(this.createNewsMessages(agentNo, agentDailyPerformanceList));
+                            sb.Append(this.createNewsMessages(agentNo, agentDailyPerformanceList, agentType));
                         }
 
                         break;
@@ -269,12 +271,12 @@ namespace Wechat
                         String feeMonth = DateTime.Now.AddMonths(-1).ToString("yyyy-MM");
                         AgentMonthPerformance agentMonthPerformance = new AgentMonthPerformance();
 
-                        agentMonthPerformance = agentMonthPerformanceDao.GetSummary(agentNo, feeMonth);
+                        agentMonthPerformance = agentMonthPerformanceDao.GetSummary(agentNo, feeMonth, agentType);
 
                         if (agentMonthPerformance != null)
                         {
                             logger.Info("Exist Record: " + agentMonthPerformance.agentName);
-                            sb.Append(this.createNewsMessages(feeMonth, agentNo, agentMonthPerformance));
+                            sb.Append(this.createNewsMessages(feeMonth, agentNo, agentMonthPerformance, agentType));
                         }
                         else
                         {
@@ -286,7 +288,7 @@ namespace Wechat
 
                     case "HistoryMonthPerformance":
 
-                        IList<AgentMonthPerformance> agentMonthPerformanceList = agentMonthPerformanceDao.GetAllListMonth(agentNo);
+                        IList<AgentMonthPerformance> agentMonthPerformanceList = agentMonthPerformanceDao.GetAllListMonth(agentNo,agentType);
                         if (agentMonthPerformanceList == null || agentMonthPerformanceList.Count == 0)
                         {
                             logger.Info("is not Existed Record: ");
@@ -295,7 +297,7 @@ namespace Wechat
                         }
                         else
                         {
-                            sb.Append(this.createNewsMessages(agentNo, agentMonthPerformanceList));
+                            sb.Append(this.createNewsMessages(agentNo, agentMonthPerformanceList, agentType));
                         }
 
                         break;
@@ -331,7 +333,7 @@ namespace Wechat
         }
 
 
-        private StringBuilder createNewsMessages(String agentNo, IList<AgentDailyPerformance> agentPerformanceList)
+        private StringBuilder createNewsMessages(String agentNo, IList<AgentDailyPerformance> agentPerformanceList, String type)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -350,11 +352,19 @@ namespace Wechat
                 if (month == 0)
                 {
                     AgentDailyPerformanceDao agentPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
-                    agentPerformance = agentPerformanceDao.GetSummary(agentPerformance.agentNo, agentPerformance.date);
-                    sbDesc.AppendFormat("代理商编号:" + agentPerformance.agentNo + "\n代理商名称:" + agentPerformance.agentName).AppendLine();
+                    agentPerformance = agentPerformanceDao.GetSummary(agentNo, agentPerformance.date,type);
+                    if (!String.IsNullOrEmpty(agentPerformance.agentNo))
+                    {
 
+                        sbDesc.AppendFormat("代理商编号:" + agentPerformance.agentNo + "\n代理商名称:" + agentPerformance.agentName).Append("\n");
+                    }
+                    if (!String.IsNullOrEmpty(agentPerformance.branchNo))
+                    {
 
-                    sbDesc.AppendFormat("\n业绩汇总明细：\n");
+                        sbDesc.AppendFormat("渠道编号:" + agentPerformance.branchNo + "\n渠道名称:" + agentPerformance.branchName).Append("\n");
+                    }
+
+                    sbDesc.AppendLine().AppendFormat("\n业绩汇总明细：\n");
                     int i = 1;
                     for (int j = 1; j <= 100; j++)
                     {
@@ -368,12 +378,16 @@ namespace Wechat
 
                             if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
                             {
-                                if (!feeNameFieldValue.Equals("后付费发展数") && !feeNameFieldValue.Equals("预付费发展数") && !feeNameFieldValue.Equals("总计"))
+                                if (feeNameFieldValue.Contains("后付费发展数") || feeNameFieldValue.Contains("预付费发展数") || feeNameFieldValue.Contains("总计"))
                                 {
-                                    sbDesc.Append("      ");
-                                }
-                                sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                                    sbDesc.Append("  ").AppendFormat("{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
 
+                                }
+                                else
+                                {
+
+                                    sbDesc.Append("  ").AppendFormat("     {0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                                }
                             }
                         }
 
@@ -386,8 +400,8 @@ namespace Wechat
                 }
 
                 sb.Append("<PicUrl>").AppendFormat("<![CDATA[]]>").Append("</PicUrl>");
-
-                String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentPerformance.date, QueryStringEncryption.key));
+               String  tempType = System.Web.HttpUtility.UrlEncode(type);
+               String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}&type={3}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentPerformance.date, QueryStringEncryption.key), QueryStringEncryption.Encode(tempType, QueryStringEncryption.key));
                 logger.Info(url1);
                 sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                 sb.AppendFormat("</item>");
@@ -398,7 +412,7 @@ namespace Wechat
             return sb;
         }
 
-        private StringBuilder createNewsMessages(String feeDate, String agentNo, AgentDailyPerformance agentDailyPerformance)
+        private StringBuilder createNewsMessages(String feeDate, String agentNo, AgentDailyPerformance agentDailyPerformance, String type)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -413,10 +427,18 @@ namespace Wechat
             // sbDesc.AppendFormat("总共处理了：{0}次发票信息\n", agentMonthPerformanceList.Count);
 
 
-            sbDesc.AppendFormat("代理商编号:" + agentDailyPerformance.agentNo + "\n代理商名称:" + agentDailyPerformance.agentName).AppendLine();
+            if (!String.IsNullOrEmpty(agentDailyPerformance.agentNo))
+            {
 
+                sbDesc.AppendFormat("代理商编号:" + agentDailyPerformance.agentNo + "\n代理商名称:" + agentDailyPerformance.agentName).Append("\n");
+            }
+            if (!String.IsNullOrEmpty(agentDailyPerformance.branchNo))
+            {
 
-            sbDesc.AppendFormat("\n业绩汇总明细：\n");
+                sbDesc.AppendFormat("渠道编号:" + agentDailyPerformance.branchNo + "\n渠道名称:" + agentDailyPerformance.branchName).Append("\n");
+            }
+
+            sbDesc.AppendLine().AppendFormat("\n业绩汇总明细：\n");
             int i = 1;
             for (int j = 1; j <= 100; j++)
             {
@@ -430,8 +452,18 @@ namespace Wechat
 
                     if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
                     {
-                        sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                       // sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
 
+                        if (feeNameFieldValue.Contains("后付费发展数") || feeNameFieldValue.Contains("预付费发展数") || feeNameFieldValue.Contains("总计"))
+                        {
+                            sbDesc.Append("  ").AppendFormat("{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+
+                        }
+                        else
+                        {
+
+                            sbDesc.Append("  ").AppendFormat("     {0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                        }
                     }
                 }
 
@@ -443,8 +475,8 @@ namespace Wechat
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
 
-
-            String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeDate, QueryStringEncryption.key));
+            String tempType = System.Web.HttpUtility.UrlEncode(type);
+            String url1 = String.Format("http://{0}/Wechat/PerformanceDailySummaryQuery.aspx?agentNo={1}&feeDate={2}&type={3}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeDate, QueryStringEncryption.key), QueryStringEncryption.Encode(tempType, QueryStringEncryption.key));
             logger.Info(url1);
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");
@@ -454,8 +486,10 @@ namespace Wechat
         }
 
 
-        private StringBuilder createNewsMessages(String agentNo, IList<AgentMonthPerformance> agentMonthPerformanceList)
+        private StringBuilder createNewsMessages(String agentNo, IList<AgentMonthPerformance> agentMonthPerformanceList, String type)
         {
+          
+            //type = UrlEncode
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
             sb.AppendFormat("<ArticleCount>{0}</ArticleCount>", agentMonthPerformanceList.Count);
@@ -473,12 +507,21 @@ namespace Wechat
                 if (month == 0)
                 {
                     AgentMonthPerformanceDao agentMonthPerformanceDao = new ChinaUnion_DataAccess.AgentMonthPerformanceDao();
-                    agentMonthPerformance = agentMonthPerformanceDao.GetSummary(agentMonthPerformance.agentNo, agentMonthPerformance.month);
-                    sbDesc.AppendFormat("代理商编号:" + agentMonthPerformance.agentNo + "\n代理商名称:" + agentMonthPerformance.agentName).AppendLine();
+                    agentMonthPerformance = agentMonthPerformanceDao.GetSummary(agentNo, agentMonthPerformance.month,type);
 
+                    if (!String.IsNullOrEmpty(agentMonthPerformance.agentNo))
+                    {
 
-                    sbDesc.AppendFormat("\n业绩汇总明细：\n");
-                    int i = 1;
+                        sbDesc.AppendFormat("代理商编号:" + agentMonthPerformance.agentNo + "\n代理商名称:" + agentMonthPerformance.agentName).Append("\n");
+                    }
+                    if (!String.IsNullOrEmpty(agentMonthPerformance.branchNo))
+                    {
+
+                        sbDesc.AppendFormat("渠道编号:" + agentMonthPerformance.branchNo + "\n渠道名称:" + agentMonthPerformance.branchName).Append("\n");
+                    }
+
+                    sbDesc.AppendLine().AppendFormat("\n业绩汇总明细：\n");
+                    //int i = 1;
                     for (int j = 1; j <= 100; j++)
                     {
                         FieldInfo feeNameField = agentMonthPerformance.GetType().GetField("feeName" + j);
@@ -491,8 +534,17 @@ namespace Wechat
 
                             if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
                             {
-                                sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                               // sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                                if (feeNameFieldValue.Contains("后付费发展数") || feeNameFieldValue.Contains("预付费发展数") || feeNameFieldValue.Contains("总计"))
+                                {
+                                    sbDesc.Append("  ").AppendFormat("{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
 
+                                }
+                                else
+                                {
+
+                                    sbDesc.Append("  ").AppendFormat("     {0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                                }
                             }
                         }
 
@@ -505,9 +557,10 @@ namespace Wechat
                 }
 
                 sb.Append("<PicUrl>").AppendFormat("<![CDATA[]]>").Append("</PicUrl>");
-
-                String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentMonthPerformance.month, QueryStringEncryption.key));
+                String tempType = System.Web.HttpUtility.UrlEncode(type);
+                String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}&type={3}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(agentMonthPerformance.month, QueryStringEncryption.key), QueryStringEncryption.Encode(tempType, QueryStringEncryption.key));
                 logger.Info(url1);
+               
                 sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                 sb.AppendFormat("</item>");
 
@@ -517,7 +570,7 @@ namespace Wechat
             return sb;
         }
 
-        private StringBuilder createNewsMessages(String feeMonth, String agentNo, AgentMonthPerformance agentMonthPerformance)
+        private StringBuilder createNewsMessages(String feeMonth, String agentNo, AgentMonthPerformance agentMonthPerformance, String type)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -530,13 +583,19 @@ namespace Wechat
             StringBuilder sbDesc = new StringBuilder();
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
             // sbDesc.AppendFormat("总共处理了：{0}次发票信息\n", agentMonthPerformanceList.Count);
+            if (!String.IsNullOrEmpty(agentMonthPerformance.agentNo))
+            {
 
+                sbDesc.AppendFormat("代理商编号:" + agentMonthPerformance.agentNo + "\n代理商名称:" + agentMonthPerformance.agentName).Append("\n");
+            }
+            if (!String.IsNullOrEmpty(agentMonthPerformance.branchNo))
+            {
 
-            sbDesc.AppendFormat("代理商编号:" + agentMonthPerformance.agentNo + "\n代理商名称:" + agentMonthPerformance.agentName).AppendLine();
+                sbDesc.AppendFormat("渠道编号:" + agentMonthPerformance.branchNo + "\n渠道名称:" + agentMonthPerformance.branchName).Append("\n");
+            }
 
-
-            sbDesc.AppendFormat("\n业绩汇总明细：\n");
-            int i = 1;
+            sbDesc.AppendLine().AppendFormat("\n业绩汇总明细：\n");
+           
             for (int j = 1; j <= 100; j++)
             {
                 FieldInfo feeNameField = agentMonthPerformance.GetType().GetField("feeName" + j);
@@ -549,8 +608,17 @@ namespace Wechat
 
                     if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
                     {
-                        sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                       // sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                        if (feeNameFieldValue.Contains("后付费发展数") || feeNameFieldValue.Contains("预付费发展数") || feeNameFieldValue.Contains("总计"))
+                        {
+                            sbDesc.Append("  ").AppendFormat("{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
 
+                        }
+                        else
+                        {
+
+                            sbDesc.Append("  ").AppendFormat("     {0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+                        }
                     }
                 }
 
@@ -562,9 +630,10 @@ namespace Wechat
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
 
-
-            String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            String tempType = System.Web.HttpUtility.UrlEncode(type);
+            String url1 = String.Format("http://{0}/Wechat/PerformanceMonthSummaryQuery.aspx?agentNo={1}&feeMonth={2}&type={3}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key), QueryStringEncryption.Encode(tempType, QueryStringEncryption.key));
             logger.Info(url1);
+            
             sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
             sb.AppendFormat("</item>");
 

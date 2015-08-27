@@ -85,20 +85,37 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public AgentMonthPerformance GetByKey(String month, string branchNo)
+        public AgentMonthPerformance GetByKey(String month, string branchNo,String type)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
-            for (int i = 1; i <= 100; i++)
+            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
             {
-                sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                sb.Clear();
+                sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                }
+
+                sb.Append("month");
+
+                sb.Append(" FROM agent_month_performance  where month=@month");
+                sb.Append("  and branchNo= @branchNo ");
             }
+            else
+            {
+                sb.Clear();
+                sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                }
 
-            sb.Append("month");
+                sb.Append("month");
 
-            sb.Append(" FROM agent_month_performance  where month=@month");
-            sb.Append("  and branchNo= @branchNo ");
-           
+                sb.Append(" FROM agent_month_performance  where month=@month");
+                sb.Append("  and agentNo= @branchNo ");
+            }
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -212,19 +229,36 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentMonthPerformance> GetList(String agentNo,String month)
+        public IList<AgentMonthPerformance> GetList(String agentNo,String month,String type)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
-            for (int i = 1; i <= 100; i++)
+            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
             {
-                sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                sb.Clear();
+                sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                }
+
+                sb.Append("month");
+
+                sb.Append(" FROM agent_month_performance  where branchNo = @agentNo and month=@month");
+  
             }
+            else
+            {
+                sb.Clear();
+                sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
+                }
 
-            sb.Append("month");
+                sb.Append("month");
 
-            sb.Append(" FROM agent_month_performance  where agentNo = @agentNo and month=@month");
-
+                sb.Append(" FROM agent_month_performance  where agentNo = @agentNo and month=@month");
+            }
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -270,31 +304,61 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public AgentMonthPerformance GetSummary(String agentNo, String month)
+        public AgentMonthPerformance GetSummary(String agentNo, String month,String type)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT agentNo,agentName,");
-            for (int i = 1; i <= 100; i++)
+            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
             {
-                sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
+                sb.Clear();
+                sb.Append("SELECT branchNo,branchName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
+                }
+
+                sb.Append("month");
+
+                sb.Append(" FROM agent_month_performance group by branchNo,branchName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",");
+                }
+                sb.Append("month");
+                sb.Append(" having branchNo = @branchNo and month=@month");
             }
-
-            sb.Append("month");
-
-            sb.Append(" FROM agent_month_performance group by agentNo,agentName,");
-            for (int i = 1; i <= 100; i++)
+            else
             {
-                sb.Append("feeName").Append(i.ToString()).Append(",");
+                sb.Clear();
+                sb.Append("SELECT agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
+                }
+
+                sb.Append("month");
+
+                sb.Append(" FROM agent_month_performance group by agentNo,agentName,");
+                for (int i = 1; i <= 100; i++)
+                {
+                    sb.Append("feeName").Append(i.ToString()).Append(",");
+                }
+                sb.Append("month");
+                sb.Append(" having agentNo = @agentNo and month=@month");
             }
-            sb.Append("month");
-            sb.Append(" having agentNo = @agentNo and month=@month");
 
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentNo", agentNo);
+                if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                {
+                    command.Parameters.AddWithValue("@branchNo", agentNo);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@agentNo", agentNo);
+                }
                 command.Parameters.AddWithValue("@month", month);
                 MySqlDataReader reader = command.ExecuteReader();
 
@@ -303,10 +367,17 @@ namespace ChinaUnion_DataAccess
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
 
-                    agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                   agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
-                    //agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
-                    //agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    if (type.Equals("代理商联系人"))
+                    {
+                        agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                        agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+                    }
+                    if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                    {
+                        agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                        agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+
+                    } 
                     agentMonthPerformance.month = reader["month"] == DBNull.Value ? null : reader["month"].ToString();
                     for (int i = 1; i <= 100; i++)
                     {
@@ -328,20 +399,40 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentMonthPerformance> GetAllListMonth(String agentNo)
+        public IList<AgentMonthPerformance> GetAllListMonth(String agentNo,String type)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT distinct agentNo,agentName,month");
-            
+            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+            {
 
-            sb.Append(" FROM agent_month_performance  where agentNo = @agentNo order by month desc");
+                sb.Clear();
+                sb.Append("SELECT distinct branchNo,branchName,month");
 
+                sb.Append(" FROM agent_month_performance  where branchNo = @branchNo order by month desc");
+
+            }
+            else
+            {
+                sb.Clear();
+                sb.Append("SELECT distinct agentNo,agentName,month");
+
+
+                sb.Append(" FROM agent_month_performance  where agentNo = @agentNo order by month desc");
+            }
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                command.Parameters.AddWithValue("@agentNo", agentNo);
+                if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                {
+                    command.Parameters.AddWithValue("@branchNo", agentNo);
+                    
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@agentNo", agentNo);
+                }
                // command.Parameters.AddWithValue("@month", month);
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentMonthPerformance> list = new List<AgentMonthPerformance>();
@@ -350,9 +441,17 @@ namespace ChinaUnion_DataAccess
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
 
-                    agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                    agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
-                   
+                    if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                    {
+                        agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
+                        agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
+                    }
+                    else
+                    {
+                        agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                        agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
+
+                    }                   
                     agentMonthPerformance.month = reader["month"] == DBNull.Value ? null : reader["month"].ToString();
 
                     

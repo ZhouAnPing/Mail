@@ -41,6 +41,7 @@ namespace ChinaUnion_Agent.ScoreGrade
                 dgAgentStar.Columns.Add("渠道编码", "渠道编码");
                 dgAgentStar.Columns.Add("渠道名称", "渠道名称");
                 dgAgentStar.Columns.Add("星级", "星级");
+
                
                
 
@@ -76,6 +77,7 @@ namespace ChinaUnion_Agent.ScoreGrade
                 dgAgentScore.Columns.Add("渠道编码", "渠道编码");
                 dgAgentScore.Columns.Add("渠道名称", "渠道名称");
                 dgAgentScore.Columns.Add("积分", "积分");
+                dgAgentScore.Columns.Add("本月积分", "本月积分");
 
 
 
@@ -89,6 +91,7 @@ namespace ChinaUnion_Agent.ScoreGrade
                     row.Cells[3].Value = agentScoreList[i].branchNo;
                     row.Cells[4].Value = agentScoreList[i].branchName;
                     row.Cells[5].Value = agentScoreList[i].score;
+                    row.Cells[6].Value = agentScoreList[i].standardScore;
                 }
             }
             this.dgAgentScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

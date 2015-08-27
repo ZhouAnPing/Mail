@@ -23,9 +23,10 @@
                                                 ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound" >
                                                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                                 <Columns>  
+                                                    <asp:BoundField DataField="type" HeaderStyle-BorderWidth="1" HeaderText="日期"  ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-Wrap="true" />  
                                                     <asp:BoundField DataField="date" HeaderStyle-BorderWidth="1" HeaderText="日期"  ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-Wrap="true" />         
                                                     <asp:BoundField DataField="branchNo" HeaderStyle-BorderWidth="1"  HeaderText="门店编号"  ReadOnly="True"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" ItemStyle-Wrap="true" />         
-                                                     <asp:HyperLinkField HeaderStyle-BorderWidth="1"  DataNavigateUrlFields="branchNo,branchName,date" DataNavigateUrlFormatString="./PerformanceDailyDetailQuery.aspx?branchNo={0}&branchName={1}&date={2}" DataTextField="branchName" HeaderText="门店名称"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
+                                                     <asp:HyperLinkField HeaderStyle-BorderWidth="1"  DataNavigateUrlFields="branchNo,branchName,date,type" DataNavigateUrlFormatString="./PerformanceDailyDetailQuery.aspx?branchNo={0}&branchName={1}&date={2}&type={3}" DataTextField="branchName" HeaderText="门店名称"  ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black"/>
 
                                                    
                                                     <asp:BoundField HeaderStyle-BorderWidth="1" ItemStyle-Font-Bold="true"  DataField="fee1" HeaderText="后付费发展数" ReadOnly="True"  ItemStyle-HorizontalAlign="right" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />

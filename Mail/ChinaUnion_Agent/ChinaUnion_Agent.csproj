@@ -259,17 +259,17 @@
     <Compile Include="InvoiceForm\frmInvoiceImport.Designer.cs">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterDataForm\frmAgentImport.cs">
+    <Compile Include="MasterDataForm\frmAgentTypeImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterDataForm\frmAgentImport.Designer.cs">
-      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    <Compile Include="MasterDataForm\frmAgentTypeImport.Designer.cs">
+      <DependentUpon>frmAgentTypeImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterDataForm\frmAgentQuery.cs">
+    <Compile Include="MasterDataForm\frmAgentTypeQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterDataForm\frmAgentQuery.Designer.cs">
-      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    <Compile Include="MasterDataForm\frmAgentTypeQuery.Designer.cs">
+      <DependentUpon>frmAgentTypeQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterDataForm\frmWechatQuery.cs">
       <SubType>Form</SubType>
@@ -527,11 +527,11 @@
     <EmbeddedResource Include="InvoiceForm\frmInvoiceImport.resx">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterDataForm\frmAgentImport.resx">
-      <DependentUpon>frmAgentImport.cs</DependentUpon>
+    <EmbeddedResource Include="MasterDataForm\frmAgentTypeImport.resx">
+      <DependentUpon>frmAgentTypeImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterDataForm\frmAgentQuery.resx">
-      <DependentUpon>frmAgentQuery.cs</DependentUpon>
+    <EmbeddedResource Include="MasterDataForm\frmAgentTypeQuery.resx">
+      <DependentUpon>frmAgentTypeQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterDataForm\frmWechatQuery.resx">
       <DependentUpon>frmWechatQuery.cs</DependentUpon>
@@ -627,6 +627,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template\ImportAgentType_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Template\ImportBonus_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

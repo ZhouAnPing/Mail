@@ -99,8 +99,82 @@ namespace ChinaUnion_Agent.UserManagement
             dgAllRight.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
           
             dgAllRight.AutoResizeColumns();
+
+
+
+
+
+            if (menuList != null)
+            {
+                DataTable tb = new DataTable();
+                DataColumn col1 = new DataColumn("id", typeof(String));
+                tb.Columns.Add(col1);
+
+                DataColumn col2 = new DataColumn("name", typeof(String));
+                tb.Columns.Add(col2);
+
+                DataColumn col3 = new DataColumn("parentid", typeof(String));
+                tb.Columns.Add(col3);
+                foreach (MyMenuItem menu in menuList)
+                {
+                    DataRow dr = tb.NewRow();
+                    dr["id"] = menu.Id;
+                    dr["name"] = menu.Menu_Text;
+                    dr["parentid"] = menu.Parent_Id;
+                    tb.Rows.Add(dr);
+                }
+                this.tvMenu.Nodes.Clear();
+
+                DataRow[] rowList = tb.Select("parentid=" + "0");
+                foreach (DataRow row in rowList)
+                {
+                    if (row["id"].ToString().Equals("0000"))
+                    {
+                        continue;
+                    }
+                    //创建新节点
+                    TreeNode node = new TreeNode();
+                    //设置节点的属性
+                    node.Nodes.Clear();
+                   // node.Checked = true;
+                    node.Text = row["name"].ToString();
+                    node.Tag = row["id"].ToString();
+                   //   node.Checked = true;
+                    //node.
+                   
+                        DataRow[] childRowList = tb.Select("parentid=" + node.Tag);
+                        foreach (DataRow childRow in childRowList)
+                        {   //创建新节点
+                            TreeNode childNode = new TreeNode();
+                            //设置节点的属性
+                            childNode.Text = childRow["name"].ToString();
+                            childNode.Tag = childRow["id"].ToString();
+                         //   childNode.Checked = true;
+                            node.Nodes.Add(childNode);
+                        }
+                    
+
+                    tvMenu.Nodes.Add(node);
+                }
+
+
+                tvMenu.ExpandAll();
+
+                tvMenu.SelectedNode = this.tvMenu.TopNode;
+               
+
+
+
+            }
+
+            
+
+
             this.Cursor = Cursors.Default;
         }
+
+        
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             initControl();
@@ -173,10 +247,67 @@ namespace ChinaUnion_Agent.UserManagement
                         dgAssignRight.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         dgAssignRight.AutoResizeColumns();
                     }
+
+
+                    if (user != null)
+                    {
+
+                        unchekAllChildNode();
+                       
+                        foreach (UserRight item in user.userRightList)
+                        {
+                            setChildNodeCheckedState(item.menuId);
+                            
+                        }
+                       
+                    }
+
                 }
             }
             this.Cursor = Cursors.Default;
         }
+
+        //选中节点之后，选中节点的所有子节点
+        private void setChildNodeCheckedState( String  menuId)
+        {
+            foreach (TreeNode node in this.tvMenu.Nodes)
+            {
+                if (node.Tag.Equals(menuId))
+                {
+                    node.Checked = true;
+                    return;
+                }
+                else
+                {
+                    foreach (TreeNode childNode in node.Nodes)
+                    {
+                        if (childNode.Tag.Equals(menuId))
+                        {
+                            childNode.Checked = true;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        //选中节点之后，选中节点的所有子节点
+        private void unchekAllChildNode()
+        {
+            foreach (TreeNode node in this.tvMenu.Nodes)
+            {
+
+                node.Checked = false;
+
+                foreach (TreeNode childNode in node.Nodes)
+                {
+
+                    childNode.Checked = false;
+
+                }
+            }
+        }
+    
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -206,13 +337,48 @@ namespace ChinaUnion_Agent.UserManagement
             userRightDao.DeleteByUserId(user.userId);
             userDao.Delete(user.userId);
             userDao.Add(user);
+
+            foreach (TreeNode node in this.tvMenu.Nodes)
+            {
+
+                if (node.Checked)
+                {
+                    UserRight userRight = new UserRight();
+                    userRight.userId = user.userId;
+                    userRight.menuId = node.Tag.ToString();
+                    userRightDao.Add(userRight);
+                }
+                bool hasInsert = false;
+                foreach (TreeNode childNode in node.Nodes)
+                {
+                   
+                    if (childNode.Checked)
+                    {
+                        UserRight userRight = new UserRight();
+                        userRight.userId = user.userId;
+                        userRight.menuId = childNode.Tag.ToString();
+                        userRightDao.Add(userRight);
+                        if (!childNode.Parent.Checked && !hasInsert)
+                        {
+                            UserRight parentUserRight = new UserRight();
+                            parentUserRight.userId = user.userId;
+                            parentUserRight.menuId = childNode.Parent.Tag.ToString();
+                            userRightDao.Add(parentUserRight);
+                            hasInsert = true;
+                        }
+                    }
+
+                }
+            }
+            /*
+
             foreach (DataGridViewRow row in this.dgAssignRight.Rows)
             {
                 UserRight userRight = new UserRight();
                 userRight.userId = user.userId;
                 userRight.menuId = row.Cells[0].Value.ToString();
                 userRightDao.Add(userRight);
-            }
+            }*/
             this.prepareGrid("");
             MessageBox.Show("操作完成");
 

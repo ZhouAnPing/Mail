@@ -47,6 +47,47 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
+
+        /// <summary> 
+        /// 添加数据 
+        /// </summary> 
+        /// <returns></returns> 
+        public int Update(AgentWechatAccount entity)
+        {
+            string sql = "update agent_wechat_account set agentNo=@agentNo,agentName=@agentName,branchNo=@branchNo,";
+            sql = sql + " branchName=@branchName,regionName=@regionName,contactId=@contactId,contactName=@contactName,";
+            sql = sql + " contactEmail=@contactEmail,contactTel=@contactTel,contactWechat=@contactWechat,";
+            sql = sql + " feeRight=@feeRight,policyRight=@policyRight,performanceRight=@performanceRight,";
+            sql = sql + " studyRight=@studyRight,complainRight=@complainRight,monitorRight=@monitorRight,errorRight=@errorRight,contactRight=@contactRight,type=@type)";
+            sql = sql + " where contactId=@contactId";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentNo", entity.agentNo);
+                command.Parameters.AddWithValue("@agentName", entity.agentName);
+                command.Parameters.AddWithValue("@branchNo", entity.branchNo);
+                command.Parameters.AddWithValue("@branchName", entity.branchName);
+                command.Parameters.AddWithValue("@regionName", entity.regionName);
+                command.Parameters.AddWithValue("@contactId", entity.contactId);
+                command.Parameters.AddWithValue("@contactName", entity.contactName);
+                command.Parameters.AddWithValue("@contactEmail", entity.contactEmail);
+                command.Parameters.AddWithValue("@contactTel", entity.contactTel);
+                command.Parameters.AddWithValue("@contactWechat", entity.contactWechat);
+
+                command.Parameters.AddWithValue("@feeRight", entity.feeRight);
+                command.Parameters.AddWithValue("@policyRight", entity.policyRight);
+                command.Parameters.AddWithValue("@performanceRight", entity.performanceRight);
+                command.Parameters.AddWithValue("@studyRight", entity.studyRight);
+                command.Parameters.AddWithValue("@complainRight", entity.complainRight);
+                command.Parameters.AddWithValue("@monitorRight", entity.monitorRight);
+                command.Parameters.AddWithValue("@errorRight", entity.errorRight);
+                command.Parameters.AddWithValue("@contactRight", entity.contactRight);
+
+                command.Parameters.AddWithValue("@type", entity.type);
+                return command.ExecuteNonQuery();
+            }
+        }
         /// <summary> 
         /// 删除数据 
         /// </summary> 

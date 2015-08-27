@@ -186,6 +186,7 @@ namespace ChinaUnion_Agent.ScoreGrade
                 agentScore.branchNo = dgAgentScore[3, i].Value.ToString();
                 agentScore.branchName = dgAgentScore[4, i].Value.ToString();
                 agentScore.score = dgAgentScore[5, i].Value.ToString();
+                agentScore.standardScore = dgAgentScore[6, i].Value.ToString();
 
                 agentScoreDao.Delete(agentScore.agentNo.Trim(), agentScore.branchNo.Trim(), agentScore.dateTime.Trim());
                 agentScoreDao.Add(agentScore);

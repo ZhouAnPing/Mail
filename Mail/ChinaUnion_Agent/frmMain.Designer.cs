@@ -111,14 +111,14 @@
             // menuItemLog
             // 
             this.menuItemLog.Name = "menuItemLog";
-            this.menuItemLog.Size = new System.Drawing.Size(118, 22);
+            this.menuItemLog.Size = new System.Drawing.Size(152, 22);
             this.menuItemLog.Text = "版本日志";
             this.menuItemLog.Click += new System.EventHandler(this.menuItemLog_Click);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(118, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(152, 22);
             this.menuItemExit.Text = "退出";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -195,12 +195,13 @@
             this.CommissionManagement.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
             this.CommissionManagement.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
             this.CommissionManagement.CustomColors.InnerBorderColor = System.Drawing.Color.SkyBlue;
+            this.CommissionManagement.Expand = true;
             this.CommissionManagement.Font = new System.Drawing.Font("SimSun", 10F);
             this.CommissionManagement.ForeColor = System.Drawing.SystemColors.ControlText;
             this.CommissionManagement.Image = null;
             this.CommissionManagement.Name = "CommissionManagement";
             this.CommissionManagement.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.CommissionManagement.Size = new System.Drawing.Size(134, 40);
+            this.CommissionManagement.Size = new System.Drawing.Size(134, 615);
             this.CommissionManagement.TabIndex = 0;
             this.CommissionManagement.Text = "佣金受理管理";
             this.CommissionManagement.ToolTipTextCloseIcon = null;
@@ -232,7 +233,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(1, 40);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(132, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(132, 575);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -513,13 +514,12 @@
             this.InvoiceManagement.CustomColors.FlatCaptionGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(232)))), ((int)(((byte)(228)))));
             this.InvoiceManagement.CustomColors.FlatCaptionGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(242)))));
             this.InvoiceManagement.CustomColors.InnerBorderColor = System.Drawing.SystemColors.Window;
-            this.InvoiceManagement.Expand = true;
             this.InvoiceManagement.Font = new System.Drawing.Font("SimSun", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.InvoiceManagement.ForeColor = System.Drawing.SystemColors.ControlText;
             this.InvoiceManagement.Image = null;
             this.InvoiceManagement.Name = "InvoiceManagement";
             this.InvoiceManagement.PanelStyle = BSE.Windows.Forms.PanelStyle.Office2007;
-            this.InvoiceManagement.Size = new System.Drawing.Size(134, 615);
+            this.InvoiceManagement.Size = new System.Drawing.Size(134, 40);
             this.InvoiceManagement.TabIndex = 2;
             this.InvoiceManagement.Text = "发票受理管理";
             this.InvoiceManagement.ToolTipTextCloseIcon = null;
@@ -548,7 +548,7 @@
             this.toolStrip3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip3.Location = new System.Drawing.Point(1, 40);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(132, 575);
+            this.toolStrip3.Size = new System.Drawing.Size(132, 0);
             this.toolStrip3.TabIndex = 5;
             this.toolStrip3.Text = "toolStrip3";
             // 

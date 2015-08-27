@@ -38,14 +38,7 @@
                  <br />
                  </td>               
             </tr>
-           <tr>
-                 <td  style="font-size: 16px; width:20%;color:  black; background-color:white; font-weight: bold; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height:normal; vertical-align: top; padding:0px" ><asp:Label ID="Label1" runat="server" Text="涉及部门:"></asp:Label>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDepartment" Display="Dynamic" ErrorMessage="涉及部门不能为空" ForeColor="Red" SetFocusOnError="True"></asp:RequiredFieldValidator>
-                 </td>   
-                 <td   style="font-size: 16px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px">
-                     <asp:TextBox  ID="txtDepartment"  Width="95%" runat="server" Height="30px"></asp:TextBox>
-                 </td>               
-            </tr>
+         
           <tr>
                   <td></td>
                  <td  style="font-size: 16px; color:  black; background-color:white; font-weight: bold; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height:normal; vertical-align: middle; padding:0px" >

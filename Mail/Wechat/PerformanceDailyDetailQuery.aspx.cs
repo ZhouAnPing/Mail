@@ -25,14 +25,16 @@ namespace Wechat
             string feeDate = Request.QueryString["date"];
             string branchNo = Request.QueryString["branchNo"];
             string branchName = Request.QueryString["branchName"];
+            string type = Request.QueryString["type"];
             logger.Info("feeDate=" + Request.QueryString["date"]);
             logger.Info("branchNo=" + Request.QueryString["branchNo"]);
             logger.Info("branchName=" + Request.QueryString["branchName"]);
+            logger.Info("type=" + Request.QueryString["type"]);
             try
             {
                 Request.ContentEncoding = Encoding.UTF8;
-               // feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
-               // agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
+                // feeMonth = QueryStringEncryption.Decode(feeMonth, QueryStringEncryption.key);
+                // agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
                 logger.Info("feeMonth=" + feeDate);
                 logger.Info("branchNo=" + branchNo);
             }
@@ -48,18 +50,19 @@ namespace Wechat
 
             AgentDailyPerformanceDao agentPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
             AgentDailyPerformance agentPerformance = new AgentDailyPerformance();
+
             if (!branchName.Equals("总计"))
             {
-                agentPerformance = agentPerformanceDao.GetByKey(feeDate, branchNo);
+                agentPerformance = agentPerformanceDao.GetByKey(feeDate, branchNo, type);
             }
             else
             {
-                agentPerformance = agentPerformanceDao.GetSummary(branchNo,feeDate);
+                agentPerformance = agentPerformanceDao.GetSummary(branchNo, feeDate, type);
             }
 
             if (agentPerformance != null)
             {
-                if (!branchName.Equals("总计"))
+                if (!String.IsNullOrEmpty(agentPerformance.branchNo))
                 {
                     row = dt.NewRow();
                     row["name"] = "门店编号";

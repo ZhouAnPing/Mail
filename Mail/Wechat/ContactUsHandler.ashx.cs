@@ -125,8 +125,11 @@ namespace Wechat
                                 {
                                     sbContent.AppendFormat("第{0}联系人\n\n", i+1);
                                 }
-                                sbContent.AppendFormat("代理商编号:{0}", agentContact.agentNo).Append("\n");
-                                sbContent.AppendFormat("代理商名称:{0}", agentContact.agentName).Append("\n");
+                                if (!String.IsNullOrEmpty(agentContact.agentNo))
+                                {
+                                    sbContent.AppendFormat("代理商编号:{0}", agentContact.agentNo).Append("\n");
+                                    sbContent.AppendFormat("代理商名称:{0}", agentContact.agentName).Append("\n");
+                                }
                                 if (!String.IsNullOrEmpty(agentContact.branchNo))
                                 {
                                     sbContent.AppendFormat("渠道编码:{0}", agentContact.branchNo).Append("\n");

@@ -357,6 +357,7 @@
             this.cboType.Items.AddRange(new object[] {
             "",
             "吐槽",
+            "点赞",
             "建议"});
             this.cboType.Location = new System.Drawing.Point(324, 27);
             this.cboType.Name = "cboType";

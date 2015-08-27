@@ -43,15 +43,16 @@ namespace ChinaUnion_DataAccess
         /// </summary> 
         /// <param name="primaryKey"></param> 
         /// <returns></returns> 
-        public int Delete(String agentNo, String branchNo)
+        public int Delete(String agentNo, String branchNo, String contactName)
         {
-            string sql = "DELETE FROM agent_contact where agentNo=@agentNo and branchNo=@branchNo";
+            string sql = "DELETE FROM agent_contact where agentNo=@agentNo and branchNo=@branchNo and contactName=@contactName";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", agentNo);
                 command.Parameters.AddWithValue("@branchNo", branchNo);
+                command.Parameters.AddWithValue("@contactName", contactName);
                 return command.ExecuteNonQuery();
             }
         }
@@ -128,6 +129,7 @@ namespace ChinaUnion_DataAccess
             if (!String.IsNullOrEmpty(StringKey))
             {
                 sql = sql + " and ((agentNo = \"" + StringKey + "\")";
+                sql = sql + " or (contactName = \"" + StringKey + "\")";   
                 sql = sql + " or (branchNo = \"" + StringKey + "\"))";                
             }
             sql = sql + " order by agentNo asc,branchNo asc";

@@ -84,7 +84,7 @@ namespace ChinaUnion_Agent
         {
             worker.ReportProgress(2, "系统正在加载数据，请稍后...\r\n");
             MyMenuItemDao menuDao = new MyMenuItemDao();
-            menuTable = menuDao.GetListDT();            
+            menuTable = menuDao.GetListByUserId(this.txtUserName.Text.Trim());//.GetListDT();            
             worker.ReportProgress(2, "系统加载数据完成，正在启动...\r\n");
         }
         /// <summary>

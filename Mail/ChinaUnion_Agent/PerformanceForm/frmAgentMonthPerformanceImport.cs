@@ -205,7 +205,7 @@ namespace ChinaUnion_Agent.PerformanceForm
 
             //导入直供
             //AgentMonthPerformanceDao agentMonthPerformanceDao = new AgentMonthPerformanceDao();
-            for (int i = 0; i < dgAgentPerformanceNoDirect.RowCount; i++)
+            for (int i = 0; i < dgAgentPerformanceDirect.RowCount; i++)
             {
                 AgentMonthPerformance agentMonthPerformance = new AgentMonthPerformance();
                 agentMonthPerformance.type = "直供渠道";

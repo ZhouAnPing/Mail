@@ -349,6 +349,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{3645B160-3B36-4222-BAA6-B4FA94100D4E}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{68FA7FDD-D312-4496-AB36-88A67488F181}</td><td>HTML</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{C776A36F-36C3-418E-BF8E-B93C586BB2DE}</td><td>TEMPLATE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{C24EF10E-E6CC-484D-8161-372A34DA41B2}</td><td>IMAGES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>LinqToExcel.dll</td><td>{6CE48CAF-C6C9-4FDA-B5D1-F6B1F6955DEE}</td><td>INSTALLDIR</td><td>2</td><td/><td>linqtoexcel.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.Web.Services3.dll</td><td>{8EF34A16-045E-4390-9FBB-1A94D3E1C35C}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.web.services3.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MySql.Data.dll</td><td>{0CD70E01-ECB6-4AF3-A734-89CB6E2D4FDA}</td><td>INSTALLDIR</td><td>2</td><td/><td>mysql.data.dll</td><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1159,6 +1160,7 @@
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
 		<row><td>HTML</td><td>INSTALLDIR</td><td>html</td><td/><td>0</td><td/></row>
+		<row><td>IMAGES</td><td>INSTALLDIR</td><td>Images</td><td/><td>0</td><td/></row>
 		<row><td>INSTALLDIR</td><td>MY_PRODUCT_NAME</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
@@ -1890,6 +1892,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>LinqToExcel.dll</td></row>
 		<row><td>AlwaysInstall</td><td>Microsoft.Web.Services3.dll</td></row>
 		<row><td>AlwaysInstall</td><td>MySql.Data.dll</td></row>
@@ -1914,17 +1917,24 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>agentimport.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>AGENTI~1.PNG|agentImport.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\agentImport.png</td><td>1</td><td/></row>
 		<row><td>autoupdater.config</td><td>ISX_DEFAULTCOMPONENT</td><td>AUTOUP~1.CON|Autoupdater.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Autoupdater.config</td><td>1</td><td/></row>
 		<row><td>autoupdater.dll</td><td>AutoUpdater.dll</td><td>AUTOUP~1.DLL|AutoUpdater.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\AutoUpdater.dll</td><td>1</td><td/></row>
 		<row><td>barcodenotification.html</td><td>ISX_DEFAULTCOMPONENT</td><td>BARCOD~1.HTM|BarcodeNotification.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\BarcodeNotification.html</td><td>1</td><td/></row>
+		<row><td>broadcast.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>BROADC~1.PNG|broadcast.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\broadcast.png</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.dll</td><td>BSE.Windows.Forms.dll</td><td>BSEWIN~1.DLL|BSE.Windows.Forms.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.dll</td><td>1</td><td/></row>
 		<row><td>bse.windows.forms.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>BSEWIN~1.XML|BSE.Windows.Forms.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\BSE.Windows.Forms.xml</td><td>1</td><td/></row>
 		<row><td>chinaunion_agent.exe</td><td>ChinaUnion_Agent.exe</td><td>CHINAU~1.EXE|ChinaUnion_Agent.exe</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_Agent.exe</td><td>1</td><td/></row>
 		<row><td>chinaunion_agent.primary_out</td><td>ChinaUnion_Agent.Primary_output</td><td>ChinaUnion_Agent.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;ChinaUnion_Agent&gt;|Built</td><td>3</td><td/></row>
 		<row><td>chinaunion_bo.dll</td><td>ChinaUnion_BO.dll</td><td>CHINAU~1.DLL|ChinaUnion_BO.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_BO.dll</td><td>1</td><td/></row>
 		<row><td>chinaunion_dataaccess.dll</td><td>ChinaUnion_DataAccess.dll</td><td>CHINAU~1.DLL|ChinaUnion_DataAccess.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\ChinaUnion_DataAccess.dll</td><td>1</td><td/></row>
+		<row><td>comments_48.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>COMMEN~1.PNG|comments-48.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\comments-48.png</td><td>1</td><td/></row>
+		<row><td>date_48.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>date-48.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\date-48.png</td><td>1</td><td/></row>
+		<row><td>exit.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>exit.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\exit.png</td><td>1</td><td/></row>
 		<row><td>footer.html</td><td>ISX_DEFAULTCOMPONENT1</td><td>FOOTER~1.HTM|footer.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\html\footer.html</td><td>1</td><td/></row>
 		<row><td>head.html</td><td>ISX_DEFAULTCOMPONENT1</td><td>HEAD~1.HTM|head.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\html\head.html</td><td>1</td><td/></row>
+		<row><td>import.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>import.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\import.png</td><td>1</td><td/></row>
+		<row><td>importagenttype_template.xls</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportAgentType_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportAgentType_Template.xlsx</td><td>1</td><td/></row>
 		<row><td>importbonus_template.xlsx</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportBonus_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportBonus_Template.xlsx</td><td>1</td><td/></row>
 		<row><td>importcommissio_template.xls</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportCommissio_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportCommissio_Template.xlsx</td><td>1</td><td/></row>
 		<row><td>importcontactus_template.xls</td><td>ISX_DEFAULTCOMPONENT2</td><td>IMPORT~1.XLS|ImportContactUs_Template.xlsx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Template\ImportContactUs_Template.xlsx</td><td>1</td><td/></row>
@@ -1941,9 +1951,15 @@
 		<row><td>mysql.data.dll</td><td>MySql.Data.dll</td><td>MYSQLD~1.DLL|MySql.Data.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.9.4\Assemblies\v4.5\MySql.Data.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Newtonsoft.Json.xml</td><td>1</td><td/></row>
+		<row><td>publish.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>publish.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\publish.png</td><td>1</td><td/></row>
+		<row><td>query.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>query.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\query.png</td><td>1</td><td/></row>
 		<row><td>remotion.data.linq.dll</td><td>Remotion.Data.Linq.dll</td><td>REMOTI~1.DLL|Remotion.Data.Linq.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\Remotion.Data.Linq.dll</td><td>1</td><td/></row>
+		<row><td>rss_48.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>rss-48.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\rss-48.png</td><td>1</td><td/></row>
 		<row><td>testerror.png</td><td>ISX_DEFAULTCOMPONENT</td><td>TESTER~1.PNG|TestError.png</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\TestError.png</td><td>1</td><td/></row>
+		<row><td>themes_48.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>THEMES~1.PNG|themes-48.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\themes-48.png</td><td>1</td><td/></row>
 		<row><td>tripolisdialogueadapter.dll</td><td>TripolisDialogueAdapter.dll</td><td>TRIPOL~1.DLL|TripolisDialogueAdapter.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\TripolisDialogueAdapter.dll</td><td>1</td><td/></row>
+		<row><td>wechatquery.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>WECHAT~1.PNG|wechatQuery.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\wechatQuery.png</td><td>1</td><td/></row>
+		<row><td>wechatsync.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>WECHAT~1.PNG|wechatSync.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\Images\wechatSync.png</td><td>1</td><td/></row>
 		<row><td>whc.orderwater.commons.dll</td><td>WHC.OrderWater.Commons.dll</td><td>WHCORD~1.DLL|WHC.OrderWater.Commons.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WHC.OrderWater.Commons.dll</td><td>1</td><td/></row>
 		<row><td>whc.orderwater.commons.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>WHCORD~1.XML|WHC.OrderWater.Commons.xml</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WHC.OrderWater.Commons.xml</td><td>1</td><td/></row>
 		<row><td>winscp.dll</td><td>WinSCP.dll</td><td>WinSCP.dll</td><td>0</td><td/><td/><td>0</td><td>1</td><td>D:\GIT_SourceCode\Mail\ChinaUnion_Agent\bin\Debug\WinSCP.dll</td><td>1</td><td/></row>
@@ -2099,6 +2115,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_2092E42F_B703_4B45_9E4A_A8007633D2DE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_993D216C_880F_4EAE_9101_736C2BEC6A4A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7B00AC16_6C44_43BE_93C2_9A360A046DA6_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_BC8798F3_9CA5_4818_960F_B816EA55B478_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>LinqToExcel.dll</td><td/><td/><td>_1F42DD4A_9DCC_4AA3_BD2A_4DFF3A51B99D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.Web.Services3.dll</td><td/><td/><td>_1CDFA865_B3AB_4F4E_915F_31937E88C6EC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MySql.Data.dll</td><td/><td/><td>_B8D4C0B6_29AA_467B_B26B_850F8F4EDA5E_FILTER</td><td/><td/><td/><td/></row>

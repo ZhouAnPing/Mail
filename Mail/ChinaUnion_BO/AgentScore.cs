@@ -12,6 +12,7 @@ namespace ChinaUnion_BO
         public String branchNo;
         public String branchName;
         public String score;
+        public String standardScore;
         public String dateTime;
         
     }

@@ -66,13 +66,19 @@ namespace Wechat
                         if (!String.IsNullOrEmpty(state) && state.Equals("complain"))
                         {
                             type = "吐槽";
-                            this.lblTitle.Text = "我的吐槽记录";
+                            this.lblTitle.Text = "吐槽历史";
+                        }
+
+                        if (!String.IsNullOrEmpty(state) && state.Equals("appraise"))
+                        {
+                            type = "点赞";
+                            this.lblTitle.Text = "点赞历史";
                         }
 
                         if (!String.IsNullOrEmpty(state) && state.Equals("suggestion"))
                         {
                             type = "建议";
-                            this.lblTitle.Text = "我的建议记录";
+                            this.lblTitle.Text = "建议历史";
                         }
 
                         bindDataToGrid("", type, agentNo, returnMessage.UserId);

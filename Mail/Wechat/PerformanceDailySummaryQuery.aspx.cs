@@ -25,15 +25,20 @@ namespace Wechat
         {
             string feeDate = Request.QueryString["feeDate"];
             string agentNo = Request.QueryString["agentNo"];
+            string type = Request.QueryString["type"];
             logger.Info("feeDate=" + Request.QueryString["feeDate"]);
             logger.Info("agentNo=" + Request.QueryString["agentNo"]);
+            logger.Info("type=" + Request.QueryString["type"]);
             try
             {
                 Request.ContentEncoding = Encoding.UTF8;
                feeDate = QueryStringEncryption.Decode(feeDate, QueryStringEncryption.key);
                 agentNo = QueryStringEncryption.Decode(agentNo, QueryStringEncryption.key);
+                type = QueryStringEncryption.Decode(type, QueryStringEncryption.key);
+                type = System.Web.HttpUtility.UrlDecode(type);
                 logger.Info("feeDate=" + feeDate);
                 logger.Info("agentNo=" + agentNo);
+                logger.Info("type=" + type);
             }
             catch (Exception)
             {
@@ -43,6 +48,7 @@ namespace Wechat
 
             DataTable dt = new DataTable();
             DataRow row = null;
+            dt.Columns.Add("type");
             dt.Columns.Add("date");
             dt.Columns.Add("branchNo");
             dt.Columns.Add("branchName");
@@ -57,25 +63,68 @@ namespace Wechat
             AgentDailyPerformanceDao agentPerformanceDao = new ChinaUnion_DataAccess.AgentDailyPerformanceDao();
 
 
-            IList<AgentDailyPerformance> agentPerformanceList = agentPerformanceDao.GetList(agentNo, feeDate);
+            IList<AgentDailyPerformance> agentPerformanceList = agentPerformanceDao.GetList(agentNo, feeDate,type);
 
-            foreach (AgentDailyPerformance agentPerformance in agentPerformanceList)
+            if (agentPerformanceList != null && agentPerformanceList.Count > 0)
+            {
+                foreach (AgentDailyPerformance agentPerformance in agentPerformanceList)
+                {
+                    row = dt.NewRow();
+                    row["type"] = type;
+                    row["date"] = agentPerformance.date;
+                    row["branchNo"] = agentPerformance.branchNo;
+                    row["branchName"] = agentPerformance.branchName;
+                    row["fee1"] = "0";
+                    row["fee2"] = "0";
+                    for (int j = 1; j <= 100; j++)
+                    {
+                        FieldInfo feeNameField = agentPerformance.GetType().GetField("feeName" + j);
+                        FieldInfo feeField = agentPerformance.GetType().GetField("fee" + j);
+                        if (feeNameField != null && feeField != null)
+                        {
+                            String feeNameFieldValue = feeNameField.GetValue(agentPerformance) == null ? null : feeNameField.GetValue(agentPerformance).ToString();
+
+                            String feeFieldValue = feeField.GetValue(agentPerformance) == null ? null : feeField.GetValue(agentPerformance).ToString();
+
+
+                            if (!String.IsNullOrEmpty(feeFieldValue) && feeNameFieldValue.Equals("后付费发展数"))
+                            {
+                                row["fee1"] = feeFieldValue;
+                            }
+                            if (!String.IsNullOrEmpty(feeFieldValue) && feeNameFieldValue.Equals("预付费发展数"))
+                            {
+                                row["fee2"] = feeFieldValue;
+                            }
+                        }
+                    }
+
+
+
+                    row["summary"] = Int32.Parse(row["fee1"].ToString()) + Int32.Parse(row["fee2"].ToString());
+                    dt.Rows.Add(row);
+                }
+            }
+
+            AgentDailyPerformance agentPerformanceSummary = agentPerformanceDao.GetSummary(agentNo, feeDate, type);
+            if (agentPerformanceSummary != null)
             {
                 row = dt.NewRow();
-                row["date"] = agentPerformance.date;
-                row["branchNo"] = agentPerformance.branchNo;
-                row["branchName"] = agentPerformance.branchName;
+                row["type"] = type;
+                row["date"] = agentPerformanceSummary.date;
+
+                row["branchNo"] = agentNo;
+                row["branchName"] = "总计";
                 row["fee1"] = "0";
                 row["fee2"] = "0";
                 for (int j = 1; j <= 100; j++)
                 {
-                    FieldInfo feeNameField = agentPerformance.GetType().GetField("feeName" + j);
-                    FieldInfo feeField = agentPerformance.GetType().GetField("fee" + j);
+                    FieldInfo feeNameField = agentPerformanceSummary.GetType().GetField("feeName" + j);
+                    FieldInfo feeField = agentPerformanceSummary.GetType().GetField("fee" + j);
                     if (feeNameField != null && feeField != null)
                     {
-                        String feeNameFieldValue = feeNameField.GetValue(agentPerformance) == null ? null : feeNameField.GetValue(agentPerformance).ToString();
+                        String feeNameFieldValue = feeNameField.GetValue(agentPerformanceSummary) == null ? null : feeNameField.GetValue(agentPerformanceSummary).ToString();
 
-                        String feeFieldValue = feeField.GetValue(agentPerformance) == null ? null : feeField.GetValue(agentPerformance).ToString();
+                        String feeFieldValue = feeField.GetValue(agentPerformanceSummary) == null ? null : feeField.GetValue(agentPerformanceSummary).ToString();
 
 
                         if (!String.IsNullOrEmpty(feeFieldValue) && feeNameFieldValue.Equals("后付费发展数"))
@@ -94,40 +143,6 @@ namespace Wechat
                 row["summary"] = Int32.Parse(row["fee1"].ToString()) + Int32.Parse(row["fee2"].ToString());
                 dt.Rows.Add(row);
             }
-
-            AgentDailyPerformance agentPerformanceSummary = agentPerformanceDao.GetSummary(agentNo, feeDate);
-            row = dt.NewRow();
-            row["date"] = agentPerformanceSummary.date;
-            row["branchNo"] = agentPerformanceSummary.agentNo;
-            row["branchName"] = "总计";
-            row["fee1"] = "0";
-            row["fee2"] = "0";
-            for (int j = 1; j <= 100; j++)
-            {
-                FieldInfo feeNameField = agentPerformanceSummary.GetType().GetField("feeName" + j);
-                FieldInfo feeField = agentPerformanceSummary.GetType().GetField("fee" + j);
-                if (feeNameField != null && feeField != null)
-                {
-                    String feeNameFieldValue = feeNameField.GetValue(agentPerformanceSummary) == null ? null : feeNameField.GetValue(agentPerformanceSummary).ToString();
-
-                    String feeFieldValue = feeField.GetValue(agentPerformanceSummary) == null ? null : feeField.GetValue(agentPerformanceSummary).ToString();
-
-
-                    if (!String.IsNullOrEmpty(feeFieldValue) && feeNameFieldValue.Equals("后付费发展数"))
-                    {
-                        row["fee1"] = feeFieldValue;
-                    }
-                    if (!String.IsNullOrEmpty(feeFieldValue) && feeNameFieldValue.Equals("预付费发展数"))
-                    {
-                        row["fee2"] = feeFieldValue;
-                    }
-                }
-            }
-
-
-
-            row["summary"] = Int32.Parse(row["fee1"].ToString()) + Int32.Parse(row["fee2"].ToString());
-            dt.Rows.Add(row);
             this.lblFeeMonth.Text = feeDate + "绩效统计";
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
@@ -141,6 +156,7 @@ namespace Wechat
             //隐藏列
             e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
             e.Row.Cells[1].Attributes.Add("style", "display:none");   //隐藏数据列
+            e.Row.Cells[2].Attributes.Add("style", "display:none");   //隐藏数据列
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -153,13 +169,13 @@ namespace Wechat
                     {
                         e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;");
                         e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;");
-                        e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;");
+                        e.Row.Cells[3].Attributes.Add("style", "color: #000066; font-weight: bold;");
                     }
                     else
                     {
                         e.Row.Cells[0].Attributes.Add("style", "display:none");
                         e.Row.Cells[1].Attributes.Add("style", "display:none");
-                        e.Row.Cells[2].Attributes.Add("style", "display:none;");
+                        e.Row.Cells[3].Attributes.Add("style", "display:none;");
                     }
                 }
 

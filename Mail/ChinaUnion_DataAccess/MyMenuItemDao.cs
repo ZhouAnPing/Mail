@@ -76,6 +76,30 @@ namespace ChinaUnion_DataAccess
             }
         }
 
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public DataTable GetListByUserId(String userId)
+        {
+
+            DataTable tb = new DataTable();
+
+
+            string sql = "SELECT t1.ID,t1.FATHER_ID, t1.MENU_NAME, t1.MENU_TEXT,t1.IMAGE_KEY FROM tb_menu t1,tb_user_right t2 where t1.id= t2.menuId and userId=@userId  order by t1.Id asc";
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@userId", userId);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                tb.Load(reader);
+                return tb;
+            }
+        }
+
       
         /// <summary> 
         /// 查询集合 

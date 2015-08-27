@@ -1,6 +1,6 @@
-﻿namespace ChinaUnion_Agent.MasterDataForm
+﻿namespace ChinaUnion_Agent.ContactUs
 {
-    partial class frmAgentImport
+    partial class frmAgentContactImport
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgentImport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgentContactImport));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.dgAgentContact = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
-            this.txtAgent = new System.Windows.Forms.TextBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentContact)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,29 +59,29 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dgAgent);
+            this.tabPage1.Controls.Add(this.dgAgentContact);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1008, 651);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "代理商信息";
+            this.tabPage1.Text = "联系人信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dgAgent
+            // dgAgentContact
             // 
-            this.dgAgent.AllowUserToAddRows = false;
-            this.dgAgent.AllowUserToDeleteRows = false;
-            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgent.Location = new System.Drawing.Point(3, 3);
-            this.dgAgent.Name = "dgAgent";
-            this.dgAgent.ReadOnly = true;
-            this.dgAgent.RowHeadersWidth = 10;
-            this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(1002, 645);
-            this.dgAgent.TabIndex = 6;
+            this.dgAgentContact.AllowUserToAddRows = false;
+            this.dgAgentContact.AllowUserToDeleteRows = false;
+            this.dgAgentContact.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentContact.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentContact.Location = new System.Drawing.Point(3, 3);
+            this.dgAgentContact.Name = "dgAgentContact";
+            this.dgAgentContact.ReadOnly = true;
+            this.dgAgentContact.RowHeadersWidth = 10;
+            this.dgAgentContact.RowTemplate.Height = 23;
+            this.dgAgentContact.Size = new System.Drawing.Size(1002, 645);
+            this.dgAgentContact.TabIndex = 6;
             // 
             // btnCancel
             // 
@@ -114,7 +114,7 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
             this.panel1.Controls.Add(this.btnSelect);
-            this.panel1.Controls.Add(this.txtAgent);
+            this.panel1.Controls.Add(this.txtContact);
             this.panel1.Controls.Add(this.label2);
             this.panel1.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.panel1.CustomColors.CaptionCloseIcon = System.Drawing.SystemColors.ControlText;
@@ -178,12 +178,12 @@
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelectFile_Click);
             // 
-            // txtAgent
+            // txtContact
             // 
-            this.txtAgent.Location = new System.Drawing.Point(115, 19);
-            this.txtAgent.Name = "txtAgent";
-            this.txtAgent.Size = new System.Drawing.Size(360, 21);
-            this.txtAgent.TabIndex = 6;
+            this.txtContact.Location = new System.Drawing.Point(115, 19);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(360, 21);
+            this.txtContact.TabIndex = 6;
             // 
             // label2
             // 
@@ -192,9 +192,9 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 12);
             this.label2.TabIndex = 5;
-            this.label2.Text = "代理商文件地址：";
+            this.label2.Text = "联系人文件地址：";
             // 
-            // frmAgentImport
+            // frmAgentContactImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -204,15 +204,15 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmAgentImport";
+            this.Name = "frmAgentContactImport";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "佣金导入";
+            this.Text = "联系人导入";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmAgentImport_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentContact)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -222,13 +222,13 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtAgent;
+        private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Button btnSelect;
         private BSE.Windows.Forms.Panel panel1;
         private BSE.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dgAgent;
+        private System.Windows.Forms.DataGridView dgAgentContact;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDownload;

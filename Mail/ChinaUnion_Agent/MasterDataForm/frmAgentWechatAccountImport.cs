@@ -245,9 +245,19 @@ namespace ChinaUnion_Agent.MasterDataForm
 
                 if (String.IsNullOrEmpty(agentWechatAccount.branchNo))
                     agentWechatAccount.branchNo = "";
-
-                agentWechatAccountDao.Delete(agentWechatAccount.contactId);
-                agentWechatAccountDao.Add(agentWechatAccount);
+                AgentWechatAccount tempAgentWechatAccount = agentWechatAccountDao.Get(agentWechatAccount.contactId);
+                if (tempAgentWechatAccount.type.Equals("代理商联系人"))
+                {
+                   // agentWechatAccount.type = 
+                    //agentWechatAccountDao.Update(agentWechatAccount);
+                }
+                else
+                {
+                    agentWechatAccountDao.Delete(agentWechatAccount.contactId);
+                    agentWechatAccountDao.Add(agentWechatAccount);
+                }
+              
+                
 
             }
         }
