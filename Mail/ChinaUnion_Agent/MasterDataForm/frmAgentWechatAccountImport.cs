@@ -201,6 +201,17 @@ namespace ChinaUnion_Agent.MasterDataForm
 
         private void saveGridData(DataGridView dg, String type)
         {
+            ArrayList AgentNoList = new ArrayList();
+            ArrayList WechatNoList = new ArrayList();
+
+            for (int i = 0; i < dgAgentWechatAccount.RowCount; i++)
+            {
+                AgentNoList.Add(dgAgentWechatAccount[4, i].Value.ToString());
+                if (!String.IsNullOrEmpty(dgAgentWechatAccount[7, i].Value.ToString()))
+                {
+                    WechatNoList.Add(dgAgentWechatAccount[7, i].Value.ToString());
+                }
+            }
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
             for (int i = 0; i < dg.RowCount; i++)
             {
@@ -218,15 +229,15 @@ namespace ChinaUnion_Agent.MasterDataForm
                 {
                     agentWechatAccount.agentNo = dg[index++, i].Value.ToString();
                     agentWechatAccount.agentName = dg[index++, i].Value.ToString();
-                    if (dg.Columns[2].HeaderText.Equals("渠道编码") )
+                    if (dg.Columns[2].HeaderText.Equals("渠道编码"))
                     {
                         agentWechatAccount.branchNo = dg[index++, i].Value.ToString();
                         agentWechatAccount.branchName = dg[index++, i].Value.ToString();
 
                     }
                 }
-                
-               
+
+
                 agentWechatAccount.contactEmail = dg[index++, i].Value.ToString();
                 agentWechatAccount.contactId = dg[index++, i].Value.ToString();
                 agentWechatAccount.contactName = dg[index++, i].Value.ToString();
@@ -245,19 +256,19 @@ namespace ChinaUnion_Agent.MasterDataForm
 
                 if (String.IsNullOrEmpty(agentWechatAccount.branchNo))
                     agentWechatAccount.branchNo = "";
-                AgentWechatAccount tempAgentWechatAccount = agentWechatAccountDao.Get(agentWechatAccount.contactId);
-                if (tempAgentWechatAccount.type.Equals("代理商联系人"))
+                if (AgentNoList.Contains(agentWechatAccount.contactId) && !type.Equals("代理商联系人"))
                 {
-                   // agentWechatAccount.type = 
-                    //agentWechatAccountDao.Update(agentWechatAccount);
+                    continue;
                 }
-                else
+                if (WechatNoList.Contains(agentWechatAccount.contactWechat) && !type.Equals("代理商联系人"))
                 {
-                    agentWechatAccountDao.Delete(agentWechatAccount.contactId);
-                    agentWechatAccountDao.Add(agentWechatAccount);
+                    continue;
                 }
-              
-                
+
+                agentWechatAccountDao.Delete(agentWechatAccount.contactId);
+                agentWechatAccountDao.Add(agentWechatAccount);
+
+
 
             }
         }

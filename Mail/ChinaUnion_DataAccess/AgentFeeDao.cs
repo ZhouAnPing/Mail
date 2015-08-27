@@ -19,12 +19,12 @@ namespace ChinaUnion_DataAccess
         {
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("INSERT INTO agent_Fee (agentNo, agentFeeSeq,agentFeeMonth,");
+            sb.Append("INSERT INTO agent_Fee (agentNo,agentName,agentFeeSeq,agentFeeMonth,");
             for(int i=1; i<=100;i++){
                 sb.Append("feeName").Append(i.ToString()).Append(",").Append("fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee,preInvoiceFee) VALUE (@agentNo, @agentFeeSeq,@agentFeeMonth,");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee) VALUE (@agentNo,@agentName, @agentFeeSeq,@agentFeeMonth,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("@feeName").Append(i.ToString()).Append(",").Append("@fee").Append(i.ToString()).Append(",");
@@ -39,6 +39,7 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
               
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
+                command.Parameters.AddWithValue("@agentName", entity.agentName);
                 command.Parameters.AddWithValue("@agentFeeSeq", entity.agentFeeSeq);
 
                 command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
@@ -88,21 +89,21 @@ namespace ChinaUnion_DataAccess
         public AgentFee GetByKey(String agentFeeMonth, string agentNo)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT t1.agentNo, t1.agentFeeSeq,");
+            sb.Append("SELECT t1.agentNo,t1.agentName, t1.agentFeeSeq,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
-            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
-            sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t1.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t1.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment");
+           // sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
-            sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");
+            sb.Append(" FROM agent_Fee t1 where agentFeeMonth=@agentFeeMonth");
 
-            sb.Append("  and t1.agentNo= t2.agentNo ");
+           // sb.Append("  and t1.agentNo= t2.agentNo ");
             sb.Append("  and t1.agentNo= @agentNo ");
-            sb.Append("  and t2.status!='Y'");
+           // sb.Append("  and t2.status!='Y'");
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -116,7 +117,7 @@ namespace ChinaUnion_DataAccess
                 if (reader.Read())
                 {
                     agentFee = new AgentFee();
-
+                    agentFee.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
                     agentFee.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agentFee.agentFeeSeq = reader["agentFeeSeq"] == DBNull.Value ? null : reader["agentFeeSeq"].ToString();
                     agentFee.agentFeeMonth = agentFeeMonth;
@@ -138,9 +139,9 @@ namespace ChinaUnion_DataAccess
 
                     Agent agent = new Agent();
                     agent.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
-                    agent.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
-                    agent.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
-                    agent.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
+                  //  agent.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+                    //agent.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                  //  agent.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
                     agent.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
                     agent.agentTypeComment = reader["agentTypeComment"] == DBNull.Value ? null : reader["agentTypeComment"].ToString();
 
@@ -158,20 +159,20 @@ namespace ChinaUnion_DataAccess
         public IList<AgentFee> GetList(String agentFeeMonth)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT t1.agentNo, t1.agentFeeSeq,");
+            sb.Append("SELECT t1.agentNo,t1.agentName, t1.agentFeeSeq,");
             for (int i = 1; i <= 100; i++)
             {
                 sb.Append("t1.feeName").Append(i.ToString()).Append(",").Append("t1.fee").Append(i.ToString()).Append(",");
             }
 
-            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t2.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
-            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t2.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment,");
-            sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
+            sb.Append("feeTotal,invoiceFee,preInvoiceFee, (select group_concat(distinct t3.agentType separator ';')  from agent_type t3 where t1.agentNo = t3.agentNo and t3.agentFeeMonth=@agentFeeMonth) agentType,");
+            sb.Append("(select group_concat(distinct t4.agentTypeComment separator '<br>') from agent_type_comment t4 , agent_type t5 where t1.agentNo = t5.agentNo and  t4.agentType = t5.agentType and t4.agentFeeMonth=t5.agentFeeMonth and t4.agentFeeMonth=@agentFeeMonth) agentTypeComment");
+           // sb.Append("t2.agentName,t2.contactEmail,t2.contactName,t2.contactTel");
 
-            sb.Append(" FROM agent_Fee t1 , agent t2 where agentFeeMonth=@agentFeeMonth");
+            sb.Append(" FROM agent_Fee t1  where agentFeeMonth=@agentFeeMonth");
 
-            sb.Append("  and t1.agentNo= t2.agentNo ");
-            sb.Append("  and t2.status!='Y'");
+           // sb.Append("  and t1.agentNo= t2.agentNo ");
+          //  sb.Append("  and t2.status!='Y'");
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -184,7 +185,7 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     agentFee = new AgentFee();
-                    
+                    agentFee.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
                     agentFee.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                     agentFee.agentFeeSeq = reader["agentFeeSeq"] == DBNull.Value ? null : reader["agentFeeSeq"].ToString();
 
@@ -206,9 +207,9 @@ namespace ChinaUnion_DataAccess
 
                     Agent agent = new Agent();
                     agent.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
-                    agent.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
-                    agent.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
-                    agent.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
+                    //agent.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
+                   // agent.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
+                    //agent.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
                     agent.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
                     agent.agentTypeComment = reader["agentTypeComment"] == DBNull.Value ? null : reader["agentTypeComment"].ToString();
 

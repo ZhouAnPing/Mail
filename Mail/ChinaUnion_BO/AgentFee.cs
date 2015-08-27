@@ -9,6 +9,7 @@ namespace ChinaUnion_BO
     {
 
         public String agentNo;
+        public String agentName;
         public String agentFeeSeq;
         public String agentFeeMonth;
         public String feeName1;

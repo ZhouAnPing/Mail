@@ -33,11 +33,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgAgentTypeComment = new System.Windows.Forms.DataGridView();
             this.dgAgentType = new System.Windows.Forms.DataGridView();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dgAgent = new System.Windows.Forms.DataGridView();
+            this.splitter2 = new BSE.Windows.Forms.Splitter();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.splitter2 = new BSE.Windows.Forms.Splitter();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
@@ -50,8 +48,6 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentTypeComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentType)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -125,36 +121,18 @@
             this.dgAgentType.Size = new System.Drawing.Size(526, 249);
             this.dgAgentType.TabIndex = 6;
             // 
-            // tabPage1
+            // splitter2
             // 
-            this.tabPage1.Controls.Add(this.dgAgent);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1008, 255);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "代理商信息";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // dgAgent
-            // 
-            this.dgAgent.AllowUserToAddRows = false;
-            this.dgAgent.AllowUserToDeleteRows = false;
-            this.dgAgent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgent.Location = new System.Drawing.Point(3, 3);
-            this.dgAgent.Name = "dgAgent";
-            this.dgAgent.ReadOnly = true;
-            this.dgAgent.RowHeadersWidth = 10;
-            this.dgAgent.RowTemplate.Height = 23;
-            this.dgAgent.Size = new System.Drawing.Size(1002, 249);
-            this.dgAgent.TabIndex = 6;
+            this.splitter2.BackColor = System.Drawing.Color.Transparent;
+            this.splitter2.Location = new System.Drawing.Point(3, 3);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 249);
+            this.splitter2.TabIndex = 7;
+            this.splitter2.TabStop = false;
             // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 457);
@@ -173,15 +151,6 @@
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.Transparent;
-            this.splitter2.Location = new System.Drawing.Point(3, 3);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 249);
-            this.splitter2.TabIndex = 7;
-            this.splitter2.TabStop = false;
             // 
             // splitter1
             // 
@@ -303,8 +272,6 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentTypeComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentType)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgent)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -326,8 +293,6 @@
         private System.Windows.Forms.DataGridView dgAgentTypeComment;
         private System.Windows.Forms.DataGridView dgAgentType;
         private BSE.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dgAgent;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnExport;

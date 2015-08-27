@@ -228,7 +228,36 @@ namespace Wechat
                             sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "发票支付还未受理，请稍后!\n\n");
                         }
                         break;
+                    default:
 
+                        if (!Regex.IsMatch(wechatMessage.Content, "((20[0-9][0-9])|(19[0-9][0-9]))-((0[1-9])|(1[0-2]))"))
+                        {
+                            sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "请输入\"yyyy-mm\"查询某月佣金，支付结算和红包,例如:\"" + DateTime.Now.ToString("yyyy-MM") + "\"查询" + DateTime.Now.ToString("yyyy年MM月") + "佣金\n\n");
+                        }
+                        else
+                        {
+                            feeMonth = wechatMessage.Content;
+                            agentFeeDao = new AgentFeeDao();
+                            agentFee = agentFeeDao.GetByKey(feeMonth, wechatMessage.FromUserName);
+
+                             agentBonusDao = new AgentBonusDao();
+                             feeMonthBonus = feeMonth.Replace("-", "");
+                             agentBonus = agentBonusDao.GetByKey(feeMonthBonus, agentNo);
+
+                             agentInvoicePaymentDao = new InvoicePaymentDao();
+                            String feeMonthInvoice = feeMonth.Replace("-", "");
+                             agentInvoicePaymentList = agentInvoicePaymentDao.GetList(agentNo, null, feeMonthInvoice, null);
+
+
+
+
+                             sb.Append(this.createAllNewsMessages(feeMonth, wechatMessage.FromUserName, agentFee, agentBonus, agentInvoicePaymentList));
+
+                          
+                        }
+
+                        break;
 
                    
                 }
@@ -260,6 +289,134 @@ namespace Wechat
                 return false;
             }
         }
+
+        private StringBuilder createAllNewsMessages(String feeMonth, String agentNo, AgentFee agentFee, AgentBonus agentBonus, IList<InvoicePayment> agentInvoicePaymentList)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
+            sb.AppendFormat("<ArticleCount>1</ArticleCount>");
+            sb.AppendFormat("<Articles>");
+
+            sb.AppendFormat("<item>");
+            sb.Append("<Title>").AppendFormat("{0}佣金、支付结算和红包结果", feeMonth).Append("</Title>");
+
+            StringBuilder sbDesc = new StringBuilder();
+            if (agentFee != null)
+            {
+
+                sbDesc.AppendFormat("告知单编号：{0}\n", agentFee.agentFeeSeq);
+                sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
+                sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agentName);
+                sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
+
+                // sb1.AppendFormat("佣金\n\n");
+
+                sbDesc.AppendFormat("佣金明细：\n");
+                int i = 1;
+                for (int j = 1; j <= 100; j++)
+                {
+                    FieldInfo feeNameField = agentFee.GetType().GetField("feeName" + j);
+                    FieldInfo feeField = agentFee.GetType().GetField("fee" + j);
+                    if (feeNameField != null && feeField != null)
+                    {
+                        String feeNameFieldValue = feeNameField.GetValue(agentFee) == null ? null : feeNameField.GetValue(agentFee).ToString();
+
+                        String feeFieldValue = feeField.GetValue(agentFee) == null ? null : feeField.GetValue(agentFee).ToString();
+
+                        if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+                        {
+                            sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+
+                        }
+                    }
+
+
+                }
+                sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "佣金总计").Append(" ").AppendFormat("{0}\n", agentFee.feeTotal);
+                sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", "过网开票金额").Append(" ").AppendFormat("{0}\n", agentFee.preInvoiceFee);
+
+
+
+
+                char[] separator = "<br>".ToCharArray();
+
+                if (!String.IsNullOrEmpty(agentFee.agent.agentTypeComment))
+                {
+                    sbDesc.AppendFormat("\n本月佣金说明：\n");
+                    string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    for (int count = 0; count < agentTypeCommentList.Length; count++)
+                    {
+                        sbDesc.Append("        ").Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
+                    }
+                }
+               
+            }
+            else
+            {
+                sbDesc.AppendFormat("没有发布佣金.\n");
+            }
+            sbDesc.AppendLine();
+            ///支付结算
+            if (agentInvoicePaymentList != null && agentInvoicePaymentList.Count > 0)
+            {
+                //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
+                sbDesc.AppendFormat("总共处理了：{0}次支付结算信息\n", agentInvoicePaymentList.Count);
+                foreach (InvoicePayment agentInvoicePayment in agentInvoicePaymentList)
+                {
+                    sbDesc.AppendFormat("\n处理时间：" + agentInvoicePayment.processTime + "\n发票金额：" + agentInvoicePayment.invoiceFee + "\n内容：" + agentInvoicePayment.content + "\n发票类型：" + agentInvoicePayment.invoiceType + "\n付款状态：" + agentInvoicePayment.payStatus).AppendLine();
+
+                }
+                
+            }
+            else
+            {
+                sbDesc.AppendFormat("没有发布支付结算信息.\n");
+            }
+            sbDesc.AppendLine();
+            ///红包
+            if (agentBonus != null)
+            {
+                sbDesc.AppendFormat("红包明细：\n");
+                int i = 1;
+                for (int j = 1; j <= 100; j++)
+                {
+                    FieldInfo feeNameField = agentBonus.GetType().GetField("feeName" + j);
+                    FieldInfo feeField = agentBonus.GetType().GetField("fee" + j);
+                    if (feeNameField != null && feeField != null)
+                    {
+                        String feeNameFieldValue = feeNameField.GetValue(agentBonus) == null ? null : feeNameField.GetValue(agentBonus).ToString();
+
+                        String feeFieldValue = feeField.GetValue(agentBonus) == null ? null : feeField.GetValue(agentBonus).ToString();
+
+                        if (!String.IsNullOrEmpty(feeFieldValue) && !String.IsNullOrWhiteSpace(feeFieldValue))
+                        {
+                            sbDesc.Append("  ").Append(i++).AppendFormat(".{0}", feeNameFieldValue).Append(" ").AppendFormat("{0}\n", feeFieldValue);
+
+                        }
+                    }
+
+
+                }
+            }
+            else
+            {
+                sbDesc.AppendFormat("没有发布红包信息.\n");
+            }
+           // sbDesc.AppendLine();
+
+            sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
+
+
+
+            String url1 = String.Format("http://{0}/Wechat/AgentFeeQuery.aspx?agentNo={1}&feeMonth={2}", Properties.Settings.Default.Host, QueryStringEncryption.Encode(agentNo, QueryStringEncryption.key), QueryStringEncryption.Encode(feeMonth, QueryStringEncryption.key));
+            logger.Info(url1);
+            sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
+            sb.AppendFormat("</item>");
+
+            sb.AppendFormat("</Articles>");
+            return sb;
+        }
+
         private StringBuilder createPaymentNewsMessages(String feeMonth, String agentNo, IList<InvoicePayment> agentInvoicePaymentList)
         {
             StringBuilder sb = new StringBuilder();
@@ -306,7 +463,7 @@ namespace Wechat
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);
             sbDesc.AppendFormat("告知单编号：{0}\n", agentFee.agentFeeSeq);
             sbDesc.AppendFormat("合作伙伴编号：{0}\n", agentFee.agentNo);
-            sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agent.contactName);
+            sbDesc.AppendFormat("合作伙伴名字：{0}\n", agentFee.agentName);
             sbDesc.AppendFormat("渠道类型：{0}\n", agentFee.agent.agentType);
 
             // sb1.AppendFormat("佣金\n\n");

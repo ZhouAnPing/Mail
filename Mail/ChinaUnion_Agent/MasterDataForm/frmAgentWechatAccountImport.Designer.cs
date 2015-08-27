@@ -32,26 +32,27 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgAgentWechatAccount = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgAgentWechatAccountNoDirect = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgAgentWechatAccountDirect = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
             this.splitter1 = new BSE.Windows.Forms.Splitter();
             this.panel1 = new BSE.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dgAgentWechatAccountNoDirect = new System.Windows.Forms.DataGridView();
-            this.dgAgentWechatAccountDirect = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).BeginInit();
-            this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountNoDirect)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountDirect)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -93,6 +94,58 @@
             this.dgAgentWechatAccount.Size = new System.Drawing.Size(1002, 645);
             this.dgAgentWechatAccount.TabIndex = 6;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dgAgentWechatAccountNoDirect);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1008, 651);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "非直供渠道联系信息";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgAgentWechatAccountNoDirect
+            // 
+            this.dgAgentWechatAccountNoDirect.AllowUserToAddRows = false;
+            this.dgAgentWechatAccountNoDirect.AllowUserToDeleteRows = false;
+            this.dgAgentWechatAccountNoDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentWechatAccountNoDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentWechatAccountNoDirect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentWechatAccountNoDirect.Location = new System.Drawing.Point(3, 3);
+            this.dgAgentWechatAccountNoDirect.Name = "dgAgentWechatAccountNoDirect";
+            this.dgAgentWechatAccountNoDirect.ReadOnly = true;
+            this.dgAgentWechatAccountNoDirect.RowHeadersWidth = 10;
+            this.dgAgentWechatAccountNoDirect.RowTemplate.Height = 23;
+            this.dgAgentWechatAccountNoDirect.Size = new System.Drawing.Size(1002, 645);
+            this.dgAgentWechatAccountNoDirect.TabIndex = 7;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dgAgentWechatAccountDirect);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1008, 651);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "直供渠道联系信息";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dgAgentWechatAccountDirect
+            // 
+            this.dgAgentWechatAccountDirect.AllowUserToAddRows = false;
+            this.dgAgentWechatAccountDirect.AllowUserToDeleteRows = false;
+            this.dgAgentWechatAccountDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
+            this.dgAgentWechatAccountDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentWechatAccountDirect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAgentWechatAccountDirect.Location = new System.Drawing.Point(3, 3);
+            this.dgAgentWechatAccountDirect.Name = "dgAgentWechatAccountDirect";
+            this.dgAgentWechatAccountDirect.ReadOnly = true;
+            this.dgAgentWechatAccountDirect.RowHeadersWidth = 10;
+            this.dgAgentWechatAccountDirect.RowTemplate.Height = 23;
+            this.dgAgentWechatAccountDirect.Size = new System.Drawing.Size(1002, 645);
+            this.dgAgentWechatAccountDirect.TabIndex = 7;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -120,6 +173,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
@@ -152,6 +206,17 @@
             this.panel1.ToolTipTextCloseIcon = null;
             this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.panel1.ToolTipTextExpandIconPanelExpanded = null;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(64, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(662, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "备注：微信号，用户编号，电话，邮箱不可重复;用户编号是必填项；电话，邮箱和微信号三者至少一项不能为空！";
             // 
             // btnDownload
             // 
@@ -204,58 +269,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "文件地址：";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.dgAgentWechatAccountNoDirect);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1008, 651);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "非直供渠道联系信息";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.dgAgentWechatAccountDirect);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1008, 651);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "直供渠道联系信息";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // dgAgentWechatAccountNoDirect
-            // 
-            this.dgAgentWechatAccountNoDirect.AllowUserToAddRows = false;
-            this.dgAgentWechatAccountNoDirect.AllowUserToDeleteRows = false;
-            this.dgAgentWechatAccountNoDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgentWechatAccountNoDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgentWechatAccountNoDirect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgentWechatAccountNoDirect.Location = new System.Drawing.Point(3, 3);
-            this.dgAgentWechatAccountNoDirect.Name = "dgAgentWechatAccountNoDirect";
-            this.dgAgentWechatAccountNoDirect.ReadOnly = true;
-            this.dgAgentWechatAccountNoDirect.RowHeadersWidth = 10;
-            this.dgAgentWechatAccountNoDirect.RowTemplate.Height = 23;
-            this.dgAgentWechatAccountNoDirect.Size = new System.Drawing.Size(1002, 645);
-            this.dgAgentWechatAccountNoDirect.TabIndex = 7;
-            // 
-            // dgAgentWechatAccountDirect
-            // 
-            this.dgAgentWechatAccountDirect.AllowUserToAddRows = false;
-            this.dgAgentWechatAccountDirect.AllowUserToDeleteRows = false;
-            this.dgAgentWechatAccountDirect.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
-            this.dgAgentWechatAccountDirect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAgentWechatAccountDirect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgAgentWechatAccountDirect.Location = new System.Drawing.Point(3, 3);
-            this.dgAgentWechatAccountDirect.Name = "dgAgentWechatAccountDirect";
-            this.dgAgentWechatAccountDirect.ReadOnly = true;
-            this.dgAgentWechatAccountDirect.RowHeadersWidth = 10;
-            this.dgAgentWechatAccountDirect.RowTemplate.Height = 23;
-            this.dgAgentWechatAccountDirect.Size = new System.Drawing.Size(1002, 645);
-            this.dgAgentWechatAccountDirect.TabIndex = 7;
-            // 
             // frmAgentWechatAccountImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -275,12 +288,12 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountNoDirect)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountDirect)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountNoDirect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccountDirect)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -302,6 +315,7 @@
         private System.Windows.Forms.DataGridView dgAgentWechatAccountNoDirect;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dgAgentWechatAccountDirect;
+        private System.Windows.Forms.Label label1;
 
     }
 }

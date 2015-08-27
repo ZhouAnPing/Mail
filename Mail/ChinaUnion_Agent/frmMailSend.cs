@@ -45,6 +45,8 @@ namespace ChinaUnion_Agent
             {
                 dgAgentFee.Columns.Add(column.Name, column.Name);
             }
+            dgAgentFee.Columns["联系人邮件"].Visible = false;
+            dgAgentFee.Columns["联系人名称"].Visible = false;
 
             for (int i = 0; i < dgvTemp.Rows.Count; i++)
             {

@@ -146,6 +146,7 @@ namespace ChinaUnion_Agent
                 AgentFee agentFee = new AgentFee();
                 agentFee.agentFeeMonth = this.dtFeeMonth.Value.ToString("yyyy-MM");
                 agentFee.agentNo = dgAgentFee[0, i].Value.ToString();
+                //agentFee.a = dgAgentFee[0, i].Value.ToString();
                 agentFee.agentFeeSeq = agentFee.agentNo + this.dtFeeMonth.Value.ToString("yyyyMM") + String.Format("{0:D5}", i+1);
                 agentFee.feeTotal = dgAgentFee[dgAgentFee.Columns.Count - 3, i].Value.ToString();
                 agentFee.invoiceFee = dgAgentFee[dgAgentFee.Columns.Count - 2, i].Value.ToString();

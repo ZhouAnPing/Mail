@@ -66,7 +66,7 @@ namespace Wechat
             }
 
             this.lblAgentComment.Text = sbDesc.ToString(); ;
-            this.lblAgentName.Text = agentFee.agent.agentName;
+            this.lblAgentName.Text = agentFee.agentName;
             this.lblAgentNo.Text = agentFee.agentNo;
             this.lblAgentType.Text = agentFee.agent.agentType;
             this.lblFeeMonth.Text = agentFee.agentFeeMonth;

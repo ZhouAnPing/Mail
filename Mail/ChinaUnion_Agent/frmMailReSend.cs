@@ -70,7 +70,8 @@ namespace ChinaUnion_Agent
                 this.dgAgentFee.Columns.Add("联系人名称", "联系人名称");
                 this.dgAgentFee.Columns.Add("告知单编号", "告知单编号");
 
-
+                dgAgentFee.Columns["联系人邮件"].Visible = false;
+                dgAgentFee.Columns["联系人名称"].Visible = false;
 
                 for (int i = 0; i < agentFeeList.Count; i++)
                 {
