@@ -47,6 +47,24 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
+          /// <summary> 
+        /// 添加数据 
+        /// </summary> 
+        /// <returns></returns> 
+        public int UpdateWechatImportStatus(AgentWechatAccount entity)
+        {
+            string sql = "update agent_wechat_account set wechatImportStatus=@wechatImportStatus";
+            sql = sql + " where contactId=@contactId";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@wechatImportStatus", entity.wechatImportStatus);
+                command.Parameters.AddWithValue("@contactId", entity.contactId);
+                
+                return command.ExecuteNonQuery();
+            }
+        }
 
         /// <summary> 
         /// 添加数据 
@@ -229,27 +247,27 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     agentContact = new AgentWechatAccount();
-                    agentContact.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    agentContact.type = reader["type"] == DBNull.Value ? "" : reader["type"].ToString();
 
-                    agentContact.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                    agentContact.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
-                    agentContact.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
-                    agentContact.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
-                    agentContact.regionName = reader["regionName"] == DBNull.Value ? null : reader["regionName"].ToString();
-                    agentContact.contactId = reader["contactId"] == DBNull.Value ? null : reader["contactId"].ToString();
+                    agentContact.agentNo = reader["agentNo"] == DBNull.Value ? "" : reader["agentNo"].ToString();
+                    agentContact.agentName = reader["agentName"] == DBNull.Value ? "" : reader["agentName"].ToString();
+                    agentContact.branchNo = reader["branchNo"] == DBNull.Value ? "" : reader["branchNo"].ToString();
+                    agentContact.branchName = reader["branchName"] == DBNull.Value ? "" : reader["branchName"].ToString();
+                    agentContact.regionName = reader["regionName"] == DBNull.Value ? "" : reader["regionName"].ToString();
+                    agentContact.contactId = reader["contactId"] == DBNull.Value ? "" : reader["contactId"].ToString();
 
-                    agentContact.contactEmail = reader["contactEmail"] == DBNull.Value ? null : reader["contactEmail"].ToString();
-                    agentContact.contactTel = reader["contactTel"] == DBNull.Value ? null : reader["contactTel"].ToString();
-                    agentContact.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
-                    agentContact.contactWechat = reader["contactWechat"] == DBNull.Value ? null : reader["contactWechat"].ToString();
-                    agentContact.feeRight = reader["feeRight"] == DBNull.Value ? null : reader["feeRight"].ToString();
-                    agentContact.policyRight = reader["policyRight"] == DBNull.Value ? null : reader["policyRight"].ToString();
-                    agentContact.performanceRight = reader["performanceRight"] == DBNull.Value ? null : reader["performanceRight"].ToString();
-                    agentContact.studyRight = reader["studyRight"] == DBNull.Value ? null : reader["studyRight"].ToString();
-                    agentContact.complainRight = reader["complainRight"] == DBNull.Value ? null : reader["complainRight"].ToString();
-                    agentContact.monitorRight = reader["monitorRight"] == DBNull.Value ? null : reader["monitorRight"].ToString();
-                    agentContact.errorRight = reader["errorRight"] == DBNull.Value ? null : reader["errorRight"].ToString();
-                    agentContact.contactRight = reader["contactRight"] == DBNull.Value ? null : reader["contactRight"].ToString();
+                    agentContact.contactEmail = reader["contactEmail"] == DBNull.Value ? "" : reader["contactEmail"].ToString();
+                    agentContact.contactTel = reader["contactTel"] == DBNull.Value ? "" : reader["contactTel"].ToString();
+                    agentContact.contactName = reader["contactName"] == DBNull.Value ? "" : reader["contactName"].ToString();
+                    agentContact.contactWechat = reader["contactWechat"] == DBNull.Value ? "" : reader["contactWechat"].ToString();
+                    agentContact.feeRight = reader["feeRight"] == DBNull.Value ? "" : reader["feeRight"].ToString();
+                    agentContact.policyRight = reader["policyRight"] == DBNull.Value ? "" : reader["policyRight"].ToString();
+                    agentContact.performanceRight = reader["performanceRight"] == DBNull.Value ? "" : reader["performanceRight"].ToString();
+                    agentContact.studyRight = reader["studyRight"] == DBNull.Value ? "" : reader["studyRight"].ToString();
+                    agentContact.complainRight = reader["complainRight"] == DBNull.Value ? "" : reader["complainRight"].ToString();
+                    agentContact.monitorRight = reader["monitorRight"] == DBNull.Value ? "" : reader["monitorRight"].ToString();
+                    agentContact.errorRight = reader["errorRight"] == DBNull.Value ? "" : reader["errorRight"].ToString();
+                    agentContact.contactRight = reader["contactRight"] == DBNull.Value ? "" : reader["contactRight"].ToString();
 
                     list.Add(agentContact);
                 }

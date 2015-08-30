@@ -166,7 +166,7 @@ namespace ChinaUnion_Agent.SuggestionForm
             agentComplianSuggestion.ownerReplyContent = this.txtOwnerReply.Text;
             agentComplianSuggestion.checkStatus = this.txtCheckStatus.Text;
             agentComplianSuggestion.replyContent = this.txtReplyContent.Text;
-            agentComplianSuggestion.replyTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            agentComplianSuggestion.replyTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             agentComplianSuggestionDao.update(agentComplianSuggestion);
 
 

@@ -30,5 +30,6 @@ namespace ChinaUnion_BO
 
         public String type;
         public String status;
+        public String wechatImportStatus;
     }
 }

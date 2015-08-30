@@ -20,6 +20,7 @@ namespace ChinaUnion_Agent.MasterDataForm
 {
     public partial class frmWechatSync : Form
     {
+        AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
         public frmWechatSync()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace ChinaUnion_Agent.MasterDataForm
         {
             this.Cursor = Cursors.WaitCursor;
 
-            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+         
 
             IList<AgentWechatAccount> agentWechatAccountList = new List<AgentWechatAccount>();
 
@@ -202,6 +203,8 @@ namespace ChinaUnion_Agent.MasterDataForm
                 errorRightUserIdsAll.Add(userid);
                 contactRightUserIdsAll.Add(userid);
 
+                
+
                 if (this.dgAgentWechatAccount[12, i].Value.ToString().ToUpper().Equals("Y"))
                 {
                     feeRightUserIds.Add(userid);
@@ -234,10 +237,15 @@ namespace ChinaUnion_Agent.MasterDataForm
                 {
                     contactRightUserIds.Add(userid);
                 }
-
+               
                 WechatJsonUser wechatJsonUser = new WechatJsonUser();
                 wechatJsonUser.userid = this.dgAgentWechatAccount[6, i].Value.ToString();
+              
                 wechatJsonUser.name = this.dgAgentWechatAccount[7, i].Value.ToString();
+                if (string.IsNullOrEmpty(wechatJsonUser.name))
+                {
+                    wechatJsonUser.name = wechatJsonUser.userid;
+                }
                 wechatJsonUser.email = this.dgAgentWechatAccount[8, i].Value.ToString();
                 wechatJsonUser.mobile = this.dgAgentWechatAccount[9, i].Value.ToString();
                 wechatJsonUser.weixinid = this.dgAgentWechatAccount[10, i].Value.ToString();
@@ -248,20 +256,45 @@ namespace ChinaUnion_Agent.MasterDataForm
                 }
                 wechatJsonUser.department = new List<int>();
                wechatJsonUser.department.Add(1);
-                worker.ReportProgress(2, "同步微信账号" + wechatJsonUser.userid + "\r\n");
+               worker.ReportProgress(2, "总共" + dgAgentWechatAccount.RowCount + "条记录，正在处理第" + (i + 1) + "条，同步微信账号" + wechatJsonUser.userid + "\r\n");
 
                
-               
+                //Check the Wechat rule
+                #region
+
+                String mobile = wechatJsonUser.mobile;
+                String weixinid = wechatJsonUser.weixinid;
+
+                // ^[1]+[3,5,8]+\d{9}
+                if (Regex.IsMatch(weixinid, @"^[1]+[3,5,8]+\d{9}"))
+                {
+                    mobile = weixinid;
+                    weixinid = "";
+                }
+                else
+                {
+                    if (Regex.IsMatch(weixinid, @"^\d+$"))
+                    {
+                        weixinid = "QQ" + weixinid;
+                        mobile = "";
+                    }
+
+                }
+
+
+
+                #endregion
+
 
                 var userData = new
                 {
                     userid = wechatJsonUser.userid,
                     name = wechatJsonUser.name,
                     department = wechatJsonUser.department,
-                    mobile = wechatJsonUser.mobile,
-                    email = wechatJsonUser.email,
+                    mobile = mobile,//wechatJsonUser.mobile,
+                    email ="",// wechatJsonUser.email,
                     position = wechatJsonUser.position,
-                    weixinid = wechatJsonUser.weixinid
+                    weixinid =weixinid// wechatJsonUser.weixinid
                 };
 
                 string InsertUserJson = JsonConvert.SerializeObject(userData, Formatting.Indented);
@@ -293,9 +326,20 @@ namespace ChinaUnion_Agent.MasterDataForm
                     {
                         result = wechatAction.addUserToWechat(Settings.Default.Wechat_Secret, InsertUserJson);
                         ReturnMessage returnMessage1 = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
-                        if (returnMessage1 != null && returnMessage1.errcode.Equals("0") && !String.IsNullOrEmpty(this.dgAgentWechatAccount[2, i].Value.ToString()))
+                        if (returnMessage1 != null && returnMessage1.errcode.Equals("0"))
                         {
-                            this.sendEmail(wechatJsonUser.email);
+                            if (!String.IsNullOrEmpty(wechatJsonUser.email))
+                            {
+                                this.sendEmail(wechatJsonUser.email);
+                            }
+                        }
+                        else
+                        {
+                            AgentWechatAccount agentWechatAccount = new ChinaUnion_BO.AgentWechatAccount();
+                            agentWechatAccount.contactId = wechatJsonUser.userid;
+
+                            agentWechatAccount.wechatImportStatus = returnMessage1.getErrorDescrition();
+                            agentWechatAccountDao.UpdateWechatImportStatus(agentWechatAccount);
                         }
                     }
 
@@ -304,7 +348,7 @@ namespace ChinaUnion_Agent.MasterDataForm
                     ReturnMessage returnMessage = (ReturnMessage)JsonConvert.DeserializeObject(result.Html, typeof(ReturnMessage));
                     if (returnMessage != null && returnMessage.errcode != "0")
                     {
-
+                       
 
                         this.dgAgentWechatAccount[11, i].Value = returnMessage.getErrorDescrition();
                     }

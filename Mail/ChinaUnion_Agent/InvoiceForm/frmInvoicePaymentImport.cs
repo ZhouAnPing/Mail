@@ -142,24 +142,15 @@ namespace ChinaUnion_Agent.InvoiceForm
                 agentInvoicePayment.agentName = dgInvoicePayment[4, i].Value.ToString();
                 agentInvoicePayment.content = dgInvoicePayment[5, i].Value.ToString();
                 agentInvoicePayment.invoiceFee = dgInvoicePayment[6, i].Value.ToString();
-                
+
                 agentInvoicePayment.invoiceType = dgInvoicePayment[7, i].Value.ToString();
                 agentInvoicePayment.invoiceNo = dgInvoicePayment[8, i].Value.ToString();
                 agentInvoicePayment.payStatus = dgInvoicePayment[9, i].Value.ToString();
-                Agent agent = agentDao.Get(agentInvoicePayment.agentNo);
-                 if (agent != null && !String.IsNullOrEmpty(agent.agentName))
-                 {
-                     agentInvoicePaymentDao.Delete(agentInvoicePayment);
-                     agentInvoicePaymentDao.Add(agentInvoicePayment);
-                     dgInvoicePayment["result", i].Value = "导入成功";
-                    // String message = String.Format(Settings.Default.InvoicePayment_Wechat_Message, agentInvoicePayment.processTime, agentInvoicePayment.invoiceFee, agentInvoicePayment.payFee, agentInvoicePayment.summary, agentInvoicePayment.payStatus);
-                    // wechatAction.sendTextMessageToWechat(agentInvoicePayment.agentNo, message, Settings.Default.Wechat_Secret, Settings.Default.Wechar_Invoice_AppId);
 
-                 }
-                 else
-                 {
-                     dgInvoicePayment["result", i].Value = "导入失败，代理商编号：" + agentInvoicePayment.agentNo + "不存在,请先导入代理商.";
-                 }
+                agentInvoicePaymentDao.Delete(agentInvoicePayment);
+                agentInvoicePaymentDao.Add(agentInvoicePayment);
+                dgInvoicePayment["result", i].Value = "导入成功";
+
 
             }
             worker.ReportProgress(4, "导入支付记录完成...\r\n");

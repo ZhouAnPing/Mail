@@ -394,7 +394,7 @@ namespace Wechat
 
                     }
 
-                    sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                    sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                     sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
                 }
@@ -470,7 +470,7 @@ namespace Wechat
 
             }
 
-            sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+            sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 
@@ -551,7 +551,7 @@ namespace Wechat
 
                     }
 
-                    sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                    sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                     sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
                 }
@@ -625,7 +625,7 @@ namespace Wechat
 
             }
 
-            sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+            sbDesc.AppendFormat("\n查询时间：{0}\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 

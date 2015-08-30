@@ -23,7 +23,7 @@ namespace Wechat
                 PolicyReceiverLogDao policyReceiverLogDao = new PolicyReceiverLogDao();
                 PolicyReceiverLog policyReceiverLog = new PolicyReceiverLog();
                 policyReceiverLog.policySequence = policy.sequence;
-                policyReceiverLog.readtime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                policyReceiverLog.readtime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 policyReceiverLog.userId = userId;
                 policyReceiverLogDao.Add(policyReceiverLog);
 

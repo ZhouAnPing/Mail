@@ -33,7 +33,7 @@ namespace Wechat
                 {
                     this.lblIsReply.Text = "已回复";
                     this.lblIsReply.ForeColor = System.Drawing.Color.Blue;
-                    agentComplianSuggestion.agentReadtime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                    agentComplianSuggestion.agentReadtime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     agentComplianSuggestionDao.updateReadTime(agentComplianSuggestion);
                 }
 
