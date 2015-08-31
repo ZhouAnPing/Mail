@@ -604,13 +604,21 @@ namespace ChinaUnion_Agent
                         CheckChildOpenState(this, frmAgentBonusQuery);
                         break;
 
-                    case "ScoreStarImport":
-                        ScoreGrade.frmAgentScoreStarImport frmAgentStarImport = new ScoreGrade.frmAgentScoreStarImport();
+                    case "StarImport":
+                        ScoreGrade.frmAgentStarImport frmAgentStarImport = new ScoreGrade.frmAgentStarImport();
                         CheckChildOpenState(this, frmAgentStarImport);
                         break;
-                    case "ScoreStarQuery":
-                        ScoreGrade.frmAgentScoreStarQuery frmAgentStarQuery = new ScoreGrade.frmAgentScoreStarQuery();
+                    case "StarQuery":
+                        ScoreGrade.frmAgentStarQuery frmAgentStarQuery = new ScoreGrade.frmAgentStarQuery();
                         CheckChildOpenState(this, frmAgentStarQuery);
+                        break;
+                    case "ScoreImport":
+                        ScoreGrade.frmAgentScoreImport frmAgentScoreImport = new ScoreGrade.frmAgentScoreImport();
+                        CheckChildOpenState(this, frmAgentScoreImport);
+                        break;
+                    case "ScoreQuery":
+                        ScoreGrade.frmAgentScoreQuery frmAgentScoreQuery = new ScoreGrade.frmAgentScoreQuery();
+                        CheckChildOpenState(this, frmAgentScoreQuery);
                         break;
 
                     case "SuggestionReply":

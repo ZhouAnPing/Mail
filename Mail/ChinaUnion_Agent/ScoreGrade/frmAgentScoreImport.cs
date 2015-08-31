@@ -19,9 +19,9 @@ using System.Reflection;
 
 namespace ChinaUnion_Agent.ScoreGrade
 {
-    public partial class frmAgentScoreStarImport : Form
+    public partial class frmAgentScoreImport : Form
     {
-        public frmAgentScoreStarImport()
+        public frmAgentScoreImport()
         {
             InitializeComponent();
         }
@@ -44,39 +44,10 @@ namespace ChinaUnion_Agent.ScoreGrade
 
                 List<string> sheetNames=  execelfile.GetWorksheetNames().ToList();
                
-                
-                //星级信息
-                List<Row> agentStar = execelfile.Worksheet(0).ToList(); ;
+               
 
-                if (agentStar != null && agentStar.Count > 0)
-                {
-                   
-                    this.btnImport.Enabled = true;
-                    dgAgentStar.Rows.Clear();
-                    dgAgentStar.Columns.Clear();
-                    foreach (String coloumn in agentStar[0].ColumnNames)
-                    {
-                        this.dgAgentStar.Columns.Add(coloumn, coloumn);
-                    }
-
-                    for (int i = 0; i < agentStar.Count; i++)
-                    {
-                        if (String.IsNullOrEmpty(agentStar[i][0]))
-                        {
-                            continue;
-                        }
-                        dgAgentStar.Rows.Add();
-                        DataGridViewRow row = dgAgentStar.Rows[i];
-                        foreach (String coloumn in agentStar[0].ColumnNames)
-                        {
-                            row.Cells[coloumn].Value = agentStar[i][coloumn];
-                        }
-
-                    }
-                }
-
-                //星级信息
-                List<Row> agentScore = execelfile.Worksheet(1).ToList(); ;
+                //积分信息
+                List<Row> agentScore = execelfile.Worksheet(0).ToList(); ;
 
                 if (agentScore != null && agentScore.Count > 0)
                 {
@@ -105,10 +76,8 @@ namespace ChinaUnion_Agent.ScoreGrade
                     }
                 }
 
-                dgAgentStar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                dgAgentStar.AutoResizeColumns();
-
+                dgAgentScore.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
                 dgAgentScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 dgAgentScore.AutoResizeColumns();
@@ -152,25 +121,6 @@ namespace ChinaUnion_Agent.ScoreGrade
             //需要执行的代码
 
 
-            worker.ReportProgress(1, "开始导入星级...\r\n");
-            
-            //导入星级
-            AgentStarDao agentStarDao = new AgentStarDao();
-            for (int i = 0; i < dgAgentStar.RowCount; i++)
-            {
-                AgentStar agentStar = new AgentStar();
-                agentStar.dateTime = dgAgentStar[0, i].Value.ToString();
-                agentStar.agentNo = dgAgentStar[1, i].Value.ToString();
-                agentStar.agentName = dgAgentStar[2, i].Value.ToString();
-                agentStar.branchNo = dgAgentStar[3, i].Value.ToString();
-                agentStar.branchName = dgAgentStar[4, i].Value.ToString();                
-                agentStar.star = dgAgentStar[5, i].Value.ToString();
-
-                agentStarDao.Delete(agentStar.agentNo.Trim(), agentStar.branchNo.Trim(), agentStar.dateTime.Trim());
-                agentStarDao.Add(agentStar);
-
-            }
-            worker.ReportProgress(2, "导入星级完成...\r\n");
 
 
             worker.ReportProgress(3, "开始导入积分...\r\n");
@@ -190,9 +140,17 @@ namespace ChinaUnion_Agent.ScoreGrade
 
                 agentScoreDao.Delete(agentScore.agentNo.Trim(), agentScore.branchNo.Trim(), agentScore.dateTime.Trim());
                 agentScoreDao.Add(agentScore);
+                if (!String.IsNullOrEmpty(agentScore.agentNo))
+                {
+                    worker.ReportProgress(4, "正在导入代理商:" + agentScore.agentNo + "积分...\r\n");
+                }
+                else
+                {
+                    worker.ReportProgress(4, "正在导入渠道:" + agentScore.branchNo + "积分...\r\n");
+                }
 
             }
-            worker.ReportProgress(4, "导入积分完成...\r\n");
+            worker.ReportProgress(5, "导入积分完成...\r\n");
            
            
 

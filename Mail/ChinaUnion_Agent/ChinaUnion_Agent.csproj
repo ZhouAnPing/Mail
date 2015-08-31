@@ -338,6 +338,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScoreGrade\frmAgentStarImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentStarImport.Designer.cs">
+      <DependentUpon>frmAgentStarImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentStarQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScoreGrade\frmAgentStarQuery.Designer.cs">
+      <DependentUpon>frmAgentStarQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScoreGrade\frmAgentBonusImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,17 +362,17 @@
     <Compile Include="ScoreGrade\frmAgentBonusQuery.Designer.cs">
       <DependentUpon>frmAgentBonusQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScoreGrade\frmAgentScoreStarImport.cs">
+    <Compile Include="ScoreGrade\frmAgentScoreImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ScoreGrade\frmAgentScoreStarImport.Designer.cs">
-      <DependentUpon>frmAgentScoreStarImport.cs</DependentUpon>
+    <Compile Include="ScoreGrade\frmAgentScoreImport.Designer.cs">
+      <DependentUpon>frmAgentScoreImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScoreGrade\frmAgentScoreStarQuery.cs">
+    <Compile Include="ScoreGrade\frmAgentScoreQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ScoreGrade\frmAgentScoreStarQuery.Designer.cs">
-      <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
+    <Compile Include="ScoreGrade\frmAgentScoreQuery.Designer.cs">
+      <DependentUpon>frmAgentScoreQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SuggestionForm\frmSuggestionQuery.cs">
@@ -568,17 +580,23 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentStarImport.resx">
+      <DependentUpon>frmAgentStarImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreGrade\frmAgentStarQuery.resx">
+      <DependentUpon>frmAgentStarQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScoreGrade\frmAgentBonusImport.resx">
       <DependentUpon>frmAgentBonusImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScoreGrade\frmAgentBonusQuery.resx">
       <DependentUpon>frmAgentBonusQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScoreGrade\frmAgentScoreStarImport.resx">
-      <DependentUpon>frmAgentScoreStarImport.cs</DependentUpon>
+    <EmbeddedResource Include="ScoreGrade\frmAgentScoreImport.resx">
+      <DependentUpon>frmAgentScoreImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScoreGrade\frmAgentScoreStarQuery.resx">
-      <DependentUpon>frmAgentScoreStarQuery.cs</DependentUpon>
+    <EmbeddedResource Include="ScoreGrade\frmAgentScoreQuery.resx">
+      <DependentUpon>frmAgentScoreQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuggestionForm\frmSuggestionQuery.resx">
       <DependentUpon>frmSuggestionQuery.cs</DependentUpon>
@@ -627,6 +645,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template\ImportStar_Template.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Template\ImportAgentType_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -645,7 +666,7 @@
     <None Include="Template\ImportPerformance_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Template\ImportScore_Star_Template.xlsx">
+    <None Include="Template\ImportScore_Template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Template\ImportError_Template.xlsx">

@@ -187,7 +187,7 @@ namespace ChinaUnion_Agent.PolicyForm
             policy.sender = this.loginUser.name;
             policy.validateStartTime = this.dtStartDate.Value.ToString("yyyy-MM-dd");
             policy.validateEndTime = this.dtEndDate.Value.ToString("yyyy-MM-dd");
-            policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             policy.isDelete = "N";
             policy.isValidate = "Y";
             if (this.lstAgentType.CheckedItems.Contains("所有渠道"))

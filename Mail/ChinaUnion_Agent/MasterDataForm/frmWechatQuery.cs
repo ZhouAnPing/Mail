@@ -31,6 +31,13 @@ namespace ChinaUnion_Agent.MasterDataForm
         private void btnFind_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            if (String.IsNullOrEmpty(this.txtKeyword.Text.Trim()))
+            {
+                this.errorProvider1.SetError(txtKeyword, "请输入用户编号，代理商或者渠道等相关信息!");
+                this.Cursor = Cursors.Default;
+                return;
+            }
+          
             this.prepareGrid(this.txtKeyword.Text.Trim(),this.cboType.Text);
             this.Cursor = Cursors.Default;
         }
@@ -300,6 +307,29 @@ namespace ChinaUnion_Agent.MasterDataForm
             this.Cursor = Cursors.WaitCursor;
             ExportData.exportGridData(this.dgWechat);
             this.Cursor = Cursors.Default;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (this.dgWechat.CurrentRow==null)
+            {
+                MessageBox.Show("请选择一行记录"); 
+                return;
+            }
+
+            String userId= this.dgWechat.CurrentRow.Cells[6].Value.ToString();
+            if (!String.IsNullOrEmpty(userId))
+            {
+                WechatAction wechatAction = new Wechat.WechatAction();
+                HttpResult result = wechatAction.deleteUserFromWechat(userId, Settings.Default.Wechat_Secret);
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+                    agentWechatAccountDao.Delete(userId);
+
+                    this.prepareGrid(this.txtKeyword.Text.Trim(), this.cboType.Text.Trim());
+                }
+            }
         }
     }
 }

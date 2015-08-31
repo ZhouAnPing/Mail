@@ -168,6 +168,14 @@ namespace ChinaUnion_Agent
             WechatAction wechatAction = new WechatAction();
             for (int i = 0; i < dgAgentFee.RowCount; i++)
             {
+                if (dgAgentFee[4, i].Value == null)
+                {
+                    continue;
+                }
+                if (String.IsNullOrEmpty(dgAgentFee[4, i].Value.ToString()))
+                {
+                    continue;
+                }
                 StringBuilder sb = new StringBuilder();
                 String url = String.Format(Settings.Default.Wechat_Message, dgAgentFee[0, i].Value.ToString(), feeMonth);
                 wechatAction.sendTextMessageToWechat(dgAgentFee[0, i].Value.ToString(), feeMonth + url, Settings.Default.Wechat_Secret, Settings.Default.Wechat_Agent_AppId);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgWechat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,9 +40,11 @@
             this.lblType = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpWechatList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpWechatList
@@ -112,7 +115,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(711, 12);
+            this.btnExport.Location = new System.Drawing.Point(745, 12);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 31);
             this.btnExport.TabIndex = 17;
@@ -124,7 +127,7 @@
             // 
             this.btnFind.AutoSize = true;
             this.btnFind.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnFind.Location = new System.Drawing.Point(604, 12);
+            this.btnFind.Location = new System.Drawing.Point(601, 12);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(55, 31);
             this.btnFind.TabIndex = 11;
@@ -152,7 +155,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(838, 12);
+            this.btnCancel.Location = new System.Drawing.Point(837, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 31);
             this.btnCancel.TabIndex = 14;
@@ -164,13 +167,17 @@
             // 
             this.btnDelete.AutoSize = true;
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDelete.Location = new System.Drawing.Point(604, 8);
+            this.btnDelete.Location = new System.Drawing.Point(673, 12);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(55, 31);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmWechatQuery
             // 
@@ -189,6 +196,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgWechat)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,5 +214,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.ComboBox cboType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -98,7 +98,14 @@ namespace ChinaUnion_Agent
                
                 for (int i = 0; i < dgAgentFee.RowCount; i++)
                 {
-                  
+                    if (dgAgentFee[4, i].Value == null)
+                    {
+                        continue;
+                    }
+                    if (String.IsNullOrEmpty(dgAgentFee[4, i].Value.ToString()))
+                    {
+                        continue;
+                    }
 
                     StringBuilder sb = new StringBuilder();
 

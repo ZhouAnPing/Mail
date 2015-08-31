@@ -14,10 +14,10 @@ using TripolisDialogueAdapter;
 
 namespace ChinaUnion_Agent.ScoreGrade
 {
-    public partial class frmAgentScoreStarQuery : Form
+    public partial class frmAgentStarQuery : Form
     {
 
-        public frmAgentScoreStarQuery()
+        public frmAgentStarQuery()
         {
             InitializeComponent();
         }
@@ -58,44 +58,11 @@ namespace ChinaUnion_Agent.ScoreGrade
                 }
             }
 
-
+            dgAgentStar.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             this.dgAgentStar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgAgentStar.AutoResizeColumns();
 
 
-            AgentScoreDao agentScoreDao = new AgentScoreDao();
-            //agentDao.Get("P001");
-            IList<AgentScore> agentScoreList = agentScoreDao.GetListByKeyword(this.txtKeyword.Text.Trim());
-            dgAgentScore.Rows.Clear();
-            dgAgentScore.Columns.Clear();
-
-            if (agentScoreList != null && agentScoreList.Count > 0)
-            {
-                dgAgentScore.Columns.Add("时间", "时间");
-                dgAgentScore.Columns.Add("代理商编号", "代理商编号");
-                dgAgentScore.Columns.Add("代理商名称", "代理商名称");
-                dgAgentScore.Columns.Add("渠道编码", "渠道编码");
-                dgAgentScore.Columns.Add("渠道名称", "渠道名称");
-                dgAgentScore.Columns.Add("积分", "积分");
-                dgAgentScore.Columns.Add("本月积分", "本月积分");
-
-
-
-                for (int i = 0; i < agentScoreList.Count; i++)
-                {
-                    dgAgentScore.Rows.Add();
-                    DataGridViewRow row = dgAgentScore.Rows[i];
-                    row.Cells[0].Value = agentScoreList[i].dateTime;
-                    row.Cells[1].Value = agentScoreList[i].agentNo;
-                    row.Cells[2].Value = agentScoreList[i].agentName;
-                    row.Cells[3].Value = agentScoreList[i].branchNo;
-                    row.Cells[4].Value = agentScoreList[i].branchName;
-                    row.Cells[5].Value = agentScoreList[i].score;
-                    row.Cells[6].Value = agentScoreList[i].standardScore;
-                }
-            }
-            this.dgAgentScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgAgentScore.AutoResizeColumns();
             
            
             this.Cursor = Cursors.Default;     

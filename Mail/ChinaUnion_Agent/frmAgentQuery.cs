@@ -80,6 +80,10 @@ namespace ChinaUnion_Agent
             //代理商佣金
             AgentFeeDao agentFeeDao = new AgentFeeDao();
             IList<AgentFee> agentFeeList = agentFeeDao.GetList(dtFeeMonth.Value.ToString("yyyy-MM"));
+
+            AgentWechatAccount agentWechatAccount = new ChinaUnion_BO.AgentWechatAccount();
+            AgentWechatAccountDao agentWechatAccountDao = new ChinaUnion_DataAccess.AgentWechatAccountDao();
+            
             dgAgentFee.Rows.Clear();
             dgAgentFee.Columns.Clear();
             if (agentFeeList != null && agentFeeList.Count > 0)
@@ -92,8 +96,8 @@ namespace ChinaUnion_Agent
                 dgAgentFee.Columns.Add("联系人邮件", "联系人邮件");
                 dgAgentFee.Columns.Add("联系人名称", "联系人名称");
                 dgAgentFee.Columns.Add("告知单编号", "告知单编号");
-                dgAgentFee.Columns["联系人邮件"].Visible = false;
-                dgAgentFee.Columns["联系人名称"].Visible = false;
+             //   dgAgentFee.Columns["联系人邮件"].Visible = false;
+              //  dgAgentFee.Columns["联系人名称"].Visible = false;
                 for (int i = 0; i < agentFeeList.Count; i++)
                 {
                     if (i == 0)
@@ -127,6 +131,12 @@ namespace ChinaUnion_Agent
                     row.Cells[1].Value = agentFeeList[i].agent.agentName;
                     row.Cells[2].Value = agentFeeList[i].agent.agentType;
                     row.Cells[3].Value = agentFeeList[i].agent.agentTypeComment;
+                    agentWechatAccount = agentWechatAccountDao.GetByAgentNo(agentFeeList[i].agentNo);
+                    if (agentWechatAccount != null)
+                    {
+                        agentFeeList[i].agent.contactEmail = agentWechatAccount.contactEmail;
+                        agentFeeList[i].agent.contactName = agentWechatAccount.contactName;
+                    }
                     row.Cells[4].Value = agentFeeList[i].agent.contactEmail;
                     row.Cells[5].Value = agentFeeList[i].agent.contactName;
                     row.Cells[6].Value = agentFeeList[i].agentFeeSeq;
