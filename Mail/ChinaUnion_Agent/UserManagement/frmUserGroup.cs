@@ -79,33 +79,42 @@ namespace ChinaUnion_Agent.UserManagement
             AgentTypeDao agentTypeDao = new AgentTypeDao();
             IList<AgentType> agentTypeList = agentTypeDao.GetDistinctType();
             this.lstAgentType.Items.Clear();
+            this.lstAllType.Items.Clear();
+            this.lstAssignType.Items.Clear();
           //  this.lstAgentType.Items.Add("所有渠道");
             foreach (AgentType agentType in agentTypeList)
             {
                 this.lstAgentType.Items.Add(agentType.agentType);
+
+                this.lstAllType.Items.Add(agentType.agentType);
             }
 
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
             IList<AgentWechatAccount> agentWechatAccountList = agentWechatAccountDao.GetAllAgentOrBranch();
             this.lstUser.Items.Clear();
+            lstAllAgent.Items.Clear();
+            lstAssignAgent.Items.Clear();
             //  this.lstAgentType.Items.Add("所有渠道");
             foreach (AgentWechatAccount agentWechatAccount in agentWechatAccountList)
             {
                 if (!String.IsNullOrEmpty(agentWechatAccount.regionName))
                 {
                     this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                    this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
                 }
                 else
                 {
                     if (!String.IsNullOrEmpty(agentWechatAccount.branchNo))
                     {
                         this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                        this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
 
                     }
                     else
                     {
                         this.lstUser.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
+                        this.lstAllAgent.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
 
                     }
                 }
@@ -150,7 +159,7 @@ namespace ChinaUnion_Agent.UserManagement
 
             if (dgGroup.CurrentRow != null)
             {
-                if (this.dgGroup[0, currentRowIndex].Value != null)
+                if (this.dgGroup[0, currentRowIndex]!=null&&this.dgGroup[0, currentRowIndex].Value != null)
                 {
                     this.initControl();
                     currentRowIndex = dgGroup.CurrentRow.Index;
@@ -161,25 +170,33 @@ namespace ChinaUnion_Agent.UserManagement
                         this.txtGroupName.Text = group.groupName;
                         this.txtDescription.Text = group.description;
                         this.txtGroupName.Enabled = false;
+                        lstAssignType.Items.Clear();
+                        lstAssignAgent.Items.Clear();
 
                         IList<UserDefinedGroup> userDefinedGroupList = userDefinedGroupDao.GetList(group.groupName);
                         foreach (UserDefinedGroup userDefinedGroup in userDefinedGroupList)
                         {
                             if (userDefinedGroup.type.Equals("渠道类型"))
                             {
-                                int index = this.lstAgentType.FindStringExact(userDefinedGroup.member);
-                                if (index >= 0)
-                                {
-                                    lstAgentType.SetItemCheckState(index, CheckState.Checked);
-                                }
+                                this.lstAssignType.Items.Add(userDefinedGroup.member);
+                               // int index = this.lstAgentType.FindStringExact(userDefinedGroup.member);
+                               // if (index >= 0)
+                               // {
+                                    //lstAgentType.SetItemCheckState(index, CheckState.Checked);
+                               // }
                             }
                             if (userDefinedGroup.type.Equals("代理商/渠道"))
                             {
-                                int index = this.lstUser.FindString(userDefinedGroup.member);
-                                if (index >= 0)
-                                {
-                                    lstUser.SetItemCheckState(index, CheckState.Checked);
-                                }
+                               int index= this.lstAllAgent.FindString(userDefinedGroup.member);
+                               if (index >= 0)
+                               {
+                                   this.lstAssignAgent.Items.Add(lstAllAgent.Items[index]);
+                               }
+                               // int index = this.lstUser.FindString(userDefinedGroup.member);
+                               // if (index >= 0)
+                                //{
+                                   // lstUser.SetItemCheckState(index, CheckState.Checked);
+                               // }
                             }
                         }
 
@@ -210,7 +227,7 @@ namespace ChinaUnion_Agent.UserManagement
             groupDao.Delete(group);
             groupDao.Add(group);
            
-            foreach ( Object item in this.lstAgentType.CheckedItems)
+            foreach ( Object item in this.lstAssignType.Items)
             {
                 UserDefinedGroup userDefinedGroup = new UserDefinedGroup();
                 userDefinedGroup.groupName = group.groupName;
@@ -219,7 +236,7 @@ namespace ChinaUnion_Agent.UserManagement
                 userDefinedGroupDao.Add(userDefinedGroup);
             }
 
-            foreach (Object item in this.lstUser.CheckedItems)
+            foreach (Object item in this.lstAssignAgent.Items)
             {
                 UserDefinedGroup userDefinedGroup = new UserDefinedGroup();
                 userDefinedGroup.groupName = group.groupName;
@@ -251,6 +268,150 @@ namespace ChinaUnion_Agent.UserManagement
            
             this.Cursor = Cursors.Default;
             MessageBox.Show("操作完成");
+        }
+
+        private void txtType_TextChanged(object sender, EventArgs e)
+        {
+            foreach (String item in lstAllType.Items)
+            {
+                if (item.Contains(this.txtType.Text.Trim()))
+                {
+                    lstAllType.SelectedItem = item;
+                    return;
+                }
+            }
+            
+        }
+
+        private void txtAgent_TextChanged(object sender, EventArgs e)
+        {
+
+            foreach (String item in lstAllAgent.Items)
+            {
+                if (item.Contains(this.txtAgent.Text.Trim()))
+                {
+                    this.lstAllAgent.SelectedItem = item;
+                    return;
+                }
+            }
+
+
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstAllType.SelectedItems)
+            {
+                if (!lstAssignType.Items.Contains(item))
+                {
+                    lstAssignType.Items.Add(item);    
+                }
+            }
+            lstAssignType.Refresh();
+        }
+
+        private void btnRightAll_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstAllType.Items)
+            {
+                if (!lstAssignType.Items.Contains(item))
+                {
+                    lstAssignType.Items.Add(item);
+                }
+            }
+            lstAssignType.Refresh();
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+
+            if (lstAssignType.SelectedItem != null)
+            {
+                lstAssignType.Items.Remove(this.lstAssignType.SelectedItem);
+                lstAssignType.Refresh();
+
+            }
+            
+        }
+
+        private void btnLeftAll_Click(object sender, EventArgs e)
+        {
+            lstAssignType.Items.Clear();
+        }
+
+        private void lstAllType_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstAllType.SelectedItem != null)
+            {
+                lstAssignType.Items.Add(lstAllType.SelectedItem);
+                lstAssignType.Refresh();
+            }
+        }
+
+        private void lstAssignType_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstAssignType.SelectedItem != null)
+            {
+                lstAssignType.Items.Remove(this.lstAssignType.SelectedItem);
+                lstAssignType.Refresh();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstAllAgent.SelectedItems)
+            {
+                if (!lstAssignAgent.Items.Contains(item))
+                {
+                    lstAssignAgent.Items.Add(item);
+                }
+            }
+            lstAssignAgent.Refresh();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstAllAgent.Items)
+            {
+                if (!lstAssignAgent.Items.Contains(item))
+                {
+                    lstAssignAgent.Items.Add(item);
+                }
+            }
+            lstAssignAgent.Refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (lstAssignAgent.SelectedItem != null)
+            {
+                lstAssignAgent.Items.Remove(this.lstAssignAgent.SelectedItem);
+                lstAssignAgent.Refresh();
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            lstAssignAgent.Items.Clear();
+        }
+
+        private void lstAllAgent_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstAllAgent.SelectedItem != null)
+            {
+                lstAssignAgent.Items.Add(lstAllAgent.SelectedItem);
+                lstAssignAgent.Refresh();
+            }
+        }
+
+        private void lstAssignAgent_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstAssignAgent.SelectedItem != null)
+            {
+                lstAssignAgent.Items.Remove(this.lstAssignAgent.SelectedItem);
+                lstAssignAgent.Refresh();
+            }
         }
 
     }

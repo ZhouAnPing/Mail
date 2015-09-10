@@ -180,11 +180,11 @@ namespace ChinaUnion_Agent.ScoreGrade
             saveFileDialog.Filter = "Excel格式|*.xlsx";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.FileName = "积分星级模板.xlsx";
+            saveFileDialog.FileName = "积分模板.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
 
-                File.Copy("./Template/ImportScore_Star_Template.xlsx", saveFileDialog.FileName);
+                File.Copy("./Template/ImportScore_Template.xlsx", saveFileDialog.FileName);
             }
         }
 
