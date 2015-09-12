@@ -15,8 +15,8 @@ namespace ChinaUnion_Agent.UserManagement
     {
         private GroupDao groupDao = new GroupDao();
         private UserDefinedGroupDao userDefinedGroupDao = new UserDefinedGroupDao();
-    
-
+        IList<AgentType> agentTypeList = null;
+        IList<AgentWechatAccount> agentWechatAccountList = null;
         public frmUserGroup()
         {
             InitializeComponent();
@@ -77,7 +77,7 @@ namespace ChinaUnion_Agent.UserManagement
             this.txtGroupName.Clear();
             this.txtDescription.Clear();
             AgentTypeDao agentTypeDao = new AgentTypeDao();
-            IList<AgentType> agentTypeList = agentTypeDao.GetDistinctType();
+            agentTypeList = agentTypeDao.GetDistinctType();
             this.lstAgentType.Items.Clear();
             this.lstAllType.Items.Clear();
             this.lstAssignType.Items.Clear();
@@ -91,7 +91,7 @@ namespace ChinaUnion_Agent.UserManagement
 
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
-            IList<AgentWechatAccount> agentWechatAccountList = agentWechatAccountDao.GetAllAgentOrBranch();
+             agentWechatAccountList = agentWechatAccountDao.GetAllAgentOrBranch();
             this.lstUser.Items.Clear();
             lstAllAgent.Items.Clear();
             lstAssignAgent.Items.Clear();
@@ -272,6 +272,7 @@ namespace ChinaUnion_Agent.UserManagement
 
         private void txtType_TextChanged(object sender, EventArgs e)
         {
+            /*
             foreach (String item in lstAllType.Items)
             {
                 if (item.Contains(this.txtType.Text.Trim()))
@@ -280,18 +281,72 @@ namespace ChinaUnion_Agent.UserManagement
                     return;
                 }
             }
+              */
+            lstAllType.Items.Clear();
             
+            foreach (AgentType item in this.agentTypeList)
+            {
+                if (String.IsNullOrEmpty(this.txtType.Text.Trim()))
+                {
+
+                    this.lstAllType.Items.Add(item.agentType);
+
+                    continue;
+                }
+
+                if (item.agentType.Contains(this.txtType.Text.Trim()))
+                {
+                    this.lstAllType.Items.Add(item.agentType);
+                }
+            }
         }
 
         private void txtAgent_TextChanged(object sender, EventArgs e)
         {
-
+            /*
             foreach (String item in lstAllAgent.Items)
             {
                 if (item.Contains(this.txtAgent.Text.Trim()))
                 {
                     this.lstAllAgent.SelectedItem = item;
                     return;
+                }
+            }*/
+            lstAllAgent.Items.Clear();
+            foreach (AgentWechatAccount agentWechatAccount in this.agentWechatAccountList)
+            {
+                String item = "";
+                if (!String.IsNullOrEmpty(agentWechatAccount.regionName))
+                {
+                    // this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                    item = agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName;
+                }
+                else
+                {
+                    if (!String.IsNullOrEmpty(agentWechatAccount.branchNo))
+                    {
+                        //  this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                        item = agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName;
+
+                    }
+                    else
+                    {
+                        // this.lstUser.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
+                        item = agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName;
+
+                    }
+                }
+                if (String.IsNullOrEmpty(this.txtAgent.Text.Trim()))
+                {
+
+                    this.lstAllAgent.Items.Add(item);
+
+                    continue;
+                }
+
+                if (item.Contains(this.txtAgent.Text.Trim()))
+                {
+                    this.lstAllAgent.Items.Add(item);
                 }
             }
 
@@ -343,8 +398,11 @@ namespace ChinaUnion_Agent.UserManagement
         {
             if (lstAllType.SelectedItem != null)
             {
-                lstAssignType.Items.Add(lstAllType.SelectedItem);
-                lstAssignType.Refresh();
+                if (!lstAssignType.Items.Contains(lstAllType.SelectedItem))
+                {
+                    lstAssignType.Items.Add(lstAllType.SelectedItem);
+                    lstAssignType.Refresh();
+                }
             }
         }
 
@@ -352,6 +410,7 @@ namespace ChinaUnion_Agent.UserManagement
         {
             if (lstAssignType.SelectedItem != null)
             {
+
                 lstAssignType.Items.Remove(this.lstAssignType.SelectedItem);
                 lstAssignType.Refresh();
             }
@@ -400,8 +459,11 @@ namespace ChinaUnion_Agent.UserManagement
         {
             if (lstAllAgent.SelectedItem != null)
             {
-                lstAssignAgent.Items.Add(lstAllAgent.SelectedItem);
-                lstAssignAgent.Refresh();
+                if (!lstAssignAgent.Items.Contains(lstAllAgent.SelectedItem))
+                {
+                    lstAssignAgent.Items.Add(lstAllAgent.SelectedItem);
+                    lstAssignAgent.Refresh();
+                }
             }
         }
 

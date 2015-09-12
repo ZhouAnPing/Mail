@@ -301,6 +301,7 @@ namespace ChinaUnion_Agent.PolicyForm
                         this.txtAttachmentName.Text = policy.attachmentName;
                         this.cbType.Text = policy.type;
                         this.dtStartDate.Value = DateTime.Parse(policy.validateStartTime);
+                        this.dtEndDate.Value = DateTime.Parse(policy.validateEndTime);
 
                         IList<PolicyReceiver> policyReceiverList = policyReceiverDao.GetList(policy.sequence);
                         if (policyReceiverList != null)
