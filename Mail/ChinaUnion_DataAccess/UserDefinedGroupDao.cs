@@ -118,6 +118,47 @@ namespace ChinaUnion_DataAccess
         }
 
 
+
+        public IList<String> GetReceiverList(IList<String> groupNames)
+        {
+            String parameter = "";
+            foreach (String groupName in groupNames)
+            {
+                parameter += "'" + groupName + "',";
+            }
+            parameter += "'1=1'";
+
+            string sql = " select contactId from agent_wechat_account a1,";
+
+           sql += " (select distinct  agentNo  from    agent_type ";
+            sql += " where    agentfeemonth = (select   max(agentfeemonth)";
+            sql += " from   agent_type) and agenttype in (select ";
+            sql += " t.member from  tb_user_define_group t";
+            sql += " where  t.groupName in ("+parameter+")  and t.type = '渠道类型') ";
+            sql += " union select distinct  t.member from tb_user_define_group t";
+            sql += " where   t.groupName in (" + parameter + ") and t.type = '代理商/渠道') a2";
+            sql += " where ( a1.agentNo = a2.agentNo) or (a1.branchNo = a2.agentno)";
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+             
+              
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<String> list = new List<String>();
+
+                while (reader.Read())
+                {
+                    String contactId = reader["contactId"] == DBNull.Value ? null : reader["contactId"].ToString();
+
+                    list.Add(contactId);
+                }
+                return list;
+            }
+        }
+
+
         
     }
 }

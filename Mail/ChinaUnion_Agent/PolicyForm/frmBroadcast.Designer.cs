@@ -34,7 +34,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lstModule = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lstGroup = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -92,7 +95,7 @@
             "企业小助手"});
             this.lstModule.Location = new System.Drawing.Point(12, 366);
             this.lstModule.Name = "lstModule";
-            this.lstModule.Size = new System.Drawing.Size(332, 148);
+            this.lstModule.Size = new System.Drawing.Size(144, 148);
             this.lstModule.TabIndex = 3;
             // 
             // label1
@@ -100,10 +103,70 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 346);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 12);
+            this.label1.Size = new System.Drawing.Size(83, 12);
             this.label1.TabIndex = 4;
-            this.label1.Text = "接收通知模块(*):";
-            this.label1.Visible = false;
+            this.label1.Text = "接收通知模块:";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lstGroup);
+            this.groupBox5.Location = new System.Drawing.Point(171, 358);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(217, 156);
+            this.groupBox5.TabIndex = 43;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "自定义组";
+            // 
+            // lstGroup
+            // 
+            this.lstGroup.CheckOnClick = true;
+            this.lstGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstGroup.FormattingEnabled = true;
+            this.lstGroup.Items.AddRange(new object[] {
+            "3G专营店",
+            "O2O社会直销渠道",
+            "上网卡社会直销渠道",
+            "互联网社会渠道",
+            "公众直销渠道",
+            "其他他建他营厅",
+            "其他渠道",
+            "其他电子社会渠道",
+            "其它开户点",
+            "其它电子社会直销渠道",
+            "其它社会直销渠道",
+            "华盛专营店",
+            "卡批社会直销渠道",
+            "小区社会直销渠道",
+            "小型营业厅",
+            "平台商",
+            "平台特约店",
+            "战略合作厅",
+            "旗舰营业厅",
+            "普通代理店",
+            "普通代理点",
+            "标准营业厅",
+            "校园/小区代理点",
+            "校园代理点",
+            "校园厅",
+            "校园开户点",
+            "校园社会直销渠道",
+            "特约店",
+            "直供代理点",
+            "直供点",
+            "社区便利店",
+            "网上营业厅",
+            "自建他营厅",
+            "连锁渠道他建他营厅",
+            "连锁渠道代理点",
+            "集团客户社会直销渠道",
+            "集团直销渠道",
+            "集客固网社会直销渠道",
+            "集客移网社会直销渠道",
+            "非连锁渠道"});
+            this.lstGroup.Location = new System.Drawing.Point(3, 17);
+            this.lstGroup.Name = "lstGroup";
+            this.lstGroup.Size = new System.Drawing.Size(211, 136);
+            this.lstGroup.TabIndex = 37;
             // 
             // frmBroadcast
             // 
@@ -111,6 +174,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(777, 532);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstModule);
             this.Controls.Add(this.btnClose);
@@ -124,6 +188,7 @@
             this.Load += new System.EventHandler(this.frmBroadcast_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +202,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.CheckedListBox lstModule;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckedListBox lstGroup;
     }
 }

@@ -159,7 +159,7 @@ namespace ChinaUnion_Agent.UserManagement
 
             if (dgGroup.CurrentRow != null)
             {
-                if (this.dgGroup[0, currentRowIndex]!=null&&this.dgGroup[0, currentRowIndex].Value != null)
+                if (currentRowIndex<dgGroup.RowCount&&this.dgGroup[0, currentRowIndex] != null && this.dgGroup[0, currentRowIndex].Value != null)
                 {
                     this.initControl();
                     currentRowIndex = dgGroup.CurrentRow.Index;
