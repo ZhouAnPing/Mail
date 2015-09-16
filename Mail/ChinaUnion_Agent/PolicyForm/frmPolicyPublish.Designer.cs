@@ -417,13 +417,13 @@
             // btnPublish
             // 
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPublish.Enabled = false;
             this.btnPublish.Location = new System.Drawing.Point(311, 533);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(75, 31);
             this.btnPublish.TabIndex = 18;
             this.btnPublish.Text = "发布";
             this.btnPublish.UseVisualStyleBackColor = true;
-            this.btnPublish.Visible = false;
             this.btnPublish.Click += new System.EventHandler(this.btnPublish_Click);
             // 
             // txtContent

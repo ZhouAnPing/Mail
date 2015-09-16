@@ -1,4 +1,7 @@
-﻿using ChinaUnion_BO;
+﻿using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
 using System.Collections.Generic;
@@ -137,15 +140,15 @@ namespace ChinaUnion_Agent.PolicyForm
             {
                 this.btnDelete.Enabled = false;
                 this.btnSave.Enabled = false;
-                this.btnPreview.Enabled = false;
-                this.btnPublish.Enabled = false;
+               // this.btnPreview.Enabled = false;
+               // this.btnPublish.Enabled = false;
             }
             else
             {
                 this.btnDelete.Enabled = true;
                 this.btnSave.Enabled = true;
-                this.btnPreview.Enabled = true;
-                this.btnPublish.Enabled = true;
+              //  this.btnPreview.Enabled = true;
+               // this.btnPublish.Enabled = true;
             }
         }
 
@@ -235,7 +238,9 @@ namespace ChinaUnion_Agent.PolicyForm
                 this.policyDao.Update(policy);
                 
             }else{
-                     policyDao.Add(policy);
+                    policyDao.Add(policy);
+
+                    policy = policyDao.GetBySubject(policy.subject);
             }
 
             policyReceiverDao.Delete(policy.sequence);
@@ -295,6 +300,7 @@ namespace ChinaUnion_Agent.PolicyForm
                     Policy policy = policyDao.Get(Int32.Parse(this.dgPolicy[0, this.dgPolicy.CurrentRow.Index].Value.ToString()));
                     if (policy != null)
                     {
+                        this.btnPublish.Enabled = true;
                         this.txtSubject.Text = policy.subject;
                         this.txtContent.Text = policy.content;
                         this.txtSequence.Text = policy.sequence;
@@ -337,58 +343,54 @@ namespace ChinaUnion_Agent.PolicyForm
 
         private void btnPublish_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.cbType.Text.Trim()))
+            //this.btnSave_Click(sender, e);
+          //  this.prepareGrid(this.txtSearchCondition.Text);
+            if (String.IsNullOrEmpty(this.txtSequence.Text))
             {
-                MessageBox.Show("请选择类型！");
-                this.txtSubject.Focus();
+                MessageBox.Show("请先保存，再发布");
                 return;
             }
-            if (String.IsNullOrEmpty(this.txtSubject.Text.Trim()))
+            this.Cursor = Cursors.WaitCursor;
+            int appId = 0;
+            switch (this.cbType.Text)
             {
-                MessageBox.Show("请输入名称！");
-                this.txtSubject.Focus();
-                return;
+                case "政策":
+                    appId = 6;
+                    break;
+                case "通知公告/重点关注":
+                    appId = 6;
+                    break;
+                case "服务规范":
+                    appId = 9;
+                    break;
             }
-            if (String.IsNullOrEmpty(this.txtContent.Text.Trim()))
-            {
-                MessageBox.Show("请输入内容！");
-                this.txtContent.Focus();
-                return;
-            }
-            Policy policy = new Policy();
-            if (!string.IsNullOrEmpty(this.txtSequence.Text.Trim()))
-            {
-                policy = policyDao.Get(Int32.Parse(this.txtSequence.Text.Trim()));
-            }
-            policy.type = this.cbType.Text;
-            policy.validateStartTime = this.dtStartDate.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            policy.subject = this.txtSubject.Text.Trim();
-            policy.content = this.txtContent.Text.Trim();
-            policy.sender = this.loginUser.name;
-            policy.sequence = this.txtSequence.Text.Trim();
-            byte[] b = new byte[0];
-            String fullpath = this.txtAttachmentLocation.Text;
-            if (!String.IsNullOrEmpty(fullpath))
-            {
-                FileStream fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
-                byte[] attachmentBytes = new byte[fs.Length];
-                fs.Read(attachmentBytes, 0, System.Convert.ToInt32(fs.Length));
+            IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(this.txtSequence.Text);
 
-                //  BinaryReader br = new BinaryReader(fs);
-                // attachmentBytes = br.ReadBytes(Convert.ToInt32(fs.Length));
-                fs.Close();
-                // br.Close();
-
-                if (attachmentBytes.Length > 0)
+            List<String> userIdsBuffer = new List<string>();
+            for (int i = 1; i <= UserIdList.Count; i++)
+            {
+                userIdsBuffer.Add(UserIdList[i - 1]);
+                if (i % 500 == 0 || i == UserIdList.Count)
                 {
-                    policy.attachment = attachmentBytes;
-                    policy.attachmentName = this.txtAttachmentName.Text;
+                    string userId = "";
+                    userId = string.Join("|", userIdsBuffer.ToArray());
+                    userIdsBuffer.Clear();
+
+                    WechatAction wechatAction = new WechatAction();
+
+                    String content = this.txtSubject.Text.Trim();
+                    String state = this.txtSequence.Text;
+                    String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31204de5a3ae758e&redirect_uri=http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyDetail.aspx&response_type=code&scope=snsapi_base&state=" + state + "#wechat_redirect";
+
+                    content = "你有新的消息，主题：" + content + ", <a href=\"" + url + "\">点击查询详情</a>";
+                    HttpResult result = wechatAction.sendTextMessageToWechat(userId, content, Settings.Default.Wechat_Secret, appId);
+
                 }
+
+              
             }
-            frmPublishPreview frmPublishPreview = new frmPublishPreview();
-            frmPublishPreview.policy = policy;
-            frmPublishPreview.ShowDialog();
-            this.prepareGrid(this.txtSearchCondition.Text);
+            this.Cursor = Cursors.Default;
+            
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

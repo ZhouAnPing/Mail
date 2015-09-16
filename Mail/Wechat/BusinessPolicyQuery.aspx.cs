@@ -121,6 +121,7 @@ namespace Wechat
             this.lblType.Text = type;
             this.lblScope.Text = search_scope;
             this.lblAgentNo.Text = agentNo;
+            this.lblUserId.Text = userId;
             // int index = 1;
             DataTable dt = new DataTable();
             dt.Columns.Add("seq");
@@ -138,10 +139,10 @@ namespace Wechat
                 {
                     if (!policy.toAll.Equals("Y"))
                     {
-                        IList<String> agentNoList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
-                        if (!agentNoList.Contains(agentNo))
+                        IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
+                        if (!UserIdList.Contains(userId))
                         {
-                            logger.Info("agentNo=" + agentNo + " 没有权限范围" + policy.sequence);
+                            logger.Info("userId=" + userId + " 没有权限范围" + policy.sequence);
                             continue;
                         }
                     }

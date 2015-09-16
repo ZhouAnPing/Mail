@@ -90,6 +90,47 @@ namespace ChinaUnion_DataAccess
                 return command.ExecuteNonQuery();
             }
         }
+
+        /// <summary> 
+        /// 根据主键查询 
+        /// </summary> 
+        /// <param name="primaryKey"></param> 
+        /// <returns></returns> 
+        public Policy GetBySubject(String subject)
+        {
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where subject=@subject";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@subject", subject);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                Policy policy = null;
+                if (reader.Read())
+                {
+                    policy = new Policy();
+
+                    policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
+                    policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
+                    policy.sender = reader["sender"] == DBNull.Value ? null : reader["sender"].ToString();
+                    policy.attachmentName = reader["attachmentName"] == DBNull.Value ? null : reader["attachmentName"].ToString();
+                    policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
+                    policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
+                    policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                    policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
+                    policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
+                    policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
+                    policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
+                    policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
+
+                }
+                return policy;
+            }
+
+        }
         /// <summary> 
         /// 根据主键查询 
         /// </summary> 
@@ -288,6 +329,67 @@ namespace ChinaUnion_DataAccess
             }
         }
 
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<String> GetAllUserIdListBySeq(string sequence)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("select    contactId from ");
+            sb.Append(" agent_wechat_account t3, ");
+            sb.Append("(select distinct  t1.agentNo ");
+            sb.Append("from  agent_type t1, (SELECT  ");
+            sb.Append(" receiver as agenttype ");
+            sb.Append("FROM    tb_policy_receiver ");
+            sb.Append(" where   type = '渠道类型' ");
+            sb.Append("  and policy_sequence = @sequence union select  ");
+            sb.Append(" t.member as agenttype ");
+            sb.Append("from    tb_user_define_group t ");
+            sb.Append(" where  t.groupName in (SELECT  receiver ");
+            sb.Append(" FROM  tb_policy_receiver ");
+            sb.Append("  where type = '自定义组' ");
+            sb.Append("   and policy_sequence = @sequence) ");
+            sb.Append(" and t.type = '渠道类型') t2 ");
+            sb.Append(" where agentfeemonth = (select  ");
+            sb.Append(" max(agentfeemonth) ");
+            sb.Append(" from   agent_type) ");
+            sb.Append(" and t1.agenttype = t2.agenttype union select distinct ");
+            sb.Append(" t.member as agentNo ");
+            sb.Append(" from  tb_user_define_group t ");
+            sb.Append("where  t.groupName in (SELECT  receiver ");
+            sb.Append("FROM  tb_policy_receiver ");
+            sb.Append(" where   type = '自定义组' ");
+            sb.Append(" and policy_sequence = @sequence) ");
+            sb.Append("and t.type = '代理商/渠道') t4 ");
+            sb.Append("where   (t3.agentNo = t4.agentNo) ");
+            sb.Append(" or (t3.branchNo = t4.agentno) ");
+
+
+
+
+            String sql = sb.ToString();
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@sequence", sequence);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<String> list = new List<String>();
+                String contactId = "";
+                while (reader.Read())
+                {
+                    contactId = reader["contactId"] == DBNull.Value ? null : reader["contactId"].ToString();
+                    if (String.IsNullOrEmpty(contactId))
+                        continue;
+                    list.Add(contactId);
+                }
+                return list;
+            }
+        }
 
         /// <summary> 
         /// 查询集合 

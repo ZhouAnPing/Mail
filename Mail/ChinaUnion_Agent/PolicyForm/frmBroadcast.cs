@@ -112,9 +112,27 @@ namespace ChinaUnion_Agent.PolicyForm
             }
             else
             {
-                string userId = string.Join("|", recieveList.ToArray());
-                HttpResult result = wechatAction.sendTextMessageToWechat(userId, this.txtContent.Text.Trim(), Wechat_secretId, agentId);
 
+                //var result1 = recieveList.GroupBy(i => int.Parse(i) % 10).Select(g => g.ToList()).ToList();
+
+                
+
+                 List<String> userIdsBuffer = new List<string>();
+                 for (int i = 1; i <= recieveList.Count; i++)
+                 {
+                     userIdsBuffer.Add(recieveList[i - 1]);
+                     if (i % 500 == 0 || i == recieveList.Count)
+                     {
+                         string userId = "";
+                         userId = string.Join("|", userIdsBuffer.ToArray());
+                         userIdsBuffer.Clear();
+                         HttpResult result = wechatAction.sendTextMessageToWechat(userId, this.txtContent.Text.Trim(), Wechat_secretId, agentId);
+
+                         
+                     }
+                 }
+              
+              
 
             }
                 this.Cursor = Cursors.Default;
