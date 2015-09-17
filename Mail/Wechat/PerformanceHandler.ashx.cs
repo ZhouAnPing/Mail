@@ -83,6 +83,17 @@ namespace Wechat
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
             AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
+            if (agentWechatAccount != null && wechatMessage != null && !String.IsNullOrEmpty(wechatMessage.Event) && wechatMessage.Event.Equals("enter_agent"))
+            {
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "业绩查询";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = "成员进入应用";
+                wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
 
             if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
@@ -180,10 +191,22 @@ namespace Wechat
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                             sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "星级还没上传，请直接与上海联通确认!\n\n");
                         }
+
+                        WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                        wechatQueryLog.agentName = "";
+                        wechatQueryLog.subSystem = "星级查询";
+                        wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        wechatQueryLog.queryString = dateTime;
+                        wechatQueryLog.wechatId = agentNo;
+                        WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                        wechatQueryLogDao.Add(wechatQueryLog);
+
                         break;
 
                     case "curScore":
                     case "HistoryScore":
+                        
+
                         String month = DateTime.Now.ToString("yyyyMM");
                         if (actionType.Equals("curScore"))
                         {
@@ -228,6 +251,16 @@ namespace Wechat
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
                             sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",  "积分还没上传，请直接与上海联通确认!\n\n");
                         }
+
+                         wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                        wechatQueryLog.agentName = "";
+                        wechatQueryLog.subSystem = "积分查询";
+                        wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        wechatQueryLog.queryString = month;
+                        wechatQueryLog.wechatId = agentNo;
+                         wechatQueryLogDao = new WechatQueryLogDao();
+                        wechatQueryLogDao.Add(wechatQueryLog);
+
                         break;
 
                     case "YesterdayPerformance":

@@ -19,7 +19,7 @@ namespace Wechat
 
             Request.ContentEncoding = Encoding.UTF8;
             string keyword = Request.QueryString["keyword"];
-
+            String userId = Request.QueryString["userId"];
             logger.Info("keyword=" + keyword);
 
             AgentErrorCodeDao agentErrorCodeDao = new AgentErrorCodeDao();
@@ -48,6 +48,14 @@ namespace Wechat
 
                 this.Image1.ImageUrl = "http://" + Properties.Settings.Default.Host + "/Wechat/ErrorImages/" + agentErrorCode.seq + ".jpg";
 
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "错误代码查询";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = keyword;
+                wechatQueryLog.wechatId = userId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
             }
 
         }

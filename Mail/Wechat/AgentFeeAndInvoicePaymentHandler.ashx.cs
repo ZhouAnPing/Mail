@@ -83,7 +83,17 @@ namespace Wechat
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
             AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
-
+            if (agentWechatAccount != null && wechatMessage != null && !String.IsNullOrEmpty(wechatMessage.Event) && wechatMessage.Event.Equals("enter_agent"))
+            {
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "佣金结算与支付查询";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = "成员进入应用";
+                wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
             if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
                 sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
@@ -292,6 +302,16 @@ namespace Wechat
 
         private StringBuilder createAllNewsMessages(String feeMonth, String agentNo, AgentFee agentFee, AgentBonus agentBonus, IList<InvoicePayment> agentInvoicePaymentList)
         {
+
+            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+            wechatQueryLog.agentName = "";
+            wechatQueryLog.subSystem = "所有佣金查询";
+            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            wechatQueryLog.queryString = feeMonth;
+            wechatQueryLog.wechatId = agentNo;
+            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+            wechatQueryLogDao.Add(wechatQueryLog);
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
             sb.AppendFormat("<ArticleCount>1</ArticleCount>");
@@ -419,6 +439,15 @@ namespace Wechat
 
         private StringBuilder createPaymentNewsMessages(String feeMonth, String agentNo, IList<InvoicePayment> agentInvoicePaymentList)
         {
+            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+            wechatQueryLog.agentName = "";
+            wechatQueryLog.subSystem = "支付结算查询";
+            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            wechatQueryLog.queryString = feeMonth;
+            wechatQueryLog.wechatId = agentNo;
+            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+            wechatQueryLogDao.Add(wechatQueryLog);
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
             sb.AppendFormat("<ArticleCount>1</ArticleCount>");
@@ -451,6 +480,15 @@ namespace Wechat
         }
         private StringBuilder createAgentFeeNewsMessages(String feeMonth, AgentFee agentFee, String agentNo)
         {
+            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+            wechatQueryLog.agentName = "";
+            wechatQueryLog.subSystem = "佣金查询";
+            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            wechatQueryLog.queryString = feeMonth;
+            wechatQueryLog.wechatId = agentNo;
+            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+            wechatQueryLogDao.Add(wechatQueryLog);
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
             sb.AppendFormat("<ArticleCount>1</ArticleCount>");
@@ -521,6 +559,15 @@ namespace Wechat
 
         private StringBuilder createAgentBonusNewsMessages(String feeMonth, AgentBonus agentBonus, String agentNo)
         {
+            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+            wechatQueryLog.agentName = "";
+            wechatQueryLog.subSystem = "红包查询";
+            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            wechatQueryLog.queryString = feeMonth;
+            wechatQueryLog.wechatId = agentNo;
+            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+            wechatQueryLogDao.Add(wechatQueryLog);
+
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
             sb.AppendFormat("<ArticleCount>1</ArticleCount>");

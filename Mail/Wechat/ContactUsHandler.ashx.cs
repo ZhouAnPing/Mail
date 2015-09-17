@@ -68,6 +68,7 @@ namespace Wechat
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(sMsg);
             WechatMessage wechatMessage = new WechatMessage(doc.DocumentElement);
+            
 
             // 需要发送的明文
             String actionType = wechatMessage.EventKey;
@@ -83,6 +84,18 @@ namespace Wechat
 
             AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
             AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
+
+            if (agentWechatAccount != null && wechatMessage != null && !String.IsNullOrEmpty(wechatMessage.Event) && wechatMessage.Event.Equals("enter_agent"))
+            {
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "联系人查询";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = "成员进入应用";
+                wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
 
             if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
@@ -114,6 +127,16 @@ namespace Wechat
 
                         if (agentContactList != null && agentContactList.Count > 0)
                         {
+
+                            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                            wechatQueryLog.agentName = "";
+                            wechatQueryLog.subSystem = "联系人查询";
+                            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            wechatQueryLog.queryString = "";
+                            wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                            wechatQueryLogDao.Add(wechatQueryLog);
+
                             logger.Info("Exist Record: " + agentContactList.Count);
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
 

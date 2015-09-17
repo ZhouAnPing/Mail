@@ -79,6 +79,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="WechatQueryLogDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChinaUnion_BO\ChinaUnion_BO.csproj">

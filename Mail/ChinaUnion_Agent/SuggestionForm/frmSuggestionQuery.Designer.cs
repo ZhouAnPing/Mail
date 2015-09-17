@@ -407,6 +407,7 @@
             this.btnExport.TabIndex = 17;
             this.btnExport.Text = "导出";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnQuery
             // 

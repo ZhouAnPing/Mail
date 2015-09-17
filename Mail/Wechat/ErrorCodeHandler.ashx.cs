@@ -72,6 +72,21 @@ namespace Wechat
             sb.AppendFormat("<FromUserName><![CDATA[{0}]]></FromUserName>", wechatMessage.ToUserName);
             sb.AppendFormat("<CreateTime>{0}</CreateTime>", wechatMessage.CreateTime);
 
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+            AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
+
+            if (agentWechatAccount != null && wechatMessage != null && !String.IsNullOrEmpty(wechatMessage.Event) && wechatMessage.Event.Equals("enter_agent"))
+            {
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "报错处理";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = "成员进入应用";
+                wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+
             try
             {
 
@@ -148,7 +163,7 @@ namespace Wechat
                                 sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
                                 sb.Append("<PicUrl>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://"+Properties.Settings.Default.Host+"/Wechat/ErrorImages/", agentErrorCode.seq, ".jpg").Append("</PicUrl>");
                                 //logger.Info("path=" + "http://"http://"+Properties.Settings.Default.Host+"/Wechat/ErrorCodeQuery.aspx?keyword=" + context.Server.UrlEncode(agentErrorCode.keyword));
-                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}]]>", "http://"+Properties.Settings.Default.Host+"/Wechat/ErrorCodeQuery.aspx?keyword=", context.Server.UrlEncode(agentErrorCode.keyword)).Append("</Url>");
+                                sb.Append("<Url>").AppendFormat("<![CDATA[{0}{1}{2}]]>", "http://" + Properties.Settings.Default.Host + "/Wechat/ErrorCodeQuery.aspx?keyword=", context.Server.UrlEncode(agentErrorCode.keyword), "&userId=" + wechatMessage.FromUserName).Append("</Url>");
                                 //           sb.Append("<Url>").AppendFormat("<![CDATA[{0}]]>", url1).Append("</Url>");
                                 sb.AppendFormat("</item>");
                                 //  logger.Info(sb.ToString());

@@ -38,10 +38,17 @@ namespace ChinaUnion_Agent
         }
         public System.Drawing.Image GetImage(string path)
         {
-            System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open);
-            System.Drawing.Image result = System.Drawing.Image.FromStream(fs);
+            System.Drawing.Image result = null;
+            try
+            {
+                System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open);
+                result = System.Drawing.Image.FromStream(fs);
 
-            fs.Close();
+                fs.Close();
+            }
+            catch (Exception)
+            {
+            }
 
             return result;
 
@@ -154,6 +161,33 @@ namespace ChinaUnion_Agent
                         row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\CBSS\\" + CBSSList[i][0].ToString().Trim() + ".jpg";
                         row.Cells["报错描述"].Value =  new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][2].ToString().Trim(), " ");
                         row.Cells["原因及处理方法"].Value =  new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][3].ToString().Trim(), " ");
+                        row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][4].ToString().Trim(), " ");
+
+                    }
+                }
+
+
+                List<Row> otherList = execelfile.Worksheet("沃易销").ToList();
+
+                if (CBSSList != null && CBSSList.Count > 0)
+                {
+
+
+                    for (int i = 0; i < CBSSList.Count; i++)
+                    {
+                        if (String.IsNullOrEmpty(CBSSList[i][0]) || String.IsNullOrWhiteSpace(CBSSList[i][0]))
+                        {
+                            break;
+                        }
+                        dgErrorCode.Rows.Add();
+                        DataGridViewRow row = dgErrorCode.Rows[dgErrorCode.RowCount - 1];
+
+                        row.Cells["序号"].Value = dgErrorCode.RowCount;
+                        row.Cells["子系统"].Value = "沃易销";
+                        row.Cells["报错关键字"].Value = CBSSList[i][1].ToString().Trim();
+                        row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\沃易销\\" + CBSSList[i][0].ToString().Trim() + ".jpg";
+                        row.Cells["报错描述"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][2].ToString().Trim(), " ");
+                        row.Cells["原因及处理方法"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][3].ToString().Trim(), " ");
                         row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][4].ToString().Trim(), " ");
 
                     }

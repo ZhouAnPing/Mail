@@ -41,6 +41,15 @@ namespace Wechat
                 // return;
             }
 
+            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+            wechatQueryLog.agentName = "";
+            wechatQueryLog.subSystem = "红包查询";
+            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            wechatQueryLog.queryString = feeMonth;
+            wechatQueryLog.wechatId = agentNo;
+            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+            wechatQueryLogDao.Add(wechatQueryLog);
+
             DataTable dt = new DataTable();
             DataRow row = null;
             dt.Columns.Add("name");

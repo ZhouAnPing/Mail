@@ -57,6 +57,7 @@
     <Compile Include="AgentScore.cs" />
     <Compile Include="AgentWechatAccount.cs" />
     <Compile Include="AgentBonus.cs" />
+    <Compile Include="WechatQueryLog.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="UserDefinedGroup.cs" />
     <Compile Include="PolicyReceiverLog.cs" />

@@ -1579,4 +1579,28 @@
 2015-08-27 14:06:14,231 [172] INFO  Wechat.PerformanceDailySummaryQuery - feeDate=2015-08-25
 2015-08-27 14:06:42,420 [172] INFO  Wechat.PerformanceDailySummaryQuery - agentNo=31b0s1n
 2015-08-27 14:06:42,421 [172] INFO  Wechat.PerformanceDailySummaryQuery - type=%e7%9b%b4%e4%be%9b%e6%b8%a0%e9%81%93%e8%81%94%e7%b3%bb%e4%ba%ba
+[Footer]\r\n[Header]\r\n2015-09-16 16:48:50,025 [7] INFO  Wechat.PerformanceDailyDetailQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:49:20,193 [7] INFO  Wechat.PerformanceDailyDetailQuery - code=
+2015-09-16 16:49:20,417 [7] INFO  Wechat.PerformanceDailyDetailQuery - state=
+2015-09-16 16:49:21,941 [7] INFO  Wechat.PerformanceDailyDetailQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-09-16 16:49:35,425 [9] INFO  Wechat.PerformanceDailyDetailQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:49:38,894 [9] INFO  Wechat.PerformanceDailyDetailQuery - code=
+2015-09-16 16:49:39,190 [9] INFO  Wechat.PerformanceDailyDetailQuery - state=
+2015-09-16 16:49:44,957 [9] INFO  Wechat.PerformanceDailyDetailQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-09-16 16:50:00,873 [9] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:50:00,884 [9] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-09-16 16:50:00,884 [9] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+[Footer]\r\n[Header]\r\n2015-09-16 16:50:32,556 [11] INFO  Wechat.PerformanceDailyDetailQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:50:34,068 [11] INFO  Wechat.PerformanceDailyDetailQuery - code=
+2015-09-16 16:50:34,069 [11] INFO  Wechat.PerformanceDailyDetailQuery - state=
+2015-09-16 16:50:34,271 [11] INFO  Wechat.PerformanceDailyDetailQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-09-16 16:50:38,798 [9] INFO  Wechat.PerformanceDailyDetailQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:50:40,836 [9] INFO  Wechat.PerformanceDailyDetailQuery - code=
+2015-09-16 16:50:41,018 [9] INFO  Wechat.PerformanceDailyDetailQuery - state=
+2015-09-16 16:50:42,131 [9] INFO  Wechat.PerformanceDailyDetailQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-09-16 16:50:53,967 [9] INFO  Wechat.OnlineComplainSuggestionQuery - http://localhost:59032/OnlineComplainSuggestion.aspx
+2015-09-16 16:50:53,968 [9] INFO  Wechat.OnlineComplainSuggestionQuery - code=
+2015-09-16 16:50:53,968 [9] INFO  Wechat.OnlineComplainSuggestionQuery - state=
+[Footer]\r\n[Header]\r\n2015-09-16 22:16:27,564 [199] INFO  Wechat.ErrorCodeQuery - keyword=
+[Footer]\r\n[Header]\r\n2015-09-16 22:17:08,451 [201] INFO  Wechat.ErrorCodeQuery - keyword=
 [Footer]\r\n

@@ -75,6 +75,21 @@ namespace Wechat
             sb.AppendFormat("<FromUserName><![CDATA[{0}]]></FromUserName>", wechatMessage.ToUserName);
             sb.AppendFormat("<CreateTime>{0}</CreateTime>", wechatMessage.CreateTime);
 
+            AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+            AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(wechatMessage.FromUserName);
+
+            if (agentWechatAccount != null && wechatMessage != null && !String.IsNullOrEmpty(wechatMessage.Event) && wechatMessage.Event.Equals("enter_agent"))
+            {
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.subSystem = "通知公告与促销政策";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = "成员进入应用";
+                wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+
             // string sRespData = "<MsgId>1234567890123456</MsgId>";
             logger.Info("EventKey: " + wechatMessage.EventKey);
             String agentNo = wechatMessage.FromUserName;
