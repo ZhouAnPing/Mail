@@ -437,6 +437,12 @@ namespace ChinaUnion_Agent
 
                         frmErrorWechatBroadcast.ShowDialog();
                         break;
+
+                    case "CaseStudy":
+                        CaseStudyForm.frmCasePublish frmCasePublish = new CaseStudyForm.frmCasePublish();
+                        frmCasePublish.loginUser = this.loginUser;
+                        CheckChildOpenState(this, frmCasePublish);
+                        break;
                     case "PolicyPublish":
 
                         frmPolicyPublish frmPolicyPublish = new frmPolicyPublish();

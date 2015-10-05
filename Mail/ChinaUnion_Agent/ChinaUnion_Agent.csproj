@@ -97,6 +97,12 @@
     <Compile Include="Analysis\frmAnalysisReport.Designer.cs">
       <DependentUpon>frmAnalysisReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="CaseStudyForm\frmCasePublish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaseStudyForm\frmCasePublish.Designer.cs">
+      <DependentUpon>frmCasePublish.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContactUs\frmAgentContactImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -458,6 +464,9 @@
     <EmbeddedResource Include="Analysis\frmAnalysisReport.resx">
       <DependentUpon>frmAnalysisReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CaseStudyForm\frmCasePublish.resx">
+      <DependentUpon>frmCasePublish.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContactUs\frmAgentContactImport.resx">
       <DependentUpon>frmAgentContactImport.cs</DependentUpon>
     </EmbeddedResource>
@@ -769,9 +778,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CaseForm\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

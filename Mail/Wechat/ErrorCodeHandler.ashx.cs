@@ -146,8 +146,16 @@ namespace Wechat
 
                                 if (!File.Exists(path) || !File.GetCreationTime(path).ToString("yyyy-MM-dd").Equals(DateTime.Now.ToString("yyyy-MM-dd")))
                                 {
-                                    logger.Info("path=" + path);
-                                    System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                                    if (agentErrorCode.errorImg != null)
+                                    {
+                                        logger.Info("path=" + path);
+
+                                        System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                                    }
+                                    else
+                                    {
+                                        logger.Info("path=no image");
+                                    }
                                 }
                                 sb.AppendFormat("<item>");
                                 sb.Append("<Title>").AppendFormat("{0}错误查询结果", agentErrorCode.keyword).Append("</Title>");

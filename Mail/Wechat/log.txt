@@ -1603,4 +1603,164 @@
 2015-09-16 16:50:53,968 [9] INFO  Wechat.OnlineComplainSuggestionQuery - state=
 [Footer]\r\n[Header]\r\n2015-09-16 22:16:27,564 [199] INFO  Wechat.ErrorCodeQuery - keyword=
 [Footer]\r\n[Header]\r\n2015-09-16 22:17:08,451 [201] INFO  Wechat.ErrorCodeQuery - keyword=
+[Footer]\r\n[Header]\r\n2015-10-05 17:52:44,379 [7] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 17:52:44,536 [7] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 17:52:44,537 [7] INFO  Wechat.CaseQuery - code=
+2015-10-05 17:52:44,537 [7] INFO  Wechat.CaseQuery - state=
+2015-10-05 17:52:44,537 [7] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 17:52:44,933 [7] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 17:52:53,280 [7] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 17:52:53,947 [7] INFO  Wechat.CaseQuery - subject=
+2015-10-05 17:52:54,885 [7] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 17:52:56,095 [7] INFO  Wechat.CaseQuery - userId=P001
+2015-10-05 17:53:17,132 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围34
+2015-10-05 17:53:17,222 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围41
+2015-10-05 17:53:17,310 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围40
+2015-10-05 17:53:17,403 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围36
+2015-10-05 17:53:17,494 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围37
+2015-10-05 17:53:17,585 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围38
+2015-10-05 17:53:17,679 [7] INFO  Wechat.CaseQuery - userId=P001 没有权限范围35
+2015-10-05 18:01:52,548 [21] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:01:52,548 [21] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:01:52,548 [21] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:01:52,548 [21] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:01:52,548 [21] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:01:52,657 [21] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:01:58,387 [21] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:01:58,610 [21] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:01:58,809 [21] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:01:59,013 [21] INFO  Wechat.CaseQuery - userId=P001
+2015-10-05 18:02:08,112 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围34
+2015-10-05 18:02:08,203 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围41
+2015-10-05 18:02:08,303 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围40
+2015-10-05 18:02:08,406 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围36
+2015-10-05 18:02:08,499 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围37
+2015-10-05 18:02:08,596 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围38
+2015-10-05 18:02:08,687 [21] INFO  Wechat.CaseQuery - userId=P001 没有权限范围35
+2015-10-05 18:02:11,770 [19] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:02:11,771 [19] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:02:11,771 [19] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:02:11,771 [19] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:02:11,771 [19] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:02:11,848 [19] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:02:13,512 [19] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:02:13,513 [19] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:02:13,513 [19] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:02:13,513 [19] INFO  Wechat.CaseQuery - userId=P001
+2015-10-05 18:02:20,036 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围34
+2015-10-05 18:02:20,131 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围41
+2015-10-05 18:02:20,223 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围40
+2015-10-05 18:02:20,315 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围36
+2015-10-05 18:02:20,412 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围37
+2015-10-05 18:02:20,504 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围38
+2015-10-05 18:02:20,599 [19] INFO  Wechat.CaseQuery - userId=P001 没有权限范围35
+[Footer]\r\n[Header]\r\n2015-10-05 18:04:01,788 [12] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:04:01,847 [12] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:04:01,847 [12] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:04:01,847 [12] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:04:01,848 [12] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:04:02,016 [12] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:04:06,726 [12] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:04:06,727 [12] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:04:06,727 [12] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:04:06,727 [12] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 18:07:13,773 [16] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:07:13,789 [16] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:07:13,790 [16] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:07:13,790 [16] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:07:13,790 [16] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:07:13,973 [16] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:07:17,634 [16] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:07:17,635 [16] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:07:17,635 [16] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:07:17,636 [16] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 18:54:33,529 [7] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:54:33,545 [7] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:54:33,546 [7] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:54:33,546 [7] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:54:33,546 [7] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:54:33,747 [7] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:54:33,773 [7] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:54:33,774 [7] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:54:33,774 [7] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:54:33,774 [7] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 18:55:02,698 [25] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:55:02,724 [25] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:55:02,725 [25] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:55:02,725 [25] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:55:02,725 [25] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:55:02,915 [25] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:55:02,948 [25] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:55:02,948 [25] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:55:02,948 [25] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:55:02,949 [25] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 18:55:30,171 [29] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:55:30,191 [29] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:55:30,191 [29] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:55:30,191 [29] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:55:30,191 [29] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:55:30,365 [29] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:55:30,377 [29] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:55:30,380 [29] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:55:30,380 [29] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:55:30,380 [29] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 18:59:14,885 [10] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:59:14,964 [10] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:59:14,965 [10] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:59:14,965 [10] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:59:14,965 [10] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:59:15,229 [10] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:59:15,232 [10] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:59:15,232 [10] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:59:15,232 [10] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:59:15,233 [10] INFO  Wechat.CaseQuery - userId=P001
+2015-10-05 18:59:53,278 [8] INFO  Wechat.CaseDetail - sequence=46
+2015-10-05 18:59:53,281 [8] INFO  Wechat.CaseDetail - userId=P001
+2015-10-05 18:59:53,388 [8] INFO  Wechat.CaseDetail - sequence=46
+2015-10-05 18:59:53,389 [8] INFO  Wechat.CaseDetail - userId=P001
+2015-10-05 18:59:57,436 [8] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 18:59:57,437 [8] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 18:59:57,437 [8] INFO  Wechat.CaseQuery - code=
+2015-10-05 18:59:57,437 [8] INFO  Wechat.CaseQuery - state=
+2015-10-05 18:59:57,438 [8] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 18:59:57,556 [8] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 18:59:57,556 [8] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 18:59:57,557 [8] INFO  Wechat.CaseQuery - subject=
+2015-10-05 18:59:57,557 [8] INFO  Wechat.CaseQuery - agentNo=P001
+2015-10-05 18:59:57,557 [8] INFO  Wechat.CaseQuery - userId=P001
+[Footer]\r\n[Header]\r\n2015-10-05 19:02:03,662 [18] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 19:02:03,678 [18] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 19:02:03,678 [18] INFO  Wechat.CaseQuery - code=
+2015-10-05 19:02:03,678 [18] INFO  Wechat.CaseQuery - state=
+2015-10-05 19:02:03,679 [18] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 19:02:03,820 [18] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n[Header]\r\n2015-10-05 19:02:46,077 [13] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 19:02:46,100 [13] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 19:02:46,101 [13] INFO  Wechat.CaseQuery - code=
+2015-10-05 19:02:46,101 [13] INFO  Wechat.CaseQuery - state=
+2015-10-05 19:02:46,101 [13] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 19:02:46,267 [13] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 19:02:50,044 [8] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 19:02:50,044 [8] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 19:02:50,045 [8] INFO  Wechat.CaseQuery - code=
+2015-10-05 19:02:50,045 [8] INFO  Wechat.CaseQuery - state=
+2015-10-05 19:02:50,045 [8] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 19:02:50,097 [8] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-05 19:02:53,117 [8] INFO  Wechat.CaseQuery - bindDataToGrid=
+2015-10-05 19:02:53,118 [8] INFO  Wechat.CaseQuery - subject=
+2015-10-05 19:02:53,118 [8] INFO  Wechat.CaseQuery - agentNo=
+2015-10-05 19:02:53,119 [8] INFO  Wechat.CaseQuery - userId=
+2015-10-05 19:02:57,707 [8] INFO  Wechat.CaseQuery - userId= 没有权限范围46
+[Footer]\r\n[Header]\r\n2015-10-05 19:17:37,384 [33] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 19:17:37,436 [33] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 19:17:37,436 [33] INFO  Wechat.CaseQuery - code=
+2015-10-05 19:17:37,436 [33] INFO  Wechat.CaseQuery - state=
+2015-10-05 19:17:37,436 [33] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 19:17:37,621 [33] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n[Header]\r\n2015-10-05 19:18:16,769 [36] INFO  Wechat.CaseQuery - http://localhost:59032/CaseQuery.aspx
+2015-10-05 19:19:09,169 [36] INFO  Wechat.CaseQuery - agentId=
+2015-10-05 19:19:09,169 [36] INFO  Wechat.CaseQuery - code=
+2015-10-05 19:19:09,169 [36] INFO  Wechat.CaseQuery - state=
+2015-10-05 19:19:09,170 [36] INFO  Wechat.CaseQuery - search_scope=
+2015-10-05 19:19:09,338 [36] INFO  Wechat.CaseQuery - result={"errcode":41008,"errmsg":"missing code"}
 [Footer]\r\n

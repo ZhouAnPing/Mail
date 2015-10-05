@@ -390,7 +390,6 @@ namespace ChinaUnion_DataAccess
                 return list;
             }
         }
-
         /// <summary> 
         /// 查询集合 
         /// </summary> 
@@ -398,10 +397,61 @@ namespace ChinaUnion_DataAccess
         public IList<Policy> GetAllList(string keyWord)
         {
             string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
+            sql = sql + " where 1=1 and type!='案例分享' ";
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
+            }
+           
+            sql = sql + "  order by creatTime desc ";
+
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<Policy> list = new List<Policy>();
+                Policy policy = null;
+                while (reader.Read())
+                {
+                    policy = new Policy();
+
+                    policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
+                    policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
+                    policy.sender = reader["sender"] == DBNull.Value ? null : reader["sender"].ToString();
+                    policy.attachmentName = reader["attachmentName"] == DBNull.Value ? null : reader["attachmentName"].ToString();
+                    policy.attachment = reader["attachment"] == DBNull.Value ? null : (byte[])reader["attachment"];
+                    policy.creatTime = reader["creatTime"] == DBNull.Value ? null : reader["creatTime"].ToString();
+                    policy.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
+                    policy.validateStartTime = reader["validateStartTime"] == DBNull.Value ? null : reader["validateStartTime"].ToString();
+                    policy.validateEndTime = reader["validateEndTime"] == DBNull.Value ? null : reader["validateEndTime"].ToString();
+                    policy.isValidate = reader["isValidate"] == DBNull.Value ? null : reader["isValidate"].ToString();
+                    policy.isDelete = reader["isDelete"] == DBNull.Value ? null : reader["isDelete"].ToString();
+                    policy.deleteTime = reader["deleteTime"] == DBNull.Value ? null : reader["deleteTime"].ToString();
+                    policy.sequence = reader["sequence"] == DBNull.Value ? null : reader["sequence"].ToString();
+                    policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
+
+                    list.Add(policy);
+                }
+                return list;
+            }
+        }
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<Policy> GetAllList(string keyWord,String type)
+        {
+            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
                 sql = sql + " and ((subject like \"%" + keyWord + "%\") or (content like \"%" + keyWord + "%\"))";
+            }
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type= \"" + type + "\"";
             }
             sql = sql + "  order by creatTime desc ";
 

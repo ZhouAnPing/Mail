@@ -10,8 +10,8 @@ namespace ChinaUnion_BO
         public String policySequence;
         public String userId;
         public String readtime;
-
-       
+        public Policy policy = new Policy();
+        public AgentWechatAccount agentContact = new AgentWechatAccount();
 
 
     }

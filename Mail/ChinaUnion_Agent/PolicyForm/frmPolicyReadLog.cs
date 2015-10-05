@@ -56,26 +56,26 @@ namespace ChinaUnion_Agent.PolicyForm
                 for (int i = 0; i < policyReceiverLogList.Count; i++)
                 {
 
-                    Policy policy = policyDao.Get(Int32.Parse(policyReceiverLogList[i].policySequence));
-                    AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(policyReceiverLogList[i].userId);
+                   // Policy policy = policyDao.Get(Int32.Parse(policyReceiverLogList[i].policySequence));
+                    //AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(policyReceiverLogList[i].userId);
                     dgPolicyReadLog.Rows.Add();
                     DataGridViewRow row = dgPolicyReadLog.Rows[i];
-                    if (agentWechatAccount != null)
+                    if (policyReceiverLogList[i].agentContact != null)
                     {
-                        row.Cells[0].Value = agentWechatAccount.type;
-                        row.Cells[1].Value = agentWechatAccount.branchNo;
-                        row.Cells[2].Value = agentWechatAccount.branchName;
-                        row.Cells[3].Value = agentWechatAccount.agentNo;
-                        row.Cells[4].Value = agentWechatAccount.agentName;
-                        row.Cells[5].Value = agentWechatAccount.contactId;
-                        row.Cells[6].Value = agentWechatAccount.contactName;
-                        row.Cells[7].Value = agentWechatAccount.contactWechat;
+                        row.Cells[0].Value = policyReceiverLogList[i].agentContact.type;
+                        row.Cells[1].Value = policyReceiverLogList[i].agentContact.branchNo;
+                        row.Cells[2].Value = policyReceiverLogList[i].agentContact.branchName;
+                        row.Cells[3].Value = policyReceiverLogList[i].agentContact.agentNo;
+                        row.Cells[4].Value = policyReceiverLogList[i].agentContact.agentName;
+                        row.Cells[5].Value = policyReceiverLogList[i].agentContact.contactId;
+                        row.Cells[6].Value = policyReceiverLogList[i].agentContact.contactName;
+                        row.Cells[7].Value = policyReceiverLogList[i].agentContact.contactWechat;
                     }
                     row.Cells[8].Value = policyReceiverLogList[i].readtime;
-                    if (policy != null)
+                    if (policyReceiverLogList[i].policy != null)
                     {
-                        row.Cells[9].Value = policy.subject;
-                        row.Cells[10].Value = policy.content;
+                        row.Cells[9].Value = policyReceiverLogList[i].policy.subject;
+                        row.Cells[10].Value = policyReceiverLogList[i].policy.content;
                     }
                    
 

@@ -42,12 +42,16 @@ namespace Wechat
                 String path = dir + agentErrorCode.seq + ".jpg";
                 if (!File.Exists(path) || !File.GetCreationTime(path).ToString("yyyy-MM-dd").Equals(DateTime.Now.ToString("yyyy-MM-dd")))
                 {
-
-                    System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                    if (agentErrorCode.errorImg != null)
+                    {
+                        System.IO.File.WriteAllBytes(path, agentErrorCode.errorImg);
+                    }
                 }
+                if (agentErrorCode.errorImg != null)
+                {
+                    this.Image1.ImageUrl = "http://" + Properties.Settings.Default.Host + "/Wechat/ErrorImages/" + agentErrorCode.seq + ".jpg";
 
-                this.Image1.ImageUrl = "http://" + Properties.Settings.Default.Host + "/Wechat/ErrorImages/" + agentErrorCode.seq + ".jpg";
-
+                }
                 WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                 wechatQueryLog.agentName = "";
                 wechatQueryLog.subSystem = "错误代码查询";

@@ -169,13 +169,13 @@ namespace ChinaUnion_Agent
 
                 List<Row> otherList = execelfile.Worksheet("沃易销").ToList();
 
-                if (CBSSList != null && CBSSList.Count > 0)
+                if (otherList != null && otherList.Count > 0)
                 {
 
 
-                    for (int i = 0; i < CBSSList.Count; i++)
+                    for (int i = 0; i < otherList.Count; i++)
                     {
-                        if (String.IsNullOrEmpty(CBSSList[i][0]) || String.IsNullOrWhiteSpace(CBSSList[i][0]))
+                        if (String.IsNullOrEmpty(otherList[i][0]) || String.IsNullOrWhiteSpace(otherList[i][0]))
                         {
                             break;
                         }
@@ -184,11 +184,11 @@ namespace ChinaUnion_Agent
 
                         row.Cells["序号"].Value = dgErrorCode.RowCount;
                         row.Cells["子系统"].Value = "沃易销";
-                        row.Cells["报错关键字"].Value = CBSSList[i][1].ToString().Trim();
-                        row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\沃易销\\" + CBSSList[i][0].ToString().Trim() + ".jpg";
-                        row.Cells["报错描述"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][2].ToString().Trim(), " ");
-                        row.Cells["原因及处理方法"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][3].ToString().Trim(), " ");
-                        row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(CBSSList[i][4].ToString().Trim(), " ");
+                        row.Cells["报错关键字"].Value = otherList[i][1].ToString().Trim();
+                        row.Cells["Image"].Value = Path.GetDirectoryName(FileName) + "\\沃易销\\" + otherList[i][0].ToString().Trim() + ".jpg";
+                        row.Cells["报错描述"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(otherList[i][2].ToString().Trim(), " ");
+                        row.Cells["原因及处理方法"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(otherList[i][3].ToString().Trim(), " ");
+                        row.Cells["联系方式"].Value = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(otherList[i][4].ToString().Trim(), " ");
 
                     }
                 }
@@ -270,19 +270,20 @@ namespace ChinaUnion_Agent
 
                 byte[] b = new byte[0];
                 String fullpath = dgErrorCode[3, i].Value.ToString();
-
-                FileStream fs = new FileStream(fullpath, FileMode.Open);
-                byte[] imagebytes = new byte[fs.Length];
-                BinaryReader br = new BinaryReader(fs);
-                imagebytes = br.ReadBytes(Convert.ToInt32(fs.Length));
-                fs.Close();
-                br.Close();
-
-                if (imagebytes.Length > 0)
+                if (File.Exists(fullpath))
                 {
-                    agentErrorCode.errorImg = imagebytes;                    
+                    FileStream fs = new FileStream(fullpath, FileMode.Open);
+                    byte[] imagebytes = new byte[fs.Length];
+                    BinaryReader br = new BinaryReader(fs);
+                    imagebytes = br.ReadBytes(Convert.ToInt32(fs.Length));
+                    fs.Close();
+                    br.Close();
+
+                    if (imagebytes.Length > 0)
+                    {
+                        agentErrorCode.errorImg = imagebytes;
+                    }
                 }
-               
                
                 agentErrorCode.solution = dgErrorCode[5, i].Value.ToString();
                 agentErrorCode.contactName = dgErrorCode[6, i].Value.ToString();

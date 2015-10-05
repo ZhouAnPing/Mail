@@ -40,7 +40,7 @@ namespace ChinaUnion_Agent.Util
                     {
                         for (int j = 0; j < dgv.Columns.Count; ++j)
                         {
-                            sw.Write(dgv[j, i].Value == null ? null : dgv[j, i].Value.ToString().Replace(","," ").Replace("<br>"," "));
+                            sw.Write(dgv[j, i].Value == null ? null : dgv[j, i].Value.ToString().Replace(",", " ").Replace("<br>", " ").Replace("\r", " ").Replace("\n", " "));
                             sw.Write(",");
                         }
                         sw.WriteLine();// ("\r\n");
