@@ -87,6 +87,7 @@ namespace Wechat
             {
                 WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                 wechatQueryLog.agentName = "";
+                wechatQueryLog.module = Util.MyConstant.module_Performance;
                 wechatQueryLog.subSystem = "业绩查询";
                 wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 wechatQueryLog.queryString = "成员进入应用";
@@ -194,6 +195,7 @@ namespace Wechat
 
                         WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                         wechatQueryLog.agentName = "";
+                        wechatQueryLog.module = Util.MyConstant.module_Performance;
                         wechatQueryLog.subSystem = "星级查询";
                         wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         wechatQueryLog.queryString = dateTime;
@@ -254,6 +256,7 @@ namespace Wechat
 
                          wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                         wechatQueryLog.agentName = "";
+                        wechatQueryLog.module = Util.MyConstant.module_Performance;
                         wechatQueryLog.subSystem = "积分查询";
                         wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         wechatQueryLog.queryString = month;

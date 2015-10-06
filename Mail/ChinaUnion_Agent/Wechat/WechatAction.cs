@@ -226,6 +226,42 @@ namespace ChinaUnion_Agent.Wechat
             return wechatUser;
         }
 
+        public WechatUser getAllUserFromWechatByStatus(int department, String secret,int status)
+        {
+            WechatUser wechatUser = null;
+            WechatUtil wechatUtil = new WechatUtil();
+            String accessToken = wechatUtil.GetAccessTokenNoCache(corpId, secret);
+
+            string getUserUrlFormat = "https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token={0}&department_id={1}&fetch_child=1&status={2}";
+
+            var addUserUrl = string.Format(getUserUrlFormat, accessToken, department, status);
+
+            HttpHelper httpHelper = new HttpHelper();
+            HttpItem item = new HttpItem()
+            {
+                Encoding = Encoding.GetEncoding("UTF-8"),
+                PostEncoding = Encoding.GetEncoding("UTF-8"),
+                URL = addUserUrl,
+                Method = "get"//URL     可选项 默认为Get
+
+            };
+
+            HttpResult result = httpHelper.GetHtml(item);
+
+            //返回的Html内容
+            string html = result.Html;
+
+
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                //表示访问成功，具体的大家就参考HttpStatusCode类
+                wechatUser = JsonConvert.DeserializeObject<WechatUser>(html);
+            }
+            //表示StatusCode的文字说明与描述
+            string statusCodeDescription = result.StatusDescription;
+            return wechatUser;
+        }
+
         public HttpResult sendTextMessageToWechat(String toUser, String content, String Wechat_Secret, int agentid)
         {
             WechatUtil wechatUtil = new WechatUtil();

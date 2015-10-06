@@ -54,7 +54,8 @@ namespace Wechat
                 }
                 WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                 wechatQueryLog.agentName = "";
-                wechatQueryLog.subSystem = "错误代码查询";
+                wechatQueryLog.module = Util.MyConstant.module_Error;
+                wechatQueryLog.subSystem = "报错处理";
                 wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 wechatQueryLog.queryString = keyword;
                 wechatQueryLog.wechatId = userId;

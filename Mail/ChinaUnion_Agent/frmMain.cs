@@ -635,8 +635,8 @@ namespace ChinaUnion_Agent
 
                     case "AnyasisReport":
 
-                        Analysis.frmAnalysisReport frmAnalysisReport = new Analysis.frmAnalysisReport();
-                        CheckChildOpenState(this, frmAnalysisReport);
+                        Analysis.frmReport frmReport = new Analysis.frmReport();
+                        CheckChildOpenState(this, frmReport);
                         break;
                 }
 

@@ -87,6 +87,7 @@ namespace Wechat
             {
                 WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                 wechatQueryLog.agentName = "";
+                wechatQueryLog.module = Util.MyConstant.module_Commission;
                 wechatQueryLog.subSystem = "佣金结算与支付查询";
                 wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 wechatQueryLog.queryString = "成员进入应用";
@@ -305,6 +306,7 @@ namespace Wechat
 
             WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
             wechatQueryLog.agentName = "";
+            wechatQueryLog.module = Util.MyConstant.module_Commission;
             wechatQueryLog.subSystem = "所有佣金查询";
             wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             wechatQueryLog.queryString = feeMonth;
@@ -441,6 +443,7 @@ namespace Wechat
         {
             WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
             wechatQueryLog.agentName = "";
+            wechatQueryLog.module = Util.MyConstant.module_Commission;
             wechatQueryLog.subSystem = "支付结算查询";
             wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             wechatQueryLog.queryString = feeMonth;
@@ -482,6 +485,7 @@ namespace Wechat
         {
             WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
             wechatQueryLog.agentName = "";
+            wechatQueryLog.module = Util.MyConstant.module_Commission;
             wechatQueryLog.subSystem = "佣金查询";
             wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             wechatQueryLog.queryString = feeMonth;
@@ -561,6 +565,7 @@ namespace Wechat
         {
             WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
             wechatQueryLog.agentName = "";
+            wechatQueryLog.module = Util.MyConstant.module_Commission;
             wechatQueryLog.subSystem = "红包查询";
             wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             wechatQueryLog.queryString = feeMonth;

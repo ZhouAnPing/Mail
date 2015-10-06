@@ -91,6 +91,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Analysis\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Analysis\frmAnalysisReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -461,6 +467,9 @@
     <Compile Include="Wechat\WechatJsonUser.cs" />
     <Compile Include="Wechat\WechatUser.cs" />
     <Compile Include="Wechat\WechatUtil.cs" />
+    <EmbeddedResource Include="Analysis\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Analysis\frmAnalysisReport.resx">
       <DependentUpon>frmAnalysisReport.cs</DependentUpon>
     </EmbeddedResource>

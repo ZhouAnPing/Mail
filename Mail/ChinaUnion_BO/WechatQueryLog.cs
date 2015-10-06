@@ -10,8 +10,10 @@ namespace ChinaUnion_BO
         public String subSystem;
         public String wechatId;
         public String agentName;
+        public String contactName;
         public String queryTime;
         public String queryString;
+        public String module;
        
     }
 }

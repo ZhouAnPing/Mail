@@ -43,6 +43,7 @@ namespace Wechat
 
             WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
             wechatQueryLog.agentName = "";
+            wechatQueryLog.module = Util.MyConstant.module_Commission;
             wechatQueryLog.subSystem = "红包查询";
             wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             wechatQueryLog.queryString = feeMonth;
