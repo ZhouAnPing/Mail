@@ -144,8 +144,8 @@ namespace Wechat
                     if (!String.IsNullOrEmpty(e.Row.Cells[0].Text) && (e.Row.Cells[0].Text.Equals("后付费发展数") || e.Row.Cells[0].Text.Equals("预付费发展数") || e.Row.Cells[0].Text.Equals("总计")))
                     {
                         //e.Row.Cells[1].Text = "&nbsp;&nbsp;&nbsp;&nbsp;" + e.Row.Cells[1].Text;
-                        e.Row.Cells[0].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:left;");
-                        e.Row.Cells[1].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:right;");
+                        e.Row.Cells[0].Attributes.Add("style", "color: white; background-color: #006699;font-weight: bold;text-align:left;");
+                        e.Row.Cells[1].Attributes.Add("style", "color: white; background-color: #006699;font-weight: bold;text-align:right;");
                        // e.Row.Cells[2].Attributes.Add("style", "color: #000066; font-weight: bold;text-align:right;");
                     }
                     else

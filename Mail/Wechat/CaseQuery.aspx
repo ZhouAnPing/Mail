@@ -21,7 +21,7 @@
                         <tr>
                             <td style="font-size: 20px; color: white; font-weight: bold; text-align: center; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding: 0px" bgcolor="#006699">
                                  <asp:Label ID="lblAgentNo" runat="server" Visible="False"></asp:Label>
-                                <asp:Label ID="lblTitle" runat="server" Text="案例列表"></asp:Label>
+                                <asp:Label ID="lblTitle" runat="server" Text="投诉典型案例"></asp:Label>
                                
                                  <asp:Label ID="lblUserId" runat="server" Visible="False"></asp:Label>
                             </td>
@@ -60,7 +60,7 @@
                                        <asp:BoundField DataField="userId" HeaderStyle-BorderWidth="0" HeaderText="登录用户" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
 
                                        
-                                        <asp:HyperLinkField DataNavigateUrlFields="seq,userId" HeaderStyle-BorderWidth="0" DataNavigateUrlFormatString="./CaseDetail.aspx?seq={0}&userId={1}" DataTextField="content" HeaderText="案例" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
+                                        <asp:HyperLinkField DataNavigateUrlFields="seq,userId" HeaderStyle-BorderWidth="0" DataNavigateUrlFormatString="./CaseDetail.aspx?seq={0}&userId={1}" DataTextField="content" HeaderText="投诉典型案例" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
 
                                       
 

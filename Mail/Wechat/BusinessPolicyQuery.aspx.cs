@@ -187,7 +187,7 @@ namespace Wechat
             {
                 e.Row.Cells[0].Attributes.Add("style", "display:none");   //隐藏数据列
                 e.Row.Cells[1].Attributes.Add("style", "display:none");   //隐藏数据列
-                e.Row.Cells[4].Attributes.Add("style", "display:none");   //隐藏数据列
+                e.Row.Cells[3].Attributes.Add("style", "display:none");   //隐藏数据列
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

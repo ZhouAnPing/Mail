@@ -79,7 +79,7 @@ namespace Wechat
                 foreach (AgentDailyPerformance agentPerformance in agentPerformanceList)
                 {
                     row = dt.NewRow();
-                    row["type"] = type;
+                    row["type"] = agentPerformance.type;
                     row["date"] = agentPerformance.date;
                     row["branchNo"] = agentPerformance.branchNo;
                     row["branchName"] = agentPerformance.branchName;

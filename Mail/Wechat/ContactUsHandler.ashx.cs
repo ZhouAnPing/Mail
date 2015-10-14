@@ -129,14 +129,7 @@ namespace Wechat
                         if (agentContactList != null && agentContactList.Count > 0)
                         {
 
-                            WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
-                            wechatQueryLog.agentName = "";
-                            wechatQueryLog.subSystem = "联系人查询";
-                            wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            wechatQueryLog.queryString = "";
-                            wechatQueryLog.wechatId = agentWechatAccount.contactId;
-                            WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-                            wechatQueryLogDao.Add(wechatQueryLog);
+                            
 
                             logger.Info("Exist Record: " + agentContactList.Count);
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");

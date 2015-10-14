@@ -159,7 +159,7 @@ namespace Wechat
                                     }
                                 }
                                 sb.AppendFormat("<item>");
-                                sb.Append("<Title>").AppendFormat("{0}错误查询结果", agentErrorCode.keyword).Append("</Title>");
+                                sb.Append("<Title>").AppendFormat("{0}报错查询结果", agentErrorCode.keyword).Append("</Title>");
                                 // String errorCondition = wechatMessage.Content.Substring("error:".Length);
 
                                 StringBuilder sbDesc = new StringBuilder();

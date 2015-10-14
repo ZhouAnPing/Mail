@@ -32,8 +32,10 @@ namespace Wechat
                 {
                     this.lblSubject.Text = policy.subject;
                    // this.lblSendTime.Text = policy.creatTime;
-                    this.lblContent.Text = policy.content;
-                   
+                    if (!String.IsNullOrEmpty(policy.content))
+                    {
+                        this.lblContent.Text = " <br>"+policy.content.Replace("\r\n", " <br>").Replace("\n", " <br>"); ;
+                    }
                     logger.Info("sequence=" + sequence);
                     logger.Info("userId=" + userId);
                     PolicyReceiverLogDao policyReceiverLogDao = new PolicyReceiverLogDao();

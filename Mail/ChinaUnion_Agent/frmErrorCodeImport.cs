@@ -143,9 +143,9 @@ namespace ChinaUnion_Agent
                 List<Row>  CBSSList = execelfile.Worksheet("CBSS").ToList();
 
                 if (CBSSList != null && CBSSList.Count > 0)
-                {                  
-                  
+                {
 
+                    this.btnImport.Enabled = true;  
                     for (int i = 0; i < CBSSList.Count; i++)
                     {
                         if (String.IsNullOrEmpty(CBSSList[i][0]) || String.IsNullOrWhiteSpace(CBSSList[i][0]))
@@ -171,7 +171,7 @@ namespace ChinaUnion_Agent
 
                 if (otherList != null && otherList.Count > 0)
                 {
-
+                    this.btnImport.Enabled = true;  
 
                     for (int i = 0; i < otherList.Count; i++)
                     {
@@ -272,13 +272,15 @@ namespace ChinaUnion_Agent
                 String fullpath = dgErrorCode[3, i].Value.ToString();
                 if (File.Exists(fullpath))
                 {
-                    FileStream fs = new FileStream(fullpath, FileMode.Open);
-                    byte[] imagebytes = new byte[fs.Length];
+                   
+                   
+
+                    FileStream fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read); //将图片以文件流的形式进行保存
                     BinaryReader br = new BinaryReader(fs);
-                    imagebytes = br.ReadBytes(Convert.ToInt32(fs.Length));
+                    byte[] imagebytes = br.ReadBytes((int)fs.Length);  //将流读入到字节数组中
+
                     fs.Close();
                     br.Close();
-
                     if (imagebytes.Length > 0)
                     {
                         agentErrorCode.errorImg = imagebytes;

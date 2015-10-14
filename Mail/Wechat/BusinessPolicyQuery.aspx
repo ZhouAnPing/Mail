@@ -60,11 +60,11 @@
                                        <asp:BoundField DataField="userId" HeaderStyle-BorderWidth="0" HeaderText="登录用户" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
 
                                          <asp:BoundField DataField="validateStartTime" HeaderStyle-BorderWidth="0" HeaderText="生效时间" ReadOnly="True" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
-                                        <asp:BoundField DataField="validateEndTime" HeaderStyle-BorderWidth="0" HeaderText="失效时间" ReadOnly="True" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
-
+                                       
                                         <asp:HyperLinkField DataNavigateUrlFields="seq,userId" HeaderStyle-BorderWidth="0" DataNavigateUrlFormatString="./BusinessPolicyDetail.aspx?seq={0}&userId={1}" DataTextField="content" HeaderText="内容" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
 
                                         <asp:HyperLinkField DataNavigateUrlFields="seq,userId" HeaderStyle-BorderWidth="0" DataNavigateUrlFormatString="./BusinessPolicyDetail.aspx?seq={0}&userId={1}" DataTextField="subject" HeaderText="名称" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
+                                         <asp:BoundField DataField="validateEndTime" HeaderStyle-BorderWidth="0" HeaderText="失效时间" ReadOnly="True" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" ItemStyle-HorizontalAlign="Left" />
 
                                         <asp:HyperLinkField DataNavigateUrlFields="seq,userId" HeaderStyle-BorderWidth="0" DataNavigateUrlFormatString="./BusinessPolicyAttachmentDetail.aspx?seq={0}&userId={1}" DataTextField="attachment" HeaderText="附件" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="0" ItemStyle-BorderColor="Black" />
 

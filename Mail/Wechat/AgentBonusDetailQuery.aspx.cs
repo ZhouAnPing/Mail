@@ -100,7 +100,7 @@ namespace Wechat
 
                 }
             }
-            this.lblFeeMonth.Text = feeMonth + "红包详情";
+            this.lblFeeMonth.Text = feeMonth.Substring(0, 4) + "年" + feeMonth.Substring(4, 2) + "月" + "红包详情";
             GridView1.DataSource = dt.DefaultView;
             GridView1.DataBind();
 

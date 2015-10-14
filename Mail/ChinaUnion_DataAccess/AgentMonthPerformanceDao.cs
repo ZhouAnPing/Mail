@@ -88,7 +88,7 @@ namespace ChinaUnion_DataAccess
         public AgentMonthPerformance GetByKey(String month, string branchNo,String type)
         {
             StringBuilder sb = new StringBuilder();
-            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+            if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
                 sb.Clear();
                 sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
@@ -232,7 +232,7 @@ namespace ChinaUnion_DataAccess
         public IList<AgentMonthPerformance> GetList(String agentNo,String month,String type)
         {
             StringBuilder sb = new StringBuilder();
-            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+            if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
                 sb.Clear();
                 sb.Append("SELECT type,branchNo, branchName,agentNo,agentName,");
@@ -307,7 +307,7 @@ namespace ChinaUnion_DataAccess
         public AgentMonthPerformance GetSummary(String agentNo, String month,String type)
         {
             StringBuilder sb = new StringBuilder();
-            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+            if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
                 sb.Clear();
                 sb.Append("SELECT branchNo,branchName,");
@@ -351,7 +351,7 @@ namespace ChinaUnion_DataAccess
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
                 {
                     command.Parameters.AddWithValue("@branchNo", agentNo);
                 }
@@ -367,12 +367,12 @@ namespace ChinaUnion_DataAccess
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
 
-                    if (type.Equals("代理商联系人"))
+                    if (type.Contains("代理商"))
                     {
                         agentMonthPerformance.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
                         agentMonthPerformance.agentName = reader["agentName"] == DBNull.Value ? null : reader["agentName"].ToString();
                     }
-                    if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                    if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
                     {
                         agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
                         agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
@@ -402,7 +402,7 @@ namespace ChinaUnion_DataAccess
         public IList<AgentMonthPerformance> GetAllListMonth(String agentNo,String type)
         {
             StringBuilder sb = new StringBuilder();
-            if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+            if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
 
                 sb.Clear();
@@ -424,7 +424,7 @@ namespace ChinaUnion_DataAccess
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
                 {
                     command.Parameters.AddWithValue("@branchNo", agentNo);
                     
@@ -441,7 +441,7 @@ namespace ChinaUnion_DataAccess
                 {
                     agentMonthPerformance = new AgentMonthPerformance();
 
-                    if (type.Equals("直供渠道联系人") || type.Equals("非直供渠道联系人"))
+                    if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
                     {
                         agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
                         agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();

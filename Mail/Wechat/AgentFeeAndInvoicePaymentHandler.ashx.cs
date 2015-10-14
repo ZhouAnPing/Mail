@@ -152,7 +152,7 @@ namespace Wechat
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonthBonus + "红包还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本月无红包或者红包尚未发布!\n\n");
                         }
                         break;
 
@@ -579,7 +579,7 @@ namespace Wechat
             sb.AppendFormat("<Articles>");
 
             sb.AppendFormat("<item>");
-            sb.Append("<Title>").AppendFormat("{0}红包", feeMonth).Append("</Title>");
+            sb.Append("<Title>").AppendFormat("{0}红包", feeMonth.Substring(0,4)+"年"+feeMonth.Substring(4,2)+"月").Append("</Title>");
 
             StringBuilder sbDesc = new StringBuilder();
             //sbDesc.AppendFormat("本月佣金告知单({0})", feeMonth);

@@ -125,7 +125,7 @@ namespace Wechat
                 IList<AgentScore> agentScoreList = null;
                 String dateTime = "";
 
-                DateTime dt = DateTime.Now;  //当前时间
+                DateTime dt = DateTime.Now.AddMonths(-3);  //当前时间
                 DateTime startQuarter = dt.AddMonths(0 - (dt.Month - 1) % 3).AddDays(1 - dt.Day);  //本季度初
                 if (startQuarter.Month >= 1 && startQuarter.Month <= 3)
                 {
@@ -190,7 +190,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "星级还没上传，请直接与上海联通确认!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期星级尚未发布，请耐心等候\n\n");
                         }
 
                         WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
@@ -209,7 +209,7 @@ namespace Wechat
                     case "HistoryScore":
                         
 
-                        String month = DateTime.Now.ToString("yyyyMM");
+                        String month = DateTime.Now.AddMonths(-1).ToString("yyyyMM");
                         if (actionType.Equals("curScore"))
                         {
                             agentScoreList = agentScoreDao.GetLatestByKeyword(agentNo, month);
@@ -251,7 +251,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>",  "积分还没上传，请直接与上海联通确认!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期积分尚未发布，请耐心等候\n\n");
                         }
 
                          wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
@@ -281,7 +281,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeDate + "业绩还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeDate + "业绩尚未发布，请耐心等待！\n\n");
                         }
                         break;
 
@@ -292,7 +292,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近日业绩还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近期业绩尚未发布，请耐心等待！\n\n");
                         }
                         else
                         {
@@ -318,7 +318,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "业绩还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth.Substring(0,4)+"年"+feeMonth.Substring(5,2)+ "月" + "业绩尚未发布，请耐心等待！\n\n");
                         }
                         break;
 
@@ -329,7 +329,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近期业绩还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "近期业绩尚未发布，请耐心等待！\n\n");
                         }
                         else
                         {

@@ -51,7 +51,10 @@ namespace Wechat
                 {
                     this.lblSubject.Text = policy.subject;
                     this.lblSendTime.Text = policy.creatTime;
-                    this.lblContent.Text = policy.content;
+                    if (!String.IsNullOrEmpty(policy.content))
+                    {
+                        this.lblContent.Text = policy.content.Replace("\r\n"," <br>").Replace("\n"," <br>");
+                    }
                     this.lblValidateStartTime.Text = policy.validateStartTime;
                     this.lblValidateEndTime.Text = policy.validateEndTime;
                     this.lblAttachment.Text = policy.attachmentName;
