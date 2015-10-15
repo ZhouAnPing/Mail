@@ -65,6 +65,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.cboAgentType = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             this.pnlReceiver.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -87,6 +88,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cboAgentType);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label9);
@@ -156,7 +158,7 @@
             // 
             this.pnlReceiver.Controls.Add(this.groupBox5);
             this.pnlReceiver.Controls.Add(this.groupBox4);
-            this.pnlReceiver.Location = new System.Drawing.Point(83, 360);
+            this.pnlReceiver.Location = new System.Drawing.Point(83, 378);
             this.pnlReceiver.Name = "pnlReceiver";
             this.pnlReceiver.Size = new System.Drawing.Size(455, 156);
             this.pnlReceiver.TabIndex = 34;
@@ -395,7 +397,7 @@
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(91, 533);
+            this.btnSave.Location = new System.Drawing.Point(91, 547);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 20;
@@ -406,7 +408,7 @@
             // btnDelete
             // 
             this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDelete.Location = new System.Drawing.Point(201, 533);
+            this.btnDelete.Location = new System.Drawing.Point(201, 547);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 31);
             this.btnDelete.TabIndex = 19;
@@ -418,7 +420,7 @@
             // 
             this.btnPublish.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPublish.Enabled = false;
-            this.btnPublish.Location = new System.Drawing.Point(311, 533);
+            this.btnPublish.Location = new System.Drawing.Point(311, 547);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(75, 31);
             this.btnPublish.TabIndex = 18;
@@ -467,7 +469,7 @@
             // btnPreview
             // 
             this.btnPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPreview.Location = new System.Drawing.Point(427, 533);
+            this.btnPreview.Location = new System.Drawing.Point(427, 547);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 31);
             this.btnPreview.TabIndex = 21;
@@ -553,6 +555,19 @@
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
+            // cboAgentType
+            // 
+            this.cboAgentType.FormattingEnabled = true;
+            this.cboAgentType.Items.AddRange(new object[] {
+            "",
+            "代理商联系人",
+            "直供渠道联系人",
+            "非直供渠道联系人"});
+            this.cboAgentType.Location = new System.Drawing.Point(83, 355);
+            this.cboAgentType.Name = "cboAgentType";
+            this.cboAgentType.Size = new System.Drawing.Size(180, 20);
+            this.cboAgentType.TabIndex = 39;
+            // 
             // frmPolicyPublish
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -617,5 +632,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cboAgentType;
     }
 }

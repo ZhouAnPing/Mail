@@ -139,11 +139,21 @@ namespace Wechat
                 {
                     if (!policy.toAll.Equals("Y"))
                     {
-                        IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
-                        if (!UserIdList.Contains(userId))
+                        AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
+                        AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(userId);
+
+                        if (!String.IsNullOrEmpty(policy.agentType) && !policy.agentType.Equals(agentWechatAccount.type))
                         {
-                            logger.Info("userId=" + userId + " 没有权限范围" + policy.sequence);
                             continue;
+                        }
+                        if (String.IsNullOrEmpty(policy.agentType))
+                        {
+                            IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
+                            if (!UserIdList.Contains(userId))
+                            {
+                                logger.Info("userId=" + userId + " 没有权限范围" + policy.sequence);
+                                continue;
+                            }
                         }
                     }
                     row = dt.NewRow();

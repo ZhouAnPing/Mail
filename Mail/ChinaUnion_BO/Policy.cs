@@ -22,5 +22,6 @@ namespace ChinaUnion_BO
         public String deleteTime;
         public String isDelete;
         public String toAll;
+        public String agentType;
     }
 }

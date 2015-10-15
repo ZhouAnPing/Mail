@@ -19,11 +19,12 @@ namespace ChinaUnion_DataAccess
         {
 
 
-            string sql = "INSERT INTO tb_policy (subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll) VALUE (@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime,@validateEndTime, @isValidate, @isDelete, @deleteTime,@toAll)";
+            string sql = "INSERT INTO tb_policy (agentType,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll) VALUE (@agentType,@subject,@content,@sender,@attachment,@attachmentName,@creatTime,@type, @validateStartTime,@validateEndTime, @isValidate, @isDelete, @deleteTime,@toAll)";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@subject", entity.subject);
                 command.Parameters.AddWithValue("@content", entity.content);
                 command.Parameters.AddWithValue("@sender", entity.sender);
@@ -49,7 +50,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public int Update(Policy entity)
         {
-            string sql = "UPDATE  tb_policy SET subject=@subject,content=@content,sender=@sender,attachment=@attachment,attachmentName=@attachmentName,creatTime=@creatTime,";
+            string sql = "UPDATE  tb_policy SET agentType=@agentType,subject=@subject,content=@content,sender=@sender,attachment=@attachment,attachmentName=@attachmentName,creatTime=@creatTime,";
             sql = sql + " type=@type,validateStartTime=@validateStartTime,validateEndTime=@validateEndTime,isValidate=@isValidate,isDelete=@isDelete,deleteTime=@deleteTime,toAll=@toAll where sequence=@sequence ";
 
             //string sql = "UPDATE cimuser SET userNickName=@userNickName WHERE userid=@userid";
@@ -57,6 +58,7 @@ namespace ChinaUnion_DataAccess
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@sequence", entity.sequence);
                 command.Parameters.AddWithValue("@subject", entity.subject);
                 command.Parameters.AddWithValue("@content", entity.content);
@@ -98,7 +100,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public Policy GetBySubject(String subject)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where subject=@subject";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where subject=@subject";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -110,6 +112,7 @@ namespace ChinaUnion_DataAccess
                 if (reader.Read())
                 {
                     policy = new Policy();
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
@@ -138,7 +141,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public Policy Get(int primaryKey)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where sequence=@sequence";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy where sequence=@sequence";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
                 mycn.Open();
@@ -150,6 +153,7 @@ namespace ChinaUnion_DataAccess
                 if (reader.Read())
                 {
                     policy = new Policy();
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
@@ -177,7 +181,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -198,6 +202,7 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     policy = new Policy();
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
@@ -227,7 +232,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllValidatedList(string keyWord, String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll from tb_policy";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime,validateEndTime, isValidate, isDelete, deleteTime,toAll from tb_policy";
 
             sql = sql + " where STR_TO_DATE( validateStartTime,'%Y-%m-%d') <= now() and STR_TO_DATE( validateEndTime,'%Y-%m-%d') >= now()  ";
             if (!String.IsNullOrEmpty(keyWord))
@@ -252,6 +257,8 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     policy = new Policy();
+
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
@@ -285,24 +292,68 @@ namespace ChinaUnion_DataAccess
             StringBuilder sb = new StringBuilder();
 
 
-            sb.Append("select distinct   agentNo from    agent_type ");
-            sb.Append("where    agentfeemonth = (select ");
-            sb.Append("max(agentfeemonth)       from ");
-            sb.Append("agent_type)       and agenttype in (SELECT  ");
-            sb.Append("receiver       FROM ");
-            sb.Append(" tb_policy_receiver      where ");
-            sb.Append(" type = '渠道类型' and  policy_sequence = @sequence  ");
-            sb.Append(" union  ");
-            sb.Append("     select  t.member        from  tb_user_define_group t   where ");
-            sb.Append(" t.groupName in (SELECT receiver ");
-            sb.Append("   FROM   tb_policy_receiver where ");
-            sb.Append("       type = '自定义组' and policy_sequence = @sequence) ");
-            sb.Append("    and t.type = '渠道类型')  ");
-            sb.Append("union  ");
-            sb.Append(" select distinct  t.member from   tb_user_define_group t ");
-            sb.Append("where   t.groupName in (SELECT   receiver ");
-            sb.Append("    FROM   tb_policy_receiver ");
-            sb.Append("  where    type = '自定义组' and policy_sequence = @sequence) ");
+            //sb.Append("select distinct   agentNo from    agent_type ");
+            //sb.Append("where    agentfeemonth = (select ");
+            //sb.Append("max(agentfeemonth)       from ");
+            //sb.Append("agent_type)       and agenttype in (SELECT  ");
+            //sb.Append("receiver       FROM ");
+            //sb.Append(" tb_policy_receiver      where ");
+            //sb.Append(" type = '渠道类型' and  policy_sequence = @sequence  ");
+            //sb.Append(" union  ");
+            //sb.Append("     select  t.member        from  tb_user_define_group t   where ");
+            //sb.Append(" t.groupName in (SELECT receiver ");
+            //sb.Append("   FROM   tb_policy_receiver where ");
+            //sb.Append("       type = '自定义组' and policy_sequence = @sequence) ");
+            //sb.Append("    and t.type = '渠道类型')  ");
+            //sb.Append("union  ");
+            //sb.Append(" select distinct  t.member from   tb_user_define_group t ");
+            //sb.Append("where   t.groupName in (SELECT   receiver ");
+            //sb.Append("    FROM   tb_policy_receiver ");
+            //sb.Append("  where    type = '自定义组' and policy_sequence = @sequence) ");
+            //sb.Append(" and t.type = '代理商/渠道' ");
+
+
+            sb.Append("  select distinct ");
+            sb.Append("  agentNo ");
+            sb.Append(" from ");
+            sb.Append(" agent_type, ");
+            sb.Append(" (SELECT  ");
+            sb.Append("   receiver ");
+            sb.Append("  FROM ");
+            sb.Append("   tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("   type = '渠道类型' ");
+            sb.Append("      and policy_sequence = @sequence union select  ");
+            sb.Append("  t.member ");
+            sb.Append("  from ");
+            sb.Append("    tb_user_define_group t, (SELECT  ");
+            sb.Append("   receiver ");
+            sb.Append("  FROM ");
+            sb.Append("      tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("     type = '自定义组' ");
+            sb.Append("        and policy_sequence = @sequence) t2 ");
+            sb.Append("  where ");
+            sb.Append("     t.groupName = t2.receiver ");
+            sb.Append("       and t.type = '渠道类型') t3 ");
+            sb.Append(" where ");
+            sb.Append("  agentfeemonth = (select  ");
+            sb.Append("     max(agentfeemonth) ");
+            sb.Append("   from ");
+            sb.Append("    agent_type) ");
+            sb.Append("  and agenttype = t3.receiver  ");
+            sb.Append(" union select distinct ");
+            sb.Append("   t.member ");
+            sb.Append(" from ");
+            sb.Append("  tb_user_define_group t ");
+            sb.Append(" where ");
+            sb.Append("  t.groupName in (SELECT  ");
+            sb.Append("        receiver ");
+            sb.Append("    FROM ");
+            sb.Append("     tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("   type = '自定义组' ");
+            sb.Append("    and policy_sequence = @sequence) ");
             sb.Append(" and t.type = '代理商/渠道' ");
 
 
@@ -396,7 +447,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllList(string keyWord)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 and type!='案例分享' ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -415,6 +466,7 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     policy = new Policy();
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();
@@ -443,7 +495,7 @@ namespace ChinaUnion_DataAccess
         /// <returns></returns> 
         public IList<Policy> GetAllList(string keyWord,String type)
         {
-            string sql = "SELECT sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
+            string sql = "SELECT agentType,sequence,subject,content,sender,attachment,attachmentName,creatTime,type, validateStartTime, validateEndTime,isValidate, isDelete, deleteTime,toAll from tb_policy";
             sql = sql + " where 1=1 ";
             if (!String.IsNullOrEmpty(keyWord))
             {
@@ -465,6 +517,7 @@ namespace ChinaUnion_DataAccess
                 while (reader.Read())
                 {
                     policy = new Policy();
+                    policy.agentType = reader["agentType"] == DBNull.Value ? null : reader["agentType"].ToString();
 
                     policy.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();
                     policy.content = reader["content"] == DBNull.Value ? null : reader["content"].ToString();

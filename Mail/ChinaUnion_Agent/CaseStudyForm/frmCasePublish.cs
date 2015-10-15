@@ -174,10 +174,10 @@ namespace ChinaUnion_Agent.CaseStudyForm
                 this.txtContent.Focus();
                 return;
             }
-            if (this.dtEndDate.Value.CompareTo(this.dtStartDate.Value)<=0)
+            if (this.dtEndDate.Value.CompareTo(this.dtStartDate.Value) <= 0)
             {
                 MessageBox.Show("有效期结束时间必须大于开始时间");
-               
+
                 return;
             }
 
@@ -233,34 +233,43 @@ namespace ChinaUnion_Agent.CaseStudyForm
                 }
             }
             if (!String.IsNullOrEmpty(policy.sequence))
-            {               
-               
-                this.policyDao.Update(policy);
-                
-            }else{
-                    policyDao.Add(policy);
+            {
 
-                    policy = policyDao.GetBySubject(policy.subject);
+                this.policyDao.Update(policy);
+
+            }
+            else
+            {
+                policyDao.Add(policy);
+
+                policy = policyDao.GetBySubject(policy.subject);
             }
 
             policyReceiverDao.Delete(policy.sequence);
 
-            foreach (Object item in this.lstAgentType.CheckedItems)
+            for (int i = 0; i < lstAgentType.Items.Count; i++)
             {
-                PolicyReceiver policyReceiver = new PolicyReceiver();
-                policyReceiver.policySequence = policy.sequence;
-                policyReceiver.receiver = item.ToString();
-                policyReceiver.type = "渠道类型";
-                policyReceiverDao.Add(policyReceiver);
+                if (lstAgentType.GetItemChecked(i))
+                {
+                    PolicyReceiver policyReceiver = new PolicyReceiver();
+                    policyReceiver.policySequence = policy.sequence;
+                    policyReceiver.receiver = lstAgentType.Items[i].ToString();
+                    policyReceiver.type = "渠道类型";
+                    policyReceiverDao.Add(policyReceiver);
+                }
             }
 
-            foreach (Object item in this.lstGroup.CheckedItems)
+
+            for (int i = 0; i < lstGroup.Items.Count; i++)
             {
-                PolicyReceiver policyReceiver = new PolicyReceiver();
-                policyReceiver.policySequence = policy.sequence;
-                policyReceiver.receiver = item.ToString();
-                policyReceiver.type = "自定义组";
-                policyReceiverDao.Add(policyReceiver);
+                if (lstGroup.GetItemChecked(i))
+                {
+                    PolicyReceiver policyReceiver = new PolicyReceiver();
+                    policyReceiver.policySequence = policy.sequence;
+                    policyReceiver.receiver = lstGroup.Items[i].ToString();
+                    policyReceiver.type = "自定义组";
+                    policyReceiverDao.Add(policyReceiver);
+                }
             }
 
             this.prepareGrid(this.txtSearchCondition.Text);
@@ -325,7 +334,7 @@ namespace ChinaUnion_Agent.CaseStudyForm
                                 }
                                 if (policyReceiver.type.Equals("自定义组"))
                                 {
-                                    int index = this.lstGroup.FindString(policyReceiver.receiver);
+                                    int index = this.lstGroup.FindStringExact(policyReceiver.receiver);
                                     if (index >= 0)
                                     {
                                         this.lstGroup.SetItemCheckState(index, CheckState.Checked);
