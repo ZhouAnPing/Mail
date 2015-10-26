@@ -83,9 +83,11 @@
     <Content Include="AgentBonusDetailQuery.aspx" />
     <Content Include="CaseQuery.aspx" />
     <Content Include="CaseDetail.aspx" />
+    <Content Include="MyExamQuery.aspx" />
     <Content Include="OnlineComplainSuggestionDetail.aspx" />
     <Content Include="OnlineComplainSuggestionQuery.aspx" />
     <Content Include="OnlineComplainSuggestion.aspx" />
+    <Content Include="OnlineExam.aspx" />
     <Content Include="PerformanceDailyDetailQuery.aspx" />
     <Content Include="PerformanceDailySummaryQuery.aspx" />
     <Content Include="InvoicePaymentQuery.aspx" />
@@ -184,6 +186,13 @@
     <Compile Include="CaseDetail.aspx.designer.cs">
       <DependentUpon>CaseDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyExamQuery.aspx.cs">
+      <DependentUpon>MyExamQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyExamQuery.aspx.designer.cs">
+      <DependentUpon>MyExamQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OnlineComplainSuggestionDetail.aspx.cs">
       <DependentUpon>OnlineComplainSuggestionDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,6 +213,13 @@
     </Compile>
     <Compile Include="OnlineComplainSuggestion.aspx.designer.cs">
       <DependentUpon>OnlineComplainSuggestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineExam.aspx.cs">
+      <DependentUpon>OnlineExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineExam.aspx.designer.cs">
+      <DependentUpon>OnlineExam.aspx</DependentUpon>
     </Compile>
     <Compile Include="PerformanceDailyDetailQuery.aspx.cs">
       <DependentUpon>PerformanceDailyDetailQuery.aspx</DependentUpon>

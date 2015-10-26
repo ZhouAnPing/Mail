@@ -57,6 +57,10 @@
     <Compile Include="AgentScore.cs" />
     <Compile Include="AgentWechatAccount.cs" />
     <Compile Include="AgentBonus.cs" />
+    <Compile Include="AgentExamScore.cs" />
+    <Compile Include="AgentExam.cs" />
+    <Compile Include="Exam.cs" />
+    <Compile Include="ExamQuestion.cs" />
     <Compile Include="WechatQueryLog.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="UserDefinedGroup.cs" />

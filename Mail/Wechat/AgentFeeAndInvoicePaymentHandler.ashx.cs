@@ -236,7 +236,7 @@ namespace Wechat
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "发票支付还未受理，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth.Substring(0, 4) + "年" + feeMonth.Substring(4, 2) + "月" + "无发票受理记录或尚未完成，请耐心等候!\n\n");
                         }
                         break;
                     default:
@@ -468,6 +468,7 @@ namespace Wechat
 
             }
 
+            sbDesc.Append("\n此发票为" + feeMonth.Substring(0, 4) + "年" + feeMonth.Substring(4, 2) + "月" + "受理的发票支付记录，并非" + feeMonth.Substring(0, 4) + "年" + feeMonth.Substring(4, 2) + "月" + "佣金对应的发票").AppendLine();
 
             sb.Append("<Description>").AppendFormat("<![CDATA[{0}]]>", sbDesc.ToString()).Append("</Description>");
 

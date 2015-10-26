@@ -190,7 +190,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期星级尚未发布，请耐心等候\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期无星级或尚未发布，请耐心等候\n\n");
                         }
 
                         WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
@@ -251,7 +251,7 @@ namespace Wechat
                         {
                             logger.Info("is not Existed Record: ");
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期积分尚未发布，请耐心等候\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本期无积分或尚未发布，请耐心等候\n\n");
                         }
 
                          wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();

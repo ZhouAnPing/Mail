@@ -88,7 +88,7 @@ namespace Wechat
             else
             {
                 row = dt.NewRow();
-                row["result"] = feeMonth+"结算支付信息尚未发布。";
+                row["result"] = feeMonth + "无发票受理记录或尚未完成，请耐心等候。";
                 dt.Rows.Add(row);
             }
 

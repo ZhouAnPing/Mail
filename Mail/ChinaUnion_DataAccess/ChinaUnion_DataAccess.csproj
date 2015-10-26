@@ -61,6 +61,10 @@
     <Compile Include="AgentScoreDao.cs" />
     <Compile Include="AgentWechatAccountDao.cs" />
     <Compile Include="AgentBonusDao.cs" />
+    <Compile Include="AgentExamScoreDao.cs" />
+    <Compile Include="AgentExamDao.cs" />
+    <Compile Include="ExamQuestionDao.cs" />
+    <Compile Include="ExamDao.cs" />
     <Compile Include="PolicyReceiverLogDao.cs" />
     <Compile Include="PolicyReceiverDao.cs" />
     <Compile Include="UserDefinedGroupDao.cs" />

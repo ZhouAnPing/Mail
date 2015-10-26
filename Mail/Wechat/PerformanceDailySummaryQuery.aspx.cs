@@ -113,6 +113,9 @@ namespace Wechat
                     dt.Rows.Add(row);
                 }
             }
+            DataView dv = dt.DefaultView;
+            dv.Sort = "summary Desc";
+            dt = dv.ToTable();
 
             AgentDailyPerformance agentPerformanceSummary = agentPerformanceDao.GetSummary(agentNo, feeDate, type);
             if (agentPerformanceSummary != null)

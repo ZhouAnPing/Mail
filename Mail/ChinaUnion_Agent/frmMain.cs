@@ -443,6 +443,16 @@ namespace ChinaUnion_Agent
                         frmCasePublish.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmCasePublish);
                         break;
+                    case "OnlineExamManagement":
+                        OnlineExamForm.frmOnlineExamManagement frmOnlineExamManagement = new OnlineExamForm.frmOnlineExamManagement();
+                        frmOnlineExamManagement.Text = "在线考试";
+                        CheckChildOpenState(this, frmOnlineExamManagement);
+                        break;
+                    case "OnlineSurveyManagement":
+                        OnlineExamForm.frmOnlineExamManagement frmOnlineSurveyManagement = new OnlineExamForm.frmOnlineExamManagement();
+                        frmOnlineSurveyManagement.Text = "在线调研";
+                        CheckChildOpenState(this, frmOnlineSurveyManagement);
+                        break;
                     case "PolicyPublish":
 
                         frmPolicyPublish frmPolicyPublish = new frmPolicyPublish();
