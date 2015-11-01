@@ -15,6 +15,9 @@ using System.Threading;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
 
 
 namespace ChinaUnion_Agent.ScoreGrade
@@ -158,6 +161,8 @@ namespace ChinaUnion_Agent.ScoreGrade
             }
             worker.ReportProgress(4, "导入红包完成...\r\n");
 
+            WechatAction wechatAction = new WechatAction();
+            wechatAction.sendTextMessageToWechat("@all", this.dtFeeMonth.Value.ToString("yyyy年MM月") + "红包已发布，请通过底部菜单查询红包详情", Settings.Default.Wechat_Secret, MyConstant.APP_Payment);
 
 
             //MessageBox.Show("数据上传完毕");

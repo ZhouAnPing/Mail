@@ -31,6 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSearchCondition = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
@@ -45,7 +46,9 @@
             this.dgExamMultiChoice = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgExamJugement = new System.Windows.Forms.DataGridView();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rdoSurvey = new System.Windows.Forms.RadioButton();
+            this.rdoExam = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExam)).BeginInit();
@@ -57,10 +60,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgExamMultiChoice)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExamJugement)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.txtSearchCondition);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnDelete);
@@ -90,12 +95,23 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "关键字:";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDelete.Location = new System.Drawing.Point(645, 20);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(55, 31);
+            this.btnDelete.TabIndex = 17;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnNew
             // 
             this.btnNew.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnNew.Location = new System.Drawing.Point(450, 20);
+            this.btnNew.Location = new System.Drawing.Point(562, 20);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 31);
+            this.btnNew.Size = new System.Drawing.Size(55, 31);
             this.btnNew.TabIndex = 17;
             this.btnNew.Text = "新建";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -104,9 +120,9 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(680, 20);
+            this.btnCancel.Location = new System.Drawing.Point(728, 20);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 31);
+            this.btnCancel.Size = new System.Drawing.Size(55, 31);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -115,9 +131,9 @@
             // btnQuery
             // 
             this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnQuery.Location = new System.Drawing.Point(310, 20);
+            this.btnQuery.Location = new System.Drawing.Point(479, 20);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(100, 31);
+            this.btnQuery.Size = new System.Drawing.Size(55, 31);
             this.btnQuery.TabIndex = 15;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
@@ -257,16 +273,36 @@
             this.dgExamJugement.Size = new System.Drawing.Size(550, 617);
             this.dgExamJugement.TabIndex = 50;
             // 
-            // btnDelete
+            // panel1
             // 
-            this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDelete.Location = new System.Drawing.Point(565, 20);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 31);
-            this.btnDelete.TabIndex = 17;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.panel1.Controls.Add(this.rdoSurvey);
+            this.panel1.Controls.Add(this.rdoExam);
+            this.panel1.Location = new System.Drawing.Point(302, 21);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(171, 29);
+            this.panel1.TabIndex = 54;
+            // 
+            // rdoSurvey
+            // 
+            this.rdoSurvey.AutoSize = true;
+            this.rdoSurvey.Location = new System.Drawing.Point(92, 4);
+            this.rdoSurvey.Name = "rdoSurvey";
+            this.rdoSurvey.Size = new System.Drawing.Size(71, 16);
+            this.rdoSurvey.TabIndex = 54;
+            this.rdoSurvey.TabStop = true;
+            this.rdoSurvey.Text = "在线调研";
+            this.rdoSurvey.UseVisualStyleBackColor = true;
+            // 
+            // rdoExam
+            // 
+            this.rdoExam.AutoSize = true;
+            this.rdoExam.Location = new System.Drawing.Point(6, 4);
+            this.rdoExam.Name = "rdoExam";
+            this.rdoExam.Size = new System.Drawing.Size(71, 16);
+            this.rdoExam.TabIndex = 55;
+            this.rdoExam.TabStop = true;
+            this.rdoExam.Text = "在线考试";
+            this.rdoExam.UseVisualStyleBackColor = true;
             // 
             // frmOnlineExamManagement
             // 
@@ -292,6 +328,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgExamMultiChoice)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgExamJugement)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,5 +354,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dgExamJugement;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rdoSurvey;
+        private System.Windows.Forms.RadioButton rdoExam;
     }
 }

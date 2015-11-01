@@ -1,4 +1,5 @@
 ﻿using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
 using ChinaUnion_Agent.Wechat;
 using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
@@ -154,6 +155,8 @@ namespace ChinaUnion_Agent.InvoiceForm
 
             }
             worker.ReportProgress(4, "导入支付记录完成...\r\n");
+            
+            wechatAction.sendTextMessageToWechat("@all", "结算支付信息已发布，请通过底部菜单查询结算支付详情", Settings.Default.Wechat_Secret, MyConstant.APP_Payment);
 
 
 

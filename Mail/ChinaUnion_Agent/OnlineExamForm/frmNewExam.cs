@@ -179,8 +179,22 @@ namespace ChinaUnion_Agent.OnlineExamForm
             this.Cursor = Cursors.WaitCursor;
 
             Exam exam = new Exam();
+            if (rdoExam.Checked)
+            {
+                exam.type = "Exam";
+            }
+            if (rdoSurvey.Checked)
+            {
+                exam.type = "Survey";
+            }
+            if (String.IsNullOrEmpty(exam.type))
+            {
+                MessageBox.Show("请选择试题类型");
+
+                return;
+            }
             exam.subject = this.txtExamName.Text;
-            exam.type = "Exam";
+            //exam.type = "Exam";
             exam.validateStartTime = this.dtStartDate.Value.ToString("yyyy-MM-dd");
             exam.validateEndTime = this.dtEndDate.Value.ToString("yyyy-MM-dd");
             exam.creatTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");            
@@ -245,7 +259,38 @@ namespace ChinaUnion_Agent.OnlineExamForm
                     examQuestionDao.Add(examQuestion);
 
                 }
+
+                ExamReceiverDao examReceiverDao = new ChinaUnion_DataAccess.ExamReceiverDao();
+                examReceiverDao.Delete(exam.sequence);
+
+
+                for (int i = 0; i < lstAgentType.Items.Count; i++)
+                {
+                    if (lstAgentType.GetItemChecked(i))
+                    {
+                        ExamReceiver examReceiver = new ExamReceiver();
+                        examReceiver.examSequence = exam.sequence;
+                        examReceiver.receiver = lstAgentType.Items[i].ToString();
+                        examReceiver.type = "渠道类型";
+                        examReceiverDao.Add(examReceiver);
+                    }
+                }
+
+
+                for (int i = 0; i < lstGroup.Items.Count; i++)
+                {
+                    if (lstGroup.GetItemChecked(i))
+                    {
+                        ExamReceiver examReceiver = new ExamReceiver();
+                        examReceiver.examSequence = exam.sequence;
+                        examReceiver.receiver = lstGroup.Items[i].ToString();
+                        examReceiver.type = "自定义组";
+                        examReceiverDao.Add(examReceiver);
+                    }
+                }
             }
+
+
 
             MessageBox.Show("操作完毕");
 

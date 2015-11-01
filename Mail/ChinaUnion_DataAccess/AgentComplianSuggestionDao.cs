@@ -126,7 +126,7 @@ namespace ChinaUnion_DataAccess
                     agentComplianSuggestion.sequence = reader["sequence"] == DBNull.Value ? 0 : Int32.Parse(reader["sequence"].ToString());
                     agentComplianSuggestion.createTime = reader["createTime"] == DBNull.Value ? null : reader["createTime"].ToString();
                     agentComplianSuggestion.agentNo = reader["agentNo"] == DBNull.Value ? null : reader["agentNo"].ToString();
-                    agentComplianSuggestion.agentNo = reader["userId"] == DBNull.Value ? null : reader["agentNo"].ToString();
+                    agentComplianSuggestion.userId = reader["userId"] == DBNull.Value ? null : reader["userId"].ToString();
 
                     agentComplianSuggestion.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
                     agentComplianSuggestion.subject = reader["subject"] == DBNull.Value ? null : reader["subject"].ToString();

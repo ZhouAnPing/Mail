@@ -53,7 +53,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeDate;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             DataTable dt = new DataTable();
             DataRow row = null;

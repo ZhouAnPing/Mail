@@ -80,6 +80,21 @@ namespace Wechat
                             type = "建议";
                             this.lblTitle.Text = "建议历史";
                         }
+                        WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                        wechatQueryLog.agentName = "";
+                        wechatQueryLog.module = Util.MyConstant.module_Service;
+                        wechatQueryLog.subSystem = "服务监督";
+                        wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        wechatQueryLog.queryString = type;
+                        wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                        WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                        try
+                        {
+                            wechatQueryLogDao.Add(wechatQueryLog);
+                        }
+                        catch
+                        {
+                        }
 
                         bindDataToGrid("", type, agentNo, returnMessage.UserId);
                     }

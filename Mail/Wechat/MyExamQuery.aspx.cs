@@ -112,8 +112,9 @@ namespace Wechat
             }
 
             logger.Info("userId=" + userId);
+            logger.Info("messageType=" + messageType);
             AgentExamDao examDao = new ChinaUnion_DataAccess.AgentExamDao();
-            IList<Exam> examList = examDao.GetList(condition, userId);
+            IList<Exam> examList = examDao.GetList(condition, userId, messageType);
 
            
             

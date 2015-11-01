@@ -60,7 +60,13 @@ namespace Wechat
                 wechatQueryLog.queryString = keyword;
                 wechatQueryLog.wechatId = userId;
                 WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-                wechatQueryLogDao.Add(wechatQueryLog);
+                try
+                {
+                    wechatQueryLogDao.Add(wechatQueryLog);
+                }
+                catch
+                {
+                }
             }
 
         }

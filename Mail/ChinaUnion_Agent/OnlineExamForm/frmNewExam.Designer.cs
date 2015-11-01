@@ -54,6 +54,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtExamName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rdoSurvey = new System.Windows.Forms.RadioButton();
+            this.rdoExam = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -66,6 +70,7 @@
             this.groupBox5.SuspendLayout();
             this.pnlReceiver.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -103,6 +108,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.btnImport);
@@ -281,7 +288,7 @@
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 31);
             this.btnImport.TabIndex = 49;
-            this.btnImport.Text = "上传考题》";
+            this.btnImport.Text = "上传题目》";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -293,7 +300,7 @@
             "代理商联系人",
             "直供渠道联系人",
             "非直供渠道联系人"});
-            this.cboAgentType.Location = new System.Drawing.Point(86, 120);
+            this.cboAgentType.Location = new System.Drawing.Point(86, 131);
             this.cboAgentType.Name = "cboAgentType";
             this.cboAgentType.Size = new System.Drawing.Size(268, 20);
             this.cboAgentType.TabIndex = 47;
@@ -301,7 +308,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 125);
+            this.label11.Location = new System.Drawing.Point(12, 136);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 46;
@@ -310,7 +317,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(66, 71);
+            this.label10.Location = new System.Drawing.Point(66, 100);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 12);
             this.label10.TabIndex = 45;
@@ -319,7 +326,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(210, 71);
+            this.label9.Location = new System.Drawing.Point(210, 100);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 12);
             this.label9.TabIndex = 44;
@@ -327,7 +334,7 @@
             // 
             // dtEndDate
             // 
-            this.dtEndDate.Location = new System.Drawing.Point(228, 66);
+            this.dtEndDate.Location = new System.Drawing.Point(228, 95);
             this.dtEndDate.Name = "dtEndDate";
             this.dtEndDate.Size = new System.Drawing.Size(126, 21);
             this.dtEndDate.TabIndex = 43;
@@ -404,7 +411,7 @@
             // 
             // dtStartDate
             // 
-            this.dtStartDate.Location = new System.Drawing.Point(84, 67);
+            this.dtStartDate.Location = new System.Drawing.Point(84, 96);
             this.dtStartDate.Name = "dtStartDate";
             this.dtStartDate.Size = new System.Drawing.Size(126, 21);
             this.dtStartDate.TabIndex = 41;
@@ -412,11 +419,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 72);
+            this.label7.Location = new System.Drawing.Point(12, 57);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 40;
-            this.label7.Text = "有效期:";
+            this.label7.Text = "试题类型:";
             // 
             // txtExamName
             // 
@@ -434,6 +441,46 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "名称";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "有效期:";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rdoSurvey);
+            this.panel1.Controls.Add(this.rdoExam);
+            this.panel1.Location = new System.Drawing.Point(84, 53);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(270, 29);
+            this.panel1.TabIndex = 53;
+            // 
+            // rdoSurvey
+            // 
+            this.rdoSurvey.AutoSize = true;
+            this.rdoSurvey.Location = new System.Drawing.Point(115, 4);
+            this.rdoSurvey.Name = "rdoSurvey";
+            this.rdoSurvey.Size = new System.Drawing.Size(71, 16);
+            this.rdoSurvey.TabIndex = 54;
+            this.rdoSurvey.TabStop = true;
+            this.rdoSurvey.Text = "在线调研";
+            this.rdoSurvey.UseVisualStyleBackColor = true;
+            // 
+            // rdoExam
+            // 
+            this.rdoExam.AutoSize = true;
+            this.rdoExam.Location = new System.Drawing.Point(6, 4);
+            this.rdoExam.Name = "rdoExam";
+            this.rdoExam.Size = new System.Drawing.Size(71, 16);
+            this.rdoExam.TabIndex = 55;
+            this.rdoExam.TabStop = true;
+            this.rdoExam.Text = "在线考试";
+            this.rdoExam.UseVisualStyleBackColor = true;
+            // 
             // frmNewExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -442,7 +489,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmNewExam";
-            this.Text = "考试发布";
+            this.Text = "试题发布";
             this.Load += new System.EventHandler(this.frmNewExam_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -457,6 +504,8 @@
             this.groupBox5.ResumeLayout(false);
             this.pnlReceiver.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -489,5 +538,9 @@
         private System.Windows.Forms.DataGridView dgExamMultiChoice;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dgExamJugement;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rdoSurvey;
+        private System.Windows.Forms.RadioButton rdoExam;
+        private System.Windows.Forms.Label label2;
     }
 }

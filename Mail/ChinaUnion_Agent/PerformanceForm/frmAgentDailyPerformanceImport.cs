@@ -16,6 +16,8 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using ChinaUnion_Agent.Util;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_Agent.Properties;
 
 
 namespace ChinaUnion_Agent.PerformanceForm
@@ -246,6 +248,9 @@ namespace ChinaUnion_Agent.PerformanceForm
             }
 
             worker.ReportProgress(2, "导入日绩效完成...\r\n");
+
+            WechatAction wechatAction = new WechatAction();
+            wechatAction.sendTextMessageToWechat("@all", this.dtDay.Value.ToString("yyyy年MM月dd日") + "业绩已发布，请通过底部菜单查询当日业绩详情", Settings.Default.Wechat_Secret, MyConstant.APP_Performace);
 
 
         }

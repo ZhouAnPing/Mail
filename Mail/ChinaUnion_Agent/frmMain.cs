@@ -445,13 +445,13 @@ namespace ChinaUnion_Agent
                         break;
                     case "OnlineExamManagement":
                         OnlineExamForm.frmOnlineExamManagement frmOnlineExamManagement = new OnlineExamForm.frmOnlineExamManagement();
-                        frmOnlineExamManagement.Text = "在线考试";
+                        frmOnlineExamManagement.Text = "考题发布";
                         CheckChildOpenState(this, frmOnlineExamManagement);
                         break;
-                    case "OnlineSurveyManagement":
-                        OnlineExamForm.frmOnlineExamManagement frmOnlineSurveyManagement = new OnlineExamForm.frmOnlineExamManagement();
-                        frmOnlineSurveyManagement.Text = "在线调研";
-                        CheckChildOpenState(this, frmOnlineSurveyManagement);
+                    case "OnlineExamQuery":
+                        OnlineExamForm.frmAgentScoreQuery frmOnlineExamQuery = new OnlineExamForm.frmAgentScoreQuery();
+                        frmOnlineExamQuery.Text = "成绩查询";
+                        CheckChildOpenState(this, frmOnlineExamQuery);
                         break;
                     case "PolicyPublish":
 

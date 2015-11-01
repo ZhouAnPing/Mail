@@ -169,7 +169,7 @@
 			                        	上海联通销售部		
 			                    </td>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px" bgcolor="#DEDBDE">
-			                        	发送日期：	
+			                        	查询日期：	
 			                    </td>
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:0px" bgcolor="#ffffff">
 			                        	<asp:Label ID="lblSendDate" runat="server"></asp:Label>

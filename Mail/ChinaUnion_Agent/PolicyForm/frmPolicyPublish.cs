@@ -367,13 +367,13 @@ namespace ChinaUnion_Agent.PolicyForm
             switch (this.cbType.Text)
             {
                 case "政策":
-                    appId = 6;
+                    appId = MyConstant.APP_Notice;
                     break;
                 case "通知公告/重点关注":
-                    appId = 6;
+                    appId = MyConstant.APP_Notice;
                     break;
                 case "服务规范":
-                    appId = 9;
+                    appId = MyConstant.APP_Service_Monitor;
                     break;
             }
             IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(this.txtSequence.Text);

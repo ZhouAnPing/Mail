@@ -1,4 +1,5 @@
-﻿using ChinaUnion_DataAccess;
+﻿using ChinaUnion_BO;
+using ChinaUnion_DataAccess;
 using KnightsWarriorAutoupdater;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -85,6 +88,7 @@ namespace ChinaUnion_Agent
             bool isNewVersion = true ;
             if (isNewVersion)
             {
+
                 frmLogin fLogin = new frmLogin();
                 fLogin.ShowDialog();
                 if (fLogin.DialogResult != DialogResult.OK)
@@ -102,5 +106,7 @@ namespace ChinaUnion_Agent
                 Application.Run(new frmMain());
             }
         }
+
+       
     }
 }

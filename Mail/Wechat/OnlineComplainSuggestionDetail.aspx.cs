@@ -14,6 +14,11 @@ namespace Wechat
         protected void Page_Load(object sender, EventArgs e)
         {
             string sequence = Request.QueryString["seq"];
+            string from = Request.QueryString["from"];
+            if (!String.IsNullOrEmpty(from))
+            {
+                this.btnBack.Visible = false;
+            }
 
             AgentComplianSuggestionDao agentComplianSuggestionDao = new ChinaUnion_DataAccess.AgentComplianSuggestionDao();
             AgentComplianSuggestion agentComplianSuggestion = agentComplianSuggestionDao.Get(Int32.Parse(sequence));
@@ -41,6 +46,23 @@ namespace Wechat
 
                 this.lblReplyTime.Text = agentComplianSuggestion.replyTime;
                 this.lblReplyContent.Text = agentComplianSuggestion.replyContent;
+
+
+                WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                wechatQueryLog.agentName = "";
+                wechatQueryLog.module = Util.MyConstant.module_Service;
+                wechatQueryLog.subSystem = "服务监督";
+                wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                wechatQueryLog.queryString = agentComplianSuggestion.type;
+                wechatQueryLog.wechatId = agentComplianSuggestion.userId;
+                WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                try
+                {
+                    wechatQueryLogDao.Add(wechatQueryLog);
+                }
+                catch
+                {
+                }
             }
             else
             {

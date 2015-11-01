@@ -15,6 +15,9 @@ using System.Threading;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
 
 
 namespace ChinaUnion_Agent
@@ -173,6 +176,8 @@ namespace ChinaUnion_Agent
                 agentFeeDao.Add(agentFee);
 
             }
+            WechatAction wechatAction = new WechatAction();
+            wechatAction.sendTextMessageToWechat("@all", this.dtFeeMonth.Value.ToString("yyyy年MM月") + "佣金已发布，请通过底部菜单查询佣金详情", Settings.Default.Wechat_Secret, MyConstant.APP_Payment);
 
             worker.ReportProgress(2, "导入代理商佣金完成...\r\n");
            

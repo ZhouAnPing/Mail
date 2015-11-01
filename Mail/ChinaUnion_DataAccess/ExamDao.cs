@@ -132,12 +132,16 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<Exam> GetList(String keyword)
+        public IList<Exam> GetList(String keyword,String type)
         {
             string sql = "SELECT sequence, subject,sender,creatTime,type,validateStartTime,validateEndTime,isValidate,toAll,agentType,duration FROM tb_exam WHERE 1=1";
             if (!String.IsNullOrEmpty(keyword))
             {
                 sql = sql + " and subject like '%" + keyword+"%'";
+            }
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type = '" + type + "'";
             }
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {

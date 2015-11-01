@@ -1,4 +1,6 @@
-﻿using ChinaUnion_Agent.Util;
+﻿using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
+using ChinaUnion_Agent.Wechat;
 using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
@@ -171,6 +173,11 @@ namespace ChinaUnion_Agent.SuggestionForm
             agentComplianSuggestionDao.update(agentComplianSuggestion);
 
 
+            WechatAction wechatAction = new WechatAction();
+            wechatAction.sendTextMessageToWechat(agentComplianSuggestion.userId, "针对您" + agentComplianSuggestion.type + "的：[" + agentComplianSuggestion.subject + "],反馈如下：\n" + agentComplianSuggestion.replyContent + " \n\n<a href=\"http://112.64.17.80/Wechat/OnlineComplainSuggestionDetail.aspx?seq=" + agentComplianSuggestion.sequence + "&from=OIC\">点击查询详情</a>", Settings.Default.Wechat_Secret, MyConstant.APP_Service_Monitor);
+
+
+
             prepareGrid(this.txtSearchCondition.Text.Trim(), this.cboType.Text, this.txtAgentNoSearch.Text.Trim());
 
             MessageBox.Show("操作完成");
@@ -221,6 +228,8 @@ namespace ChinaUnion_Agent.SuggestionForm
                         this.txtOwnerReply.Text = agentComplianSuggestion.ownerReplyContent;
                         this.txtCheckStatus.Text = agentComplianSuggestion.checkStatus;
                         this.txtReplyContent.Text = agentComplianSuggestion.replyContent;
+
+                        
 
                        // this.dtValidateDate.Value = DateTime.Parse(policy.validateTime);
                         

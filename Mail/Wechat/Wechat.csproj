@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgentFeeQuery.aspx" />
-    <Content Include="AgentInvoiceQuery.aspx" />
     <Content Include="BusinessPolicyAttachmentDetail.aspx" />
     <Content Include="BusinessPolicyDetail.aspx" />
     <Content Include="BusinessPolicyQuery.aspx" />
@@ -79,7 +78,6 @@
     <Content Include="ChinaUnicom.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="AgentInvoicePaymentQuery.aspx" />
     <Content Include="AgentBonusDetailQuery.aspx" />
     <Content Include="CaseQuery.aspx" />
     <Content Include="CaseDetail.aspx" />
@@ -106,25 +104,12 @@
     <Compile Include="AgentFeeAndInvoicePaymentHandler.ashx.cs">
       <DependentUpon>AgentFeeAndInvoicePaymentHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="AgentFeeHandler.ashx.cs">
-      <DependentUpon>AgentFeeHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="AgentFeeQuery.aspx.cs">
       <DependentUpon>AgentFeeQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AgentFeeQuery.aspx.designer.cs">
       <DependentUpon>AgentFeeQuery.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AgentInvoiceHandler.ashx.cs">
-      <DependentUpon>AgentInvoiceHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="AgentInvoiceQuery.aspx.cs">
-      <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AgentInvoiceQuery.aspx.designer.cs">
-      <DependentUpon>AgentInvoiceQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="BO\WechatMessage.cs" />
     <Compile Include="BO\WechatUserId.cs" />
@@ -154,13 +139,6 @@
     </Compile>
     <Compile Include="CallbackHandler.ashx.cs">
       <DependentUpon>CallbackHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="AgentInvoicePaymentQuery.aspx.cs">
-      <DependentUpon>AgentInvoicePaymentQuery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AgentInvoicePaymentQuery.aspx.designer.cs">
-      <DependentUpon>AgentInvoicePaymentQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContactUsHandler.ashx.cs">
       <DependentUpon>ContactUsHandler.ashx</DependentUpon>
@@ -306,8 +284,6 @@
     </Content>
     <Content Include="CallbackHandler.ashx" />
     <Content Include="ErrorCodeHandler.ashx" />
-    <Content Include="AgentFeeHandler.ashx" />
-    <Content Include="AgentInvoiceHandler.ashx" />
     <Content Include="PerformanceHandler.ashx" />
     <Content Include="ContactUsHandler.ashx" />
     <Content Include="BusinessPolicyHandler.ashx" />

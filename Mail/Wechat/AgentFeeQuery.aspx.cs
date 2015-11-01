@@ -65,13 +65,16 @@ namespace Wechat
                 }
             }
 
-            this.lblAgentComment.Text = sbDesc.ToString(); ;
+            this.lblAgentComment.Text = sbDesc.ToString(); 
+            if(String.IsNullOrEmpty(sbDesc.ToString())){
+                this.lblAgentComment.Text = "无";
+            }
             this.lblAgentName.Text = agentFee.agentName;
             this.lblAgentNo.Text = agentFee.agentNo;
             this.lblAgentType.Text = agentFee.agent.agentType;
             this.lblFeeMonth.Text = agentFee.agentFeeMonth;
             this.lblFeeSeq.Text = agentFee.agentFeeSeq;
-            this.lblSendDate.Text = DateTime.Now.ToString("yyyy年MM月dd日");
+            this.lblSendDate.Text =DateTime.Now.ToString("yyyy年MM月dd日");
 
             DataTable dt = new DataTable();
             dt.Columns.Add("seq");

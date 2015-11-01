@@ -66,7 +66,7 @@
 			                    <td  style="font-size: 14px; color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
 			                        	<b>答复内容:</b>
 			                            
-			                            <asp:Label ID="lblReplyContent" runat="server"></asp:Label>
+			                            <asp:Label ID="lblReplyContent" runat="server" ></asp:Label>
 			                            
 			                    </td>				
 							  
@@ -74,7 +74,7 @@
         <tr>
 			                    <td  style="font-size: 25px;  color: black; font-weight: normal; text-align: left; font-family: Microsoft YaHei, Calibri, Arival; line-height: normal; vertical-align: top; padding:5px" bgcolor="white">
 			                        	
-			                        <input type="button" onclick="javascript: window.history.go(-1);"value="<<返回上一页" style="font-size: 25px;  color: white; font-weight: bold;height: 54px; width: 100%;font-size: 16px;background-color:#ff6600"/>
+			                        <asp:button ID="btnBack" runat="server" onclick="javascript: window.history.go(-1);" value="<<返回上一页" style="font-size: 25px;  color: white; font-weight: bold;height: 54px; width: 100%;font-size: 16px;background-color:#ff6600"/>
 			                        	
 			                    </td>				
 							  

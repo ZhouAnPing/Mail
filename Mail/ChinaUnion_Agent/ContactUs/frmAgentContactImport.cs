@@ -15,6 +15,9 @@ using System.Threading;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
+using ChinaUnion_Agent.Wechat;
+using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.Util;
 
 
 namespace ChinaUnion_Agent.ContactUs
@@ -167,8 +170,10 @@ namespace ChinaUnion_Agent.ContactUs
 
             }
             worker.ReportProgress(4, "导入代理商联系人完成...\r\n");
-           
-           
+
+            WechatAction wechatAction = new WechatAction();
+            wechatAction.sendTextMessageToWechat("@all", "最新渠道经理信息已发布，请通过底部菜单联系最新渠道经理", Settings.Default.Wechat_Secret, MyConstant.APP_Contact);
+
 
             //MessageBox.Show("数据上传完毕");
 

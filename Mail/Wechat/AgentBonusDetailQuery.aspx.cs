@@ -49,7 +49,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeMonth;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             DataTable dt = new DataTable();
             DataRow row = null;
@@ -66,12 +72,12 @@ namespace Wechat
             {
                
                     row = dt.NewRow();
-                    row["name"] = "代理商编号";
+                    row["name"] = "渠道编码";
                     row["value"] = agentBonus.agentNo;
                     dt.Rows.Add(row);
 
                     row = dt.NewRow();
-                    row["name"] = "代理商名称";
+                    row["name"] = "渠道名称";
                     row["value"] = agentBonus.agentName;
                     dt.Rows.Add(row);
                 

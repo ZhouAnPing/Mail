@@ -85,7 +85,13 @@ namespace Wechat
                 wechatQueryLog.queryString = "成员进入应用";
                 wechatQueryLog.wechatId = agentWechatAccount.contactId;
                 WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-                wechatQueryLogDao.Add(wechatQueryLog);
+                try
+                {
+                    wechatQueryLogDao.Add(wechatQueryLog);
+                }
+                catch
+                {
+                }
             }
 
             try

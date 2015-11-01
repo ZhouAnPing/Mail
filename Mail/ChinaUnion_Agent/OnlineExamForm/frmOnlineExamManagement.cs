@@ -40,15 +40,35 @@ namespace ChinaUnion_Agent.OnlineExamForm
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
+           
             prepareGrid(this.txtSearchCondition.Text.Trim());
         }
 
         private void prepareGrid(String condition)
         {
+            String type = "";
+            if (rdoExam.Checked)
+            {
+                type = "Exam";
+            }
+            if (rdoSurvey.Checked)
+            {
+                type = "Survey";
+            }
+            if (String.IsNullOrEmpty(type))
+            {
+                MessageBox.Show("请选择试题类型");
+
+                return;
+            }
+
             this.Cursor = Cursors.WaitCursor;
             ExamDao examDao = new ChinaUnion_DataAccess.ExamDao();
-            IList<Exam> examList = examDao.GetList(condition);
+            IList<Exam> examList = examDao.GetList(condition, type);
             this.dgExam.Rows.Clear();
+            this.dgExamJugement.Rows.Clear();
+            this.dgExamMultiChoice.Rows.Clear();
+            this.dgExamSingleChoice.Rows.Clear();
             dgExam.Columns.Clear();
             dgExam.Columns.Add("序列号", "序列号");
             dgExam.Columns.Add("名称", "名称");
@@ -200,6 +220,7 @@ namespace ChinaUnion_Agent.OnlineExamForm
 
                      ExamDao examDao = new ExamDao();
                      examDao.Delete(examSeq);
+
                      prepareGrid(this.txtSearchCondition.Text.Trim());
                  }
              }

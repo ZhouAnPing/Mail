@@ -295,17 +295,17 @@
     <Compile Include="MasterDataForm\frmWechatSync.Designer.cs">
       <DependentUpon>frmWechatSync.cs</DependentUpon>
     </Compile>
+    <Compile Include="OnlineExamForm\frmAgentScoreQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnlineExamForm\frmAgentScoreQuery.Designer.cs">
+      <DependentUpon>frmAgentScoreQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="OnlineExamForm\frmNewExam.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OnlineExamForm\frmNewExam.Designer.cs">
       <DependentUpon>frmNewExam.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OnlineExamForm\frmOnlineExam.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OnlineExamForm\frmOnlineExam.Designer.cs">
-      <DependentUpon>frmOnlineExam.cs</DependentUpon>
     </Compile>
     <Compile Include="OnlineExamForm\frmOnlineExamManagement.cs">
       <SubType>Form</SubType>
@@ -587,11 +587,11 @@
     <EmbeddedResource Include="MasterDataForm\frmWechatSync.resx">
       <DependentUpon>frmWechatSync.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OnlineExamForm\frmAgentScoreQuery.resx">
+      <DependentUpon>frmAgentScoreQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OnlineExamForm\frmNewExam.resx">
       <DependentUpon>frmNewExam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OnlineExamForm\frmOnlineExam.resx">
-      <DependentUpon>frmOnlineExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OnlineExamForm\frmOnlineExamManagement.resx">
       <DependentUpon>frmOnlineExamManagement.cs</DependentUpon>

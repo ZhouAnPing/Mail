@@ -68,6 +68,23 @@ namespace Wechat
                     policyReceiverLog.readtime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     policyReceiverLog.userId = userId;
                     policyReceiverLogDao.Add(policyReceiverLog);
+
+
+                    WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                    wechatQueryLog.agentName = "";
+                    wechatQueryLog.module = Util.MyConstant.module_Notice;
+                    wechatQueryLog.subSystem = "通知公告与促销政策";
+                    wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    wechatQueryLog.queryString = policy.type;
+                    wechatQueryLog.wechatId = userId;
+                    WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                    try
+                    {
+                        wechatQueryLogDao.Add(wechatQueryLog);
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }

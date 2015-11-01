@@ -1994,3 +1994,57 @@
 2015-10-26 22:12:15,545 [80] INFO  Wechat.MyExamQuery - messageType=
 2015-10-26 22:12:15,545 [80] INFO  Wechat.MyExamQuery - status=
 2015-10-26 22:12:15,712 [80] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n[Header]\r\n2015-10-26 22:13:29,625 [80] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-26 22:13:29,666 [80] INFO  Wechat.MyExamQuery - agentId=
+2015-10-26 22:13:29,666 [80] INFO  Wechat.MyExamQuery - code=
+2015-10-26 22:13:29,666 [80] INFO  Wechat.MyExamQuery - state=
+2015-10-26 22:13:29,667 [80] INFO  Wechat.MyExamQuery - messageType=
+2015-10-26 22:13:29,667 [80] INFO  Wechat.MyExamQuery - status=
+2015-10-26 22:13:29,851 [80] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n[Header]\r\n2015-10-31 23:05:59,239 [7] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-31 23:05:59,328 [7] INFO  Wechat.MyExamQuery - agentId=
+2015-10-31 23:05:59,329 [7] INFO  Wechat.MyExamQuery - code=
+2015-10-31 23:05:59,329 [7] INFO  Wechat.MyExamQuery - state=
+2015-10-31 23:05:59,329 [7] INFO  Wechat.MyExamQuery - messageType=
+2015-10-31 23:05:59,329 [7] INFO  Wechat.MyExamQuery - status=
+2015-10-31 23:05:59,570 [7] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-31 23:06:05,927 [10] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-31 23:06:05,928 [10] INFO  Wechat.MyExamQuery - agentId=
+2015-10-31 23:06:05,928 [10] INFO  Wechat.MyExamQuery - code=
+2015-10-31 23:06:05,928 [10] INFO  Wechat.MyExamQuery - state=
+2015-10-31 23:06:05,928 [10] INFO  Wechat.MyExamQuery - messageType=
+2015-10-31 23:06:05,928 [10] INFO  Wechat.MyExamQuery - status=
+2015-10-31 23:06:05,989 [10] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-31 23:06:08,994 [10] INFO  Wechat.MyExamQuery - userId=null
+2015-10-31 23:06:08,996 [10] INFO  Wechat.MyExamQuery - userId=
+2015-10-31 23:06:13,119 [9] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-31 23:06:13,119 [9] INFO  Wechat.MyExamQuery - agentId=
+2015-10-31 23:06:13,119 [9] INFO  Wechat.MyExamQuery - code=
+2015-10-31 23:06:13,119 [9] INFO  Wechat.MyExamQuery - state=
+2015-10-31 23:06:13,120 [9] INFO  Wechat.MyExamQuery - messageType=
+2015-10-31 23:06:13,120 [9] INFO  Wechat.MyExamQuery - status=
+2015-10-31 23:06:13,179 [9] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-31 23:06:16,521 [11] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-31 23:06:16,521 [11] INFO  Wechat.MyExamQuery - agentId=
+2015-10-31 23:06:16,521 [11] INFO  Wechat.MyExamQuery - code=
+2015-10-31 23:06:16,521 [11] INFO  Wechat.MyExamQuery - state=
+2015-10-31 23:06:16,522 [11] INFO  Wechat.MyExamQuery - messageType=
+2015-10-31 23:06:16,522 [11] INFO  Wechat.MyExamQuery - status=
+2015-10-31 23:06:16,575 [11] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+2015-10-31 23:06:19,577 [11] INFO  Wechat.MyExamQuery - userId=null
+2015-10-31 23:06:19,577 [11] INFO  Wechat.MyExamQuery - userId=
+[Footer]\r\n[Header]\r\n2015-10-31 23:08:28,475 [13] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-10-31 23:08:28,490 [13] INFO  Wechat.MyExamQuery - agentId=
+2015-10-31 23:08:28,491 [13] INFO  Wechat.MyExamQuery - code=
+2015-10-31 23:08:28,491 [13] INFO  Wechat.MyExamQuery - state=
+2015-10-31 23:08:28,491 [13] INFO  Wechat.MyExamQuery - messageType=
+2015-10-31 23:08:28,491 [13] INFO  Wechat.MyExamQuery - status=
+2015-10-31 23:08:28,635 [13] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n[Header]\r\n2015-11-01 20:49:52,262 [1443] INFO  Wechat.MyExamQuery - http://localhost:59032/MyExamQuery.aspx
+2015-11-01 20:49:52,278 [1443] INFO  Wechat.MyExamQuery - agentId=
+2015-11-01 20:49:52,278 [1443] INFO  Wechat.MyExamQuery - code=
+2015-11-01 20:49:52,278 [1443] INFO  Wechat.MyExamQuery - state=
+2015-11-01 20:49:52,278 [1443] INFO  Wechat.MyExamQuery - messageType=
+2015-11-01 20:49:52,279 [1443] INFO  Wechat.MyExamQuery - status=
+2015-11-01 20:49:52,439 [1443] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
+[Footer]\r\n

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new BSE.Windows.Forms.Panel();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -36,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgErrorCode = new System.Windows.Forms.DataGridView();
-            this.btnDownload = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgErrorCode)).BeginInit();
@@ -48,6 +49,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.CaptionFont = new System.Drawing.Font("SimSun", 11.75F, System.Drawing.FontStyle.Bold);
             this.panel1.CaptionHeight = 27;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnDownload);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnImport);
@@ -80,6 +82,17 @@
             this.panel1.ToolTipTextCloseIcon = null;
             this.panel1.ToolTipTextExpandIconPanelCollapsed = null;
             this.panel1.ToolTipTextExpandIconPanelExpanded = null;
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDownload.Location = new System.Drawing.Point(683, 10);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(75, 31);
+            this.btnDownload.TabIndex = 15;
+            this.btnDownload.Text = "模板下载";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnCancel
             // 
@@ -159,16 +172,16 @@
             this.dgErrorCode.TabIndex = 5;
             this.dgErrorCode.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgErrorCode_CellFormatting);
             // 
-            // btnDownload
+            // label1
             // 
-            this.btnDownload.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDownload.Location = new System.Drawing.Point(683, 10);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(75, 31);
-            this.btnDownload.TabIndex = 15;
-            this.btnDownload.Text = "模板下载";
-            this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(122, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 12);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "错误图片建议大小<=500*500";
             // 
             // frmErrorCodeImport
             // 
@@ -204,5 +217,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgErrorCode;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Label label1;
     }
 }

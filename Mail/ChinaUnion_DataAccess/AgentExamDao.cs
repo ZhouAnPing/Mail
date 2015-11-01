@@ -113,7 +113,7 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<Exam> GetList(String keyword, String userId)
+        public IList<Exam> GetList(String keyword, String userId,string messageType)
         {
             string sql = "SELECT sequence, subject,sender,creatTime,type,validateStartTime,validateEndTime,isValidate,toAll,agentType,t1.duration, status FROM tb_exam t1 left join tb_agent_exam t2 on sequence = exam_sequence ";
                 sql = sql+ " and userId='" + userId+"'";
@@ -121,6 +121,10 @@ namespace ChinaUnion_DataAccess
             if (!String.IsNullOrEmpty(keyword))
             {
                 sql = sql + " and subject like '%" + keyword + "%'";
+            }
+            if (!String.IsNullOrEmpty(messageType))
+            {
+                sql = sql + " and type = '" + messageType + "'";
             }
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -148,6 +152,40 @@ namespace ChinaUnion_DataAccess
                 }
                 return list;
             }
+        }
+
+
+        /// <summary> 
+        /// 根据主键查询 
+        /// </summary> 
+        /// <param name="primaryKey"></param> 
+        /// <returns></returns> 
+        public IList<AgentExam> GetList(String examSeq)
+        {
+            string sql = "SELECT exam_sequence,userId,status,scoreSummary,duration from tb_agent_exam WHERE exam_sequence=@examSeq ";
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                command.Parameters.AddWithValue("@examSeq", examSeq);
+                //command.Parameters.AddWithValue("@userId", userId);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<AgentExam> list = new List<AgentExam>();
+                AgentExam exam = null;
+                while (reader.Read())
+                {
+                    exam = new AgentExam();
+                    exam.exam_sequence = reader["exam_sequence"] == DBNull.Value ? null : reader["exam_sequence"].ToString();
+                    exam.userId = reader["userId"] == DBNull.Value ? null : reader["userId"].ToString();
+                    exam.status = reader["status"] == DBNull.Value ? null : reader["status"].ToString();
+                    exam.scoreSummary = reader["scoreSummary"] == DBNull.Value ? null : reader["scoreSummary"].ToString();
+                    exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
+
+                    list.Add(exam);
+                }
+                return list;
+            }
+
         }
 
       

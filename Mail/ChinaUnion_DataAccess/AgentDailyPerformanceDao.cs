@@ -386,7 +386,7 @@ namespace ChinaUnion_DataAccess
         /// 查询集合 
         /// </summary> 
         /// <returns></returns> 
-        public IList<AgentDailyPerformance> GetAllListDate(String agentNo, String type)
+        public IList<AgentDailyPerformance> GetAllListDate(String agentNo, String type, String date)
         {
             StringBuilder sb = new StringBuilder();
             if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
@@ -395,7 +395,7 @@ namespace ChinaUnion_DataAccess
                 sb.Clear();
                 sb.Append("SELECT distinct branchNo,branchName,date");
 
-                sb.Append(" FROM agent_daily_performance  where branchNo = @branchNo order by date desc");
+                sb.Append(" FROM agent_daily_performance  where branchNo = @branchNo ");
                
             }
             else
@@ -405,9 +405,15 @@ namespace ChinaUnion_DataAccess
                 sb.Append("SELECT distinct agentNo,agentName,date");
 
 
-                sb.Append(" FROM agent_daily_performance  where agentNo = @agentNo order by date desc");
+                sb.Append(" FROM agent_daily_performance  where agentNo = @agentNo ");
             
             }
+            if (!string.IsNullOrEmpty(date))
+            {
+                sb.Append(" and date>=@date");
+            }
+
+            sb.Append(" order by date desc");
 
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -423,6 +429,7 @@ namespace ChinaUnion_DataAccess
                     command.Parameters.AddWithValue("@agentNo", agentNo);
                     
                 }
+                command.Parameters.AddWithValue("@date", date);
                 // command.Parameters.AddWithValue("@month", month);
                 MySqlDataReader reader = command.ExecuteReader();
                 IList<AgentDailyPerformance> list = new List<AgentDailyPerformance>();

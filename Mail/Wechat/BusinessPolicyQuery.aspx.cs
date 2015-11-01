@@ -66,6 +66,7 @@ namespace Wechat
                         agentNo = agentWechatAccount.agentNo;
                     }
 
+
                    // search_scope = "all";
                     String type = "通知公告/重点关注";
                     if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
@@ -82,6 +83,24 @@ namespace Wechat
                     {
                         type = "服务规范";
                     }
+
+
+                    WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
+                    wechatQueryLog.agentName = "";
+                    wechatQueryLog.module = Util.MyConstant.module_Notice;
+                    wechatQueryLog.subSystem = "通知公告与促销政策";
+                    wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    wechatQueryLog.queryString = type;
+                    wechatQueryLog.wechatId = agentWechatAccount.contactId;
+                    WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
+                    try
+                    {
+                        wechatQueryLogDao.Add(wechatQueryLog);
+                    }
+                    catch
+                    {
+                    }
+
                     bindDataToGrid("", type, search_scope, agentNo, agentWechatAccount.contactId);
                 }
             }

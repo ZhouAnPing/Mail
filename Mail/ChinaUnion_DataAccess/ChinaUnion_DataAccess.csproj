@@ -63,6 +63,7 @@
     <Compile Include="AgentBonusDao.cs" />
     <Compile Include="AgentExamScoreDao.cs" />
     <Compile Include="AgentExamDao.cs" />
+    <Compile Include="ExamReceiverDao.cs" />
     <Compile Include="ExamQuestionDao.cs" />
     <Compile Include="ExamDao.cs" />
     <Compile Include="PolicyReceiverLogDao.cs" />

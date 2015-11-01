@@ -93,7 +93,13 @@ namespace Wechat
                 wechatQueryLog.queryString = "成员进入应用";
                 wechatQueryLog.wechatId = agentWechatAccount.contactId;
                 WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-                wechatQueryLogDao.Add(wechatQueryLog);
+                try
+                {
+                    wechatQueryLogDao.Add(wechatQueryLog);
+                }
+                catch
+                {
+                }
             }
             if (agentWechatAccount != null && !String.IsNullOrEmpty(agentWechatAccount.status) && !agentWechatAccount.status.Equals("Y"))
             {
@@ -187,7 +193,7 @@ namespace Wechat
                         else
                         {
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
-                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", feeMonth + "佣金还未发布，请稍后!\n\n");
+                            sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", "本月无佣金或者佣金尚未发布\n\n");
                         }
                         break;
                     case "PaymentQueryHelp":
@@ -312,7 +318,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeMonth;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -366,16 +378,23 @@ namespace Wechat
                 {
                     sbDesc.AppendFormat("\n本月佣金说明：\n");
                     string[] agentTypeCommentList = agentFee.agent.agentTypeComment.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                    for (int count = 0; count < agentTypeCommentList.Length; count++)
+                    if (agentTypeCommentList.Length > 0)
                     {
-                        sbDesc.Append("        ").Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
+                        for (int count = 0; count < agentTypeCommentList.Length; count++)
+                        {
+                            sbDesc.Append("        ").Append(count + 1).AppendFormat(".{0}\n", agentTypeCommentList[count]);
+                        }
+                    }
+                    else
+                    {
+                        sbDesc.Append("        无");
                     }
                 }
                
             }
             else
             {
-                sbDesc.AppendFormat("没有发布佣金.\n");
+                sbDesc.AppendFormat("本月无佣金或者佣金尚未发布.\n");
             }
             sbDesc.AppendLine();
             ///支付结算
@@ -449,7 +468,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeMonth;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -492,7 +517,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeMonth;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
@@ -572,7 +603,13 @@ namespace Wechat
             wechatQueryLog.queryString = feeMonth;
             wechatQueryLog.wechatId = agentNo;
             WechatQueryLogDao wechatQueryLogDao = new WechatQueryLogDao();
-            wechatQueryLogDao.Add(wechatQueryLog);
+            try
+            {
+                wechatQueryLogDao.Add(wechatQueryLog);
+            }
+            catch
+            {
+            }
 
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("<MsgType><![CDATA[news]]></MsgType>");
