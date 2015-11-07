@@ -4,6 +4,7 @@ using ChinaUnion_Agent.Wechat;
 using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,7 +62,10 @@ namespace ChinaUnion_Agent.PolicyForm
             {
                 this.lstGroup.Items.Add(group.groupName);
             }
-
+            for (int i = 0; i < this.chkAgentType.Items.Count; i++)
+            {
+                this.chkAgentType.SetItemChecked(i, false);
+            }
             this.txtSubject.Focus();
             this.Cursor = Cursors.Default;
         }
@@ -193,7 +197,12 @@ namespace ChinaUnion_Agent.PolicyForm
             policy.creatTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             policy.isDelete = "N";
             policy.isValidate = "Y";
-            policy.agentType = this.cboAgentType.Text;
+            policy.agentType = "";
+            foreach (object item in this.chkAgentType.CheckedItems)
+            {
+                policy.agentType = policy.agentType + item.ToString()+";";
+            }
+          //  policy.agentType = this.cboAgentType.Text;
             if (this.lstAgentType.CheckedItems.Contains("所有渠道"))
             {
                 policy.toAll = "Y";
@@ -317,7 +326,20 @@ namespace ChinaUnion_Agent.PolicyForm
                         this.txtSequence.Text = policy.sequence;
                         this.txtAttachmentName.Text = policy.attachmentName;
                         this.cbType.Text = policy.type;
-                        this.cboAgentType.Text = policy.agentType;
+                       // this.cboAgentType.Text = policy.agentType;
+                        if (!String.IsNullOrEmpty(policy.agentType))
+                        {
+                            IList<String> list = policy.agentType.Split(';').ToList<String>();
+                            for (int i = 0; i < chkAgentType.Items.Count; i++)
+                            {
+                                if (list.Contains(chkAgentType.Items[i].ToString()))
+                                {
+                                    chkAgentType.SetItemChecked(i, true);
+                                }
+                            }
+                 
+                        }
+                       
                         this.dtStartDate.Value = DateTime.Parse(policy.validateStartTime);
                         this.dtEndDate.Value = DateTime.Parse(policy.validateEndTime);
 
@@ -376,7 +398,7 @@ namespace ChinaUnion_Agent.PolicyForm
                     appId = MyConstant.APP_Service_Monitor;
                     break;
             }
-            IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(this.txtSequence.Text);
+            IList<String> UserIdList = policyDao.GetAllUserIdListBySeq(this.txtSequence.Text);
 
             List<String> userIdsBuffer = new List<string>();
             for (int i = 1; i <= UserIdList.Count; i++)

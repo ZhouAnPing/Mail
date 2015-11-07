@@ -33,7 +33,10 @@ namespace ChinaUnion_DataAccess
                 
                 command.Parameters.AddWithValue("@dateTime", entity.dateTime);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -53,7 +56,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@branchNo", branchNo);
                 command.Parameters.AddWithValue("@dateTime", dateTime);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -70,7 +76,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -113,6 +122,7 @@ namespace ChinaUnion_DataAccess
                     agentScore.dateTime = reader["dateTime"] == DBNull.Value ? null : reader["dateTime"].ToString();
                     list.Add(agentScore);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -154,6 +164,7 @@ namespace ChinaUnion_DataAccess
                     agentScore.dateTime = reader["dateTime"] == DBNull.Value ? null : reader["dateTime"].ToString();
                     list.Add(agentScore);
                 }
+                mycn.Close();
                 return list;
             }
         }

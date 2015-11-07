@@ -24,7 +24,9 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@readtime", entity.readtime);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -44,7 +46,9 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@readtime", entity.readtime);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -62,7 +66,9 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@policy_sequence", entity.policySequence);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@readtime", entity.readtime);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         
@@ -92,6 +98,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(policyReceiver);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -170,6 +177,8 @@ namespace ChinaUnion_DataAccess
                     policyReceiver.agentContact = agentContact;
                     list.Add(policyReceiver);
                 }
+
+                mycn.Close();
                 return list;
             }
         }

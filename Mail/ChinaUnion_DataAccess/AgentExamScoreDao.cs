@@ -29,9 +29,12 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@exam_sequence", entity.exam_sequence);
                 command.Parameters.AddWithValue("@question_sequence", entity.question_sequence);
                 command.Parameters.AddWithValue("@answer", entity.answer);
-                
-               
-                return command.ExecuteNonQuery();
+
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -50,7 +53,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@examSeq", examSeq);
                 command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@question_sequence", question_sequence);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -85,6 +91,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
 
                 }
+                mycn.Close();
                 return exam;
             }
 
@@ -121,6 +128,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
 
                 }
+                mycn.Close();
                 return exam;
             }
                
@@ -163,6 +171,7 @@ namespace ChinaUnion_DataAccess
                     examQuestion.option8 = reader["option8"] == DBNull.Value ? null : reader["option8"].ToString();
                     list.Add(examQuestion);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -201,6 +210,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
                     list.Add(exam);
                 }
+                mycn.Close();
                 return list;
             }
         }

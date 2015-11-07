@@ -60,7 +60,10 @@ namespace ChinaUnion_DataAccess
 
 
                 command.Parameters.AddWithValue("@date", entity.date);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -78,7 +81,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@branchNo", entity.branchNo);
                 command.Parameters.AddWithValue("@date", entity.date);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
          /// <summary> 
@@ -153,6 +159,7 @@ namespace ChinaUnion_DataAccess
 
                     
                 }
+                mycn.Close();
                 return agentDailyPerformance;
             }
         }
@@ -218,6 +225,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentDailyPerformance);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -287,6 +295,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentPerformance);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -377,6 +386,7 @@ namespace ChinaUnion_DataAccess
 
                     }
                 }
+                mycn.Close();
                 return agentDailyPerformance;
             }
         }
@@ -454,6 +464,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentDailyPerformance);
                 }
+                mycn.Close();
                 return list;
             }
         }

@@ -24,8 +24,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@name", entity.name);
-                command.Parameters.AddWithValue("@password", entity.password);                
-                return command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("@password", entity.password);
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -44,8 +46,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@name", entity.name);
-                command.Parameters.AddWithValue("@password", entity.password); 
-                return command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("@password", entity.password);
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -61,7 +65,9 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", userId);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -111,6 +117,8 @@ namespace ChinaUnion_DataAccess
                     user.userRightList = list;
                 }
 
+                mycn.Close();
+
                 return user;
             }
 
@@ -144,6 +152,8 @@ namespace ChinaUnion_DataAccess
                     //user.userRightList = userRightDao.GetList(user.userId);
                     list.Add(user);
                 }
+                
+                mycn.Close();
                 return list;
             }
         }

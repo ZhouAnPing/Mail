@@ -145,6 +145,7 @@
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnQuery
             // 

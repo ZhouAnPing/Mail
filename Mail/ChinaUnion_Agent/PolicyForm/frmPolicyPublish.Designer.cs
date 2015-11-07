@@ -30,6 +30,7 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkAgentType = new System.Windows.Forms.CheckedListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
-            this.cboAgentType = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             this.pnlReceiver.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -88,7 +88,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.cboAgentType);
+            this.groupBox3.Controls.Add(this.chkAgentType);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label9);
@@ -119,6 +119,19 @@
             this.groupBox3.Size = new System.Drawing.Size(563, 669);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
+            // 
+            // chkAgentType
+            // 
+            this.chkAgentType.CheckOnClick = true;
+            this.chkAgentType.FormattingEnabled = true;
+            this.chkAgentType.Items.AddRange(new object[] {
+            "代理商联系人",
+            "直供渠道联系人",
+            "非直供渠道联系人"});
+            this.chkAgentType.Location = new System.Drawing.Point(83, 355);
+            this.chkAgentType.Name = "chkAgentType";
+            this.chkAgentType.Size = new System.Drawing.Size(120, 52);
+            this.chkAgentType.TabIndex = 40;
             // 
             // label11
             // 
@@ -158,9 +171,9 @@
             // 
             this.pnlReceiver.Controls.Add(this.groupBox5);
             this.pnlReceiver.Controls.Add(this.groupBox4);
-            this.pnlReceiver.Location = new System.Drawing.Point(83, 378);
+            this.pnlReceiver.Location = new System.Drawing.Point(83, 414);
             this.pnlReceiver.Name = "pnlReceiver";
-            this.pnlReceiver.Size = new System.Drawing.Size(455, 156);
+            this.pnlReceiver.Size = new System.Drawing.Size(455, 120);
             this.pnlReceiver.TabIndex = 34;
             // 
             // groupBox5
@@ -169,7 +182,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(238, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(217, 156);
+            this.groupBox5.Size = new System.Drawing.Size(217, 120);
             this.groupBox5.TabIndex = 42;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "自定义组";
@@ -222,7 +235,7 @@
             "非连锁渠道"});
             this.lstGroup.Location = new System.Drawing.Point(3, 17);
             this.lstGroup.Name = "lstGroup";
-            this.lstGroup.Size = new System.Drawing.Size(211, 136);
+            this.lstGroup.Size = new System.Drawing.Size(211, 100);
             this.lstGroup.TabIndex = 37;
             // 
             // groupBox4
@@ -231,7 +244,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(238, 156);
+            this.groupBox4.Size = new System.Drawing.Size(238, 120);
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "渠道类型";
@@ -284,7 +297,7 @@
             "非连锁渠道"});
             this.lstAgentType.Location = new System.Drawing.Point(3, 17);
             this.lstAgentType.Name = "lstAgentType";
-            this.lstAgentType.Size = new System.Drawing.Size(232, 136);
+            this.lstAgentType.Size = new System.Drawing.Size(232, 100);
             this.lstAgentType.TabIndex = 37;
             // 
             // cbType
@@ -499,6 +512,7 @@
             this.dgPolicy.ReadOnly = true;
             this.dgPolicy.RowHeadersWidth = 10;
             this.dgPolicy.RowTemplate.Height = 23;
+            this.dgPolicy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPolicy.Size = new System.Drawing.Size(437, 649);
             this.dgPolicy.TabIndex = 7;
             this.dgPolicy.SelectionChanged += new System.EventHandler(this.dgPolicy_SelectionChanged);
@@ -554,19 +568,6 @@
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // cboAgentType
-            // 
-            this.cboAgentType.FormattingEnabled = true;
-            this.cboAgentType.Items.AddRange(new object[] {
-            "",
-            "代理商联系人",
-            "直供渠道联系人",
-            "非直供渠道联系人"});
-            this.cboAgentType.Location = new System.Drawing.Point(83, 355);
-            this.cboAgentType.Name = "cboAgentType";
-            this.cboAgentType.Size = new System.Drawing.Size(180, 20);
-            this.cboAgentType.TabIndex = 39;
             // 
             // frmPolicyPublish
             // 
@@ -632,6 +633,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cboAgentType;
+        private System.Windows.Forms.CheckedListBox chkAgentType;
     }
 }

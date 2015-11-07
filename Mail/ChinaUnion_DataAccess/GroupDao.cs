@@ -24,7 +24,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@groupName", entity.groupName);
                 command.Parameters.AddWithValue("@description", entity.description);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -44,7 +47,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@groupName", entity.groupName);
                 command.Parameters.AddWithValue("@description", entity.description);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -62,7 +68,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@groupName", entity.groupName);
                 command.Parameters.AddWithValue("@description", entity.description);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -87,6 +96,7 @@ namespace ChinaUnion_DataAccess
 
                     group.description = reader["description"] == DBNull.Value ? null : reader["description"].ToString();
                 }
+                mycn.Close();
                 return group;
             }
         }
@@ -119,6 +129,7 @@ namespace ChinaUnion_DataAccess
                     group.description = reader["description"] == DBNull.Value ? null : reader["description"].ToString();
                     list.Add(group);
                 }
+                mycn.Close();
                 return list;
             }
         }

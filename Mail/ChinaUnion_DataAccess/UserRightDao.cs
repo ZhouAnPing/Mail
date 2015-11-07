@@ -24,8 +24,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@menuId", entity.menuId);
-                           
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -44,8 +46,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@menuId", entity.menuId);
-             
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
         /// <summary> 
@@ -62,7 +66,9 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", entity.userId);
                 command.Parameters.AddWithValue("@menuId", entity.menuId);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
 
@@ -79,8 +85,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@userId", userId);
-              
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
        
@@ -109,6 +117,7 @@ namespace ChinaUnion_DataAccess
                     userRight.menuText = reader["menu_text"] == DBNull.Value ? null : reader["menu_text"].ToString();
                     list.Add(userRight);
                 }
+                mycn.Close();
                 return list;
             }
         }

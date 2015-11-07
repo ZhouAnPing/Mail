@@ -34,8 +34,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@invoiceType", entity.invoiceType);
                 command.Parameters.AddWithValue("@invoiceNo", entity.invoiceNo);
                 command.Parameters.AddWithValue("@payStatus", entity.payStatus);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -65,7 +68,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@invoiceType", entity.invoiceType);
                 command.Parameters.AddWithValue("@invoiceNo", entity.invoiceNo);
                 command.Parameters.AddWithValue("@payStatus", entity.payStatus);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -87,7 +93,10 @@ namespace ChinaUnion_DataAccess
 
                 command.Parameters.AddWithValue("@month", entity.month);
                 command.Parameters.AddWithValue("@invoiceNo", entity.invoiceNo);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -128,6 +137,7 @@ namespace ChinaUnion_DataAccess
                     invoicePayment.payStatus = reader["payStatus"] == DBNull.Value ? null : reader["payStatus"].ToString();
                     
                 }
+                mycn.Close();
                 return invoicePayment;
             }
         }
@@ -182,6 +192,7 @@ namespace ChinaUnion_DataAccess
                     invoicePayment.payStatus = reader["payStatus"] == DBNull.Value ? null : reader["payStatus"].ToString();
                     list.Add(invoicePayment);
                 }
+                mycn.Close();
                 return list;
             }
         }

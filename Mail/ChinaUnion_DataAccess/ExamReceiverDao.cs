@@ -24,7 +24,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@exam_sequence", entity.examSequence);
                 command.Parameters.AddWithValue("@receiver", entity.receiver);
                 command.Parameters.AddWithValue("@type", entity.type);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -44,7 +47,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@exam_sequence", entity.examSequence);
                 command.Parameters.AddWithValue("@receiver", entity.receiver);
                 command.Parameters.AddWithValue("@type", entity.type);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -60,8 +66,11 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@exam_sequence", examSequence);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -80,7 +89,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@exam_sequence", entity.examSequence);
                 command.Parameters.AddWithValue("@receiver", entity.receiver);
                 command.Parameters.AddWithValue("@type", entity.type);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -132,6 +144,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(examReceiver);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -201,6 +214,7 @@ namespace ChinaUnion_DataAccess
                         continue;
                     list.Add(agentNo);
                 }
+                mycn.Close();
                 return list;
             }
         }

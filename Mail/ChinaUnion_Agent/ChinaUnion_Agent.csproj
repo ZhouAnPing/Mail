@@ -109,6 +109,12 @@
     <Compile Include="CaseStudyForm\frmCasePublish.Designer.cs">
       <DependentUpon>frmCasePublish.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComplainForm\frmComplainManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplainForm\frmComplainManagement.Designer.cs">
+      <DependentUpon>frmComplainManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContactUs\frmAgentContactImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CaseStudyForm\frmCasePublish.resx">
       <DependentUpon>frmCasePublish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplainForm\frmComplainManagement.resx">
+      <DependentUpon>frmComplainManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContactUs\frmAgentContactImport.resx">
       <DependentUpon>frmAgentContactImport.cs</DependentUpon>

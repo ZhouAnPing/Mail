@@ -35,8 +35,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@toAll", entity.toAll);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@duration", entity.duration);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -53,7 +56,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@sequence", primaryKey);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -88,6 +94,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
 
                 }
+                mycn.Close();
                 return exam;
             }
 
@@ -124,6 +131,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
 
                 }
+                mycn.Close();
                 return exam;
             }
                
@@ -165,6 +173,7 @@ namespace ChinaUnion_DataAccess
                     exam.duration = reader["duration"] == DBNull.Value ? null : reader["duration"].ToString();
                     list.Add(exam);
                 }
+                mycn.Close();
                 return list;
             }
         }

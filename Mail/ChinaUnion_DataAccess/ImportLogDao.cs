@@ -26,8 +26,11 @@ namespace ChinaUnion_DataAccess
                
                 command.Parameters.AddWithValue("@type", entity.type);
                 command.Parameters.AddWithValue("@import_month", entity.import_month);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         
@@ -46,7 +49,10 @@ namespace ChinaUnion_DataAccess
                
                 command.Parameters.AddWithValue("@type", entity.type);
                 command.Parameters.AddWithValue("@import_month", entity.import_month);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -75,6 +81,7 @@ namespace ChinaUnion_DataAccess
                     importLog.type = reader["type"] == DBNull.Value ? null : reader["type"].ToString();
                     importLog.import_month = reader["import_month"] == DBNull.Value ? null : reader["import_month"].ToString();
                 }
+                mycn.Close();
                 return importLog;
             }
         }
@@ -102,6 +109,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(importLog);
                 }
+                mycn.Close();
                 return list;
             }
         }

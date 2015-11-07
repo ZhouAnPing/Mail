@@ -30,7 +30,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@Menu_Text", entity.Menu_Text);
                 command.Parameters.AddWithValue("@image_key", entity.image_key);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -47,7 +50,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@Id", entity.Id);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -132,6 +138,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(menu);
                 }
+                mycn.Close();
                 return list;
             }
         }

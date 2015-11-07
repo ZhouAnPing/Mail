@@ -33,7 +33,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@invoiceType", entity.invoiceType);
                 command.Parameters.AddWithValue("@invoiceFee", entity.invoiceFee);
                 command.Parameters.AddWithValue("@comment", entity.comment);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -61,7 +64,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@invoiceType", entity.invoiceType);
                 command.Parameters.AddWithValue("@invoiceFee", entity.invoiceFee);
                 command.Parameters.AddWithValue("@comment", entity.comment);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -83,7 +89,10 @@ namespace ChinaUnion_DataAccess
 
                 command.Parameters.AddWithValue("@invoiceMonth", entity.invoiceMonth);
                 command.Parameters.AddWithValue("@invoiceNo", entity.invoiceNo);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -117,6 +126,7 @@ namespace ChinaUnion_DataAccess
                     agentInvoice.invoiceFee = reader["invoiceFee"] == DBNull.Value ? null : reader["invoiceFee"].ToString();
                     agentInvoice.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
                 }
+                mycn.Close();
                 return agentInvoice;
             }
         }
@@ -161,6 +171,7 @@ namespace ChinaUnion_DataAccess
                     agentInvoice.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
                     list.Add(agentInvoice);
                 }
+                mycn.Close();
                  return list;
             }
         }

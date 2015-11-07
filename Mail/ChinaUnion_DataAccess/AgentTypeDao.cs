@@ -24,7 +24,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -44,7 +47,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -62,7 +68,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentType", entity.agentType);
                 command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -114,6 +123,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agent_Type);
                 }
+                mycn.Close();
                 return list;
             }
         }

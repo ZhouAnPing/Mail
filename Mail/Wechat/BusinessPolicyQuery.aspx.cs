@@ -23,6 +23,7 @@ namespace Wechat
         {
             logger.Info(this.Request.Url.AbsoluteUri);
 
+            //bindDataToGrid("", "政策", "validate", "DL204053", "P001");
             //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice%26agentId%3d6
             //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice
             //String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice&agentId=6";
@@ -167,8 +168,8 @@ namespace Wechat
                         }
                         if (String.IsNullOrEmpty(policy.agentType))
                         {
-                            IList<String> UserIdList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
-                            if (!UserIdList.Contains(userId))
+                            IList<String> agentNoList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
+                            if (!agentNoList.Contains(agentNo))
                             {
                                 logger.Info("userId=" + userId + " 没有权限范围" + policy.sequence);
                                 continue;

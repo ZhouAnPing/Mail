@@ -59,6 +59,8 @@
     <Compile Include="AgentBonus.cs" />
     <Compile Include="AgentExamScore.cs" />
     <Compile Include="AgentExam.cs" />
+    <Compile Include="AgentComplain.cs" />
+    <Compile Include="AgentComplainReply.cs" />
     <Compile Include="ExamReceiver.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExamQuestion.cs" />

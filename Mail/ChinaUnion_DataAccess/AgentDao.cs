@@ -31,7 +31,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@contactTel", entity.contactTel);
                 command.Parameters.AddWithValue("@contactWechatAccount", entity.contactWechatAccount);
                 command.Parameters.AddWithValue("@status", entity.status);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -55,7 +58,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@contactTel", entity.contactTel);
                 command.Parameters.AddWithValue("@contactWechatAccount", entity.contactWechatAccount);
                 command.Parameters.AddWithValue("@status", entity.status);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -71,7 +77,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", primaryKey);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -103,6 +112,7 @@ namespace ChinaUnion_DataAccess
                     agent.status = reader["status"] == DBNull.Value ? null : reader["status"].ToString();
 
                 }
+                mycn.Close();
                 return agent;
             }
                
@@ -134,6 +144,7 @@ namespace ChinaUnion_DataAccess
                     agent.status = reader["status"] == DBNull.Value ? null : reader["status"].ToString();
                     list.Add(agent);
                 }
+                mycn.Close();
                 return list;
             }
         }

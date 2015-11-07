@@ -59,7 +59,9 @@ namespace ChinaUnion_DataAccess
 
 
                 command.Parameters.AddWithValue("@month", entity.month);
-                return command.ExecuteNonQuery();
+                int i= command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
        
@@ -77,7 +79,9 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@month", entity.month);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                return i;
             }
         }
          /// <summary> 
@@ -126,13 +130,10 @@ namespace ChinaUnion_DataAccess
                         feeNameField.SetValue(agentBonus, feeNameFieldValue);
                         feeField.SetValue(agentBonus, feeFieldValue);                   
 
-                    }                  
-
-
-                  
-
-                    
+                    }   
                 }
+
+                mycn.Close();
                 return agentBonus;
             }
         }
@@ -189,6 +190,8 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentBonus);
                 }
+
+                mycn.Close();
                 return list;
             }
 
@@ -257,6 +260,8 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentMonthPerformance);
                 }
+
+                mycn.Close();
                 return list;
             }
         }
@@ -317,6 +322,7 @@ namespace ChinaUnion_DataAccess
 
                     }
                 }
+                mycn.Close();
                 return agentMonthPerformance;
             }
         }
@@ -357,6 +363,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentMonthPerformance);
                 }
+                mycn.Close();
                 return list;
             }
         }

@@ -61,7 +61,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@feeTotal", entity.feeTotal);
                 command.Parameters.AddWithValue("@invoiceFee", entity.invoiceFee);
                 command.Parameters.AddWithValue("@preInvoiceFee", entity.preInvoiceFee);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -79,7 +82,10 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                 command.Parameters.AddWithValue("@agentFeeMonth", entity.agentFeeMonth);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
          /// <summary> 
@@ -149,6 +155,7 @@ namespace ChinaUnion_DataAccess
 
                     
                 }
+                mycn.Close();
                 return agentFee;
             }
         }
@@ -217,6 +224,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentFee);
                 }
+                mycn.Close();
                 return list;
             }
         }

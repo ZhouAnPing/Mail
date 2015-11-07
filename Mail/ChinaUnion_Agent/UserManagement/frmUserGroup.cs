@@ -1,6 +1,7 @@
 ﻿using ChinaUnion_BO;
 using ChinaUnion_DataAccess;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -96,26 +97,37 @@ namespace ChinaUnion_Agent.UserManagement
             lstAllAgent.Items.Clear();
             lstAssignAgent.Items.Clear();
             //  this.lstAgentType.Items.Add("所有渠道");
+            ArrayList list = new ArrayList();
             foreach (AgentWechatAccount agentWechatAccount in agentWechatAccountList)
             {
                 if (!String.IsNullOrEmpty(agentWechatAccount.regionName))
                 {
-                    this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
-                    this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                    if (!list.Contains(agentWechatAccount.branchNo))
+                    {
+                        this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                        this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                        list.Add(agentWechatAccount.branchNo);
+                    }
                 }
                 else
                 {
                     if (!String.IsNullOrEmpty(agentWechatAccount.branchNo))
                     {
-                        this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
-                        this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
-
+                        if (!list.Contains(agentWechatAccount.branchNo))
+                        {
+                            this.lstUser.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                            this.lstAllAgent.Items.Add(agentWechatAccount.branchNo + ":" + agentWechatAccount.branchName);
+                            list.Add(agentWechatAccount.branchNo);
+                        }
                     }
                     else
                     {
-                        this.lstUser.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
-                        this.lstAllAgent.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
-
+                        if (!list.Contains(agentWechatAccount.agentNo))
+                        {
+                            this.lstUser.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
+                            this.lstAllAgent.Items.Add(agentWechatAccount.agentNo + ":" + agentWechatAccount.agentName);
+                            list.Add(agentWechatAccount.agentNo);
+                        }
                     }
                 }
             }
@@ -294,7 +306,7 @@ namespace ChinaUnion_Agent.UserManagement
                     continue;
                 }
 
-                if (item.agentType.Contains(this.txtType.Text.Trim()))
+                if (item.agentType.Contains(this.txtType.Text.Trim()) && !lstAllType.Items.Contains(item))
                 {
                     this.lstAllType.Items.Add(item.agentType);
                 }
@@ -344,7 +356,7 @@ namespace ChinaUnion_Agent.UserManagement
                     continue;
                 }
 
-                if (item.Contains(this.txtAgent.Text.Trim()))
+                if (item.Contains(this.txtAgent.Text.Trim())&& !this.lstAgentType.Items.Contains(item))
                 {
                     this.lstAllAgent.Items.Add(item);
                 }

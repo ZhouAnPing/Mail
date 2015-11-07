@@ -30,9 +30,12 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@duration", entity.duration);
                 command.Parameters.AddWithValue("@status", entity.status);
                 command.Parameters.AddWithValue("@scoreSummary", entity.scoreSummary);
-                
-               
-                return command.ExecuteNonQuery();
+
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -50,8 +53,11 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@examSeq", examSeq);
                 command.Parameters.AddWithValue("@userId", userId);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -72,7 +78,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@status", status);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -104,6 +113,7 @@ namespace ChinaUnion_DataAccess
                     
 
                 }
+                mycn.Close();
                 return exam;
             }
 
@@ -150,6 +160,7 @@ namespace ChinaUnion_DataAccess
                     exam.status = reader["status"] == DBNull.Value ? null : reader["status"].ToString();
                     list.Add(exam);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -183,6 +194,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(exam);
                 }
+                mycn.Close();
                 return list;
             }
 

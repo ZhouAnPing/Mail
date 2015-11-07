@@ -643,6 +643,11 @@ namespace ChinaUnion_Agent
                         CheckChildOpenState(this, frmSuggestionQuery);
                         break;
 
+                    case "ComplainManagement":
+                        ComplainForm.frmComplainManagement frmComplainManagement = new ComplainForm.frmComplainManagement();
+                        CheckChildOpenState(this, frmComplainManagement);
+                        break;
+
                     case "AnyasisReport":
 
                         Analysis.frmReport frmReport = new Analysis.frmReport();

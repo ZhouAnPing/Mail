@@ -37,8 +37,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@option6", entity.option6);
                 command.Parameters.AddWithValue("@option7", entity.option7);
                 command.Parameters.AddWithValue("@option8", entity.option8);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -55,7 +58,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@exam_sequence", primaryKey);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
        
@@ -93,6 +99,7 @@ namespace ChinaUnion_DataAccess
                     examQuestion.option8 = reader["option8"] == DBNull.Value ? null : reader["option8"].ToString();
                     list.Add(examQuestion);
                 }
+                mycn.Close();
                 return list;
             }
         }

@@ -31,7 +31,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@solution", entity.solution);
                 command.Parameters.AddWithValue("@contactName", entity.contactName);
                 command.Parameters.AddWithValue("@comment", entity.comment);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -55,7 +58,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@solution", entity.solution);
                 command.Parameters.AddWithValue("@contactName", entity.contactName);
                 command.Parameters.AddWithValue("@comment", entity.comment);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -69,7 +75,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@keyword", entity.keyword);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -85,7 +94,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@keyword", keyword);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -115,6 +127,7 @@ namespace ChinaUnion_DataAccess
                     agentErrorCode.contactName = reader["contactName"] == DBNull.Value ? null : reader["contactName"].ToString();
                     agentErrorCode.comment = reader["comment"] == DBNull.Value ? null : reader["comment"].ToString();
                 }
+                mycn.Close();
                 return agentErrorCode;
             }
         }
@@ -152,6 +165,7 @@ namespace ChinaUnion_DataAccess
                     agentErrorCode.queryCount = reader["queryCount"] == DBNull.Value ? 0 : int.Parse(reader["queryCount"].ToString());
                     list.Add(agentErrorCode);
                 }
+                mycn.Close();
                 return list;
             }
         }

@@ -38,9 +38,12 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
                 command.Parameters.AddWithValue("@toAll", entity.toAll);
-               
-               
-                return command.ExecuteNonQuery();
+
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -73,7 +76,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@isDelete", entity.isDelete);
                 command.Parameters.AddWithValue("@deleteTime", entity.deleteTime);
                 command.Parameters.AddWithValue("@toAll", entity.toAll);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -89,7 +95,10 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@sequence", primaryKey);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -130,6 +139,7 @@ namespace ChinaUnion_DataAccess
                     policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
 
                 }
+                mycn.Close();
                 return policy;
             }
 
@@ -171,6 +181,7 @@ namespace ChinaUnion_DataAccess
                     policy.toAll = reader["toAll"] == DBNull.Value ? null : reader["toAll"].ToString();
 
                 }
+                mycn.Close();
                 return policy;
             }
                
@@ -221,6 +232,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(policy);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -277,6 +289,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(policy);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -376,6 +389,7 @@ namespace ChinaUnion_DataAccess
                         continue;
                     list.Add(agentNo);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -388,35 +402,52 @@ namespace ChinaUnion_DataAccess
         public IList<String> GetAllUserIdListBySeq(string sequence)
         {
             StringBuilder sb = new StringBuilder();
+            sb.Append(" select contactId from agent_wechat_account tt1,");
+            sb.Append("  (select distinct ");
+            sb.Append("  agentNo ");
+            sb.Append(" from ");
+            sb.Append(" agent_type, ");
+            sb.Append(" (SELECT  ");
+            sb.Append("   receiver ");
+            sb.Append("  FROM ");
+            sb.Append("   tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("   type = '渠道类型' ");
+            sb.Append("      and policy_sequence = @sequence union select  ");
+            sb.Append("  t.member ");
+            sb.Append("  from ");
+            sb.Append("    tb_user_define_group t, (SELECT  ");
+            sb.Append("   receiver ");
+            sb.Append("  FROM ");
+            sb.Append("      tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("     type = '自定义组' ");
+            sb.Append("        and policy_sequence = @sequence) t2 ");
+            sb.Append("  where ");
+            sb.Append("     t.groupName = t2.receiver ");
+            sb.Append("       and t.type = '渠道类型') t3 ");
+            sb.Append(" where ");
+            sb.Append("  agentfeemonth = (select  ");
+            sb.Append("     max(agentfeemonth) ");
+            sb.Append("   from ");
+            sb.Append("    agent_type) ");
+            sb.Append("  and agenttype = t3.receiver  ");
+            sb.Append(" union select distinct ");
+            sb.Append("   t.member ");
+            sb.Append(" from ");
+            sb.Append("  tb_user_define_group t ");
+            sb.Append(" where ");
+            sb.Append("  t.groupName in (SELECT  ");
+            sb.Append("        receiver ");
+            sb.Append("    FROM ");
+            sb.Append("     tb_policy_receiver ");
+            sb.Append("  where ");
+            sb.Append("   type = '自定义组' ");
+            sb.Append("    and policy_sequence = @sequence) ");
+            sb.Append(" and t.type = '代理商/渠道' ) tt2");
 
-            sb.Append("select    contactId from ");
-            sb.Append(" agent_wechat_account t3, ");
-            sb.Append("(select distinct  t1.agentNo ");
-            sb.Append("from  agent_type t1, (SELECT  ");
-            sb.Append(" receiver as agenttype ");
-            sb.Append("FROM    tb_policy_receiver ");
-            sb.Append(" where   type = '渠道类型' ");
-            sb.Append("  and policy_sequence = @sequence union select  ");
-            sb.Append(" t.member as agenttype ");
-            sb.Append("from    tb_user_define_group t ");
-            sb.Append(" where  t.groupName in (SELECT  receiver ");
-            sb.Append(" FROM  tb_policy_receiver ");
-            sb.Append("  where type = '自定义组' ");
-            sb.Append("   and policy_sequence = @sequence) ");
-            sb.Append(" and t.type = '渠道类型') t2 ");
-            sb.Append(" where agentfeemonth = (select  ");
-            sb.Append(" max(agentfeemonth) ");
-            sb.Append(" from   agent_type) ");
-            sb.Append(" and t1.agenttype = t2.agenttype union select distinct ");
-            sb.Append(" t.member as agentNo ");
-            sb.Append(" from  tb_user_define_group t ");
-            sb.Append("where  t.groupName in (SELECT  receiver ");
-            sb.Append("FROM  tb_policy_receiver ");
-            sb.Append(" where   type = '自定义组' ");
-            sb.Append(" and policy_sequence = @sequence) ");
-            sb.Append("and t.type = '代理商/渠道') t4 ");
-            sb.Append("where   (t3.agentNo = t4.agentNo) ");
-            sb.Append(" or (t3.branchNo = t4.agentno) ");
+            sb.Append(" where   ((tt1.agentNo = tt2.agentNo) ");
+            sb.Append(" or ( tt1.branchNo = tt2.agentno)) ");
 
 
 
@@ -438,6 +469,7 @@ namespace ChinaUnion_DataAccess
                         continue;
                     list.Add(contactId);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -485,6 +517,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(policy);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -536,6 +569,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(policy);
                 }
+                mycn.Close();
                 return list;
             }
         }

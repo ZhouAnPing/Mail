@@ -33,8 +33,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@contactTel", entity.contactTel);
                 command.Parameters.AddWithValue("@contactName", entity.contactName);
                 command.Parameters.AddWithValue("@contactEmail", entity.contactEmail);
-                
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -53,7 +56,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@agentNo", agentNo);
                 command.Parameters.AddWithValue("@branchNo", branchNo);
                 command.Parameters.AddWithValue("@contactName", contactName);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -69,8 +75,11 @@ namespace ChinaUnion_DataAccess
             {
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
-                
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         
@@ -113,6 +122,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentContact);
                 }
+                mycn.Close();
                 return list;
             }
         }
@@ -156,6 +166,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentContact);
                 }
+                mycn.Close();
                 return list;
             }
         }

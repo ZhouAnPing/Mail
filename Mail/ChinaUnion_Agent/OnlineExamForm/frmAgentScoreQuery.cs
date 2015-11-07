@@ -125,13 +125,15 @@ namespace ChinaUnion_Agent.OnlineExamForm
                         //this.dgScore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         //this.dgScore.AutoResizeColumns();
                     }
-
-
-
                 }
 
             }
             this.Cursor = Cursors.Default;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

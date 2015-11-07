@@ -81,6 +81,8 @@
     <Content Include="AgentBonusDetailQuery.aspx" />
     <Content Include="CaseQuery.aspx" />
     <Content Include="CaseDetail.aspx" />
+    <Content Include="MyComplainReply.aspx" />
+    <Content Include="MyComplainQuery.aspx" />
     <Content Include="MyExamQuery.aspx" />
     <Content Include="OnlineComplainSuggestionDetail.aspx" />
     <Content Include="OnlineComplainSuggestionQuery.aspx" />
@@ -163,6 +165,20 @@
     </Compile>
     <Compile Include="CaseDetail.aspx.designer.cs">
       <DependentUpon>CaseDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyComplainReply.aspx.cs">
+      <DependentUpon>MyComplainReply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyComplainReply.aspx.designer.cs">
+      <DependentUpon>MyComplainReply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyComplainQuery.aspx.cs">
+      <DependentUpon>MyComplainQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyComplainQuery.aspx.designer.cs">
+      <DependentUpon>MyComplainQuery.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyExamQuery.aspx.cs">
       <DependentUpon>MyExamQuery.aspx</DependentUpon>

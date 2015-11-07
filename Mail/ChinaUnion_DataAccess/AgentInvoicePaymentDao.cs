@@ -31,8 +31,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@payFee", entity.payFee);
                 command.Parameters.AddWithValue("@summary", entity.summary);
                 command.Parameters.AddWithValue("@payStatus", entity.payStatus);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -58,7 +61,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@payFee", entity.payFee);
                 command.Parameters.AddWithValue("@summary", entity.summary);
                 command.Parameters.AddWithValue("@payStatus", entity.payStatus);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -79,7 +85,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@agentNo", entity.agentNo);
                
                 command.Parameters.AddWithValue("@processTime", entity.processTime);
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
         /// <summary> 
@@ -111,6 +120,7 @@ namespace ChinaUnion_DataAccess
                     agentInvoicePayment.payStatus = reader["payStatus"] == DBNull.Value ? null : reader["payStatus"].ToString();
                     
                 }
+                mycn.Close();
                 return agentInvoicePayment;
             }
         }
@@ -154,6 +164,7 @@ namespace ChinaUnion_DataAccess
                     agentInvoicePayment.payStatus = reader["payStatus"] == DBNull.Value ? null : reader["payStatus"].ToString();
                     list.Add(agentInvoicePayment);
                 }
+                mycn.Close();
                 return list;
             }
         }

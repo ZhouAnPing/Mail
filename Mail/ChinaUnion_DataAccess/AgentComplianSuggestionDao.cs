@@ -31,8 +31,11 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@subject", entity.subject);
                 command.Parameters.AddWithValue("@content", entity.content);
                 command.Parameters.AddWithValue("@ownerDepartment", entity.ownerDepartment);
-               
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -49,8 +52,11 @@ namespace ChinaUnion_DataAccess
                 mycn.Open();
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@sequence", sequence);
-              
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -75,7 +81,10 @@ namespace ChinaUnion_DataAccess
                 command.Parameters.AddWithValue("@replyTime", entity.replyTime);
                 command.Parameters.AddWithValue("@replyContent", entity.replyContent);
 
-                return command.ExecuteNonQuery();
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -94,9 +103,12 @@ namespace ChinaUnion_DataAccess
                 MySqlCommand command = new MySqlCommand(sql, mycn);
                 command.Parameters.AddWithValue("@sequence", entity.sequence);
                 command.Parameters.AddWithValue("@agentReadtime", entity.agentReadtime);
-               
 
-                return command.ExecuteNonQuery();
+
+                int i = command.ExecuteNonQuery();
+                mycn.Close();
+                mycn.Dispose();
+                return i;
             }
         }
 
@@ -140,6 +152,9 @@ namespace ChinaUnion_DataAccess
 
                    
                 }
+               
+                mycn.Close();
+                mycn.Dispose();
                 return agentComplianSuggestion;
             }
         }
@@ -198,6 +213,7 @@ namespace ChinaUnion_DataAccess
 
                     list.Add(agentComplianSuggestion);
                 }
+                mycn.Close();
                 return list;
             }
         }
