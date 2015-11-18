@@ -3,6 +3,7 @@ using BSE.Windows.Forms;
 using ChinaUnion_Agent.InvoiceForm;
 using ChinaUnion_Agent.PolicyForm;
 using ChinaUnion_Agent.Properties;
+using ChinaUnion_Agent.StudyForm;
 using ChinaUnion_Agent.UserManagement;
 using ChinaUnion_Agent.Util;
 using ChinaUnion_Agent.Wechat;
@@ -465,6 +466,7 @@ namespace ChinaUnion_Agent
                         //frmPolicyReadLog.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmPolicyReadLog);
                         break;
+
                         
                     case "Broadcast":
 
@@ -472,7 +474,18 @@ namespace ChinaUnion_Agent
                         //frmPolicyPublish.loginUser = this.loginUser;
                         CheckChildOpenState(this, frmBroadcast1);
                         break;
-                 
+                    case "StudyPublish":
+
+                        frmStudyPublish frmStudyPublish = new frmStudyPublish();
+                        frmStudyPublish.loginUser = this.loginUser;
+                        CheckChildOpenState(this, frmStudyPublish);
+                        break;
+                    case "StudyReadLog":
+
+                        frmStudyReadLog frmStudyReadLog = new frmStudyReadLog();
+                        //frmPolicyReadLog.loginUser = this.loginUser;
+                        CheckChildOpenState(this, frmStudyReadLog);
+                        break;
 
                     case "UserMantain":
 

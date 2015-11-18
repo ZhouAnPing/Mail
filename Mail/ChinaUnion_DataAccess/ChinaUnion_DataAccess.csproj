@@ -65,11 +65,14 @@
     <Compile Include="AgentExamDao.cs" />
     <Compile Include="AgentComplainDao.cs" />
     <Compile Include="AgentComplainReplyDao.cs" />
+    <Compile Include="StudyDao.cs" />
+    <Compile Include="PolicyReceiverDao.cs" />
+    <Compile Include="StudyReceiverLogDao.cs" />
     <Compile Include="ExamReceiverDao.cs" />
     <Compile Include="ExamQuestionDao.cs" />
     <Compile Include="ExamDao.cs" />
     <Compile Include="PolicyReceiverLogDao.cs" />
-    <Compile Include="PolicyReceiverDao.cs" />
+    <Compile Include="StudyReceiverDao.cs" />
     <Compile Include="UserDefinedGroupDao.cs" />
     <Compile Include="GroupDao.cs" />
     <Compile Include="InvoicePaymentDao.cs" />

@@ -14,9 +14,9 @@ using Wechat.Util;
 
 namespace Wechat
 {
-    public partial class BusinessPolicyQuery : System.Web.UI.Page
+    public partial class OnlineStudyQuery : System.Web.UI.Page
     {
-        private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(BusinessPolicyQuery));
+        private log4net.ILog logger = log4net.LogManager.GetLogger(typeof(OnlineStudyQuery));
 
        
         protected void Page_Load(object sender, EventArgs e)
@@ -24,9 +24,9 @@ namespace Wechat
             logger.Info(this.Request.Url.AbsoluteUri);
 
             //bindDataToGrid("", "政策", "validate", "DL204053", "P001");
-            //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice%26agentId%3d6
-            //http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessPolicyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice
-            //String myUrl = "http://112.64.17.80/wechat/BusinessPolicyQuery.aspx?search_scope=validate&messageType=notice&agentId=6";
+            //http%3a%2f%2f112.64.17.80%2fwechat%2fOnlineStudyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice%26agentId%3d6
+            //http%3a%2f%2f112.64.17.80%2fwechat%2fOnlineStudyQuery.aspx%3fsearch_scope%3dvalidate%26messageType%3dnotice
+            //String myUrl = "http://112.64.17.80/wechat/OnlineStudyQuery.aspx?search_scope=validate&messageType=notice&agentId=6";
             // myUrl = this.Server.UrlEncode(myUrl);
             string code = Request.QueryString["code"];
             string state = Request.QueryString["state"];
@@ -69,27 +69,14 @@ namespace Wechat
 
 
                    // search_scope = "all";
-                    String type = "通知公告/重点关注";
-                    if (!String.IsNullOrEmpty(state) && state.Equals("myNotice"))
-                    {
-                        type = "通知公告/重点关注";
-                    }
-
-                    if (!String.IsNullOrEmpty(state) && state.Equals("policy"))
-                    {
-                        type = "政策";
-                    }
-
-                    if (!String.IsNullOrEmpty(state) && state.Equals("rule"))
-                    {
-                        type = "服务规范";
-                    }
+                    String type = "在线学习";
+                    
 
 
                     WechatQueryLog wechatQueryLog = new ChinaUnion_BO.WechatQueryLog();
                     wechatQueryLog.agentName = "";
-                    wechatQueryLog.module = Util.MyConstant.module_Notice;
-                    wechatQueryLog.subSystem = "通知公告与促销政策";
+                    wechatQueryLog.module = Util.MyConstant.module_Study;
+                    wechatQueryLog.subSystem = "在线学习";
                     wechatQueryLog.queryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     wechatQueryLog.queryString = type;
                     wechatQueryLog.wechatId = agentWechatAccount.contactId;
@@ -122,20 +109,20 @@ namespace Wechat
             logger.Info("search_scope=" + search_scope);
             logger.Info("agentNo=" + agentNo);
             logger.Info("userId=" + userId);
-            PolicyDao policyDao = new ChinaUnion_DataAccess.PolicyDao();
+            StudyDao studyDao = new ChinaUnion_DataAccess.StudyDao();
 
-            IList<Policy> policyList = null;
+            IList<Study> studyList = null;
 
             if (!String.IsNullOrEmpty(search_scope) && search_scope.Equals("validate"))
             {
-                policyList = policyDao.GetAllValidatedList(subject, type);
+                studyList = studyDao.GetAllValidatedList(subject, type);
                 logger.Info("validate=");
             }
 
 
             if (!String.IsNullOrEmpty(search_scope) && search_scope.Equals("all"))
             {
-                policyList = policyDao.GetList(subject, type);
+                studyList = studyDao.GetList(subject, type);
                 logger.Info("all=");
             }
             this.lblType.Text = type;
@@ -153,51 +140,51 @@ namespace Wechat
             dt.Columns.Add("validateEndTime");
 
             DataRow row = null;
-            if (policyList != null && policyList.Count>0)
+            if (studyList != null && studyList.Count>0)
             {
-                foreach (Policy policy in policyList)
+                foreach (Study study in studyList)
                 {
-                    if (!policy.toAll.Equals("Y"))
+                    if (!study.toAll.Equals("Y"))
                     {
                         AgentWechatAccountDao agentWechatAccountDao = new AgentWechatAccountDao();
                         AgentWechatAccount agentWechatAccount = agentWechatAccountDao.Get(userId);
 
-                        if (!String.IsNullOrEmpty(policy.agentType) )
+                        if (!String.IsNullOrEmpty(study.agentType) )
                         {
-                              IList<String> list = policy.agentType.Split(';').ToList<String>();
+                              IList<String> list = study.agentType.Split(';').ToList<String>();
                               if (!list.Contains(agentWechatAccount.type))
                               {
                                   continue;
                               }
                         }
-                        if (String.IsNullOrEmpty(policy.agentType))
+                        if (String.IsNullOrEmpty(study.agentType))
                         {
-                            IList<String> agentNoList = policyDao.GetAllAgentNoListBySeq(policy.sequence);
+                            IList<String> agentNoList = studyDao.GetAllAgentNoListBySeq(study.sequence);
                             if (!agentNoList.Contains(agentNo))
                             {
-                                logger.Info("userId=" + userId + " 没有权限范围" + policy.sequence);
+                                logger.Info("userId=" + userId + " 没有权限范围" + study.sequence);
                                 continue;
                             }
                         }
                     }
                     row = dt.NewRow();
-                    row["seq"] = policy.sequence;
+                    row["seq"] = study.sequence;
                     row["userId"] = userId;
-                    row["subject"] = policy.subject;
-                    if (policy.content.Length > 10)
+                    row["subject"] = study.subject;
+                    if (study.content.Length > 10)
                     {
-                        row["content"] = policy.content.Substring(0, 10) + "......";
+                        row["content"] = study.content.Substring(0, 10) + "......";
                     }
                     else
                     {
-                        row["content"] = policy.content;
+                        row["content"] = study.content;
                     }
-                    if (!String.IsNullOrEmpty(policy.attachmentName))
+                    if (!String.IsNullOrEmpty(study.attachmentName))
                     {
                         row["attachment"] = "附件";
                     }
-                    row["validateStartTime"] = policy.validateStartTime;
-                    row["validateEndTime"] = policy.validateEndTime;
+                    row["validateStartTime"] = study.validateStartTime;
+                    row["validateEndTime"] = study.validateEndTime;
                     dt.Rows.Add(row);
                 }
             }
