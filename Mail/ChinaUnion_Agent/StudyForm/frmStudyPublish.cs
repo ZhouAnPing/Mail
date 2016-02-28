@@ -381,8 +381,42 @@ namespace ChinaUnion_Agent.StudyForm
             }
             this.Cursor = Cursors.WaitCursor;
             int appId = MyConstant.APP_Online;
-           
-                    
+
+            AgentWechatAccountDao agentWechatAccountDao = new ChinaUnion_DataAccess.AgentWechatAccountDao();
+            String agentType = "";
+
+            foreach (object item in this.chkAgentType.CheckedItems)
+            {
+                agentType =  item.ToString() ;
+                IList<String> list = agentWechatAccountDao.GetListByType( agentType);
+
+                List<String> userIdsBuffer1 = new List<string>();
+                for (int i = 1; i <= list.Count; i++)
+                {
+                    userIdsBuffer1.Add(list[i - 1]);
+                    if (i % 500 == 0 || i == list.Count)
+                    {
+                        string userId = "";
+                        userId = string.Join("|", userIdsBuffer1.ToArray());
+                        userIdsBuffer1.Clear();
+
+                        WechatAction wechatAction = new WechatAction();
+
+                        String content = this.txtSubject.Text.Trim();
+                        String state = this.txtSequence.Text;
+                        String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31204de5a3ae758e&redirect_uri=http%3a%2f%2f112.64.17.80%2fwechat%2fOnlineStudyDetail.aspx&response_type=code&scope=snsapi_base&state=" + state + "#wechat_redirect";
+
+                        content = "你有新的消息，主题：" + content + ", <a href=\"" + url + "\">点击查询详情</a>";
+                        HttpResult result = wechatAction.sendTextMessageToWechat(userId, content, Settings.Default.Wechat_Secret, appId);
+
+                    }
+
+
+                }
+                 
+            }
+               
+     
             IList<String> UserIdList = studyDao.GetAllUserIdListBySeq(this.txtSequence.Text);
 
             List<String> userIdsBuffer = new List<string>();
@@ -399,7 +433,7 @@ namespace ChinaUnion_Agent.StudyForm
 
                     String content = this.txtSubject.Text.Trim();
                     String state = this.txtSequence.Text;
-                    String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31204de5a3ae758e&redirect_uri=http%3a%2f%2f112.64.17.80%2fwechat%2fBusinessStudyDetail.aspx&response_type=code&scope=snsapi_base&state=" + state + "#wechat_redirect";
+                    String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31204de5a3ae758e&redirect_uri=http%3a%2f%2f112.64.17.80%2fwechat%2fOnlineStudyDetail.aspx&response_type=code&scope=snsapi_base&state=" + state + "#wechat_redirect";
 
                     content = "你有新的消息，主题：" + content + ", <a href=\"" + url + "\">点击查询详情</a>";
                     HttpResult result = wechatAction.sendTextMessageToWechat(userId, content, Settings.Default.Wechat_Secret, appId);

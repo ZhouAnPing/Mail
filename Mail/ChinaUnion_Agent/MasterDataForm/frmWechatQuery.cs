@@ -684,5 +684,60 @@ namespace ChinaUnion_Agent.MasterDataForm
 
             this.Cursor = Cursors.Default;
         }
+
+
+       
+
+
+
+        private void menuModifyUser_Click(object sender, EventArgs e)
+        {
+            //String userId = null;
+            if (this.dgAgentWechatAccount.SelectedRows == null)
+            {
+                MessageBox.Show("请先选择");
+                return;
+            }
+            frmAgentWechatUserModify frmAgentWechatUserModify = new frmAgentWechatUserModify();
+            frmAgentWechatUserModify.row = this.dgAgentWechatAccount.CurrentRow;
+         
+            //frmAgentWechatUserModify.wechatJsonUser.userid = this.dgAgentWechatAccount.CurrentRow.Cells[6].Value.ToString();
+            DialogResult result = frmAgentWechatUserModify.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                int index = 6;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactId;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactName;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactEmail;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactTel;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactWechat;
+
+                //if (!String.IsNullOrEmpty(frmAgentWechatUserModify.retAgentWechatAccount.status) && frmAgentWechatUserModify.retAgentWechatAccount.status.ToUpper().Equals("Y"))
+                //{
+                //    row.Cells[5].Value = "账号已经停用";
+                //}
+                //else
+                //{
+                //    row.Cells[5].Value = "";
+                //}
+               
+
+
+                index++;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.feeRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.policyRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.performanceRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.studyRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.complainRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.monitorRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.errorRight;
+                this.dgAgentWechatAccount.CurrentRow.Cells[index++].Value = frmAgentWechatUserModify.retAgentWechatAccount.contactRight;
+
+                this.btnSync_Click(sender, e);
+              //  this.btnSync.Invoke(this.btnSync_Click(sender,e));
+            }
+        }
+
+       
     }
 }

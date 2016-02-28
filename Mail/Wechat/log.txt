@@ -2221,3 +2221,11 @@
 2015-11-05 22:02:12,715 [29] INFO  Wechat.MyExamQuery - result={"errcode":41008,"errmsg":"missing code"}
 [Footer]\r\n[Header]\r\n2015-11-05 22:06:00,222 [34] INFO  Wechat.MyExamQuery - userId=null
 2015-11-05 22:06:00,242 [34] INFO  Wechat.MyExamQuery - userId=
+[Header]\r\n2015-11-18 09:24:31,994 [13] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-11-18 09:25:13,839 [20] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-11-18 09:27:21,867 [23] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+[Footer]\r\n[Header]\r\n2015-11-18 09:50:34,724 [36] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-11-18 09:50:39,791 [36] INFO  Wechat.BusinessPolicyQuery - is not Existed Record: 
+[Footer]\r\n[Header]\r\n2015-11-18 10:36:30,069 [78] INFO  Wechat.BusinessPolicyQuery - http://localhost:59032/TestGrid.aspx
+2015-11-18 10:36:36,362 [78] INFO  Wechat.BusinessPolicyQuery - is not Existed Record: 
+[Footer]\r\n

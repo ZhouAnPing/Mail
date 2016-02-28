@@ -32,7 +32,7 @@
 
                               
                                 <asp:TextBox  ID="txtCondition" runat="server" Width="70%" Height="32px"></asp:TextBox>
-                                        <asp:Button ID="btnSearch" runat="server" Text="搜索" Width="25%" Font-Bold="True" Font-Size="16px" OnClick="btnSearch_Click" Height="36px"   />
+                                        <asp:Button ID="btnSearch" runat="server" Text="搜索" Width="25%" Font-Bold="True" Font-Size="16px"  Height="36px"   />
                             </td>
 
                         </tr>
@@ -50,8 +50,8 @@
                     </asp:UpdateProgress>
 
                                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" PageSize="1" AllowPaging="True"
-                                    OnPageIndexChanging="GridView1_PageIndexChanging"
-                                    ForeColor="#333333" GridLines="None" Width="100%" OnRowDataBound="GridView1_RowDataBound">
+                                   
+                                    ForeColor="#333333" GridLines="None" Width="100%" >
                                     <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                                     <Columns>
                                         <asp:BoundField DataField="seq" HeaderStyle-BorderWidth="1" HeaderText="编号" ReadOnly="True" ItemStyle-HorizontalAlign="Left" ItemStyle-BorderWidth="1" ItemStyle-BorderColor="Black" />

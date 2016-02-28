@@ -310,38 +310,40 @@ namespace ChinaUnion_DataAccess
             if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
                 sb.Clear();
-                sb.Append("SELECT branchNo,branchName,");
+                sb.Append("SELECT branchNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
                 }
 
-                sb.Append("date");
+                sb.Append("branchName");
 
-                sb.Append(" FROM agent_daily_performance group by branchNo,branchName,");
+                sb.Append(" FROM agent_daily_performance ");
+                sb.Append(" where   branchNo = @branchNo and date=@date group by branchNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",");
                 }
-                sb.Append("date");
-                sb.Append(" having branchNo = @branchNo and date=@date");
+                sb.Append("branchName");
+               
             }else{
                 sb.Clear();
-                sb.Append("SELECT agentNo,agentName,");
+                sb.Append("SELECT agentNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
                 }
 
-                sb.Append("date");
+                 sb.Append(" agentName");
 
-                sb.Append(" FROM agent_daily_performance group by agentNo,agentName,");
+                sb.Append(" FROM agent_daily_performance ");
+                sb.Append(" where   agentNo = @agentNo and date=@date group by agentNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",");
                 }
-                sb.Append("date");
-                sb.Append(" having agentNo = @agentNo and date=@date");
+                sb.Append("agentName");
+               // sb.Append(" having agentNo = @agentNo and date=@date");
             }
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
@@ -374,7 +376,7 @@ namespace ChinaUnion_DataAccess
                         agentDailyPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
 
                     }
-                    agentDailyPerformance.date = reader["date"] == DBNull.Value ? null : reader["date"].ToString();
+                    agentDailyPerformance.date = date;// DBNull.Value ? null : reader["date"].ToString();
                     for (int i = 1; i <= 100; i++)
                     {
                         FieldInfo feeNameField = agentDailyPerformance.GetType().GetField("feeName" + i);

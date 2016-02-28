@@ -32,6 +32,8 @@
             this.grpWechatList = new System.Windows.Forms.GroupBox();
             this.dgAgentWechatAccount = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.checkUnsync = new System.Windows.Forms.CheckBox();
             this.cboType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
@@ -41,12 +43,14 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.checkUnsync = new System.Windows.Forms.CheckBox();
-            this.btnSync = new System.Windows.Forms.Button();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuModifyUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
             this.grpWechatList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAgentWechatAccount)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpWechatList
@@ -66,6 +70,7 @@
             this.dgAgentWechatAccount.AllowUserToDeleteRows = false;
             this.dgAgentWechatAccount.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(233)))), ((int)(((byte)(207)))));
             this.dgAgentWechatAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentWechatAccount.ContextMenuStrip = this.contextMenuStrip2;
             this.dgAgentWechatAccount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgAgentWechatAccount.Location = new System.Drawing.Point(3, 17);
             this.dgAgentWechatAccount.Name = "dgAgentWechatAccount";
@@ -93,6 +98,27 @@
             this.groupBox1.Size = new System.Drawing.Size(1016, 55);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // btnSync
+            // 
+            this.btnSync.AutoSize = true;
+            this.btnSync.Location = new System.Drawing.Point(717, 12);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(44, 31);
+            this.btnSync.TabIndex = 26;
+            this.btnSync.Text = "同步";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // checkUnsync
+            // 
+            this.checkUnsync.AutoSize = true;
+            this.checkUnsync.Location = new System.Drawing.Point(517, 18);
+            this.checkUnsync.Name = "checkUnsync";
+            this.checkUnsync.Size = new System.Drawing.Size(60, 16);
+            this.checkUnsync.TabIndex = 25;
+            this.checkUnsync.Text = "未同步";
+            this.checkUnsync.UseVisualStyleBackColor = true;
             // 
             // cboType
             // 
@@ -183,26 +209,27 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // checkUnsync
+            // contextMenuStrip2
             // 
-            this.checkUnsync.AutoSize = true;
-            this.checkUnsync.Location = new System.Drawing.Point(517, 18);
-            this.checkUnsync.Name = "checkUnsync";
-            this.checkUnsync.Size = new System.Drawing.Size(60, 16);
-            this.checkUnsync.TabIndex = 25;
-            this.checkUnsync.Text = "未同步";
-            this.checkUnsync.UseVisualStyleBackColor = true;
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuModifyUser,
+            this.menuDeleteUser});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(119, 48);
             // 
-            // btnSync
+            // menuModifyUser
             // 
-            this.btnSync.AutoSize = true;
-            this.btnSync.Location = new System.Drawing.Point(717, 12);
-            this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(44, 31);
-            this.btnSync.TabIndex = 26;
-            this.btnSync.Text = "同步";
-            this.btnSync.UseVisualStyleBackColor = true;
-            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            this.menuModifyUser.Name = "menuModifyUser";
+            this.menuModifyUser.Size = new System.Drawing.Size(118, 22);
+            this.menuModifyUser.Text = "修改成员";
+            this.menuModifyUser.Click += new System.EventHandler(this.menuModifyUser_Click);
+            // 
+            // menuDeleteUser
+            // 
+            this.menuDeleteUser.Name = "menuDeleteUser";
+            this.menuDeleteUser.Size = new System.Drawing.Size(118, 22);
+            this.menuDeleteUser.Text = "删除成员";
+            this.menuDeleteUser.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmWechatQuery
             // 
@@ -222,6 +249,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -242,5 +270,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckBox checkUnsync;
         private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem menuModifyUser;
+        private System.Windows.Forms.ToolStripMenuItem menuDeleteUser;
     }
 }

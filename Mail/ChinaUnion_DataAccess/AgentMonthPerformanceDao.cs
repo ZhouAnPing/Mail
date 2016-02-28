@@ -319,40 +319,47 @@ namespace ChinaUnion_DataAccess
             if (type.Contains("直供渠道") || type.Contains("非直供渠道"))
             {
                 sb.Clear();
-                sb.Append("SELECT branchNo,branchName,");
+                sb.Append("SELECT branchNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
                 }
 
-                sb.Append("month");
+                sb.Append("branchName");
 
-                sb.Append(" FROM agent_month_performance group by branchNo,branchName,");
+                //sb.Append(" FROM agent_month_performance group by branchNo,");
+                sb.Append(" FROM agent_month_performance ");
+                sb.Append(" where   branchNo = @branchNo and month=@month group by branchNo,");
+
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",");
                 }
-                sb.Append("month");
-                sb.Append(" having branchNo = @branchNo and month=@month");
+                sb.Append("branchName");
+               // sb.Append(" having branchNo = @branchNo and month=@month");
             }
             else
             {
                 sb.Clear();
-                sb.Append("SELECT agentNo,agentName,");
+                sb.Append("SELECT agentNo,");
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",").Append("sum(fee").Append(i.ToString()).Append(") fee").Append(i.ToString()).Append(" ,");
                 }
 
-                sb.Append("month");
+                sb.Append("agentName");
 
-                sb.Append(" FROM agent_month_performance group by agentNo,agentName,");
+              //  sb.Append(" FROM agent_month_performance group by agentNo,");
+
+                sb.Append(" FROM agent_month_performance ");
+                sb.Append(" where   agentNo = @agentNo and month=@month group by agentNo,");
+
                 for (int i = 1; i <= 100; i++)
                 {
                     sb.Append("feeName").Append(i.ToString()).Append(",");
                 }
-                sb.Append("month");
-                sb.Append(" having agentNo = @agentNo and month=@month");
+                sb.Append("agentName");
+               // sb.Append(" having agentNo = @agentNo and month=@month");
             }
 
             string sql = sb.ToString();// "SELECT agentNo, agentFeeSeq,feeName1,fee1,feeName2,fee2,feeName3,fee3,feeName4,fee4,feeTotal FROM agent_Fee";
@@ -386,8 +393,8 @@ namespace ChinaUnion_DataAccess
                         agentMonthPerformance.branchNo = reader["branchNo"] == DBNull.Value ? null : reader["branchNo"].ToString();
                         agentMonthPerformance.branchName = reader["branchName"] == DBNull.Value ? null : reader["branchName"].ToString();
 
-                    } 
-                    agentMonthPerformance.month = reader["month"] == DBNull.Value ? null : reader["month"].ToString();
+                    }
+                    agentMonthPerformance.month = month;// reader["month"] == DBNull.Value ? null : reader["month"].ToString();
                     for (int i = 1; i <= 100; i++)
                     {
                         FieldInfo feeNameField = agentMonthPerformance.GetType().GetField("feeName" + i);

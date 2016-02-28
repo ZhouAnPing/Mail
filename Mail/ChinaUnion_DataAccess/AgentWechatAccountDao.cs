@@ -82,7 +82,7 @@ namespace ChinaUnion_DataAccess
             sql = sql + " branchName=@branchName,regionName=@regionName,contactId=@contactId,contactName=@contactName,";
             sql = sql + " contactEmail=@contactEmail,contactTel=@contactTel,contactWechat=@contactWechat,";
             sql = sql + " feeRight=@feeRight,policyRight=@policyRight,performanceRight=@performanceRight,";
-            sql = sql + " studyRight=@studyRight,complainRight=@complainRight,monitorRight=@monitorRight,errorRight=@errorRight,contactRight=@contactRight,type=@type)";
+            sql = sql + " studyRight=@studyRight,complainRight=@complainRight,monitorRight=@monitorRight,errorRight=@errorRight,contactRight=@contactRight,type=@type ";
             sql = sql + " where contactId=@contactId";
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
@@ -339,6 +339,45 @@ namespace ChinaUnion_DataAccess
                     agentContact.contactRight = reader["contactRight"] == DBNull.Value ? "" : reader["contactRight"].ToString();
 
                     list.Add(agentContact);
+                }
+                mycn.Close();
+                return list;
+            }
+        }
+
+
+        /// <summary> 
+        /// 查询集合 
+        /// </summary> 
+        /// <returns></returns> 
+        public IList<String> GetListByType(String type)
+        {
+            string sql = "SELECT distinct contactId FROM agent_wechat_account";
+
+            sql = sql + " where 1=1";
+           
+            if (!String.IsNullOrEmpty(type))
+            {
+                sql = sql + " and type= \"" + type + "\"";
+
+            }
+           
+            using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
+            {
+                mycn.Open();
+                MySqlCommand command = new MySqlCommand(sql, mycn);
+                MySqlDataReader reader = command.ExecuteReader();
+                IList<String> list = new List<String>();
+               
+                while (reader.Read())
+                {
+                    String contactId = "";
+                  
+                    contactId = reader["contactId"] == DBNull.Value ? "" : reader["contactId"].ToString();
+
+
+
+                    list.Add(contactId);
                 }
                 mycn.Close();
                 return list;

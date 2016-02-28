@@ -277,6 +277,12 @@
     <Compile Include="InvoiceForm\frmInvoiceImport.Designer.cs">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterDataForm\frmAgentWechatUserModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterDataForm\frmAgentWechatUserModify.Designer.cs">
+      <DependentUpon>frmAgentWechatUserModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterDataForm\frmAgentTypeImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -589,6 +595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceForm\frmInvoiceImport.resx">
       <DependentUpon>frmInvoiceImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterDataForm\frmAgentWechatUserModify.resx">
+      <DependentUpon>frmAgentWechatUserModify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterDataForm\frmAgentTypeImport.resx">
       <DependentUpon>frmAgentTypeImport.cs</DependentUpon>
