@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImport = new System.Windows.Forms.Button();
             this.txtKeyword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgGroup = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtAgent = new System.Windows.Forms.TextBox();
             this.lstAssignAgent = new System.Windows.Forms.ListBox();
@@ -77,6 +79,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.txtKeyword);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnNew);
@@ -88,6 +91,17 @@
             this.groupBox1.Size = new System.Drawing.Size(1016, 60);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // btnImport
+            // 
+            this.btnImport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnImport.Location = new System.Drawing.Point(508, 20);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(72, 31);
+            this.btnImport.TabIndex = 21;
+            this.btnImport.Text = "导入组";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // txtKeyword
             // 
@@ -108,20 +122,20 @@
             // btnNew
             // 
             this.btnNew.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnNew.Location = new System.Drawing.Point(451, 20);
+            this.btnNew.Location = new System.Drawing.Point(409, 20);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(100, 31);
+            this.btnNew.Size = new System.Drawing.Size(72, 31);
             this.btnNew.TabIndex = 17;
-            this.btnNew.Text = "新建";
+            this.btnNew.Text = "新建组";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(592, 20);
+            this.btnCancel.Location = new System.Drawing.Point(607, 20);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 31);
+            this.btnCancel.Size = new System.Drawing.Size(72, 31);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "关闭";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -132,7 +146,7 @@
             this.btnQuery.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnQuery.Location = new System.Drawing.Point(310, 20);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(100, 31);
+            this.btnQuery.Size = new System.Drawing.Size(72, 31);
             this.btnQuery.TabIndex = 15;
             this.btnQuery.Text = "查询";
             this.btnQuery.UseVisualStyleBackColor = true;
@@ -168,6 +182,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnExport);
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Controls.Add(this.groupBox5);
@@ -184,6 +199,17 @@
             this.groupBox3.Size = new System.Drawing.Size(696, 681);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExport.Location = new System.Drawing.Point(76, 456);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 31);
+            this.btnExport.TabIndex = 43;
+            this.btnExport.Text = "导出代理商";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // groupBox7
             // 
@@ -525,7 +551,7 @@
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(153, 456);
+            this.btnSave.Location = new System.Drawing.Point(180, 456);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 31);
             this.btnSave.TabIndex = 20;
@@ -629,6 +655,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnExport;
 
     }
 }

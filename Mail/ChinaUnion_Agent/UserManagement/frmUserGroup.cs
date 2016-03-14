@@ -488,5 +488,64 @@ namespace ChinaUnion_Agent.UserManagement
             }
         }
 
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            frmUserGroupImport frmUserGroupImport = new frmUserGroupImport();
+            frmUserGroupImport.ShowDialog();
+            this.btnQuery_Click(sender, e);
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (this.lstAssignAgent.Items.Count <= 0)
+            {
+                return;
+            }
+            this.Cursor = Cursors.WaitCursor;
+
+            
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "csv格式|*.csv";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.FileName = "代理商.csv";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+
+                try
+                {
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFileDialog.FileName, false, System.Text.Encoding.GetEncoding("gb2312")); //写入流 
+
+                 
+                        sw.Write("代理商编号");
+                        //sw.Write(",");
+                  
+                    sw.WriteLine();// sw.Write("\r\n");
+
+                    foreach (Object item in this.lstAssignAgent.Items)
+                    {
+                       
+                            sw.Write(item.ToString().Substring(0, item.ToString().IndexOf(":")));
+                            //sw.Write(",");
+                       
+                        sw.WriteLine();// ("\r\n");
+                    }
+                    sw.Flush();
+                    sw.Close();
+                    MessageBox.Show("成功导出[" + lstAssignAgent.Items.Count.ToString() + "]行数据！");
+                }
+                catch
+                {
+                    MessageBox.Show("导出失败！");
+                }
+            }
+
+
+            this.Cursor = Cursors.WaitCursor;
+
+        }
+
     }
 }
