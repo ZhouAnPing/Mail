@@ -358,7 +358,7 @@ namespace ChinaUnion_DataAccess
            
             if (!String.IsNullOrEmpty(type))
             {
-                sql = sql + " and type= \"" + type + "\"";
+                sql = sql + " and type= \"" + type + "\" order by contactId";
 
             }
            

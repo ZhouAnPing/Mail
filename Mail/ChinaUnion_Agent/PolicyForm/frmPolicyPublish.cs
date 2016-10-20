@@ -436,7 +436,7 @@ namespace ChinaUnion_Agent.PolicyForm
 
 
             IList<String> UserIdList = policyDao.GetAllUserIdListBySeq(this.txtSequence.Text);
-
+          
             List<String> userIdsBuffer = new List<string>();
             for (int i = 1; i <= UserIdList.Count; i++)
             {

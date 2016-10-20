@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHtmlEditor", "WinHtmlEdi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinaUnicomMVC", "ChinaUnicomMVC\ChinaUnicomMVC.csproj", "{7CE01DAC-7829-438D-A4A4-CF3B997F445E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinaUnicom_BatchJob", "ChinaUnicom_BatchJob\ChinaUnicom_BatchJob.csproj", "{9FF77806-73F6-4C22-8BC1-418B5815C17A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -622,6 +624,41 @@ Global
 		{7CE01DAC-7829-438D-A4A4-CF3B997F445E}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7CE01DAC-7829-438D-A4A4-CF3B997F445E}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{7CE01DAC-7829-438D-A4A4-CF3B997F445E}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug_VS2010|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug_VS2010|Any CPU.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug_VS2010|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug_VS2010|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug_VS2010|x86.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release_VS2010|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release_VS2010|Any CPU.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release_VS2010|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release_VS2010|Mixed Platforms.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release_VS2010|x86.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{9FF77806-73F6-4C22-8BC1-418B5815C17A}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -123,11 +123,22 @@ namespace Wechat
                     agentNo = agentWechatAccount.agentNo;
                 }
                 AgentContactDao agentContactDao = new ChinaUnion_DataAccess.AgentContactDao();
-               
+
                 switch (actionType)
                 {
+                    case "CommonPhone":
+                        sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
+                        StringBuilder sbContent1 = new StringBuilder();
+
+                        sbContent1.AppendFormat("1、支撑服务热线：4006186802").AppendLine();
+                        sbContent1.AppendFormat("2、服务监督电话：61587555").AppendLine();
+                        sbContent1.AppendFormat("3、IT服务热线：\n    18502143773\n    18502143774");
+                        sb.AppendFormat("<Content><![CDATA[{0}]]></Content>", sbContent1.ToString());
+
+
+                        break;
                     case "ContactPerson":
-                      
+
                         //AgentContact agentContact = new AgentContact();
 
                         IList<AgentContact> agentContactList = agentContactDao.GetListByNo(agentNo);
@@ -135,18 +146,18 @@ namespace Wechat
                         if (agentContactList != null && agentContactList.Count > 0)
                         {
 
-                            
+
 
                             logger.Info("Exist Record: " + agentContactList.Count);
                             sb.AppendFormat("<MsgType><![CDATA[text]]></MsgType>");
 
                             StringBuilder sbContent = new StringBuilder();
-                            for (int i = 0; i < agentContactList.Count;i++ )
+                            for (int i = 0; i < agentContactList.Count; i++)
                             {
                                 AgentContact agentContact = agentContactList[i];
                                 if (agentContactList.Count > 1)
                                 {
-                                    sbContent.AppendFormat("第{0}联系人\n\n", i+1);
+                                    sbContent.AppendFormat("第{0}联系人\n\n", i + 1);
                                 }
                                 if (!String.IsNullOrEmpty(agentContact.agentNo))
                                 {
@@ -177,7 +188,7 @@ namespace Wechat
                         }
                         break;
 
-                   
+
 
                 }
             }

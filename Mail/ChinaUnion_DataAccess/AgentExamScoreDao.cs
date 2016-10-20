@@ -141,7 +141,7 @@ namespace ChinaUnion_DataAccess
         public IList<ExamQuestion> GetUserExamQuestion(String exam_sequence, String userId)
         {
             string sql = "SELECT t1.sequence,t1.exam_sequence,t1.questionType,t1.answer as standardAnswer,t2.answer as userAnswer,question,option1,option2,option3,option4,option5,option6,option7,option8 FROM tb_exam_question t1 left join tb_agent_exam_score t2 ";
-            sql = sql + " on t1.sequence = t2.question_sequence and t1.exam_sequence=t2.exam_sequence and t1.exam_sequence=@exam_sequence and t2.userId = @userId";
+            sql = sql + " on t1.sequence = t2.question_sequence and t1.exam_sequence=t2.exam_sequence where t1.exam_sequence=@exam_sequence and t2.userId = @userId";
 
             using (MySqlConnection mycn = new MySqlConnection(mysqlConnection))
             {
